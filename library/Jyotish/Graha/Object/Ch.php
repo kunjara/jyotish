@@ -24,7 +24,7 @@ class Ch extends \Jyotish\Graha\Graha {
 
 	static public $grahaAvatara = 'Krishna';
 	static public $grahaDeva = Deva::DEVA_VARUNA;
-	static public $grahaUnicode = 'U+263D';
+	static public $grahaUnicode = '263D';
 	static public $grahaAltName = array
 	(
 		'Soma',

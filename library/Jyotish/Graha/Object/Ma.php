@@ -24,7 +24,7 @@ class Ma extends \Jyotish\Graha\Graha {
 
 	static public $grahaAvatara = 'Narasimha';
 	static public $grahaDeva = Deva::DEVA_KARTTIKEYA;
-	static public $grahaUnicode = 'U+2642';
+	static public $grahaUnicode = '2642';
 	static public $grahaAltName = array
 	(
 		'Kuja',

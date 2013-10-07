@@ -22,11 +22,25 @@ class Utils {
 		self::LABEL_UNICODE,
 		self::LABEL_USER,
 	);
-
+	
+	/**
+	 * Convert unicode to html code.
+	 * 
+	 * @param array|string $unicode
+	 * @return string
+	 */
 	static public function unicodeToHtml($unicode) {
-		$hex = substr($unicode, 2);
-
-		return '&#x' . $hex . ';';
+		if(is_array($unicode)){
+			$htmlArray = array();
+			
+			foreach ($unicode as $code){
+				$html .= '&#x' . $code . ';';
+			}
+		}else{
+			$html = '&#x' . $unicode . ';';
+		}
+		
+		return $html;
 	}
 
 	static public function htmlToRgb($color) {

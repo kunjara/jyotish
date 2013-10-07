@@ -24,7 +24,7 @@ class Sy extends \Jyotish\Graha\Graha {
 
 	static public $grahaAvatara = 'Rama';
 	static public $grahaDeva = Deva::DEVA_AGNI;
-	static public $grahaUnicode = 'U+2609';
+	static public $grahaUnicode = '2609';
 	static public $grahaAltName = array
 	(
 		'Mitra',

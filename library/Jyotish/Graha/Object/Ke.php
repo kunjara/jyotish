@@ -24,7 +24,7 @@ class Ke extends \Jyotish\Graha\Graha {
 
 	static public $grahaAvatara = 'Matsya';
 	static public $grahaDeva = null;
-	static public $grahaUnicode = 'U+260B';
+	static public $grahaUnicode = '260B';
 	static public $grahaAltName = array
 	();
 	static public $grahaExaltation = array

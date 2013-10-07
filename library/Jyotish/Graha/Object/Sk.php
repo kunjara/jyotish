@@ -24,7 +24,7 @@ class Sk extends \Jyotish\Graha\Graha {
 
 	static public $grahaAvatara = 'Parashurama';
 	static public $grahaDeva = Deva::DEVA_SHACHI;
-	static public $grahaUnicode = 'U+2640';
+	static public $grahaUnicode = '2640';
 	static public $grahaAltName = array
 	();
 	static public $grahaExaltation = array

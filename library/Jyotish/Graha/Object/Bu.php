@@ -24,7 +24,7 @@ class Bu extends \Jyotish\Graha\Graha {
 
 	static public $grahaAvatara = 'Budda';
 	static public $grahaDeva = Deva::DEVA_VISHNU_MAHA;
-	static public $grahaUnicode = 'U+263F';
+	static public $grahaUnicode = '263F';
 	static public $grahaAltName = array
 	();
 	static public $grahaExaltation = array

@@ -17,7 +17,7 @@ use Jyotish\Tattva\Ayurveda\Prakriti;
  */
 class R2 extends \Jyotish\Rashi\Rashi {
 
-	static public $rashiUnicode = 'U+2649';
+	static public $rashiUnicode = '2649';
 	static public $rashiBhava = self::BHAVA_STHIRA;
 	static public $rashiBhuta = Bhuta::BHUTA_PRITVI;
 	static public $rashiGender = Manusha::GENDER_FEMALE;

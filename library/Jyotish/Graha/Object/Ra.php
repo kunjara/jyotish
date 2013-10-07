@@ -24,7 +24,7 @@ class Ra extends \Jyotish\Graha\Graha {
 
 	static public $grahaAvatara = 'Varaha';
 	static public $grahaDeva = null;
-	static public $grahaUnicode = 'U+260A';
+	static public $grahaUnicode = '260A';
 	static public $grahaAltName = array
 	();
 	static public $grahaExaltation = array

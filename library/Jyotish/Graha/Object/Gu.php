@@ -24,7 +24,7 @@ class Gu extends \Jyotish\Graha\Graha {
 
 	static public $grahaAvatara = 'Vamana';
 	static public $grahaDeva = Deva::DEVA_INDRA;
-	static public $grahaUnicode = 'U+2643';
+	static public $grahaUnicode = '2643';
 	static public $grahaAltName = array
 	(
 		'Brihaspati',
