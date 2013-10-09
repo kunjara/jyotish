@@ -21,7 +21,16 @@ use Jyotish\Tattva\Ayurveda\Rasa;
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 class Bu extends \Jyotish\Graha\Graha {
-
+	/**
+	 * Title 'budha' in Devanagari transliteration.
+	 * 
+	 * @var array
+	 * @see Jyotish\Alphabet\Devanagari
+	 */
+	static public $grahaTranslit = array(
+		 'ba','u','dha'
+	);
+	
 	static public $grahaAvatara = 'Budda';
 	static public $grahaDeva = Deva::DEVA_VISHNU_MAHA;
 	static public $grahaUnicode = '263F';

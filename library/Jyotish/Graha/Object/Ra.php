@@ -21,7 +21,16 @@ use Jyotish\Tattva\Ayurveda\Rasa;
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 class Ra extends \Jyotish\Graha\Graha {
-
+	/**
+	 * Title 'rahu' in Devanagari transliteration.
+	 * 
+	 * @var array
+	 * @see Jyotish\Alphabet\Devanagari
+	 */
+	static public $grahaTranslit = array(
+		 'ra','aa','ha','u'
+	);
+	
 	static public $grahaAvatara = 'Varaha';
 	static public $grahaDeva = null;
 	static public $grahaUnicode = '260A';

@@ -31,8 +31,6 @@ class Utils {
 	 */
 	static public function unicodeToHtml($unicode) {
 		if(is_array($unicode)){
-			$htmlArray = array();
-			
 			foreach ($unicode as $code){
 				$html .= '&#x' . $code . ';';
 			}

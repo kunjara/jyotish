@@ -21,7 +21,16 @@ use Jyotish\Tattva\Ayurveda\Rasa;
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 class Sk extends \Jyotish\Graha\Graha {
-
+	/**
+	 * Title 'shukra' in Devanagari transliteration.
+	 * 
+	 * @var array
+	 * @see Jyotish\Alphabet\Devanagari
+	 */
+	static public $grahaTranslit = array(
+		 'sha','u','ka','virama','ra'
+	);
+	
 	static public $grahaAvatara = 'Parashurama';
 	static public $grahaDeva = Deva::DEVA_SHACHI;
 	static public $grahaUnicode = '2640';

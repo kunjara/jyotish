@@ -21,7 +21,16 @@ use Jyotish\Tattva\Ayurveda\Rasa;
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 class Ch extends \Jyotish\Graha\Graha {
-
+	/**
+	 * Title 'chandra' in Devanagari transliteration.
+	 * 
+	 * @var array
+	 * @see Jyotish\Alphabet\Devanagari
+	 */
+	static public $grahaTranslit = array(
+		 'ca','na','virama','da','virama','ra'
+	);
+	
 	static public $grahaAvatara = 'Krishna';
 	static public $grahaDeva = Deva::DEVA_VARUNA;
 	static public $grahaUnicode = '263D';

@@ -21,7 +21,16 @@ use Jyotish\Tattva\Ayurveda\Rasa;
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 class Ma extends \Jyotish\Graha\Graha {
-
+	/**
+	 * Title 'mangala' in Devanagari transliteration.
+	 * 
+	 * @var array
+	 * @see Jyotish\Alphabet\Devanagari
+	 */
+	static public $grahaTranslit = array(
+		 'ma','anusvara','ga','la'
+	);
+	
 	static public $grahaAvatara = 'Narasimha';
 	static public $grahaDeva = Deva::DEVA_KARTTIKEYA;
 	static public $grahaUnicode = '2642';

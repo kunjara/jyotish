@@ -21,6 +21,15 @@ use Jyotish\Tattva\Ayurveda\Rasa;
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 class Sy extends \Jyotish\Graha\Graha {
+	/**
+	 * Title 'surya' in Devanagari transliteration.
+	 * 
+	 * @var array
+	 * @see Jyotish\Alphabet\Devanagari
+	 */
+	static public $grahaTranslit = array(
+		 'sa','uu','ra','virama','ya'
+	);
 
 	static public $grahaAvatara = 'Rama';
 	static public $grahaDeva = Deva::DEVA_AGNI;

@@ -21,7 +21,16 @@ use Jyotish\Tattva\Ayurveda\Rasa;
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 class Gu extends \Jyotish\Graha\Graha {
-
+	/**
+	 * Title 'guru' in Devanagari transliteration.
+	 * 
+	 * @var array
+	 * @see Jyotish\Alphabet\Devanagari
+	 */
+	static public $grahaTranslit = array(
+		 'ga','u','ra','u'
+	);
+	
 	static public $grahaAvatara = 'Vamana';
 	static public $grahaDeva = Deva::DEVA_INDRA;
 	static public $grahaUnicode = '2643';

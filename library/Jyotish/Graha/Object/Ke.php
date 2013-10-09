@@ -21,7 +21,16 @@ use Jyotish\Tattva\Ayurveda\Rasa;
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 class Ke extends \Jyotish\Graha\Graha {
-
+	/**
+	 * Title 'ketu' in Devanagari transliteration.
+	 * 
+	 * @var array
+	 * @see Jyotish\Alphabet\Devanagari
+	 */
+	static public $grahaTranslit = array(
+		 'ka','e','ta','u'
+	);
+	
 	static public $grahaAvatara = 'Matsya';
 	static public $grahaDeva = null;
 	static public $grahaUnicode = '260B';

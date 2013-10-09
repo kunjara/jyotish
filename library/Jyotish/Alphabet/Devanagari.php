@@ -6,6 +6,8 @@
 
 namespace Jyotish\Alphabet;
 
+use Jyotish\Service\Utils;
+
 /**
  * Devanagari class
  *
@@ -13,7 +15,7 @@ namespace Jyotish\Alphabet;
  */
 class Devanagari {
 	/**
-	 * Consonants
+	 * Transliteration of consonants
 	 */
 	const KA	= 'ka';
 	const KHA	= 'kha';
@@ -50,7 +52,7 @@ class Devanagari {
 	const HA	= 'ha';
 	
 	/**
-	 * Vowels
+	 * Transliteration of vowels
 	 */
 	const AA	= 'aa';
 	const I		= 'i';
@@ -67,7 +69,7 @@ class Devanagari {
 	const LL	= 'll';
 	
 	/**
-	 * Other symbols
+	 * Transliteration of other symbols
 	 */
 	const ANUNASIKA	= 'anunasika';
 	const ANUSVARA	= 'anusvara';
@@ -139,4 +141,32 @@ class Devanagari {
 		self::VISARGA	=> '0903',
 		self::VIRAMA	=> '094D',
 	);
+	
+	/**
+	 * Convert translit to html code.
+	 * 
+	 * @param array|string $translit
+	 * @return string
+	 */
+	static public function translitToHtml($translit)
+	{
+		if(is_array($translit)){
+			foreach ($translit as $tr){
+				$html .= self::_trToHtml($tr);
+			}
+		}else{
+			$html = self::_trToHtml($tr);
+		}
+		
+		return $html;
+	}
+	
+	static private function _trToHtml($tr)
+	{
+		if(array_key_exists($tr, self::$unicode)){
+			return Utils::unicodeToHtml(self::$unicode[$tr]);
+		}else{
+			throw new Exception\InvalidArgumentException("Transliteration '$tr' is not defined in Devanagari.");
+		}
+	}
 }

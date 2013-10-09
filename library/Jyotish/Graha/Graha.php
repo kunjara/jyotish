@@ -44,6 +44,16 @@ class Graha {
 		self::GRAHA_RA => 'Rahu',
 		self::GRAHA_KE => 'Ketu'
 	);
+	/**
+	 * Title 'graha' in Devanagari transliteration.
+	 * 
+	 * @var array
+	 * @see Jyotish\Alphabet\Devanagari
+	 */
+	static public $translit = array(
+		'ga','virama','ra','ha'
+	);
+	static public $grahaTranslit;
 	static public $grahaAvatara;
 	static public $grahaDeva;
 	static public $grahaUnicode;

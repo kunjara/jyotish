@@ -21,7 +21,16 @@ use Jyotish\Tattva\Ayurveda\Rasa;
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 class Sa extends \Jyotish\Graha\Graha {
-
+	/**
+	 * Title 'shani' in Devanagari transliteration.
+	 * 
+	 * @var array
+	 * @see Jyotish\Alphabet\Devanagari
+	 */
+	static public $grahaTranslit = array(
+		 'sha','na','i'
+	);
+	
 	static public $grahaAvatara = 'Kurma';
 	static public $grahaDeva = Deva::DEVA_BRAHMA;
 	static public $grahaUnicode = '2644';
