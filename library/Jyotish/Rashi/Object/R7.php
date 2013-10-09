@@ -16,7 +16,16 @@ use Jyotish\Tattva\Ayurveda\Prakriti;
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 class R7 extends \Jyotish\Rashi\Rashi {
-
+	/**
+	 * Devanagari title 'tula' in transliteration.
+	 * 
+	 * @var array
+	 * @see Jyotish\Alphabet\Devanagari
+	 */
+	static public $rashiTranslit = array(
+		 'ta','u','la','aa'
+	);
+	
 	static public $rashiUnicode = '264E';
 	static public $rashiBhava = self::BHAVA_CHARA;
 	static public $rashiBhuta = Bhuta::BHUTA_VAYU;

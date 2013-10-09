@@ -22,7 +22,7 @@ use Jyotish\Tattva\Ayurveda\Rasa;
  */
 class Sa extends \Jyotish\Graha\Graha {
 	/**
-	 * Title 'shani' in Devanagari transliteration.
+	 * Devanagari title 'shani' in transliteration.
 	 * 
 	 * @var array
 	 * @see Jyotish\Alphabet\Devanagari

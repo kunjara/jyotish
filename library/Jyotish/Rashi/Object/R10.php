@@ -16,7 +16,16 @@ use Jyotish\Tattva\Ayurveda\Prakriti;
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 class R10 extends \Jyotish\Rashi\Rashi {
-
+	/**
+	 * Devanagari title 'makara' in transliteration.
+	 * 
+	 * @var array
+	 * @see Jyotish\Alphabet\Devanagari
+	 */
+	static public $rashiTranslit = array(
+		 'ma','ka','ra'
+	);
+	
 	static public $rashiUnicode = '2651';
 	static public $rashiBhava = self::BHAVA_CHARA;
 	static public $rashiBhuta = Bhuta::BHUTA_PRITVI;

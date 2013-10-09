@@ -16,7 +16,16 @@ use Jyotish\Tattva\Ayurveda\Prakriti;
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 class R11 extends \Jyotish\Rashi\Rashi {
-
+	/**
+	 * Devanagari title 'kumbha' in transliteration.
+	 * 
+	 * @var array
+	 * @see Jyotish\Alphabet\Devanagari
+	 */
+	static public $rashiTranslit = array(
+		 'ka','u','ma','virama','bha'
+	);
+	
 	static public $rashiUnicode = '2652';
 	static public $rashiBhava = self::BHAVA_STHIRA;
 	static public $rashiBhuta = Bhuta::BHUTA_VAYU;

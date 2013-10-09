@@ -22,7 +22,7 @@ use Jyotish\Tattva\Ayurveda\Rasa;
  */
 class Ma extends \Jyotish\Graha\Graha {
 	/**
-	 * Title 'mangala' in Devanagari transliteration.
+	 * Devanagari title 'mangala' in transliteration.
 	 * 
 	 * @var array
 	 * @see Jyotish\Alphabet\Devanagari

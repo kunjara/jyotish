@@ -16,7 +16,16 @@ use Jyotish\Tattva\Ayurveda\Prakriti;
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 class R6 extends \Jyotish\Rashi\Rashi {
-
+	/**
+	 * Devanagari title 'kanya' in transliteration.
+	 * 
+	 * @var array
+	 * @see Jyotish\Alphabet\Devanagari
+	 */
+	static public $rashiTranslit = array(
+		 'ka','na','virama','ya'
+	);
+	
 	static public $rashiUnicode = '264D';
 	static public $rashiBhava = self::BHAVA_DVISVA;
 	static public $rashiBhuta = Bhuta::BHUTA_PRITVI;

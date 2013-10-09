@@ -22,7 +22,7 @@ use Jyotish\Tattva\Ayurveda\Rasa;
  */
 class Ke extends \Jyotish\Graha\Graha {
 	/**
-	 * Title 'ketu' in Devanagari transliteration.
+	 * Devanagari title 'ketu' in transliteration.
 	 * 
 	 * @var array
 	 * @see Jyotish\Alphabet\Devanagari

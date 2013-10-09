@@ -22,7 +22,7 @@ use Jyotish\Tattva\Ayurveda\Rasa;
  */
 class Sk extends \Jyotish\Graha\Graha {
 	/**
-	 * Title 'shukra' in Devanagari transliteration.
+	 * Devanagari title 'shukra' in transliteration.
 	 * 
 	 * @var array
 	 * @see Jyotish\Alphabet\Devanagari

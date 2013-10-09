@@ -16,7 +16,16 @@ use Jyotish\Tattva\Ayurveda\Prakriti;
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 class R9 extends \Jyotish\Rashi\Rashi {
-
+	/**
+	 * Devanagari title 'dhanu' in transliteration.
+	 * 
+	 * @var array
+	 * @see Jyotish\Alphabet\Devanagari
+	 */
+	static public $rashiTranslit = array(
+		 'dha','na','u'
+	);
+	
 	static public $rashiUnicode = '2650';
 	static public $rashiBhava = self::BHAVA_DVISVA;
 	static public $rashiBhuta = Bhuta::BHUTA_AGNI;

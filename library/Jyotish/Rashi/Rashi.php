@@ -38,18 +38,28 @@ class Rashi {
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 4, Verse 3.
      */
 	static public $RASHI = array(
-		self::RASHI_1 => 'Mesh',
-		self::RASHI_2 => 'Vrishabh',
-		self::RASHI_3 => 'Mithun',
-		self::RASHI_4 => 'Kark',
-		self::RASHI_5 => 'Simh',
+		self::RASHI_1 => 'Mesha',
+		self::RASHI_2 => 'Vrishabha',
+		self::RASHI_3 => 'Mithuna',
+		self::RASHI_4 => 'Karka',
+		self::RASHI_5 => 'Simha',
 		self::RASHI_6 => 'Kanya',
 		self::RASHI_7 => 'Tula',
-		self::RASHI_8 => 'Vrishchik',
+		self::RASHI_8 => 'Vrishchika',
 		self::RASHI_9 => 'Dhanu',
-		self::RASHI_10 => 'Makar',
-		self::RASHI_11 => 'Kumbh',
-		self::RASHI_12 => 'Meen',
+		self::RASHI_10 => 'Makara',
+		self::RASHI_11 => 'Kumbha',
+		self::RASHI_12 => 'Meena',
+	);
+	
+	/**
+	 * Devanagari title 'rashi' in transliteration.
+	 * 
+	 * @var array
+	 * @see Jyotish\Alphabet\Devanagari
+	 */
+	static public $translit = array(
+		'ra','aa','sha','i'
 	);
 	
 	/**

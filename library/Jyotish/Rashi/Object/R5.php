@@ -16,7 +16,16 @@ use Jyotish\Tattva\Ayurveda\Prakriti;
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 class R5 extends \Jyotish\Rashi\Rashi {
-
+	/**
+	 * Devanagari title 'simha' in transliteration.
+	 * 
+	 * @var array
+	 * @see Jyotish\Alphabet\Devanagari
+	 */
+	static public $rashiTranslit = array(
+		 'sa','i','anusvara','ha'
+	);
+	
 	static public $rashiUnicode = '264C';
 	static public $rashiBhava = self::BHAVA_STHIRA;
 	static public $rashiBhuta = Bhuta::BHUTA_AGNI;

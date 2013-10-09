@@ -22,7 +22,7 @@ use Jyotish\Tattva\Ayurveda\Rasa;
  */
 class Ra extends \Jyotish\Graha\Graha {
 	/**
-	 * Title 'rahu' in Devanagari transliteration.
+	 * Devanagari title 'rahu' in transliteration.
 	 * 
 	 * @var array
 	 * @see Jyotish\Alphabet\Devanagari

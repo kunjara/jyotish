@@ -22,7 +22,7 @@ use Jyotish\Tattva\Ayurveda\Rasa;
  */
 class Ch extends \Jyotish\Graha\Graha {
 	/**
-	 * Title 'chandra' in Devanagari transliteration.
+	 * Devanagari title 'chandra' in transliteration.
 	 * 
 	 * @var array
 	 * @see Jyotish\Alphabet\Devanagari

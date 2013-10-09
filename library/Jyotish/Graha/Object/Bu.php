@@ -22,7 +22,7 @@ use Jyotish\Tattva\Ayurveda\Rasa;
  */
 class Bu extends \Jyotish\Graha\Graha {
 	/**
-	 * Title 'budha' in Devanagari transliteration.
+	 * Devanagari title 'budha' in transliteration.
 	 * 
 	 * @var array
 	 * @see Jyotish\Alphabet\Devanagari

@@ -45,7 +45,7 @@ class Graha {
 		self::GRAHA_KE => 'Ketu'
 	);
 	/**
-	 * Title 'graha' in Devanagari transliteration.
+	 * Devanagari title 'graha' in transliteration.
 	 * 
 	 * @var array
 	 * @see Jyotish\Alphabet\Devanagari

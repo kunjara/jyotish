@@ -16,7 +16,16 @@ use Jyotish\Tattva\Ayurveda\Prakriti;
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 class R8 extends \Jyotish\Rashi\Rashi {
-
+	/**
+	 * Devanagari title 'vrishchika' in transliteration.
+	 * 
+	 * @var array
+	 * @see Jyotish\Alphabet\Devanagari
+	 */
+	static public $rashiTranslit = array(
+		 'va','r','sha','virama','ca','i','ka'
+	);
+	
 	static public $rashiUnicode = '264F';
 	static public $rashiBhava = self::BHAVA_STHIRA;
 	static public $rashiBhuta = Bhuta::BHUTA_JALA;
