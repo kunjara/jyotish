@@ -6,167 +6,114 @@
 
 namespace Jyotish\Alphabet;
 
-use Jyotish\Service\Utils;
-
 /**
  * Devanagari class
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class Devanagari {
-	/**
-	 * Transliteration of consonants
-	 */
-	const KA	= 'ka';
-	const KHA	= 'kha';
-	const GA	= 'ga';
-	const GHA	= 'gha';
-	const NGA	= 'nga';
-	const CA	= 'ca';
-	const CHA	= 'cha';
-	const JA	= 'ja';
-	const JHA	= 'jha';
-	const NYA	= 'nya';
-	const TTA	= 'tta';
-	const TTHA	= 'ttha';
-	const DDA	= 'dda';
-	const DDHA	= 'ddha';
-	const NNA	= 'nna';
-	const TA	= 'ta';
-	const THA	= 'tha';
-	const DA	= 'da';
-	const DHA	= 'dha';
-	const NA	= 'na';
-	const PA	= 'pa';
-	const PHA	= 'pha';
-	const BA	= 'ba';
-	const BHA	= 'bha';
-	const MA	= 'ma';
-	const YA	= 'ya';
-	const RA	= 'ra';
-	const LA	= 'la';
-	const VA	= 'va';
-	const SHA	= 'sha';
-	const SSA	= 'ssa';
-	const SA	= 'sa';
-	const HA	= 'ha';
+class Devanagari extends \Jyotish\Alphabet\Language {
 	
 	/**
-	 * Transliteration of vowels
+	 * consonants unicode
 	 */
-	const AA	= 'aa';
-	const I		= 'i';
-	const II	= 'ii';
-	const U		= 'u';
-	const UU	= 'uu';
-	const R		= 'r';
-	const RR	= 'rr';
-	const E		= 'e';
-	const AI	= 'ai';
-	const O		= 'o';
-	const AU	= 'au';
-	const L		= 'l';
-	const LL	= 'll';
+	const ka	= '0915';
+	const kha	= '0916';
+	const ga	= '0917';
+	const gha	= '0918';
+	const nga	= '0919';
+	const ca	= '091A';
+	const cha	= '091B';
+	const ja	= '091C';
+	const jha	= '091D';
+	const nya	= '091E';
+	const tta	= '091F';
+	const ttha	= '0920';
+	const dda	= '0921';
+	const ddha	= '0922';
+	const nna	= '0923';
+	const ta	= '0924';
+	const tha	= '0925';
+	const da	= '0926';
+	const dha	= '0927';
+	const na	= '0928';
+	const pa	= '092A';
+	const pha	= '092B';
+	const ba	= '092C';
+	const bha	= '092D';
+	const ma	= '092E';
+	const ya	= '092F';
+	const ra	= '0930';
+	const la	= '0932';
+	const va	= '0935';
+	const sha	= '0936';
+	const ssa	= '0937';
+	const sa	= '0938';
+	const ha	= '0939';
 	
 	/**
-	 * Transliteration of other symbols
+	 * Additional consonants unicode
 	 */
-	const ANUNASIKA	= 'anunasika';
-	const ANUSVARA	= 'anusvara';
-	const VISARGA	= 'visarga';
-	const VIRAMA	= 'virama';
-	
-	static public $unicode = array(
-		self::KA	=> '0915',
-		self::KHA	=> '0916',
-		self::GA	=> '0917',
-		self::GHA	=> '0918',
-		self::NGA	=> '0919',
-		self::CA	=> '091A',
-		self::CHA	=> '091B',
-		self::JA	=> '091C',
-		self::JHA	=> '091D',
-		self::NYA	=> '091E',
-		self::TTA	=> '091F',
-		self::TTHA	=> '0920',
-		self::DDA	=> '0921',
-		self::DDHA	=> '0922',
-		self::NNA	=> '0923',
-		self::TA	=> '0924',
-		self::THA	=> '0925',
-		self::DA	=> '0926',
-		self::DHA	=> '0927',
-		self::NA	=> '0928',
-		self::PA	=> '092A',
-		self::PHA	=> '092B',
-		self::BA	=> '092C',
-		self::BHA	=> '092D',
-		self::MA	=> '092E',
-		self::YA	=> '092F',
-		self::RA	=> '0930',
-		self::LA	=> '0932',
-		self::VA	=> '0935',
-		self::SHA	=> '0936',
-		self::SSA	=> '0937',
-		self::SA	=> '0938',
-		self::HA	=> '0939',
-		
-		self::AA	=> '093E',
-		self::I		=> '093F',
-		self::II	=> '0940',
-		self::U		=> '0941',
-		self::UU	=> '0942',
-		self::R		=> '0943',
-		self::RR	=> '0944',
-		self::E		=> '0947',
-		self::AI	=> '0948',
-		self::O		=> '094B',
-		self::AU	=> '094C',
-		self::L		=> '0962',
-		self::LL	=> '0963',
-		
-		'0'			=> '0966',
-		'1'			=> '0967',
-		'2'			=> '0968',
-		'3'			=> '0969',
-		'4'			=> '096A',
-		'5'			=> '096B',
-		'6'			=> '096C',
-		'7'			=> '096D',
-		'8'			=> '096E',
-		'9'			=> '096F',
-		
-		self::ANUNASIKA => '0901',
-		self::ANUSVARA	=> '0902',
-		self::VISARGA	=> '0903',
-		self::VIRAMA	=> '094D',
-	);
+	const qa	= '0958';
+	const khha	= '0959';
+	const ghha	= '095A';
+	const za	= '095B';
+	const rra	= '095C';
+	const rrha	= '095D';
+	const fa	= '095E';
+	const yya	= '095F';
 	
 	/**
-	 * Convert translit to html code.
-	 * 
-	 * @param array|string $translit
-	 * @return string
+	 * Vowels unicode
 	 */
-	static public function translitToHtml($translit)
-	{
-		if(is_array($translit)){
-			foreach ($translit as $tr){
-				$html .= self::_trToHtml($tr);
-			}
-		}else{
-			$html = self::_trToHtml($tr);
-		}
-		
-		return $html;
-	}
+	const _a	= '0905';
+	const _aa	= '0906';
+	const aa	= '093E';
+	const _i	= '0907';
+	const i		= '093F';
+	const _ii	= '0908';
+	const ii	= '0940';
+	const _u	= '0909';
+	const u		= '0941';
+	const _uu	= '090A';
+	const uu	= '0942';
+	const _r	= '090B';
+	const r		= '0943';
+	const _rr	= '0960';
+	const rr	= '0944';
+	const _l	= '090C';
+	const l		= '0962';
+	const _ll	= '0961';
+	const ll	= '0963';
+	const _e	= '090F';
+	const e		= '0947';
+	const _ai	= '0910';
+	const ai	= '0948';
+	const _o	= '0913';
+	const o		= '094B';
+	const _au	= '0914';
+	const au	= '094C';
 	
-	static private function _trToHtml($tr)
-	{
-		if(array_key_exists($tr, self::$unicode)){
-			return Utils::unicodeToHtml(self::$unicode[$tr]);
-		}else{
-			throw new Exception\InvalidArgumentException("Transliteration '$tr' is not defined in Devanagari.");
-		}
-	}
+	
+	/**
+	 * Digits unicode
+	 */
+	const  d0	= '0966';
+	const  d1	= '0967';
+	const  d2	= '0968';
+	const  d3	= '0969';
+	const  d4	= '096A';
+	const  d5	= '096B';
+	const  d6	= '096C';
+	const  d7	= '096D';
+	const  d8	= '096E';
+	const  d9	= '096F';
+	
+	/**
+	 * Other symbols unicode
+	 */
+	const anunasika = '0901';
+	const anusvara	= '0902';
+	const visarga	= '0903';
+	const virama	= '094D';
+
 }

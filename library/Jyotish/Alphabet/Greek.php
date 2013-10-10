@@ -11,96 +11,60 @@ namespace Jyotish\Alphabet;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class Greek {
+class Greek extends \Jyotish\Alphabet\Language {
 	/**
-	 * Greek alphabet
+	 * Uppercase letters unicode
 	 */
-	const ALPHA		= 'alpha';
-	const BETA		= 'beta';
-	const GAMMA		= 'gamma';
-	const DELTA		= 'delta';
-	const EPSILON	= 'epsilon';
-	const ZETA		= 'zeta';
-	const ETA		= 'eta';
-	const THETA		= 'theta';
-	const IOTA		= 'iota';
-	const KAPPA		= 'kappa';
-	const LAMBDA	= 'lambda';
-	const MU		= 'mu';
-	const NU		= 'nu';
-	const XI		= 'xi';
-	const OMICRON	= 'omicron';
-	const PI		= 'pi';
-	const RHO		= 'rho';
-	const SIGMA		= 'sigma';
-	const TAU		= 'tau';
-	const UPSILON	= 'upsilon';
-	const PHI		= 'phi';
-	const CHI		= 'chi';
-	const PSI		= 'psi';
-	const OMEGA		= 'omega';
-	
-		/**
-	 * Greek uppercase letters unicode.
-	 * 
-	 * @var array
-	 */
-	static public $unicodeUp = array(
-		self::ALPHA		=> '0391',
-		self::BETA		=> '0392',
-		self::GAMMA		=> '0393',
-		self::DELTA		=> '0394',
-		self::EPSILON	=> '0395',
-		self::ZETA		=> '0396',
-		self::ETA		=> '0397',
-		self::THETA		=> '0398',
-		self::IOTA		=> '0399',
-		self::KAPPA		=> '039A',
-		self::LAMBDA	=> '039B',
-		self::MU		=> '039C',
-		self::NU		=> '039D',
-		self::XI		=> '039E',
-		self::OMICRON	=> '039F',
-		self::PI		=> '03A0',
-		self::RHO		=> '03A1',
-		self::SIGMA		=> '03A3',
-		self::TAU		=> '03A4',
-		self::UPSILON	=> '03A5',
-		self::PHI		=> '03A6',
-		self::CHI		=> '03A7',
-		self::PSI		=> '03A8',
-		self::OMEGA		=> '03A9'
-	);
+	const Alpha		= '0391';
+	const Beta		= '0392';
+	const Gamma		= '0393';
+	const Delta		= '0394';
+	const Epsilon	= '0395';
+	const Zeta		= '0396';
+	const Eta		= '0397';
+	const Theta		= '0398';
+	const Iota		= '0399';
+	const Kappa		= '039A';
+	const Lambda	= '039B';
+	const Mu		= '039C';
+	const Nu		= '039D';
+	const Xi		= '039E';
+	const Omicron	= '039F';
+	const Pi		= '03A0';
+	const Rho		= '03A1';
+	const Sigma		= '03A3';
+	const Tau		= '03A4';
+	const Upsilon	= '03A5';
+	const Phi		= '03A6';
+	const Chi		= '03A7';
+	const Psi		= '03A8';
+	const Omega		= '03A9';
 
 	/**
-	 * Greek lowercase letters unicode.
-	 * 
-	 * @var array
+	 * Lowercase letters unicode
 	 */
-	static public $unicodeLow = array(
-		self::ALPHA		=> '03B1',
-		self::BETA		=> '03B2',
-		self::GAMMA		=> '03B3',
-		self::DELTA		=> '03B4',
-		self::EPSILON	=> '03B5',
-		self::ZETA		=> '03B6',
-		self::ETA		=> '03B7',
-		self::THETA		=> '03B8',
-		self::IOTA		=> '03B9',
-		self::KAPPA		=> '03BA',
-		self::LAMBDA	=> '03BB',
-		self::MU		=> '03BC',
-		self::NU		=> '03BD',
-		self::XI		=> '03BE',
-		self::OMICRON	=> '03BF',
-		self::PI		=> '03C0',
-		self::RHO		=> '03C1',
-		self::SIGMA		=> '03C3',
-		self::TAU		=> '03C4',
-		self::UPSILON	=> '03C5',
-		self::PHI		=> '03C6',
-		self::CHI		=> '03C7',
-		self::PSI		=> '03C8',
-		self::OMEGA		=> '03C9'
-	);
+	const alpha		= '03B1';
+	const beta		= '03B2';
+	const gamma		= '03B3';
+	const delta		= '03B4';
+	const epsilon	= '03B5';
+	const zeta		= '03B6';
+	const eta		= '03B7';
+	const theta		= '03B8';
+	const iota		= '03B9';
+	const kappa		= '03BA';
+	const lambda	= '03BB';
+	const mu		= '03BC';
+	const nu		= '03BD';
+	const xi		= '03BE';
+	const omicron	= '03BF';
+	const pi		= '03C0';
+	const rho		= '03C1';
+	const sigma		= '03C3';
+	const tau		= '03C4';
+	const upsilon	= '03C5';
+	const phi		= '03C6';
+	const chi		= '03C7';
+	const psi		= '03C8';
+	const omega		= '03C9';
 }

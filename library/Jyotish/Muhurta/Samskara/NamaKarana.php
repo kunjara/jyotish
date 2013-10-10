@@ -7,167 +7,167 @@ use Jyotish\Panchanga\Nakshatra\Nakshatra;
 class NamaKarana {
 	
 	static public $namaPada = array(
-		Nakshatra::NAKSHATRA_1 => array(
-			Nakshatra::PADA_1 => 'Chu',
-			Nakshatra::PADA_2 => 'Che',
-			Nakshatra::PADA_3 => 'Cho',
-			Nakshatra::PADA_4 => 'La',
+		1 => array(
+			'chu'	=> array('ca','u'),
+			'che'	=> array('ca','e'),
+			'cho'	=> array('ca','o'),
+			'la'	=> array('la','aa'),
 		),
-		Nakshatra::NAKSHATRA_2 => array(
-			Nakshatra::PADA_1 => 'Li',
-			Nakshatra::PADA_2 => 'Lu',
-			Nakshatra::PADA_3 => 'Le',
-			Nakshatra::PADA_4 => 'Lo',
+		2 => array(
+			'li'	=> array('la','ii'),
+			'lu'	=> array('la','u'),
+			'le'	=> array('la','e'),
+			'lo'	=> array('la','o'),
 		),
-		Nakshatra::NAKSHATRA_3 => array(
-			Nakshatra::PADA_1 => 'A',
-			Nakshatra::PADA_2 => 'I',
-			Nakshatra::PADA_3 => 'U',
-			Nakshatra::PADA_4 => 'E',
+		3 => array(
+			'a'		=> array('_a'),
+			'i'		=> array('_i'),
+			'u'		=> array('_u'),
+			'e'		=> array('_e'),
 		),
-		Nakshatra::NAKSHATRA_4 => array(
-			Nakshatra::PADA_1 => 'O',
-			Nakshatra::PADA_2 => 'Va',
-			Nakshatra::PADA_3 => 'Vi',
-			Nakshatra::PADA_4 => 'Vu',
+		4 => array(
+			'o'		=> array('_o'),
+			'va'	=> array('va','aa'),
+			'vi'	=> array('va','ii'),
+			'vu'	=> array('va','u'),
 		),
-		Nakshatra::NAKSHATRA_5 => array(
-			Nakshatra::PADA_1 => 'Ve',
-			Nakshatra::PADA_2 => 'Vo',
-			Nakshatra::PADA_3 => 'Ka',
-			Nakshatra::PADA_4 => 'Ke',
+		5 => array(
+			've'	=> array('va','e'),
+			'vo'	=> array('va', 'o'),
+			'ka'	=> array('ka', 'aa'),
+			'ki'	=> array('ka', 'ii'),
 		),
-		Nakshatra::NAKSHATRA_6 => array(
-			Nakshatra::PADA_1 => 'Ku',
-			Nakshatra::PADA_2 => 'Gha',
-			Nakshatra::PADA_3 => 'Ing',
-			Nakshatra::PADA_4 => 'Chha',
+		6 => array(
+			'ku'	=> array('ka','u'),
+			'gha'	=> array('gha'),
+			'nga'	=> array('nga'),
+			'chha'	=> array('cha'),
 		),
-		Nakshatra::NAKSHATRA_7 => array(
-			Nakshatra::PADA_1 => 'Ke',
-			Nakshatra::PADA_2 => 'Ko',
-			Nakshatra::PADA_3 => 'Ha',
-			Nakshatra::PADA_4 => 'Hi',
+		7 => array(
+			'ke'	=> array('ka','e'),
+			'ko'	=> array('ka','o'),
+			'ha'	=> array('ha','aa'),
+			'hi'	=> array('ha','ii'),
 		),
-		Nakshatra::NAKSHATRA_8 => array(
-			Nakshatra::PADA_1 => 'Hu',
-			Nakshatra::PADA_2 => 'He',
-			Nakshatra::PADA_3 => 'Ho',
-			Nakshatra::PADA_4 => 'Da',
+		8 => array(
+			'hu'	=> array('ha','u'),
+			'he'	=> array('ha','e'),
+			'ho'	=> array('ha','o'),
+			'da'	=> array('dda','aa'),
 		),
-		Nakshatra::NAKSHATRA_9 => array(
-			Nakshatra::PADA_1 => 'Di',
-			Nakshatra::PADA_2 => 'Du',
-			Nakshatra::PADA_3 => 'De',
-			Nakshatra::PADA_4 => 'Do',
+		9 => array(
+			'di'	=> array('dda','ii'),
+			'du'	=> array('dda','u'),
+			'de'	=> array('dda','e'),
+			'do'	=> array('dda','o'),
 		),
-		Nakshatra::NAKSHATRA_10 => array(
-			Nakshatra::PADA_1 => 'Ma',
-			Nakshatra::PADA_2 => 'Mi',
-			Nakshatra::PADA_3 => 'Mu',
-			Nakshatra::PADA_4 => 'Me',
+		10 => array(
+			'ma'	=> array('ma','aa'),
+			'mi'	=> array('ma','ii'),
+			'mu'	=> array('ma','u'),
+			'me'	=> array('ma','e'),
 		),
-		Nakshatra::NAKSHATRA_11 => array(
-			Nakshatra::PADA_1 => 'Mo',
-			Nakshatra::PADA_2 => 'Ta',
-			Nakshatra::PADA_3 => 'Ti',
-			Nakshatra::PADA_4 => 'Tu',
+		11 => array(
+			'mo'	=> array('ma','o'),
+			'ta'	=> array('tta','aa'),
+			'ti'	=> array('tta','ii'),
+			'tu'	=> array('tta','u'),
 		),
-		Nakshatra::NAKSHATRA_12 => array(
-			Nakshatra::PADA_1 => 'Te',
-			Nakshatra::PADA_2 => 'To',
-			Nakshatra::PADA_3 => 'Pa',
-			Nakshatra::PADA_4 => 'Pi',
+		12 => array(
+			'te'	=> array('tta','e'),
+			'to'	=> array('tta','o'),
+			'pa'	=> array('pa','aa'),
+			'pi'	=> array('pa','ii'),
 		),
-		Nakshatra::NAKSHATRA_13 => array(
-			Nakshatra::PADA_1 => 'Pu',
-			Nakshatra::PADA_2 => 'Sha',
-			Nakshatra::PADA_3 => 'Na',
-			Nakshatra::PADA_4 => 'Tha',
+		13 => array(
+			'pu'	=> array('pa','u'),
+			'sha'	=> array('ssa'),
+			'na'	=> array('nna'),
+			'tha'	=> array('ttha'),
 		),
-		Nakshatra::NAKSHATRA_14 => array(
-			Nakshatra::PADA_1 => 'Pe',
-			Nakshatra::PADA_2 => 'Po',
-			Nakshatra::PADA_3 => 'Ra',
-			Nakshatra::PADA_4 => 'Ri',
+		14 => array(
+			'pe'	=> array('pa','e'),
+			'po'	=> array('pa','o'),
+			'ra'	=> array('ra','aa'),
+			'ri'	=> array('ra','ii'),
 		),
-		Nakshatra::NAKSHATRA_15 => array(
-			Nakshatra::PADA_1 => 'Ru',
-			Nakshatra::PADA_2 => 'Re',
-			Nakshatra::PADA_3 => 'Ro',
-			Nakshatra::PADA_4 => 'Ta',
+		15 => array(
+			'ru'	=> array('ra','u'),
+			're'	=> array('ra','e'),
+			'ro'	=> array('ra','o'),
+			'ta'	=> array('ta','aa'),
 		),
-		Nakshatra::NAKSHATRA_16 => array(
-			Nakshatra::PADA_1 => 'Ti',
-			Nakshatra::PADA_2 => 'Tu',
-			Nakshatra::PADA_3 => 'Te',
-			Nakshatra::PADA_4 => 'To',
+		16 => array(
+			'ti'	=> array('ta','ii'),
+			'tu'	=> array('ta','u'),
+			'te'	=> array('ta','e'),
+			'to'	=> array('ta','o'),
 		),
-		Nakshatra::NAKSHATRA_17 => array(
-			Nakshatra::PADA_1 => 'Na',
-			Nakshatra::PADA_2 => 'Ni',
-			Nakshatra::PADA_3 => 'Nu',
-			Nakshatra::PADA_4 => 'Ne',
+		17 => array(
+			'na'	=> array('na','aa'),
+			'ni'	=> array('na','ii'),
+			'nu'	=> array('na','u'),
+			'ne'	=> array('na','e'),
 		),
-		Nakshatra::NAKSHATRA_18 => array(
-			Nakshatra::PADA_1 => 'No',
-			Nakshatra::PADA_2 => 'Ya',
-			Nakshatra::PADA_3 => 'Yi',
-			Nakshatra::PADA_4 => 'Yu',
+		18 => array(
+			'no'	=> array('na','o'),
+			'ya'	=> array('ya','aa'),
+			'yi'	=> array('ya','ii'),
+			'yu'	=> array('ya','u'),
 		),
-		Nakshatra::NAKSHATRA_19 => array(
-			Nakshatra::PADA_1 => 'Ye',
-			Nakshatra::PADA_2 => 'Yo',
-			Nakshatra::PADA_3 => 'Bha',
-			Nakshatra::PADA_4 => 'Bhi',
+		19 => array(
+			'ye'	=> array('ya','e'),
+			'yo'	=> array('ya','o'),
+			'bha'	=> array('bha','aa'),
+			'bhi'	=> array('bha','ii'),
 		),
-		Nakshatra::NAKSHATRA_20 => array(
-			Nakshatra::PADA_1 => 'Bhu',
-			Nakshatra::PADA_2 => 'Dha',
-			Nakshatra::PADA_3 => 'Bha',
-			Nakshatra::PADA_4 => 'Dha',
+		20 => array(
+			'bhu'	=> array('bha','u'),
+			'dha'	=> array('dha','aa'),
+			'pha'	=> array('pha','aa'),
+			'ddha'	=> array('ddha','aa'),
 		),
-		Nakshatra::NAKSHATRA_21 => array(
-			Nakshatra::PADA_1 => 'Bhe',
-			Nakshatra::PADA_2 => 'Bho',
-			Nakshatra::PADA_3 => 'Ja',
-			Nakshatra::PADA_4 => 'Ji',
+		21 => array(
+			'bhe'	=> array('bha','e'),
+			'bho'	=> array('bha','o'),
+			'ja'	=> array('ja','aa'),
+			'ji'	=> array('ja','ii'),
 		),
-		Nakshatra::NAKSHATRA_22 => array(
-			Nakshatra::PADA_1 => 'Ju',
-			Nakshatra::PADA_2 => 'Je',
-			Nakshatra::PADA_3 => 'Jo',
-			Nakshatra::PADA_4 => 'Gha',
+		22 => array(
+			'ju'	=> array('ja','u'),
+			'je'	=> array('ja','e'),
+			'jo'	=> array('ja','o'),
+			'gha'	=> array('ghha','aa'),
 		),
-		Nakshatra::NAKSHATRA_23 => array(
-			Nakshatra::PADA_1 => 'Ga',
-			Nakshatra::PADA_2 => 'Gi',
-			Nakshatra::PADA_3 => 'Gu',
-			Nakshatra::PADA_4 => 'Ge',
+		23 => array(
+			'ga'	=> array('ga','aa'),
+			'gi'	=> array('ga','ii'),
+			'gu'	=> array('ga','u'),
+			'ge'	=> array('ga','e'),
 		),
-		Nakshatra::NAKSHATRA_24 => array(
-			Nakshatra::PADA_1 => 'Go',
-			Nakshatra::PADA_2 => 'Sa',
-			Nakshatra::PADA_3 => 'Si',
-			Nakshatra::PADA_4 => 'Su',
+		24 => array(
+			'go'	=> array('ga','o'),
+			'sa'	=> array('sa','aa'),
+			'si'	=> array('sa','ii'),
+			'su'	=> array('sa','u'),
 		),
-		Nakshatra::NAKSHATRA_25 => array(
-			Nakshatra::PADA_1 => 'Se',
-			Nakshatra::PADA_2 => 'So',
-			Nakshatra::PADA_3 => 'Da',
-			Nakshatra::PADA_4 => 'Di',
+		25 => array(
+			'se'	=> array('sa','e'),
+			'so'	=> array('sa','o'),
+			'da'	=> array('da','aa'),
+			'di'	=> array('da','ii'),
 		),
-		Nakshatra::NAKSHATRA_26 => array(
-			Nakshatra::PADA_1 => 'Du',
-			Nakshatra::PADA_2 => 'Tha',
-			Nakshatra::PADA_3 => 'Jha',
-			Nakshatra::PADA_4 => 'Tra',
+		26 => array(
+			'du'	=> array('da','u'),
+			'tha'	=> array('tha'),
+			'jha'	=> array('jha'),
+			'tra'	=> array('nya'),
 		),
-		Nakshatra::NAKSHATRA_27 => array(
-			Nakshatra::PADA_1 => 'De',
-			Nakshatra::PADA_2 => 'Do',
-			Nakshatra::PADA_3 => 'Cha',
-			Nakshatra::PADA_4 => 'Chi',
+		27 => array(
+			'de'	=> array('da','e'),
+			'do'	=> array('da','o'),
+			'cha'	=> array('ca','aa'),
+			'chi'	=> array('ca','ii'),
 		),
 	);
 }

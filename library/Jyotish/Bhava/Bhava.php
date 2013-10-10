@@ -40,6 +40,17 @@ class Bhava {
 		self::BHAVA_11 => 'Labha',
 		self::BHAVA_12 => 'Vyaya',
 	);
+	
+	/**
+	 * Devanagari title 'bhava' in transliteration.
+	 * 
+	 * @var array
+	 * @see Jyotish\Alphabet\Devanagari
+	 */
+	static public $translit = array(
+		'bha','aa','va'
+	);
+	
 	static public $bhavaPurushartha;
 
 	static public function getInstance($number, $options = null) {
