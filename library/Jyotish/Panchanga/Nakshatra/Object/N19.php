@@ -17,7 +17,16 @@ use Jyotish\Tattva\Maha\Guna;
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 class N19 extends \Jyotish\Panchanga\Nakshatra\Nakshatra {
-
+	/**
+	 * Devanagari title 'moola' in transliteration.
+	 * 
+	 * @var array
+	 * @see Jyotish\Alphabet\Devanagari
+	 */
+	static public $nakshatraTranslit = array(
+		 'ma','uu','la'
+	);
+	
 	static public $nakshatraDeva = Deva::DEVA_NIRITTI;
 	static public $nakshatraEnergy = self::ENERGY_SRISHTI;
 	static public $nakshatraGana = Manusha::GANA_RAKSHASA;

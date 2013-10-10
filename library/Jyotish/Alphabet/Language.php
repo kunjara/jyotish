@@ -36,7 +36,14 @@ class Language {
 	
 	static protected function _trToHtml($tr)
 	{
-		if(null === $tr) return;
+		switch ($tr) {
+			case null:
+				return;
+			case ' ':
+				return $tr;
+			default:
+				break;
+		}
 		
 		if(defined('static::'.$tr)){
 			return Utils::unicodeToHtml(constant('static::'.$tr));

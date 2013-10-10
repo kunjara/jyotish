@@ -17,7 +17,16 @@ use Jyotish\Tattva\Maha\Guna;
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 class N18 extends \Jyotish\Panchanga\Nakshatra\Nakshatra {
-
+	/**
+	 * Devanagari title 'jyeshtha' in transliteration.
+	 * 
+	 * @var array
+	 * @see Jyotish\Alphabet\Devanagari
+	 */
+	static public $nakshatraTranslit = array(
+		 'ja','virama','ya','e','ssa','virama','ttha','aa'
+	);
+	
 	static public $nakshatraDeva = Deva::DEVA_INDRA;
 	static public $nakshatraEnergy = self::ENERGY_LAYA;
 	static public $nakshatraGana = Manusha::GANA_RAKSHASA;

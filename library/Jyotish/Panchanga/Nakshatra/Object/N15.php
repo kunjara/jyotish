@@ -17,7 +17,16 @@ use Jyotish\Tattva\Maha\Guna;
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 class N15 extends \Jyotish\Panchanga\Nakshatra\Nakshatra {
-
+	/**
+	 * Devanagari title 'swati' in transliteration.
+	 * 
+	 * @var array
+	 * @see Jyotish\Alphabet\Devanagari
+	 */
+	static public $nakshatraTranslit = array(
+		 'sa','virama','va','aa','ta','ii'
+	);
+	
 	static public $nakshatraDeva = Deva::DEVA_VAYU;
 	static public $nakshatraEnergy = self::ENERGY_LAYA;
 	static public $nakshatraGana = Manusha::GANA_DEVA;

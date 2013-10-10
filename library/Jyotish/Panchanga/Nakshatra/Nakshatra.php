@@ -29,13 +29,13 @@ class Nakshatra {
 	const ENERGY_SRISHTI = 'srishti';
 	const ENERGY_STHITI = 'sthiti';
 	const ENERGY_LAYA = 'laya';
-	
+
 	static public $NAKSHATRA = array(
 		1 => 'Ashwini',
 		2 => 'Bharani',
 		3 => 'Krittika',
 		4 => 'Rohini',
-		5 => 'Mrigashira',
+		5 => 'Mrigashirsha',
 		6 => 'Ardra',
 		7 => 'Punarvasu',
 		8 => 'Pushya',
@@ -54,12 +54,23 @@ class Nakshatra {
 		21 => 'Uttara Ashadha',
 		22 => 'Shravana',
 		23 => 'Dhanishta',
-		24 => 'Satabhisha',
-		25 => 'Purva Bhadra',
-		26 => 'Uttara Bhadra',
+		24 => 'Shatabhisha',
+		25 => 'Purva Bhadrapada',
+		26 => 'Uttara Bhadrapada',
 		27 => 'Revati',
 	);
 	
+	/**
+	 * Devanagari title 'nakshatra' in transliteration.
+	 * 
+	 * @var array
+	 * @see Jyotish\Alphabet\Devanagari
+	 */
+	static public $translit = array(
+		'na','ka','virama','ssa','ta','virama','ra'
+	);
+	
+	static public $nakshatraTranslit;
 	static public $nakshatraDeva;
 	static public $nakshatraEnergy;
 	static public $nakshatraGana;

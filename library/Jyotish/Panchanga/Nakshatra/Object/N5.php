@@ -17,7 +17,16 @@ use Jyotish\Tattva\Maha\Guna;
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 class N5 extends \Jyotish\Panchanga\Nakshatra\Nakshatra {
-
+	/**
+	 * Devanagari title 'mrigashirsha' in transliteration.
+	 * 
+	 * @var array
+	 * @see Jyotish\Alphabet\Devanagari
+	 */
+	static public $nakshatraTranslit = array(
+		 'ma','r','ga','sha','ii','ra','virama','ssa','aa'
+	);
+	
 	static public $nakshatraDeva = Deva::DEVA_CHANDRA;
 	static public $nakshatraEnergy = self::ENERGY_STHITI;
 	static public $nakshatraGana = Manusha::GANA_DEVA;

@@ -17,7 +17,16 @@ use Jyotish\Tattva\Maha\Guna;
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 class N13 extends \Jyotish\Panchanga\Nakshatra\Nakshatra {
-
+	/**
+	 * Devanagari title 'hasta' in transliteration.
+	 * 
+	 * @var array
+	 * @see Jyotish\Alphabet\Devanagari
+	 */
+	static public $nakshatraTranslit = array(
+		 'ha','sa','virama','ta'
+	);
+	
 	static public $nakshatraDeva = Deva::DEVA_SURYA_SAVITRI;
 	static public $nakshatraEnergy = self::ENERGY_SRISHTI;
 	static public $nakshatraGana = Manusha::GANA_DEVA;

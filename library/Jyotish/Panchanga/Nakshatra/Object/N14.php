@@ -17,7 +17,16 @@ use Jyotish\Tattva\Maha\Guna;
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 class N14 extends \Jyotish\Panchanga\Nakshatra\Nakshatra {
-
+	/**
+	 * Devanagari title 'chitra' in transliteration.
+	 * 
+	 * @var array
+	 * @see Jyotish\Alphabet\Devanagari
+	 */
+	static public $nakshatraTranslit = array(
+		 'ca','i','ta','virama','ra','aa'
+	);
+	
 	static public $nakshatraDeva = Deva::DEVA_TWASHTR;
 	static public $nakshatraEnergy = self::ENERGY_STHITI;
 	static public $nakshatraGana = Manusha::GANA_RAKSHASA;

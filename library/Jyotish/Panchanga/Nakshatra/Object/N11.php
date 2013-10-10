@@ -17,7 +17,16 @@ use Jyotish\Tattva\Maha\Guna;
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 class N11 extends \Jyotish\Panchanga\Nakshatra\Nakshatra {
-
+	/**
+	 * Devanagari title 'poorva phalguni' in transliteration.
+	 * 
+	 * @var array
+	 * @see Jyotish\Alphabet\Devanagari
+	 */
+	static public $nakshatraTranslit = array(
+		 'pa','uu','ra','virama','va',' ','pha','aa','la','virama','ga','u','na','ii'
+	);
+	
 	static public $nakshatraDeva = Deva::DEVA_BHAGA;
 	static public $nakshatraEnergy = self::ENERGY_STHITI;
 	static public $nakshatraGana = Manusha::GANA_MANUSHA;

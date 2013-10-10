@@ -1,11 +1,24 @@
 <?php
+/*
+ * @link      http://github.com/kunjara/jyotish for the canonical source repository
+ * @license   GNU General Public License version 2 or later
+ */
 
 namespace Jyotish\Muhurta\Samskara;
 
 use Jyotish\Panchanga\Nakshatra\Nakshatra;
 
+/**
+ * Class for Namakarana samskara
+ *
+ * @author Kunjara Lila das <vladya108@gmail.com>
+ */
 class NamaKarana {
-	
+	/**
+	 * List of the appropriate starting sound to name
+	 * 
+	 * @var array
+	 */
 	static public $namaPada = array(
 		1 => array(
 			'chu'	=> array('ca','u'),
@@ -161,7 +174,7 @@ class NamaKarana {
 			'du'	=> array('da','u'),
 			'tha'	=> array('tha'),
 			'jha'	=> array('jha'),
-			'tra'	=> array('nya'),
+			'tra'	=> array('ta','virama','ra'),
 		),
 		27 => array(
 			'de'	=> array('da','e'),
