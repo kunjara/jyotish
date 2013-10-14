@@ -114,7 +114,7 @@ class Swetest {
 		if (!file_exists($swe['swetest'])) {
 			throw new Exception\InvalidArgumentException("The swetest file '{$swe['swetest']}' does not exist");
 		}
-
+		
 		$this->_swe['swetest'] = $swe['swetest'];
 
 		if (empty($swe['sweph'])) {
@@ -189,8 +189,8 @@ class Swetest {
 	public function setData(array $data = null)
 	{
 		if (is_null($data)) {
-			$this->_data['date'] = date(Time::DATA_DATE_FORMAT);
-			$this->_data['time'] = date(Time::DATA_TIME_FORMAT);
+			$this->_data['date'] = date(Time::FORMAT_DATA_DATE);
+			$this->_data['time'] = date(Time::FORMAT_DATA_TIME);
 		} elseif (is_array($data)) {
 			foreach ($data as $dataName => $dataValue) {
 				$dataName = strtolower($dataName);
@@ -202,9 +202,9 @@ class Swetest {
 				}
 			}
 			if (is_null($this->_data['date']))
-				$this->_data['date'] = date(Time::DATA_DATE_FORMAT);
+				$this->_data['date'] = date(Time::FORMAT_DATA_DATE);
 			if (is_null($this->_data['time']))
-				$this->_data['time'] = date(Time::DATA_TIME_FORMAT);
+				$this->_data['time'] = date(Time::FORMAT_DATA_TIME);
 		} else {
 			throw new Exception\UnexpectedValueException("Data must be null or an array.");
 		}
@@ -231,13 +231,14 @@ class Swetest {
 		$this->setOptions($options);
 		
 		$dateTimeString = $this->_data['date'] . ' ' . $this->_data['time'];
-		$dateTimeObject = Time::getDateTimeUtc('d.m.Y H:i', $dateTimeString, $this->_data['timezone']);
+		$dateTimeFormat = Time::FORMAT_DATA_DATE . ' ' . Time::FORMAT_DATA_TIME;
+		$dateTimeObject = Time::getDateTimeUtc($dateTimeFormat, $dateTimeString, $this->_data['timezone']);
 
 		$dir	= $this->_swe['sweph'];
-		$date	= $dateTimeObject->format(Time::DATA_DATE_FORMAT);
-		$time	= $dateTimeObject->format(Time::DATA_TIME_FORMAT);
+		$date	= $dateTimeObject->format(Time::FORMAT_DATA_DATE);
+		$time	= $dateTimeObject->format(Time::FORMAT_DATA_TIME);
 		$house	= $this->_data['longitude'].','.$this->_data['latitude'].',a';
-		$sid	= $this->inputAyanamsha[$this->_ayanamsha];
+		$sid	= self::$inputAyanamsha[$this->_ayanamsha];
 
 		$string =
 				'swetest'.
@@ -246,7 +247,7 @@ class Swetest {
 				' -ut'.$time.
 				' -p0123456m'.
 				' -house'.$house.
-				' -sid'.$sid.
+				' -sid1'.$sid.
 				' -fPlbsad'.
 				' -g,'.
 				' -head';
@@ -271,10 +272,10 @@ class Swetest {
 		$this->setOptions($options);
 		
 		$dateTimeObject = new DateTime($this->_data['date']);
-		$dateTimeObject->sub(new DateInterval('P1D'));
+		$dateTimeObject->sub(new DateInterval('P2D'));
 		
 		$dir	= $this->_swe['sweph'];
-		$date	= $dateTimeObject->format(Time::DATA_DATE_FORMAT);
+		$date	= $dateTimeObject->format(Time::FORMAT_DATA_DATE);
 		$planet = self::$inputPlanets[$graha];
 		$geopos	= $this->_data['longitude'].','.$this->_data['latitude'].',0';
 		$rising = $this->_rising;
@@ -282,7 +283,7 @@ class Swetest {
 		$string =
 				'swetest'.
 				' -edir'.$dir.
-				' -n2'.
+				' -n4'.
 				' -b'.$date.
 				' -p'.$planet.
 				' -geopos'.$geopos.
@@ -291,26 +292,26 @@ class Swetest {
 		
 		putenv("PATH={$this->_swe['swetest']}");
 		exec($string, $out);
-		preg_match("#rise\s((.*\d+)\s+(\d{1,2}:.*))\sset\s((.*\d+)\s+(\d{1,2}:.*))#", $out[2], $matches);
 		
-		$risingString	= str_replace(' ', '', $matches[2]).' '.str_replace(' ', '', $matches[3]);
-		$settingString	= str_replace(' ', '', $matches[5]).' '.str_replace(' ', '', $matches[6]);
-		
-		$risingObject = new DateTime($risingString, new DateTimeZone('UTC'));
-		$risingObject->setTimezone(new DateTimeZone($this->_data['timezone']));
-		$settingObject = new DateTime($settingString);
-		$settingObject->setTimezone(new DateTimeZone($this->_data['timezone']));	
-		
-		$dateRising = $risingObject->format(Time::DATA_DATE_FORMAT.' '.Time::DATA_TIME_FORMAT);
-		$dateSetting = $settingObject->format(Time::DATA_DATE_FORMAT.' '.Time::DATA_TIME_FORMAT);
-		
-		$bodyRising = array(
-			$graha => array(
+		for($i = 1; $i <= 3; $i++) {
+			preg_match("#rise\s((.*\d+)\s+(\d{1,2}:.*))\sset\s((.*\d+)\s+(\d{1,2}:.*))#", $out[$i+1], $matches);
+
+			$risingString	= str_replace(' ', '', $matches[2]).' '.str_replace(' ', '', $matches[3]);
+			$settingString	= str_replace(' ', '', $matches[5]).' '.str_replace(' ', '', $matches[6]);
+
+			$risingObject = new DateTime($risingString, new DateTimeZone('UTC'));
+			$risingObject->setTimezone(new DateTimeZone($this->_data['timezone']));
+			$settingObject = new DateTime($settingString);
+			$settingObject->setTimezone(new DateTimeZone($this->_data['timezone']));
+
+			$dateRising = $risingObject->format(Time::FORMAT_DATETIME);
+			$dateSetting = $settingObject->format(Time::FORMAT_DATETIME);
+
+			$bodyRising[$i] = array(
 				'rising'	=> $dateRising,
 				'setting'	=> $dateSetting,
-			)
-		);
-		
+			);
+		}
 		return $bodyRising;
 	}
 

@@ -12,25 +12,39 @@ namespace Jyotish\Tattva\Ayurveda;
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 class Dhatu {
-	//lymph
+	/*
+	 * lymph
+	 */
 	const DHATU_RASA = 'rasa';
 
-	//red part of the blood
+	/*
+	 * red part of the blood
+	 */
 	const DHATU_RAKTA = 'rakta';
 
-	//muscle
+	/*
+	 * muscle
+	 */
 	const DHATU_MAMSA = 'mamsa';
 
-	//atty tissue
+	/*
+	 * fatty tissue
+	 */
 	const DHATU_MEDHA = 'medha';
 
-	//bone
+	/*
+	 * bone
+	 */
 	const DHATU_ASTHI = 'asthi';
 
-	//bone marrow
+	/*
+	 * bone marrow
+	 */
 	const DHATU_MAJA = 'maja';
 
-	//reproductive tissue
+	/*
+	 * reproductive tissue
+	 */
 	const DHATU_SHUKRA = 'shukra';
 
 }

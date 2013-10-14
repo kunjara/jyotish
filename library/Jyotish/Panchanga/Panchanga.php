@@ -117,14 +117,30 @@ class Panchanga {
 	 */
 	public function getVara(){
 		$dateUser = new DateTime($this->_data['date'].' '.$this->_data['time']);
-		$dateRising = new DateTime($this->_risingData['Sy']['rising']);
+		$dateUserU = $dateUser->format('U');
+		$dateRising2 = new DateTime($this->_risingData[2]['rising']);
+		$dateRising2U = $dateRising2->format('U');
 		
 		$varaNumber = $dateUser->format('w');
 		
-		if($dateUser >= $dateRising) {
+		if($dateUser >= $dateRising2) {
 			$vara['number'] = $varaNumber + 1;
+			
+			$dateRising3 = new DateTime($this->_risingData[3]['rising']);
+			$dateRising3U = $dateRising3->format('U');
+			$duration = $dateRising3U - $dateRising2U;
+			$vara['left'] = ($dateRising3U - $dateUserU) * 100 / $duration;
+			$vara['start'] = $this->_risingData[2]['rising'];
+			$vara['end'] = $this->_risingData[3]['rising'];
 		} else {
 			$varaNumber != 0 ? $vara['number'] = $varaNumber : $vara['number'] = 7;
+			
+			$dateRising1 = new DateTime($this->_risingData[1]['rising']);
+			$dateRising1U = $dateRising1->format('U');
+			$duration = $dateRising2U - $dateRising1U;
+			$vara['left'] = ($dateRising2U - $dateUserU) * 100 / $duration;
+			$vara['start'] = $this->_risingData[1]['rising'];
+			$vara['end'] = $this->_risingData[2]['rising'];
 		}
 		
 		$vara['name'] = Vara::$VARA[$vara['number']];

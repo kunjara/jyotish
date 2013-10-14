@@ -16,11 +16,12 @@ use DateInterval;
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 class Time {
+	const FORMAT_DATETIME		= 'd.m.Y H:i:s';
+	const FORMAT_DATA_DATE		= 'd.m.Y';
+	const FORMAT_DATA_TIME		= 'H:i';
+	const FORMAT_OFFSET_TIME	= '%H:%I';
 	
-	const DATA_DATE_FORMAT		= 'd.m.Y';
-	const DATA_TIME_FORMAT		= 'H:i';
-	const OFFSET_TIME_FORMAT	= '%H:%I';
-	
+
 	
 	/**
 	 * Get real time.
@@ -29,7 +30,7 @@ class Time {
 	 */
 	static function getTimeNow() {
 		$dateTimeObject = new DateTime('NOW');
-		$time = $dateTimeObject->format(self::DATA_TIME_FORMAT);
+		$time = $dateTimeObject->format(self::FORMAT_DATA_TIME);
 		
 		return $time;
 	}
@@ -41,7 +42,7 @@ class Time {
 	 */
 	static function getDateNow() {
 		$dateTimeObject = new DateTime('NOW');
-		$date = $dateTimeObject->format(self::DATA_DATE_FORMAT);
+		$date = $dateTimeObject->format(self::FORMAT_DATA_DATE);
 		
 		return $date;
 	}
@@ -88,7 +89,7 @@ class Time {
 	
 	
 	
-	static public function formatOffset($offset, $format = self::OFFSET_TIME_FORMAT) {
+	static public function formatOffset($offset, $format = self::FORMAT_OFFSET_TIME) {
 		$offsetInterval = new DateInterval('PT'.abs($offset).'S');
 		
 		$seconds = $offsetInterval->s;

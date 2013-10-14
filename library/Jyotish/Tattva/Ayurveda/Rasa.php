@@ -12,25 +12,39 @@ namespace Jyotish\Tattva\Ayurveda;
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 class Rasa {
-	//sweet
+	/*
+	 * sweet
+	 */
 	const RASA_MADHURA = 'madhura';
 
-	//salt
+	/*
+	 * salt
+	 */
 	const RASA_LAVANA = 'lavana';
 
-	//sour
+	/*
+	 * sour
+	 */
 	const RASA_AMLA = 'amla';
 
-	//astringent
+	/*
+	 * astringent
+	 */
 	const RASA_KASHAYA = 'kashaya';
 
-	//bitter
+	/*
+	 * bitter
+	 */
 	const RASA_TIKTA = 'tikta';
 
-	//spicy
+	/*
+	 * spicy
+	 */
 	const RASA_KATU = 'katu';
 
-	//mix
+	/*
+	 * mix
+	 */
 	const RASA_MISHRA = 'mishra';
 
 }
