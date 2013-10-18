@@ -12,6 +12,9 @@ namespace Jyotish\Calendar;
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 class Masa {
+	/**
+	 * Name of Masa
+	 */
 	const NAME_CHAITRA		= 'Chaitra';
 	const NAME_VAISHAKHA	= 'Vaishakha';
 	const NAME_JYESHTHA		= 'Jyeshtha';
@@ -24,7 +27,13 @@ class Masa {
 	const NAME_PAUSHA		= 'Pausha';
 	const NAME_MAGHA		= 'Magha';
 	const NAME_PHALGUNA		= 'Phalguna';
-	
+	/*
+	 * Duration of the sidereal and synodic months measured in days
+	 */
+	const DUR_SIDERIAL	= 27.3217;
+	const DUR_SYNODIC	= 29.5306;
+
+
 	static public $MASA = array(
 		1 => self::NAME_CHAITRA,
 		2 => self::NAME_VAISHAKHA,

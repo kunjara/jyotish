@@ -304,8 +304,8 @@ class Swetest {
 			$settingObject = new DateTime($settingString);
 			$settingObject->setTimezone(new DateTimeZone($this->_data['timezone']));
 
-			$dateRising = $risingObject->format(Time::FORMAT_DATETIME);
-			$dateSetting = $settingObject->format(Time::FORMAT_DATETIME);
+			$dateRising = $risingObject->format(Time::FORMAT_DATA_DATE.' '.Time::FORMAT_DATA_TIME);
+			$dateSetting = $settingObject->format(Time::FORMAT_DATA_DATE.' '.Time::FORMAT_DATA_TIME);
 
 			$bodyRising[$i] = array(
 				'rising'	=> $dateRising,

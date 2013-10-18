@@ -7,6 +7,8 @@
 namespace Jyotish\Panchanga;
 
 use DateTime;
+use DateInterval;
+use Jyotish\Ganita\Time;
 use Jyotish\Panchanga\Tithi\Tithi;
 use Jyotish\Panchanga\Nakshatra\Nakshatra;
 use Jyotish\Panchanga\Yoga\Yoga;
@@ -14,6 +16,7 @@ use Jyotish\Panchanga\Vara\Vara;
 use Jyotish\Panchanga\Karana\Karana;
 use Jyotish\Graha\Graha;
 use Jyotish\Service\Utils;
+use Jyotish\Calendar\Masa;
 
 /**
  * Class to calculate the Panchanga.
@@ -22,17 +25,19 @@ use Jyotish\Service\Utils;
  */
 class Panchanga {
 	
-	private $_data;
+	private $_ganitaObject;
+	private $_userData;
 	private $_paramsData;
 	private $_risingData;
 	
 	private $_tithi = null;
 
-	public function __construct($ganitaObject) {
+	public function __construct($ganitaObject)
+	{
 		if($ganitaObject instanceof \Jyotish\Ganita\Method\Swetest){
-			$this->_data = $ganitaObject->getData();
-			$this->_paramsData = $ganitaObject->getParams();
-			$this->_risingData = $ganitaObject->getRising();
+			$this->_ganitaObject = $ganitaObject;
+			$this->_setData();
+			$this->_risingData = $this->_ganitaObject->getRising();
 		} else {
 			throw new Exception\InvalidArgumentException(
                 'Ganita method must be Swetest object.'
@@ -40,12 +45,19 @@ class Panchanga {
 		}
 	}
 	
+	public function __clone()
+	{
+		$this->_ganitaObject = clone $this->_ganitaObject;
+	}
+
 	/**
 	 * Get Tithi
 	 * 
+	 * @param	boolean $withLimit
 	 * @return	array
 	 */
-	public function getTithi(){
+	public function getTithi($withLimit = false)
+	{
 		$unit = 12;
 		
 		$lonCh = $this->_paramsData['graha'][Graha::GRAHA_CH]['longitude'];
@@ -61,6 +73,11 @@ class Panchanga {
 		$tithi['paksha'] = $tithiObject::$tithiPaksha;
 		$tithi['left'] = ($unit - $tithiUnits['parts']) * 100 / $unit;
 		
+		if($withLimit){
+			$limits = $this->_limitAnga($tithi, __FUNCTION__);
+			$tithi['end'] = $limits['end'];
+		}
+		
 		$this->_tithi = $tithi;
 		
 		return $this->_tithi;
@@ -69,9 +86,11 @@ class Panchanga {
 	/**
 	 * Get Nakshatra
 	 * 
+	 * @param	boolean $withLimit
 	 * @return	array
 	 */
-	public function getNakshatra(){
+	public function getNakshatra($withLimit = false)
+	{
 		$unit = 360/27;
 		
 		$lonCh = $this->_paramsData['graha'][Graha::GRAHA_CH]['longitude'];
@@ -82,15 +101,22 @@ class Panchanga {
 		$nakshatra['name'] = Nakshatra::$NAKSHATRA[$nakshatra['number']];
 		$nakshatra['left'] = ($unit - $nakshatraUnits['parts']) * 100 / $unit;
 		
+		if($withLimit){
+			$limits = $this->_limitAnga($nakshatra, __FUNCTION__);
+			$nakshatra['end'] = $limits['end'];
+		}
+		
 		return $nakshatra;
 	}
 	
 	/**
 	 * Get Yoga
 	 * 
+	 * @param	boolean $withLimit
 	 * @return	array
 	 */
-	public function getYoga(){
+	public function getYoga($withLimit = false)
+	{
 		$unit = 360/27;
 		
 		$lonCh = $this->_paramsData['graha'][Graha::GRAHA_CH]['longitude'];
@@ -107,6 +133,11 @@ class Panchanga {
 		$yoga['name'] = Yoga::$YOGA[$yoga['number']];
 		$yoga['left'] = ($unit - $yogaUnits['parts']) * 100 / $unit;
 		
+		if($withLimit){
+			$limits = $this->_limitAnga($yoga, __FUNCTION__);
+			$yoga['end'] = $limits['end'];
+		}
+		
 		return $yoga;
 	}
 	
@@ -115,8 +146,9 @@ class Panchanga {
 	 * 
 	 * @return	array
 	 */
-	public function getVara(){
-		$dateUser = new DateTime($this->_data['date'].' '.$this->_data['time']);
+	public function getVara()
+	{
+		$dateUser = new DateTime($this->_userData['date'].' '.$this->_userData['time']);
 		$dateUserU = $dateUser->format('U');
 		$dateRising2 = new DateTime($this->_risingData[2]['rising']);
 		$dateRising2U = $dateRising2->format('U');
@@ -151,15 +183,27 @@ class Panchanga {
 	/**
 	 * Get Karana
 	 * 
-	 * @return array
+	 * @param	boolean $withLimit
+	 * @return	array
 	 */
-	public function getKarana(){
+	public function getKarana($withLimit = false)
+	{
 		if($this->_tithi['left'] < 50){
 			$number = 2;
 			$left = $this->_tithi['left'];
+			if($withLimit)
+				$karana['end'] = $this->_tithi['end'];
 		} else {
 			$number = 1;
-			$left = 100 - $this->_tithi['left'];
+			$left = $this->_tithi['left'] - 50;
+			if($withLimit){
+				$dateUser = new DateTime($this->_userData['date'].' '.$this->_userData['time']);
+				$tithiEnd = new DateTime($this->_tithi['end']);
+				$dateUserU = $dateUser->format('U');
+				$tithiEndU = $tithiEnd->format('U');
+				$timeHalfU = round(($tithiEndU - $dateUserU) * 50 / $this->_tithi['left']);
+				$karana['end'] = $tithiEnd->sub(new DateInterval('PT'.$timeHalfU.'S'))->format(Time::FORMAT_DATA_DATE.' '.Time::FORMAT_DATA_TIME);
+			}
 		}
 		
 		$tithiObject = Tithi::getInstance($this->_tithi['number']);
@@ -171,5 +215,57 @@ class Panchanga {
 		$karana['left'] = $left * 2;
 		
 		return $karana;
+	}
+	
+	/**
+	 * Set data for Panchanga
+	 * 
+	 * @param array $data
+	 */
+	private function _setData(array $data = null)
+	{
+		if(!is_null($data)) $this->_ganitaObject->setData($data);
+		
+		$this->_userData = $this->_ganitaObject->getData();
+		$this->_paramsData = $this->_ganitaObject->getParams();
+	}
+	
+	/**
+	 * Calculate Anga limits
+	 * 
+	 * @param array $anga
+	 * @param string $function
+	 * @return array
+	 */
+	private function _limitAnga($anga, $function = 'getTithi')
+	{
+		if($function == 'getTithi' or $function == 'getYoga')
+			$durMonth = Masa::DUR_SYNODIC * 86400;
+		elseif($function == 'getNakshatra') 
+			$durMonth = Masa::DUR_SIDERIAL * 86400;
+		
+		$dateUser		= new DateTime($this->_userData['date'].' '.$this->_userData['time']);
+		$timeEndAdd		= round($durMonth * $anga['left'] / 30 / 100 / 2);
+		$Panchanga		= clone $this;
+		
+		// End time
+		do {
+			$timeEndObject = $dateUser->add(new DateInterval('PT'.$timeEndAdd.'S'));
+			$Panchanga->_setData(array(
+					'date' => $timeEndObject->format(Time::FORMAT_DATA_DATE), 
+					'time' => $timeEndObject->format(Time::FORMAT_DATA_TIME)
+			));
+			
+			$angaEnd = $Panchanga->$function();
+			$timeEndAdd = round($durMonth * $angaEnd['left'] / 30 / 100 / 2);
+		} while($angaEnd['left'] > .1);
+		
+		$data = $Panchanga->_ganitaObject->getData();
+		$result = array(
+			'end' => $data['date'].' '.$data['time']
+		);
+		
+		unset($Panchanga);
+		return $result;
 	}
 }
