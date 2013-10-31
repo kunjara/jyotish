@@ -16,7 +16,7 @@ use DateInterval;
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 class Time {
-	const FORMAT_DATETIME		= 'd.m.Y H:i:s';
+	const FORMAT_DATETIME		= 'Y-m-d H:i:s';
 	const FORMAT_DATA_DATE		= 'd.m.Y';
 	const FORMAT_DATA_TIME		= 'H:i';
 	const FORMAT_OFFSET_TIME	= '%H:%I';
@@ -28,7 +28,8 @@ class Time {
 	 * 
 	 * @return string
 	 */
-	static function getTimeNow() {
+	static function getTimeNow() 
+	{
 		$dateTimeObject = new DateTime('NOW');
 		$time = $dateTimeObject->format(self::FORMAT_DATA_TIME);
 		
@@ -40,7 +41,8 @@ class Time {
 	 * 
 	 * @return string
 	 */
-	static function getDateNow() {
+	static function getDateNow() 
+	{
 		$dateTimeObject = new DateTime('NOW');
 		$date = $dateTimeObject->format(self::FORMAT_DATA_DATE);
 		
@@ -49,9 +51,11 @@ class Time {
 
 
 	
-	static public function getDateTimeUtc($timeFormat, $dateTime, $timeZone = 'UTC', $offsetUser = null) {
+	static public function getDateTimeUtc($timeFormat, $dateTime, $timeZone = 'UTC', $offsetUser = false)
+	{
 		$timeZoneObject = new DateTimeZone($timeZone);
 		$dateTimeObject = DateTime::createFromFormat($timeFormat, $dateTime, $timeZoneObject);
+		$offsetSystem	= self::getTimeZoneOffset($timeZone, $dateTime);
 
 		if ($timeZone != 'UTC') {
 			$dateTimeObject->setTimezone(new DateTimeZone('UTC'));
@@ -62,12 +66,11 @@ class Time {
 				throw new Exception\InvalidArgumentException("The offset must be an integer value in seconds.");
 			}
 			
-			$offsetSystem	= self::getTimeZoneOffset($timeZone, $dateTime);
 			$offsetTotal	= $offsetSystem - $offsetUser;
 			
 			if($offsetTotal > 0) {
 				$dateTimeObject->add(new DateInterval('PT'.$offsetTotal.'S'));
-			} else {
+			} elseif($offsetTotal < 0) {
 				$dateTimeObject->sub(new DateInterval('PT'.abs($offsetTotal).'S'));
 			}
 		}
@@ -77,7 +80,8 @@ class Time {
 	
 	
 	
-	static public function getTimeZoneOffset($timeZone, $dateTime, $flagFormat = false) {
+	static public function getTimeZoneOffset($timeZone, $dateTime, $flagFormat = false) 
+	{
 		$timeZoneObject = new DateTimeZone($timeZone);
 		$dateTimeObject = new DateTime($dateTime, $timeZoneObject);
 
@@ -89,7 +93,8 @@ class Time {
 	
 	
 	
-	static public function formatOffset($offset, $format = self::FORMAT_OFFSET_TIME) {
+	static public function formatOffset($offset, $format = self::FORMAT_OFFSET_TIME) 
+	{
 		$offsetInterval = new DateInterval('PT'.abs($offset).'S');
 		
 		$seconds = $offsetInterval->s;
@@ -104,9 +109,18 @@ class Time {
 		
 		return $offsetResult;
 	}
+	
+	
+	
+	static public function disFormatOffset($offset, $delimiter = ':')
+	{
+		$offsetArray = explode($delimiter, $offset);
+		$result = $offsetArray[0] * 3600 + $offsetArray[1] * 60;
+		return $result;
+	}
 
-	
-	
+
+
 	static public function getTimeZoneLocation($timeZone) {
 		$timeZoneObject = new DateTimeZone($timeZone);
 		$location = $timeZoneObject->getLocation();

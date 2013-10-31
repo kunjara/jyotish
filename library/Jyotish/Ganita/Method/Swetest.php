@@ -37,6 +37,7 @@ class Swetest {
 		'time' => null,
 		'timezone' => 'UTC',
 		'offset' => null,
+		'offset_user' => false,
 		'longitude' => 0,
 		'latitude' => 0,
 	);
@@ -232,8 +233,11 @@ class Swetest {
 		
 		$dateTimeString = $this->_data['date'] . ' ' . $this->_data['time'];
 		$dateTimeFormat = Time::FORMAT_DATA_DATE . ' ' . Time::FORMAT_DATA_TIME;
-		$dateTimeObject = Time::getDateTimeUtc($dateTimeFormat, $dateTimeString, $this->_data['timezone']);
-
+		if($this->_data['offset_user'])
+			$dateTimeObject = Time::getDateTimeUtc($dateTimeFormat, $dateTimeString, $this->_data['timezone'], Time::disFormatOffset($this->_data['offset']));
+		else 
+			$dateTimeObject = Time::getDateTimeUtc($dateTimeFormat, $dateTimeString, $this->_data['timezone']);
+		
 		$dir	= $this->_swe['sweph'];
 		$date	= $dateTimeObject->format(Time::FORMAT_DATA_DATE);
 		$time	= $dateTimeObject->format(Time::FORMAT_DATA_TIME);
@@ -301,17 +305,19 @@ class Swetest {
 
 			$risingObject = new DateTime($risingString, new DateTimeZone('UTC'));
 			$risingObject->setTimezone(new DateTimeZone($this->_data['timezone']));
-			$settingObject = new DateTime($settingString);
+			$settingObject = new DateTime($settingString, new DateTimeZone('UTC'));
 			$settingObject->setTimezone(new DateTimeZone($this->_data['timezone']));
 
 			$dateRising = $risingObject->format(Time::FORMAT_DATA_DATE.' '.Time::FORMAT_DATA_TIME);
 			$dateSetting = $settingObject->format(Time::FORMAT_DATA_DATE.' '.Time::FORMAT_DATA_TIME);
 
-			$bodyRising[$i] = array(
+			$bodyRising['time'][$i] = array(
 				'rising'	=> $dateRising,
 				'setting'	=> $dateSetting,
 			);
 		}
+		$bodyRising['graha'] = $graha;
+		
 		return $bodyRising;
 	}
 
@@ -338,6 +344,8 @@ class Swetest {
 			} elseif (array_key_exists($bodyName, self::$outputHouses)) {
 				$bodyParameters['bhava'][self::$outputHouses[$bodyName]] = array(
 					'longitude' => $parameters[1],
+					'ascension' => $parameters[2],
+					'declination' => $parameters[3],
 					'rashi' => $units['units'],
 					'degree' => $units['parts'],
 				);
