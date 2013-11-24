@@ -37,7 +37,6 @@ class Swetest {
 		'time' => null,
 		'timezone' => 'UTC',
 		'offset' => null,
-		'offset_user' => false,
 		'longitude' => 0,
 		'latitude' => 0,
 	);
@@ -190,8 +189,8 @@ class Swetest {
 	public function setData(array $data = null)
 	{
 		if (is_null($data)) {
-			$this->_data['date'] = date(Time::FORMAT_DATA_DATE);
-			$this->_data['time'] = date(Time::FORMAT_DATA_TIME);
+			$this->_data['date'] = Time::getDateNow();
+			$this->_data['time'] = Time::getTimeNow();
 		} elseif (is_array($data)) {
 			foreach ($data as $dataName => $dataValue) {
 				$dataName = strtolower($dataName);
@@ -202,10 +201,10 @@ class Swetest {
 					throw new Exception\UnexpectedValueException("Unknown data: $dataName = $dataValue");
 				}
 			}
-			if (is_null($this->_data['date']))
-				$this->_data['date'] = date(Time::FORMAT_DATA_DATE);
-			if (is_null($this->_data['time']))
-				$this->_data['time'] = date(Time::FORMAT_DATA_TIME);
+			if (empty($this->_data['date']))
+				$this->_data['date'] = Time::getDateNow();
+			if (empty($this->_data['time']))
+				$this->_data['time'] = Time::getTimeNow();
 		} else {
 			throw new Exception\UnexpectedValueException("Data must be null or an array.");
 		}
@@ -233,10 +232,12 @@ class Swetest {
 		
 		$dateTimeString = $this->_data['date'] . ' ' . $this->_data['time'];
 		$dateTimeFormat = Time::FORMAT_DATA_DATE . ' ' . Time::FORMAT_DATA_TIME;
-		if($this->_data['offset_user'])
-			$dateTimeObject = Time::getDateTimeUtc($dateTimeFormat, $dateTimeString, $this->_data['timezone'], Time::disFormatOffset($this->_data['offset']));
-		else 
-			$dateTimeObject = Time::getDateTimeUtc($dateTimeFormat, $dateTimeString, $this->_data['timezone']);
+		
+		$offsetUser		= Time::disFormatOffset($this->_data['offset']);
+		$offsetSystem	= Time::getTimeZoneOffset($this->_data['timezone'], $dateTimeString);
+		$offsetUser != $offsetSystem ? $offset = $offsetUser : $offset = false;
+		
+		$dateTimeObject = Time::getDateTimeUtc($dateTimeFormat, $dateTimeString, $this->_data['timezone'], $offset);
 		
 		$dir	= $this->_swe['sweph'];
 		$date	= $dateTimeObject->format(Time::FORMAT_DATA_DATE);
