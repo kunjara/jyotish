@@ -112,7 +112,7 @@ class Swetest {
 		}
 
 		if (!file_exists($swe['swetest'])) {
-			throw new Exception\InvalidArgumentException("The swetest file '{$swe['swetest']}' does not exist");
+			throw new Exception\InvalidArgumentException("The swetest directory '{$swe['swetest']}' does not exist");
 		}
 		
 		$this->_swe['swetest'] = $swe['swetest'];
@@ -325,8 +325,11 @@ class Swetest {
 	private function _formatParams($input)
 	{
 		$bodyParameters = array();
-
+		
 		foreach ($input as $k => $v) {
+			// Break if swetest warning
+			if($k == 24) break;
+			
 			$parametersString = str_replace(' ', '', $v);
 			$parameters = explode(',', $parametersString);
 			$bodyName	= $parameters[0];
@@ -372,7 +375,7 @@ class Swetest {
 		}
 		asort($bodyParameters['graha']);
 		reset($bodyParameters['graha']);
-			
+		
 		return $bodyParameters;
 	}
 	

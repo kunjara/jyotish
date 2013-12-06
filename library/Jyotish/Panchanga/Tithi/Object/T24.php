@@ -16,7 +16,7 @@ use Jyotish\Panchanga\Karana\Karana;
  */
 class T24 extends \Jyotish\Panchanga\Tithi\Tithi {
 
-	static public $tithiDeva = Deva::DEVA_ASHTAVASY;
+	static public $tithiDeva = Deva::DEVA_ASHTAVASU;
 	static public $tithiPaksha = self::PAKSHA_KRISHNA;
 	static public $tithiType = self::TYPE_RIKTA;
 	static public $tithiKarana = array(

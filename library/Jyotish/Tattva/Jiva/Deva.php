@@ -19,7 +19,7 @@ class Deva extends AbstractJiva implements \Jyotish\Tattva\Jiva\DevaInterface {
 	const DEVA_AJIKAPADA = 'Ajikapada';
 	const DEVA_APAH = 'Apah';
 	const DEVA_ARYAMA = 'Aryama';
-	const DEVA_ASHTAVASY = 'Ashtavasy';
+	const DEVA_ASHTAVASU = 'Ashtavasu';
 	const DEVA_ASHWINI = 'Ashwini';
 	const DEVA_BHAGA = 'Bhaga';
 	const DEVA_BRAHMA = 'Brahma';
