@@ -8,6 +8,7 @@ namespace Jyotish\Graha\Object;
 
 use Jyotish\Rashi\Rashi;
 use Jyotish\Tattva\Maha\Bhuta;
+use Jyotish\Tattva\Maha\Disha;
 use Jyotish\Tattva\Maha\Guna;
 use Jyotish\Tattva\Jiva\Deva;
 use Jyotish\Tattva\Jiva\Manusha;
@@ -81,6 +82,7 @@ class Ch extends \Jyotish\Graha\Graha {
 	);
 	static public $grahaVarna = Manusha::VARNA_VAISHYA;
 	static public $grahaGender = Manusha::GENDER_FEMALE;
+	static public $grahaDisha = Disha::DISHA_VAYAVYA;
 	static public $grahaRelation = array
 	(
 		self::GRAHA_SY => 1,
