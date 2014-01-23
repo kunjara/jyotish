@@ -6,7 +6,7 @@
 
 namespace Jyotish\Varga\Object;
 
-use Jyotish\Service\Utils;
+use Jyotish\Ganita\Math;
 use Jyotish\Rashi\Rashi;
 
 /**
@@ -35,7 +35,7 @@ class D16 extends \Jyotish\Varga\Varga {
 	 */
 	public function getVargaRashi(array $ganitaRashi) {
 		$amshaSize = 30 / self::$vargaAmsha;
-		$result = Utils::partsToUnits($ganitaRashi['degree'], $amshaSize, 'floor');
+		$result = Math::partsToUnits($ganitaRashi['degree'], $amshaSize, 'floor');
 		$vargaRashi['degree'] = $result['parts'] * 30 / $amshaSize;
 		
 		$rashiObject = Rashi::getInstance((int)$ganitaRashi['rashi']);

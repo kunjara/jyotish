@@ -6,6 +6,8 @@
 
 namespace Jyotish\Panchanga\Nakshatra;
 
+use Jyotish\Ganita\Math;
+
 /**
  * Class with Nakshatra names and attributes.
  *
@@ -58,6 +60,7 @@ class Nakshatra {
 		25 => 'Purva Bhadrapada',
 		26 => 'Uttara Bhadrapada',
 		27 => 'Revati',
+		28 => 'Abhijit'
 	);
 	
 	/**
@@ -70,6 +73,14 @@ class Nakshatra {
 		'na','ka','virama','ssa','ta','virama','ra'
 	);
 	
+	static public $nakshatraArc = array(
+		'd' => 13,
+		'm' => 20,
+		's' => 0
+	);
+	static public $nakshatraStart;
+	static public $nakshatraEnd;
+	
 	static public $nakshatraTranslit;
 	static public $nakshatraDeva;
 	static public $nakshatraEnergy;
@@ -81,15 +92,24 @@ class Nakshatra {
 	static public $nakshatraType;
 	static public $nakshatraVarna;
 
-	static public function getInstance($number, $options = null) {
-		if (array_key_exists($number, self::$NAKSHATRA)) {
-			$nakshatraClass = 'Jyotish\\Panchanga\\Nakshatra\\Object\\N' . $number;
-			$nakshatraObject = new $nakshatraClass($options);
-
-			return $nakshatraObject;
-		} else {
+	static public function getInstance($number, $options = null)
+	{
+		if (!array_key_exists($number, self::$NAKSHATRA)) {
 			throw new Exception\InvalidArgumentException("Nakshatra with the number '$number' does not exist.");
 		}
+		
+		$nakshatraClass = 'Jyotish\\Panchanga\\Nakshatra\\Object\\N' . $number;
+		$nakshatraObject = new $nakshatraClass($options);
+		
+		if($number == 28){
+			self::$nakshatraStart = array('d' => 276, 'm' => 40);
+			self::$nakshatraEnd = array('d' => 280, 'm' => 53, 's' => 20);
+		}else{
+			self::$nakshatraStart = Math::dmsMulti(self::$nakshatraArc, $number - 1);
+			self::$nakshatraEnd = Math::dmsSum(self::$nakshatraStart, self::$nakshatraArc);
+		}
+		
+		return $nakshatraObject;
 	}
-
+	
 }

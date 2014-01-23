@@ -55,7 +55,7 @@ class Calc {
 	 */
 	static public function getRise($data, $grahaData)
 	{
-		$hourAngle = acos((cos(Math::dmsToDecimal(90, 51)) - sin($data['latitude']) * sin($grahaData['declination'])) / cos($data['latitude']) * cos($grahaData['declination']));
+		$hourAngle = acos((cos(Math::dmsToDecimal(array('d' => 90, 'm' => 51))) - sin($data['latitude']) * sin($grahaData['declination'])) / cos($data['latitude']) * cos($grahaData['declination']));
 		$eot = self::eot($data['date']);
 		
 		$time = 12 - $hourAngle + $eot;

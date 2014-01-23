@@ -22,14 +22,14 @@ class Math {
 	 * @param float $s
 	 * @return float
 	 */
-	static public function dmsToDecimal($d, $m, $s = 0)
+	static public function dmsToDecimal(array $dms)
 	{
-	  if ( ($d<0) || ($m<0) || ($s<0) ) 
+	  if ( ($dms['d'] < 0) || ($dms['m'] < 0) || ($dms['s'] < 0) ) 
 		  $sign = -1;
 	  else
 		  $sign = 1;
 
-	  return  $sign * ( abs($d) + abs($m)/60 + abs($s)/3600 );
+	  return  $sign * ( abs($dms['d']) + abs($dms['m'])/60 + abs($dms['s'])/3600 );
 	}
 	
 	/**
@@ -54,4 +54,75 @@ class Math {
 		
 		return $result;
 	}
+	
+	/**
+	 * Finds unints and parts from total parts. 
+	 * 
+	 * @param float $totalParts
+	 * @param int $partsInUnit
+	 * @param string $flagRound
+	 * @return array
+	 */
+	static public function partsToUnits($totalParts, $partsInUnit = 30, $flagRound = 'ceil') {
+		if($partsInUnit <= 0){
+			throw new Exception\InvalidArgumentException("Parts in unit must be greater than zero.");
+		}
+		
+		switch ($flagRound) {
+			case 'floor':
+				$totalUnits	= floor($totalParts / $partsInUnit);
+				break;
+			case 'ceil':
+			default:
+				$totalUnits	= ceil($totalParts / $partsInUnit);
+				break;
+		}
+		
+		$restParts	= fmod($totalParts, $partsInUnit);
+		
+		return array ('units' => $totalUnits, 'parts' => $restParts);
+	}
+	
+	/**
+	 * Sum of two values of arc angular degrees (hours), minutes and seconds.
+	 * 
+	 * @param array $dms1
+	 * @param array $dms2
+	 * @return array
+	 */
+	static public function dmsSum(array $dms1, array $dms2)
+	{
+		$result = array('d' => 0, 'm' => 0, 's' => 0);
+		
+		$ssUnits = self::partsToUnits($dms1['s'] + $dms2['s'], 60, 'floor');
+		$result['s'] = $ssUnits['parts'];
+		$mmUnits = self::partsToUnits($dms1['m'] + $dms2['m'] + $ssUnits['units'], 60, 'floor');
+		$result['m'] = $mmUnits['parts'];
+		
+		$result['d'] = $dms1['d'] + $dms2['d'] + $mmUnits['units'];
+		
+		return $result;
+	}
+	
+	/**
+	 * Multiplication value of arc.
+	 * 
+	 * @param array $dms
+	 * @param int $factor
+	 * @return array
+	 */
+	static public function dmsMulti(array $dms, $factor)
+	{
+		$result = array('d' => 0, 'm' => 0, 's' => 0);
+		
+		$ssUnits = self::partsToUnits($dms['s'] * $factor, 60, 'floor');
+		$result['s'] = $ssUnits['parts'];
+		$mmUnits = self::partsToUnits($dms['m'] * $factor + $ssUnits['units'], 60, 'floor');
+		$result['m'] = $mmUnits['parts'];
+		
+		$result['d'] = $dms['d'] * $factor + $mmUnits['units'];
+		
+		return $result;
+	}
+	
 }

@@ -11,10 +11,10 @@ use DateInterval;
 use DateTimeZone;
 use Jyotish\Graha\Graha;
 use Jyotish\Bhava\Bhava;
+use Jyotish\Ganita\Math;
 use Jyotish\Ganita\Time;
 use Jyotish\Ganita\Ayanamsha;
 use Jyotish\Ganita\Method\Calc;
-use Jyotish\Service\Utils;
 
 /**
  * Class to calculate the positions of the planets using the application swetest.
@@ -252,7 +252,7 @@ class Swetest {
 				' -ut'.$time.
 				' -p0123456m'.
 				' -house'.$house.
-				' -sid1'.$sid.
+				' -sid'.$sid.
 				' -fPlbsad'.
 				' -g,'.
 				' -head';
@@ -309,8 +309,8 @@ class Swetest {
 			$settingObject = new DateTime($settingString, new DateTimeZone('UTC'));
 			$settingObject->setTimezone(new DateTimeZone($this->_data['timezone']));
 
-			$dateRising = $risingObject->format(Time::FORMAT_DATA_DATE.' '.Time::FORMAT_DATA_TIME);
-			$dateSetting = $settingObject->format(Time::FORMAT_DATA_DATE.' '.Time::FORMAT_DATA_TIME);
+			$dateRising = $risingObject->format(Time::FORMAT_DATETIME);
+			$dateSetting = $settingObject->format(Time::FORMAT_DATETIME);
 
 			$bodyRising['time'][$i] = array(
 				'rising'	=> $dateRising,
@@ -333,7 +333,7 @@ class Swetest {
 			$parametersString = str_replace(' ', '', $v);
 			$parameters = explode(',', $parametersString);
 			$bodyName	= $parameters[0];
-			$units		= Utils::partsToUnits($parameters[1]);
+			$units		= Math::partsToUnits($parameters[1]);
 			
 			if (array_key_exists($bodyName, self::$outputPlanets)) {
 				$bodyParameters['graha'][self::$outputPlanets[$bodyName]] = array(
@@ -360,19 +360,21 @@ class Swetest {
 					'degree' => $units['parts'],
 				);
 			}
-			$longitudeKe = Calc::contraLon($bodyParameters['graha'][Graha::GRAHA_RA]['longitude']);
-			$ascensionKe = Calc::contraLon($bodyParameters['graha'][Graha::GRAHA_RA]['ascension']);
-			$units = Utils::partsToUnits($longitudeKe);
-			
-			$bodyParameters['graha'][Graha::GRAHA_KE] = array(
-				'longitude' => $longitudeKe,
-				'speed' => $bodyParameters['graha'][Graha::GRAHA_RA]['speed'],
-				'rashi' => $units['units'],
-				'degree' => $units['parts'],
-				'ascension' => $ascensionKe,
-				'declination' => $bodyParameters['graha'][Graha::GRAHA_RA]['declination']
-			);
 		}
+		
+		$longitudeKe = Calc::contraLon($bodyParameters['graha'][Graha::GRAHA_RA]['longitude']);
+		$ascensionKe = Calc::contraLon($bodyParameters['graha'][Graha::GRAHA_RA]['ascension']);
+		$units = Math::partsToUnits($longitudeKe);
+		
+		$bodyParameters['graha'][Graha::GRAHA_KE] = array(
+			'longitude' => $longitudeKe,
+			'speed' => $bodyParameters['graha'][Graha::GRAHA_RA]['speed'],
+			'rashi' => $units['units'],
+			'degree' => $units['parts'],
+			'ascension' => $ascensionKe,
+			'declination' => $bodyParameters['graha'][Graha::GRAHA_RA]['declination']
+		);
+			
 		asort($bodyParameters['graha']);
 		reset($bodyParameters['graha']);
 		

@@ -46,7 +46,8 @@ class Image extends AbstractRenderer implements \Jyotish\Draw\Renderer\ImageInte
 		if ($this->fontName == null) {
 			$this->fontName = 3;
 		}
-
+		
+		if(!isset($options['orientation'])) $options['orientation'] = 0;
 		if (is_numeric($this->fontName)) {
 			if ($options['orientation']) {
 				throw new Exception\RuntimeException(
@@ -89,18 +90,21 @@ class Image extends AbstractRenderer implements \Jyotish\Draw\Renderer\ImageInte
 
 			$box = imagettfbbox($this->fontSize, 0, $this->fontName, $text);
 			
+			if(!isset($options['align'])) $options['align'] = 'left';
 			switch ($options['align']) {
-				case 'left':
-					$width = 0;
-					break;
 				case 'center':
 					$width = ($box[2] - $box[0]) / 2;
 					break;
 				case 'right':
 					$width = ($box[2] - $box[0]);
 					break;
+				case 'left':
+				default:
+					$width = 0;
+					break;
 			}
 			
+			if(!isset($options['valign'])) $options['valign'] = 'bottom';
 			switch ($options['valign']) {
 				case 'top':
 					$height = ($box[1] - $box[7]);
@@ -109,6 +113,7 @@ class Image extends AbstractRenderer implements \Jyotish\Draw\Renderer\ImageInte
 					$height = ($box[1] - $box[7]) / 2;
 					break;
 				case 'bottom':
+				default:
 					$height = 0;
 					break;
 			}

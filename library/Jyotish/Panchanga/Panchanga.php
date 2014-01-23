@@ -8,6 +8,7 @@ namespace Jyotish\Panchanga;
 
 use DateTime;
 use DateInterval;
+use Jyotish\Ganita\Math;
 use Jyotish\Ganita\Time;
 use Jyotish\Panchanga\Tithi\Tithi;
 use Jyotish\Panchanga\Nakshatra\Nakshatra;
@@ -15,7 +16,6 @@ use Jyotish\Panchanga\Yoga\Yoga;
 use Jyotish\Panchanga\Vara\Vara;
 use Jyotish\Panchanga\Karana\Karana;
 use Jyotish\Graha\Graha;
-use Jyotish\Service\Utils;
 use Jyotish\Calendar\Masa;
 
 /**
@@ -65,7 +65,7 @@ class Panchanga {
 		
 		if($lonCh < $lonSy) $lonCh = $lonCh + 360;
 		
-		$tithiUnits = Utils::partsToUnits(($lonCh - $lonSy), $unit);
+		$tithiUnits = Math::partsToUnits(($lonCh - $lonSy), $unit);
 		$tithiObject = Tithi::getInstance($tithiUnits['units']);
 		
 		$tithi['number'] = $tithiUnits['units'];
@@ -89,17 +89,52 @@ class Panchanga {
 	 * @param	boolean $withLimit
 	 * @return	array
 	 */
-	public function getNakshatra($withLimit = false)
+	public function getNakshatra($withLimit = false, $withAbhijit = false)
 	{
 		$unit = 360/27;
 		
 		$lonCh = $this->_paramsData['graha'][Graha::GRAHA_CH]['longitude'];
+		$nakshatraUnits = Math::partsToUnits($lonCh, $unit);
 		
-		$nakshatraUnits = Utils::partsToUnits($lonCh, $unit);
+		if($withAbhijit){
+			if($nakshatraUnits['units'] == 21 or $nakshatraUnits['units'] == 22){
+				$Abhijit = Nakshatra::getInstance(28);
+				$abhijitStart	= Math::dmsToDecimal($Abhijit::$nakshatraStart);
+				$abhijitEnd		= Math::dmsToDecimal($Abhijit::$nakshatraEnd);
+
+				if($lonCh < $abhijitStart){
+					$nakshatra['number'] = 21;
+					$N = Nakshatra::getInstance($nakshatra['number']);
+					$nStart = Math::dmsToDecimal($N::$nakshatraStart);
+					$unit = $abhijitStart - $nStart;
+					$left = $abhijitStart - $lonCh;
+				}elseif($lonCh >= $abhijitStart and $lonCh < $abhijitEnd){
+					$nakshatra['number'] = 28;
+					$unit = $abhijitEnd - $abhijitStart;
+					$left = $abhijitEnd - $lonCh;
+				}else{
+					$nakshatra['number'] = 22;
+					$N = Nakshatra::getInstance($nakshatra['number']);
+					$nEnd = Math::dmsToDecimal($N::$nakshatraEnd);
+					$unit = $nEnd - $abhijitEnd;
+					$left = $nEnd - $lonCh;
+				}
+				$nakshatra['ratio'] = $unit / Math::dmsToDecimal(Nakshatra::$nakshatraArc);
+			}else{
+				$nakshatra['number'] = $nakshatraUnits['units'];
+				$nakshatra['ratio'] = 1;
+				$left = $unit - $nakshatraUnits['parts'];
+			}
+			$nakshatra['abhijit'] = true;
+		}else{
+			$nakshatra['number'] = $nakshatraUnits['units'];
+			$nakshatra['ratio'] = 1;
+			$nakshatra['abhijit'] = false;
+			$left = $unit - $nakshatraUnits['parts'];
+		}
 		
-		$nakshatra['number'] = $nakshatraUnits['units'];
+		$nakshatra['left'] = $left * 100 / $unit;
 		$nakshatra['name'] = Nakshatra::$NAKSHATRA[$nakshatra['number']];
-		$nakshatra['left'] = ($unit - $nakshatraUnits['parts']) * 100 / $unit;
 		
 		if($withLimit){
 			$limits = $this->_limitAnga($nakshatra, __FUNCTION__);
@@ -127,7 +162,7 @@ class Panchanga {
 			$lonSum = $lonSum - 360;
 		}
 		
-		$yogaUnits = Utils::partsToUnits($lonSum, $unit);
+		$yogaUnits = Math::partsToUnits($lonSum, $unit);
 		
 		$yoga['number'] = $yogaUnits['units'];
 		$yoga['name'] = Yoga::$YOGA[$yoga['number']];
@@ -202,7 +237,7 @@ class Panchanga {
 				$dateUserU = $dateUser->format('U');
 				$tithiEndU = $tithiEnd->format('U');
 				$timeHalfU = round(($tithiEndU - $dateUserU) * 50 / $this->_tithi['left']);
-				$karana['end'] = $tithiEnd->sub(new DateInterval('PT'.$timeHalfU.'S'))->format(Time::FORMAT_DATA_DATE.' '.Time::FORMAT_DATA_TIME);
+				$karana['end'] = $tithiEnd->sub(new DateInterval('PT'.$timeHalfU.'S'))->format(Time::FORMAT_DATETIME);
 			}
 		}
 		
@@ -217,6 +252,16 @@ class Panchanga {
 		return $karana;
 	}
 	
+	/**
+	 * Get user data
+	 * 
+	 * @return array
+	 */
+	public function getData()
+	{
+		return $this->_userData;
+	}
+
 	/**
 	 * Set data for Panchanga
 	 * 
@@ -239,30 +284,47 @@ class Panchanga {
 	 */
 	private function _limitAnga($anga, $function = 'getTithi')
 	{
-		if($function == 'getTithi' or $function == 'getYoga')
+		if($function == 'getTithi'){
 			$durMonth = Masa::DUR_SYNODIC * 86400;
-		elseif($function == 'getNakshatra') 
+			$nAnga = 30;
+			$anga['ratio'] = 1;
+		}elseif($function == 'getYoga'){
+			$durMonth = Masa::DUR_SYNODIC * 86400;
+			$nAnga = 27;
+			$anga['ratio'] = 1;
+		}elseif($function == 'getNakshatra'){
 			$durMonth = Masa::DUR_SIDERIAL * 86400;
+			$nAnga = 27;
+		}else{
+			$anga['ratio'] = 1;
+		}
 		
-		$dateUser		= new DateTime($this->_userData['date'].' '.$this->_userData['time']);
-		$timeEndAdd		= round($durMonth * $anga['left'] / 30 / 100 / 2);
-		$Panchanga		= clone $this;
+		$dateUser	= new DateTime($this->_userData['date'].' '.$this->_userData['time']);
+		$durAnga	= $durMonth * $anga['ratio'] / $nAnga;
+		$Panchanga	= clone $this;
+		
+		$timeLeft = round($durAnga * ($anga['left'] / 100) / 2);
 		
 		// End time
 		do {
-			$timeEndObject = $dateUser->add(new DateInterval('PT'.$timeEndAdd.'S'));
+			$timeEndObject = $dateUser->add(new DateInterval('PT'.$timeLeft.'S'));
+			
 			$Panchanga->_setData(array(
 					'date' => $timeEndObject->format(Time::FORMAT_DATA_DATE), 
 					'time' => $timeEndObject->format(Time::FORMAT_DATA_TIME)
 			));
 			
-			$angaEnd = $Panchanga->$function();
-			$timeEndAdd = round($durMonth * $angaEnd['left'] / 30 / 100 / 2);
-		} while($angaEnd['left'] > .1);
+			if($function == 'getNakshatra'){
+				$angaEnd = $Panchanga->$function(false, $anga['abhijit']);
+			}else{
+				$angaEnd = $Panchanga->$function();
+			}
+			
+			$timeLeft = round($durAnga * ($angaEnd['left'] / 100) / 2 );
+		} while($angaEnd['left'] > .2);
 		
-		$data = $Panchanga->_ganitaObject->getData();
 		$result = array(
-			'end' => $data['date'].' '.$data['time']
+			'end' => $timeEndObject->format(Time::FORMAT_DATETIME),
 		);
 		
 		unset($Panchanga);

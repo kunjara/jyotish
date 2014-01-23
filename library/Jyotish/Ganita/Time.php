@@ -49,12 +49,20 @@ class Time {
 		return $date;
 	}
 
-
-	
-	static public function getDateTimeUtc($timeFormat, $dateTime, $timeZone = 'UTC', $offsetUser = false)
+	/**
+	 *  Get new DateTime object formatted according to the specified format.
+	 * 
+	 * @param string $format
+	 * @param string $dateTime
+	 * @param string $timeZone
+	 * @param int $offsetUser
+	 * @return DateTime
+	 * @throws Exception\InvalidArgumentException
+	 */
+	static public function getDateTimeUtc($format, $dateTime, $timeZone = 'UTC', $offsetUser = false)
 	{
 		$timeZoneObject = new DateTimeZone($timeZone);
-		$dateTimeObject = DateTime::createFromFormat($timeFormat, $dateTime, $timeZoneObject);
+		$dateTimeObject = DateTime::createFromFormat($format, $dateTime, $timeZoneObject);
 		$offsetSystem	= self::getTimeZoneOffset($timeZone, $dateTime);
 
 		if ($timeZone != 'UTC') {
@@ -76,6 +84,21 @@ class Time {
 		}
 
 		return $dateTimeObject;
+	}
+	
+	/**
+	 * Convert time from 'Y-m-d H:i:s' to $format
+	 * 
+	 * @param string $format
+	 * @param string $dateTime
+	 * @return string
+	 */
+	static function convertToFormat($format, $dateTime)
+	{
+		$dateTimeObject = DateTime::createFromFormat(self::FORMAT_DATETIME, $dateTime);
+		$timeFormat = $dateTimeObject->format($format);
+		
+		return $timeFormat;
 	}
 	
 	

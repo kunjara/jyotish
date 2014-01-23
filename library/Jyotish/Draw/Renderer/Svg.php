@@ -66,31 +66,37 @@ class Svg extends AbstractRenderer implements \Jyotish\Draw\Renderer\SvgInterfac
 		$attributes['fill'] = $color;
 		$attributes['font-size'] = $this->fontSize * 1.2;
 		
+		if(!isset($options['align'])) $options['align'] = 'left';
 		switch ($options['align']) {
-			case 'left':
-				$textAnchor = 'start';
+			case 'center':
+				$textAnchor = 'middle';
 				break;
 			case 'right':
 				$textAnchor = 'end';
 				break;
-			case 'center':
-				$textAnchor = 'middle';
+			case 'left':
+			default:
+				$textAnchor = 'start';
 				break;
 		}
 		
+		if(!isset($options['valign'])) $options['valign'] = 'bottom';
 		switch ($options['valign']) {
 			case 'top':
 				$attributes['y'] += $this->fontSize;
 				break;
-			case 'bottom':
-				$attributes['y'] += 0;
-				break;
 			case 'middle':
 				$attributes['y'] += $this->fontSize / 2;
+				break;
+			case 'bottom':
+			default:
+				$attributes['y'] += 0;
 				break;
 		}
 		
 		$attributes['style'] = 'text-anchor: ' . $textAnchor;
+		
+		if(!isset($options['orientation'])) $options['orientation'] = 0;
 		$attributes['transform'] = 'rotate('
 				. (- $options['orientation'])
 				. ', '

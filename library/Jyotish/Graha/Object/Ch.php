@@ -67,7 +67,7 @@ class Ch extends \Jyotish\Graha\Graha {
 		'start' => 0,
 		'end' => 4
 	);
-	static public $grahaCharacter = null;
+	static public $grahaCharacter = self::CHARACTER_BENEFIC;
 	static public $grahaGuna = Guna::GUNA_SATTVA;
 	static public $grahaBhuta = Bhuta::BHUTA_JALA;
 	static public $grahaPrakriti = array

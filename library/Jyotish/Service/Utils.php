@@ -40,7 +40,13 @@ class Utils {
 		
 		return $html;
 	}
-
+	
+	/**
+	 * Convert html color to rgb representation.
+	 * 
+	 * @param string $color
+	 * @return array
+	 */
 	static public function htmlToRgb($color) {
 		if ($color[0] == '#')
 			$color = substr($color, 1);
@@ -64,21 +70,44 @@ class Utils {
 
 		return array('r' => $r, 'g' => $g, 'b' => $b);
 	}
-	
-	static public function partsToUnits($totalParts, $partsInUnit = 30, $flagRound = 'ceil') {
-		switch ($flagRound) {
-			case 'floor':
-				$totalUnits	= floor($totalParts / $partsInUnit);
-				break;
-			case 'ceil':
-			default:
-				$totalUnits	= ceil($totalParts / $partsInUnit);
-				break;
+
+	/**
+	 * Shift to the right array key
+	 * 
+	 * @param array $array
+	 * @param string $startKey
+	 * @return array
+	 */ 
+	static public function shiftArray($array, $startKey, $preserveKeys = false){
+		reset($array);
+		$tab = 0;
+		
+		while(key($array) != $startKey){
+			$tab++;
+			next($array);
+			
+			if($tab > count($array)) {
+				return $array;
+			}
 		}
 		
-		$restParts	= fmod($totalParts, $partsInUnit);
+		$result = array_slice($array, $tab, null, $preserveKeys) + array_slice($array, 0, $tab, $preserveKeys);
 		
-		return array ('units' => $totalUnits, 'parts' => $restParts);
+		return $result;
 	}
-
+	
+	/**
+	 * Degree, minutes and seconds to string.
+	 * 
+	 * @param array $dms
+	 * @return string
+	 */	
+	static function dmsToStirng($dms)
+	{
+		$d = $dms['d'].'&deg;';
+		$m = !empty($dms['m']) ? $dms['m'].'\'' : '';
+		$s = !empty($dms['s']) ? $dms['s'].'"' : '';
+		
+		return $d.$m.$s;
+	}
 }
