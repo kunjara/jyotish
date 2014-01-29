@@ -15,7 +15,16 @@ use Jyotish\Panchanga\Karana\Karana;
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 class T11 extends \Jyotish\Panchanga\Tithi\Tithi {
-
+	/**
+	 * Devanagari number 11 in transliteration.
+	 * 
+	 * @var array
+	 * @see Jyotish\Alphabet\Devanagari
+	 */
+	static public $tithiTranslit = array(
+		 'd1', 'd1'
+	);
+	
 	static public $tithiDeva = Deva::DEVA_YAMA_DHARMA;
 	static public $tithiPaksha = self::PAKSHA_SHUKLA;
 	static public $tithiType = self::TYPE_NANDA;

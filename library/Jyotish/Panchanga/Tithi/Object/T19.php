@@ -15,7 +15,16 @@ use Jyotish\Panchanga\Karana\Karana;
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 class T19 extends \Jyotish\Panchanga\Tithi\Tithi {
-
+	/**
+	 * Devanagari number 4 in transliteration.
+	 * 
+	 * @var array
+	 * @see Jyotish\Alphabet\Devanagari
+	 */
+	static public $tithiTranslit = array(
+		 'd4'
+	);
+	
 	static public $tithiDeva = Deva::DEVA_GANAPATHI;
 	static public $tithiPaksha = self::PAKSHA_KRISHNA;
 	static public $tithiType = self::TYPE_RIKTA;

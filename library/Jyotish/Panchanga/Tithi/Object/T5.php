@@ -15,7 +15,16 @@ use Jyotish\Panchanga\Karana\Karana;
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 class T5 extends \Jyotish\Panchanga\Tithi\Tithi {
-
+	/**
+	 * Devanagari number 5 in transliteration.
+	 * 
+	 * @var array
+	 * @see Jyotish\Alphabet\Devanagari
+	 */
+	static public $tithiTranslit = array(
+		 'd5'
+	);
+	
 	static public $tithiDeva = Deva::DEVA_SARPA;
 	static public $tithiPaksha = self::PAKSHA_SHUKLA;
 	static public $tithiType = self::TYPE_PURNA;

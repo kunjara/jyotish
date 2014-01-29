@@ -33,6 +33,7 @@ class Deva extends AbstractJiva implements \Jyotish\Tattva\Jiva\DevaInterface {
 	const DEVA_KAMA = 'Kama';
 	const DEVA_KAMA_MANMATHA = 'Manmatha';
 	const DEVA_KARTTIKEYA = 'Karttikeya';
+	const DEVA_KARTTIKEYA_SKANDA = 'Skanda';
 	const DEVA_MARUTH = 'Maruth';
 	const DEVA_NIRITTI = 'Niritti';
 	const DEVA_PARVATI = 'Parvati';
@@ -47,7 +48,6 @@ class Deva extends AbstractJiva implements \Jyotish\Tattva\Jiva\DevaInterface {
 	const DEVA_SHACHI = 'Shachi';
 	const DEVA_SHIVA = 'Shiva';
 	const DEVA_SHIVA_RUDRA = 'Rudra';
-	const DEVA_SKANDA = 'Skanda';
 	const DEVA_SURYA = 'Surya';
 	const DEVA_SURYA_MITRA = 'Mitra';
 	const DEVA_SURYA_SAVITRI = 'Savitri';
@@ -62,7 +62,7 @@ class Deva extends AbstractJiva implements \Jyotish\Tattva\Jiva\DevaInterface {
 	const DEVA_VISHNU_YAJNESHVARA = 'Yajneshvara';
 	const DEVA_VISHVADEVA = 'Vishvadeva';
 	const DEVA_YAMA = 'Yama';
-	const DEVA_YAMA_DHARMA = 'Dharma';
+	const DEVA_YAMA_DHARMA = 'Dharmaraja';
 
 	static public $DEVA_PARVATI = array(
 		self::DEVA_PARVATI_DUGRA,
