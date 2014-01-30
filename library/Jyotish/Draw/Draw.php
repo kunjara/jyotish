@@ -41,6 +41,7 @@ class Draw {
 		$chakraAdapterName = 'Jyotish\Draw\Plot\Chakra\Render\\' . $this->adapter;
 		$chakraAdapterObject = new $chakraAdapterName($this->adapterObject);
 
+		$this->setOptions($options);
 		$chakraAdapterObject->setOptions($options);
 		$chakraAdapterObject->drawChakra($drawData, $topOffset, $leftOffset, $options);
 	}

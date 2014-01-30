@@ -92,6 +92,16 @@ abstract class AbstractRenderer {
 		$this->fontColor = $value;
 		return $this;
 	}
+	
+	public function setStrokeWidth($value) {
+		if (!is_numeric($value) || floatval($value) < 0) {
+			throw new Exception\OutOfRangeException(
+					'Stroke width must be greater than or equals 0.'
+			);
+		}
+		$this->strokeWidth = $value;
+		return $this;
+	}
 
 	abstract public function drawPolygon($points);
 	

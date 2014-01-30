@@ -6,7 +6,7 @@
 
 namespace Jyotish\Draw\Plot\Chakra\Render;
 
-use Jyotish\Draw\Plot\Chakra\AbstractChakra;
+use Jyotish\Draw\Plot\Chakra\Style\AbstractChakra;
 
 /**
  * Abstract class for rendering Chakra.
@@ -106,8 +106,8 @@ abstract class AbstractRender {
 	public function drawChakra($drawData, $leftOffset, $topOffset, $options) {
 		$this->data = $drawData;
 		
-		$chakraClass = 'Jyotish\Draw\Plot\Chakra\\' . ucfirst(strtolower($this->chakraStyle));
-		$bhavaPoints = $chakraClass::getBhavaPoints($this->chakraSize, $leftOffset, $topOffset);
+		$chakraStyle = 'Jyotish\Draw\Plot\Chakra\Style\\' . ucfirst(strtolower($this->chakraStyle));
+		$bhavaPoints = $chakraStyle::getBhavaPoints($this->chakraSize, $leftOffset, $topOffset);
 
 		foreach ($bhavaPoints as $points) {
 			$this->adapter->drawPolygon($points);

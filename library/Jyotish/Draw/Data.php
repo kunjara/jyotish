@@ -68,7 +68,7 @@ class Data {
 					'direction' => $direction,
 				);
 			}
-			$this->_grahaInRashi[Graha::LAGNA]['rashi'] = $this->_sweData['extra']['Asc']['rashi'];
+			$this->_grahaInRashi[Graha::LAGNA]['rashi'] = $this->_sweData['extra']['Lg']['rashi'];
 			$this->_grahaInRashi[Graha::LAGNA]['direction'] = 1;
 		}
 		return $this->_grahaInRashi;

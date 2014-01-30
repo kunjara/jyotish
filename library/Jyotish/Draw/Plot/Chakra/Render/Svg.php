@@ -6,8 +6,6 @@
 
 namespace Jyotish\Draw\Plot\Chakra\Render;
 
-use Jyotish\Service\Utils;
-
 /**
  * Class for rendering chakra as svg.
  *
@@ -20,8 +18,8 @@ class Svg extends AbstractRender implements \Jyotish\Draw\Renderer\SvgInterface 
 	}
 
 	protected function drawRashiLabel($leftOffset, $topOffset) {
-		$chakraClass = 'Jyotish\Draw\Plot\Chakra\\' . $this->chakraStyle;
-		$chakraObject = new $chakraClass();
+		$chakraStyle = 'Jyotish\Draw\Plot\Chakra\Style\\' . $this->chakraStyle;
+		$chakraObject = new $chakraStyle();
 
 		$rashiLabelPoints = $chakraObject->getRashiLabelPoints(
 				$this->chakraSize, 
@@ -44,8 +42,8 @@ class Svg extends AbstractRender implements \Jyotish\Draw\Renderer\SvgInterface 
 	}
 
 	protected function drawGrahaLabel($leftOffset, $topOffset) {
-		$chakraClass = 'Jyotish\Draw\Plot\Chakra\\' . $this->chakraStyle;
-		$chakraObject = new $chakraClass();
+		$chakraStyle = 'Jyotish\Draw\Plot\Chakra\Style\\' . $this->chakraStyle;
+		$chakraObject = new $chakraStyle();
 
 		$grahaLabelPoints = $chakraObject->getGrahaLabelPoints(
 				$this->chakraSize, 

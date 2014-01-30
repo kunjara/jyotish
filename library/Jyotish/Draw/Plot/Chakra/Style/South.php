@@ -4,9 +4,8 @@
  * @license   GNU General Public License version 2 or later
  */
 
-namespace Jyotish\Draw\Plot\Chakra;
+namespace Jyotish\Draw\Plot\Chakra\Style;
 
-use Jyotish\Draw\Plot\Chakra\AbstractChakra;
 use Jyotish\Graha\Graha;
 
 /**
