@@ -41,23 +41,23 @@ class Ch extends \Jyotish\Graha\Graha {
 	);
 	static public $grahaExaltation = array
 	(
-		'rashi' => Rashi::RASHI_2,
+		'rashi' => 2,
 		'degree' => 3
 	);
 	static public $grahaDebilitation = array
 	(
-		'rashi' => Rashi::RASHI_8,
+		'rashi' => 8,
 		'degree' => 3
 	);
 	static public $grahaMooltrikon = array
 	(
-		'rashi' => Rashi::RASHI_2,
+		'rashi' => 2,
 		'start' => 3,
 		'end' => 30
 	);
 	static public $grahaOwn = array
 	(
-		'rashi' => Rashi::RASHI_4,
+		'rashi' => 4,
 		'start' => 0,
 		'end' => 30
 	);

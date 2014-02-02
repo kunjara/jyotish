@@ -43,23 +43,23 @@ class Sy extends \Jyotish\Graha\Graha {
 	);
 	static public $grahaExaltation = array
 	(
-		'rashi' => Rashi::RASHI_1,
+		'rashi' => 1,
 		'degree' => 10
 	);
 	static public $grahaDebilitation = array
 	(
-		'rashi' => Rashi::RASHI_7,
+		'rashi' => 7,
 		'degree' => 10
 	);
 	static public $grahaMooltrikon = array
 		(
-		'rashi' => Rashi::RASHI_5,
+		'rashi' => 5,
 		'start' => 0,
 		'end' => 20
 	);
 	static public $grahaOwn = array
 	(
-		'rashi' => Rashi::RASHI_5,
+		'rashi' => 5,
 		'start' => 20,
 		'end' => 30
 	);

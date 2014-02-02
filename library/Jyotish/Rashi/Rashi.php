@@ -14,19 +14,6 @@ use Jyotish\Service\Utils;
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 class Rashi {
-	const RASHI_1 = 1;
-	const RASHI_2 = 2;
-	const RASHI_3 = 3;
-	const RASHI_4 = 4;
-	const RASHI_5 = 5;
-	const RASHI_6 = 6;
-	const RASHI_7 = 7;
-	const RASHI_8 = 8;
-	const RASHI_9 = 9;
-	const RASHI_10 = 10;
-	const RASHI_11 = 11;
-	const RASHI_12 = 12;
-	
 	const BHAVA_CHARA = 'chara';
 	const BHAVA_STHIRA = 'sthira';
 	const BHAVA_DVISVA = 'dvisva';
@@ -38,18 +25,18 @@ class Rashi {
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 4, Verse 3.
      */
 	static public $RASHI = array(
-		self::RASHI_1 => 'Mesha',
-		self::RASHI_2 => 'Vrishabha',
-		self::RASHI_3 => 'Mithuna',
-		self::RASHI_4 => 'Karka',
-		self::RASHI_5 => 'Simha',
-		self::RASHI_6 => 'Kanya',
-		self::RASHI_7 => 'Tula',
-		self::RASHI_8 => 'Vrishchika',
-		self::RASHI_9 => 'Dhanu',
-		self::RASHI_10 => 'Makara',
-		self::RASHI_11 => 'Kumbha',
-		self::RASHI_12 => 'Meena',
+		1 => 'Mesha',
+		2 => 'Vrishabha',
+		3 => 'Mithuna',
+		4 => 'Karka',
+		5 => 'Simha',
+		6 => 'Kanya',
+		7 => 'Tula',
+		8 => 'Vrishchika',
+		9 => 'Dhanu',
+		10 => 'Makara',
+		11 => 'Kumbha',
+		12 => 'Meena',
 	);
 	
 	/**

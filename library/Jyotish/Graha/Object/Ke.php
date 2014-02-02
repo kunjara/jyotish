@@ -39,12 +39,12 @@ class Ke extends \Jyotish\Graha\Graha {
 	();
 	static public $grahaExaltation = array
 	(
-		'rashi' => Rashi::RASHI_9,
+		'rashi' => 9,
 		'degree' => null
 	);
 	static public $grahaDebilitation = array
 	(
-		'rashi' => Rashi::RASHI_3,
+		'rashi' => 3,
 		'degree' => null
 	);
 	static public $grahaMooltrikon = array
@@ -53,7 +53,7 @@ class Ke extends \Jyotish\Graha\Graha {
 	);
 	static public $grahaOwn = array
 	(
-		'rashi' => Rashi::RASHI_1,
+		'rashi' => 1,
 		'start' => 0,
 		'end' => 30
 	);

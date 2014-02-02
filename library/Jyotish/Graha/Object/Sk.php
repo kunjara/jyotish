@@ -39,17 +39,17 @@ class Sk extends \Jyotish\Graha\Graha {
 	();
 	static public $grahaExaltation = array
 	(
-		'rashi' => Rashi::RASHI_12,
+		'rashi' => 12,
 		'degree' => 27
 	);
 	static public $grahaDebilitation = array
 	(
-		'rashi' => Rashi::RASHI_6,
+		'rashi' => 6,
 		'degree' => 27
 	);
 	static public $grahaMooltrikon = array
 	(
-		'rashi' => Rashi::RASHI_7,
+		'rashi' => 7,
 		'start' => 0,
 		'end' => 15
 	);
@@ -57,13 +57,13 @@ class Sk extends \Jyotish\Graha\Graha {
 	(
 		'positive' => array
 		(
-			'rashi' => Rashi::RASHI_7,
+			'rashi' => 7,
 			'start' => 15,
 			'end' => 30
 		),
 		'negative' => array
 		(
-			'rashi' => Rashi::RASHI_2,
+			'rashi' => 2,
 			'start' => 0,
 			'end' => 30
 		)
