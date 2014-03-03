@@ -38,8 +38,7 @@ class Vimshottari extends \Jyotish\Dasha\Dasha {
 
 	public function __construct()
 	{
-		$nakshatras = Nakshatra::$NAKSHATRA;
-		unset($nakshatras[28]);
+		$nakshatras = Nakshatra::nakshatraList();
 		
 		self::$_orderNakshatra = Utils::shiftArray($nakshatras, 3, true);
 	}

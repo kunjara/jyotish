@@ -37,13 +37,9 @@ class Ashtottari extends \Jyotish\Dasha\Dasha {
 
 	public function __construct()
 	{
-		$nakshatras = Nakshatra::$NAKSHATRA;
-		$orderNakshatra = 
-				array_slice($nakshatras, 0, 21, true) +
-				array_slice($nakshatras, -1, 1, true) + 
-				array_slice($nakshatras, 21, 6, true); 
+		$nakshatras = Nakshatra::nakshatraList(true);
 		
-		self::$_orderNakshatra = Utils::shiftArray($orderNakshatra, 6, true);
+		self::$_orderNakshatra = Utils::shiftArray($nakshatras, 6, true);
 	}
 	
 	/**

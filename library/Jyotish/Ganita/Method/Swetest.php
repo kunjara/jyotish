@@ -10,7 +10,6 @@ use DateTime;
 use DateInterval;
 use DateTimeZone;
 use Jyotish\Graha\Graha;
-use Jyotish\Bhava\Bhava;
 use Jyotish\Ganita\Math;
 use Jyotish\Ganita\Time;
 use Jyotish\Ganita\Ayanamsha;
@@ -36,7 +35,7 @@ class Swetest {
 		'date' => null,
 		'time' => null,
 		'timezone' => 'UTC',
-		'offset' => null,
+		'offset' => 0,
 		'longitude' => 0,
 		'latitude' => 0,
 	);
@@ -186,27 +185,25 @@ class Swetest {
 	 * @param array $data
 	 * @throws Exception\UnexpectedValueException
 	 */
-	public function setData(array $data = null)
+	public function setData(array $data)
 	{
-		if (is_null($data)) {
-			$this->_data['date'] = Time::getDateNow();
-			$this->_data['time'] = Time::getTimeNow();
-		} elseif (is_array($data)) {
-			foreach ($data as $dataName => $dataValue) {
-				$dataName = strtolower($dataName);
+		if(!is_array($data)) {
+			throw new Exception\UnexpectedValueException("Data must be an array.");
+		}
+		
+		foreach ($data as $dataName => $dataValue) {
+			$dataName = strtolower($dataName);
 
-				if (array_key_exists($dataName, $this->_data)) {
-					$this->_data[$dataName] = $dataValue;
-				} else {
-					throw new Exception\UnexpectedValueException("Unknown data: $dataName = $dataValue");
-				}
+			if (array_key_exists($dataName, $this->_data)) {
+				if(!empty($dataValue)) $this->_data[$dataName] = $dataValue;
+			} else {
+				throw new Exception\UnexpectedValueException("Unknown data: $dataName = $dataValue");
 			}
+			
 			if (empty($this->_data['date']))
 				$this->_data['date'] = Time::getDateNow();
 			if (empty($this->_data['time']))
 				$this->_data['time'] = Time::getTimeNow();
-		} else {
-			throw new Exception\UnexpectedValueException("Data must be null or an array.");
 		}
 	}
 	

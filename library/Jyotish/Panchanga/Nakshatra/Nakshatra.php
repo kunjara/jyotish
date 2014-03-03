@@ -101,15 +101,50 @@ class Nakshatra {
 		$nakshatraClass = 'Jyotish\\Panchanga\\Nakshatra\\Object\\N' . $number;
 		$nakshatraObject = new $nakshatraClass($options);
 		
-		if($number == 28){
-			self::$nakshatraStart = array('d' => 276, 'm' => 40);
-			self::$nakshatraEnd = array('d' => 280, 'm' => 53, 's' => 20);
+		if($options['withAbhijit']){
+			switch ($number){
+			case 21:
+				$nakshatraObject::$nakshatraStart = Math::dmsMulti(self::$nakshatraArc, 20);
+				$nakshatraObject::$nakshatraEnd = array('d' => 276, 'm' => 40);
+				break;
+			case 28:
+				$nakshatraObject::$nakshatraStart = array('d' => 276, 'm' => 40);
+				$nakshatraObject::$nakshatraEnd = array('d' => 280, 'm' => 53, 's' => 20);
+				break;
+			case 22:
+				$nakshatraObject::$nakshatraStart = array('d' => 280, 'm' => 53, 's' => 20);
+				$nakshatraObject::$nakshatraEnd = Math::dmsMulti(self::$nakshatraArc, 22);
+				break;
+			default:
+				$nakshatraObject::$nakshatraStart = Math::dmsMulti(self::$nakshatraArc, $number - 1);
+				$nakshatraObject::$nakshatraEnd = Math::dmsSum(self::$nakshatraStart, self::$nakshatraArc);
+			}
 		}else{
-			self::$nakshatraStart = Math::dmsMulti(self::$nakshatraArc, $number - 1);
-			self::$nakshatraEnd = Math::dmsSum(self::$nakshatraStart, self::$nakshatraArc);
+			if($number == 28) {
+				throw new Exception\InvalidArgumentException("Parameters of 28 nakshatra are determined only with argument 'withAbhijit' = true.");
+			}
+			
+			$nakshatraObject::$nakshatraStart = Math::dmsMulti(self::$nakshatraArc, $number - 1);
+			$nakshatraObject::$nakshatraEnd = Math::dmsSum(self::$nakshatraStart, self::$nakshatraArc);
 		}
 		
 		return $nakshatraObject;
+	}
+	
+	static public function nakshatraList($withAbhijit = false)
+	{
+		$nakshatras = self::$NAKSHATRA;
+		
+		if($withAbhijit){
+			$result = 
+				array_slice($nakshatras, 0, 21, true) +
+				array_slice($nakshatras, -1, 1, true) + 
+				array_slice($nakshatras, 21, 6, true); 
+		}else{
+			unset($nakshatras[28]);
+			$result = $nakshatras;
+		}
+		return $result;
 	}
 	
 }
