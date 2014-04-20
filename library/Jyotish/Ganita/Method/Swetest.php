@@ -230,9 +230,9 @@ class Swetest {
 		$dateTimeString = $this->_data['date'] . ' ' . $this->_data['time'];
 		$dateTimeFormat = Time::FORMAT_DATA_DATE . ' ' . Time::FORMAT_DATA_TIME;
 		
-		$offsetUser		= Time::disFormatOffset($this->_data['offset']);
+		$offsetUser	= $this->_data['offset'];
 		$offsetSystem	= Time::getTimeZoneOffset($this->_data['timezone'], $dateTimeString);
-		$offsetUser != $offsetSystem ? $offset = $offsetUser : $offset = false;
+		$offsetUser     != $offsetSystem ? $offset = $offsetUser : $offset = false;
 		
 		$dateTimeObject = Time::getDateTimeUtc($dateTimeFormat, $dateTimeString, $this->_data['timezone'], $offset);
 		
