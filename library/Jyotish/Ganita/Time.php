@@ -16,10 +16,11 @@ use DateInterval;
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 class Time {
-	const FORMAT_DATETIME		= 'Y-m-d H:i:s';
-	const FORMAT_DATA_DATE		= 'd.m.Y';
-	const FORMAT_DATA_TIME		= 'H:i';
-	const FORMAT_OFFSET_TIME	= '%H:%I';
+	const FORMAT_DATE           = 'Y-m-d';
+	const FORMAT_DATETIME       = 'Y-m-d H:i:s';
+	const FORMAT_DATA_DATE      = 'd.m.Y';
+	const FORMAT_DATA_TIME      = 'H:i';
+	const FORMAT_OFFSET_TIME    = '%H:%I';
 	
 
 	

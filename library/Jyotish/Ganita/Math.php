@@ -24,12 +24,12 @@ class Math {
 	 */
 	static public function dmsToDecimal(array $dms)
 	{
-	  if ( ($dms['d'] < 0) || ($dms['m'] < 0) || ($dms['s'] < 0) ) 
-		  $sign = -1;
-	  else
-		  $sign = 1;
+		if ( ($dms['d'] < 0) || ($dms['m'] < 0) || ($dms['s'] < 0) ) 
+			$sign = -1;
+		else
+			$sign = 1;
 
-	  return  $sign * ( abs($dms['d']) + abs($dms['m'])/60 + abs($dms['s'])/3600 );
+		return  $sign * ( abs($dms['d']) + abs($dms['m'])/60 + abs($dms['s'])/3600 );
 	}
 	
 	/**

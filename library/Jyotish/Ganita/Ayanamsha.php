@@ -13,16 +13,16 @@ namespace Jyotish\Ganita;
  */
 class Ayanamsha {
 
-	const AYANAMSHA_FAGAN = 'Fagan';
-	const AYANAMSHA_LAHIRI = 'Lahiri';
-	const AYANAMSHA_DELUCE = 'Deluce';
-	const AYANAMSHA_RAMAN = 'Raman';
-	const AYANAMSHA_USHASHASHI = 'Ushashashi';
+	const AYANAMSHA_FAGAN        = 'Fagan';
+	const AYANAMSHA_LAHIRI       = 'Lahiri';
+	const AYANAMSHA_DELUCE       = 'Deluce';
+	const AYANAMSHA_RAMAN        = 'Raman';
+	const AYANAMSHA_USHASHASHI   = 'Ushashashi';
 	const AYANAMSHA_KRISHNAMURTI = 'Krishnamurti';
-	const AYANAMSHA_DJWHALKHUL = 'Djwhalkhul';
-	const AYANAMSHA_YUKTESHWAR = 'Yukteshwar';
-	const AYANAMSHA_JNBHASIN = 'Jnbhasin';
-	const AYANAMSHA_SASSANIAN = 'Sassanian';
+	const AYANAMSHA_DJWHALKHUL   = 'Djwhalkhul';
+	const AYANAMSHA_YUKTESHWAR   = 'Yukteshwar';
+	const AYANAMSHA_JNBHASIN     = 'Jnbhasin';
+	const AYANAMSHA_SASSANIAN    = 'Sassanian';
 
 	static public $ayanamshas = array(
 		self::AYANAMSHA_FAGAN,
