@@ -185,29 +185,37 @@ class Panchanga {
 	{
 		$dateUser = new DateTime($this->_userData['date'].' '.$this->_userData['time']);
 		$dateUserU = $dateUser->format('U');
-		$dateRising2 = new DateTime($this->_risingData['time'][2]['rising']);
-		$dateRising2U = $dateRising2->format('U');
+		$dateRising[2] = new DateTime($this->_risingData['time'][2]['rising']);
+		$dateRisingU[2] = $dateRising[2]->format('U');
+		$dateRising[3] = new DateTime($this->_risingData['time'][3]['rising']);
+		$dateRisingU[3] = $dateRising[3]->format('U');
+		
+		if($dateUser >= $dateRising[3]) {
+			$index = 1;
+			$dateRising[4] = new DateTime($this->_risingData['time'][4]['rising']);
+			$dateRisingU[4] = $dateRising[4]->format('U');
+		}else{
+			$index = 0;
+			$dateRising[1] = new DateTime($this->_risingData['time'][1]['rising']);
+			$dateRisingU[1] = $dateRising[1]->format('U');
+		}
 		
 		$varaNumber = $dateUser->format('w');
 		
-		if($dateUser >= $dateRising2) {
+		if($dateUser >= $dateRising[2 + $index]) {
 			$vara['number'] = $varaNumber + 1;
 			
-			$dateRising3 = new DateTime($this->_risingData['time'][3]['rising']);
-			$dateRising3U = $dateRising3->format('U');
-			$duration = $dateRising3U - $dateRising2U;
-			$vara['left'] = ($dateRising3U - $dateUserU) * 100 / $duration;
-			$vara['start'] = $this->_risingData['time'][2]['rising'];
-			$vara['end'] = $this->_risingData['time'][3]['rising'];
+			$duration = $dateRisingU[3 + $index] - $dateRisingU[2 + $index];
+			$vara['left'] = ($dateRisingU[3 + $index] - $dateUserU) * 100 / $duration;
+			$vara['start'] = $this->_risingData['time'][2 + $index]['rising'];
+			$vara['end'] = $this->_risingData['time'][3 + $index]['rising'];
 		} else {
 			$varaNumber != 0 ? $vara['number'] = $varaNumber : $vara['number'] = 7;
 			
-			$dateRising1 = new DateTime($this->_risingData['time'][1]['rising']);
-			$dateRising1U = $dateRising1->format('U');
-			$duration = $dateRising2U - $dateRising1U;
-			$vara['left'] = ($dateRising2U - $dateUserU) * 100 / $duration;
-			$vara['start'] = $this->_risingData['time'][1]['rising'];
-			$vara['end'] = $this->_risingData['time'][2]['rising'];
+			$duration = $dateRisingU[2 + $index] - $dateRisingU[1 + $index];
+			$vara['left'] = ($dateRisingU[2 + $index] - $dateUserU) * 100 / $duration;
+			$vara['start'] = $this->_risingData['time'][1 + $index]['rising'];
+			$vara['end'] = $this->_risingData['time'][2 + $index]['rising'];
 		}
 		
 		$vara['name'] = Vara::$VARA[$vara['number']];

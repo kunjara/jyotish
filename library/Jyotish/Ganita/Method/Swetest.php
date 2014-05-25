@@ -285,7 +285,7 @@ class Swetest {
 		$string =
 				'swetest'.
 				' -edir'.$dir.
-				' -n4'.
+				' -n5'.
 				' -b'.$date.
 				' -p'.$planet.
 				' -geopos'.$geopos.
@@ -295,7 +295,7 @@ class Swetest {
 		putenv("PATH={$this->_swe['swetest']}");
 		exec($string, $out);
 		
-		for($i = 1; $i <= 3; $i++) {
+		for($i = 1; $i <= 4; $i++) {
 			preg_match("#rise\s((.*\d+)\s+(\d{1,2}:.*))\sset\s((.*\d+)\s+(\d{1,2}:.*))#", $out[$i+1], $matches);
 
 			$risingString  = str_replace(' ', '', $matches[2]).' '.str_replace(' ', '', $matches[3]);
