@@ -33,24 +33,10 @@ class Ra extends \Jyotish\Graha\Graha {
 	);
 	
 	static public $grahaAvatara = 'Varaha';
-	static public $grahaDeva = null;
 	static public $grahaUnicode = '260A';
 	static public $grahaAltName = array
 	();
-	static public $grahaExaltation = array
-	(
-		'rashi' => 3,
-		'degree' => null
-	);
-	static public $grahaDebilitation = array
-	(
-		'rashi' => 9,
-		'degree' => null
-	);
-	static public $grahaMooltrikon = array
-	(
-		'rashi' => null,
-	);
+	
 	static public $grahaOwn = array
 	(
 		'rashi' => 11,
@@ -63,14 +49,105 @@ class Ra extends \Jyotish\Graha\Graha {
 		'start' => 69,
 		'end' => 108
 	);
+	
+	/**
+	 * Character of the Graha.
+	 * 
+	 * @var string
+	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 11.
+	 */
 	static public $grahaCharacter = self::CHARACTER_MALEFIC;
-	static public $grahaGuna = Guna::GUNA_TAMA;
+	
+	/**
+	 * Deva of the Graha.
+	 * 
+	 * @var string
+	 */
+	static public $grahaDeva = null;
+	
+	/**
+	 * Gender of the Graha.
+	 * 
+	 * @var string
+	 */
+	static public $grahaGender = Manusha::GENDER_NEUTER;
+	
+	/**
+	 * Bhuta of the Graha.
+	 * 
+	 * @var string
+	 */
 	static public $grahaBhuta = null;
-	static public $grahaPrakriti = null;
+	
+	/**
+	 * Varna of the Graha.
+	 * 
+	 * @var string
+	 */
 	static public $grahaVarna = Manusha::VARNA_MLECHHA;
-	static public $grahaGender = Manusha::GENDER_FEMALE;
-	static public $grahaDisha = Disha::DISHA_NAIRUTYA;
+	
+	/**
+	 * Guna of the Graha.
+	 * 
+	 * @var string
+	 */
+	static public $grahaGuna = Guna::GUNA_TAMA;
+	
+	/**
+	 * Dhatu of the Graha.
+	 * 
+	 * @var string
+	 */
+	static public $grahaDhatu = null;
+	
+	/**
+	 * Rasa of the Graha.
+	 * 
+	 * @var string
+	 */
+	static public $grahaRasa = null;
+	
+	/**
+	 * Graha exaltation
+	 * 
+	 * @var array
+	 */
+	static public $grahaExaltation = array
+	(
+		'rashi' => 3,
+		'degree' => null
+	);
+	
+	/**
+	 * Graha debilitation
+	 * 
+	 * @var array
+	 */
+	static public $grahaDebilitation = array
+	(
+		'rashi' => 9,
+		'degree' => null
+	);
+	
+	/**
+	 * Graha mooltrikon
+	 * 
+	 * @var array
+	 */
+	static public $grahaMooltrikon = array
+	(
+		'rashi' => null,
+	);
+	
+	/**
+	 * Natural relationships
+	 * 
+	 * @var array
+	 */
 	static public $grahaRelation = null;
+	
+	static public $grahaDisha = Disha::DISHA_NAIRUTYA;
+	static public $grahaPrakriti = null;
 	static public $grahaDrishti = null;
 
 	public function __construct($options) {

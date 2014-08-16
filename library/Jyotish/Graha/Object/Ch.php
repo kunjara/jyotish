@@ -33,27 +33,10 @@ class Ch extends \Jyotish\Graha\Graha {
 	);
 	
 	static public $grahaAvatara = 'Krishna';
-	static public $grahaDeva = Deva::DEVA_VARUNA;
 	static public $grahaUnicode = '263D';
 	static public $grahaAltName = array
 	(
 		'Soma',
-	);
-	static public $grahaExaltation = array
-	(
-		'rashi' => 2,
-		'degree' => 3
-	);
-	static public $grahaDebilitation = array
-	(
-		'rashi' => 8,
-		'degree' => 3
-	);
-	static public $grahaMooltrikon = array
-	(
-		'rashi' => 2,
-		'start' => 3,
-		'end' => 30
 	);
 	static public $grahaOwn = array
 	(
@@ -67,22 +50,116 @@ class Ch extends \Jyotish\Graha\Graha {
 		'start' => 0,
 		'end' => 4
 	);
+	
+	/**
+	 * Character of the Graha.
+	 * 
+	 * @var string
+	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 11.
+	 */
 	static public $grahaCharacter = self::CHARACTER_BENEFIC;
-	static public $grahaGuna = Guna::GUNA_SATTVA;
+	
+	/**
+	 * Deva of the Graha.
+	 * 
+	 * @var string
+	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 18.
+	 */
+	static public $grahaDeva = Deva::DEVA_VARUNA;
+	
+	/**
+	 * Gender of the Graha.
+	 * 
+	 * @var string
+	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 19.
+	 */
+	static public $grahaGender = Manusha::GENDER_FEMALE;
+	
+	/**
+	 * Bhuta of the Graha.
+	 * 
+	 * @var string
+	 */
 	static public $grahaBhuta = Bhuta::BHUTA_JALA;
-	static public $grahaPrakriti = array
-	(
-		Prakriti::PRAKRITI_KAPHA,
-		Prakriti::PRAKRITI_VATA
-	);
-	static public $grahaRasa = Rasa::RASA_LAVANA;
+	
+	/**
+	 * Varna of the Graha.
+	 * 
+	 * @var string
+	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 21.
+	 */
+	static public $grahaVarna = Manusha::VARNA_VAISHYA;
+	
+	/**
+	 * Guna of the Graha.
+	 * 
+	 * @var string
+	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 22.
+	 */
+	static public $grahaGuna = Guna::GUNA_SATTVA;
+	
+	/**
+	 * Dhatu of the Graha.
+	 * 
+	 * @var string
+	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 31.
+	 */
 	static public $grahaDhatu = array
 	(
 		Dhatu::DHATU_RAKTA,
 	);
-	static public $grahaVarna = Manusha::VARNA_VAISHYA;
-	static public $grahaGender = Manusha::GENDER_FEMALE;
-	static public $grahaDisha = Disha::DISHA_VAYAVYA;
+	
+	/**
+	 * Rasa of the Graha.
+	 * 
+	 * @var string
+	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 34.
+	 */
+	static public $grahaRasa = Rasa::RASA_LAVANA;
+	
+	/**
+	 * Graha exaltation
+	 * 
+	 * @var array
+	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 49-50. 
+	 */
+	static public $grahaExaltation = array
+	(
+		'rashi' => 2,
+		'degree' => 3
+	);
+	
+	/**
+	 * Graha debilitation
+	 * 
+	 * @var array
+	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 49-50. 
+	 */
+	static public $grahaDebilitation = array
+	(
+		'rashi' => 8,
+		'degree' => 3
+	);
+	
+	/**
+	 * Graha mooltrikon
+	 * 
+	 * @var array
+	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 51-54. 
+	 */
+	static public $grahaMooltrikon = array
+	(
+		'rashi' => 2,
+		'start' => 3,
+		'end' => 30
+	);
+	
+	/**
+	 * Natural relationships
+	 * 
+	 * @var array
+	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 55. 
+	 */
 	static public $grahaRelation = array
 	(
 		self::GRAHA_SY => 1,
@@ -93,6 +170,14 @@ class Ch extends \Jyotish\Graha\Graha {
 		self::GRAHA_MA => 0,
 		self::GRAHA_SA => 0,
 	);
+	
+	static public $grahaDisha = Disha::DISHA_VAYAVYA;
+	static public $grahaPrakriti = array
+	(
+		Prakriti::PRAKRITI_KAPHA,
+		Prakriti::PRAKRITI_VATA
+	);
+	
 	static public $grahaDrishti = array
 	(
 		1 => 1,

@@ -55,7 +55,6 @@ class Graha {
 	);
 	static public $grahaTranslit;
 	static public $grahaAvatara;
-	static public $grahaDeva;
 	static public $grahaUnicode;
 	static public $grahaAltName = array();
 	static public $grahaAgeMaturity;
@@ -63,7 +62,6 @@ class Graha {
 		'start',
 		'end'
 	);
-	static public $grahaGuna;
 	
 	/**
 	 * Character of the Graha.
@@ -72,6 +70,14 @@ class Graha {
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 11.
 	 */
 	static public $grahaCharacter;
+	
+	/**
+	 * Deva of the Graha.
+	 * 
+	 * @var string
+	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 18.
+	 */
+	static public $grahaDeva;
 	
 	/**
 	 * Gender of the Graha.
@@ -88,9 +94,6 @@ class Graha {
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 20.
 	 */
 	static public $grahaBhuta;
-	static public $grahaPrakriti;
-	static public $grahaRasa;
-	static public $grahaDhatu;
 	
 	/**
 	 * Varna of the Graha.
@@ -100,6 +103,38 @@ class Graha {
 	 */
 	static public $grahaVarna;
 	
+	/**
+	 * Guna of the Graha.
+	 * 
+	 * @var string
+	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 22.
+	 */
+	static public $grahaGuna;
+	
+	/**
+	 * Dhatu of the Graha.
+	 * 
+	 * @var string
+	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 31.
+	 */
+	static public $grahaDhatu;
+	
+	/**
+	 * Rasa of the Graha.
+	 * 
+	 * @var string
+	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 34.
+	 */
+	static public $grahaRasa;
+	
+	static public $grahaPrakriti;
+	
+	/**
+	 * Natural relationships
+	 * 
+	 * @var array
+	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 55. 
+	 */
 	static public $grahaRelation = array();
 	static public $grahaDrishti = array();
 

@@ -111,7 +111,7 @@ class Swetest {
 		}
 
 		if (!file_exists($swe['swetest'])) {
-			throw new Exception\InvalidArgumentException("The swetest directory '{$swe['swetest']}' does not exist");
+			throw new Exception\InvalidArgumentException("In the directory '{$swe['swetest']}' there is no swetest file.");
 		}
 		
 		$this->_swe['swetest'] = $swe['swetest'];
