@@ -144,7 +144,16 @@ class Ke extends \Jyotish\Graha\Graha {
 	 * 
 	 * @var array
 	 */
-	static public $grahaRelation = null;
+	static public $grahaRelation = array
+	(
+		self::GRAHA_SY => -1,
+		self::GRAHA_CH => -1,
+		self::GRAHA_GU => 0,
+		self::GRAHA_SK => 1,
+		self::GRAHA_BU => 0,
+		self::GRAHA_MA => 1,
+		self::GRAHA_SA => 1,
+	);
 	
 	static public $grahaDisha = Disha::DISHA_NAIRUTYA;
 	static public $grahaPrakriti = null;
