@@ -71,7 +71,8 @@ class D30 extends \Jyotish\Varga\Varga {
 			$trait = 'negative';
 		
 		$grahaObject = Graha::getInstance($lord);
-		$vargaRashi['rashi'] = $grahaObject::$grahaOwn[$trait]['rashi'];
+		$grahaOwnRashi = $grahaObject->getGrahaOwn();
+		$vargaRashi['rashi'] = $grahaOwnRashi[$trait]['rashi'];
 		
 		return $vargaRashi;
 	}

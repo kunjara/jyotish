@@ -39,7 +39,7 @@ class D45 extends \Jyotish\Varga\Varga {
 		$vargaRashi['degree'] = $result['parts'] * 30 / $amshaSize;
 		
 		$rashiObject = Rashi::getInstance((int)$ganitaRashi['rashi']);
-		$rashiBhava = $rashiObject::$rashiBhava;
+		$rashiBhava = $rashiObject->getRashiBhava();
 		
 		switch ($rashiBhava) {
 			case Rashi::BHAVA_CHARA:

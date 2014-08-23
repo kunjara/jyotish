@@ -22,16 +22,55 @@ class R12 extends \Jyotish\Rashi\Rashi {
 	 * @var array
 	 * @see Jyotish\Alphabet\Devanagari
 	 */
-	static public $rashiTranslit = array(
+	protected $rashiTranslit = array(
 		 'ma','ii','na'
 	);
 	
-	static public $rashiUnicode = '2653';
-	static public $rashiBhava = self::BHAVA_DVISVA;
-	static public $rashiBhuta = Bhuta::BHUTA_JALA;
-	static public $rashiGender = Manusha::GENDER_FEMALE;
-	static public $rashiLimb = Manusha::LIMB_FEET;
-	static public $rashiPrakriti = Prakriti::PRAKRITI_KAPHA;
+	/**
+	 * Unicode of rashi.
+	 * 
+	 * @var string
+	 */
+	protected $rashiUnicode = '2653';
+	
+	/**
+	 * Bhava of rashi.
+	 * 
+	 * @var string
+	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 4, Verse 5-5 1/2.
+	 */
+	protected $rashiBhava = self::BHAVA_DVISVA;
+	
+	/**
+	 * Bhuta of rashi.
+	 * 
+	 * @var string
+	 */
+	protected $rashiBhuta = Bhuta::BHUTA_JALA;
+	
+	/**
+	 * Gender of rashi.
+	 * 
+	 * @var string
+	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 4, Verse 5-5 1/2.
+	 */
+	protected $rashiGender = Manusha::GENDER_FEMALE;
+	
+	/**
+	 * Limb of Kaal Purush.
+	 * 
+	 * @var string
+	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 4, Verse 4-4 1/2.
+	 */
+	protected $rashiLimb = Manusha::LIMB_FEET;
+	
+	/**
+	 * Prakriti of rashi.
+	 * 
+	 * @var string
+	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 4, Verse 5-5 1/2.
+	 */
+	protected $rashiPrakriti = Prakriti::PRAKRITI_KAPHA;
 
 	public function __construct($options) {
 		return $this;

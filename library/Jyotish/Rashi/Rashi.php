@@ -50,11 +50,19 @@ class Rashi {
 	);
 	
 	/**
+	 * Devanagari rashi title in transliteration.
+	 * 
+	 * @var array
+	 * @see Jyotish\Alphabet\Devanagari
+	 */
+	protected $rashiTranslit;
+	
+	/**
 	 * Unicode of rashi.
 	 * 
 	 * @var string
 	 */
-	static public $rashiUnicode;
+	protected $rashiUnicode;
 	
 	/**
 	 * Bhava of rashi.
@@ -62,14 +70,14 @@ class Rashi {
 	 * @var string
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 4, Verse 5-5 1/2.
 	 */
-	static public $rashiBhava;
+	protected $rashiBhava;
 	
 	/**
 	 * Bhuta of rashi.
 	 * 
 	 * @var string
 	 */
-	static public $rashiBhuta;
+	protected $rashiBhuta;
 	
 	/**
 	 * Gender of rashi.
@@ -77,7 +85,7 @@ class Rashi {
 	 * @var string
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 4, Verse 5-5 1/2.
 	 */
-	static public $rashiGender;
+	protected $rashiGender;
 	
 	/**
 	 * Limb of Kaal Purush.
@@ -85,7 +93,7 @@ class Rashi {
 	 * @var string
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 4, Verse 4-4 1/2.
 	 */
-	static public $rashiLimb;
+	protected $rashiLimb;
 	
 	/**
 	 * Prakriti of rashi.
@@ -93,7 +101,77 @@ class Rashi {
 	 * @var string
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 4, Verse 5-5 1/2.
 	 */
-	static public $rashiPrakriti;
+	protected $rashiPrakriti;
+	
+	/**
+	 * Get rashi devanagari name.
+	 *
+	 * @return array
+	 */
+	public function getRashiTranslit()
+	{
+		return $this->rashiTranslit;
+	}
+	
+	/**
+	 * Get rashi unicode.
+	 * 
+	 * @return string
+	 */
+	public function getRashiUnicode()
+	{
+		return $this->rashiUnicode;
+	}
+	
+	/**
+	 * Get rashi bhava.
+	 * 
+	 * @return string
+	 */
+	public function getRashiBhava()
+	{
+		return $this->rashiBhava;
+	}
+	
+	/**
+	 * Get rashi bhuta.
+	 * 
+	 * @return string
+	 */
+	public function getRashiBhuta()
+	{
+		return $this->rashiBhuta;
+	}
+	
+	/**
+	 * Get rashi gender.
+	 * 
+	 * @return string
+	 */
+	public function getRashiGender()
+	{
+		return $this->rashiGender;
+	}
+	
+	/**
+	 * Get rashi limb.
+	 * 
+	 * @return string
+	 */
+	public function getRashiLimb()
+	{
+		return $this->rashiLimb;
+	}
+	
+	/**
+	 * Get rashi prakriti.
+	 * 
+	 * @return string
+	 */
+	public function getRashiPrakriti()
+	{
+		return $this->rashiPrakriti;
+	}
 
 	static public function getInstance($number, $options = null) {
 		if (array_key_exists($number, self::$RASHI)) {

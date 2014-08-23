@@ -40,7 +40,7 @@ class D27 extends \Jyotish\Varga\Varga {
 		$vargaRashi['degree'] = $result['parts'] * 30 / $amshaSize;
 		
 		$rashiObject = Rashi::getInstance((int)$ganitaRashi['rashi']);
-		$rashiBhuta = $rashiObject::$rashiBhuta;
+		$rashiBhuta = $rashiObject->getRashiBhuta();
 		
 		switch ($rashiBhuta) {
 			case Bhuta::BHUTA_AGNI:

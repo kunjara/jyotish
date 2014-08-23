@@ -58,6 +58,7 @@ class Graha {
 	protected $grahaAvatara;
 	protected $grahaUnicode;
 	protected $grahaAltName = array();
+	protected $grahaOwn = array();
 	protected $grahaAgeMaturity;
 	protected $grahaAgePeriod = array(
 		'start',
@@ -167,7 +168,7 @@ class Graha {
 	/**
 	 * Get graha devanagari name.
 	 *
-	 * @return string
+	 * @return array
 	 */
 	public function getGrahaTranslit()
 	{
