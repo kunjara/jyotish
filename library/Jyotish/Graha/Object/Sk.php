@@ -28,16 +28,16 @@ class Sk extends \Jyotish\Graha\Graha {
 	 * @var array
 	 * @see Jyotish\Alphabet\Devanagari
 	 */
-	static public $grahaTranslit = array(
+	protected $grahaTranslit = array(
 		 'sha','u','ka','virama','ra'
 	);
 	
-	static public $grahaAvatara = 'Parashurama';
-	static public $grahaUnicode = '2640';
-	static public $grahaAltName = array
+	protected $grahaAvatara = 'Parashurama';
+	protected $grahaUnicode = '2640';
+	protected $grahaAltName = array
 	();
 	
-	static public $grahaOwn = array
+	protected $grahaOwn = array
 	(
 		'positive' => array
 		(
@@ -52,8 +52,8 @@ class Sk extends \Jyotish\Graha\Graha {
 			'end' => 30
 		)
 	);
-	static public $grahaAgeMaturity = 25;
-	static public $grahaAgePeriod = array
+	protected $grahaAgeMaturity = 25;
+	protected $grahaAgePeriod = array
 	(
 		'start' => 15,
 		'end' => 22
@@ -65,7 +65,7 @@ class Sk extends \Jyotish\Graha\Graha {
 	 * @var string
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 11.
 	 */
-	static public $grahaCharacter = self::CHARACTER_BENEFIC;
+	protected $grahaCharacter = self::CHARACTER_BENEFIC;
 	
 	/**
 	 * Deva of the Graha.
@@ -73,7 +73,7 @@ class Sk extends \Jyotish\Graha\Graha {
 	 * @var string
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 18.
 	 */
-	static public $grahaDeva = Deva::DEVA_SHACHI;
+	protected $grahaDeva = Deva::DEVA_SHACHI;
 	
 	/**
 	 * Gender of the Graha.
@@ -81,7 +81,7 @@ class Sk extends \Jyotish\Graha\Graha {
 	 * @var string
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 19.
 	 */
-	static public $grahaGender = Manusha::GENDER_FEMALE;
+	protected $grahaGender = Manusha::GENDER_FEMALE;
 	
 	/**
 	 * Bhuta of the Graha.
@@ -89,7 +89,7 @@ class Sk extends \Jyotish\Graha\Graha {
 	 * @var string
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 20.
 	 */
-	static public $grahaBhuta = Bhuta::BHUTA_JALA;
+	protected $grahaBhuta = Bhuta::BHUTA_JALA;
 	
 	/**
 	 * Varna of the Graha.
@@ -97,7 +97,7 @@ class Sk extends \Jyotish\Graha\Graha {
 	 * @var string
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 21.
 	 */
-	static public $grahaVarna = Manusha::VARNA_BRAHMANA;
+	protected $grahaVarna = Manusha::VARNA_BRAHMANA;
 	
 	/**
 	 * Guna of the Graha.
@@ -105,7 +105,7 @@ class Sk extends \Jyotish\Graha\Graha {
 	 * @var string
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 22.
 	 */
-	static public $grahaGuna = Guna::GUNA_RAJA;
+	protected $grahaGuna = Guna::GUNA_RAJA;
 	
 	/**
 	 * Dhatu of the Graha.
@@ -113,7 +113,7 @@ class Sk extends \Jyotish\Graha\Graha {
 	 * @var string
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 31.
 	 */
-	static public $grahaDhatu = array
+	protected $grahaDhatu = array
 	(
 		Dhatu::DHATU_SHUKRA,
 	);
@@ -124,39 +124,39 @@ class Sk extends \Jyotish\Graha\Graha {
 	 * @var string
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 34.
 	 */
-	static public $grahaRasa = Rasa::RASA_AMLA;
+	protected $grahaRasa = Rasa::RASA_AMLA;
 	
 	/**
-	 * Graha exaltation
+	 * Graha exaltation.
 	 * 
 	 * @var array
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 49-50. 
 	 */
-	static public $grahaExaltation = array
+	protected $grahaExaltation = array
 	(
 		'rashi' => 12,
 		'degree' => 27
 	);
 	
 	/**
-	 * Graha debilitation
+	 * Graha debilitation.
 	 * 
 	 * @var array
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 49-50. 
 	 */
-	static public $grahaDebilitation = array
+	protected $grahaDebilitation = array
 	(
 		'rashi' => 6,
 		'degree' => 27
 	);
 	
 	/**
-	 * Graha mooltrikon
+	 * Graha mooltrikon.
 	 * 
 	 * @var array
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 51-54. 
 	 */
-	static public $grahaMooltrikon = array
+	protected $grahaMooltrikon = array
 	(
 		'rashi' => 7,
 		'start' => 0,
@@ -164,12 +164,12 @@ class Sk extends \Jyotish\Graha\Graha {
 	);
 	
 	/**
-	 * Natural relationships
+	 * Natural relationships.
 	 * 
 	 * @var array
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 55. 
 	 */
-	static public $grahaRelation = array
+	protected $grahaRelation = array
 	(
 		self::GRAHA_SY => -1,
 		self::GRAHA_CH => -1,
@@ -180,14 +180,14 @@ class Sk extends \Jyotish\Graha\Graha {
 		self::GRAHA_SA => 1,
 	);
 	
-	static public $grahaDisha = Disha::DISHA_AGNEYA;
-	static public $grahaPrakriti = array
+	protected $grahaDisha = Disha::DISHA_AGNEYA;
+	protected $grahaPrakriti = array
 	(
 		Prakriti::PRAKRITI_KAPHA,
 		Prakriti::PRAKRITI_VATA
 	);
 	
-	static public $grahaDrishti = array
+	protected $grahaDrishti = array
 	(
 		1 => 1,
 		2 => 0,

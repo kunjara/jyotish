@@ -1,17 +1,17 @@
 {
     "name": "kunjara/jyotish",
     "description": "Library for calculations in Vedic astrology",
-	"keywords": ["jyotish", "vedic astrology"],
+    "keywords": ["jyotish", "vedic astrology"],
     "minimum-stability": "dev",
     "type": "library",
-	"license": "GPL-2.0+",
+    "license": "GPL-2.0+",
     "require": {
         "php": ">=5.3"
     },
-	"authors": [
+    "authors": [
         {
             "name": "Kunjara Lila das",
-			"email": "vladya108@gmail.com",
+            "email": "vladya108@gmail.com",
             "homepage": "http://web-art.su"
         }
     ]

@@ -28,23 +28,23 @@ class Ra extends \Jyotish\Graha\Graha {
 	 * @var array
 	 * @see Jyotish\Alphabet\Devanagari
 	 */
-	static public $grahaTranslit = array(
+	protected $grahaTranslit = array(
 		 'ra','aa','ha','u'
 	);
 	
-	static public $grahaAvatara = 'Varaha';
-	static public $grahaUnicode = '260A';
-	static public $grahaAltName = array
+	protected $grahaAvatara = 'Varaha';
+	protected $grahaUnicode = '260A';
+	protected $grahaAltName = array
 	();
 	
-	static public $grahaOwn = array
+	protected $grahaOwn = array
 	(
 		'rashi' => 11,
 		'start' => 0,
 		'end' => 30
 	);
-	static public $grahaAgeMaturity = 48;
-	static public $grahaAgePeriod = array
+	protected $grahaAgeMaturity = 48;
+	protected $grahaAgePeriod = array
 	(
 		'start' => 69,
 		'end' => 108
@@ -56,95 +56,95 @@ class Ra extends \Jyotish\Graha\Graha {
 	 * @var string
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 11.
 	 */
-	static public $grahaCharacter = self::CHARACTER_MALEFIC;
+	protected $grahaCharacter = self::CHARACTER_MALEFIC;
 	
 	/**
 	 * Deva of the Graha.
 	 * 
 	 * @var string
 	 */
-	static public $grahaDeva = null;
+	protected $grahaDeva = null;
 	
 	/**
 	 * Gender of the Graha.
 	 * 
 	 * @var string
 	 */
-	static public $grahaGender = Manusha::GENDER_NEUTER;
+	protected $grahaGender = Manusha::GENDER_NEUTER;
 	
 	/**
 	 * Bhuta of the Graha.
 	 * 
 	 * @var string
 	 */
-	static public $grahaBhuta = null;
+	protected $grahaBhuta = null;
 	
 	/**
 	 * Varna of the Graha.
 	 * 
 	 * @var string
 	 */
-	static public $grahaVarna = Manusha::VARNA_MLECHHA;
+	protected $grahaVarna = Manusha::VARNA_MLECHHA;
 	
 	/**
 	 * Guna of the Graha.
 	 * 
 	 * @var string
 	 */
-	static public $grahaGuna = Guna::GUNA_TAMA;
+	protected $grahaGuna = Guna::GUNA_TAMA;
 	
 	/**
 	 * Dhatu of the Graha.
 	 * 
 	 * @var string
 	 */
-	static public $grahaDhatu = null;
+	protected $grahaDhatu = null;
 	
 	/**
 	 * Rasa of the Graha.
 	 * 
 	 * @var string
 	 */
-	static public $grahaRasa = null;
+	protected $grahaRasa = null;
 	
 	/**
-	 * Graha exaltation
+	 * Graha exaltation.
 	 * 
 	 * @var array
 	 */
-	static public $grahaExaltation = array
+	protected $grahaExaltation = array
 	(
 		'rashi' => 3,
 		'degree' => null
 	);
 	
 	/**
-	 * Graha debilitation
+	 * Graha debilitation.
 	 * 
 	 * @var array
 	 */
-	static public $grahaDebilitation = array
+	protected $grahaDebilitation = array
 	(
 		'rashi' => 9,
 		'degree' => null
 	);
 	
 	/**
-	 * Graha mooltrikon
+	 * Graha mooltrikon.
 	 * 
 	 * @var array
 	 */
-	static public $grahaMooltrikon = array
+	protected $grahaMooltrikon = array
 	(
 		'rashi' => null,
 	);
 	
 	/**
-	 * Natural relationships
+	 * Natural relationships.
 	 * 
 	 * @var array
 	 */
-	static public $grahaRelation = array
+	protected $grahaRelation = array
 	(
 		self::GRAHA_SY => -1,
 		self::GRAHA_CH => -1,
@@ -155,9 +155,9 @@ class Ra extends \Jyotish\Graha\Graha {
 		self::GRAHA_SA => 1,
 	);
 	
-	static public $grahaDisha = Disha::DISHA_NAIRUTYA;
-	static public $grahaPrakriti = null;
-	static public $grahaDrishti = null;
+	protected $grahaDisha = Disha::DISHA_NAIRUTYA;
+	protected $grahaPrakriti = null;
+	protected $grahaDrishti = null;
 
 	public function __construct($options) {
 		return $this;

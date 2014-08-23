@@ -53,12 +53,13 @@ class Graha {
 	static public $translit = array(
 		'ga','virama','ra','ha'
 	);
-	static public $grahaTranslit;
-	static public $grahaAvatara;
-	static public $grahaUnicode;
-	static public $grahaAltName = array();
-	static public $grahaAgeMaturity;
-	static public $grahaAgePeriod = array(
+	
+	protected $grahaTranslit;
+	protected $grahaAvatara;
+	protected $grahaUnicode;
+	protected $grahaAltName = array();
+	protected $grahaAgeMaturity;
+	protected $grahaAgePeriod = array(
 		'start',
 		'end'
 	);
@@ -69,7 +70,7 @@ class Graha {
 	 * @var string
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 11.
 	 */
-	static public $grahaCharacter;
+	protected $grahaCharacter;
 	
 	/**
 	 * Deva of the Graha.
@@ -77,7 +78,7 @@ class Graha {
 	 * @var string
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 18.
 	 */
-	static public $grahaDeva;
+	protected $grahaDeva;
 	
 	/**
 	 * Gender of the Graha.
@@ -85,7 +86,7 @@ class Graha {
 	 * @var string
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 19.
 	 */
-	static public $grahaGender;
+	protected $grahaGender;
 	
 	/**
 	 * Bhuta of the Graha.
@@ -93,7 +94,7 @@ class Graha {
 	 * @var string
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 20.
 	 */
-	static public $grahaBhuta;
+	protected $grahaBhuta;
 	
 	/**
 	 * Varna of the Graha.
@@ -101,7 +102,7 @@ class Graha {
 	 * @var string
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 21.
 	 */
-	static public $grahaVarna;
+	protected $grahaVarna;
 	
 	/**
 	 * Guna of the Graha.
@@ -109,7 +110,7 @@ class Graha {
 	 * @var string
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 22.
 	 */
-	static public $grahaGuna;
+	protected $grahaGuna;
 	
 	/**
 	 * Dhatu of the Graha.
@@ -117,7 +118,7 @@ class Graha {
 	 * @var string
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 31.
 	 */
-	static public $grahaDhatu;
+	protected $grahaDhatu;
 	
 	/**
 	 * Rasa of the Graha.
@@ -125,23 +126,218 @@ class Graha {
 	 * @var string
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 34.
 	 */
-	static public $grahaRasa;
-	
-	static public $grahaPrakriti;
+	protected $grahaRasa;
 	
 	/**
-	 * Natural relationships
+	 * Graha exaltation.
+	 * 
+	 * @var array
+	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 49-50. 
+	 */
+	protected $grahaExaltation = array();
+	
+	/**
+	 * Graha debilitation.
+	 * 
+	 * @var array
+	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 49-50. 
+	 */
+	protected $grahaDebilitation = array();
+	
+	/**
+	 * Graha mooltrikon.
+	 * 
+	 * @var array
+	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 51-54. 
+	 */
+	protected $grahaMooltrikon = array();
+	
+	/**
+	 * Natural relationships.
 	 * 
 	 * @var array
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 55. 
 	 */
-	static public $grahaRelation = array();
-	static public $grahaDrishti = array();
+	protected $grahaRelation = array();
+	
+	protected $grahaDisha;
+	protected $grahaPrakriti;
+	protected $grahaDrishti = array();
+	
+	/**
+	 * Get graha devanagari name.
+	 *
+	 * @return string
+	 */
+	public function getGrahaTranslit()
+	{
+		return $this->grahaTranslit;
+	}
+	
+	/**
+	 * Get graha unicode.
+	 * 
+	 * @return string
+	 */
+	public function getGrahaUnicode()
+	{
+		return $this->grahaUnicode;
+	}
+	
+	/**
+	 * Get graha avatara.
+	 * 
+	 * @return string
+	 */
+	public function getGrahaAvatara()
+	{
+		return $this->grahaAvatara;
+	}
+	
+	/**
+	 * Get graha deva.
+	 * 
+	 * @return string
+	 */
+	public function getGrahaDeva()
+	{
+		return $this->grahaDeva;
+	}
+	
+	/**
+	 * Get graha exaltation sign.
+	 * 
+	 * @return array
+	 */
+	public function getGrahaExaltation()
+	{
+		return $this->grahaExaltation;
+	}
+	
+	/**
+	 * Get graha debilitation sign.
+	 * 
+	 * @return array
+	 */
+	public function getGrahaDebilitation()
+	{
+		return $this->grahaDebilitation;
+	}
+	
+	/**
+	 * Get graha mooltrikon sign.
+	 * 
+	 * @return array
+	 */
+	public function getGrahaMooltrikon()
+	{
+		return $this->grahaMooltrikon;
+	}
+	
+	/**
+	 * Get graha own sign.
+	 * 
+	 * @return array
+	 */
+	public function getGrahaOwn()
+	{
+		return $this->grahaOwn;
+	}
+	
+	/**
+	 * Get graha varna.
+	 * 
+	 * @return string
+	 */
+	public function getGrahaVarna()
+	{
+		return $this->grahaVarna;
+	}
+	
+	/**
+	 * Get graha gender.
+	 * 
+	 * @return string
+	 */
+	public function getGrahaGender()
+	{
+		return $this->grahaGender;
+	}
+	
+	/**
+	 * Get graha guna.
+	 * 
+	 * @return string
+	 */
+	public function getGrahaGuna()
+	{
+		return $this->grahaGuna;
+	}
+	
+	/**
+	 * Get graha bhuta.
+	 * 
+	 * @return string
+	 */
+	public function getGrahaBhuta()
+	{
+		return $this->grahaBhuta;
+	}
+	
+	/**
+	 * Get graha prakriti.
+	 * 
+	 * @return array
+	 */
+	public function getGrahaPrakriti()
+	{
+		return $this->grahaPrakriti;
+	}
+	
+	/**
+	 * Get graha rasa.
+	 * 
+	 * @return string
+	 */
+	public function getGrahaRasa()
+	{
+		return $this->grahaRasa;
+	}
+	
+	/**
+	 * Get graha dhatu.
+	 * 
+	 * @return array
+	 */
+	public function getGrahaDhatu()
+	{
+		return $this->grahaDhatu;
+	}
+	
+	/**
+	 * Get graha character.
+	 * 
+	 * @return string
+	 */
+	public function getGrahaCharacter()
+	{
+		return $this->grahaCharacter;
+	}
+	
+	/**
+	 * Get graha disha.
+	 * 
+	 * @return string
+	 */
+	public function getGrahaDisha()
+	{
+		return $this->grahaDisha;
+	}
 
-	static public function getInstance($abbr, array $ganitaData = null) {
+	static public function getInstance($abbr, array $options = null) {
 		if (array_key_exists($abbr, self::$GRAHA)) {
 			$grahaClass = 'Jyotish\Graha\Object\\' . $abbr;
-			$grahaObject = new $grahaClass($ganitaData);
+			$grahaObject = new $grahaClass($options);
 
 			return $grahaObject;
 		} else {

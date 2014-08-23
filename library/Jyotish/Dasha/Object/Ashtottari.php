@@ -55,7 +55,7 @@ class Ashtottari extends \Jyotish\Dasha\Dasha {
 		
 		foreach (self::$_durationGraha as $key => $value){
 			$G = Graha::getInstance($key);
-			if($G::$grahaCharacter == Graha::CHARACTER_MALEFIC){
+			if($G->getGrahaCharacter() == Graha::CHARACTER_MALEFIC){
 				$part = 4;
 			}else{
 				$part = 3;

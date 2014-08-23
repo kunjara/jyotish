@@ -87,7 +87,8 @@ class Data {
 			case 1:
 				if ($graha != Graha::LAGNA) {
 					$grahaClass = 'Jyotish\Graha\Object\\' . $graha;
-					$label = Utils::unicodeToHtml($grahaClass::$grahaUnicode);
+					$grahaObject = new $grahaClass();
+					$label = Utils::unicodeToHtml($grahaObject->getGrahaUnicode());
 				} else {
 					$label = $graha;
 				}
