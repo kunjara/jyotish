@@ -12,6 +12,12 @@ namespace Jyotish\Bhava;
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 class Bhava {
+	/**
+	 * Array of all bhavas.
+	 * 
+	 * @var array 
+	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 7, Verse 37-38.
+	 */
 	static public $BHAVA = array(
 		1 => 'Tanu',
 		2 => 'Dhana',
@@ -37,8 +43,30 @@ class Bhava {
 		'bha','aa','va'
 	);
 	
-	static public $bhavaPurushartha;
+	/**
+	 * Purushartha of bhava.
+	 * 
+	 * @var string
+	 */
+	protected $bhavaPurushartha;
+	
+	/**
+	 * Get bhava purushartha.
+	 * 
+	 * @return string
+	 */
+	public function getBhavaPurushartha()
+	{
+		return $this->bhavaPurushartha;
+	}
 
+	/**
+	 * Returns the requested instance of bhava class.
+	 * 
+	 * @param int $number The number of bhava.
+	 * @param array $options
+	 * @return the requested instance of bhava class.
+	 */
 	static public function getInstance($number, $options = null) {
 		if (array_key_exists($number, self::$BHAVA)) {
 			$bhavaClass = 'Jyotish\\Bhava\\Object\\B' . $number;

@@ -335,6 +335,13 @@ class Graha {
 		return $this->grahaDisha;
 	}
 
+	/**
+	 * Returns the requested instance of graha class.
+	 * 
+	 * @param string $abbr The acronym of graha.
+	 * @param array $options
+	 * @return the requested instance of graha class.
+	 */
 	static public function getInstance($abbr, array $options = null) {
 		if (array_key_exists($abbr, self::$GRAHA)) {
 			$grahaClass = 'Jyotish\Graha\Object\\' . $abbr;

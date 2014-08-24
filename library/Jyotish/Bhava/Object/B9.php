@@ -15,7 +15,12 @@ use Jyotish\Tattva\Jiva\Manusha;
  */
 class B9 extends \Jyotish\Bhava\Bhava {
 
-	static public $bhavaPurushartha = Manusha::PURUSHARTHA_DHARMA;
+	/**
+	 * Purushartha of bhava.
+	 * 
+	 * @var string
+	 */
+	protected $bhavaPurushartha = Manusha::PURUSHARTHA_DHARMA;
 
 	public function __construct($options) {
 		return $this;

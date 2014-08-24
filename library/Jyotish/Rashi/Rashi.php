@@ -21,9 +21,9 @@ class Rashi {
 	/**
 	 * Array of all rashis.
 	 * 
-     * @var array 
+	 * @var array 
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 4, Verse 3.
-     */
+	 */
 	static public $RASHI = array(
 		1 => 'Mesha',
 		2 => 'Vrishabha',
@@ -173,6 +173,13 @@ class Rashi {
 		return $this->rashiPrakriti;
 	}
 
+	/**
+	 * Returns the requested instance of rashi class.
+	 * 
+	 * @param int $number The number of rashi.
+	 * @param array $options
+	 * @return the requested instance of rashi class.
+	 */
 	static public function getInstance($number, $options = null) {
 		if (array_key_exists($number, self::$RASHI)) {
 			$rashiClass = 'Jyotish\\Rashi\\Object\\R' . $number;
