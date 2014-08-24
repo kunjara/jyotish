@@ -34,7 +34,7 @@ class Bhava {
 	);
 	
 	/**
-	 * Devanagari title 'bhava' in transliteration.
+	 * Devanagari 'bhava' in transliteration.
 	 * 
 	 * @var array
 	 * @see Jyotish\Alphabet\Devanagari
@@ -42,6 +42,14 @@ class Bhava {
 	static public $translit = array(
 		'bha','aa','va'
 	);
+	
+	/**
+	 * Devanagari bhava title in transliteration.
+	 * 
+	 * @var array
+	 * @see Jyotish\Alphabet\Devanagari
+	 */
+	protected $bhavaTranslit;
 	
 	/**
 	 * Purushartha of bhava.

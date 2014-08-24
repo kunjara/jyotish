@@ -70,7 +70,7 @@ class Panchanga {
 		
 		$tithi['number'] = $tithiUnits['units'];
 		$tithi['name'] = Tithi::$TITHI[$tithi['number']];
-		$tithi['paksha'] = $tithiObject::$tithiPaksha;
+		$tithi['paksha'] = $tithiObject->getTithiPaksha();
 		$tithi['left'] = ($unit - $tithiUnits['parts']) * 100 / $unit;
 		
 		if($withLimit){
@@ -250,7 +250,8 @@ class Panchanga {
 		}
 		
 		$tithiObject = Tithi::getInstance($this->_tithi['number']);
-		$karanaName = $tithiObject::$tithiKarana[$number];
+		$karanaArray = $tithiObject->getTithiKarana();
+		$karanaName = $karanaArray[$number];
 		$karanaNumber = array_search($karanaName, Karana::$KARANA);
 		
 		$karana['number'] = $karanaNumber;

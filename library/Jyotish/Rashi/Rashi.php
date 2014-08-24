@@ -40,7 +40,7 @@ class Rashi {
 	);
 	
 	/**
-	 * Devanagari title 'rashi' in transliteration.
+	 * Devanagari 'rashi' in transliteration.
 	 * 
 	 * @var array
 	 * @see Jyotish\Alphabet\Devanagari

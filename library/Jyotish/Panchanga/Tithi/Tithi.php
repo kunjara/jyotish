@@ -72,11 +72,99 @@ class Tithi {
 		30 => self::NAME_AMAVASYA,
 	);
 	
-	static public $tithiDeva;
-	static public $tithiPaksha;
-	static public $tithiType;
-	static public $tithiKarana = array();
+	/**
+	 * Devanagari tithi title in transliteration.
+	 * 
+	 * @var array
+	 * @see Jyotish\Alphabet\Devanagari
+	 */
+	protected $tithiTranslit = array();
+	
+	/**
+	 * Deva of tithi.
+	 * 
+	 * @var string
+	 */
+	protected $tithiDeva;
+	
+	/**
+	 * Paksha of tithi.
+	 * 
+	 * @var string
+	 */
+	protected $tithiPaksha;
+	
+	/**
+	 * Type of tithi.
+	 * 
+	 * @var string
+	 */
+	protected $tithiType;
+	
+	/**
+	 * Karana of tithi.
+	 * 
+	 * @var string
+	 */
+	protected $tithiKarana = array();
 
+	/**
+	 * Get tithi translit.
+	 * 
+	 * @return array
+	 */
+	public function getTithiTranslit()
+	{
+		return $this->tithiTranslit;
+	}
+	
+	/**
+	 * Get tithi deva.
+	 * 
+	 * @return string
+	 */
+	public function getTithiDeva()
+	{
+		return $this->tithiDeva;
+	}
+	
+	/**
+	 * Get tithi paksha.
+	 * 
+	 * @return string
+	 */
+	public function getTithiPaksha()
+	{
+		return $this->tithiPaksha;
+	}
+	
+	/**
+	 * Get tithi type.
+	 * 
+	 * @return string
+	 */
+	public function getTithiType()
+	{
+		return $this->tithiType;
+	}
+	
+	/**
+	 * Get tithi karana.
+	 * 
+	 * @return array
+	 */
+	public function getTithiKarana()
+	{
+		return $this->tithiKarana;
+	}
+
+	/**
+	 * Returns the requested instance of tithi class.
+	 * 
+	 * @param int $number The number of tithi.
+	 * @param array $options
+	 * @return the requested instance of tithi class.
+	 */
 	static public function getInstance($number, $options = null) {
 		if (self::$TITHI[$number]) {
 			$tithiClass = 'Jyotish\\Panchanga\\Tithi\\Object\\T' . $number;

@@ -21,14 +21,37 @@ class T27 extends \Jyotish\Panchanga\Tithi\Tithi {
 	 * @var array
 	 * @see Jyotish\Alphabet\Devanagari
 	 */
-	static public $tithiTranslit = array(
+	protected $tithiTranslit = array(
 		 'd1', 'd2'
 	);
 	
-	static public $tithiDeva = Deva::DEVA_VISHNU;
-	static public $tithiPaksha = self::PAKSHA_KRISHNA;
-	static public $tithiType = self::TYPE_BHADRA;
-	static public $tithiKarana = array(
+	/**
+	 * Deva of tithi.
+	 * 
+	 * @var string
+	 */
+	protected $tithiDeva = Deva::DEVA_VISHNU;
+	
+	/**
+	 * Paksha of tithi.
+	 * 
+	 * @var string
+	 */
+	protected $tithiPaksha = self::PAKSHA_KRISHNA;
+	
+	/**
+	 * Type of tithi.
+	 * 
+	 * @var string
+	 */
+	protected $tithiType = self::TYPE_BHADRA;
+	
+	/**
+	 * Karana of tithi.
+	 * 
+	 * @var string
+	 */
+	protected $tithiKarana = array(
 		1 => Karana::NAME_KAULAVA,
 		2 => Karana::NAME_TAITILA
 	);

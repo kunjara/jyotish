@@ -21,14 +21,37 @@ class T13 extends \Jyotish\Panchanga\Tithi\Tithi {
 	 * @var array
 	 * @see Jyotish\Alphabet\Devanagari
 	 */
-	static public $tithiTranslit = array(
+	protected $tithiTranslit = array(
 		 'd1', 'd3'
 	);
 	
-	static public $tithiDeva = Deva::DEVA_KAMA_MANMATHA;
-	static public $tithiPaksha = self::PAKSHA_SHUKLA;
-	static public $tithiType = self::TYPE_JAYA;
-	static public $tithiKarana = array(
+	/**
+	 * Deva of tithi.
+	 * 
+	 * @var string
+	 */
+	protected $tithiDeva = Deva::DEVA_KAMA_MANMATHA;
+	
+	/**
+	 * Paksha of tithi.
+	 * 
+	 * @var string
+	 */
+	protected $tithiPaksha = self::PAKSHA_SHUKLA;
+	
+	/**
+	 * Type of tithi.
+	 * 
+	 * @var string
+	 */
+	protected $tithiType = self::TYPE_JAYA;
+	
+	/**
+	 * Karana of tithi.
+	 * 
+	 * @var string
+	 */
+	protected $tithiKarana = array(
 		1 => Karana::NAME_KAULAVA,
 		2 => Karana::NAME_TAITILA
 	);

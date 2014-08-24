@@ -21,14 +21,37 @@ class T9 extends \Jyotish\Panchanga\Tithi\Tithi {
 	 * @var array
 	 * @see Jyotish\Alphabet\Devanagari
 	 */
-	static public $tithiTranslit = array(
+	protected $tithiTranslit = array(
 		 'd9'
 	);
 	
-	static public $tithiDeva = Deva::DEVA_ASHTAVASU;
-	static public $tithiPaksha = self::PAKSHA_SHUKLA;
-	static public $tithiType = self::TYPE_RIKTA;
-	static public $tithiKarana = array(
+	/**
+	 * Deva of tithi.
+	 * 
+	 * @var string
+	 */
+	protected $tithiDeva = Deva::DEVA_ASHTAVASU;
+	
+	/**
+	 * Paksha of tithi.
+	 * 
+	 * @var string
+	 */
+	protected $tithiPaksha = self::PAKSHA_SHUKLA;
+	
+	/**
+	 * Type of tithi.
+	 * 
+	 * @var string
+	 */
+	protected $tithiType = self::TYPE_RIKTA;
+	
+	/**
+	 * Karana of tithi.
+	 * 
+	 * @var string
+	 */
+	protected $tithiKarana = array(
 		1 => Karana::NAME_BALAVA,
 		2 => Karana::NAME_KAULAVA
 	);
