@@ -180,7 +180,7 @@ class Rashi {
 	 * @param array $options
 	 * @return the requested instance of rashi class.
 	 */
-	static public function getInstance($number, $options = null) {
+	static public function getInstance($number, array $options = null) {
 		if (array_key_exists($number, self::$RASHI)) {
 			$rashiClass = 'Jyotish\\Rashi\\Object\\R' . $number;
 			$rashiObject = new $rashiClass($options);

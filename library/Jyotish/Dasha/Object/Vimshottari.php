@@ -51,9 +51,9 @@ class Vimshottari extends \Jyotish\Dasha\Dasha {
 	 */
 	public function getStartPeriod(array $nakshatra)
 	{
-		$N			= Nakshatra::getInstance((int)$nakshatra['number']);
+		$N = Nakshatra::getInstance((int)$nakshatra['number']);
 		
-		$result['graha'] = $N::$nakshatraGraha;
+		$result['graha'] = $N->getNakshatraGraha();
 		$result['total'] = round($this->durationTotal() * Samvatsara::DUR_GREGORIAN * 86400);
 		
 		$durationGraha		= $this->durationGraha();

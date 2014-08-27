@@ -23,19 +23,19 @@ class N24 extends \Jyotish\Panchanga\Nakshatra\Nakshatra {
 	 * @var array
 	 * @see Jyotish\Alphabet\Devanagari
 	 */
-	static public $nakshatraTranslit = array(
+	protected $nakshatraTranslit = array(
 		 'sha','ta','bha','i','ssa','aa'
 	);
 	
-	static public $nakshatraDeva = Deva::DEVA_VARUNA;
-	static public $nakshatraEnergy = self::ENERGY_LAYA;
-	static public $nakshatraGana = Manusha::GANA_RAKSHASA;
-	static public $nakshatraGender = Manusha::GENDER_NEUTER;
-	static public $nakshatraGraha = Graha::GRAHA_RA;
-	static public $nakshatraGuna = Guna::GUNA_TAMA;
-	static public $nakshatraPurushartha = Manusha::PURUSHARTHA_DHARMA;
-	static public $nakshatraType = self::TYPE_CHARANA;
-	static public $nakshatraVarna = Manusha::VARNA_UGRA;
+	protected $nakshatraDeva = Deva::DEVA_VARUNA;
+	protected $nakshatraEnergy = self::ENERGY_LAYA;
+	protected $nakshatraGana = Manusha::GANA_RAKSHASA;
+	protected $nakshatraGender = Manusha::GENDER_NEUTER;
+	protected $nakshatraGraha = Graha::GRAHA_RA;
+	protected $nakshatraGuna = Guna::GUNA_TAMA;
+	protected $nakshatraPurushartha = Manusha::PURUSHARTHA_DHARMA;
+	protected $nakshatraType = self::TYPE_CHARANA;
+	protected $nakshatraVarna = Manusha::VARNA_UGRA;
 
 	public function __construct($options) {
 		return $this;

@@ -43,9 +43,31 @@ class Yoga {
 		27 => 'Vaidhriti',
 	);
 	
-	static public $yogaDeva;
+	/**
+	 * Deva of yoga.
+	 * 
+	 * @var string
+	 */
+	protected $yogaDeva;
 	
-	static public function getInstance($number, $options = null) {
+	/**
+	 * Get yoga Deva.
+	 * 
+	 * @return string
+	 */
+	public function getYogaDeva()
+	{
+		return $this->yogaDeva;
+	}
+	
+	/**
+	 * Returns the requested instance of yoga class.
+	 * 
+	 * @param int $number The number of yoga.
+	 * @param array $options
+	 * @return the requested instance of yoga class.
+	 */
+	static public function getInstance($number, array $options = null) {
 		if (array_key_exists($number, self::$YOGA)) {
 			$yogaClass = 'Jyotish\\Panchanga\\Yoga\\Object\\Y' . $number;
 			$yogaObject = new $yogaClass($options);

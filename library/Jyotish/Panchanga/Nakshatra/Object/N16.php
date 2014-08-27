@@ -23,22 +23,22 @@ class N16 extends \Jyotish\Panchanga\Nakshatra\Nakshatra {
 	 * @var array
 	 * @see Jyotish\Alphabet\Devanagari
 	 */
-	static public $nakshatraTranslit = array(
+	protected $nakshatraTranslit = array(
 		 'va','i','sha','aa','kha','aa'
 	);
 	
-	static public $nakshatraDeva = array(
+	protected $nakshatraDeva = array(
 		Deva::DEVA_INDRA,
 		Deva::DEVA_AGNI,
 	);
-	static public $nakshatraEnergy = self::ENERGY_SRISHTI;
-	static public $nakshatraGana = Manusha::GANA_RAKSHASA;
-	static public $nakshatraGender = Manusha::GENDER_FEMALE;
-	static public $nakshatraGraha = Graha::GRAHA_GU;
-	static public $nakshatraGuna = Guna::GUNA_SATTVA;
-	static public $nakshatraPurushartha = Manusha::PURUSHARTHA_DHARMA;
-	static public $nakshatraType = self::TYPE_SADHARANA;
-	static public $nakshatraVarna = Manusha::VARNA_MLECHHA;
+	protected $nakshatraEnergy = self::ENERGY_SRISHTI;
+	protected $nakshatraGana = Manusha::GANA_RAKSHASA;
+	protected $nakshatraGender = Manusha::GENDER_FEMALE;
+	protected $nakshatraGraha = Graha::GRAHA_GU;
+	protected $nakshatraGuna = Guna::GUNA_SATTVA;
+	protected $nakshatraPurushartha = Manusha::PURUSHARTHA_DHARMA;
+	protected $nakshatraType = self::TYPE_SADHARANA;
+	protected $nakshatraVarna = Manusha::VARNA_MLECHHA;
 
 	public function __construct($options) {
 		return $this;

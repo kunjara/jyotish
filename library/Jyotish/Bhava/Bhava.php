@@ -75,7 +75,7 @@ class Bhava {
 	 * @param array $options
 	 * @return the requested instance of bhava class.
 	 */
-	static public function getInstance($number, $options = null) {
+	static public function getInstance($number, array $options = null) {
 		if (array_key_exists($number, self::$BHAVA)) {
 			$bhavaClass = 'Jyotish\\Bhava\\Object\\B' . $number;
 			$bhavaObject = new $bhavaClass($options);

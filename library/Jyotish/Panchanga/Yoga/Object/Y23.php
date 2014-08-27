@@ -15,7 +15,7 @@ use Jyotish\Tattva\Jiva\Deva;
  */
 class Y23 extends \Jyotish\Panchanga\Yoga\Yoga {
 
-	static public $yogaDeva = Deva::DEVA_PAVAMANA;
+	protected $yogaDeva = Deva::DEVA_PAVAMANA;
 
 	public function __construct($options) {
 		return $this;

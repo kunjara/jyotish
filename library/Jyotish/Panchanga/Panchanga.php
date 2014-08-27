@@ -99,13 +99,13 @@ class Panchanga {
 		if($withAbhijit){
 			if($nakshatraUnits['units'] == 21 or $nakshatraUnits['units'] == 22){
 				$Abhijit = Nakshatra::getInstance(28);
-				$abhijitStart	= Math::dmsToDecimal($Abhijit::$nakshatraStart);
-				$abhijitEnd		= Math::dmsToDecimal($Abhijit::$nakshatraEnd);
+				$abhijitStart	= Math::dmsToDecimal($Abhijit->getNakshatraStart());
+				$abhijitEnd		= Math::dmsToDecimal($Abhijit->getNakshatraEnd());
 
 				if($lonCh < $abhijitStart){
 					$nakshatra['number'] = 21;
 					$N = Nakshatra::getInstance($nakshatra['number']);
-					$nStart = Math::dmsToDecimal($N::$nakshatraStart);
+					$nStart = Math::dmsToDecimal($N->getNakshatraStart());
 					$unit = $abhijitStart - $nStart;
 					$left = $abhijitStart - $lonCh;
 				}elseif($lonCh >= $abhijitStart and $lonCh < $abhijitEnd){
@@ -115,7 +115,7 @@ class Panchanga {
 				}else{
 					$nakshatra['number'] = 22;
 					$N = Nakshatra::getInstance($nakshatra['number']);
-					$nEnd = Math::dmsToDecimal($N::$nakshatraEnd);
+					$nEnd = Math::dmsToDecimal($N->getNakshatraEnd());
 					$unit = $nEnd - $abhijitEnd;
 					$left = $nEnd - $lonCh;
 				}

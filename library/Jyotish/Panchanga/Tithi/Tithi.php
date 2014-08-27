@@ -165,7 +165,7 @@ class Tithi {
 	 * @param array $options
 	 * @return the requested instance of tithi class.
 	 */
-	static public function getInstance($number, $options = null) {
+	static public function getInstance($number, array $options = null) {
 		if (self::$TITHI[$number]) {
 			$tithiClass = 'Jyotish\\Panchanga\\Tithi\\Object\\T' . $number;
 			$tithiObject = new $tithiClass($options);
