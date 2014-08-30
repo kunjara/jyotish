@@ -81,6 +81,14 @@ class R1 extends \Jyotish\Rashi\Rashi {
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 4, Verse 6-7.
 	 */
 	protected $rashiRuler = Graha::GRAHA_MA;
+	
+	/**
+	 * Varna of rashi.
+	 * 
+	 * @var string
+	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 4, Verse 6-7.
+	 */
+	protected $rashiVarna = Manusha::VARNA_KSHATRIYA;
 
 	public function __construct($options) {
 		return $this;

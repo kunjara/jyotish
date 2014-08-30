@@ -6,15 +6,9 @@
 
 namespace Jyotish\Graha\Object;
 
-use Jyotish\Rashi\Rashi;
-use Jyotish\Tattva\Maha\Bhuta;
 use Jyotish\Tattva\Maha\Disha;
 use Jyotish\Tattva\Maha\Guna;
-use Jyotish\Tattva\Jiva\Deva;
 use Jyotish\Tattva\Jiva\Manusha;
-use Jyotish\Tattva\Ayurveda\Dhatu;
-use Jyotish\Tattva\Ayurveda\Prakriti;
-use Jyotish\Tattva\Ayurveda\Rasa;
 
 /**
  * Class of graha Ra.
@@ -136,7 +130,8 @@ class Ra extends \Jyotish\Graha\Graha {
 	 */
 	protected $grahaMooltrikon = array
 	(
-		'rashi' => null,
+		'rashi' => 11,
+		'degree' => null
 	);
 	
 	/**

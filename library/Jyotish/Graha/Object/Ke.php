@@ -6,15 +6,9 @@
 
 namespace Jyotish\Graha\Object;
 
-use Jyotish\Rashi\Rashi;
-use Jyotish\Tattva\Maha\Bhuta;
 use Jyotish\Tattva\Maha\Disha;
 use Jyotish\Tattva\Maha\Guna;
-use Jyotish\Tattva\Jiva\Deva;
 use Jyotish\Tattva\Jiva\Manusha;
-use Jyotish\Tattva\Ayurveda\Dhatu;
-use Jyotish\Tattva\Ayurveda\Prakriti;
-use Jyotish\Tattva\Ayurveda\Rasa;
 
 /**
  * Class of graha Ke.
@@ -114,7 +108,7 @@ class Ke extends \Jyotish\Graha\Graha {
 	 */
 	protected $grahaExaltation = array
 	(
-		'rashi' => 9,
+		'rashi' => 6,
 		'degree' => null
 	);
 	
@@ -136,7 +130,8 @@ class Ke extends \Jyotish\Graha\Graha {
 	 */
 	protected $grahaMooltrikon = array
 	(
-		'rashi' => null,
+		'rashi' => 5,
+		'degree' => null
 	);
 	
 	/**

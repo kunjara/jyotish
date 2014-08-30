@@ -6,8 +6,6 @@
 
 namespace Jyotish\Rashi;
 
-use Jyotish\Service\Utils;
-
 /**
  * Class with Rashi names and attributes.
  *
@@ -190,6 +188,16 @@ class Rashi {
 	{
 		return $this->rashiRuler;
 	}
+	
+	/**
+	 * Get rashi varna.
+	 * 
+	 * @return string
+	 */
+	public function getRashiVarna()
+	{
+		return $this->rashiVarna;
+	}
 
 	/**
 	 * Returns the requested instance of rashi class.
@@ -209,6 +217,12 @@ class Rashi {
 		}
 	}
 	
+	/**
+	 * Next rashi.
+	 * 
+	 * @param int $rashi
+	 * @return int
+	 */
 	static public function nextRashi($rashi) {
 		$rashiIncrement = $rashi + 1;
 		$rashiZodiac = self::inZodiacRashi($rashiIncrement);
@@ -216,7 +230,17 @@ class Rashi {
 		return $rashiZodiac;
 	}
 	
+	/**
+	 * Calculates the number rashi in zodiac.
+	 * 
+	 * @param int $rashi
+	 * @param int $step
+	 * @return int
+	 */
 	static public function inZodiacRashi($rashi, $step = 1) {
+		if(!is_int($rashi)){
+			throw new Exception\InvalidArgumentException("Rashi number must be an integer.");
+		}
 		$rashiStep = $rashi + ($step - 1);
 		
 		if($rashiStep < 12) {
