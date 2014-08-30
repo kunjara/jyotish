@@ -6,6 +6,8 @@
 
 namespace Jyotish\Graha;
 
+use Jyotish\Rashi\Rashi;
+
 /**
  * Class with Graha names and attributes.
  *
@@ -55,6 +57,13 @@ class Graha {
 	);
 	
 	/**
+	 * Abbreviation of the graha
+	 * 
+	 * @var string
+	 */
+	protected $grahaAbbr;
+
+	/**
 	 * Devanagari graha title in transliteration.
 	 * 
 	 * @var array
@@ -65,7 +74,6 @@ class Graha {
 	protected $grahaAvatara;
 	protected $grahaUnicode;
 	protected $grahaAltName = array();
-	protected $grahaOwn = array();
 	protected $grahaAgeMaturity;
 	protected $grahaAgePeriod = array(
 		'start',
@@ -159,6 +167,14 @@ class Graha {
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 51-54. 
 	 */
 	protected $grahaMooltrikon = array();
+	
+	/**
+	 * Own sign of the graha.
+	 * 
+	 * @var array
+	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 51-54. 
+	 */
+	protected $grahaOwn = array();
 	
 	/**
 	 * Natural relationships.
@@ -341,6 +357,63 @@ class Graha {
 	{
 		return $this->grahaDisha;
 	}
+	
+	/**
+	 * Get natural relationships.
+	 * 
+	 * @return array
+	 */
+	public function getNaturalRelation()
+	{
+		$relationships = array();
+		$rashiFriendsFromMt  = array(2, 4, 5, 8, 9, 12);
+		$rashiEnemiesFromMt  = array(3, 6, 7, 10, 11);
+		
+		$rashiMt = $this->grahaMooltrikon['rashi'];
+		$rashiEx = $this->grahaExaltation['rashi'];
+		$R = Rashi::getInstance($rashiEx);
+		$gFriend = $R->getRashiRuler();
+		
+		if($this->grahaAbbr != $gFriend)
+			$friends[] = $gFriend;
+		
+		foreach($rashiFriendsFromMt as $rStep){
+			$rFriend = Rashi::inZodiacRashi($rashiMt, $rStep);
+			$R = Rashi::getInstance((int)$rFriend);
+			$gRuler = $R->getRashiRuler();
+			
+			if($this->grahaAbbr == $gRuler)
+				continue;
+			
+			$friends[] = $gRuler;
+		}
+		$friends = array_unique($friends);
+		
+		foreach($rashiEnemiesFromMt as $rStep){
+			$rEnemy = Rashi::inZodiacRashi($rashiMt, $rStep);
+			$R = Rashi::getInstance((int)$rEnemy);
+			$gRuler = $R->getRashiRuler();
+			
+			if($this->grahaAbbr == $gRuler)
+				continue;
+			
+			$enemies[] = $gRuler;
+		}
+		$enemies = array_unique($enemies);
+		
+		foreach (self::$GRAHA as $g => $name){
+			if(in_array($g, $friends) and in_array($g, $enemies)){
+				$relationships[$g] = 0;
+			}elseif(in_array($g, $friends)){
+				$relationships[$g] = 1;
+			}elseif(in_array($g, $enemies)){
+				$relationships[$g] = -1;
+			}else{
+				$relationships[$g] = null;
+			}
+		}
+		return $relationships;
+	}
 
 	/**
 	 * Returns the requested instance of graha class.
@@ -353,6 +426,8 @@ class Graha {
 		if (array_key_exists($abbr, self::$GRAHA)) {
 			$grahaClass = 'Jyotish\Graha\Object\\' . $abbr;
 			$grahaObject = new $grahaClass($options);
+			
+			$grahaObject->grahaAbbr = $abbr;
 
 			return $grahaObject;
 		} else {

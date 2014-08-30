@@ -6,6 +6,7 @@
 
 namespace Jyotish\Rashi\Object;
 
+use Jyotish\Graha\Graha;
 use Jyotish\Tattva\Jiva\Manusha;
 use Jyotish\Tattva\Maha\Bhuta;
 use Jyotish\Tattva\Ayurveda\Prakriti;
@@ -34,19 +35,20 @@ class R5 extends \Jyotish\Rashi\Rashi {
 	protected $rashiUnicode = '264C';
 	
 	/**
+	 * Limb of Kaal Purush.
+	 * 
+	 * @var string
+	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 4, Verse 4-4 1/2.
+	 */
+	protected $rashiLimb = Manusha::LIMB_STOMACH;
+	
+	/**
 	 * Bhava of rashi.
 	 * 
 	 * @var string
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 4, Verse 5-5 1/2.
 	 */
 	protected $rashiBhava = self::BHAVA_STHIRA;
-	
-	/**
-	 * Bhuta of rashi.
-	 * 
-	 * @var string
-	 */
-	protected $rashiBhuta = Bhuta::BHUTA_AGNI;
 	
 	/**
 	 * Gender of rashi.
@@ -57,20 +59,28 @@ class R5 extends \Jyotish\Rashi\Rashi {
 	protected $rashiGender = Manusha::GENDER_MALE;
 	
 	/**
-	 * Limb of Kaal Purush.
-	 * 
-	 * @var string
-	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 4, Verse 4-4 1/2.
-	 */
-	protected $rashiLimb = Manusha::LIMB_STOMACH;
-	
-	/**
 	 * Prakriti of rashi.
 	 * 
 	 * @var string
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 4, Verse 5-5 1/2.
 	 */
 	protected $rashiPrakriti = Prakriti::PRAKRITI_PITTA;
+	
+	/**
+	 * Bhuta of rashi.
+	 * 
+	 * @var string
+	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 4, Verse 12.
+	 */
+	protected $rashiBhuta = Bhuta::BHUTA_AGNI;
+	
+	/**
+	 * Ruler of rashi.
+	 * 
+	 * @var string
+	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 4, Verse 12.
+	 */
+	protected $rashiRuler = Graha::GRAHA_SY;
 
 	public function __construct($options) {
 		return $this;

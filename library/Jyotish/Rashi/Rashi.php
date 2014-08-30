@@ -65,19 +65,20 @@ class Rashi {
 	protected $rashiUnicode;
 	
 	/**
+	 * Limb of Kaal Purush.
+	 * 
+	 * @var string
+	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 4, Verse 4-4 1/2.
+	 */
+	protected $rashiLimb;
+	
+	/**
 	 * Bhava of rashi.
 	 * 
 	 * @var string
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 4, Verse 5-5 1/2.
 	 */
 	protected $rashiBhava;
-	
-	/**
-	 * Bhuta of rashi.
-	 * 
-	 * @var string
-	 */
-	protected $rashiBhuta;
 	
 	/**
 	 * Gender of rashi.
@@ -88,14 +89,6 @@ class Rashi {
 	protected $rashiGender;
 	
 	/**
-	 * Limb of Kaal Purush.
-	 * 
-	 * @var string
-	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 4, Verse 4-4 1/2.
-	 */
-	protected $rashiLimb;
-	
-	/**
 	 * Prakriti of rashi.
 	 * 
 	 * @var string
@@ -103,6 +96,21 @@ class Rashi {
 	 */
 	protected $rashiPrakriti;
 	
+	/**
+	 * Bhuta of rashi.
+	 * 
+	 * @var string
+	 */
+	protected $rashiBhuta;
+	
+	/**
+	 * Ruler of rashi.
+	 * 
+	 * @var string
+	 */
+	protected $rashiRuler;
+
+
 	/**
 	 * Get rashi devanagari name.
 	 *
@@ -124,6 +132,16 @@ class Rashi {
 	}
 	
 	/**
+	 * Get rashi limb.
+	 * 
+	 * @return string
+	 */
+	public function getRashiLimb()
+	{
+		return $this->rashiLimb;
+	}
+	
+	/**
 	 * Get rashi bhava.
 	 * 
 	 * @return string
@@ -131,16 +149,6 @@ class Rashi {
 	public function getRashiBhava()
 	{
 		return $this->rashiBhava;
-	}
-	
-	/**
-	 * Get rashi bhuta.
-	 * 
-	 * @return string
-	 */
-	public function getRashiBhuta()
-	{
-		return $this->rashiBhuta;
 	}
 	
 	/**
@@ -154,16 +162,6 @@ class Rashi {
 	}
 	
 	/**
-	 * Get rashi limb.
-	 * 
-	 * @return string
-	 */
-	public function getRashiLimb()
-	{
-		return $this->rashiLimb;
-	}
-	
-	/**
 	 * Get rashi prakriti.
 	 * 
 	 * @return string
@@ -171,6 +169,26 @@ class Rashi {
 	public function getRashiPrakriti()
 	{
 		return $this->rashiPrakriti;
+	}
+	
+	/**
+	 * Get rashi bhuta.
+	 * 
+	 * @return string
+	 */
+	public function getRashiBhuta()
+	{
+		return $this->rashiBhuta;
+	}
+	
+	/**
+	 * Get rashi ruler.
+	 * 
+	 * @return string
+	 */
+	public function getRashiRuler()
+	{
+		return $this->rashiRuler;
 	}
 
 	/**
