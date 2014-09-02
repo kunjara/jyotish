@@ -225,6 +225,16 @@ class Nakshatra {
 	}
 	
 	/**
+	 * Get nakshatra type.
+	 * 
+	 * @return string
+	 */
+	public function getNakshatraType()
+	{
+		return $this->nakshatraType;
+	}
+	
+	/**
 	 * Get nakshatra Deva.
 	 * 
 	 * @return mixed
@@ -295,16 +305,6 @@ class Nakshatra {
 	}
 	
 	/**
-	 * Get nakshatra type.
-	 * 
-	 * @return string
-	 */
-	public function getNakshatraType()
-	{
-		return $this->nakshatraType;
-	}
-	
-	/**
 	 * Get nakshatra varna.
 	 * 
 	 * @return string
@@ -312,6 +312,16 @@ class Nakshatra {
 	public function getNakshatraVarna()
 	{
 		return $this->nakshatraVarna;
+	}
+	
+	/**
+	 * Get nakshatra prakriti.
+	 * 
+	 * @return string
+	 */
+	public function getNakshatraPrakriti()
+	{
+		return $this->nakshatraPrakriti;
 	}
 
 	/**
