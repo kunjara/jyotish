@@ -10,6 +10,7 @@ use Jyotish\Graha\Graha;
 use Jyotish\Tattva\Jiva\Deva;
 use Jyotish\Tattva\Jiva\Manusha;
 use Jyotish\Tattva\Maha\Guna;
+use Jyotish\Tattva\Ayurveda\Prakriti;
 
 /**
  * Class of nakshatra 16.
@@ -27,6 +28,14 @@ class N16 extends \Jyotish\Panchanga\Nakshatra\Nakshatra {
 		 'va','i','sha','aa','kha','aa'
 	);
 	
+	/**
+	 * Type of nakshatra.
+	 * 
+	 * @var string
+	 * @see Varahamihira. Brihat Samhita. Chapter 98, Verse 11.
+	 */
+	protected $nakshatraType = self::TYPE_SADHARANA;
+	
 	protected $nakshatraDeva = array(
 		Deva::DEVA_INDRA,
 		Deva::DEVA_AGNI,
@@ -37,8 +46,8 @@ class N16 extends \Jyotish\Panchanga\Nakshatra\Nakshatra {
 	protected $nakshatraGraha = Graha::GRAHA_GU;
 	protected $nakshatraGuna = Guna::GUNA_SATTVA;
 	protected $nakshatraPurushartha = Manusha::PURUSHARTHA_DHARMA;
-	protected $nakshatraType = self::TYPE_SADHARANA;
 	protected $nakshatraVarna = Manusha::VARNA_MLECHHA;
+	protected $nakshatraPrakriti = Prakriti::PRAKRITI_KAPHA;
 
 	public function __construct($options) {
 		return $this;

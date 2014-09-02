@@ -10,6 +10,7 @@ use Jyotish\Graha\Graha;
 use Jyotish\Tattva\Jiva\Deva;
 use Jyotish\Tattva\Jiva\Manusha;
 use Jyotish\Tattva\Maha\Guna;
+use Jyotish\Tattva\Ayurveda\Prakriti;
 
 /**
  * Class of nakshatra 18.
@@ -27,6 +28,14 @@ class N18 extends \Jyotish\Panchanga\Nakshatra\Nakshatra {
 		 'ja','virama','ya','e','ssa','virama','ttha','aa'
 	);
 	
+	/**
+	 * Type of nakshatra.
+	 * 
+	 * @var string
+	 * @see Varahamihira. Brihat Samhita. Chapter 98, Verse 7.
+	 */
+	protected $nakshatraType = self::TYPE_TIKSHNA;
+	
 	protected $nakshatraDeva = Deva::DEVA_INDRA;
 	protected $nakshatraEnergy = self::ENERGY_LAYA;
 	protected $nakshatraGana = Manusha::GANA_RAKSHASA;
@@ -34,8 +43,8 @@ class N18 extends \Jyotish\Panchanga\Nakshatra\Nakshatra {
 	protected $nakshatraGraha = Graha::GRAHA_BU;
 	protected $nakshatraGuna = Guna::GUNA_SATTVA;
 	protected $nakshatraPurushartha = Manusha::PURUSHARTHA_ARTHA;
-	protected $nakshatraType = self::TYPE_TIKSHNA;
 	protected $nakshatraVarna = Manusha::VARNA_DASYA;
+	protected $nakshatraPrakriti = Prakriti::PRAKRITI_VATA;
 
 	public function __construct($options) {
 		return $this;

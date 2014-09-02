@@ -10,6 +10,7 @@ use Jyotish\Graha\Graha;
 use Jyotish\Tattva\Jiva\Deva;
 use Jyotish\Tattva\Jiva\Manusha;
 use Jyotish\Tattva\Maha\Guna;
+use Jyotish\Tattva\Ayurveda\Prakriti;
 
 /**
  * Class of nakshatra 12.
@@ -27,6 +28,14 @@ class N12 extends \Jyotish\Panchanga\Nakshatra\Nakshatra {
 		 '_u','ta','virama','ta','ra',' ','pha','aa','la','virama','ga','u','na','ii'
 	);
 	
+	/**
+	 * Type of nakshatra.
+	 * 
+	 * @var string
+	 * @see Varahamihira. Brihat Samhita. Chapter 98, Verse 6.
+	 */
+	protected $nakshatraType = self::TYPE_DHRUVA;
+	
 	protected $nakshatraDeva = Deva::DEVA_ARYAMA;
 	protected $nakshatraEnergy = self::ENERGY_LAYA;
 	protected $nakshatraGana = Manusha::GANA_MANUSHA;
@@ -34,8 +43,8 @@ class N12 extends \Jyotish\Panchanga\Nakshatra\Nakshatra {
 	protected $nakshatraGraha = Graha::GRAHA_SY;
 	protected $nakshatraGuna = Guna::GUNA_RAJA;
 	protected $nakshatraPurushartha = Manusha::PURUSHARTHA_MOKSHA;
-	protected $nakshatraType = self::TYPE_DHRUVA;
 	protected $nakshatraVarna = Manusha::VARNA_KSHATRIYA;
+	protected $nakshatraPrakriti = Prakriti::PRAKRITI_VATA;
 
 	public function __construct($options) {
 		return $this;

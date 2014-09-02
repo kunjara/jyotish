@@ -112,6 +112,13 @@ class Nakshatra {
 	protected $nakshatraEnd = array();
 	
 	/**
+	 * Type of nakshatra.
+	 * 
+	 * @var string
+	 */
+	protected $nakshatraType;
+	
+	/**
 	 * Deva of nakshatra.
 	 * 
 	 * @var mixed
@@ -159,13 +166,6 @@ class Nakshatra {
 	 * @var string
 	 */
 	protected $nakshatraPurushartha;
-	
-	/**
-	 * Type of nakshatra.
-	 * 
-	 * @var string
-	 */
-	protected $nakshatraType;
 	
 	/**
 	 * Varna of nakshatra.

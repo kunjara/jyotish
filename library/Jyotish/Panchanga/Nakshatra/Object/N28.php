@@ -6,10 +6,8 @@
 
 namespace Jyotish\Panchanga\Nakshatra\Object;
 
-use Jyotish\Graha\Graha;
 use Jyotish\Tattva\Jiva\Deva;
 use Jyotish\Tattva\Jiva\Manusha;
-use Jyotish\Tattva\Maha\Guna;
 
 /**
  * Class of nakshatra 28.
@@ -27,15 +25,22 @@ class N28 extends \Jyotish\Panchanga\Nakshatra\Nakshatra {
 		 '_a','bha','i','ja','ii','ta'
 	);
 	
-	protected $nakshatraDeva = Deva::DEVA_BRAHMA;
-	protected $nakshatraEnergy;
-	protected $nakshatraGana = Manusha::GANA_DEVA;
-	protected $nakshatraGender;
-	protected $nakshatraGraha;
-	protected $nakshatraGuna;
-	protected $nakshatraPurushartha;
+	/**
+	 * Type of nakshatra.
+	 * 
+	 * @var string
+	 */
 	protected $nakshatraType = self::TYPE_KSHIPRA;
-	protected $nakshatraVarna;
+	
+	protected $nakshatraDeva = Deva::DEVA_BRAHMA;
+	protected $nakshatraEnergy = null;
+	protected $nakshatraGana = Manusha::GANA_DEVA;
+	protected $nakshatraGender = null;
+	protected $nakshatraGraha = null;
+	protected $nakshatraGuna = null;
+	protected $nakshatraPurushartha = null;
+	protected $nakshatraVarna = null;
+	protected $nakshatraPrakriti = null;
 
 	public function __construct($options) {
 		return $this;
