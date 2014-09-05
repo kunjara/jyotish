@@ -7,11 +7,11 @@
 namespace Jyotish\Tattva\Jiva;
 
 /**
- * Class of Deva.
+ * Class of Deva gana.
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class Deva extends AbstractJiva implements \Jyotish\Tattva\Jiva\DevaInterface {
+class Deva extends Jiva {
 	
 	const DEVA_ADITI = 'Aditi';
 	const DEVA_AGNI = 'Agni';

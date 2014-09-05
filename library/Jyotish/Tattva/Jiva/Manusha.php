@@ -7,10 +7,22 @@
 namespace Jyotish\Tattva\Jiva;
 
 /**
- * Class of Manusha.
+ * Class of Manusha gana.
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class Manusha extends AbstractJiva implements \Jyotish\Tattva\Jiva\ManushaInterface {
+class Manusha extends Jiva {
 	
+	const VARNA_BRAHMANA = 'brahmana';
+	const VARNA_KSHATRIYA = 'kshatriya';
+	const VARNA_VAISHYA = 'vaishya';
+	const VARNA_SHUDRA = 'shudra';
+	const VARNA_MLECHHA = 'mlechha';
+	const VARNA_DASYA = 'dasya';
+	const VARNA_UGRA = 'ugra';
+	
+	const PURUSHARTHA_DHARMA = 'dharma';
+	const PURUSHARTHA_ARTHA = 'artha';
+	const PURUSHARTHA_KAMA = 'kama';
+	const PURUSHARTHA_MOKSHA = 'moksha';
 }

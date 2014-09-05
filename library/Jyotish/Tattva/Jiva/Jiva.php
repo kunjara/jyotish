@@ -11,7 +11,7 @@ namespace Jyotish\Tattva\Jiva;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-abstract class AbstractJiva {
+abstract class Jiva {
 	/**
      * Gana
      */
