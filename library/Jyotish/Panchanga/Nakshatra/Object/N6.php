@@ -6,6 +6,7 @@
 
 namespace Jyotish\Panchanga\Nakshatra\Object;
 
+use Jyotish\Panchanga\Nakshatra\Nakshatra;
 use Jyotish\Graha\Graha;
 use Jyotish\Tattva\Jiva\Deva;
 use Jyotish\Tattva\Jiva\Manusha;
@@ -17,7 +18,14 @@ use Jyotish\Tattva\Ayurveda\Prakriti;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class N6 extends \Jyotish\Panchanga\Nakshatra\Nakshatra {
+class N6 extends NakshatraObject {
+	/**
+	 * Nakshatra key
+	 * 
+	 * @var int
+	 */
+	protected $nakshatraKey = 6;
+	
 	/**
 	 * Devanagari title 'ardra' in transliteration.
 	 * 
@@ -34,10 +42,10 @@ class N6 extends \Jyotish\Panchanga\Nakshatra\Nakshatra {
 	 * @var string
 	 * @see Varahamihira. Brihat Samhita. Chapter 98, Verse 7.
 	 */
-	protected $nakshatraType = self::TYPE_TIKSHNA;
+	protected $nakshatraType = Nakshatra::TYPE_TIKSHNA;
 	
 	protected $nakshatraDeva = Deva::DEVA_SHIVA_RUDRA;
-	protected $nakshatraEnergy = self::ENERGY_LAYA;
+	protected $nakshatraEnergy = Nakshatra::ENERGY_LAYA;
 	protected $nakshatraGana = Manusha::GANA_MANUSHA;
 	protected $nakshatraGender = Manusha::GENDER_FEMALE;
 	protected $nakshatraGraha = Graha::GRAHA_RA;
@@ -47,7 +55,7 @@ class N6 extends \Jyotish\Panchanga\Nakshatra\Nakshatra {
 	protected $nakshatraPrakriti = Prakriti::PRAKRITI_VATA;
 
 	public function __construct($options) {
-		return $this;
+		parent::__construct($options);
 	}
 
 }

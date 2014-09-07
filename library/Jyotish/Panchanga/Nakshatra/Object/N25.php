@@ -6,6 +6,7 @@
 
 namespace Jyotish\Panchanga\Nakshatra\Object;
 
+use Jyotish\Panchanga\Nakshatra\Nakshatra;
 use Jyotish\Graha\Graha;
 use Jyotish\Tattva\Jiva\Deva;
 use Jyotish\Tattva\Jiva\Manusha;
@@ -17,7 +18,14 @@ use Jyotish\Tattva\Ayurveda\Prakriti;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class N25 extends \Jyotish\Panchanga\Nakshatra\Nakshatra {
+class N25 extends NakshatraObject {
+	/**
+	 * Nakshatra key
+	 * 
+	 * @var int
+	 */
+	protected $nakshatraKey = 25;
+	
 	/**
 	 * Devanagari title 'purva bhadrapada' in transliteration.
 	 * 
@@ -34,10 +42,10 @@ class N25 extends \Jyotish\Panchanga\Nakshatra\Nakshatra {
 	 * @var string
 	 * @see Varahamihira. Brihat Samhita. Chapter 98, Verse 8.
 	 */
-	protected $nakshatraType = self::TYPE_UGRA;
+	protected $nakshatraType = Nakshatra::TYPE_UGRA;
 	
 	protected $nakshatraDeva = Deva::DEVA_AJIKAPADA;
-	protected $nakshatraEnergy = self::ENERGY_SRISHTI;
+	protected $nakshatraEnergy = Nakshatra::ENERGY_SRISHTI;
 	protected $nakshatraGana = Manusha::GANA_MANUSHA;
 	protected $nakshatraGender = Manusha::GENDER_MALE;
 	protected $nakshatraGraha = Graha::GRAHA_GU;
@@ -47,7 +55,7 @@ class N25 extends \Jyotish\Panchanga\Nakshatra\Nakshatra {
 	protected $nakshatraPrakriti = Prakriti::PRAKRITI_VATA;
 
 	public function __construct($options) {
-		return $this;
+		parent::__construct($options);
 	}
 
 }

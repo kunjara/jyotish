@@ -6,6 +6,7 @@
 
 namespace Jyotish\Panchanga\Nakshatra\Object;
 
+use Jyotish\Panchanga\Nakshatra\Nakshatra;
 use Jyotish\Graha\Graha;
 use Jyotish\Tattva\Jiva\Deva;
 use Jyotish\Tattva\Jiva\Manusha;
@@ -17,7 +18,14 @@ use Jyotish\Tattva\Ayurveda\Prakriti;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class N8 extends \Jyotish\Panchanga\Nakshatra\Nakshatra {
+class N8 extends NakshatraObject {
+	/**
+	 * Nakshatra key
+	 * 
+	 * @var int
+	 */
+	protected $nakshatraKey = 8;
+	
 	/**
 	 * Devanagari title 'pushya' in transliteration.
 	 * 
@@ -34,10 +42,10 @@ class N8 extends \Jyotish\Panchanga\Nakshatra\Nakshatra {
 	 * @var string
 	 * @see Varahamihira. Brihat Samhita. Chapter 98, Verse 9.
 	 */
-	protected $nakshatraType = self::TYPE_KSHIPRA;
+	protected $nakshatraType = Nakshatra::TYPE_KSHIPRA;
 	
 	protected $nakshatraDeva = Deva::DEVA_BRIHASPATI;
-	protected $nakshatraEnergy = self::ENERGY_STHITI;
+	protected $nakshatraEnergy = Nakshatra::ENERGY_STHITI;
 	protected $nakshatraGana = Manusha::GANA_DEVA;
 	protected $nakshatraGender = Manusha::GENDER_MALE;
 	protected $nakshatraGraha = Graha::GRAHA_SA;
@@ -47,7 +55,7 @@ class N8 extends \Jyotish\Panchanga\Nakshatra\Nakshatra {
 	protected $nakshatraPrakriti = Prakriti::PRAKRITI_PITTA;
 
 	public function __construct($options) {
-		return $this;
+		parent::__construct($options);
 	}
 
 }

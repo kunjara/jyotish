@@ -6,6 +6,7 @@
 
 namespace Jyotish\Panchanga\Nakshatra\Object;
 
+use Jyotish\Panchanga\Nakshatra\Nakshatra;
 use Jyotish\Graha\Graha;
 use Jyotish\Tattva\Jiva\Deva;
 use Jyotish\Tattva\Jiva\Manusha;
@@ -17,7 +18,14 @@ use Jyotish\Tattva\Ayurveda\Prakriti;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class N27 extends \Jyotish\Panchanga\Nakshatra\Nakshatra {
+class N27 extends NakshatraObject {
+	/**
+	 * Nakshatra key
+	 * 
+	 * @var int
+	 */
+	protected $nakshatraKey = 27;
+	
 	/**
 	 * Devanagari title 'revati' in transliteration.
 	 * 
@@ -34,10 +42,10 @@ class N27 extends \Jyotish\Panchanga\Nakshatra\Nakshatra {
 	 * @var string
 	 * @see Varahamihira. Brihat Samhita. Chapter 98, Verse 10.
 	 */
-	protected $nakshatraType = self::TYPE_MRIDU;
+	protected $nakshatraType = Nakshatra::TYPE_MRIDU;
 	
 	protected $nakshatraDeva = Deva::DEVA_PUSHA;
-	protected $nakshatraEnergy = self::ENERGY_LAYA;
+	protected $nakshatraEnergy = Nakshatra::ENERGY_LAYA;
 	protected $nakshatraGana = Manusha::GANA_DEVA;
 	protected $nakshatraGender = Manusha::GENDER_FEMALE;
 	protected $nakshatraGraha = Graha::GRAHA_BU;
@@ -47,7 +55,7 @@ class N27 extends \Jyotish\Panchanga\Nakshatra\Nakshatra {
 	protected $nakshatraPrakriti = Prakriti::PRAKRITI_KAPHA;
 
 	public function __construct($options) {
-		return $this;
+		parent::__construct($options);
 	}
 
 }

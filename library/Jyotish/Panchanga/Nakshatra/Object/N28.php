@@ -6,6 +6,7 @@
 
 namespace Jyotish\Panchanga\Nakshatra\Object;
 
+use Jyotish\Panchanga\Nakshatra\Nakshatra;
 use Jyotish\Tattva\Jiva\Deva;
 use Jyotish\Tattva\Jiva\Manusha;
 
@@ -14,7 +15,14 @@ use Jyotish\Tattva\Jiva\Manusha;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class N28 extends \Jyotish\Panchanga\Nakshatra\Nakshatra {
+class N28 extends NakshatraObject {
+	/**
+	 * Nakshatra key
+	 * 
+	 * @var int
+	 */
+	protected $nakshatraKey = 28;
+	
 	/**
 	 * Devanagari title 'abhijit' in transliteration.
 	 * 
@@ -30,7 +38,7 @@ class N28 extends \Jyotish\Panchanga\Nakshatra\Nakshatra {
 	 * 
 	 * @var string
 	 */
-	protected $nakshatraType = self::TYPE_KSHIPRA;
+	protected $nakshatraType = Nakshatra::TYPE_KSHIPRA;
 	
 	protected $nakshatraDeva = Deva::DEVA_BRAHMA;
 	protected $nakshatraEnergy = null;
@@ -43,7 +51,7 @@ class N28 extends \Jyotish\Panchanga\Nakshatra\Nakshatra {
 	protected $nakshatraPrakriti = null;
 
 	public function __construct($options) {
-		return $this;
+		parent::__construct($options);
 	}
 
 }

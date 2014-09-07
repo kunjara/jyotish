@@ -134,7 +134,7 @@ class Panchanga {
 		}
 		
 		$nakshatra['left'] = $left * 100 / $unit;
-		$nakshatra['name'] = Nakshatra::$NAKSHATRA[$nakshatra['number']];
+		$nakshatra['name'] = Nakshatra::$nakshatra[$nakshatra['number']];
 		
 		if($withLimit){
 			$limits = $this->_limitAnga($nakshatra, __FUNCTION__);

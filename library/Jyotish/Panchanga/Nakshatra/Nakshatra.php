@@ -6,8 +6,6 @@
 
 namespace Jyotish\Panchanga\Nakshatra;
 
-use Jyotish\Ganita\Math;
-
 /**
  * Class with Nakshatra names and attributes.
  *
@@ -37,7 +35,7 @@ class Nakshatra {
 	 * 
 	 * @var array 
 	 */
-	static public $NAKSHATRA = array(
+	static public $nakshatra = array(
 		1 => 'Ashwini',
 		2 => 'Bharani',
 		3 => 'Krittika',
@@ -69,6 +67,23 @@ class Nakshatra {
 	);
 	
 	/**
+	 * Array of navatara (nine stars).
+	 * 
+	 * @var array 
+	 */
+	static public $navatara = array(
+		1 => 'Janma',
+		2 => 'Sampat',
+		3 => 'Vipat',
+		4 => 'Kshema',
+		5 => 'Pratyak',
+		6 => 'Saadhana',
+		7 => 'Naidhana',
+		8 => 'Mitra',
+		9 => 'Atimitra'
+	);
+	
+	/**
 	 * Devanagari title 'nakshatra' in transliteration.
 	 * 
 	 * @var array
@@ -78,301 +93,35 @@ class Nakshatra {
 		'na','ka','virama','ssa','ta','virama','ra'
 	);
 	
-	/**
-	 * Arc length of the nakshatra.
-	 * 
-	 * @var array 
-	 */
-	static public $nakshatraArc = array(
-		'd' => 13,
-		'm' => 20,
-		's' => 0
-	);
-	
-	/**
-	 * Devanagari nakshatra title in transliteration.
-	 * 
-	 * @var array
-	 * @see Jyotish\Alphabet\Devanagari
-	 */
-	protected $nakshatraTranslit = array();
-	
-	/**
-	 * Nakshatra start.
-	 * 
-	 * @var array
-	 */
-	protected $nakshatraStart = array();
-	
-	/**
-	 * Nakshatra end.
-	 * 
-	 * @var array
-	 */
-	protected $nakshatraEnd = array();
-	
-	/**
-	 * Type of nakshatra.
-	 * 
-	 * @var string
-	 */
-	protected $nakshatraType;
-	
-	/**
-	 * Deva of nakshatra.
-	 * 
-	 * @var mixed
-	 */
-	protected $nakshatraDeva;
-	
-	/**
-	 * Energy of nakshatra.
-	 * 
-	 * @var string
-	 */
-	protected $nakshatraEnergy;
-	
-	/**
-	 * Gana of nakshatra.
-	 * 
-	 * @var string
-	 */
-	protected $nakshatraGana;
-	
-	/**
-	 * Gender of nakshatra.
-	 * 
-	 * @var string
-	 */
-	protected $nakshatraGender;
-	
-	/**
-	 * 
-	 * 
-	 * @var string
-	 */
-	protected $nakshatraGraha;
-	
-	/**
-	 * Guna of nakshatra.
-	 * 
-	 * @var string
-	 */
-	protected $nakshatraGuna;
-	
-	/**
-	 * Purushartha of nakshatra.
-	 * 
-	 * @var string
-	 */
-	protected $nakshatraPurushartha;
-	
-	/**
-	 * Varna of nakshatra.
-	 * 
-	 * @var string
-	 */
-	protected $nakshatraVarna;
-	
-	/**
-	 * Get nakshatra translit.
-	 * 
-	 * @return array
-	 */
-	public function getNakshatraTranslit()
-	{
-		return $this->nakshatraTranslit;
-	}
-	
-	/**
-	 * Get nakshatra start.
-	 * 
-	 * @return array
-	 */
-	public function getNakshatraStart()
-	{
-		return $this->nakshatraStart;
-	}
-	
-	/**
-	 * Set nakshatra start.
-	 * 
-	 * @param array $dms Start arc of nakshatra
-	 */
-	protected function setNakshatraStart($dms)
-	{
-		$this->nakshatraStart = $dms;
-	}
-	
-	/**
-	 * Get nakshatra end.
-	 * 
-	 * @return array
-	 */
-	public function getNakshatraEnd()
-	{
-		return $this->nakshatraEnd;
-	}
-	
-	/**
-	 * Set nakshatra end.
-	 * 
-	 * @param array $dms End arc of nakshatra
-	 */
-	protected function setNakshatraEnd($dms)
-	{
-		$this->nakshatraEnd = $dms;
-	}
-	
-	/**
-	 * Get nakshatra type.
-	 * 
-	 * @return string
-	 */
-	public function getNakshatraType()
-	{
-		return $this->nakshatraType;
-	}
-	
-	/**
-	 * Get nakshatra Deva.
-	 * 
-	 * @return mixed
-	 */
-	public function getNakshatraDeva()
-	{
-		return $this->nakshatraDeva;
-	}
-	
-	/**
-	 * Get nakshatra energy.
-	 * 
-	 * @return string
-	 */
-	public function getNakshatraEnergy()
-	{
-		return $this->nakshatraEnergy;
-	}
-	
-	/**
-	 * Get nakshatra gana.
-	 * 
-	 * @return string
-	 */
-	public function getNakshatraGana()
-	{
-		return $this->nakshatraGana;
-	}
-	
-	/**
-	 * Get nakshatra gender.
-	 * 
-	 * @return string
-	 */
-	public function getNakshatraGender()
-	{
-		return $this->nakshatraGender;
-	}
-	
-	/**
-	 * Get nakshatra Graha.
-	 * 
-	 * @return string
-	 */
-	public function getNakshatraGraha()
-	{
-		return $this->nakshatraGraha;
-	}
-	
-	/**
-	 * Get nakshatra guna.
-	 * 
-	 * @return string
-	 */
-	public function getNakshatraGuna()
-	{
-		return $this->nakshatraGuna;
-	}
-	
-	/**
-	 * Get nakshatra purushartha.
-	 * 
-	 * @return string
-	 */
-	public function getNakshatraPurushartha()
-	{
-		return $this->nakshatraPurushartha;
-	}
-	
-	/**
-	 * Get nakshatra varna.
-	 * 
-	 * @return string
-	 */
-	public function getNakshatraVarna()
-	{
-		return $this->nakshatraVarna;
-	}
-	
-	/**
-	 * Get nakshatra prakriti.
-	 * 
-	 * @return string
-	 */
-	public function getNakshatraPrakriti()
-	{
-		return $this->nakshatraPrakriti;
-	}
 
 	/**
 	 * Returns the requested instance of nakshatra class.
 	 * 
-	 * @param int $number The number of nakshatra.
+	 * @param int $key The number of nakshatra
 	 * @param array $options
-	 * @return the requested instance of nakshatra class.
+	 * @return the requested instance of nakshatra class
 	 */
-	static public function getInstance($number, array $options = null)
+	static public function getInstance($key, array $options = null)
 	{
-		if (!array_key_exists($number, self::$NAKSHATRA)) {
-			throw new Exception\InvalidArgumentException("Nakshatra with the number '$number' does not exist.");
+		if (!array_key_exists($key, self::$nakshatra)) {
+			throw new Exception\InvalidArgumentException("Nakshatra with the number '$key' does not exist.");
 		}
 		
-		$nakshatraClass = 'Jyotish\\Panchanga\\Nakshatra\\Object\\N' . $number;
+		$nakshatraClass = 'Jyotish\\Panchanga\\Nakshatra\\Object\\N' . $key;
 		$nakshatraObject = new $nakshatraClass($options);
-		
-		if($options['withAbhijit']){
-			switch ($number){
-			case 21:
-				$nakshatraObject->setNakshatraStart(Math::dmsMulti(self::$nakshatraArc, 20));
-				$nakshatraObject->setNakshatraEnd(array('d' => 276, 'm' => 40));
-				break;
-			case 28:
-				$nakshatraObject->setNakshatraStart(array('d' => 276, 'm' => 40));
-				$nakshatraObject->setNakshatraEnd(array('d' => 280, 'm' => 53, 's' => 20));
-				break;
-			case 22:
-				$nakshatraObject->setNakshatraStart(array('d' => 280, 'm' => 53, 's' => 20));
-				$nakshatraObject->setNakshatraEnd(Math::dmsMulti(self::$nakshatraArc, 22));
-				break;
-			default:
-				$nakshatraObject->setNakshatraStart(Math::dmsMulti(self::$nakshatraArc, $number - 1));
-				$nakshatraObject->setNakshatraEnd(Math::dmsSum($nakshatraObject->getNakshatraStart(), self::$nakshatraArc));
-			}
-		}else{
-			if($number == 28) {
-				throw new Exception\InvalidArgumentException("Parameters of 28 nakshatra are determined only with argument 'withAbhijit' = true.");
-			}
-			
-			$nakshatraObject->setNakshatraStart(Math::dmsMulti(self::$nakshatraArc, $number - 1));
-			$nakshatraObject->setNakshatraEnd(Math::dmsSum($nakshatraObject->getNakshatraStart(), self::$nakshatraArc));
-		}
 		
 		return $nakshatraObject;
 	}
 	
+	/**
+	 * Returns the list of nakshatras.
+	 * 
+	 * @param type $withAbhijit
+	 * @return array
+	 */
 	static public function nakshatraList($withAbhijit = false)
 	{
-		$nakshatras = self::$NAKSHATRA;
+		$nakshatras = self::$nakshatra;
 		
 		if($withAbhijit){
 			$result = 

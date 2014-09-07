@@ -6,6 +6,7 @@
 
 namespace Jyotish\Panchanga\Nakshatra\Object;
 
+use Jyotish\Panchanga\Nakshatra\Nakshatra;
 use Jyotish\Graha\Graha;
 use Jyotish\Tattva\Jiva\Deva;
 use Jyotish\Tattva\Jiva\Manusha;
@@ -17,7 +18,14 @@ use Jyotish\Tattva\Ayurveda\Prakriti;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class N4 extends \Jyotish\Panchanga\Nakshatra\Nakshatra {
+class N4 extends NakshatraObject {
+	/**
+	 * Nakshatra key
+	 * 
+	 * @var int
+	 */
+	protected $nakshatraKey = 4;
+	
 	/**
 	 * Devanagari title 'rohini' in transliteration.
 	 * 
@@ -34,10 +42,10 @@ class N4 extends \Jyotish\Panchanga\Nakshatra\Nakshatra {
 	 * @var string
 	 * @see Varahamihira. Brihat Samhita. Chapter 98, Verse 6.
 	 */
-	protected $nakshatraType = self::TYPE_DHRUVA;
+	protected $nakshatraType = Nakshatra::TYPE_DHRUVA;
 	
 	protected $nakshatraDeva = Deva::DEVA_BRAHMA;
-	protected $nakshatraEnergy = self::ENERGY_SRISHTI;
+	protected $nakshatraEnergy = Nakshatra::ENERGY_SRISHTI;
 	protected $nakshatraGana = Manusha::GANA_MANUSHA;
 	protected $nakshatraGender = Manusha::GENDER_FEMALE;
 	protected $nakshatraGraha = Graha::GRAHA_CH;
@@ -47,7 +55,7 @@ class N4 extends \Jyotish\Panchanga\Nakshatra\Nakshatra {
 	protected $nakshatraPrakriti = Prakriti::PRAKRITI_KAPHA;
 
 	public function __construct($options) {
-		return $this;
+		parent::__construct($options);
 	}
 
 }
