@@ -84,6 +84,64 @@ class Math {
 	}
 	
 	/**
+	 * Calculates the distance in a cycle.
+	 * 
+	 * @param int $n1
+	 * @param int $n2
+	 * @param int $cycle Size of cycle
+	 * @return int
+	 */
+	static public function distanceInCycle($n1, $n2, $cycle = 12)
+	{
+		if($n1 < $n2){
+			$dn = $n2 - $n1 + 1;
+		}else{
+			$dn = $cycle - ($n1 - $n2) + 1;
+		}
+		return $dn;
+	}
+	
+	/**
+	 * Calculates the number in a cycle.
+	 * 
+	 * @param int $n
+	 * @param int $distance
+	 * @return int
+	 */
+	static public function numberInCycle($n, $distance = 1, $cycle = 12) {
+		/*
+		if(!is_int($n)){
+			throw new Exception\InvalidArgumentException("Number of object must be an integer.");
+		}
+		 */
+		$number = $n + ($distance - 1);
+		
+		if($number < $cycle) {
+			$numberCycle = $number;
+		} else {
+			$numberCycle = fmod($number, $cycle);
+			if($numberCycle == 0) {
+				$numberCycle = $cycle;
+			}
+		}
+		
+		return $numberCycle;
+	}
+	
+	/**
+	 * Next number in a cycle.
+	 * 
+	 * @param int $n
+	 * @return int
+	 */
+	static public function numberNext($n, $cycle = 12) {
+		$nNext    = $n + 1;
+		$nInCycle = self::numberInCycle($nNext, 1, $cycle);
+		
+		return $nInCycle;
+	}
+	
+	/**
 	 * Sum of two values of arc angular degrees (hours), minutes and seconds.
 	 * 
 	 * @param array $dms1

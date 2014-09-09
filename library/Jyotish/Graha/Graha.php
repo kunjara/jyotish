@@ -7,6 +7,7 @@
 namespace Jyotish\Graha;
 
 use Jyotish\Rashi\Rashi;
+use Jyotish\Ganita\Math;
 
 /**
  * Class with Graha names and attributes.
@@ -378,7 +379,7 @@ class Graha {
 			$friends[] = $gFriend;
 		
 		foreach($rashiFriendsFromMt as $rStep){
-			$rFriend = Rashi::inZodiacRashi($rashiMt, $rStep);
+			$rFriend = Math::numberInCycle($rashiMt, $rStep);
 			$R = Rashi::getInstance((int)$rFriend);
 			$gRuler = $R->getRashiRuler();
 			
@@ -390,7 +391,7 @@ class Graha {
 		$friends = array_unique($friends);
 		
 		foreach($rashiEnemiesFromMt as $rStep){
-			$rEnemy = Rashi::inZodiacRashi($rashiMt, $rStep);
+			$rEnemy = Math::numberInCycle($rashiMt, $rStep);
 			$R = Rashi::getInstance((int)$rEnemy);
 			$gRuler = $R->getRashiRuler();
 			

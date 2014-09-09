@@ -43,13 +43,13 @@ class D9 extends \Jyotish\Varga\Varga {
 		
 		switch ($rashiBhava) {
 			case Rashi::BHAVA_CHARA:
-				$vargaRashi['rashi'] = Rashi::inZodiacRashi($ganitaRashi['rashi'] + $result['units']);
+				$vargaRashi['rashi'] = Math::numberInCycle($ganitaRashi['rashi'] + $result['units']);
 				break;
 			case Rashi::BHAVA_STHIRA:
-				$vargaRashi['rashi'] = Rashi::inZodiacRashi($ganitaRashi['rashi'] + $result['units'], 9);
+				$vargaRashi['rashi'] = Math::numberInCycle($ganitaRashi['rashi'] + $result['units'], 9);
 				break;
 			case Rashi::BHAVA_DVISVA:
-				$vargaRashi['rashi'] = Rashi::inZodiacRashi($ganitaRashi['rashi'] + $result['units'], 5);
+				$vargaRashi['rashi'] = Math::numberInCycle($ganitaRashi['rashi'] + $result['units'], 5);
 				break;
 		}
 		

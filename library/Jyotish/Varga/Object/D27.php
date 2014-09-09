@@ -44,16 +44,16 @@ class D27 extends \Jyotish\Varga\Varga {
 		
 		switch ($rashiBhuta) {
 			case Bhuta::BHUTA_AGNI:
-				$vargaRashi['rashi'] = Rashi::inZodiacRashi(1 + $result['units']);
+				$vargaRashi['rashi'] = Math::numberInCycle(1 + $result['units']);
 				break;
 			case Bhuta::BHUTA_PRITVI:
-				$vargaRashi['rashi'] = Rashi::inZodiacRashi(4 + $result['units']);
+				$vargaRashi['rashi'] = Math::numberInCycle(4 + $result['units']);
 				break;
 			case Bhuta::BHUTA_VAYU:
-				$vargaRashi['rashi'] = Rashi::inZodiacRashi(7 + $result['units']);
+				$vargaRashi['rashi'] = Math::numberInCycle(7 + $result['units']);
 				break;
 			case Bhuta::BHUTA_JALA:
-				$vargaRashi['rashi'] = Rashi::inZodiacRashi(10 + $result['units']);
+				$vargaRashi['rashi'] = Math::numberInCycle(10 + $result['units']);
 				break;
 		}
 		

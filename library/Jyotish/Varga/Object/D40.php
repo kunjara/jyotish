@@ -7,7 +7,6 @@
 namespace Jyotish\Varga\Object;
 
 use Jyotish\Ganita\Math;
-use Jyotish\Rashi\Rashi;
 
 /**
  * Class of varga D40.
@@ -38,9 +37,9 @@ class D40 extends \Jyotish\Varga\Varga {
 		$vargaRashi['degree'] = $result['parts'] * 30 / $amshaSize;
 		
 		if($ganitaRashi['rashi'] % 2) {
-			$vargaRashi['rashi'] = Rashi::inZodiacRashi(1 + $result['units']);
+			$vargaRashi['rashi'] = Math::numberInCycle(1 + $result['units']);
 		} else {
-			$vargaRashi['rashi'] = Rashi::inZodiacRashi(7 + $result['units']);
+			$vargaRashi['rashi'] = Math::numberInCycle(7 + $result['units']);
 		}
 		
 		return $vargaRashi;

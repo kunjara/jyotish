@@ -216,43 +216,4 @@ class Rashi {
 			throw new Exception\InvalidArgumentException("Rashi with the number '$number' does not exist.");
 		}
 	}
-	
-	/**
-	 * Next rashi.
-	 * 
-	 * @param int $rashi
-	 * @return int
-	 */
-	static public function nextRashi($rashi) {
-		$rashiIncrement = $rashi + 1;
-		$rashiZodiac = self::inZodiacRashi($rashiIncrement);
-		
-		return $rashiZodiac;
-	}
-	
-	/**
-	 * Calculates the number rashi in zodiac.
-	 * 
-	 * @param int $rashi
-	 * @param int $step
-	 * @return int
-	 */
-	static public function inZodiacRashi($rashi, $step = 1) {
-		if(!is_int($rashi)){
-			throw new Exception\InvalidArgumentException("Rashi number must be an integer.");
-		}
-		$rashiStep = $rashi + ($step - 1);
-		
-		if($rashiStep < 12) {
-			$rashiZodiac = $rashiStep;
-		} else {
-			$rashiZodiac = fmod($rashiStep, 12);
-			if($rashiZodiac == 0) {
-				$rashiZodiac = 12;
-			}
-		}
-		
-		return $rashiZodiac;
-	}
-
 }

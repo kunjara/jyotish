@@ -6,8 +6,7 @@
 
 namespace Jyotish\Varga;
 
-use Jyotish\Service\Utils;
-use Jyotish\Rashi\Rashi;
+use Jyotish\Ganita\Math;
 
 /**
  * Class with the names of divisional charts and their parameters.
@@ -172,7 +171,7 @@ abstract class Varga {
 			if($k == 1) {
 				$rashi = $bhava1Varga['rashi'];
 			} else {
-				$rashi = Rashi::nextRashi($rashi);
+				$rashi = Math::numberNext($rashi);
 			}
 			$vargaData['bhava'][$k] = array(
 				'rashi' => $rashi,
