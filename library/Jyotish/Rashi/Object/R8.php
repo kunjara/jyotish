@@ -6,6 +6,7 @@
 
 namespace Jyotish\Rashi\Object;
 
+use Jyotish\Rashi\Rashi;
 use Jyotish\Graha\Graha;
 use Jyotish\Tattva\Jiva\Manusha;
 use Jyotish\Tattva\Maha\Bhuta;
@@ -16,7 +17,7 @@ use Jyotish\Tattva\Ayurveda\Prakriti;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class R8 extends \Jyotish\Rashi\Rashi {
+class R8 extends RashiObject {
 	/**
 	 * Devanagari title 'vrishchika' in transliteration.
 	 * 
@@ -48,7 +49,7 @@ class R8 extends \Jyotish\Rashi\Rashi {
 	 * @var string
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 4, Verse 5-5 1/2.
 	 */
-	protected $rashiBhava = self::BHAVA_STHIRA;
+	protected $rashiBhava = Rashi::BHAVA_STHIRA;
 	
 	/**
 	 * Gender of rashi.
@@ -91,7 +92,7 @@ class R8 extends \Jyotish\Rashi\Rashi {
 	protected $rashiVarna = Manusha::VARNA_BRAHMANA;
 
 	public function __construct($options) {
-		return $this;
+		parent::__construct($options);
 	}
 
 }

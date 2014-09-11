@@ -307,16 +307,12 @@ class NakshatraObject {
 	 */
 	protected function setNakshatraNavatara()
 	{
-		if($this->nakshatraKey <= 9){
-			$result = $this->nakshatraKey;
-		}elseif($this->nakshatraKey == 28){
+		if($this->nakshatraKey == 28){
 			$result = null;
 		}else{
-			$result = fmod($this->nakshatraKey, 9);
-			if($result == 0){
-				$result = 9;
-			}
+			$result = Math::numberInCycle($this->nakshatraKey, 1, 9);
 		}
+		
 		$this->nakshatraNavatara = $result;
 	}
 	
