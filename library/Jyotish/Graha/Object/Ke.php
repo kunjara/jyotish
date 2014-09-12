@@ -6,6 +6,7 @@
 
 namespace Jyotish\Graha\Object;
 
+use Jyotish\Graha\Graha;
 use Jyotish\Tattva\Maha\Disha;
 use Jyotish\Tattva\Maha\Guna;
 use Jyotish\Tattva\Jiva\Manusha;
@@ -15,7 +16,14 @@ use Jyotish\Tattva\Jiva\Manusha;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class Ke extends \Jyotish\Graha\Graha {
+class Ke extends GrahaObject {
+	/**
+	 * Abbreviation of the graha
+	 * 
+	 * @var string
+	 */
+	protected $grahaAbbr = 'Ke';
+	
 	/**
 	 * Devanagari title 'ketu' in transliteration.
 	 * 
@@ -50,7 +58,7 @@ class Ke extends \Jyotish\Graha\Graha {
 	 * @var string
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 11.
 	 */
-	protected $grahaCharacter = self::CHARACTER_MALEFIC;
+	protected $grahaCharacter = Graha::CHARACTER_MALEFIC;
 	
 	/**
 	 * Deva of the Graha.
@@ -141,13 +149,13 @@ class Ke extends \Jyotish\Graha\Graha {
 	 */
 	protected $grahaRelation = array
 	(
-		self::GRAHA_SY => -1,
-		self::GRAHA_CH => -1,
-		self::GRAHA_GU => 0,
-		self::GRAHA_SK => 1,
-		self::GRAHA_BU => 0,
-		self::GRAHA_MA => 1,
-		self::GRAHA_SA => 1,
+		Graha::GRAHA_SY => -1,
+		Graha::GRAHA_CH => -1,
+		Graha::GRAHA_GU => 0,
+		Graha::GRAHA_SK => 1,
+		Graha::GRAHA_BU => 0,
+		Graha::GRAHA_MA => 1,
+		Graha::GRAHA_SA => 1,
 	);
 	
 	protected $grahaDisha = Disha::DISHA_NAIRUTYA;
@@ -155,7 +163,7 @@ class Ke extends \Jyotish\Graha\Graha {
 	protected $grahaDrishti = null;
 
 	public function __construct($options) {
-		return $this;
+		parent::__construct($options);
 	}
 
 }

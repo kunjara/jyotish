@@ -6,7 +6,7 @@
 
 namespace Jyotish\Graha\Object;
 
-use Jyotish\Rashi\Rashi;
+use Jyotish\Graha\Graha;
 use Jyotish\Tattva\Maha\Bhuta;
 use Jyotish\Tattva\Maha\Disha;
 use Jyotish\Tattva\Maha\Guna;
@@ -21,7 +21,14 @@ use Jyotish\Tattva\Ayurveda\Rasa;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class Sk extends \Jyotish\Graha\Graha {
+class Sk extends GrahaObject {
+	/**
+	 * Abbreviation of the graha
+	 * 
+	 * @var string
+	 */
+	protected $grahaAbbr = 'Sk';
+	
 	/**
 	 * Devanagari title 'shukra' in transliteration.
 	 * 
@@ -65,7 +72,7 @@ class Sk extends \Jyotish\Graha\Graha {
 	 * @var string
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 11.
 	 */
-	protected $grahaCharacter = self::CHARACTER_BENEFIC;
+	protected $grahaCharacter = Graha::CHARACTER_BENEFIC;
 	
 	/**
 	 * Deva of the Graha.
@@ -171,13 +178,13 @@ class Sk extends \Jyotish\Graha\Graha {
 	 */
 	protected $grahaRelation = array
 	(
-		self::GRAHA_SY => -1,
-		self::GRAHA_CH => -1,
-		self::GRAHA_GU => 0,
-		self::GRAHA_SK => null,
-		self::GRAHA_BU => 1,
-		self::GRAHA_MA => 0,
-		self::GRAHA_SA => 1,
+		Graha::GRAHA_SY => -1,
+		Graha::GRAHA_CH => -1,
+		Graha::GRAHA_GU => 0,
+		Graha::GRAHA_SK => null,
+		Graha::GRAHA_BU => 1,
+		Graha::GRAHA_MA => 0,
+		Graha::GRAHA_SA => 1,
 	);
 	
 	protected $grahaDisha = Disha::DISHA_AGNEYA;
@@ -204,7 +211,7 @@ class Sk extends \Jyotish\Graha\Graha {
 	);
 
 	public function __construct($options) {
-		return $this;
+		parent::__construct($options);
 	}
 
 }
