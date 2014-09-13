@@ -6,6 +6,7 @@
 
 namespace Jyotish\Panchanga\Tithi\Object;
 
+use Jyotish\Panchanga\Tithi\Tithi;
 use Jyotish\Tattva\Jiva\Deva;
 use Jyotish\Panchanga\Karana\Karana;
 
@@ -14,7 +15,14 @@ use Jyotish\Panchanga\Karana\Karana;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class T15 extends \Jyotish\Panchanga\Tithi\Tithi {
+class T15 extends TithiObject {
+	/**
+	 * Tithi key
+	 * 
+	 * @var int
+	 */
+	protected $tithiKey = 15;
+	
 	/**
 	 * Devanagari number 15 in transliteration.
 	 * 
@@ -44,7 +52,7 @@ class T15 extends \Jyotish\Panchanga\Tithi\Tithi {
 	 * 
 	 * @var string
 	 */
-	protected $tithiType = self::TYPE_PURNA;
+	protected $tithiType = Tithi::TYPE_PURNA;
 	
 	/**
 	 * Karana of tithi.
@@ -58,7 +66,7 @@ class T15 extends \Jyotish\Panchanga\Tithi\Tithi {
 	
 
 	public function __construct($options) {
-		return $this;
+		parent::__construct($options);
 	}
 
 }

@@ -6,6 +6,7 @@
 
 namespace Jyotish\Panchanga\Tithi\Object;
 
+use Jyotish\Panchanga\Tithi\Tithi;
 use Jyotish\Tattva\Jiva\Deva;
 use Jyotish\Panchanga\Karana\Karana;
 
@@ -14,7 +15,14 @@ use Jyotish\Panchanga\Karana\Karana;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class T29 extends \Jyotish\Panchanga\Tithi\Tithi {
+class T29 extends TithiObject {
+	/**
+	 * Tithi key
+	 * 
+	 * @var int
+	 */
+	protected $tithiKey = 29;
+	
 	/**
 	 * Devanagari number 14 in transliteration.
 	 * 
@@ -37,14 +45,14 @@ class T29 extends \Jyotish\Panchanga\Tithi\Tithi {
 	 * 
 	 * @var string
 	 */
-	protected $tithiPaksha = self::PAKSHA_KRISHNA;
+	protected $tithiPaksha = Tithi::PAKSHA_KRISHNA;
 	
 	/**
 	 * Type of tithi.
 	 * 
 	 * @var string
 	 */
-	protected $tithiType = self::TYPE_RIKTA;
+	protected $tithiType = Tithi::TYPE_RIKTA;
 	
 	/**
 	 * Karana of tithi.
@@ -57,7 +65,7 @@ class T29 extends \Jyotish\Panchanga\Tithi\Tithi {
 	);
 
 	public function __construct($options) {
-		return $this;
+		parent::__construct($options);
 	}
 
 }
