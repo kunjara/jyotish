@@ -42,31 +42,6 @@ class Bhava {
 	static public $translit = array(
 		'bha','aa','va'
 	);
-	
-	/**
-	 * Devanagari bhava title in transliteration.
-	 * 
-	 * @var array
-	 * @see Jyotish\Alphabet\Devanagari
-	 */
-	protected $bhavaTranslit;
-	
-	/**
-	 * Purushartha of bhava.
-	 * 
-	 * @var string
-	 */
-	protected $bhavaPurushartha;
-	
-	/**
-	 * Get bhava purushartha.
-	 * 
-	 * @return string
-	 */
-	public function getBhavaPurushartha()
-	{
-		return $this->bhavaPurushartha;
-	}
 
 	/**
 	 * Returns the requested instance of bhava class.

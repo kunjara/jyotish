@@ -19,6 +19,13 @@ use Jyotish\Tattva\Ayurveda\Prakriti;
  */
 class R6 extends RashiObject {
 	/**
+	 * Rashi key
+	 * 
+	 * @var int
+	 */
+	protected $rashiKey = 6;
+	
+	/**
 	 * Devanagari title 'kanya' in transliteration.
 	 * 
 	 * @var array

@@ -13,8 +13,28 @@ use Jyotish\Tattva\Jiva\Manusha;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class B9 extends \Jyotish\Bhava\Bhava {
-
+class B9 extends BhavaObject {
+	/**
+	 * Bhava key
+	 * 
+	 * @var int
+	 */
+	protected $bhavaKey = 9;
+	
+	/**
+	 * Indications of bhava.
+	 * 
+	 * @var array
+	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 11, Verse 10.
+	 */
+	protected $bhavaIndications = array(
+		'fortunes',
+		'wifes brother',
+		'religion',
+		'brothers wife',
+		'visits to shrines',
+	);
+	
 	/**
 	 * Purushartha of bhava.
 	 * 
@@ -23,7 +43,7 @@ class B9 extends \Jyotish\Bhava\Bhava {
 	protected $bhavaPurushartha = Manusha::PURUSHARTHA_DHARMA;
 
 	public function __construct($options) {
-		return $this;
+		parent::__construct($options);
 	}
 
 }
