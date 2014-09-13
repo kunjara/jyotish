@@ -13,12 +13,18 @@ use Jyotish\Tattva\Jiva\Deva;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class Y7 extends \Jyotish\Panchanga\Yoga\Yoga {
-
+class Y7 extends YogaObject {
+	/**
+	 * Yoga key
+	 * 
+	 * @var int
+	 */
+	protected $yogaKey = 7;
+	
 	protected $yogaDeva = Deva::DEVA_SURYA;
 
 	public function __construct($options) {
-		return $this;
+		parent::__construct($options);
 	}
 
 }

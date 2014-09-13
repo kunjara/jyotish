@@ -12,7 +12,6 @@ namespace Jyotish\Panchanga\Yoga;
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 class Yoga {
-
 	static public $YOGA = array(
 		1 => 'Vishkambha',
 		2 => 'Preeti',
@@ -44,23 +43,6 @@ class Yoga {
 	);
 	
 	/**
-	 * Deva of yoga.
-	 * 
-	 * @var string
-	 */
-	protected $yogaDeva;
-	
-	/**
-	 * Get yoga Deva.
-	 * 
-	 * @return string
-	 */
-	public function getYogaDeva()
-	{
-		return $this->yogaDeva;
-	}
-	
-	/**
 	 * Returns the requested instance of yoga class.
 	 * 
 	 * @param int $number The number of yoga.
@@ -79,5 +61,3 @@ class Yoga {
 	}
 
 }
-
-?>
