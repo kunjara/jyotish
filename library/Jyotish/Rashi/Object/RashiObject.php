@@ -60,6 +60,14 @@ class RashiObject {
 	protected $rashiPrakriti;
 	
 	/**
+	 * Vasya of rashi.
+	 * 
+	 * @var string
+	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 4, Verse 6-24.
+	 */
+	protected $rashiVasya;
+
+	/**
 	 * Bhuta of rashi.
 	 * 
 	 * @var string
@@ -132,6 +140,16 @@ class RashiObject {
 	public function getRashiPrakriti()
 	{
 		return $this->rashiPrakriti;
+	}
+	
+	/**
+	 * Get rashi vasya.
+	 * 
+	 * @return string
+	 */
+	public function getRashiVasya()
+	{
+		return $this->rashiVasya;
 	}
 	
 	/**

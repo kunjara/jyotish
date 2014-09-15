@@ -75,6 +75,14 @@ class R10 extends RashiObject {
 	protected $rashiPrakriti = Prakriti::PRAKRITI_VATA;
 	
 	/**
+	 * Vasya of rashi.
+	 * 
+	 * @var string
+	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 4, Verse 19-20.
+	 */
+	protected $rashiVasya = Rashi::VASYA_CHATUSHPADA;
+	
+	/**
 	 * Bhuta of rashi.
 	 * 
 	 * @var string

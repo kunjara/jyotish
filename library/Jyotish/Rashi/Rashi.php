@@ -12,9 +12,13 @@ namespace Jyotish\Rashi;
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 class Rashi {
-	const BHAVA_CHARA = 'chara';
-	const BHAVA_STHIRA = 'sthira';
-	const BHAVA_DVISVA = 'dvisva';
+	const BHAVA_CHARA       = 'chara';
+	const BHAVA_STHIRA      = 'sthira';
+	const BHAVA_DVISVA      = 'dvisva';
+	
+	const VASYA_DWIPADA     = 'dwipada';
+	const VASYA_CHATUSHPADA = 'chatushpada';
+	const VASYA_JALA        = 'jala';
 
 	/**
 	 * Array of all rashis.
@@ -22,7 +26,7 @@ class Rashi {
 	 * @var array 
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 4, Verse 3.
 	 */
-	static public $RASHI = array(
+	static public $rashi = array(
 		1 => 'Mesha',
 		2 => 'Vrishabha',
 		3 => 'Mithuna',
@@ -50,18 +54,18 @@ class Rashi {
 	/**
 	 * Returns the requested instance of rashi class.
 	 * 
-	 * @param int $number The number of rashi.
+	 * @param int $key The number of rashi.
 	 * @param array $options
 	 * @return the requested instance of rashi class.
 	 */
-	static public function getInstance($number, array $options = null) {
-		if (array_key_exists($number, self::$RASHI)) {
-			$rashiClass = 'Jyotish\\Rashi\\Object\\R' . $number;
+	static public function getInstance($key, array $options = null) {
+		if (array_key_exists($key, self::$rashi)) {
+			$rashiClass = 'Jyotish\\Rashi\\Object\\R' . $key;
 			$rashiObject = new $rashiClass($options);
 
 			return $rashiObject;
 		} else {
-			throw new Exception\InvalidArgumentException("Rashi with the number '$number' does not exist.");
+			throw new Exception\InvalidArgumentException("Rashi with the key '$key' does not exist.");
 		}
 	}
 }
