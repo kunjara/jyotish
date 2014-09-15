@@ -170,23 +170,6 @@ class Bu extends GrahaObject {
 		'end' => 20
 	);
 	
-	/**
-	 * Natural relationships.
-	 * 
-	 * @var array
-	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 55. 
-	 */
-	protected $grahaRelation = array
-	(
-		Graha::GRAHA_SY => 1,
-		Graha::GRAHA_CH => -1,
-		Graha::GRAHA_GU => 0,
-		Graha::GRAHA_SK => 1,
-		Graha::GRAHA_BU => null,
-		Graha::GRAHA_MA => 0,
-		Graha::GRAHA_SA => 0,
-	);
-	
 	protected $grahaDisha = Disha::DISHA_UTTARA;
 	protected $grahaPrakriti = array
 	(
@@ -217,7 +200,7 @@ class Bu extends GrahaObject {
 		} else {
 			$this->grahaCharacter = Graha::CHARACTER_BENEFIC;
 		}
-		return $this;
+		parent::__construct($options);
 	}
 
 }

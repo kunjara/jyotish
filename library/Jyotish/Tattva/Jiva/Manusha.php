@@ -22,10 +22,10 @@ class Manusha extends Jiva {
 	const VARNA_UGRA = 'ugra';
 	
 	static public $varnaChatur = array(
-		self::VARNA_BRAHMANA,
-		self::VARNA_KSHATRIYA,
-		self::VARNA_VAISHYA,
-		self::VARNA_SHUDRA
+		1 => self::VARNA_BRAHMANA,
+		2 => self::VARNA_KSHATRIYA,
+		3 => self::VARNA_VAISHYA,
+		4 => self::VARNA_SHUDRA
 	);
 	
 	const PURUSHARTHA_DHARMA = 'dharma';

@@ -33,7 +33,7 @@ class Graha {
 	 * @var string
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 10.
 	 */
-	static public $GRAHA = array(
+	static public $graha = array(
 		self::GRAHA_SY => 'Surya',
 		self::GRAHA_CH => 'Chandra',
 		self::GRAHA_MA => 'Mangala',
@@ -57,18 +57,18 @@ class Graha {
 	/**
 	 * Returns the requested instance of graha class.
 	 * 
-	 * @param string $abbr The acronym of graha.
+	 * @param string $key The acronym of graha.
 	 * @param array $options
 	 * @return the requested instance of graha class.
 	 */
-	static public function getInstance($abbr, array $options = null) {
-		if (array_key_exists($abbr, self::$GRAHA)) {
-			$grahaClass = 'Jyotish\Graha\Object\\' . $abbr;
+	static public function getInstance($key, array $options = null) {
+		if (array_key_exists($key, self::$graha)) {
+			$grahaClass = 'Jyotish\Graha\Object\\' . $key;
 			$grahaObject = new $grahaClass($options);
 
 			return $grahaObject;
 		} else {
-			throw new Exception\InvalidArgumentException("Graha with the acronym '$abbr' does not exist.");
+			throw new Exception\InvalidArgumentException("Graha with the key '$key' does not exist.");
 		}
 	}
 

@@ -170,23 +170,6 @@ class Sk extends GrahaObject {
 		'end' => 15
 	);
 	
-	/**
-	 * Natural relationships.
-	 * 
-	 * @var array
-	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 55. 
-	 */
-	protected $grahaRelation = array
-	(
-		Graha::GRAHA_SY => -1,
-		Graha::GRAHA_CH => -1,
-		Graha::GRAHA_GU => 0,
-		Graha::GRAHA_SK => null,
-		Graha::GRAHA_BU => 1,
-		Graha::GRAHA_MA => 0,
-		Graha::GRAHA_SA => 1,
-	);
-	
 	protected $grahaDisha = Disha::DISHA_AGNEYA;
 	protected $grahaPrakriti = array
 	(

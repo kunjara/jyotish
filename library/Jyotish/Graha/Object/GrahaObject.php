@@ -108,7 +108,7 @@ class GrahaObject {
 	 * Graha exaltation.
 	 * 
 	 * @var array
-	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 49-50. 
+	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 49-50.
 	 */
 	protected $grahaExaltation = array();
 	
@@ -116,7 +116,7 @@ class GrahaObject {
 	 * Graha debilitation.
 	 * 
 	 * @var array
-	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 49-50. 
+	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 49-50.
 	 */
 	protected $grahaDebilitation = array();
 	
@@ -124,7 +124,7 @@ class GrahaObject {
 	 * Graha mooltrikon.
 	 * 
 	 * @var array
-	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 51-54. 
+	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 51-54.
 	 */
 	protected $grahaMooltrikon = array();
 	
@@ -132,7 +132,7 @@ class GrahaObject {
 	 * Own sign of the graha.
 	 * 
 	 * @var array
-	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 51-54. 
+	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 51-54.
 	 */
 	protected $grahaOwn = array();
 	
@@ -140,7 +140,7 @@ class GrahaObject {
 	 * Natural relationships.
 	 * 
 	 * @var array
-	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 55. 
+	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 55.
 	 */
 	protected $grahaRelation = array();
 	
@@ -321,9 +321,30 @@ class GrahaObject {
 	/**
 	 * Get natural relationships.
 	 * 
-	 * @return array
+	 * @param string $key
+	 * @return mixed
+	 *
 	 */
-	public function getNaturalRelation()
+	public function getNaturalRelation($key = null)
+	{
+		if(is_null($key)){
+			return $this->grahaRelation;
+		}else{
+			if (array_key_exists($key, Graha::$graha)){
+				return $this->grahaRelation[$key];
+			}else{
+				throw new \Jyotish\Graha\Exception\InvalidArgumentException("Graha with the key '$key' does not exist.");
+			}
+		}
+	}
+	
+	/**
+	 * Set natural relationships.
+	 * 
+	 * @param bool $relationSameGrahas If true same grahas are friends.
+	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 55.
+	 */
+	protected function setNaturalRelation($relationSameGrahas = false)
 	{
 		$relationships = array();
 		$rashiFriendsFromMt  = array(2, 4, 5, 8, 9, 12);
@@ -361,7 +382,7 @@ class GrahaObject {
 		}
 		$enemies = array_unique($enemies);
 		
-		foreach (Graha::$GRAHA as $g => $name){
+		foreach (Graha::$graha as $g => $name){
 			if(in_array($g, $friends) and in_array($g, $enemies)){
 				$relationships[$g] = 0;
 			}elseif(in_array($g, $friends)){
@@ -372,9 +393,11 @@ class GrahaObject {
 				$relationships[$g] = null;
 			}
 		}
-		return $relationships;
+		$relationships[$this->grahaAbbr] = $relationSameGrahas ? 1 : null;
+		
+		$this->grahaRelation = $relationships;
 	}
-	
+
 	/**
 	 * Constructor
 	 * 
@@ -382,6 +405,6 @@ class GrahaObject {
      */
 	public function __construct($options)
 	{
-		return $this;
+		$this->setNaturalRelation($options['relationSameGrahas']);
 	}
 }

@@ -171,23 +171,6 @@ class Gu extends GrahaObject {
 		'end' => 10
 	);
 	
-	/**
-	 * Natural relationships.
-	 * 
-	 * @var array
-	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 55. 
-	 */
-	protected $grahaRelation = array
-	(
-		Graha::GRAHA_SY => 1,
-		Graha::GRAHA_CH => 1,
-		Graha::GRAHA_GU => null,
-		Graha::GRAHA_SK => -1,
-		Graha::GRAHA_BU => -1,
-		Graha::GRAHA_MA => 1,
-		Graha::GRAHA_SA => 0,
-	);
-	
 	protected $grahaDisha = Disha::DISHA_ISHANYA;
 	protected $grahaPrakriti = array
 	(
