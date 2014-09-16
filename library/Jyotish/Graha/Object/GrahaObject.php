@@ -347,40 +347,31 @@ class GrahaObject {
 	protected function setNaturalRelation($relationSameGrahas = false)
 	{
 		$relationships = array();
-		$rashiFriendsFromMt  = array(2, 4, 5, 8, 9, 12);
-		$rashiEnemiesFromMt  = array(3, 6, 7, 10, 11);
+		$friendsFromMt = array(2, 4, 5, 8, 9, 12);
+		$enemiesFromMt = array(3, 6, 7, 10, 11);
 		
 		$rashiMt = $this->grahaMooltrikon['rashi'];
 		$rashiEx = $this->grahaExaltation['rashi'];
+		
+		$friends = array();
 		$R = Rashi::getInstance($rashiEx);
 		$gFriend = $R->getRashiRuler();
+		if($this->grahaAbbr != $gFriend) $friends[] = $gFriend;
 		
-		if($this->grahaAbbr != $gFriend)
-			$friends[] = $gFriend;
+		$relation = function($distance) use($rashiMt){
+			foreach($distance as $step){
+				$r = Math::numberInCycle($rashiMt, $step);
+				$R = Rashi::getInstance((int)$r);
+				$gRuler = $R->getRashiRuler();
+
+				if($this->grahaAbbr == $gRuler) continue;
+				$grahas[] = $gRuler;
+			}
+			return $grahas;
+		};
 		
-		foreach($rashiFriendsFromMt as $rStep){
-			$rFriend = Math::numberInCycle($rashiMt, $rStep);
-			$R = Rashi::getInstance((int)$rFriend);
-			$gRuler = $R->getRashiRuler();
-			
-			if($this->grahaAbbr == $gRuler)
-				continue;
-			
-			$friends[] = $gRuler;
-		}
-		$friends = array_unique($friends);
-		
-		foreach($rashiEnemiesFromMt as $rStep){
-			$rEnemy = Math::numberInCycle($rashiMt, $rStep);
-			$R = Rashi::getInstance((int)$rEnemy);
-			$gRuler = $R->getRashiRuler();
-			
-			if($this->grahaAbbr == $gRuler)
-				continue;
-			
-			$enemies[] = $gRuler;
-		}
-		$enemies = array_unique($enemies);
+		$friends = array_unique(array_merge($friends, $relation($friendsFromMt)));
+		$enemies = array_unique($relation($enemiesFromMt));
 		
 		foreach (Graha::$graha as $g => $name){
 			if(in_array($g, $friends) and in_array($g, $enemies)){
