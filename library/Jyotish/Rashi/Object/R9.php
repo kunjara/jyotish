@@ -8,7 +8,7 @@ namespace Jyotish\Rashi\Object;
 
 use Jyotish\Rashi\Rashi;
 use Jyotish\Graha\Graha;
-use Jyotish\Tattva\Jiva\Manusha;
+use Jyotish\Tattva\Jiva\Dwipada\Manusha;
 use Jyotish\Tattva\Maha\Bhuta;
 use Jyotish\Tattva\Ayurveda\Prakriti;
 
@@ -80,7 +80,7 @@ class R9 extends RashiObject {
 	 * @var string
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 4, Verse 17-18 1/2.
 	 */
-	protected $rashiVasya = Rashi::VASYA_DWIPADA;
+	protected $rashiVasya = Manusha::VASYA_DWIPADA;
 	
 	/**
 	 * Bhuta of rashi.

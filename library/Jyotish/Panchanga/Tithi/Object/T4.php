@@ -7,7 +7,7 @@
 namespace Jyotish\Panchanga\Tithi\Object;
 
 use Jyotish\Panchanga\Tithi\Tithi;
-use Jyotish\Tattva\Jiva\Deva;
+use Jyotish\Tattva\Jiva\Dwipada\Deva;
 use Jyotish\Panchanga\Karana\Karana;
 
 /**

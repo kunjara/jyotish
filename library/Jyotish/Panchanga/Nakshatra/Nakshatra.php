@@ -29,6 +29,21 @@ class Nakshatra {
 	const ENERGY_SRISHTI = 'srishti';
 	const ENERGY_STHITI = 'sthiti';
 	const ENERGY_LAYA = 'laya';
+	
+	const YONI_HORSE = 'horse';
+	const YONI_ELEPHANT = 'elephant';
+	const YONI_SHEEP = 'sheep';
+	const YONI_SERPENT = 'serpent';
+	const YONI_DOG = 'dog';
+	const YONI_CAT = 'cat';
+	const YONI_RAT = 'rat';
+	const YONI_COW = 'cow';
+	const YONI_BUFFALO = 'buffalo';
+	const YONI_TIGER = 'tiger';
+	const YONI_HARE = 'hare';
+	const YONI_MONKEY = 'monkey';
+	const YONI_LION = 'lion';
+	const YONI_MONGOOSE = 'mongoose';
 
 	/**
 	 * Array of all nakshatras.

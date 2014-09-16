@@ -125,6 +125,13 @@ class NakshatraObject {
 	protected $nakshatraNavatara;
 	
 	/**
+	 * Yoni of nakshatra.
+	 * 
+	 * @var array
+	 */
+	protected $nakshatraYoni = array();
+
+	/**
 	 * Get nakshatra translit.
 	 * 
 	 * @return array
@@ -262,6 +269,16 @@ class NakshatraObject {
 	public function getNakshatraNavatara()
 	{
 		return $this->nakshatraNavatara;
+	}
+	
+	/**
+	 * Get nakshatra yoni.
+	 * 
+	 * @return array
+	 */
+	public function getNakshatraYoni()
+	{
+		return $this->nakshatraYoni;
 	}
 
 	/**

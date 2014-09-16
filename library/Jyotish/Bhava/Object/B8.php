@@ -6,7 +6,7 @@
 
 namespace Jyotish\Bhava\Object;
 
-use Jyotish\Tattva\Jiva\Manusha;
+use Jyotish\Tattva\Jiva\Dwipada\Manusha;
 
 /**
  * Class of bhava 8.

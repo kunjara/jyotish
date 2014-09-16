@@ -7,8 +7,8 @@
 namespace Jyotish\Panchanga\Nakshatra\Object;
 
 use Jyotish\Panchanga\Nakshatra\Nakshatra;
-use Jyotish\Tattva\Jiva\Deva;
-use Jyotish\Tattva\Jiva\Manusha;
+use Jyotish\Tattva\Jiva\Dwipada\Deva;
+use Jyotish\Tattva\Jiva\Dwipada\Manusha;
 
 /**
  * Class of nakshatra 28.
@@ -49,6 +49,7 @@ class N28 extends NakshatraObject {
 	protected $nakshatraPurushartha = null;
 	protected $nakshatraVarna = null;
 	protected $nakshatraPrakriti = null;
+	protected $nakshatraYoni = null;
 
 	public function __construct($options) {
 		parent::__construct($options);

@@ -9,7 +9,7 @@ namespace Jyotish\Graha\Object;
 use Jyotish\Graha\Graha;
 use Jyotish\Tattva\Maha\Disha;
 use Jyotish\Tattva\Maha\Guna;
-use Jyotish\Tattva\Jiva\Manusha;
+use Jyotish\Tattva\Jiva\Dwipada\Manusha;
 
 /**
  * Class of graha Ke.

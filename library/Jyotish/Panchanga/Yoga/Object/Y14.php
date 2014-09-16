@@ -6,7 +6,7 @@
 
 namespace Jyotish\Panchanga\Yoga\Object;
 
-use Jyotish\Tattva\Jiva\Deva;
+use Jyotish\Tattva\Jiva\Dwipada\Deva;
 
 /**
  * Class of yoga 14.

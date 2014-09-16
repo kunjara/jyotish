@@ -15,10 +15,6 @@ class Rashi {
 	const BHAVA_CHARA       = 'chara';
 	const BHAVA_STHIRA      = 'sthira';
 	const BHAVA_DVISVA      = 'dvisva';
-	
-	const VASYA_DWIPADA     = 'dwipada';
-	const VASYA_CHATUSHPADA = 'chatushpada';
-	const VASYA_JALA        = 'jala';
 
 	/**
 	 * Array of all rashis.

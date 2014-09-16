@@ -8,8 +8,8 @@ namespace Jyotish\Panchanga\Nakshatra\Object;
 
 use Jyotish\Panchanga\Nakshatra\Nakshatra;
 use Jyotish\Graha\Graha;
-use Jyotish\Tattva\Jiva\Deva;
-use Jyotish\Tattva\Jiva\Manusha;
+use Jyotish\Tattva\Jiva\Dwipada\Deva;
+use Jyotish\Tattva\Jiva\Dwipada\Manusha;
 use Jyotish\Tattva\Maha\Guna;
 use Jyotish\Tattva\Ayurveda\Prakriti;
 
@@ -53,6 +53,10 @@ class N14 extends NakshatraObject {
 	protected $nakshatraPurushartha = Manusha::PURUSHARTHA_KAMA;
 	protected $nakshatraVarna = Manusha::VARNA_DASYA;
 	protected $nakshatraPrakriti = Prakriti::PRAKRITI_PITTA;
+	protected $nakshatraYoni = array(
+		'yoni'   => Nakshatra::YONI_TIGER,
+		'gender' => Manusha::GENDER_FEMALE,
+	);
 
 	public function __construct($options) {
 		parent::__construct($options);
