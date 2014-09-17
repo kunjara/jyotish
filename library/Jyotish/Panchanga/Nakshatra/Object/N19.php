@@ -55,7 +55,7 @@ class N19 extends NakshatraObject {
 	protected $nakshatraVarna = Manusha::VARNA_UGRA;
 	protected $nakshatraPrakriti = Prakriti::PRAKRITI_VATA;
 	protected $nakshatraYoni = array(
-		'yoni'   => Chatushpada::ANIMAL_DOG,
+		'animal' => Chatushpada::ANIMAL_DOG,
 		'gender' => Manusha::GENDER_MALE,
 	);
 

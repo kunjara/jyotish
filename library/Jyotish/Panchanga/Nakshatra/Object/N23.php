@@ -55,7 +55,7 @@ class N23 extends NakshatraObject {
 	protected $nakshatraVarna = Manusha::VARNA_DASYA;
 	protected $nakshatraPrakriti = Prakriti::PRAKRITI_PITTA;
 	protected $nakshatraYoni = array(
-		'yoni'   => Chatushpada::ANIMAL_LION,
+		'animal' => Chatushpada::ANIMAL_LION,
 		'gender' => Manusha::GENDER_FEMALE,
 	);
 

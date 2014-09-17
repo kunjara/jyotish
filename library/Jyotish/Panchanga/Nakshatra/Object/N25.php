@@ -55,7 +55,7 @@ class N25 extends NakshatraObject {
 	protected $nakshatraVarna = Manusha::VARNA_BRAHMANA;
 	protected $nakshatraPrakriti = Prakriti::PRAKRITI_VATA;
 	protected $nakshatraYoni = array(
-		'yoni'   => Chatushpada::ANIMAL_LION,
+		'animal' => Chatushpada::ANIMAL_LION,
 		'gender' => Manusha::GENDER_MALE,
 	);
 

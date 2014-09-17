@@ -55,7 +55,7 @@ class N26 extends NakshatraObject {
 	protected $nakshatraVarna = Manusha::VARNA_KSHATRIYA;
 	protected $nakshatraPrakriti = Prakriti::PRAKRITI_PITTA;
 	protected $nakshatraYoni = array(
-		'yoni'   => Chatushpada::ANIMAL_COW,
+		'animal' => Chatushpada::ANIMAL_COW,
 		'gender' => Manusha::GENDER_FEMALE,
 	);
 

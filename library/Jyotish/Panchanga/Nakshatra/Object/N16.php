@@ -58,7 +58,7 @@ class N16 extends NakshatraObject {
 	protected $nakshatraVarna = Manusha::VARNA_MLECHHA;
 	protected $nakshatraPrakriti = Prakriti::PRAKRITI_KAPHA;
 	protected $nakshatraYoni = array(
-		'yoni'   => Chatushpada::ANIMAL_TIGER,
+		'animal' => Chatushpada::ANIMAL_TIGER,
 		'gender' => Manusha::GENDER_MALE,
 	);
 

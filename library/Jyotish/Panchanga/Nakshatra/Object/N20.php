@@ -55,7 +55,7 @@ class N20 extends NakshatraObject {
 	protected $nakshatraVarna = Manusha::VARNA_BRAHMANA;
 	protected $nakshatraPrakriti = Prakriti::PRAKRITI_PITTA;
 	protected $nakshatraYoni = array(
-		'yoni'   => Chatushpada::ANIMAL_MONKEY,
+		'animal' => Chatushpada::ANIMAL_MONKEY,
 		'gender' => Manusha::GENDER_MALE,
 	);
 

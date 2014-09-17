@@ -55,7 +55,7 @@ class N9 extends NakshatraObject {
 	protected $nakshatraVarna = Manusha::VARNA_MLECHHA;
 	protected $nakshatraPrakriti = Prakriti::PRAKRITI_KAPHA;
 	protected $nakshatraYoni = array(
-		'yoni'   => Chatushpada::ANIMAL_CAT,
+		'animal' => Chatushpada::ANIMAL_CAT,
 		'gender' => Manusha::GENDER_MALE,
 	);
 

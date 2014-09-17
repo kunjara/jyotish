@@ -55,7 +55,7 @@ class N13 extends NakshatraObject {
 	protected $nakshatraVarna = Manusha::VARNA_VAISHYA;
 	protected $nakshatraPrakriti = Prakriti::PRAKRITI_VATA;
 	protected $nakshatraYoni = array(
-		'yoni'   => Chatushpada::ANIMAL_BUFFALO,
+		'animal' => Chatushpada::ANIMAL_BUFFALO,
 		'gender' => Manusha::GENDER_FEMALE,
 	);
 

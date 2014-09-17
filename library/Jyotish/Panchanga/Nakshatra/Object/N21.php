@@ -55,7 +55,7 @@ class N21 extends NakshatraObject {
 	protected $nakshatraVarna = Manusha::VARNA_KSHATRIYA;
 	protected $nakshatraPrakriti = Prakriti::PRAKRITI_KAPHA;
 	protected $nakshatraYoni = array(
-		'yoni'   => Chatushpada::ANIMAL_MONGOOSE,
+		'animal' => Chatushpada::ANIMAL_MONGOOSE,
 		'gender' => Manusha::GENDER_MALE,
 	);
 

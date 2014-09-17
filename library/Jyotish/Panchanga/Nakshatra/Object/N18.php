@@ -55,7 +55,7 @@ class N18 extends NakshatraObject {
 	protected $nakshatraVarna = Manusha::VARNA_DASYA;
 	protected $nakshatraPrakriti = Prakriti::PRAKRITI_VATA;
 	protected $nakshatraYoni = array(
-		'yoni'   => Chatushpada::ANIMAL_HARE,
+		'animal' => Chatushpada::ANIMAL_HARE,
 		'gender' => Manusha::GENDER_MALE,
 	);
 

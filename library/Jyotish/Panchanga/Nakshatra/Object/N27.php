@@ -55,7 +55,7 @@ class N27 extends NakshatraObject {
 	protected $nakshatraVarna = Manusha::VARNA_SHUDRA;
 	protected $nakshatraPrakriti = Prakriti::PRAKRITI_KAPHA;
 	protected $nakshatraYoni = array(
-		'yoni'   => Chatushpada::ANIMAL_ELEPHANT,
+		'animal' => Chatushpada::ANIMAL_ELEPHANT,
 		'gender' => Manusha::GENDER_FEMALE,
 	);
 

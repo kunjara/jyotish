@@ -55,7 +55,7 @@ class N8 extends NakshatraObject {
 	protected $nakshatraVarna = Manusha::VARNA_KSHATRIYA;
 	protected $nakshatraPrakriti = Prakriti::PRAKRITI_PITTA;
 	protected $nakshatraYoni = array(
-		'yoni'   => Chatushpada::ANIMAL_SHEEP,
+		'animal' => Chatushpada::ANIMAL_SHEEP,
 		'gender' => Manusha::GENDER_MALE,
 	);
 

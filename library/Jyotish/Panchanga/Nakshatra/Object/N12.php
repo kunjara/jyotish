@@ -55,7 +55,7 @@ class N12 extends NakshatraObject {
 	protected $nakshatraVarna = Manusha::VARNA_KSHATRIYA;
 	protected $nakshatraPrakriti = Prakriti::PRAKRITI_VATA;
 	protected $nakshatraYoni = array(
-		'yoni'   => Chatushpada::ANIMAL_COW,
+		'animal' => Chatushpada::ANIMAL_COW,
 		'gender' => Manusha::GENDER_MALE,
 	);
 

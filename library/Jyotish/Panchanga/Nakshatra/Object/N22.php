@@ -55,7 +55,7 @@ class N22 extends NakshatraObject {
 	protected $nakshatraVarna = Manusha::VARNA_MLECHHA;
 	protected $nakshatraPrakriti = Prakriti::PRAKRITI_KAPHA;
 	protected $nakshatraYoni = array(
-		'yoni'   => Chatushpada::ANIMAL_MONKEY,
+		'animal' => Chatushpada::ANIMAL_MONKEY,
 		'gender' => Manusha::GENDER_FEMALE,
 	);
 

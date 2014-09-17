@@ -55,7 +55,7 @@ class N11 extends NakshatraObject {
 	protected $nakshatraVarna = Manusha::VARNA_BRAHMANA;
 	protected $nakshatraPrakriti = Prakriti::PRAKRITI_PITTA;
 	protected $nakshatraYoni = array(
-		'yoni'   => Chatushpada::ANIMAL_RAT,
+		'animal' => Chatushpada::ANIMAL_RAT,
 		'gender' => Manusha::GENDER_FEMALE,
 	);
 

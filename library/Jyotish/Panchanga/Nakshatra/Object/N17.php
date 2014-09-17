@@ -55,7 +55,7 @@ class N17 extends NakshatraObject {
 	protected $nakshatraVarna = Manusha::VARNA_SHUDRA;
 	protected $nakshatraPrakriti = Prakriti::PRAKRITI_PITTA;
 	protected $nakshatraYoni = array(
-		'yoni'   => Chatushpada::ANIMAL_HARE,
+		'animal' => Chatushpada::ANIMAL_HARE,
 		'gender' => Manusha::GENDER_FEMALE,
 	);
 

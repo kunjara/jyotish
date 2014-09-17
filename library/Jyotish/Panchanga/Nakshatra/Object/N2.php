@@ -55,7 +55,7 @@ class N2 extends NakshatraObject {
 	protected $nakshatraVarna = Manusha::VARNA_MLECHHA;
 	protected $nakshatraPrakriti = Prakriti::PRAKRITI_PITTA;
 	protected $nakshatraYoni = array(
-		'yoni'   => Chatushpada::ANIMAL_ELEPHANT,
+		'animal' => Chatushpada::ANIMAL_ELEPHANT,
 		'gender' => Manusha::GENDER_MALE,
 	);
 

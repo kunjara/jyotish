@@ -55,7 +55,7 @@ class N10 extends NakshatraObject {
 	protected $nakshatraVarna = Manusha::VARNA_SHUDRA;
 	protected $nakshatraPrakriti = Prakriti::PRAKRITI_KAPHA;
 	protected $nakshatraYoni = array(
-		'yoni'   => Chatushpada::ANIMAL_RAT,
+		'animal' => Chatushpada::ANIMAL_RAT,
 		'gender' => Manusha::GENDER_MALE,
 	);
 
