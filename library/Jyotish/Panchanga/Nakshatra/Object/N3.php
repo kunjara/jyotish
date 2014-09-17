@@ -10,6 +10,7 @@ use Jyotish\Panchanga\Nakshatra\Nakshatra;
 use Jyotish\Graha\Graha;
 use Jyotish\Tattva\Jiva\Dwipada\Deva;
 use Jyotish\Tattva\Jiva\Dwipada\Manusha;
+use Jyotish\Tattva\Jiva\Chatushpada\Chatushpada;
 use Jyotish\Tattva\Maha\Guna;
 use Jyotish\Tattva\Ayurveda\Prakriti;
 
@@ -54,7 +55,7 @@ class N3 extends NakshatraObject {
 	protected $nakshatraVarna = Manusha::VARNA_BRAHMANA;
 	protected $nakshatraPrakriti = Prakriti::PRAKRITI_KAPHA;
 	protected $nakshatraYoni = array(
-		'yoni'   => Nakshatra::YONI_SHEEP,
+		'yoni'   => Chatushpada::ANIMAL_SHEEP,
 		'gender' => Manusha::GENDER_FEMALE,
 	);
 

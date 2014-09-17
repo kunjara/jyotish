@@ -10,6 +10,7 @@ use Jyotish\Panchanga\Nakshatra\Nakshatra;
 use Jyotish\Graha\Graha;
 use Jyotish\Tattva\Jiva\Dwipada\Deva;
 use Jyotish\Tattva\Jiva\Dwipada\Manusha;
+use Jyotish\Tattva\Jiva\Chatushpada\Chatushpada;
 use Jyotish\Tattva\Maha\Guna;
 use Jyotish\Tattva\Ayurveda\Prakriti;
 
@@ -57,7 +58,7 @@ class N16 extends NakshatraObject {
 	protected $nakshatraVarna = Manusha::VARNA_MLECHHA;
 	protected $nakshatraPrakriti = Prakriti::PRAKRITI_KAPHA;
 	protected $nakshatraYoni = array(
-		'yoni'   => Nakshatra::YONI_TIGER,
+		'yoni'   => Chatushpada::ANIMAL_TIGER,
 		'gender' => Manusha::GENDER_MALE,
 	);
 

@@ -10,6 +10,7 @@ use Jyotish\Panchanga\Nakshatra\Nakshatra;
 use Jyotish\Graha\Graha;
 use Jyotish\Tattva\Jiva\Dwipada\Deva;
 use Jyotish\Tattva\Jiva\Dwipada\Manusha;
+use Jyotish\Tattva\Jiva\Chatushpada\Chatushpada;
 use Jyotish\Tattva\Maha\Guna;
 use Jyotish\Tattva\Ayurveda\Prakriti;
 
@@ -54,7 +55,7 @@ class N18 extends NakshatraObject {
 	protected $nakshatraVarna = Manusha::VARNA_DASYA;
 	protected $nakshatraPrakriti = Prakriti::PRAKRITI_VATA;
 	protected $nakshatraYoni = array(
-		'yoni'   => Nakshatra::YONI_HARE,
+		'yoni'   => Chatushpada::ANIMAL_HARE,
 		'gender' => Manusha::GENDER_MALE,
 	);
 

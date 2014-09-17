@@ -7,7 +7,7 @@
 namespace Jyotish\Tattva\Jiva\Dwipada;
 
 /**
- * Class of Deva gana.
+ * Data class of dwipada.
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
