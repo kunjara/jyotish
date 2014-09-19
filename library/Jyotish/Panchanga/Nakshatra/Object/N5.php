@@ -58,6 +58,10 @@ class N5 extends NakshatraObject {
 		'animal' => Chatushpada::ANIMAL_SERPENT,
 		'gender' => Manusha::GENDER_FEMALE,
 	);
+	protected $nakshatraRajju = array(
+		'lift' => Nakshatra::LIFT_AROHA,
+		'limb' => Nakshatra::LIMB_SHIRO,
+	);
 
 	public function __construct($options) {
 		parent::__construct($options);

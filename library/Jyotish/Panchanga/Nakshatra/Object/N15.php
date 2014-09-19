@@ -58,6 +58,10 @@ class N15 extends NakshatraObject {
 		'animal' => Chatushpada::ANIMAL_BUFFALO,
 		'gender' => Manusha::GENDER_MALE,
 	);
+	protected $nakshatraRajju = array(
+		'lift' => Nakshatra::LIFT_AVAROHA,
+		'limb' => Nakshatra::LIMB_KANTHA,
+	);
 
 	public function __construct($options) {
 		parent::__construct($options);

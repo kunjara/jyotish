@@ -58,6 +58,10 @@ class N22 extends NakshatraObject {
 		'animal' => Chatushpada::ANIMAL_MONKEY,
 		'gender' => Manusha::GENDER_FEMALE,
 	);
+	protected $nakshatraRajju = array(
+		'lift' => Nakshatra::LIFT_AROHA,
+		'limb' => Nakshatra::LIMB_KANTHA,
+	);
 
 	public function __construct($options) {
 		parent::__construct($options);

@@ -58,6 +58,10 @@ class N21 extends NakshatraObject {
 		'animal' => Chatushpada::ANIMAL_MONGOOSE,
 		'gender' => Manusha::GENDER_MALE,
 	);
+	protected $nakshatraRajju = array(
+		'lift' => Nakshatra::LIFT_AROHA,
+		'limb' => Nakshatra::LIMB_NABHI,
+	);
 
 	public function __construct($options) {
 		parent::__construct($options);

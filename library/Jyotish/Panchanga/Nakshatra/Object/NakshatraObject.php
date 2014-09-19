@@ -130,6 +130,13 @@ class NakshatraObject {
 	 * @var array
 	 */
 	protected $nakshatraYoni = array();
+	
+	/**
+	 * Rajju of nakshatra.
+	 * 
+	 * @var array
+	 */
+	protected $nakshatraRajju = array();
 
 	/**
 	 * Get nakshatra translit.
@@ -279,6 +286,16 @@ class NakshatraObject {
 	public function getNakshatraYoni()
 	{
 		return $this->nakshatraYoni;
+	}
+	
+	/**
+	 * Get nakshatra rajju.
+	 * 
+	 * @return array
+	 */
+	public function getNakshatraRajju()
+	{
+		return $this->nakshatraRajju;
 	}
 
 	/**

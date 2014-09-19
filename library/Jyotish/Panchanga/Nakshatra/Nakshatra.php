@@ -29,6 +29,15 @@ class Nakshatra {
 	const ENERGY_SRISHTI = 'srishti';
 	const ENERGY_STHITI = 'sthiti';
 	const ENERGY_LAYA = 'laya';
+	
+	const LIFT_AROHA = 'aroha';
+	const LIFT_AVAROHA = 'avaroha';
+	
+	const LIMB_KANTHA = 'kantha';
+	const LIMB_KATI = 'kati';
+	const LIMB_PADA = 'pada';
+	const LIMB_SHIRO = 'shiro';
+	const LIMB_NABHI = 'nabhi';
 
 	/**
 	 * Array of all nakshatras.

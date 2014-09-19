@@ -58,6 +58,10 @@ class N9 extends NakshatraObject {
 		'animal' => Chatushpada::ANIMAL_CAT,
 		'gender' => Manusha::GENDER_MALE,
 	);
+	protected $nakshatraRajju = array(
+		'lift' => Nakshatra::LIFT_AVAROHA,
+		'limb' => Nakshatra::LIMB_PADA,
+	);
 
 	public function __construct($options) {
 		parent::__construct($options);

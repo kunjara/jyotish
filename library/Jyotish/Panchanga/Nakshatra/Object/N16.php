@@ -61,6 +61,10 @@ class N16 extends NakshatraObject {
 		'animal' => Chatushpada::ANIMAL_TIGER,
 		'gender' => Manusha::GENDER_MALE,
 	);
+	protected $nakshatraRajju = array(
+		'lift' => Nakshatra::LIFT_AVAROHA,
+		'limb' => Nakshatra::LIMB_NABHI,
+	);
 
 	public function __construct($options) {
 		parent::__construct($options);
