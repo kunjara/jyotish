@@ -24,7 +24,6 @@ use Jyotish\Calendar\Masa;
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 class Panchanga {
-	
 	private $_ganitaObject;
 	private $_userData;
 	private $_paramsData;
@@ -37,7 +36,7 @@ class Panchanga {
 		if($ganitaObject instanceof \Jyotish\Ganita\Method\Swetest){
 			$this->_ganitaObject = $ganitaObject;
 			$this->_setData();
-			$this->_risingData = $this->_ganitaObject->getRising();
+			$this->_risingData = $this->_ganitaObject->getRisings();
 		} else {
 			throw new Exception\InvalidArgumentException(
                 'Ganita method must be Swetest object.'

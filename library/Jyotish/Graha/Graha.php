@@ -27,6 +27,10 @@ class Graha {
 	const CHARACTER_BENEFIC = 'benefic';
 	const CHARACTER_MALEFIC = 'malefic';
 	
+	const RISING_NOREFRAC   = 'norefrac';
+	const RISING_DISCCENTER = 'disccenter';
+	const RISING_HINDU      = 'hindu';
+	
 	/**
 	 * Names of Grahas.
 	 * 
@@ -44,6 +48,18 @@ class Graha {
 		self::GRAHA_RA => 'Rahu',
 		self::GRAHA_KE => 'Ketu'
 	);
+	
+	/**
+	 * Specifications for risings and settings.
+	 * 
+	 * @var array
+	 */
+	static public $risingType = array(
+		self::RISING_NOREFRAC,
+		self::RISING_DISCCENTER,
+		self::RISING_HINDU,
+	);
+	
 	/**
 	 * Devanagari 'graha' in transliteration.
 	 * 

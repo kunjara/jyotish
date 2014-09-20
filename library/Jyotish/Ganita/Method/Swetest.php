@@ -16,34 +16,18 @@ use Jyotish\Ganita\Ayanamsha;
 use Jyotish\Ganita\Method\Calc;
 
 /**
- * Class to calculate the positions of the planets using the application swetest.
+ * Class for calculate the positions of the planets using the application swetest.
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class Swetest {
+class Swetest extends AbstractGanita{
 
-	const RISING_NOREFRAC   = 'norefrac';
-	const RISING_DISCCENTER = 'disccenter';
-	const RISING_HINDU      = 'hindu';
-	
-	private $_swe = array(
+	protected $swe = array(
 		'swetest'   => null,
 		'sweph'     => null,
 	);
-			
-	private $_data = array(
-		'date'      => null,
-		'time'      => null,
-		'timezone'  => 'UTC',
-		'offset'    => 0,
-		'longitude' => 0,
-		'latitude'  => 0,
-	);
 	
-	private $_ayanamsha = Ayanamsha::AYANAMSHA_LAHIRI;
-	private $_rising    = self::RISING_HINDU;
-	
-	static public $inputAyanamsha = array(
+	protected $inputAyanamsha = array(
 		Ayanamsha::AYANAMSHA_FAGAN => '0',
 		Ayanamsha::AYANAMSHA_LAHIRI => '1',
 		Ayanamsha::AYANAMSHA_DELUCE => '2',
@@ -56,13 +40,7 @@ class Swetest {
 		Ayanamsha::AYANAMSHA_SASSANIAN => '16',
 	);
 	
-	static public $inputRising = array(
-		self::RISING_NOREFRAC,
-		self::RISING_DISCCENTER,
-		self::RISING_HINDU,
-	);
-	
-	static public $inputPlanets = array(
+	protected $inputPlanets = array(
 		Graha::GRAHA_SY => '0',
 		Graha::GRAHA_CH => '1',
 		Graha::GRAHA_BU => '2',
@@ -73,7 +51,7 @@ class Swetest {
 		Graha::GRAHA_RA => 'm',
 	);
 	
-	static public $outputPlanets = array(
+	protected $outputPlanets = array(
 		'Sun'       => Graha::GRAHA_SY,
 		'Moon'      => Graha::GRAHA_CH,
 		'Mercury'   => Graha::GRAHA_BU,
@@ -83,7 +61,7 @@ class Swetest {
 		'Saturn'    => Graha::GRAHA_SA,
 		'meanNode'  => Graha::GRAHA_RA,
 	);
-	static public $outputHouses = array(
+	protected $outputHouses = array(
 		'house1'    => 1,
 		'house2'    => 2,
 		'house3'    => 3,
@@ -97,7 +75,7 @@ class Swetest {
 		'house11'   => 11,
 		'house12'   => 12,
 	);
-	static public $outputExtra = array(
+	protected $outputExtra = array(
 		'Ascendant' => Graha::LAGNA,
 		'MC'        => 'MC',
 		'ARMC'      => 'ARMC',
@@ -114,107 +92,13 @@ class Swetest {
 			throw new Exception\InvalidArgumentException("In the directory '{$swe['swetest']}' there is no swetest file.");
 		}
 		
-		$this->_swe['swetest'] = $swe['swetest'];
+		$this->swe['swetest'] = $swe['swetest'];
 
 		if (empty($swe['sweph'])) {
-			$this->_swe['sweph'] = $swe['swetest'];
+			$this->swe['sweph'] = $swe['swetest'];
 		} else {
-			$this->_swe['sweph'] = $swe['sweph'];
+			$this->swe['sweph'] = $swe['sweph'];
 		}
-	}
-	
-	/**
-	 * Set options.
-	 * 
-	 * @param array $options
-	 * @throws Exception\InvalidArgumentException
-	 * @return Swetest
-	 */
-	public function setOptions(array $options = array()) {
-		foreach ($options as $key => $value) {
-			$method = 'set' . $key;
-			
-			if (method_exists($this, $method)) {
-				$this->$method($value);
-			} else {
-				throw new Exception\InvalidArgumentException("Unknown option: $key");
-			}
-		}
-		return $this;
-	}
-	
-	/**
-	 * Set ayanamsha for calculation.
-	 * 
-	 * @param string $ayanamsha
-	 * @throws Exception\InvalidArgumentException
-	 * @return Swetest
-	 */
-	public function setAyanamsha($ayanamsha)
-	{
-		if(key_exists($ayanamsha, self::$inputAyanamsha)) {
-			$this->_ayanamsha = $ayanamsha;
-		} else {
-			throw new Exception\InvalidArgumentException("The ayanamsha '$ayanamsha' is not defined.");
-		}
-		
-		return $this;
-	}
-	
-	/**
-	 * Set rising for calculation.
-	 * 
-	 * @param string $rising
-	 * $throw Exception\InvalidArgumentException
-	 * @return Swetest
-	 */
-	public function setRising($rising)
-	{
-		if(array_search($rising, self::$inputRising)) {
-			$this->_rising = $rising;
-		} else {
-			throw new Exception\InvalidArgumentException("The rising '$rising' is not defined.");
-		}
-		
-		return $this;
-	}
-
-	/**
-	 * Set user data.
-	 * 
-	 * @param array $data
-	 * @throws Exception\UnexpectedValueException
-	 */
-	public function setData(array $data)
-	{
-		if(!is_array($data)) {
-			throw new Exception\UnexpectedValueException("Data must be an array.");
-		}
-		
-		foreach ($data as $dataName => $dataValue) {
-			$dataName = strtolower($dataName);
-
-			if (array_key_exists($dataName, $this->_data)) {
-				if(!empty($dataValue)) $this->_data[$dataName] = $dataValue;
-			} else {
-				throw new Exception\UnexpectedValueException("Unknown data: $dataName = $dataValue");
-			}
-			
-			if (empty($this->_data['date']))
-				$this->_data['date'] = Time::getDateNow();
-			if (empty($this->_data['time']))
-				$this->_data['time'] = Time::getTimeNow();
-		}
-	}
-	
-	/**
-	 * Get user data.
-	 * 
-	 * @return array
-	 */
-	public function getData()
-	{
-		return $this->_data;
 	}
 
 	/**
@@ -227,20 +111,20 @@ class Swetest {
 	{
 		$this->setOptions($options);
 		
-		$dateTimeString = $this->_data['date'] . ' ' . $this->_data['time'];
+		$dateTimeString = $this->data['date'] . ' ' . $this->data['time'];
 		$dateTimeFormat = Time::FORMAT_DATA_DATE . ' ' . Time::FORMAT_DATA_TIME;
 		
-		$offsetUser     = $this->_data['offset'];
-		$offsetSystem   = Time::getTimeZoneOffset($this->_data['timezone'], $dateTimeString);
+		$offsetUser     = $this->data['offset'];
+		$offsetSystem   = Time::getTimeZoneOffset($this->data['timezone'], $dateTimeString);
 		$offsetUser     != $offsetSystem ? $offset = $offsetUser : $offset = false;
 		
-		$dateTimeObject = Time::getDateTimeUtc($dateTimeFormat, $dateTimeString, $this->_data['timezone'], $offset);
+		$dateTimeObject = Time::getDateTimeUtc($dateTimeFormat, $dateTimeString, $this->data['timezone'], $offset);
 		
-		$dir    = $this->_swe['sweph'];
+		$dir    = $this->swe['sweph'];
 		$date   = $dateTimeObject->format(Time::FORMAT_DATA_DATE);
 		$time   = $dateTimeObject->format(Time::FORMAT_DATA_TIME);
-		$house  = $this->_data['longitude'].','.$this->_data['latitude'].',a';
-		$sid    = self::$inputAyanamsha[$this->_ayanamsha];
+		$house  = $this->data['longitude'].','.$this->data['latitude'].',a';
+		$sid    = $this->inputAyanamsha[$this->ayanamsha];
 
 		$string =
 				'swetest'.
@@ -254,10 +138,10 @@ class Swetest {
 				' -g,'.
 				' -head';
 
-		putenv("PATH={$this->_swe['swetest']}");
+		putenv("PATH={$this->swe['swetest']}");
 		exec($string, $out);
 		
-		$outFormat = $this->_formatParams($out);
+		$outFormat = $this->formatParams($out);
 		
 		return $outFormat;
 	}
@@ -265,22 +149,22 @@ class Swetest {
 	/**
 	 * Get the time of sunrise and sunset of planet.
 	 * 
-	 * @param string $planet
+	 * @param string $graha
 	 * @param array $options
 	 * @return array
 	 */
-	public function getRising($graha = Graha::GRAHA_SY, array $options = array())
+	public function getRisings($graha = Graha::GRAHA_SY, array $options = array())
 	{
 		$this->setOptions($options);
 		
-		$dateTimeObject = new DateTime($this->_data['date']);
+		$dateTimeObject = new DateTime($this->data['date']);
 		$dateTimeObject->sub(new DateInterval('P2D'));
 		
-		$dir    = $this->_swe['sweph'];
+		$dir    = $this->swe['sweph'];
 		$date   = $dateTimeObject->format(Time::FORMAT_DATA_DATE);
-		$planet = self::$inputPlanets[$graha];
-		$geopos	= $this->_data['longitude'].','.$this->_data['latitude'].',0';
-		$rising = $this->_rising;
+		$planet = $this->inputPlanets[$graha];
+		$geopos	= $this->data['longitude'].','.$this->data['latitude'].',0';
+		$rising = $this->rising;
 		
 		$string =
 				'swetest'.
@@ -292,7 +176,7 @@ class Swetest {
 				' -'.$rising.
 				' -rise';
 		
-		putenv("PATH={$this->_swe['swetest']}");
+		putenv("PATH={$this->swe['swetest']}");
 		exec($string, $out);
 		
 		for($i = 1; $i <= 4; $i++) {
@@ -302,9 +186,9 @@ class Swetest {
 			$settingString = str_replace(' ', '', $matches[5]).' '.str_replace(' ', '', $matches[6]);
 
 			$risingObject = new DateTime($risingString, new DateTimeZone('UTC'));
-			$risingObject->setTimezone(new DateTimeZone($this->_data['timezone']));
+			$risingObject->setTimezone(new DateTimeZone($this->data['timezone']));
 			$settingObject = new DateTime($settingString, new DateTimeZone('UTC'));
-			$settingObject->setTimezone(new DateTimeZone($this->_data['timezone']));
+			$settingObject->setTimezone(new DateTimeZone($this->data['timezone']));
 
 			$dateRising = $risingObject->format(Time::FORMAT_DATETIME);
 			$dateSetting = $settingObject->format(Time::FORMAT_DATETIME);
@@ -319,7 +203,7 @@ class Swetest {
 		return $bodyRising;
 	}
 
-	private function _formatParams($input)
+	private function formatParams($input)
 	{
 		$bodyParameters = array();
 		
@@ -332,8 +216,8 @@ class Swetest {
 			$bodyName   = $parameters[0];
 			$units      = Math::partsToUnits($parameters[1]);
 			
-			if (array_key_exists($bodyName, self::$outputPlanets)) {
-				$bodyParameters['graha'][self::$outputPlanets[$bodyName]] = array(
+			if (array_key_exists($bodyName, $this->outputPlanets)) {
+				$bodyParameters['graha'][$this->outputPlanets[$bodyName]] = array(
 					'longitude' => $parameters[1],
 					'latitude' => $parameters[2],
 					'speed' => $parameters[3],
@@ -342,8 +226,8 @@ class Swetest {
 					'rashi' => $units['units'],
 					'degree' => $units['parts'],
 				);
-			} elseif (array_key_exists($bodyName, self::$outputHouses)) {
-				$bodyParameters['bhava'][self::$outputHouses[$bodyName]] = array(
+			} elseif (array_key_exists($bodyName, $this->outputHouses)) {
+				$bodyParameters['bhava'][$this->outputHouses[$bodyName]] = array(
 					'longitude' => $parameters[1],
 					'ascension' => $parameters[2],
 					'declination' => $parameters[3],
@@ -351,7 +235,7 @@ class Swetest {
 					'degree' => $units['parts'],
 				);
 			} else {
-				$bodyParameters['extra'][self::$outputExtra[$bodyName]] = array(
+				$bodyParameters['extra'][$this->outputExtra[$bodyName]] = array(
 					'longitude' => $parameters[1],
 					'rashi'     => $units['units'],
 					'degree'    => $units['parts'],
