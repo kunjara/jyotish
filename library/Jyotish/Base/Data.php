@@ -4,81 +4,81 @@
  * @license   GNU General Public License version 2 or later
  */
 
-namespace Jyotish\Draw;
+namespace Jyotish\Base;
 
 use Jyotish\Graha\Graha;
 use Jyotish\Service\Utils;
 
 /**
- * Class of data for drawing.
+ * Data class.
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 class Data {
 
-	private $_sweData;
-	private $_rashiInBhava = null;
-	private $_grahaInBhava = null;
-	private $_grahaInRashi = null;
+	protected $ganitaData;
+	protected $rashiInBhava = null;
+	protected $grahaInBhava = null;
+	protected $grahaInRashi = null;
 
-	public function __construct(array $sweParams) {
-		$this->_sweData = $sweParams;
+	public function __construct(array $ganitaData) {
+		$this->ganitaData = $ganitaData;
 
 		return $this;
 	}
 
 	public function getRashiInBhava() {
-		if ($this->_rashiInBhava == null) {
-			foreach ($this->_sweData['bhava'] as $bhava => $params) {
+		if ($this->rashiInBhava == null) {
+			foreach ($this->ganitaData['bhava'] as $bhava => $params) {
 				$rashi = $params['rashi'];
-				$this->_rashiInBhava[$rashi] = $bhava;
+				$this->rashiInBhava[$rashi] = $bhava;
 			}
 		}
-		return $this->_rashiInBhava;
+		return $this->rashiInBhava;
 	}
 
 	public function getGrahaInBhava() {
-		if ($this->_grahaInBhava == null) {
-			foreach ($this->_sweData['graha'] as $graha => $params) {
+		if ($this->grahaInBhava == null) {
+			foreach ($this->ganitaData['graha'] as $graha => $params) {
 				$rashi = $params['rashi'];
 
-				if ($this->_rashiInBhava == null)
+				if ($this->rashiInBhava == null)
 					$this->getRashiInBhava();
 
-				$bhava = $this->_rashiInBhava[$rashi];
+				$bhava = $this->rashiInBhava[$rashi];
 				$direction = $params['speed'] > 0 ? 1 : -1;
 
-				$this->_grahaInBhava[$graha] = array(
+				$this->grahaInBhava[$graha] = array(
 					'bhava' => $bhava,
 					'direction' => $direction,
 				);
 			}
 		}
-		return $this->_grahaInBhava;
+		return $this->grahaInBhava;
 	}
 
 	public function getGrahaInRashi() {
-		if ($this->_grahaInRashi == null) {
-			foreach ($this->_sweData['graha'] as $graha => $params) {
+		if ($this->grahaInRashi == null) {
+			foreach ($this->ganitaData['graha'] as $graha => $params) {
 				$rashi = $params['rashi'];
 				$direction = $params['speed'] > 0 ? 1 : -1;
 
-				$this->_grahaInRashi[$graha] = array(
+				$this->grahaInRashi[$graha] = array(
 					'rashi' => $rashi,
 					'direction' => $direction,
 				);
 			}
-			$this->_grahaInRashi[Graha::LAGNA]['rashi'] = $this->_sweData['extra']['Lg']['rashi'];
-			$this->_grahaInRashi[Graha::LAGNA]['direction'] = 1;
+			$this->grahaInRashi[Graha::LAGNA]['rashi'] = $this->ganitaData['extra']['Lg']['rashi'];
+			$this->grahaInRashi[Graha::LAGNA]['direction'] = 1;
 		}
-		return $this->_grahaInRashi;
+		return $this->grahaInRashi;
 	}
 
 	public function getGrahaLabel($graha, $labelType = 0, $userFunction = null) {
-		if (!is_null($this->_grahaInBhava))
-			$grahas = $this->_grahaInBhava;
+		if (!is_null($this->grahaInBhava))
+			$grahas = $this->grahaInBhava;
 		else
-			$grahas = $this->_grahaInRashi;
+			$grahas = $this->grahaInRashi;
 
 		switch ($labelType) {
 			case 0:

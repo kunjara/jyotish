@@ -6,6 +6,8 @@
 
 namespace Jyotish\Draw\Plot\Chakra\Style;
 
+use Jyotish\Base\Data;
+
 /**
  * Class for generate Chakra.
  *
@@ -26,7 +28,7 @@ abstract class AbstractChakra {
 
 	abstract static public function getBhavaPoints($size, $left, $top);
 
-	abstract public function getRashiLabelPoints($size, array $labelRashi, \Jyotish\Draw\Data $drawData);
+	abstract public function getRashiLabelPoints($size, array $labelRashi, Data $drawData);
 
-	abstract public function getGrahaLabelPoints($size, array $labelGraha, \Jyotish\Draw\Data $drawData);
+	abstract public function getGrahaLabelPoints($size, array $labelGraha, Data $drawData);
 }

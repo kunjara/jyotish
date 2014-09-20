@@ -6,12 +6,14 @@
 
 namespace Jyotish\Rashi\Object;
 
+use Jyotish\Base\Object;
+
 /**
  * Parent class for rashi objects.
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class RashiObject {
+class RashiObject extends Object {
 	/**
 	 * Devanagari rashi title in transliteration.
 	 * 

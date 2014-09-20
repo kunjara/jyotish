@@ -7,6 +7,7 @@
 namespace Jyotish\Draw\Plot\Chakra\Style;
 
 use Jyotish\Graha\Graha;
+use Jyotish\Base\Data;
 
 /**
  * Class for generate North chakra.
@@ -97,7 +98,7 @@ final class North extends AbstractChakra {
 		return $myPoints;
 	}
 
-	public function getRashiLabelPoints($size, array $labelRashi, \Jyotish\Draw\Data $drawData) {
+	public function getRashiLabelPoints($size, array $labelRashi, Data $drawData) {
 		$ratio = round($size / 4);
 		$rashis = $drawData->getRashiInBhava();
 		$offsetCorner = sqrt(2 * $labelRashi['offsetBorder'] * $labelRashi['offsetBorder']);
@@ -128,7 +129,7 @@ final class North extends AbstractChakra {
 		return $myPoints;
 	}
 
-	public function getGrahaLabelPoints($size, array $labelGraha, \Jyotish\Draw\Data $drawData) {
+	public function getGrahaLabelPoints($size, array $labelGraha, Data $drawData) {
 		$ratio = round($size / 4);
 		$offsetBorder = $labelGraha['offsetBorder'];
 		$offsetCorner = $offsetBorder * 5;

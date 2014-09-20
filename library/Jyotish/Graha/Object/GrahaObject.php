@@ -6,6 +6,7 @@
 
 namespace Jyotish\Graha\Object;
 
+use Jyotish\Base\Object;
 use Jyotish\Graha\Graha;
 use Jyotish\Rashi\Rashi;
 use Jyotish\Ganita\Math;
@@ -15,7 +16,7 @@ use Jyotish\Ganita\Math;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class GrahaObject {
+class GrahaObject extends Object {
 	/**
 	 * Abbreviation of the graha
 	 * 

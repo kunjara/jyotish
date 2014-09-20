@@ -6,6 +6,8 @@
 
 namespace Jyotish\Draw;
 
+use Jyotish\Base\Data;
+
 /**
  * Class for drawing.
  *
@@ -37,7 +39,7 @@ class Draw {
 		$this->adapterObject->drawText($text, $x, $y, $options);
 	}
 
-	public function drawChakra(\Jyotish\Draw\Data $drawData, $topOffset = 0, $leftOffset = 0, $options = array()) {
+	public function drawChakra(Data $drawData, $topOffset = 0, $leftOffset = 0, $options = array()) {
 		$chakraAdapterName = 'Jyotish\Draw\Plot\Chakra\Render\\' . $this->adapter;
 		$chakraAdapterObject = new $chakraAdapterName($this->adapterObject);
 

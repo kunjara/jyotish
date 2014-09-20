@@ -7,6 +7,7 @@
 namespace Jyotish\Draw\Plot\Chakra\Style;
 
 use Jyotish\Graha\Graha;
+use Jyotish\Base\Data;
 
 /**
  * Class for generate East chakra.
@@ -97,7 +98,7 @@ final class East extends AbstractChakra {
 		return $myPoints;
 	}
 
-	public function getRashiLabelPoints($size, array $labelRashi, \Jyotish\Draw\Data $drawData) {
+	public function getRashiLabelPoints($size, array $labelRashi, Data $drawData) {
 		$ratio = round($size / 3);
 		$offsetBorder = $labelRashi['offsetBorder'];
 		$offsetCorner3 = $offsetBorder * 3;
@@ -172,7 +173,7 @@ final class East extends AbstractChakra {
 		return $myPoints;
 	}
 
-	public function getGrahaLabelPoints($size, array $labelGraha, \Jyotish\Draw\Data $drawData) {
+	public function getGrahaLabelPoints($size, array $labelGraha, Data $drawData) {
 		$ratio = round($size / 3);
 		$offsetBorder = $labelGraha['offsetBorder'];
 		$offsetCorner = $offsetBorder * 4;
