@@ -47,13 +47,6 @@ class Sy extends GrahaObject {
 		'Ravi',
 		'Vivasvan',
 	);
-	
-	protected $grahaOwn = array
-	(
-		'rashi' => 5,
-		'start' => 20,
-		'end' => 30
-	);
 	protected $grahaAgeMaturity = 22;
 	protected $grahaAgePeriod = array
 	(
@@ -66,6 +59,7 @@ class Sy extends GrahaObject {
 	 * 
 	 * @var string
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 11.
+	 * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 5.
 	 */
 	protected $grahaCharacter = Graha::CHARACTER_MALEFIC;
 	
@@ -74,6 +68,7 @@ class Sy extends GrahaObject {
 	 * 
 	 * @var string
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 18.
+	 * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 5.
 	 */
 	protected $grahaDeva = Deva::DEVA_AGNI;
 	
@@ -82,6 +77,7 @@ class Sy extends GrahaObject {
 	 * 
 	 * @var string
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 19.
+	 * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 6.
 	 */
 	protected $grahaGender = Manusha::GENDER_MALE;
 	
@@ -97,6 +93,7 @@ class Sy extends GrahaObject {
 	 * 
 	 * @var string
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 21.
+	 * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 7.
 	 */
 	protected $grahaVarna = Manusha::VARNA_KSHATRIYA;
 	
@@ -105,6 +102,7 @@ class Sy extends GrahaObject {
 	 * 
 	 * @var string
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 22.
+	 * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 7.
 	 */
 	protected $grahaGuna = Guna::GUNA_SATTVA;
 	
@@ -113,6 +111,7 @@ class Sy extends GrahaObject {
 	 * 
 	 * @var string
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 31.
+	 * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 11.
 	 */
 	protected $grahaDhatu = array
 	(
@@ -124,6 +123,7 @@ class Sy extends GrahaObject {
 	 * 
 	 * @var string
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 34.
+	 * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 14.
 	 */
 	protected $grahaRasa = Rasa::RASA_TIKTA;
 	
@@ -131,7 +131,8 @@ class Sy extends GrahaObject {
 	 * Graha exaltation.
 	 * 
 	 * @var array
-	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 49-50. 
+	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 49-50.
+	 * @see Varahamihira. Brihat Jataka. Chapter 1, Verse 13. 
 	 */
 	protected $grahaExaltation = array
 	(
@@ -143,7 +144,8 @@ class Sy extends GrahaObject {
 	 * Graha debilitation.
 	 * 
 	 * @var array
-	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 49-50. 
+	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 49-50.
+	 * @see Varahamihira. Brihat Jataka. Chapter 1, Verse 13.
 	 */
 	protected $grahaDebilitation = array
 	(
@@ -155,7 +157,8 @@ class Sy extends GrahaObject {
 	 * Graha mooltrikon.
 	 * 
 	 * @var array
-	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 51-54. 
+	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 51-54.
+	 * @see Varahamihira. Brihat Jataka. Chapter 1, Verse 14.
 	 */
 	protected $grahaMooltrikon = array
 		(
@@ -164,12 +167,33 @@ class Sy extends GrahaObject {
 		'end' => 20
 	);
 	
-	protected $grahaDisha = Disha::DISHA_PURVA;
-	protected $grahaPrakriti = array
+	/**
+	 * Own sign of the graha.
+	 * 
+	 * @var array
+	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 51-54.
+	 */
+	protected $grahaOwn = array
 	(
-		Prakriti::PRAKRITI_PITTA,
+		'rashi' => 5,
+		'start' => 20,
+		'end' => 30
 	);
 	
+	/**
+	 * Graha disha
+	 * 
+	 * @var string
+	 * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 5.
+	 */
+	protected $grahaDisha = Disha::DISHA_PURVA;
+	
+	/**
+	 * Graha drishti
+	 * 
+	 * @var array
+	 * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 13.
+	 */
 	protected $grahaDrishti = array
 	(
 		1 => 1,
@@ -184,6 +208,16 @@ class Sy extends GrahaObject {
 		10 => 0.25,
 		11 => 0,
 		12 => 0,
+	);
+	
+	/**
+	 * Prakriti of graha
+	 * 
+	 * @var array
+	 */
+	protected $grahaPrakriti = array
+	(
+		Prakriti::PRAKRITI_PITTA,
 	);
 
 	public function __construct($options) {

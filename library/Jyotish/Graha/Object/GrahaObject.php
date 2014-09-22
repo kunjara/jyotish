@@ -46,6 +46,7 @@ class GrahaObject extends Object {
 	 * 
 	 * @var string
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 11.
+	 * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 5.
 	 */
 	protected $grahaCharacter;
 	
@@ -54,6 +55,7 @@ class GrahaObject extends Object {
 	 * 
 	 * @var string
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 18.
+	 * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 5.
 	 */
 	protected $grahaDeva;
 	
@@ -62,6 +64,7 @@ class GrahaObject extends Object {
 	 * 
 	 * @var string
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 19.
+	 * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 6.
 	 */
 	protected $grahaGender;
 	
@@ -70,6 +73,7 @@ class GrahaObject extends Object {
 	 * 
 	 * @var string
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 20.
+	 * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 6.
 	 */
 	protected $grahaBhuta;
 	
@@ -78,6 +82,7 @@ class GrahaObject extends Object {
 	 * 
 	 * @var string
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 21.
+	 * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 7.
 	 */
 	protected $grahaVarna;
 	
@@ -86,6 +91,7 @@ class GrahaObject extends Object {
 	 * 
 	 * @var string
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 22.
+	 * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 7.
 	 */
 	protected $grahaGuna;
 	
@@ -94,6 +100,7 @@ class GrahaObject extends Object {
 	 * 
 	 * @var string
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 31.
+	 * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 11.
 	 */
 	protected $grahaDhatu;
 	
@@ -102,6 +109,7 @@ class GrahaObject extends Object {
 	 * 
 	 * @var string
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 34.
+	 * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 14.
 	 */
 	protected $grahaRasa;
 	
@@ -110,6 +118,7 @@ class GrahaObject extends Object {
 	 * 
 	 * @var array
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 49-50.
+	 * @see Varahamihira. Brihat Jataka. Chapter 1, Verse 13.
 	 */
 	protected $grahaExaltation = array();
 	
@@ -118,6 +127,7 @@ class GrahaObject extends Object {
 	 * 
 	 * @var array
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 49-50.
+	 * @see Varahamihira. Brihat Jataka. Chapter 1, Verse 13.
 	 */
 	protected $grahaDebilitation = array();
 	
@@ -126,6 +136,7 @@ class GrahaObject extends Object {
 	 * 
 	 * @var array
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 51-54.
+	 * @see Varahamihira. Brihat Jataka. Chapter 1, Verse 14.
 	 */
 	protected $grahaMooltrikon = array();
 	
@@ -145,9 +156,28 @@ class GrahaObject extends Object {
 	 */
 	protected $grahaRelation = array();
 	
+	/**
+	 * Graha disha
+	 * 
+	 * @var string
+	 * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 5.
+	 */
 	protected $grahaDisha;
-	protected $grahaPrakriti;
+	
+	/**
+	 * Graha drishti
+	 * 
+	 * @var array
+	 * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 13.
+	 */
 	protected $grahaDrishti = array();
+	
+	/**
+	 * Prakriti of graha
+	 * 
+	 * @var array
+	 */
+	protected $grahaPrakriti;
 	
 	/**
 	 * Get graha devanagari name.

@@ -38,13 +38,6 @@ class Ra extends GrahaObject {
 	protected $grahaUnicode = '260A';
 	protected $grahaAltName = array
 	();
-	
-	protected $grahaOwn = array
-	(
-		'rashi' => 11,
-		'start' => 0,
-		'end' => 30
-	);
 	protected $grahaAgeMaturity = 48;
 	protected $grahaAgePeriod = array
 	(
@@ -139,7 +132,16 @@ class Ra extends GrahaObject {
 	protected $grahaMooltrikon = array
 	(
 		'rashi' => 11,
-		'degree' => null
+	);
+	
+	/**
+	 * Own sign of the graha.
+	 * 
+	 * @var array
+	 */
+	protected $grahaOwn = array
+	(
+		'rashi' => 11,
 	);
 	
 	/**
@@ -158,9 +160,27 @@ class Ra extends GrahaObject {
 		Graha::GRAHA_SA => 1,
 	);
 	
+	/**
+	 * Graha disha
+	 * 
+	 * @var string
+	 * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 5.
+	 */
 	protected $grahaDisha = Disha::DISHA_NAIRUTYA;
-	protected $grahaPrakriti = null;
+	
+	/**
+	 * Graha drishti
+	 * 
+	 * @var array
+	 */
 	protected $grahaDrishti = null;
+	
+	/**
+	 * Prakriti of graha
+	 * 
+	 * @var array
+	 */
+	protected $grahaPrakriti = null;
 
 	public function __construct($options) {
 		parent::__construct($options);

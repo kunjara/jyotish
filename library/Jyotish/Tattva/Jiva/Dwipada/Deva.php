@@ -53,11 +53,13 @@ class Deva extends Dwipada {
 	const DEVA_SURYA_SAVITRI = 'Savitri';
 	const DEVA_TWASHTR = 'Twashtr';
 	const DEVA_VARUNA = 'Varuna';
+	const DEVA_VARUNA_AMBU = 'Ambu';
 	const DEVA_VASU = 'Vasu';
 	const DEVA_VAYU = 'Vayu';
 	const DEVA_VISHNU = 'Vishnu';
 	const DEVA_VISHNU_ISHVARA = 'Ishvara';
 	const DEVA_VISHNU_HARI = 'Hari';
+	const DEVA_VISHNU_KESHAVA = 'Keshava';
 	const DEVA_VISHNU_MAHA = 'Maha Vishnu';
 	const DEVA_VISHNU_YAJNESHVARA = 'Yajneshvara';
 	const DEVA_VISHVADEVA = 'Vishvadeva';

@@ -38,13 +38,6 @@ class Ke extends GrahaObject {
 	protected $grahaUnicode = '260B';
 	protected $grahaAltName = array
 	();
-	
-	protected $grahaOwn = array
-	(
-		'rashi' => 1,
-		'start' => 0,
-		'end' => 30
-	);
 	protected $grahaAgeMaturity = 48;
 	protected $grahaAgePeriod = array
 	(
@@ -139,7 +132,16 @@ class Ke extends GrahaObject {
 	protected $grahaMooltrikon = array
 	(
 		'rashi' => 5,
-		'degree' => null
+	);
+	
+	/**
+	 * Own sign of the graha.
+	 * 
+	 * @var array
+	 */
+	protected $grahaOwn = array
+	(
+		'rashi' => 1,
 	);
 	
 	/**
@@ -158,9 +160,26 @@ class Ke extends GrahaObject {
 		Graha::GRAHA_SA => 1,
 	);
 	
+	/**
+	 * Graha disha
+	 * 
+	 * @var string
+	 */
 	protected $grahaDisha = Disha::DISHA_NAIRUTYA;
-	protected $grahaPrakriti = null;
+	
+	/**
+	 * Graha drishti
+	 * 
+	 * @var array
+	 */
 	protected $grahaDrishti = null;
+	
+	/**
+	 * Prakriti of graha
+	 * 
+	 * @var array
+	 */
+	protected $grahaPrakriti = null;
 
 	public function __construct($options) {
 		parent::__construct($options);
