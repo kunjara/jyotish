@@ -28,7 +28,7 @@ class Ch extends GrahaObject {
 	 * 
 	 * @var string
 	 */
-	protected $grahaAbbr = 'Ch';
+	protected $grahaKey = 'Ch';
 	
 	/**
 	 * Devanagari title 'chandra' in transliteration.
@@ -220,7 +220,7 @@ class Ch extends GrahaObject {
 		Prakriti::PRAKRITI_VATA
 	);
 
-	public function __construct($ganitaData) {
+	public function __construct($options) {
 		parent::__construct($options);
 	}
 

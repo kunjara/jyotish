@@ -27,7 +27,7 @@ class Ma extends GrahaObject {
 	 * 
 	 * @var string
 	 */
-	protected $grahaAbbr = 'Ma';
+	protected $grahaKey = 'Ma';
 	
 	/**
 	 * Devanagari title 'mangala' in transliteration.

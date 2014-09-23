@@ -22,7 +22,7 @@ class Ra extends GrahaObject {
 	 * 
 	 * @var string
 	 */
-	protected $grahaAbbr = 'Ra';
+	protected $grahaKey = 'Ra';
 	
 	/**
 	 * Devanagari title 'rahu' in transliteration.
@@ -103,64 +103,6 @@ class Ra extends GrahaObject {
 	protected $grahaRasa = null;
 	
 	/**
-	 * Graha exaltation.
-	 * 
-	 * @var array
-	 */
-	protected $grahaExaltation = array
-	(
-		'rashi' => 3,
-		'degree' => null
-	);
-	
-	/**
-	 * Graha debilitation.
-	 * 
-	 * @var array
-	 */
-	protected $grahaDebilitation = array
-	(
-		'rashi' => 9,
-		'degree' => null
-	);
-	
-	/**
-	 * Graha mooltrikon.
-	 * 
-	 * @var array
-	 */
-	protected $grahaMooltrikon = array
-	(
-		'rashi' => 11,
-	);
-	
-	/**
-	 * Own sign of the graha.
-	 * 
-	 * @var array
-	 */
-	protected $grahaOwn = array
-	(
-		'rashi' => 11,
-	);
-	
-	/**
-	 * Natural relationships.
-	 * 
-	 * @var array
-	 */
-	protected $grahaRelation = array
-	(
-		Graha::GRAHA_SY => -1,
-		Graha::GRAHA_CH => -1,
-		Graha::GRAHA_GU => 1,
-		Graha::GRAHA_SK => 1,
-		Graha::GRAHA_BU => 0,
-		Graha::GRAHA_MA => -1,
-		Graha::GRAHA_SA => 1,
-	);
-	
-	/**
 	 * Graha disha
 	 * 
 	 * @var string
@@ -181,8 +123,52 @@ class Ra extends GrahaObject {
 	 * @var array
 	 */
 	protected $grahaPrakriti = null;
+	
+	/**
+	 * Set exaltation, sebilitation, mooltrikon and own.
+	 * 
+	 * @param array $options
+	 */
+	protected function setSpecificRashiByViewpoint($options){
+		switch ($options['specificRashi']){
+			case('para'):
+				$this->setSpecificRashi(array('ex' => 2, 'mt' => 3, 'ow' => 11, 'db' => 8));
+				break;
+			default:
+				$this->setSpecificRashi(array('ex' => 3, 'mt' => 11, 'ow' => 6, 'db' => 9));
+				break;
+		}
+	}
+	
+	/**
+	 * Set natural relationships.
+	 * 
+	 * @param array $options
+	 */
+	protected function setNaturalRelation($options)
+	{
+		if($options['relationChaya'] == 'sama'){
+			$Sa = Graha::getInstance(Graha::GRAHA_SA, array(
+					'relationSame' => true,
+				));
+			$this->grahaRelation = $Sa->getNaturalRelation();
+			$this->grahaRelation[Graha::GRAHA_KE] = -1;
+		}else{
+			foreach (Graha::$graha as $key => $name){
+				if($key != Graha::GRAHA_KE){
+					$this->grahaRelation[$key] = -1;
+				}else{
+					$this->grahaRelation[$key] = 1;
+				}
+			}
+		}
+		
+		$this->grahaRelation[$this->grahaKey] = $options['relationSame'] ? 1 : null;
+	}
 
 	public function __construct($options) {
+		$this->setSpecificRashiByViewpoint($options);
+		
 		parent::__construct($options);
 	}
 

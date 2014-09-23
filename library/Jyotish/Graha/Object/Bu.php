@@ -27,7 +27,7 @@ class Bu extends GrahaObject {
 	 * 
 	 * @var string
 	 */
-	protected $grahaAbbr = 'Bu';
+	protected $grahaKey = 'Bu';
 	
 	/**
 	 * Devanagari title 'budha' in transliteration.

@@ -22,7 +22,7 @@ class GrahaObject extends Object {
 	 * 
 	 * @var string
 	 */
-	protected $grahaAbbr;
+	protected $grahaKey;
 
 	/**
 	 * Devanagari graha title in transliteration.
@@ -372,10 +372,10 @@ class GrahaObject extends Object {
 	/**
 	 * Set natural relationships.
 	 * 
-	 * @param bool $relationSameGrahas If true same grahas are friends.
+	 * @param array $options
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 55.
 	 */
-	protected function setNaturalRelation($relationSameGrahas = false)
+	protected function setNaturalRelation(array $options)
 	{
 		$relationships = array();
 		$friendsFromMt = array(2, 4, 5, 8, 9, 12);
@@ -387,7 +387,7 @@ class GrahaObject extends Object {
 		$friends = array();
 		$R = Rashi::getInstance($rashiEx);
 		$gFriend = $R->getRashiRuler();
-		if($this->grahaAbbr != $gFriend) $friends[] = $gFriend;
+		if($this->grahaKey != $gFriend) $friends[] = $gFriend;
 		
 		$relation = function($distance) use($rashiMt){
 			foreach($distance as $step){
@@ -395,7 +395,7 @@ class GrahaObject extends Object {
 				$R = Rashi::getInstance((int)$r);
 				$gRuler = $R->getRashiRuler();
 
-				if($this->grahaAbbr == $gRuler) continue;
+				if($this->grahaKey == $gRuler) continue;
 				$grahas[] = $gRuler;
 			}
 			return $grahas;
@@ -404,20 +404,36 @@ class GrahaObject extends Object {
 		$friends = array_unique(array_merge($friends, $relation($friendsFromMt)));
 		$enemies = array_unique($relation($enemiesFromMt));
 		
-		foreach (Graha::$graha as $g => $name){
-			if(in_array($g, $friends) and in_array($g, $enemies)){
-				$relationships[$g] = 0;
-			}elseif(in_array($g, $friends)){
-				$relationships[$g] = 1;
-			}elseif(in_array($g, $enemies)){
-				$relationships[$g] = -1;
+		foreach (Graha::$graha as $key => $name){
+			if($this->grahaKey == $key) continue;
+			
+			if(in_array($key, $friends) and in_array($key, $enemies)){
+				$relationships[$key] = 0;
+			}elseif(in_array($key, $friends)){
+				$relationships[$key] = 1;
+			}elseif(in_array($key, $enemies)){
+				$relationships[$key] = -1;
 			}else{
-				$relationships[$g] = null;
+				$G = Graha::getInstance($key, $options);
+				$relationships[$key] = $G->getNaturalRelation($this->grahaKey);
 			}
 		}
-		$relationships[$this->grahaAbbr] = $relationSameGrahas ? 1 : null;
+		$relationships[$this->grahaKey] = $options['relationSame'] ? 1 : null;
 		
 		$this->grahaRelation = $relationships;
+	}
+	
+	/**
+	 * Set exaltation, sebilitation, mooltrikon and own.
+	 * 
+	 * @param array $specificRashi
+	 */
+	protected function setSpecificRashi(array $specificRashi)
+	{
+		$this->grahaExaltation = array('rashi' => $specificRashi['ex']);
+		$this->grahaDebilitation = array('rashi' => $specificRashi['db']);
+		$this->grahaMooltrikon = array('rashi' => $specificRashi['mt']);
+		$this->grahaOwn = array('rashi' => $specificRashi['ow']);
 	}
 
 	/**
@@ -427,6 +443,6 @@ class GrahaObject extends Object {
      */
 	public function __construct($options)
 	{
-		$this->setNaturalRelation($options['relationSameGrahas']);
+		$this->setNaturalRelation($options);
 	}
 }
