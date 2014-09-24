@@ -15,10 +15,32 @@ use Jyotish\Service\Utils;
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 class Data {
-
+	/**
+	 * Ganita data.
+	 * 
+	 * @var array
+	 */
 	protected $ganitaData;
+	
+	/**
+	 * Array with values ​​of the rashis in the bhavas.
+	 * 
+	 * @var array
+	 */
 	protected $rashiInBhava = null;
+	
+	/**
+	 * Array with values ​​of the grahas in the bhavas.
+	 * 
+	 * @var array
+	 */
 	protected $grahaInBhava = null;
+	
+	/**
+	 * Array with values ​​of the grahas in the rashis.
+	 * 
+	 * @var array
+	 */
 	protected $grahaInRashi = null;
 
 	public function __construct(array $ganitaData) {
@@ -27,6 +49,11 @@ class Data {
 		return $this;
 	}
 
+	/**
+	 * Get rashi in bhava.
+	 * 
+	 * @return array
+	 */
 	public function getRashiInBhava() {
 		if ($this->rashiInBhava == null) {
 			foreach ($this->ganitaData['bhava'] as $bhava => $params) {
@@ -37,6 +64,11 @@ class Data {
 		return $this->rashiInBhava;
 	}
 
+	/**
+	 * Get graha in bhava.
+	 * 
+	 * @return array
+	 */
 	public function getGrahaInBhava() {
 		if ($this->grahaInBhava == null) {
 			foreach ($this->ganitaData['graha'] as $graha => $params) {
@@ -57,6 +89,11 @@ class Data {
 		return $this->grahaInBhava;
 	}
 
+	/**
+	 * Get graha in rashi.
+	 * 
+	 * @return array
+	 */
 	public function getGrahaInRashi() {
 		if ($this->grahaInRashi == null) {
 			foreach ($this->ganitaData['graha'] as $graha => $params) {
@@ -74,6 +111,14 @@ class Data {
 		return $this->grahaInRashi;
 	}
 
+	/**
+	 * Return graha label.
+	 * 
+	 * @param string $graha
+	 * @param int $labelType
+	 * @param string $userFunction
+	 * @return string
+	 */
 	public function getGrahaLabel($graha, $labelType = 0, $userFunction = null) {
 		if (!is_null($this->grahaInBhava))
 			$grahas = $this->grahaInBhava;

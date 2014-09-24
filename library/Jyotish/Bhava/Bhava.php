@@ -46,11 +46,12 @@ class Bhava {
 	/**
 	 * Returns the requested instance of bhava class.
 	 * 
-	 * @param int $number The number of bhava.
-	 * @param array $options
-	 * @return the requested instance of bhava class.
+	 * @param int $number The number of bhava
+	 * @param null|array $options (Optional) Options to set
+	 * @return the requested instance of bhava class
+	 * @throws Exception\InvalidArgumentException
 	 */
-	static public function getInstance($number, array $options = null) {
+	static public function getInstance($number, $options = null) {
 		if (array_key_exists($number, self::$BHAVA)) {
 			$bhavaClass = 'Jyotish\\Bhava\\Object\\B' . $number;
 			$bhavaObject = new $bhavaClass($options);

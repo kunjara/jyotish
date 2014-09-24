@@ -45,11 +45,12 @@ class Yoga {
 	/**
 	 * Returns the requested instance of yoga class.
 	 * 
-	 * @param int $number The number of yoga.
-	 * @param array $options
-	 * @return the requested instance of yoga class.
+	 * @param int $number The number of yoga
+	 * @param null|array $options (Optional) Options to set
+	 * @return the requested instance of yoga class
+	 * @throws Exception\InvalidArgumentException
 	 */
-	static public function getInstance($number, array $options = null) {
+	static public function getInstance($number, $options = null) {
 		if (array_key_exists($number, self::$YOGA)) {
 			$yogaClass = 'Jyotish\\Panchanga\\Yoga\\Object\\Y' . $number;
 			$yogaObject = new $yogaClass($options);

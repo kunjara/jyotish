@@ -127,7 +127,7 @@ class Ra extends GrahaObject {
 	/**
 	 * Set exaltation, sebilitation, mooltrikon and own.
 	 * 
-	 * @param array $options
+	 * @param null|array $options Options to set
 	 */
 	protected function setSpecificRashiByViewpoint($options){
 		switch ($options['specificRashi']){
@@ -143,7 +143,7 @@ class Ra extends GrahaObject {
 	/**
 	 * Set natural relationships.
 	 * 
-	 * @param array $options
+	 * @param null|array $options Options to set
 	 */
 	protected function setNaturalRelation($options)
 	{

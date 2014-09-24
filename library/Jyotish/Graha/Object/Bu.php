@@ -229,8 +229,50 @@ class Bu extends GrahaObject {
 		Prakriti::PRAKRITI_VATA
 	);
 
-	public function __construct($options) {
+	public function __construct($options)
+	{
 		parent::__construct($options);
 	}
 
+	/**
+	 * Set environment.
+	 * 
+	 * @param array $ganitaData
+	 */
+	public function setEnvironment(array $ganitaData)
+	{
+		parent::setEnvironment($ganitaData);
+		
+		$this->setGrahaCharacter();
+	}
+	
+	/**
+	 * Set graha character.
+	 * 
+	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 11.
+	 * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 5.
+	 */
+	protected function setGrahaCharacter()
+	{
+		foreach($this->ganitaData['graha'] as $key => $params){
+			if($key == $this->grahaKey) continue;
+			
+			if($params['rashi'] == $this->ganitaData['graha'][$this->grahaKey]['rashi']){
+				$G = Graha::getInstance($key);
+				$G->setEnvironment($this->ganitaData);
+
+				if($G->getGrahaCharacter() == Graha::CHARACTER_BENEFIC)
+					$benefic = $benefic + 1;
+				else
+					$malefic = $malefic + 1;
+			}
+		}
+		
+		if($benefic > 0 and $malefic > 0)
+			$this->grahaCharacter = Graha::CHARACTER_MISHA;
+		elseif($malefic > 0)
+			$this->grahaCharacter = Graha::CHARACTER_MALEFIC;
+		else
+			$this->grahaCharacter = Graha::CHARACTER_BENEFIC;
+	}
 }

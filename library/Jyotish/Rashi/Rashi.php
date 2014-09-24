@@ -50,11 +50,12 @@ class Rashi {
 	/**
 	 * Returns the requested instance of rashi class.
 	 * 
-	 * @param int $key The number of rashi.
-	 * @param array $options
-	 * @return the requested instance of rashi class.
+	 * @param int $key The number of rashi
+	 * @param null|array $options (Optional) Options to set
+	 * @return the requested instance of rashi class
+	 * @throws Exception\InvalidArgumentException
 	 */
-	static public function getInstance($key, array $options = null) {
+	static public function getInstance($key, $options = null) {
 		if (array_key_exists($key, self::$rashi)) {
 			$rashiClass = 'Jyotish\\Rashi\\Object\\R' . $key;
 			$rashiObject = new $rashiClass($options);

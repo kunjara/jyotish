@@ -75,11 +75,12 @@ class Tithi {
 	/**
 	 * Returns the requested instance of tithi class.
 	 * 
-	 * @param int $number The number of tithi.
-	 * @param array $options
-	 * @return the requested instance of tithi class.
+	 * @param int $number The number of tithi
+	 * @param null|array $options (Optional) Options to set
+	 * @return the requested instance of tithi class
+	 * @throws Exception\InvalidArgumentException
 	 */
-	static public function getInstance($number, array $options = null) {
+	static public function getInstance($number, $options = null) {
 		if (self::$TITHI[$number]) {
 			$tithiClass = 'Jyotish\\Panchanga\\Tithi\\Object\\T' . $number;
 			$tithiObject = new $tithiClass($options);

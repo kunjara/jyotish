@@ -8,6 +8,7 @@ namespace Jyotish\Graha\Object;
 
 use Jyotish\Graha\Graha;
 use Jyotish\Panchanga\Tithi\Tithi;
+use Jyotish\Ganita\Math;
 use Jyotish\Tattva\Maha\Bhuta;
 use Jyotish\Tattva\Maha\Disha;
 use Jyotish\Tattva\Maha\Guna;
@@ -237,6 +238,9 @@ class Ch extends GrahaObject {
 	
 	/**
 	 * Set graha character.
+	 * 
+	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 11.
+	 * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 5.
 	 */
 	protected function setGrahaCharacter()
 	{
@@ -246,11 +250,8 @@ class Ch extends GrahaObject {
 		if($lonCh < $lonSy) $lonCh = $lonCh + 360;
 		
 		$tithiUnits = Math::partsToUnits(($lonCh - $lonSy), 12);
-		$tithiObject = Tithi::getInstance($tithiUnits['units']);
 		
-		$paksha = $tithiObject->getTithiPaksha();
-		
-		if($paksha == Tithi::PAKSHA_SHUKLA){
+		if($tithiUnits['units'] >= 8 and $tithiUnits['units'] < 23){
 			$this->grahaCharacter = Graha::CHARACTER_BENEFIC;
 		}else{
 			$this->grahaCharacter = Graha::CHARACTER_MALEFIC;

@@ -26,6 +26,7 @@ class Graha {
 	
 	const CHARACTER_BENEFIC = 'benefic';
 	const CHARACTER_MALEFIC = 'malefic';
+	const CHARACTER_MISHA   = 'mishra';
 	
 	const RISING_NOREFRAC   = 'norefrac';
 	const RISING_DISCCENTER = 'disccenter';
@@ -73,11 +74,12 @@ class Graha {
 	/**
 	 * Returns the requested instance of graha class.
 	 * 
-	 * @param string $key The acronym of graha.
-	 * @param array $options
-	 * @return the requested instance of graha class.
+	 * @param string $key The acronym of graha
+	 * @param null|array $options (Optional) Options to set
+	 * @return the requested instance of graha class
+	 * @throws Exception\InvalidArgumentException
 	 */
-	static public function getInstance($key, array $options = null) {
+	static public function getInstance($key, $options = null) {
 		if (array_key_exists($key, self::$graha)) {
 			$grahaClass = 'Jyotish\Graha\Object\\' . $key;
 			$grahaObject = new $grahaClass($options);

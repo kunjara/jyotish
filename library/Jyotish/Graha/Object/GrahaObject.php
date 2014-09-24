@@ -352,9 +352,9 @@ class GrahaObject extends Object {
 	/**
 	 * Get natural relationships.
 	 * 
-	 * @param string $key
+	 * @param null|string $key (Optional)
 	 * @return mixed
-	 *
+	 * @throws Exception\InvalidArgumentException
 	 */
 	public function getNaturalRelation($key = null)
 	{
@@ -372,10 +372,10 @@ class GrahaObject extends Object {
 	/**
 	 * Set natural relationships.
 	 * 
-	 * @param array $options
+	 * @param null|array $options Options to set
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 55.
 	 */
-	protected function setNaturalRelation(array $options)
+	protected function setNaturalRelation($options)
 	{
 		$relationships = array();
 		$friendsFromMt = array(2, 4, 5, 8, 9, 12);
@@ -439,7 +439,7 @@ class GrahaObject extends Object {
 	/**
 	 * Constructor
 	 * 
-     * @param array $options
+     * @param null|array $options Options to set
      */
 	public function __construct($options)
 	{
