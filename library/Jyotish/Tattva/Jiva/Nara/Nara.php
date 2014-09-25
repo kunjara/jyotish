@@ -4,14 +4,14 @@
  * @license   GNU General Public License version 2 or later
  */
 
-namespace Jyotish\Tattva\Jiva\Dwipada;
+namespace Jyotish\Tattva\Jiva\Nara;
 
 /**
  * Data class of dwipada.
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class Dwipada extends \Jyotish\Tattva\Jiva\Jiva{
+class Nara extends \Jyotish\Tattva\Jiva\Jiva{
 	/**
      * Gana
      */

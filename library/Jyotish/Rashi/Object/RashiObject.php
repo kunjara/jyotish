@@ -62,12 +62,13 @@ class RashiObject extends Object {
 	protected $rashiPrakriti;
 	
 	/**
-	 * Vasya of rashi.
+	 * Type of rashi.
 	 * 
 	 * @var string
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 4, Verse 6-24.
+	 * @see Varahamihira. Brihat Jataka. Chapter 1, Verse 17.
 	 */
-	protected $rashiVasya;
+	protected $rashiType;
 
 	/**
 	 * Bhuta of rashi.
@@ -145,13 +146,13 @@ class RashiObject extends Object {
 	}
 	
 	/**
-	 * Get rashi vasya.
+	 * Get rashi type.
 	 * 
 	 * @return string
 	 */
-	public function getRashiVasya()
+	public function getRashiType()
 	{
-		return $this->rashiVasya;
+		return $this->rashiType;
 	}
 	
 	/**

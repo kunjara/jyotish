@@ -4,14 +4,14 @@
  * @license   GNU General Public License version 2 or later
  */
 
-namespace Jyotish\Tattva\Jiva\Dwipada;
+namespace Jyotish\Tattva\Jiva\Nara;
 
 /**
  * Class of Deva gana.
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class Deva extends Dwipada {
+class Deva extends Nara {
 	
 	const DEVA_ADITI = 'Aditi';
 	const DEVA_AGNI = 'Agni';

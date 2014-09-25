@@ -15,14 +15,24 @@ class Jiva {
 	/**
 	 * Gender
 	 */
-	const GENDER_MALE = 'male';
+	const GENDER_MALE   = 'male';
 	const GENDER_FEMALE = 'female';
 	const GENDER_NEUTER = 'neuter';
 	
 	/**
-	 * Vasya
+	 * Type
 	 */
-	const VASYA_DWIPADA     = 'dwipada';
-	const VASYA_CHATUSHPADA = 'chatushpada';
-	const VASYA_JALA        = 'jala';
+	const TYPE_NARA     = 'nara';
+	const TYPE_PASU     = 'pasu';
+	const TYPE_JALA     = 'jala';
+	const TYPE_KITA     = 'kita';
+	const TYPE_VANA     = 'vana';
+	
+	static public $typeVasya = array(
+		self::TYPE_PASU,
+		self::TYPE_NARA,
+		self::TYPE_JALA,
+		self::TYPE_VANA,
+		self::TYPE_KITA
+	);
 }

@@ -9,7 +9,7 @@ namespace Jyotish\Graha\Object;
 use Jyotish\Graha\Graha;
 use Jyotish\Tattva\Maha\Disha;
 use Jyotish\Tattva\Maha\Guna;
-use Jyotish\Tattva\Jiva\Dwipada\Manusha;
+use Jyotish\Tattva\Jiva\Nara\Manusha;
 
 /**
  * Class of graha Ke.
@@ -128,9 +128,10 @@ class Ke extends GrahaObject {
 	 * 
 	 * @param null|array $options Options to set
 	 */
-	protected function setSpecificRashiByViewpoint($options){
+	protected function setSpecificRashiByViewpoint($options)
+	{
 		switch ($options['specificRashi']){
-			case('para'):
+			case('parashara'):
 				$this->setSpecificRashi(array('ex' => 8, 'mt' => 9, 'ow' => 5, 'db' => 2));
 				break;
 			default:
@@ -146,7 +147,15 @@ class Ke extends GrahaObject {
 	 */
 	protected function setNaturalRelation($options)
 	{
-		if($options['relationChaya'] == 'sama'){
+		if($options['relationChaya'] == 'friends'){
+			foreach (Graha::$graha as $key => $name){
+				if($key != Graha::GRAHA_RA){
+					$this->grahaRelation[$key] = -1;
+				}else{
+					$this->grahaRelation[$key] = 1;
+				}
+			}
+		}else{
 			$this->grahaRelation = array(
 				Graha::GRAHA_SY => -1,
 				Graha::GRAHA_CH => -1,
@@ -157,20 +166,12 @@ class Ke extends GrahaObject {
 				Graha::GRAHA_SA => -1,
 				Graha::GRAHA_RA => -1,
 			);
-		}else{
-			foreach (Graha::$graha as $key => $name){
-				if($key != Graha::GRAHA_RA){
-					$this->grahaRelation[$key] = -1;
-				}else{
-					$this->grahaRelation[$key] = 1;
-				}
-			}
 		}
-		
 		$this->grahaRelation[$this->grahaKey] = $options['relationSame'] ? 1 : null;
 	}
 
-	public function __construct($options) {
+	public function __construct($options)
+	{
 		$this->setSpecificRashiByViewpoint($options);
 		
 		parent::__construct($options);

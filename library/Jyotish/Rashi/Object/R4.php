@@ -8,7 +8,7 @@ namespace Jyotish\Rashi\Object;
 
 use Jyotish\Rashi\Rashi;
 use Jyotish\Graha\Graha;
-use Jyotish\Tattva\Jiva\Dwipada\Manusha;
+use Jyotish\Tattva\Jiva\Nara\Manusha;
 use Jyotish\Tattva\Maha\Bhuta;
 use Jyotish\Tattva\Ayurveda\Prakriti;
 
@@ -75,12 +75,13 @@ class R4 extends RashiObject {
 	protected $rashiPrakriti = Prakriti::PRAKRITI_KAPHA;
 	
 	/**
-	 * Vasya of rashi.
+	 * Type of rashi.
 	 * 
 	 * @var string
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 4, Verse 10-11.
+	 * @see Varahamihira. Brihat Jataka. Chapter 1, Verse 17.
 	 */
-	protected $rashiVasya = Manusha::VASYA_JALA;
+	protected $rashiType = Manusha::TYPE_JALA;
 	
 	/**
 	 * Bhuta of rashi.
@@ -106,7 +107,8 @@ class R4 extends RashiObject {
 	 */
 	protected $rashiVarna = Manusha::VARNA_BRAHMANA;
 
-	public function __construct($options) {
+	public function __construct($options)
+	{
 		parent::__construct($options);
 	}
 

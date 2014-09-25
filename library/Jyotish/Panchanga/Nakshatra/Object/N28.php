@@ -7,8 +7,8 @@
 namespace Jyotish\Panchanga\Nakshatra\Object;
 
 use Jyotish\Panchanga\Nakshatra\Nakshatra;
-use Jyotish\Tattva\Jiva\Dwipada\Deva;
-use Jyotish\Tattva\Jiva\Dwipada\Manusha;
+use Jyotish\Tattva\Jiva\Nara\Deva;
+use Jyotish\Tattva\Jiva\Nara\Manusha;
 
 /**
  * Class of nakshatra 28.

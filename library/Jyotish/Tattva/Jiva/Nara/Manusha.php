@@ -4,14 +4,14 @@
  * @license   GNU General Public License version 2 or later
  */
 
-namespace Jyotish\Tattva\Jiva\Dwipada;
+namespace Jyotish\Tattva\Jiva\Nara;
 
 /**
  * Class of Manusha gana.
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class Manusha extends Dwipada {
+class Manusha extends Nara {
 	
 	const VARNA_BRAHMANA = 'brahmana';
 	const VARNA_KSHATRIYA = 'kshatriya';

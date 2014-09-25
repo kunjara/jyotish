@@ -6,7 +6,7 @@
 
 namespace Jyotish\Panchanga\Yoga\Object;
 
-use Jyotish\Tattva\Jiva\Dwipada\Deva;
+use Jyotish\Tattva\Jiva\Nara\Deva;
 
 /**
  * Class of yoga 6.

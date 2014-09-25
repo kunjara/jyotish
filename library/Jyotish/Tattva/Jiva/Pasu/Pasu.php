@@ -4,14 +4,14 @@
  * @license   GNU General Public License version 2 or later
  */
 
-namespace Jyotish\Tattva\Jiva\Chatushpada;
+namespace Jyotish\Tattva\Jiva\Pasu;
 
 /**
  * Data class of chatushpada.
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class Chatushpada {
+class Pasu {
 	const ANIMAL_HORSE = 'horse';
 	const ANIMAL_ELEPHANT = 'elephant';
 	const ANIMAL_SHEEP = 'sheep';

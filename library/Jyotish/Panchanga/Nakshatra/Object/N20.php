@@ -8,9 +8,9 @@ namespace Jyotish\Panchanga\Nakshatra\Object;
 
 use Jyotish\Panchanga\Nakshatra\Nakshatra;
 use Jyotish\Graha\Graha;
-use Jyotish\Tattva\Jiva\Dwipada\Deva;
-use Jyotish\Tattva\Jiva\Dwipada\Manusha;
-use Jyotish\Tattva\Jiva\Chatushpada\Chatushpada;
+use Jyotish\Tattva\Jiva\Nara\Deva;
+use Jyotish\Tattva\Jiva\Nara\Manusha;
+use Jyotish\Tattva\Jiva\Pasu\Pasu;
 use Jyotish\Tattva\Maha\Guna;
 use Jyotish\Tattva\Ayurveda\Prakriti;
 
@@ -55,7 +55,7 @@ class N20 extends NakshatraObject {
 	protected $nakshatraVarna = Manusha::VARNA_BRAHMANA;
 	protected $nakshatraPrakriti = Prakriti::PRAKRITI_PITTA;
 	protected $nakshatraYoni = array(
-		'animal' => Chatushpada::ANIMAL_MONKEY,
+		'animal' => Pasu::ANIMAL_MONKEY,
 		'gender' => Manusha::GENDER_MALE,
 	);
 	protected $nakshatraRajju = array(
