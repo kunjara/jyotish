@@ -24,26 +24,65 @@ use Jyotish\Calendar\Masa;
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 class Panchanga {
-	private $ganitaObject;
-	private $userData;
-	private $paramsData;
-	private $risingsData;
+	/**
+	 * Ganita object.
+	 * 
+	 * @var Ganita
+	 */
+	private $ganitaObject = null;
 	
+	/**
+	 * Array of user data.
+	 * 
+	 * @var array
+	 */
+	private $userData = array();
+	
+	/**
+	 * Array of ganita params data.
+	 * 
+	 * @var array
+	 */
+	private $ganitaParamsData = array();
+	
+	/**
+	 * Array of gantia risings data.
+	 * 
+	 * @var array
+	 */
+	private $ganitaRisingsData = array();
+	
+	/**
+	 * Calculated tithi.
+	 * 
+	 * @var array
+	 */
 	private $tithi = null;
 
-	public function __construct($ganitaObject)
+	/**
+     * Constructor
+	 * 
+     * @param array|Ganita $ganitaData
+	 * @throws Exception\InvalidArgumentException
+     */
+	public function __construct($ganitaData)
 	{
-		if($ganitaObject instanceof \Jyotish\Ganita\Method\Swetest){
-			$this->ganitaObject = $ganitaObject;
-			$this->_setData();
-			$this->risingsData = $this->ganitaObject->getRisings();
-		} else {
+		if($ganitaData instanceof \Jyotish\Ganita\Method\AbstractGanita){
+			$this->ganitaObject = $ganitaData;
+			$this->setData();
+			$this->ganitaRisingsData = $this->ganitaObject->getRisings();
+		}elseif(is_array($ganitaData)){
+			$this->ganitaParamsData = $ganitaData;
+		}else{
 			throw new Exception\InvalidArgumentException(
-                'Ganita method must be Swetest object.'
+                'Ganita data must be a Ganita object or an array of ganita params.'
             );
 		}
 	}
 	
+	/**
+	 * Clone Ganita object.
+	 */
 	public function __clone()
 	{
 		$this->ganitaObject = clone $this->ganitaObject;
@@ -59,8 +98,8 @@ class Panchanga {
 	{
 		$unit = 12;
 		
-		$lonCh = $this->paramsData['graha'][Graha::GRAHA_CH]['longitude'];
-		$lonSy = $this->paramsData['graha'][Graha::GRAHA_SY]['longitude'];		
+		$lonCh = $this->ganitaParamsData['graha'][Graha::GRAHA_CH]['longitude'];
+		$lonSy = $this->ganitaParamsData['graha'][Graha::GRAHA_SY]['longitude'];		
 		
 		if($lonCh < $lonSy) $lonCh = $lonCh + 360;
 		
@@ -73,7 +112,7 @@ class Panchanga {
 		$tithi['left'] = ($unit - $tithiUnits['parts']) * 100 / $unit;
 		
 		if($withLimit){
-			$limits = $this->_limitAnga($tithi, __FUNCTION__);
+			$limits = $this->limitAnga($tithi, __FUNCTION__);
 			$tithi['end'] = $limits['end'];
 		}
 		
@@ -92,7 +131,7 @@ class Panchanga {
 	{
 		$unit = 360/27;
 		
-		$lonCh = $this->paramsData['graha'][Graha::GRAHA_CH]['longitude'];
+		$lonCh = $this->ganitaParamsData['graha'][Graha::GRAHA_CH]['longitude'];
 		$nakshatraUnits = Math::partsToUnits($lonCh, $unit);
 		
 		if($withAbhijit){
@@ -136,7 +175,7 @@ class Panchanga {
 		$nakshatra['name'] = Nakshatra::$nakshatra[$nakshatra['number']];
 		
 		if($withLimit){
-			$limits = $this->_limitAnga($nakshatra, __FUNCTION__);
+			$limits = $this->limitAnga($nakshatra, __FUNCTION__);
 			$nakshatra['end'] = $limits['end'];
 		}
 		
@@ -153,8 +192,8 @@ class Panchanga {
 	{
 		$unit = 360/27;
 		
-		$lonCh = $this->paramsData['graha'][Graha::GRAHA_CH]['longitude'];
-		$lonSy = $this->paramsData['graha'][Graha::GRAHA_SY]['longitude'];
+		$lonCh = $this->ganitaParamsData['graha'][Graha::GRAHA_CH]['longitude'];
+		$lonSy = $this->ganitaParamsData['graha'][Graha::GRAHA_SY]['longitude'];
 		$lonSum = $lonCh + $lonSy;
 		
 		if($lonSum > 360) {
@@ -168,7 +207,7 @@ class Panchanga {
 		$yoga['left'] = ($unit - $yogaUnits['parts']) * 100 / $unit;
 		
 		if($withLimit){
-			$limits = $this->_limitAnga($yoga, __FUNCTION__);
+			$limits = $this->limitAnga($yoga, __FUNCTION__);
 			$yoga['end'] = $limits['end'];
 		}
 		
@@ -184,18 +223,18 @@ class Panchanga {
 	{
 		$dateUser = new DateTime($this->userData['date'].' '.$this->userData['time']);
 		$dateUserU = $dateUser->format('U');
-		$dateRising[2] = new DateTime($this->risingsData['time'][2]['rising']);
+		$dateRising[2] = new DateTime($this->ganitaRisingsData['time'][2]['rising']);
 		$dateRisingU[2] = $dateRising[2]->format('U');
-		$dateRising[3] = new DateTime($this->risingsData['time'][3]['rising']);
+		$dateRising[3] = new DateTime($this->ganitaRisingsData['time'][3]['rising']);
 		$dateRisingU[3] = $dateRising[3]->format('U');
 		
 		if($dateUser >= $dateRising[3]) {
 			$index = 1;
-			$dateRising[4] = new DateTime($this->risingsData['time'][4]['rising']);
+			$dateRising[4] = new DateTime($this->ganitaRisingsData['time'][4]['rising']);
 			$dateRisingU[4] = $dateRising[4]->format('U');
 		}else{
 			$index = 0;
-			$dateRising[1] = new DateTime($this->risingsData['time'][1]['rising']);
+			$dateRising[1] = new DateTime($this->ganitaRisingsData['time'][1]['rising']);
 			$dateRisingU[1] = $dateRising[1]->format('U');
 		}
 		
@@ -206,15 +245,15 @@ class Panchanga {
 			
 			$duration = $dateRisingU[3 + $index] - $dateRisingU[2 + $index];
 			$vara['left'] = ($dateRisingU[3 + $index] - $dateUserU) * 100 / $duration;
-			$vara['start'] = $this->risingsData['time'][2 + $index]['rising'];
-			$vara['end'] = $this->risingsData['time'][3 + $index]['rising'];
+			$vara['start'] = $this->ganitaRisingsData['time'][2 + $index]['rising'];
+			$vara['end'] = $this->ganitaRisingsData['time'][3 + $index]['rising'];
 		} else {
 			$varaNumber != 0 ? $vara['number'] = $varaNumber : $vara['number'] = 7;
 			
 			$duration = $dateRisingU[2 + $index] - $dateRisingU[1 + $index];
 			$vara['left'] = ($dateRisingU[2 + $index] - $dateUserU) * 100 / $duration;
-			$vara['start'] = $this->risingsData['time'][1 + $index]['rising'];
-			$vara['end'] = $this->risingsData['time'][2 + $index]['rising'];
+			$vara['start'] = $this->ganitaRisingsData['time'][1 + $index]['rising'];
+			$vara['end'] = $this->ganitaRisingsData['time'][2 + $index]['rising'];
 		}
 		
 		$vara['name'] = Vara::$VARA[$vara['number']];
@@ -261,37 +300,44 @@ class Panchanga {
 	}
 	
 	/**
-	 * Get user data
+	 * Get user data.
 	 * 
 	 * @return array
 	 */
-	public function getData()
+	public function getUserData()
 	{
 		return $this->userData;
 	}
 
 	/**
-	 * Set data for Panchanga
+	 * Set data for Panchanga.
 	 * 
 	 * @param array $data
 	 */
-	private function _setData(array $data = null)
+	private function setData(array $data = null)
 	{
 		if(!is_null($data)) $this->ganitaObject->setData($data);
 		
 		$this->userData = $this->ganitaObject->getData();
-		$this->paramsData = $this->ganitaObject->getParams();
+		$this->ganitaParamsData = $this->ganitaObject->getParams();
 	}
 	
 	/**
-	 * Calculate Anga limits
+	 * Calculate Anga limits.
 	 * 
 	 * @param array $anga
 	 * @param string $function
 	 * @return array
+	 * @throws Exception\RuntimeException
 	 */
-	private function _limitAnga($anga, $function = 'getTithi')
+	private function limitAnga($anga, $function = 'getTithi')
 	{
+		if(is_null($this->ganitaObject)){
+			throw new Exception\RuntimeException(
+                'For calculation of the end angas must be used Ganita object.'
+            );
+		}
+		
 		if($function == 'getTithi'){
 			$durMonth = Masa::DUR_SYNODIC * 86400;
 			$nAnga = 30;
@@ -317,7 +363,7 @@ class Panchanga {
 		do {
 			$timeEndObject = $dateUser->add(new DateInterval('PT'.$timeLeft.'S'));
 			
-			$Panchanga->_setData(array(
+			$Panchanga->setData(array(
 					'date' => $timeEndObject->format(Time::FORMAT_DATA_DATE), 
 					'time' => $timeEndObject->format(Time::FORMAT_DATA_TIME)
 			));
