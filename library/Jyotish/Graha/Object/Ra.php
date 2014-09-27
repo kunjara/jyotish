@@ -142,6 +142,31 @@ class Ra extends GrahaObject {
 	}
 	
 	/**
+	 * Set graha drishti.
+	 * 
+	 * @param null|array $options Options to set
+	 */
+	protected function setGrahaDrishti($options)
+	{
+		switch ($options['drishtiRahu']){
+			case('srath'):
+				$this->grahaDrishti = array(
+					2 => 1,
+					7 => 1,
+					12 => 1
+				);
+				break;
+			case('guru'):
+				$this->grahaDrishti = array(
+					5 => 1,
+					7 => 1,
+					9 => 1
+				);
+				break;
+		}
+	}
+
+	/**
 	 * Set natural relationships.
 	 * 
 	 * @param null|array $options Options to set
@@ -174,6 +199,7 @@ class Ra extends GrahaObject {
 	public function __construct($options)
 	{
 		$this->setSpecificRashiByViewpoint($options);
+		$this->setGrahaDrishti($options);
 		
 		parent::__construct($options);
 	}

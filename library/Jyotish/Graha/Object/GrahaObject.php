@@ -120,7 +120,7 @@ class GrahaObject extends Object {
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 49-50.
 	 * @see Varahamihira. Brihat Jataka. Chapter 1, Verse 13.
 	 */
-	protected $grahaExaltation = array();
+	protected $grahaUcha = array();
 	
 	/**
 	 * Graha debilitation.
@@ -129,7 +129,7 @@ class GrahaObject extends Object {
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 49-50.
 	 * @see Varahamihira. Brihat Jataka. Chapter 1, Verse 13.
 	 */
-	protected $grahaDebilitation = array();
+	protected $grahaNeecha = array();
 	
 	/**
 	 * Graha mooltrikon.
@@ -138,7 +138,7 @@ class GrahaObject extends Object {
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 51-54.
 	 * @see Varahamihira. Brihat Jataka. Chapter 1, Verse 14.
 	 */
-	protected $grahaMooltrikon = array();
+	protected $grahaMool = array();
 	
 	/**
 	 * Own sign of the graha.
@@ -146,7 +146,7 @@ class GrahaObject extends Object {
 	 * @var array
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 51-54.
 	 */
-	protected $grahaOwn = array();
+	protected $grahaSwa = array();
 	
 	/**
 	 * Natural relationships.
@@ -210,6 +210,16 @@ class GrahaObject extends Object {
 	}
 	
 	/**
+	 * Get graha character.
+	 * 
+	 * @return string
+	 */
+	public function getGrahaCharacter()
+	{
+		return $this->grahaCharacter;
+	}
+	
+	/**
 	 * Get graha deva.
 	 * 
 	 * @return string
@@ -217,56 +227,6 @@ class GrahaObject extends Object {
 	public function getGrahaDeva()
 	{
 		return $this->grahaDeva;
-	}
-	
-	/**
-	 * Get graha exaltation sign.
-	 * 
-	 * @return array
-	 */
-	public function getGrahaExaltation()
-	{
-		return $this->grahaExaltation;
-	}
-	
-	/**
-	 * Get graha debilitation sign.
-	 * 
-	 * @return array
-	 */
-	public function getGrahaDebilitation()
-	{
-		return $this->grahaDebilitation;
-	}
-	
-	/**
-	 * Get graha mooltrikon sign.
-	 * 
-	 * @return array
-	 */
-	public function getGrahaMooltrikon()
-	{
-		return $this->grahaMooltrikon;
-	}
-	
-	/**
-	 * Get graha own sign.
-	 * 
-	 * @return array
-	 */
-	public function getGrahaOwn()
-	{
-		return $this->grahaOwn;
-	}
-	
-	/**
-	 * Get graha varna.
-	 * 
-	 * @return string
-	 */
-	public function getGrahaVarna()
-	{
-		return $this->grahaVarna;
 	}
 	
 	/**
@@ -280,16 +240,6 @@ class GrahaObject extends Object {
 	}
 	
 	/**
-	 * Get graha guna.
-	 * 
-	 * @return string
-	 */
-	public function getGrahaGuna()
-	{
-		return $this->grahaGuna;
-	}
-	
-	/**
 	 * Get graha bhuta.
 	 * 
 	 * @return string
@@ -300,23 +250,23 @@ class GrahaObject extends Object {
 	}
 	
 	/**
-	 * Get graha prakriti.
-	 * 
-	 * @return array
-	 */
-	public function getGrahaPrakriti()
-	{
-		return $this->grahaPrakriti;
-	}
-	
-	/**
-	 * Get graha rasa.
+	 * Get graha varna.
 	 * 
 	 * @return string
 	 */
-	public function getGrahaRasa()
+	public function getGrahaVarna()
 	{
-		return $this->grahaRasa;
+		return $this->grahaVarna;
+	}
+	
+	/**
+	 * Get graha guna.
+	 * 
+	 * @return string
+	 */
+	public function getGrahaGuna()
+	{
+		return $this->grahaGuna;
 	}
 	
 	/**
@@ -330,13 +280,53 @@ class GrahaObject extends Object {
 	}
 	
 	/**
-	 * Get graha character.
+	 * Get graha rasa.
 	 * 
 	 * @return string
 	 */
-	public function getGrahaCharacter()
+	public function getGrahaRasa()
 	{
-		return $this->grahaCharacter;
+		return $this->grahaRasa;
+	}
+	
+	/**
+	 * Get graha exaltation sign.
+	 * 
+	 * @return array
+	 */
+	public function getGrahaUcha()
+	{
+		return $this->grahaUcha;
+	}
+	
+	/**
+	 * Get graha debilitation sign.
+	 * 
+	 * @return array
+	 */
+	public function getGrahaNeecha()
+	{
+		return $this->grahaNeecha;
+	}
+	
+	/**
+	 * Get graha mooltrikon sign.
+	 * 
+	 * @return array
+	 */
+	public function getGrahaMool()
+	{
+		return $this->grahaMool;
+	}
+	
+	/**
+	 * Get graha own sign.
+	 * 
+	 * @return array
+	 */
+	public function getGrahaSwa()
+	{
+		return $this->grahaSwa;
 	}
 	
 	/**
@@ -347,6 +337,27 @@ class GrahaObject extends Object {
 	public function getGrahaDisha()
 	{
 		return $this->grahaDisha;
+	}
+	
+	
+	/**
+	 * Get graha drishti.
+	 * 
+	 * @return array
+	 */
+	public function getGrahaDrishti()
+	{
+		return $this->grahaDrishti;
+	}
+
+	/**
+	 * Get graha prakriti.
+	 * 
+	 * @return array
+	 */
+	public function getGrahaPrakriti()
+	{
+		return $this->grahaPrakriti;
 	}
 	
 	/**
@@ -381,17 +392,17 @@ class GrahaObject extends Object {
 		$friendsFromMt = array(2, 4, 5, 8, 9, 12);
 		$enemiesFromMt = array(3, 6, 7, 10, 11);
 		
-		$rashiMt = $this->grahaMooltrikon['rashi'];
-		$rashiEx = $this->grahaExaltation['rashi'];
+		$rashiMool = $this->grahaMool['rashi'];
+		$rashiUcha = $this->grahaUcha['rashi'];
 		
 		$friends = array();
-		$R = Rashi::getInstance($rashiEx);
+		$R = Rashi::getInstance($rashiUcha);
 		$gFriend = $R->getRashiRuler();
 		if($this->grahaKey != $gFriend) $friends[] = $gFriend;
 		
-		$relation = function($distance) use($rashiMt){
+		$relation = function($distance) use($rashiMool){
 			foreach($distance as $step){
-				$r = Math::numberInCycle($rashiMt, $step);
+				$r = Math::numberInCycle($rashiMool, $step);
 				$R = Rashi::getInstance((int)$r);
 				$gRuler = $R->getRashiRuler();
 
@@ -430,10 +441,10 @@ class GrahaObject extends Object {
 	 */
 	protected function setSpecificRashi(array $specificRashi)
 	{
-		$this->grahaExaltation = array('rashi' => $specificRashi['ex']);
-		$this->grahaDebilitation = array('rashi' => $specificRashi['db']);
-		$this->grahaMooltrikon = array('rashi' => $specificRashi['mt']);
-		$this->grahaOwn = array('rashi' => $specificRashi['ow']);
+		$this->grahaUcha = array('rashi' => $specificRashi['ex']);
+		$this->grahaNeecha = array('rashi' => $specificRashi['db']);
+		$this->grahaMool = array('rashi' => $specificRashi['mt']);
+		$this->grahaSwa = array('rashi' => $specificRashi['ow']);
 	}
 
 	/**

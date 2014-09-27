@@ -132,7 +132,7 @@ class Bu extends GrahaObject {
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 49-50.
 	 * @see Varahamihira. Brihat Jataka. Chapter 1, Verse 13.
 	 */
-	protected $grahaExaltation = array
+	protected $grahaUcha = array
 	(
 		'rashi' => 6,
 		'degree' => 15
@@ -145,7 +145,7 @@ class Bu extends GrahaObject {
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 49-50.
 	 * @see Varahamihira. Brihat Jataka. Chapter 1, Verse 13.
 	 */
-	protected $grahaDebilitation = array
+	protected $grahaNeecha = array
 	(
 		'rashi' => 12,
 		'degree' => 15
@@ -158,7 +158,7 @@ class Bu extends GrahaObject {
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 51-54.
 	 * @see Varahamihira. Brihat Jataka. Chapter 1, Verse 14.
 	 */
-	protected $grahaMooltrikon = array
+	protected $grahaMool = array
 	(
 		'rashi' => 6,
 		'start' => 15,
@@ -171,7 +171,7 @@ class Bu extends GrahaObject {
 	 * @var array
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 51-54.
 	 */
-	protected $grahaOwn = array
+	protected $grahaSwa = array
 	(
 		'positive' => array
 		(
