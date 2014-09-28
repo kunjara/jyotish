@@ -4,7 +4,7 @@
  * @license   GNU General Public License version 2 or later
  */
 
-namespace Jyotish\Service;
+namespace Jyotish\Base;
 
 /**
  * Class of utility functions.

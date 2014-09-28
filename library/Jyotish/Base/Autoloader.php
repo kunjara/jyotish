@@ -4,7 +4,7 @@
  * @license   GNU General Public License version 2 or later
  */
 
-namespace Jyotish\Service;
+namespace Jyotish\Base;
 
 /**
  * Autoloader class.
@@ -28,4 +28,4 @@ class Autoloader {
 
 }
 
-spl_autoload_register('Jyotish\Service\Autoloader::autoload');
+spl_autoload_register('Jyotish\Base\Autoloader::autoload');

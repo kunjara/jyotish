@@ -7,7 +7,7 @@
 namespace Jyotish\Base;
 
 use Jyotish\Graha\Graha;
-use Jyotish\Service\Utils;
+use Jyotish\Base\Utils;
 
 /**
  * Data class.

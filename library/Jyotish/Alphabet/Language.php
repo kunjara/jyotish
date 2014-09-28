@@ -6,7 +6,7 @@
 
 namespace Jyotish\Alphabet;
 
-use Jyotish\Service\Utils;
+use Jyotish\Base\Utils;
 
 /**
  * Language class

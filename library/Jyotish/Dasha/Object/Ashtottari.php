@@ -6,7 +6,7 @@
 
 namespace Jyotish\Dasha\Object;
 
-use Jyotish\Service\Utils;
+use Jyotish\Base\Utils;
 use Jyotish\Graha\Graha;
 use Jyotish\Calendar\Samvatsara;
 use Jyotish\Panchanga\Nakshatra\Nakshatra;

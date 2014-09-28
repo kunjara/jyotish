@@ -7,7 +7,7 @@
 namespace Jyotish\Dasha;
 
 use DateInterval;
-use Jyotish\Service\Utils;
+use Jyotish\Base\Utils;
 use Jyotish\Ganita\Time;
 
 /**

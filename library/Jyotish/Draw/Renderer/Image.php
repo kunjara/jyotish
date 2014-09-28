@@ -7,7 +7,7 @@
 namespace Jyotish\Draw\Renderer;
 
 use Jyotish\Draw\Plot\Chakra\AbstractChakra;
-use Jyotish\Service\Utils;
+use Jyotish\Base\Utils;
 
 /**
  * Class for rendering basic elements as image.
