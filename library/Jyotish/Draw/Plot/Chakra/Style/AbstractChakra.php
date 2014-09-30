@@ -26,7 +26,7 @@ abstract class AbstractChakra {
 	);
 	static private $_bhavaPoints = array();
 
-	abstract static public function getBhavaPoints($size, $left, $top);
+	abstract public function getBhavaPoints($size, $left, $top);
 
 	abstract public function getRashiLabelPoints($size, array $labelRashi, Data $drawData);
 

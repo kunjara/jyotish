@@ -106,8 +106,9 @@ abstract class AbstractRender {
 	public function drawChakra($drawData, $leftOffset, $topOffset, $options) {
 		$this->data = $drawData;
 		
-		$chakraStyle = 'Jyotish\Draw\Plot\Chakra\Style\\' . ucfirst(strtolower($this->chakraStyle));
-		$bhavaPoints = $chakraStyle::getBhavaPoints($this->chakraSize, $leftOffset, $topOffset);
+		$chakraStyleClass  = 'Jyotish\Draw\Plot\Chakra\Style\\' . ucfirst(strtolower($this->chakraStyle));
+		$chakraStyleObject = new $chakraStyleClass();
+		$bhavaPoints       = $chakraStyleObject->getBhavaPoints($this->chakraSize, $leftOffset, $topOffset);
 
 		foreach ($bhavaPoints as $points) {
 			$this->adapter->drawPolygon($points);

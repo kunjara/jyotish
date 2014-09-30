@@ -84,7 +84,7 @@ final class East extends AbstractChakra {
 		),
 	);
 
-	static public function getBhavaPoints($size, $leftOffset = 0, $topOffset = 0) {
+	public function getBhavaPoints($size, $leftOffset = 0, $topOffset = 0) {
 		foreach (self::$_bhavaPoints as $bhavaKey => $bhavaPoints) {
 			foreach ($bhavaPoints as $point => $value) {
 				if ($value != 0) {
