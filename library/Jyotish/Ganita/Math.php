@@ -142,6 +142,20 @@ class Math {
 	}
 	
 	/**
+	 * Sum of two arrays.
+	 * 
+	 * @param array $array1
+	 * @param array $array2
+	 */
+	static public function arraySum(array $array1, array $array2)
+	{
+		foreach($array1 as $key => $value){
+			$array[$key] = array_key_exists($key, $array2) ? $array2[$key] + $value : $value;
+		}
+		return $array;
+	}
+
+	/**
 	 * Sum of two values of arc angular degrees (hours), minutes and seconds.
 	 * 
 	 * @param array $dms1
