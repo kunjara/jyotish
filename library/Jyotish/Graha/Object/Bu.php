@@ -244,6 +244,7 @@ class Bu extends GrahaObject {
 		parent::setEnvironment($ganitaData);
 		
 		$this->setGrahaCharacter();
+		return $this;
 	}
 	
 	/**

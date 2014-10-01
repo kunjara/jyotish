@@ -446,6 +446,82 @@ class GrahaObject extends Object {
 		$this->grahaMool = array('rashi' => $specificRashi['mt']);
 		$this->grahaSwa = array('rashi' => $specificRashi['ow']);
 	}
+	
+	/**
+	 * Get aspect by grahas.
+	 * 
+	 * @return array
+	 */
+	public function isAspectedByGraha()
+	{
+		$this->checkEnvironment();
+		
+		foreach (Graha::$graha as $key => $name){
+			if($key == $this->grahaKey) continue;
+			
+			$Graha = Graha::getInstance($key);
+			$grahaDrishti = $Graha->getGrahaDrishti();
+			
+			$distanse = Math::distanceInCycle(
+				$this->ganitaData['graha'][$key]['rashi'], 
+				$this->ganitaData['graha'][$this->grahaKey]['rashi']
+			);
+			$isAspected[$key] = $grahaDrishti[$distanse];
+		}
+		return $isAspected;
+	}
+	
+	/**
+	 * Get association with other grahas.
+	 * 
+	 * @return array
+	 */
+	public function isAssociated()
+	{
+		$this->checkEnvironment();
+		
+		$isAssociated = array();
+		
+		foreach (Graha::$graha as $key => $name){
+			if($key == $this->grahaKey) continue;
+			
+			if($this->ganitaData['graha'][$key]['rashi'] == $this->ganitaData['graha'][$this->grahaKey]['rashi']){
+				$isAssociated[$key] = $name;
+			}
+		}
+		return $isAssociated;
+	}
+	
+	/**
+	 * Returns an array of hemming grahas.
+	 * 
+	 * @return array
+	 */
+	public function isHemmed()
+	{
+		$this->checkEnvironment();
+		
+		$isHemmed = array();
+		$p = 'prev';
+		$n = 'next';
+		
+		$$p = Math::numberPrev($this->ganitaData['graha'][$this->grahaKey]['rashi']);
+		$$n = Math::numberNext($this->ganitaData['graha'][$this->grahaKey]['rashi']);
+		
+		foreach (Graha::$graha as $key => $name){
+			if($key == $this->grahaKey) continue;
+			
+			if($this->ganitaData['graha'][$key]['rashi'] == ${$n})
+				$isHemmed[$key] = $n;
+			elseif($this->ganitaData['graha'][$key]['rashi'] == ${$p})
+				$isHemmed[$key] = $p;
+		}
+		
+		if(!(array_search($p, $isHemmed) and array_search($n, $isHemmed)))
+			$isHemmed = array();
+		
+		return $isHemmed;
+	}
 
 	/**
 	 * Constructor

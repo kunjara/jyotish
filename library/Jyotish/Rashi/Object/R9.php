@@ -115,27 +115,5 @@ class R9 extends RashiObject {
 	{
 		parent::__construct($options);
 	}
-
-	/**
-	 * Set environment.
-	 * 
-	 * @param array $ganitaData
-	 */
-	public function setEnvironment(array $ganitaData)
-	{
-		parent::setEnvironment($ganitaData);
-		
-		$this->setRashiVasya();
-	}
 	
-	/**
-	 * Set rashi vasya.
-	 * 
-	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 11.
-	 * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 5.
-	 */
-	protected function setRashiVasya()
-	{
-		
-	}
 }

@@ -28,4 +28,15 @@ class Object {
 	{
 		$this->ganitaData = $ganitaData;
 	}
+	
+	/**
+	 * Check the environment.
+	 * 
+	 * @throws Exception\UnderflowException
+	 */
+	protected function checkEnvironment()
+	{
+		if(is_null($this->ganitaData))
+			throw new Exception\UnderflowException('Environment must be setted.');
+	}
 }

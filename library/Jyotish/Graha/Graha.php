@@ -90,4 +90,24 @@ class Graha {
 		}
 	}
 
+	/**
+	 * Get grahas by character.
+	 * 
+	 * @param string $character
+	 * @return array
+	 */
+	static public function getGrahaByCharacter($character)
+	{
+		$result = array();
+		
+		foreach (Graha::$graha as $key => $name){
+			$Graha = self::getInstance($key);
+					
+			if($Graha->getGrahaCharacter() == $character)
+				$result[$key] = $name;
+			else
+				continue;
+		}
+		return $result;
+	}
 }

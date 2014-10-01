@@ -142,6 +142,19 @@ class Math {
 	}
 	
 	/**
+	 * Previous number in a cycle.
+	 * 
+	 * @param int $n
+	 * @return int
+	 */
+	static public function numberPrev($n, $cycle = 12) {
+		$nPrev    = $n - 1;
+		$nInCycle = self::numberInCycle($nPrev, 1, $cycle);
+		
+		return $nInCycle;
+	}
+	
+	/**
 	 * Sum of two arrays.
 	 * 
 	 * @param array $array1
