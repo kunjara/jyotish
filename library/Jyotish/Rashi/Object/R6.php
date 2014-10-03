@@ -23,7 +23,7 @@ class R6 extends RashiObject {
 	 * 
 	 * @var int
 	 */
-	protected $rashiKey = 6;
+	protected $objectKey = 6;
 	
 	/**
 	 * Devanagari title 'kanya' in transliteration.

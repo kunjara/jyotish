@@ -23,7 +23,7 @@ class R5 extends RashiObject {
 	 * 
 	 * @var int
 	 */
-	protected $rashiKey = 5;
+	protected $objectKey = 5;
 	
 	/**
 	 * Devanagari title 'simha' in transliteration.

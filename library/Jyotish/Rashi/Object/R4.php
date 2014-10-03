@@ -23,7 +23,7 @@ class R4 extends RashiObject {
 	 * 
 	 * @var int
 	 */
-	protected $rashiKey = 4;
+	protected $objectKey = 4;
 	
 	/**
 	 * Devanagari title 'karka' in transliteration.

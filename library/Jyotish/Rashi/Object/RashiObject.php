@@ -15,6 +15,20 @@ use Jyotish\Base\Object;
  */
 class RashiObject extends Object {
 	/**
+	 * Object type
+	 * 
+	 * @var string
+	 */
+	protected $objectType = 'rashi';
+	
+	/**
+	 * Rashi key
+	 * 
+	 * @var int
+	 */
+	protected $objectKey;
+	
+	/**
 	 * Devanagari rashi title in transliteration.
 	 * 
 	 * @var array

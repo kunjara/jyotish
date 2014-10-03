@@ -27,7 +27,7 @@ class Gu extends GrahaObject {
 	 * 
 	 * @var string
 	 */
-	protected $grahaKey = 'Gu';
+	protected $objectKey = 'Gu';
 	
 	/**
 	 * Devanagari title 'guru' in transliteration.

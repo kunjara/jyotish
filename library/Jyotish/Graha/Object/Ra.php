@@ -22,7 +22,7 @@ class Ra extends GrahaObject {
 	 * 
 	 * @var string
 	 */
-	protected $grahaKey = 'Ra';
+	protected $objectKey = 'Ra';
 	
 	/**
 	 * Devanagari title 'rahu' in transliteration.
@@ -193,7 +193,7 @@ class Ra extends GrahaObject {
 				Graha::GRAHA_KE => -1,
 			);
 		}
-		$this->grahaRelation[$this->grahaKey] = $options['relationSame'] ? 1 : null;
+		$this->grahaRelation[$this->objectKey] = $options['relationSame'] ? 1 : null;
 	}
 
 	public function __construct($options)

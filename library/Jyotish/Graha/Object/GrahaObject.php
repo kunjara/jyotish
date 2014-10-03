@@ -18,11 +18,18 @@ use Jyotish\Ganita\Math;
  */
 class GrahaObject extends Object {
 	/**
+	 * Object type
+	 * 
+	 * @var string
+	 */
+	protected $objectType = 'graha';
+	
+	/**
 	 * Abbreviation of the graha
 	 * 
 	 * @var string
 	 */
-	protected $grahaKey;
+	protected $objectKey;
 
 	/**
 	 * Devanagari graha title in transliteration.
@@ -398,7 +405,7 @@ class GrahaObject extends Object {
 		$friends = array();
 		$R = Rashi::getInstance($rashiUcha);
 		$gFriend = $R->getRashiRuler();
-		if($this->grahaKey != $gFriend) $friends[] = $gFriend;
+		if($this->objectKey != $gFriend) $friends[] = $gFriend;
 		
 		$relation = function($distance) use($rashiMool){
 			foreach($distance as $step){
@@ -406,7 +413,7 @@ class GrahaObject extends Object {
 				$R = Rashi::getInstance((int)$r);
 				$gRuler = $R->getRashiRuler();
 
-				if($this->grahaKey == $gRuler) continue;
+				if($this->objectKey == $gRuler) continue;
 				$grahas[] = $gRuler;
 			}
 			return $grahas;
@@ -416,7 +423,7 @@ class GrahaObject extends Object {
 		$enemies = array_unique($relation($enemiesFromMt));
 		
 		foreach (Graha::$graha as $key => $name){
-			if($this->grahaKey == $key) continue;
+			if($this->objectKey == $key) continue;
 			
 			if(in_array($key, $friends) and in_array($key, $enemies)){
 				$relationships[$key] = 0;
@@ -426,10 +433,10 @@ class GrahaObject extends Object {
 				$relationships[$key] = -1;
 			}else{
 				$G = Graha::getInstance($key, $options);
-				$relationships[$key] = $G->getNaturalRelation($this->grahaKey);
+				$relationships[$key] = $G->getNaturalRelation($this->objectKey);
 			}
 		}
-		$relationships[$this->grahaKey] = $options['relationSame'] ? 1 : null;
+		$relationships[$this->objectKey] = $options['relationSame'] ? 1 : null;
 		
 		$this->grahaRelation = $relationships;
 	}
@@ -445,82 +452,6 @@ class GrahaObject extends Object {
 		$this->grahaNeecha = array('rashi' => $specificRashi['db']);
 		$this->grahaMool = array('rashi' => $specificRashi['mt']);
 		$this->grahaSwa = array('rashi' => $specificRashi['ow']);
-	}
-	
-	/**
-	 * Get aspect by grahas.
-	 * 
-	 * @return array
-	 */
-	public function isAspectedByGraha()
-	{
-		$this->checkEnvironment();
-		
-		foreach (Graha::$graha as $key => $name){
-			if($key == $this->grahaKey) continue;
-			
-			$Graha = Graha::getInstance($key);
-			$grahaDrishti = $Graha->getGrahaDrishti();
-			
-			$distanse = Math::distanceInCycle(
-				$this->ganitaData['graha'][$key]['rashi'], 
-				$this->ganitaData['graha'][$this->grahaKey]['rashi']
-			);
-			$isAspected[$key] = $grahaDrishti[$distanse];
-		}
-		return $isAspected;
-	}
-	
-	/**
-	 * Get association with other grahas.
-	 * 
-	 * @return array
-	 */
-	public function isAssociated()
-	{
-		$this->checkEnvironment();
-		
-		$isAssociated = array();
-		
-		foreach (Graha::$graha as $key => $name){
-			if($key == $this->grahaKey) continue;
-			
-			if($this->ganitaData['graha'][$key]['rashi'] == $this->ganitaData['graha'][$this->grahaKey]['rashi']){
-				$isAssociated[$key] = $name;
-			}
-		}
-		return $isAssociated;
-	}
-	
-	/**
-	 * Returns an array of hemming grahas.
-	 * 
-	 * @return array
-	 */
-	public function isHemmed()
-	{
-		$this->checkEnvironment();
-		
-		$isHemmed = array();
-		$p = 'prev';
-		$n = 'next';
-		
-		$$p = Math::numberPrev($this->ganitaData['graha'][$this->grahaKey]['rashi']);
-		$$n = Math::numberNext($this->ganitaData['graha'][$this->grahaKey]['rashi']);
-		
-		foreach (Graha::$graha as $key => $name){
-			if($key == $this->grahaKey) continue;
-			
-			if($this->ganitaData['graha'][$key]['rashi'] == ${$n})
-				$isHemmed[$key] = $n;
-			elseif($this->ganitaData['graha'][$key]['rashi'] == ${$p})
-				$isHemmed[$key] = $p;
-		}
-		
-		if(!(array_search($p, $isHemmed) and array_search($n, $isHemmed)))
-			$isHemmed = array();
-		
-		return $isHemmed;
 	}
 
 	/**

@@ -29,7 +29,7 @@ class Ch extends GrahaObject {
 	 * 
 	 * @var string
 	 */
-	protected $grahaKey = 'Ch';
+	protected $objectKey = 'Ch';
 	
 	/**
 	 * Devanagari title 'chandra' in transliteration.

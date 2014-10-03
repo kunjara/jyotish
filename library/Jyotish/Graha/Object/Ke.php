@@ -22,7 +22,7 @@ class Ke extends GrahaObject {
 	 * 
 	 * @var string
 	 */
-	protected $grahaKey = 'Ke';
+	protected $objectKey = 'Ke';
 	
 	/**
 	 * Devanagari title 'ketu' in transliteration.
@@ -167,7 +167,7 @@ class Ke extends GrahaObject {
 				Graha::GRAHA_RA => -1,
 			);
 		}
-		$this->grahaRelation[$this->grahaKey] = $options['relationSame'] ? 1 : null;
+		$this->grahaRelation[$this->objectKey] = $options['relationSame'] ? 1 : null;
 	}
 
 	public function __construct($options)

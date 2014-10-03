@@ -23,7 +23,7 @@ class R9 extends RashiObject {
 	 * 
 	 * @var int
 	 */
-	protected $rashiKey = 9;
+	protected $objectKey = 9;
 	
 	/**
 	 * Devanagari title 'dhanu' in transliteration.

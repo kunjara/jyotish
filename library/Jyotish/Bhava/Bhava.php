@@ -18,7 +18,7 @@ class Bhava {
 	 * @var array 
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 7, Verse 37-38.
 	 */
-	static public $BHAVA = array(
+	static public $bhava = array(
 		1 => 'Tanu',
 		2 => 'Dhana',
 		3 => 'Sahaja',
@@ -52,7 +52,7 @@ class Bhava {
 	 * @throws Exception\InvalidArgumentException
 	 */
 	static public function getInstance($number, $options = null) {
-		if (array_key_exists($number, self::$BHAVA)) {
+		if (array_key_exists($number, self::$bhava)) {
 			$bhavaClass = 'Jyotish\\Bhava\\Object\\B' . $number;
 			$bhavaObject = new $bhavaClass($options);
 

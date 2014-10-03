@@ -23,7 +23,7 @@ class R7 extends RashiObject {
 	 * 
 	 * @var int
 	 */
-	protected $rashiKey = 7;
+	protected $objectKey = 7;
 	
 	/**
 	 * Devanagari title 'tula' in transliteration.

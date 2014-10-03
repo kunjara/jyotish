@@ -23,7 +23,7 @@ class R10 extends RashiObject {
 	 * 
 	 * @var int
 	 */
-	protected $rashiKey = 10;
+	protected $objectKey = 10;
 	
 	/**
 	 * Devanagari title 'makara' in transliteration.

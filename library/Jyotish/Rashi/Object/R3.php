@@ -23,7 +23,7 @@ class R3 extends RashiObject {
 	 * 
 	 * @var int
 	 */
-	protected $rashiKey = 3;
+	protected $objectKey = 3;
 	
 	/**
 	 * Devanagari title 'mithuna' in transliteration.

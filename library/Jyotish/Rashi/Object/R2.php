@@ -23,7 +23,7 @@ class R2 extends RashiObject {
 	 * 
 	 * @var int
 	 */
-	protected $rashiKey = 2;
+	protected $objectKey = 2;
 	
 	/**
 	 * Devanagari title 'vrishabha' in transliteration.

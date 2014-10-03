@@ -23,7 +23,7 @@ class R1 extends RashiObject {
 	 * 
 	 * @var int
 	 */
-	protected $rashiKey = 1;
+	protected $objectKey = 1;
 	
 	/**
 	 * Devanagari title 'mesha' in transliteration.

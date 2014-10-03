@@ -23,7 +23,7 @@ class R12 extends RashiObject {
 	 * 
 	 * @var int
 	 */
-	protected $rashiKey = 12;
+	protected $objectKey = 12;
 	
 	/**
 	 * Devanagari title 'meena' in transliteration.

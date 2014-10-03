@@ -15,11 +15,18 @@ use Jyotish\Base\Object;
  */
 class BhavaObject extends Object {
 	/**
+	 * Object type
+	 * 
+	 * @var string
+	 */
+	protected $objectType = 'bhava';
+	
+	/**
 	 * Bhava key
 	 * 
 	 * @var int
 	 */
-	protected $bhavaKey;
+	protected $objectKey;
 	
 	/**
 	 * Devanagari bhava title in transliteration.

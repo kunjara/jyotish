@@ -23,7 +23,7 @@ class R8 extends RashiObject {
 	 * 
 	 * @var int
 	 */
-	protected $rashiKey = 8;
+	protected $objectKey = 8;
 	
 	/**
 	 * Devanagari title 'vrishchika' in transliteration.

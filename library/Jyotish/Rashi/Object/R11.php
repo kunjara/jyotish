@@ -23,7 +23,7 @@ class R11 extends RashiObject {
 	 * 
 	 * @var int
 	 */
-	protected $rashiKey = 11;
+	protected $objectKey = 11;
 	
 	/**
 	 * Devanagari title 'kumbha' in transliteration.

@@ -19,7 +19,7 @@ class B8 extends BhavaObject {
 	 * 
 	 * @var int
 	 */
-	protected $bhavaKey = 8;
+	protected $objectKey = 8;
 	
 	/**
 	 * Indications of bhava.

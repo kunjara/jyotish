@@ -27,7 +27,7 @@ class Bu extends GrahaObject {
 	 * 
 	 * @var string
 	 */
-	protected $grahaKey = 'Bu';
+	protected $objectKey = 'Bu';
 	
 	/**
 	 * Devanagari title 'budha' in transliteration.
@@ -256,9 +256,9 @@ class Bu extends GrahaObject {
 	protected function setGrahaCharacter()
 	{
 		foreach($this->ganitaData['graha'] as $key => $params){
-			if($key == $this->grahaKey) continue;
+			if($key == $this->objectKey) continue;
 			
-			if($params['rashi'] == $this->ganitaData['graha'][$this->grahaKey]['rashi']){
+			if($params['rashi'] == $this->ganitaData['graha'][$this->objectKey]['rashi']){
 				$G = Graha::getInstance($key);
 				$G->setEnvironment($this->ganitaData);
 

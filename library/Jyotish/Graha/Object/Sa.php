@@ -27,7 +27,7 @@ class Sa extends GrahaObject {
 	 * 
 	 * @var string
 	 */
-	protected $grahaKey = 'Sa';
+	protected $objectKey = 'Sa';
 	
 	/**
 	 * Devanagari title 'shani' in transliteration.
