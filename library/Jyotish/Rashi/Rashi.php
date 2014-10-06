@@ -12,9 +12,16 @@ namespace Jyotish\Rashi;
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 class Rashi {
-	const BHAVA_CHARA       = 'chara';
-	const BHAVA_STHIRA      = 'sthira';
-	const BHAVA_DVISVA      = 'dvisva';
+	const BHAVA_CHARA   = 'chara';
+	const BHAVA_STHIRA  = 'sthira';
+	const BHAVA_DVISVA  = 'dvisva';
+	
+	const BALA_RATRI    = 'ratri';
+	const BALA_DINA     = 'dina';
+	
+	const DAYA_SIRSHA   = 'sirsha';
+	const DAYA_PRUSHTA  = 'prushta';
+	const DAYA_UBHAYA   = 'ubhaya';
 
 	/**
 	 * Array of all rashis.

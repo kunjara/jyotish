@@ -75,6 +75,22 @@ class R4 extends RashiObject {
 	protected $rashiPrakriti = Prakriti::PRAKRITI_KAPHA;
 	
 	/**
+	 * Bala of rashi.
+	 * 
+	 * @var string
+	 * @see Varahamihira. Brihat Jataka. Chapter 1, Verse 10.
+	 */
+	protected $rashiBala  = Rashi::BALA_RATRI;
+	
+	/**
+	 * Daya of rashi.
+	 * 
+	 * @var string
+	 * @see Varahamihira. Brihat Jataka. Chapter 1, Verse 10.
+	 */
+	protected $rashiDaya = Rashi::DAYA_PRUSHTA;
+	
+	/**
 	 * Type of rashi.
 	 * 
 	 * @var string

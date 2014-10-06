@@ -7,6 +7,7 @@
 namespace Jyotish\Rashi\Object;
 
 use Jyotish\Base\Object;
+use Jyotish\Tattva\Maha\Disha;
 
 /**
  * Parent class for rashi objects.
@@ -74,6 +75,38 @@ class RashiObject extends Object {
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 4, Verse 5-5 1/2.
 	 */
 	protected $rashiPrakriti;
+	
+	/**
+	 * Bala of rashi.
+	 * 
+	 * @var string
+	 * @see Varahamihira. Brihat Jataka. Chapter 1, Verse 10.
+	 */
+	protected $rashiBala;
+	
+	/**
+	 * Daya of rashi.
+	 * 
+	 * @var string
+	 * @see Varahamihira. Brihat Jataka. Chapter 1, Verse 10.
+	 */
+	protected $rashiDaya;
+	
+	/**
+	 * Disha of rashi.
+	 * 
+	 * @var string
+	 * @see Varahamihira. Brihat Jataka. Chapter 1, Verse 11.
+	 */
+	protected $rashiDisha;
+
+	/**
+	 * Varna of rashi.
+	 * 
+	 * @var string
+	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 4, Verse 6-24.
+	 */
+	protected $rashiVarna;
 	
 	/**
 	 * Type of rashi.
@@ -160,6 +193,46 @@ class RashiObject extends Object {
 	}
 	
 	/**
+	 * Get rashi bala.
+	 * 
+	 * @return string
+	 */
+	public function getRashiBala()
+	{
+		return $this->rashiBala;
+	}
+	
+	/**
+	 * Get rashi daya.
+	 * 
+	 * @return string
+	 */
+	public function getRashiDaya()
+	{
+		return $this->rashiDaya;
+	}
+	
+	/**
+	 * Get rashi disha.
+	 * 
+	 * @return string
+	 */
+	public function getRashiDisha()
+	{
+		return $this->rashiDisha;
+	}
+	
+	/**
+	 * Get rashi varna.
+	 * 
+	 * @return string
+	 */
+	public function getRashiVarna()
+	{
+		return $this->rashiVarna;
+	}
+	
+	/**
 	 * Get rashi type.
 	 * 
 	 * @return string
@@ -190,15 +263,27 @@ class RashiObject extends Object {
 	}
 	
 	/**
-	 * Get rashi varna.
+	 * Set rashi disha.
 	 * 
-	 * @return string
+	 * @see Varahamihira. Brihat Jataka. Chapter 1, Verse 11.
 	 */
-	public function getRashiVarna()
+	protected function setRashiDisha()
 	{
-		return $this->rashiVarna;
+		switch($this->objectKey){
+			case 1:	case 5:	case 9:
+				$this->rashiDisha = Disha::DISHA_PURVA;
+				break;
+			case 2:	case 6:	case 10:
+				$this->rashiDisha = Disha::DISHA_DAKSHINA;
+				break;
+			case 3: case 7: case 11:
+				$this->rashiDisha = Disha::DISHA_PASCHIMA;
+				break;
+			case 4: case 8: case 12:
+				$this->rashiDisha = Disha::DISHA_UTTARA;
+		}
 	}
-	
+
 	/**
 	 * Constructor
 	 * 
@@ -206,6 +291,6 @@ class RashiObject extends Object {
      */
 	public function __construct($options)
 	{
-		return $this;
+		$this->setRashiDisha();
 	}
 }
