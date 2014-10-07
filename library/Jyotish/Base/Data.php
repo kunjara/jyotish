@@ -8,6 +8,7 @@ namespace Jyotish\Base;
 
 use Jyotish\Graha\Graha;
 use Jyotish\Base\Utils;
+use Jyotish\Ganita\Math;
 
 /**
  * Data class.
@@ -15,6 +16,27 @@ use Jyotish\Base\Utils;
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 class Data {
+	/**
+	 * Blocks of data.
+	 * 
+	 * @var array
+	 */
+	private $dataTemplate = array(
+		'graha' => [
+			'$gr' => [
+				'longitude' => null,
+				'latitude' => null,
+				'speed' => null
+			]
+		],
+		'extra' => [
+			'$ex' => [
+				'longitude' => null
+			]
+		],
+	);
+
+
 	/**
 	 * Ganita data.
 	 * 
@@ -42,11 +64,47 @@ class Data {
 	 * @var array
 	 */
 	protected $grahaInRashi = null;
-
+	
+	/**
+	 * Constructor
+	 * 
+	 * @param array $ganitaData
+	 */
 	public function __construct(array $ganitaData) {
+		$this->checkData($ganitaData);
 		$this->ganitaData = $ganitaData;
+		
+		if(!isset($this->ganitaData['bhava'])){
+			$longitude = $this->ganitaData['extra'][Graha::LAGNA]['longitude'];
+			for($b = 1; $b <= 12; $b++){
+				$this->ganitaData['bhava'][$b]['longitude'] = $longitude < 360 ? $longitude : $longitude - 360;
+				$units = Math::partsToUnits($this->ganitaData['bhava'][$b]['longitude']);
+				$this->ganitaData['bhava'][$b]['rashi'] = $units['units'];
+				$this->ganitaData['bhava'][$b]['degree'] = $units['parts'];
+				$longitude += 30;
+			}
+		}
+	}
+	
+	/**
+	 * Check data.
+	 * 
+	 * @throws Exception\InvalidArgumentException
+	 */
+	protected function checkData($ganitaData)
+	{
+		foreach ($this->dataTemplate as $key => $value){
+			if(!key_exists($key, $ganitaData))
+				throw new Exception\InvalidArgumentException("Key '$key' is not found in the ganita data.");
+		}
+	}
 
-		return $this;
+	/**
+	 * Get Ganita data.
+	 */
+	public function getGanitaData()
+	{
+		return $this->ganitaData;
 	}
 
 	/**

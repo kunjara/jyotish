@@ -156,7 +156,7 @@ class Ra extends GrahaObject {
 					12 => 1
 				);
 				break;
-			case('guru'):
+			default:
 				$this->grahaDrishti = array(
 					5 => 1,
 					7 => 1,

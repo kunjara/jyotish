@@ -34,6 +34,36 @@ class Bhava {
 	);
 	
 	/**
+	 * Upachaya bhavas.
+	 * 
+	 * @var array
+	 * @see Varahamihira. Brihat Jataka. Chapter 1, Verse 15.
+	 */
+	static public $bhavaUpachaya = array(3, 6, 10, 11);
+	
+	/**
+	 * Kendra (chatustaya) bhavas.
+	 * 
+	 * @var array
+	 * @see Varahamihira. Brihat Jataka. Chapter 1, Verse 17.
+	 */
+	static public $bhavaKendra = array(1, 4, 7, 10);
+	
+	/**
+	 * Trikon bhavas.
+	 * 
+	 * @var array
+	 */
+	static public $bhavaTrikon = array(1, 5, 9);
+	
+	/**
+	 * Dusthana bhavas.
+	 * 
+	 * @var array
+	 */
+	static public $bhavaDusthana = array(6, 8, 12);
+
+	/**
 	 * Devanagari 'bhava' in transliteration.
 	 * 
 	 * @var array

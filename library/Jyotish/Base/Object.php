@@ -52,7 +52,7 @@ class Object {
 	protected function checkEnvironment()
 	{
 		if(is_null($this->ganitaData))
-			throw new Exception\UnderflowException('Environment must be setted.');
+			throw new Exception\UnderflowException("Environment for object '{$this->objectKey}' must be setted.");
 	}
 	
 	/**
