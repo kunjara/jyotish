@@ -7,6 +7,7 @@
 namespace Jyotish\Bhava\Object;
 
 use Jyotish\Base\Object;
+use Jyotish\Rashi\Rashi;
 
 /**
  * Parent class for bhava objects.
@@ -61,6 +62,22 @@ class BhavaObject extends Object {
 		return $this->bhavaPurushartha;
 	}
 	
+	/**
+	 * Get bhava ruler (lord).
+	 * 
+	 * @return string
+	 */
+	public function getRuler()
+	{
+		$this->checkEnvironment();
+		
+		$rashi = $this->ganitaData['bhava'][$this->objectKey]['rashi'];
+		$Rashi = Rashi::getInstance((int)$rashi);
+		$ruler = $Rashi->getRashiRuler();
+		
+		return $ruler;
+	}
+
 	/**
 	 * Constructor
 	 * 

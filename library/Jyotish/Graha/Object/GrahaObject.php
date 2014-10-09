@@ -388,6 +388,25 @@ class GrahaObject extends Object {
 	}
 	
 	/**
+	 * Get bhava, where graha is positioned.
+	 * 
+	 * @return string
+	 */
+	public function getBhava()
+	{
+		$this->checkEnvironment();
+		
+		$grahaRashi = $this->ganitaData['graha'][$this->objectKey]['rashi'];
+		do{
+			$bhava++;
+			$bhavaRashi = $this->ganitaData['bhava'][$bhava]['rashi'];
+		}
+		while($grahaRashi <> $bhavaRashi);
+		
+		return $bhava;
+	}
+
+	/**
 	 * Set natural relationships.
 	 * 
 	 * @param null|array $options Options to set
