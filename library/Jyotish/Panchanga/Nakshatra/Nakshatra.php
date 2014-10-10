@@ -98,9 +98,7 @@ class Nakshatra {
 	 * @var array
 	 * @see Jyotish\Alphabet\Devanagari
 	 */
-	static public $translit = array(
-		'na','ka','virama','ssa','ta','virama','ra'
-	);
+	static public $translit = ['na','ka','virama','ssa','ta','virama','ra'];
 	
 
 	/**

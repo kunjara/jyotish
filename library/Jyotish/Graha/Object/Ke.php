@@ -30,9 +30,7 @@ class Ke extends GrahaObject {
 	 * @var array
 	 * @see Jyotish\Alphabet\Devanagari
 	 */
-	protected $grahaTranslit = array(
-		 'ka','e','ta','u'
-	);
+	protected $grahaTranslit = ['ka','e','ta','u'];
 	
 	protected $grahaAvatara = 'Matsya';
 	protected $grahaUnicode = '260B';

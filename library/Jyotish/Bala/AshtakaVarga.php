@@ -60,16 +60,16 @@ class AshtakaVarga implements \Iterator {
 	 * @var array
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 66, Verse 43-45.
 	 */
-	protected $binduSy = array(
-		Graha::GRAHA_SY => array(1, 2, 4, 7, 8, 9, 10, 11),
-		Graha::GRAHA_CH => array(3, 6, 10, 11),
-		Graha::GRAHA_MA => array(1, 2, 4, 7, 8, 9, 10, 11),
-		Graha::GRAHA_BU => array(3, 5, 6, 9, 10, 11, 12),
-		Graha::GRAHA_GU => array(5, 6, 9, 11),
-		Graha::GRAHA_SK => array(6, 7, 12),
-		Graha::GRAHA_SA => array(1, 2, 4, 7, 8, 9, 10, 11),
-		Graha::LAGNA    => array(3, 4, 6, 10, 11, 12)
-	);
+	protected $binduSy = [
+		Graha::GRAHA_SY => [1, 2, 4, 7, 8, 9, 10, 11],
+		Graha::GRAHA_CH => [3, 6, 10, 11],
+		Graha::GRAHA_MA => [1, 2, 4, 7, 8, 9, 10, 11],
+		Graha::GRAHA_BU => [3, 5, 6, 9, 10, 11, 12],
+		Graha::GRAHA_GU => [5, 6, 9, 11],
+		Graha::GRAHA_SK => [6, 7, 12],
+		Graha::GRAHA_SA => [1, 2, 4, 7, 8, 9, 10, 11],
+		Graha::LAGNA    => [3, 4, 6, 10, 11, 12]
+	];
 	
 	/**
 	 * Bindu in Chandra Ashtakavarga.
@@ -77,16 +77,16 @@ class AshtakaVarga implements \Iterator {
 	 * @var array
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 66, Verse 46-48.
 	 */
-	protected $binduCh = array(
-		Graha::GRAHA_SY => array(3, 6, 7, 8, 10, 11),
-		Graha::GRAHA_CH => array(1, 3, 6, 7, 9, 10, 11),
-		Graha::GRAHA_MA => array(2, 3, 5, 6, 10, 11),
-		Graha::GRAHA_BU => array(1, 3, 4, 5, 7, 8, 10, 11),
-		Graha::GRAHA_GU => array(1, 2, 4, 7, 8, 10, 11),
-		Graha::GRAHA_SK => array(3, 4, 5, 7, 9, 10, 11),
-		Graha::GRAHA_SA => array(3, 5, 6, 11),
-		Graha::LAGNA    => array(3, 6, 10, 11)
-	);
+	protected $binduCh = [
+		Graha::GRAHA_SY => [3, 6, 7, 8, 10, 11],
+		Graha::GRAHA_CH => [1, 3, 6, 7, 9, 10, 11],
+		Graha::GRAHA_MA => [2, 3, 5, 6, 10, 11],
+		Graha::GRAHA_BU => [1, 3, 4, 5, 7, 8, 10, 11],
+		Graha::GRAHA_GU => [1, 2, 4, 7, 8, 10, 11],
+		Graha::GRAHA_SK => [3, 4, 5, 7, 9, 10, 11],
+		Graha::GRAHA_SA => [3, 5, 6, 11],
+		Graha::LAGNA    => [3, 6, 10, 11]
+	];
 	
 	/**
 	 * Bindu in Mangal Ashtakavarga.
@@ -94,16 +94,16 @@ class AshtakaVarga implements \Iterator {
 	 * @var array
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 66, Verse 49-50.
 	 */
-	protected $binduMa = array(
-		Graha::GRAHA_SY => array(3, 5, 6, 10, 11),
-		Graha::GRAHA_CH => array(3, 6, 11),
-		Graha::GRAHA_MA => array(1, 2, 4, 7, 8, 10, 11),
-		Graha::GRAHA_BU => array(3, 5, 6, 11),
-		Graha::GRAHA_GU => array(6, 10, 11, 12),
-		Graha::GRAHA_SK => array(6, 8, 11, 12),
-		Graha::GRAHA_SA => array(1, 4, 7, 8, 9, 10, 11),
-		Graha::LAGNA    => array(1, 3, 6, 10, 11)
-	);
+	protected $binduMa = [
+		Graha::GRAHA_SY => [3, 5, 6, 10, 11],
+		Graha::GRAHA_CH => [3, 6, 11],
+		Graha::GRAHA_MA => [1, 2, 4, 7, 8, 10, 11],
+		Graha::GRAHA_BU => [3, 5, 6, 11],
+		Graha::GRAHA_GU => [6, 10, 11, 12],
+		Graha::GRAHA_SK => [6, 8, 11, 12],
+		Graha::GRAHA_SA => [1, 4, 7, 8, 9, 10, 11],
+		Graha::LAGNA    => [1, 3, 6, 10, 11]
+	];
 	
 	/**
 	 * Bindu in Buddha Ashtakavarga.
@@ -111,16 +111,16 @@ class AshtakaVarga implements \Iterator {
 	 * @var array
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 66, Verse 51-52.
 	 */
-	protected $binduBu = array(
-		Graha::GRAHA_SY => array(5, 6, 9, 11, 12),
-		Graha::GRAHA_CH => array(2, 4, 6, 8, 10, 11),
-		Graha::GRAHA_MA => array(1, 2, 4, 7, 8, 9, 10, 11),
-		Graha::GRAHA_BU => array(1, 3, 5, 6, 9, 10, 11, 12),
-		Graha::GRAHA_GU => array(6, 8, 11, 12),
-		Graha::GRAHA_SK => array(1, 2, 3, 4, 5, 8, 9, 11),
-		Graha::GRAHA_SA => array(1, 2, 4, 7, 8, 9, 10, 11),
-		Graha::LAGNA    => array(1, 2, 4, 6, 8, 10, 11)
-	);
+	protected $binduBu = [
+		Graha::GRAHA_SY => [5, 6, 9, 11, 12],
+		Graha::GRAHA_CH => [2, 4, 6, 8, 10, 11],
+		Graha::GRAHA_MA => [1, 2, 4, 7, 8, 9, 10, 11],
+		Graha::GRAHA_BU => [1, 3, 5, 6, 9, 10, 11, 12],
+		Graha::GRAHA_GU => [6, 8, 11, 12],
+		Graha::GRAHA_SK => [1, 2, 3, 4, 5, 8, 9, 11],
+		Graha::GRAHA_SA => [1, 2, 4, 7, 8, 9, 10, 11],
+		Graha::LAGNA    => [1, 2, 4, 6, 8, 10, 11]
+	];
 	
 	/**
 	 * Bindu in Guru Ashtakavarga.
@@ -128,16 +128,16 @@ class AshtakaVarga implements \Iterator {
 	 * @var array
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 66, Verse 53-55.
 	 */
-	protected $binduGu = array(
-		Graha::GRAHA_SY => array(1, 2, 3, 4, 7, 8, 9, 10, 11),
-		Graha::GRAHA_CH => array(2, 5, 7, 9, 11),
-		Graha::GRAHA_MA => array(1, 2, 4, 7, 8, 10, 11),
-		Graha::GRAHA_BU => array(1, 2, 4, 5, 6, 9, 10, 11),
-		Graha::GRAHA_GU => array(1, 2, 3, 4, 7, 8, 10, 11),
-		Graha::GRAHA_SK => array(2, 5, 6, 9, 10, 11),
-		Graha::GRAHA_SA => array(3, 5, 6, 12),
-		Graha::LAGNA    => array(1, 2, 4, 5, 6, 7, 9, 10, 11)
-	);
+	protected $binduGu = [
+		Graha::GRAHA_SY => [1, 2, 3, 4, 7, 8, 9, 10, 11],
+		Graha::GRAHA_CH => [2, 5, 7, 9, 11],
+		Graha::GRAHA_MA => [1, 2, 4, 7, 8, 10, 11],
+		Graha::GRAHA_BU => [1, 2, 4, 5, 6, 9, 10, 11],
+		Graha::GRAHA_GU => [1, 2, 3, 4, 7, 8, 10, 11],
+		Graha::GRAHA_SK => [2, 5, 6, 9, 10, 11],
+		Graha::GRAHA_SA => [3, 5, 6, 12],
+		Graha::LAGNA    => [1, 2, 4, 5, 6, 7, 9, 10, 11]
+	];
 	
 	/**
 	 * Bindu in Shukra Ashtakavarga.
@@ -145,16 +145,16 @@ class AshtakaVarga implements \Iterator {
 	 * @var array
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 66, Verse 56-58.
 	 */
-	protected $binduSk = array(
-		Graha::GRAHA_SY => array(8, 11, 12),
-		Graha::GRAHA_CH => array(1, 2, 3, 4, 5, 8, 9, 11, 12),
-		Graha::GRAHA_MA => array(3, 4, 6, 9, 11, 12),
-		Graha::GRAHA_BU => array(3, 5, 6, 9, 11),
-		Graha::GRAHA_GU => array(5, 8, 9, 10, 11),
-		Graha::GRAHA_SK => array(1, 2, 3, 4, 5, 8, 9, 10, 11),
-		Graha::GRAHA_SA => array(3, 4, 5, 8, 9, 10, 11),
-		Graha::LAGNA    => array(1, 2, 3, 4, 5, 8, 9, 11)
-	);
+	protected $binduSk = [
+		Graha::GRAHA_SY => [8, 11, 12],
+		Graha::GRAHA_CH => [1, 2, 3, 4, 5, 8, 9, 11, 12],
+		Graha::GRAHA_MA => [3, 4, 6, 9, 11, 12],
+		Graha::GRAHA_BU => [3, 5, 6, 9, 11],
+		Graha::GRAHA_GU => [5, 8, 9, 10, 11],
+		Graha::GRAHA_SK => [1, 2, 3, 4, 5, 8, 9, 10, 11],
+		Graha::GRAHA_SA => [3, 4, 5, 8, 9, 10, 11],
+		Graha::LAGNA    => [1, 2, 3, 4, 5, 8, 9, 11]
+	];
 	
 	/**
 	 * Bindu in Shani Ashtakavarga.
@@ -162,16 +162,16 @@ class AshtakaVarga implements \Iterator {
 	 * @var array
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 66, Verse 59-60.
 	 */
-	protected $binduSa = array(
-		Graha::GRAHA_SY => array(1, 2, 4, 7, 8, 10, 11),
-		Graha::GRAHA_CH => array(3, 6, 11),
-		Graha::GRAHA_MA => array(3, 5, 6, 10, 11, 12),
-		Graha::GRAHA_BU => array(6, 8, 9, 10, 11, 12),
-		Graha::GRAHA_GU => array(5, 6, 11, 12),
-		Graha::GRAHA_SK => array(6, 11, 12),
-		Graha::GRAHA_SA => array(3, 5, 6, 11),
-		Graha::LAGNA    => array(1, 3, 4, 6, 10, 11)
-	);
+	protected $binduSa = [
+		Graha::GRAHA_SY => [1, 2, 4, 7, 8, 10, 11],
+		Graha::GRAHA_CH => [3, 6, 11],
+		Graha::GRAHA_MA => [3, 5, 6, 10, 11, 12],
+		Graha::GRAHA_BU => [6, 8, 9, 10, 11, 12],
+		Graha::GRAHA_GU => [5, 6, 11, 12],
+		Graha::GRAHA_SK => [6, 11, 12],
+		Graha::GRAHA_SA => [3, 5, 6, 11],
+		Graha::LAGNA    => [1, 3, 4, 6, 10, 11]
+	];
 	
 	/**
 	 * Bindu in Lagna Ashtakavarga.
@@ -179,16 +179,16 @@ class AshtakaVarga implements \Iterator {
 	 * @var array
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 66, Verse 65-68.
 	 */
-	protected $binduLg = array(
-		Graha::GRAHA_SY => array(3, 4, 6, 10, 11, 12),
-		Graha::GRAHA_CH => array(3, 6, 10, 11, 12),
-		Graha::GRAHA_MA => array(1, 3, 6, 10, 11),
-		Graha::GRAHA_BU => array(1, 2, 4, 6, 8, 10, 11),
-		Graha::GRAHA_GU => array(1, 2, 4, 5, 6, 7, 9, 10, 11),
-		Graha::GRAHA_SK => array(1, 2, 3, 4, 5, 8, 9),
-		Graha::GRAHA_SA => array(1, 3, 4, 6, 10, 11),
-		Graha::LAGNA    => array(3, 6, 10, 11)
-	);
+	protected $binduLg = [
+		Graha::GRAHA_SY => [3, 4, 6, 10, 11, 12],
+		Graha::GRAHA_CH => [3, 6, 10, 11, 12],
+		Graha::GRAHA_MA => [1, 3, 6, 10, 11],
+		Graha::GRAHA_BU => [1, 2, 4, 6, 8, 10, 11],
+		Graha::GRAHA_GU => [1, 2, 4, 5, 6, 7, 9, 10, 11],
+		Graha::GRAHA_SK => [1, 2, 3, 4, 5, 8, 9],
+		Graha::GRAHA_SA => [1, 3, 4, 6, 10, 11],
+		Graha::LAGNA    => [3, 6, 10, 11]
+	];
 	
 	/**
 	 * Get Bhinnashtakavarga.

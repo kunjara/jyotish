@@ -37,9 +37,7 @@ class Ch extends GrahaObject {
 	 * @var array
 	 * @see Jyotish\Alphabet\Devanagari
 	 */
-	protected $grahaTranslit = array(
-		 'ca','na','virama','da','virama','ra'
-	);
+	protected $grahaTranslit = ['ca','na','virama','da','virama','ra'];
 	
 	protected $grahaAvatara = 'Krishna';
 	protected $grahaUnicode = '263D';

@@ -33,9 +33,7 @@ class N23 extends NakshatraObject {
 	 * @var array
 	 * @see Jyotish\Alphabet\Devanagari
 	 */
-	protected $nakshatraTranslit = array(
-		 'dha','na','i','ssa','virama','ttha','aa'
-	);
+	protected $nakshatraTranslit = ['dha','na','i','ssa','virama','ttha','aa'];
 	
 	/**
 	 * Type of nakshatra.

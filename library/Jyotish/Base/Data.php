@@ -21,7 +21,7 @@ class Data {
 	 * 
 	 * @var array
 	 */
-	private $dataTemplate = array(
+	protected $dataTemplate = [
 		'graha' => [
 			'$gr' => [
 				'longitude' => null,
@@ -33,8 +33,8 @@ class Data {
 			'$ex' => [
 				'longitude' => null
 			]
-		],
-	);
+		]
+	];
 
 
 	/**
@@ -73,6 +73,14 @@ class Data {
 	public function __construct(array $ganitaData) {
 		$this->checkData($ganitaData);
 		$this->ganitaData = $ganitaData;
+		
+		foreach($this->ganitaData['graha'] as $key => $params){
+			if(!isset($params['rashi'])){
+				$units = Math::partsToUnits($params['longitude']);
+				$this->ganitaData['graha'][$key]['rashi'] = $units['units'];
+				$this->ganitaData['graha'][$key]['degree'] = $units['parts'];
+			}
+		}
 		
 		if(!isset($this->ganitaData['bhava'])){
 			$longitude = $this->ganitaData['extra'][Graha::LAGNA]['longitude'];

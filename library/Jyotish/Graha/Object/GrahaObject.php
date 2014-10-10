@@ -415,8 +415,8 @@ class GrahaObject extends Object {
 	protected function setNaturalRelation($options)
 	{
 		$relationships = array();
-		$friendsFromMt = array(2, 4, 5, 8, 9, 12);
-		$enemiesFromMt = array(3, 6, 7, 10, 11);
+		$friendsFromMt = [2, 4, 5, 8, 9, 12];
+		$enemiesFromMt = [3, 6, 7, 10, 11];
 		
 		$rashiMool = $this->grahaMool['rashi'];
 		$rashiUcha = $this->grahaUcha['rashi'];

@@ -30,9 +30,7 @@ class Ra extends GrahaObject {
 	 * @var array
 	 * @see Jyotish\Alphabet\Devanagari
 	 */
-	protected $grahaTranslit = array(
-		 'ra','aa','ha','u'
-	);
+	protected $grahaTranslit = ['ra','aa','ha','u'];
 	
 	protected $grahaAvatara = 'Varaha';
 	protected $grahaUnicode = '260A';

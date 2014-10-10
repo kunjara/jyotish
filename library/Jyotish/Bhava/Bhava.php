@@ -69,9 +69,7 @@ class Bhava {
 	 * @var array
 	 * @see Jyotish\Alphabet\Devanagari
 	 */
-	static public $translit = array(
-		'bha','aa','va'
-	);
+	static public $translit = ['bha','aa','va'];
 
 	/**
 	 * Returns the requested instance of bhava class.

@@ -33,9 +33,7 @@ class N21 extends NakshatraObject {
 	 * @var array
 	 * @see Jyotish\Alphabet\Devanagari
 	 */
-	protected $nakshatraTranslit = array(
-		 '_u','ta','virama','ta','ra','aa','ssa','aa','ddha','aa'
-	);
+	protected $nakshatraTranslit = ['_u','ta','virama','ta','ra','aa','ssa','aa','ddha','aa'];
 	
 	/**
 	 * Type of nakshatra.

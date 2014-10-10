@@ -35,14 +35,11 @@ class Bu extends GrahaObject {
 	 * @var array
 	 * @see Jyotish\Alphabet\Devanagari
 	 */
-	protected $grahaTranslit = array(
-		 'ba','u','dha'
-	);
+	protected $grahaTranslit = ['ba','u','dha'];
 	
 	protected $grahaAvatara = 'Budda';
 	protected $grahaUnicode = '263F';
-	protected $grahaAltName = array
-	();
+	protected $grahaAltName = array();
 	protected $grahaAgeMaturity = 32;
 	protected $grahaAgePeriod = array
 	(

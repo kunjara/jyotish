@@ -1,12 +1,12 @@
 {
     "name": "kunjara/jyotish",
     "description": "Library for calculations in Vedic astrology",
-    "keywords": ["jyotish", "vedic astrology"],
+    "keywords": ["jyotish", "vedic astrology", "ganita", "jataka"],
     "minimum-stability": "dev",
     "type": "library",
     "license": "GPL-2.0+",
     "require": {
-        "php": ">=5.3"
+        "php": ">=5.4"
     },
     "authors": [
         {

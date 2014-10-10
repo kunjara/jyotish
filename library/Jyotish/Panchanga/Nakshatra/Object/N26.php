@@ -33,9 +33,7 @@ class N26 extends NakshatraObject {
 	 * @var array
 	 * @see Jyotish\Alphabet\Devanagari
 	 */
-	protected $nakshatraTranslit = array(
-		 '_u','ta','virama','ta','ra',' ','bha','aa','da','virama','ra','pa','da','aa'
-	);
+	protected $nakshatraTranslit = ['_u','ta','virama','ta','ra',' ','bha','aa','da','virama','ra','pa','da','aa'];
 	
 	/**
 	 * Type of nakshatra.

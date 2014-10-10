@@ -33,9 +33,7 @@ class N20 extends NakshatraObject {
 	 * @var array
 	 * @see Jyotish\Alphabet\Devanagari
 	 */
-	protected $nakshatraTranslit = array(
-		 'pa','uu','ra','virama','va','aa','ssa','aa','ddha','aa'
-	);
+	protected $nakshatraTranslit = ['pa','uu','ra','virama','va','aa','ssa','aa','ddha','aa'];
 	
 	/**
 	 * Type of nakshatra.

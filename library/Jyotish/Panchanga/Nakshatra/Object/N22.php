@@ -33,9 +33,7 @@ class N22 extends NakshatraObject {
 	 * @var array
 	 * @see Jyotish\Alphabet\Devanagari
 	 */
-	protected $nakshatraTranslit = array(
-		 'sha','virama','ra','aa','va','nna'
-	);
+	protected $nakshatraTranslit = ['sha','virama','ra','aa','va','nna'];
 	
 	/**
 	 * Type of nakshatra.

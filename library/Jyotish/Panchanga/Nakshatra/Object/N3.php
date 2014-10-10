@@ -33,9 +33,7 @@ class N3 extends NakshatraObject {
 	 * @var array
 	 * @see Jyotish\Alphabet\Devanagari
 	 */
-	protected $nakshatraTranslit = array(
-		 'ka','r','ta','virama','ta','i','ka','aa'
-	);
+	protected $nakshatraTranslit = ['ka','r','ta','virama','ta','i','ka','aa'];
 	
 	/**
 	 * Type of nakshatra.

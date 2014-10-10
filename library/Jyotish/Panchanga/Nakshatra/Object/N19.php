@@ -33,9 +33,7 @@ class N19 extends NakshatraObject {
 	 * @var array
 	 * @see Jyotish\Alphabet\Devanagari
 	 */
-	protected $nakshatraTranslit = array(
-		 'ma','uu','la'
-	);
+	protected $nakshatraTranslit = ['ma','uu','la'];
 	
 	/**
 	 * Type of nakshatra.

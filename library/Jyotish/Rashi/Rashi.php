@@ -50,9 +50,7 @@ class Rashi {
 	 * @var array
 	 * @see Jyotish\Alphabet\Devanagari
 	 */
-	static public $translit = array(
-		'ra','aa','sha','i'
-	);
+	static public $translit = ['ra','aa','sha','i'];
 
 	/**
 	 * Returns the requested instance of rashi class.

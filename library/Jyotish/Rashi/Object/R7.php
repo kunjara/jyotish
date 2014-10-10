@@ -31,9 +31,7 @@ class R7 extends RashiObject {
 	 * @var array
 	 * @see Jyotish\Alphabet\Devanagari
 	 */
-	protected $rashiTranslit = array(
-		 'ta','u','la','aa'
-	);
+	protected $rashiTranslit = ['ta','u','la','aa'];
 	
 	/**
 	 * Unicode of rashi.

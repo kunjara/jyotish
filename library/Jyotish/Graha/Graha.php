@@ -67,9 +67,7 @@ class Graha {
 	 * @var array
 	 * @see Jyotish\Alphabet\Devanagari
 	 */
-	static public $translit = array(
-		'ga','virama','ra','ha'
-	);
+	static public $translit = ['ga','virama','ra','ha'];
 
 	/**
 	 * Returns the requested instance of graha class.
@@ -109,5 +107,27 @@ class Graha {
 				continue;
 		}
 		return $result;
+	}
+	
+	/**
+	 * Get mutual relationship between grahas in points.
+	 * 
+	 * @param string $graha1
+	 * @param string $graha2
+	 * @return int
+	 */
+	static public function getMutualRelation($graha1, $graha2)
+	{
+		$relation = function($graha1, $graha2)
+		{
+			$Graha = self::getInstance($graha1, array('relationSame' => true));
+			return $Graha->getNaturalRelation($graha2);
+		};
+		$relation1 = $relation($graha1, $graha2);
+		$relation2 = $relation($graha2, $graha1);
+		
+		$add = ($relation1 < 0 or $relation2 < 0) ? 2 : 3;
+		
+		return $relation1 + $relation2 + $add;
 	}
 }

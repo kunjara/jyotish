@@ -29,9 +29,7 @@ class N28 extends NakshatraObject {
 	 * @var array
 	 * @see Jyotish\Alphabet\Devanagari
 	 */
-	protected $nakshatraTranslit = array(
-		 '_a','bha','i','ja','ii','ta'
-	);
+	protected $nakshatraTranslit = ['_a','bha','i','ja','ii','ta'];
 	
 	/**
 	 * Type of nakshatra.

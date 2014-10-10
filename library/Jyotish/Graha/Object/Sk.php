@@ -35,9 +35,7 @@ class Sk extends GrahaObject {
 	 * @var array
 	 * @see Jyotish\Alphabet\Devanagari
 	 */
-	protected $grahaTranslit = array(
-		 'sha','u','ka','virama','ra'
-	);
+	protected $grahaTranslit = ['sha','u','ka','virama','ra'];
 	
 	protected $grahaAvatara = 'Parashurama';
 	protected $grahaUnicode = '2640';

@@ -35,9 +35,7 @@ class Sa extends GrahaObject {
 	 * @var array
 	 * @see Jyotish\Alphabet\Devanagari
 	 */
-	protected $grahaTranslit = array(
-		 'sha','na','i'
-	);
+	protected $grahaTranslit = ['sha','na','i'];
 	
 	protected $grahaAvatara = 'Kurma';
 	protected $grahaUnicode = '2644';
