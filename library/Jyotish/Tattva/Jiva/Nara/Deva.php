@@ -23,8 +23,12 @@ class Deva extends Nara {
 	const DEVA_BHAGA = 'Bhaga';
 	const DEVA_BRAHMA = 'Brahma';
 	const DEVA_BRAHMA_PRAJAPATI = 'Prajapati';
-	const DEVA_BRIHASPATI = 'Brihaspati';
+	const DEVA_BUDHA = 'Budha';
+	const DEVA_BUDHA_KUMAR = 'Kumar';
+	const DEVA_GURU = 'Guru';
+	const DEVA_GURU_BRIHASPATI = 'Brihaspati';
 	const DEVA_CHANDRA = 'Chandra';
+	const DEVA_CHANDRA_SOMA = 'Soma';
 	const DEVA_GANAPATHI = 'Ganapathi';
 	const DEVA_HIRANYAGARBHA = 'Hiranyagarbha';
 	const DEVA_INDRA = 'Indra';
@@ -36,6 +40,8 @@ class Deva extends Nara {
 	const DEVA_KARTTIKEYA_SKANDA = 'Skanda';
 	const DEVA_KARTTIKEYA_SUBRAMANYA = 'Subramanya';
 	const DEVA_KUBER = 'Kuber';
+	const DEVA_MANGAL = 'Mangal';
+	const DEVA_MANGAL_KUJA = 'Kuja';
 	const DEVA_MARUTH = 'Maruth';
 	const DEVA_NIRRITI = 'Nirriti';
 	const DEVA_PARVATI = 'Parvati';
@@ -49,11 +55,17 @@ class Deva extends Nara {
 	const DEVA_SARPA = 'Sarpa';
 	const DEVA_RATRI = 'Ratri';
 	const DEVA_SHACHI = 'Shachi';
+	const DEVA_SHANI = 'Shani';
+	const DEVA_SHANI_SHANAISHCHARA = 'Shanaishchara';
 	const DEVA_SHIVA = 'Shiva';
 	const DEVA_SHIVA_RUDRA = 'Rudra';
+	const DEVA_SHUKRA = 'Shukra';
+	const DEVA_SHUKRA_USHANAS = 'Ushanas';
 	const DEVA_SURYA = 'Surya';
 	const DEVA_SURYA_MITRA = 'Mitra';
+	const DEVA_SURYA_RAVI = 'Ravi';
 	const DEVA_SURYA_SAVITRI = 'Savitri';
+	const DEVA_SURYA_VIVASVAN = 'Vivasvan';
 	const DEVA_TWASHTR = 'Twashtr';
 	const DEVA_VARUNA = 'Varuna';
 	const DEVA_VARUNA_AMBU = 'Ambu';
@@ -70,25 +82,8 @@ class Deva extends Nara {
 	const DEVA_YAMA = 'Yama';
 	const DEVA_YAMA_DHARMA = 'Dharmaraja';
 
-	static public $DEVA_KARTTIKEYA = array(
-		self::DEVA_KARTTIKEYA_MURUGAN,
-		self::DEVA_KARTTIKEYA_SENAPATI,
-		self::DEVA_KARTTIKEYA_SKANDA,
-		self::DEVA_KARTTIKEYA_SUBRAMANYA,
-	);
-
-	static public $DEVA_PARVATI = array(
-		self::DEVA_PARVATI_DUGRA,
-		self::DEVA_PARVATI_GAURI,
-		self::DEVA_PARVATI_KALI,
-	);
-	
-	static public $DEVA_SURYA = array(
-		self::DEVA_SURYA_MITRA,
-		self::DEVA_SURYA_SAVITRI,
-	);
-	
-	static public $DEVA_VISHNU = array(
+	static public $devaVishnu = array(
+		self::DEVA_VISHNU,
 		self::DEVA_VISHNU_ISHVARA,
 		self::DEVA_VISHNU_HARI,
 		self::DEVA_VISHNU_KESHAVA,
@@ -96,4 +91,71 @@ class Deva extends Nara {
 		self::DEVA_VISHNU_YAJNESHVARA,
 	);
 	
+	static public $devaShiva = array(
+		self::DEVA_SHIVA,
+		self::DEVA_SHIVA_RUDRA,
+	);	
+	
+	static public $devaBrahma = array(
+		self::DEVA_BRAHMA,
+		self::DEVA_BRAHMA_PRAJAPATI,
+	);
+	
+	static public $devaSurya = array(
+		self::DEVA_SURYA,
+		self::DEVA_SURYA_MITRA,
+		self::DEVA_SURYA_RAVI,
+		self::DEVA_SURYA_SAVITRI,
+		self::DEVA_SURYA_VIVASVAN,
+	);
+	
+	static public $devaChandra = array(
+		self::DEVA_CHANDRA,
+		self::DEVA_CHANDRA_SOMA,
+	);
+	
+	static public $devaGuru = array(
+		self::DEVA_GURU,
+		self::DEVA_GURU_BRIHASPATI,
+	);
+	
+	static public $devaMangal = array(
+		self::DEVA_MANGAL,
+		self::DEVA_MANGAL_KUJA,
+	);
+	
+	static public $devaBudha = array(
+		self::DEVA_BUDHA,
+		self::DEVA_BUDHA_KUMAR,
+	);
+	
+	static public $devaShukra = array(
+		self::DEVA_SHUKRA,
+		self::DEVA_SHUKRA_USHANAS,
+	);
+	
+	static public $devaShani = array(
+		self::DEVA_SHANI,
+		self::DEVA_SHANI_SHANAISHCHARA,
+	);
+	
+	static public $devaKarttikeya = array(
+		self::DEVA_KARTTIKEYA,
+		self::DEVA_KARTTIKEYA_MURUGAN,
+		self::DEVA_KARTTIKEYA_SENAPATI,
+		self::DEVA_KARTTIKEYA_SKANDA,
+		self::DEVA_KARTTIKEYA_SUBRAMANYA,
+	);
+
+	static public $devaParvati = array(
+		self::DEVA_PARVATI,
+		self::DEVA_PARVATI_DUGRA,
+		self::DEVA_PARVATI_GAURI,
+		self::DEVA_PARVATI_KALI,
+	);
+	
+	static public $devaYama = array(
+		self::DEVA_YAMA,
+		self::DEVA_YAMA_DHARMA,
+	);
 }

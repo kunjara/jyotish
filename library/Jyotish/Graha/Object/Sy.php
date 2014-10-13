@@ -23,11 +23,18 @@ use Jyotish\Tattva\Ayurveda\Rasa;
  */
 class Sy extends GrahaObject {
 	/**
-	 * Abbreviation of the graha
+	 * Abbreviation of the graha.
 	 * 
 	 * @var string
 	 */
 	protected $objectKey = 'Sy';
+	
+	/**
+	 * Main name of the graha.
+	 * 
+	 * @var string
+	 */
+	protected $objectName = 'Surya';
 	
 	/**
 	 * Devanagari title 'surya' in transliteration.
@@ -39,12 +46,6 @@ class Sy extends GrahaObject {
 
 	protected $grahaAvatara = 'Rama';
 	protected $grahaUnicode = '2609';
-	protected $grahaAltName = array
-	(
-		'Mitra',
-		'Ravi',
-		'Vivasvan',
-	);
 	protected $grahaAgeMaturity = 22;
 	protected $grahaAgePeriod = array
 	(

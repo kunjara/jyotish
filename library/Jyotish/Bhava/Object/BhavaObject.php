@@ -23,13 +23,6 @@ class BhavaObject extends Object {
 	protected $objectType = 'bhava';
 	
 	/**
-	 * Bhava key
-	 * 
-	 * @var int
-	 */
-	protected $objectKey;
-	
-	/**
 	 * Devanagari bhava title in transliteration.
 	 * 
 	 * @var array

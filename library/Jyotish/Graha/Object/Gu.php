@@ -30,6 +30,13 @@ class Gu extends GrahaObject {
 	protected $objectKey = 'Gu';
 	
 	/**
+	 * Main name of the graha.
+	 * 
+	 * @var string
+	 */
+	protected $objectName = 'Guru';
+	
+	/**
 	 * Devanagari title 'guru' in transliteration.
 	 * 
 	 * @var array
@@ -39,10 +46,6 @@ class Gu extends GrahaObject {
 	
 	protected $grahaAvatara = 'Vamana';
 	protected $grahaUnicode = '2643';
-	protected $grahaAltName = array
-	(
-		'Brihaspati',
-	);
 	protected $grahaAgeMaturity = 16;
 	protected $grahaAgePeriod = array
 	(

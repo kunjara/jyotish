@@ -30,6 +30,13 @@ class Sk extends GrahaObject {
 	protected $objectKey = 'Sk';
 	
 	/**
+	 * Main name of the graha.
+	 * 
+	 * @var string
+	 */
+	protected $objectName = 'Shukra';
+	
+	/**
 	 * Devanagari title 'shukra' in transliteration.
 	 * 
 	 * @var array
@@ -39,8 +46,6 @@ class Sk extends GrahaObject {
 	
 	protected $grahaAvatara = 'Parashurama';
 	protected $grahaUnicode = '2640';
-	protected $grahaAltName = array
-	();
 	protected $grahaAgeMaturity = 25;
 	protected $grahaAgePeriod = array
 	(

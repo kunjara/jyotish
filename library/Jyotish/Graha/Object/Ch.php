@@ -32,6 +32,13 @@ class Ch extends GrahaObject {
 	protected $objectKey = 'Ch';
 	
 	/**
+	 * Main name of the graha.
+	 * 
+	 * @var string
+	 */
+	protected $objectName = 'Chandra';
+	
+	/**
 	 * Devanagari title 'chandra' in transliteration.
 	 * 
 	 * @var array
@@ -41,10 +48,6 @@ class Ch extends GrahaObject {
 	
 	protected $grahaAvatara = 'Krishna';
 	protected $grahaUnicode = '263D';
-	protected $grahaAltName = array
-	(
-		'Soma',
-	);
 	protected $grahaAgeMaturity = 24;
 	protected $grahaAgePeriod = array
 	(

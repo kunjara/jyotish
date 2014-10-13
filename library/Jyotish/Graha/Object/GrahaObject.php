@@ -10,6 +10,7 @@ use Jyotish\Base\Object;
 use Jyotish\Graha\Graha;
 use Jyotish\Rashi\Rashi;
 use Jyotish\Ganita\Math;
+use Jyotish\Tattva\Jiva\Nara\Deva;
 
 /**
  * Parent class for graha objects.
@@ -23,13 +24,6 @@ class GrahaObject extends Object {
 	 * @var string
 	 */
 	protected $objectType = 'graha';
-	
-	/**
-	 * Abbreviation of the graha
-	 * 
-	 * @var string
-	 */
-	protected $objectKey;
 
 	/**
 	 * Devanagari graha title in transliteration.
@@ -41,7 +35,6 @@ class GrahaObject extends Object {
 	
 	protected $grahaAvatara;
 	protected $grahaUnicode;
-	protected $grahaAltName = array();
 	protected $grahaAgeMaturity;
 	protected $grahaAgePeriod = array(
 		'start',
@@ -187,6 +180,16 @@ class GrahaObject extends Object {
 	protected $grahaPrakriti;
 	
 	/**
+	 * Get alternative graha names.
+	 * 
+	 * @return array
+	 */
+	public function getGrahaAltName()
+	{
+		return $this->objectAltName;
+	}
+
+		/**
 	 * Get graha devanagari name.
 	 *
 	 * @return array
@@ -407,6 +410,17 @@ class GrahaObject extends Object {
 	}
 
 	/**
+	 * Set alternative graha names.
+	 */
+	protected function setGrahaAltName()
+	{
+		if($this->objectKey != 'Ra' and $this->objectKey != 'Ke'){
+			$grahaAltName = 'deva'.$this->objectName;
+			$this->objectAltName = Deva::${$grahaAltName};
+		}
+	}
+
+	/**
 	 * Set natural relationships.
 	 * 
 	 * @param null|array $options Options to set
@@ -480,6 +494,7 @@ class GrahaObject extends Object {
      */
 	public function __construct($options)
 	{
+		$this->setGrahaAltName();
 		$this->setNaturalRelation($options);
 	}
 }

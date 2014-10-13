@@ -41,7 +41,7 @@ class N8 extends NakshatraObject {
 	 * @var string
 	 * @see Varahamihira. Brihat Samhita. Chapter 98, Verse 4-5.
 	 */
-	protected $nakshatraDeva = Deva::DEVA_BRIHASPATI;
+	protected $nakshatraDeva = Deva::DEVA_GURU_BRIHASPATI;
 	
 	/**
 	 * Type of nakshatra.

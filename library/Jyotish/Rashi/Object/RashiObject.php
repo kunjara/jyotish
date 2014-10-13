@@ -23,13 +23,6 @@ class RashiObject extends Object {
 	protected $objectType = 'rashi';
 	
 	/**
-	 * Rashi key
-	 * 
-	 * @var int
-	 */
-	protected $objectKey;
-	
-	/**
 	 * Devanagari rashi title in transliteration.
 	 * 
 	 * @var array

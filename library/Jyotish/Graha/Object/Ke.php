@@ -34,8 +34,6 @@ class Ke extends GrahaObject {
 	
 	protected $grahaAvatara = 'Matsya';
 	protected $grahaUnicode = '260B';
-	protected $grahaAltName = array
-	();
 	protected $grahaAgeMaturity = 48;
 	protected $grahaAgePeriod = array
 	(

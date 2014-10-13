@@ -34,8 +34,6 @@ class Ra extends GrahaObject {
 	
 	protected $grahaAvatara = 'Varaha';
 	protected $grahaUnicode = '260A';
-	protected $grahaAltName = array
-	();
 	protected $grahaAgeMaturity = 48;
 	protected $grahaAgePeriod = array
 	(

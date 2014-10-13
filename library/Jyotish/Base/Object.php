@@ -21,6 +21,27 @@ class Object {
 	 * @var string
 	 */
 	protected $objectType = null;
+	
+	/**
+	 * Abbreviation of the object.
+	 * 
+	 * @var string
+	 */
+	protected $objectKey;
+	
+	/**
+	 * Main name of the object.
+	 * 
+	 * @var string
+	 */
+	protected $objectName = null;
+	
+	/**
+	 * Alternative names of the object.
+	 * 
+	 * @var array
+	 */
+	protected $objectAltName = array();
 
 	/**
 	 * Environment - position of the planets in the format of the ganita output data.
