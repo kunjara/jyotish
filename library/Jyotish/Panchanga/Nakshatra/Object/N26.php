@@ -36,6 +36,14 @@ class N26 extends NakshatraObject {
 	protected $nakshatraTranslit = ['_u','ta','virama','ta','ra',' ','bha','aa','da','virama','ra','pa','da','aa'];
 	
 	/**
+	 * Deva of nakshatra.
+	 * 
+	 * @var string
+	 * @see Varahamihira. Brihat Samhita. Chapter 98, Verse 4-5.
+	 */
+	protected $nakshatraDeva = Deva::DEVA_AHIRBUDHYANA;
+	
+	/**
 	 * Type of nakshatra.
 	 * 
 	 * @var string
@@ -43,7 +51,6 @@ class N26 extends NakshatraObject {
 	 */
 	protected $nakshatraType = Nakshatra::TYPE_DHRUVA;
 	
-	protected $nakshatraDeva = Deva::DEVA_AHIRBUDHYANA;
 	protected $nakshatraEnergy = Nakshatra::ENERGY_STHITI;
 	protected $nakshatraGana = Manusha::GANA_MANUSHA;
 	protected $nakshatraGender = Manusha::GENDER_MALE;

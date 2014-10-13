@@ -107,7 +107,7 @@ class Panchanga {
 		$tithiObject = Tithi::getInstance($tithiUnits['units']);
 		
 		$tithi['number'] = $tithiUnits['units'];
-		$tithi['name'] = Tithi::$TITHI[$tithi['number']];
+		$tithi['name'] = Tithi::$tithi[$tithi['number']];
 		$tithi['paksha'] = $tithiObject->getTithiPaksha();
 		$tithi['left'] = ($unit - $tithiUnits['parts']) * 100 / $unit;
 		
@@ -203,7 +203,7 @@ class Panchanga {
 		$yogaUnits = Math::partsToUnits($lonSum, $unit);
 		
 		$yoga['number'] = $yogaUnits['units'];
-		$yoga['name'] = Yoga::$YOGA[$yoga['number']];
+		$yoga['name'] = Yoga::$yoga[$yoga['number']];
 		$yoga['left'] = ($unit - $yogaUnits['parts']) * 100 / $unit;
 		
 		if($withLimit){

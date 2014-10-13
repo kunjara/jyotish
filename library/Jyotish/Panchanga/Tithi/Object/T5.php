@@ -6,8 +6,6 @@
 
 namespace Jyotish\Panchanga\Tithi\Object;
 
-use Jyotish\Panchanga\Tithi\Tithi;
-use Jyotish\Tattva\Jiva\Nara\Deva;
 use Jyotish\Panchanga\Karana\Karana;
 
 /**
@@ -29,30 +27,7 @@ class T5 extends TithiObject {
 	 * @var array
 	 * @see Jyotish\Alphabet\Devanagari
 	 */
-	protected $tithiTranslit = array(
-		 'd5'
-	);
-	
-	/**
-	 * Deva of tithi.
-	 * 
-	 * @var string
-	 */
-	protected $tithiDeva = Deva::DEVA_SARPA;
-	
-	/**
-	 * Paksha of tithi.
-	 * 
-	 * @var string
-	 */
-	protected $tithiPaksha = Tithi::PAKSHA_SHUKLA;
-	
-	/**
-	 * Type of tithi.
-	 * 
-	 * @var string
-	 */
-	protected $tithiType = Tithi::TYPE_PURNA;
+	protected $tithiTranslit = ['d5'];
 	
 	/**
 	 * Karana of tithi.

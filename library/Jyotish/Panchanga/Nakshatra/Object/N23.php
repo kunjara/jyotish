@@ -36,6 +36,14 @@ class N23 extends NakshatraObject {
 	protected $nakshatraTranslit = ['dha','na','i','ssa','virama','ttha','aa'];
 	
 	/**
+	 * Deva of nakshatra.
+	 * 
+	 * @var string
+	 * @see Varahamihira. Brihat Samhita. Chapter 98, Verse 4-5.
+	 */
+	protected $nakshatraDeva = Deva::DEVA_VASU;
+	
+	/**
 	 * Type of nakshatra.
 	 * 
 	 * @var string
@@ -43,7 +51,6 @@ class N23 extends NakshatraObject {
 	 */
 	protected $nakshatraType = Nakshatra::TYPE_CHARANA;
 	
-	protected $nakshatraDeva = Deva::DEVA_VASU;
 	protected $nakshatraEnergy = Nakshatra::ENERGY_STHITI;
 	protected $nakshatraGana = Manusha::GANA_RAKSHASA;
 	protected $nakshatraGender = Manusha::GENDER_FEMALE;

@@ -55,18 +55,18 @@ class NakshatraObject {
 	protected $nakshatraEnd = array();
 	
 	/**
-	 * Type of nakshatra.
-	 * 
-	 * @var string
-	 */
-	protected $nakshatraType;
-	
-	/**
 	 * Deva of nakshatra.
 	 * 
 	 * @var mixed
 	 */
 	protected $nakshatraDeva;
+	
+	/**
+	 * Type of nakshatra.
+	 * 
+	 * @var string
+	 */
+	protected $nakshatraType;
 	
 	/**
 	 * Energy of nakshatra.

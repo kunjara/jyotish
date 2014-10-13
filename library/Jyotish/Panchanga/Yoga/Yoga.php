@@ -12,7 +12,7 @@ namespace Jyotish\Panchanga\Yoga;
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 class Yoga {
-	static public $YOGA = array(
+	static public $yoga = array(
 		1 => 'Vishkambha',
 		2 => 'Preeti',
 		3 => 'Ayushman',
@@ -51,7 +51,7 @@ class Yoga {
 	 * @throws Exception\InvalidArgumentException
 	 */
 	static public function getInstance($number, $options = null) {
-		if (array_key_exists($number, self::$YOGA)) {
+		if (array_key_exists($number, self::$yoga)) {
 			$yogaClass = 'Jyotish\\Panchanga\\Yoga\\Object\\Y' . $number;
 			$yogaObject = new $yogaClass($options);
 			

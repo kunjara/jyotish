@@ -6,8 +6,6 @@
 
 namespace Jyotish\Panchanga\Tithi\Object;
 
-use Jyotish\Panchanga\Tithi\Tithi;
-use Jyotish\Tattva\Jiva\Nara\Deva;
 use Jyotish\Panchanga\Karana\Karana;
 
 /**
@@ -29,30 +27,7 @@ class T26 extends TithiObject {
 	 * @var array
 	 * @see Jyotish\Alphabet\Devanagari
 	 */
-	protected $tithiTranslit = array(
-		 'd1', 'd1'
-	);
-	
-	/**
-	 * Deva of tithi.
-	 * 
-	 * @var string
-	 */
-	protected $tithiDeva = Deva::DEVA_YAMA_DHARMA;
-	
-	/**
-	 * Paksha of tithi.
-	 * 
-	 * @var string
-	 */
-	protected $tithiPaksha = Tithi::PAKSHA_KRISHNA;
-	
-	/**
-	 * Type of tithi.
-	 * 
-	 * @var string
-	 */
-	protected $tithiType = Tithi::TYPE_NANDA;
+	protected $tithiTranslit = ['d1', 'd1'];
 	
 	/**
 	 * Karana of tithi.

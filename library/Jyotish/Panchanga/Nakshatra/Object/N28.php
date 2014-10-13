@@ -32,13 +32,20 @@ class N28 extends NakshatraObject {
 	protected $nakshatraTranslit = ['_a','bha','i','ja','ii','ta'];
 	
 	/**
+	 * Deva of nakshatra.
+	 * 
+	 * @var string
+	 * @see Varahamihira. Brihat Samhita. Chapter 98, Verse 4-5.
+	 */
+	protected $nakshatraDeva = Deva::DEVA_BRAHMA;
+	
+	/**
 	 * Type of nakshatra.
 	 * 
 	 * @var string
 	 */
 	protected $nakshatraType = Nakshatra::TYPE_KSHIPRA;
 	
-	protected $nakshatraDeva = Deva::DEVA_BRAHMA;
 	protected $nakshatraEnergy = null;
 	protected $nakshatraGana = Manusha::GANA_DEVA;
 	protected $nakshatraGender = null;

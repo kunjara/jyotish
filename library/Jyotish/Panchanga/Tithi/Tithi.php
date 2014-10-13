@@ -6,6 +6,8 @@
 
 namespace Jyotish\Panchanga\Tithi;
 
+use Jyotish\Tattva\Jiva\Nara\Deva;
+
 /**
  * Class with Tithi names and attributes.
  *
@@ -39,7 +41,7 @@ class Tithi {
 	const PAKSHA_SHUKLA = 'shukla';
 	const PAKSHA_KRISHNA = 'krishna';
 
-	static public $TITHI = array(
+	static public $tithi = array(
 		1 => self::NAME_PRATIPAD,
 		2 => self::NAME_DWITIYA,
 		3 => self::NAME_TRITIYA,
@@ -81,7 +83,7 @@ class Tithi {
 	 * @throws Exception\InvalidArgumentException
 	 */
 	static public function getInstance($number, $options = null) {
-		if (self::$TITHI[$number]) {
+		if (self::$tithi[$number]) {
 			$tithiClass = 'Jyotish\\Panchanga\\Tithi\\Object\\T' . $number;
 			$tithiObject = new $tithiClass($options);
 			
@@ -90,6 +92,52 @@ class Tithi {
 			throw new Exception\InvalidArgumentException("Tithi with the number '$number' does not exist.");
 		}
 	}
+	
+	/**
+	 * Devas of tithi.
+	 * 
+	 * @var array
+	 * @see Varahamihira. Brihat Samhita. Chapter 99, Verse 1.
+	 * @see Bhavishya Purana. Brahma parva, Chapter 102.
+	 */
+	static public $tithiDeva = [
+		'varahamihira' => [
+			1 => Deva::DEVA_BRAHMA,
+			2 => Deva::DEVA_VIDHATA,
+			3 => Deva::DEVA_VISHNU_HARI,
+			4 => Deva::DEVA_YAMA,
+			5 => Deva::DEVA_CHANDRA,
+			6 => Deva::DEVA_KARTTIKEYA_SUBRAMANYA,
+			7 => Deva::DEVA_INDRA,
+			8 => Deva::DEVA_VASU,
+			9 => Deva::DEVA_SARPA,
+			10 => Deva::DEVA_YAMA_DHARMA,
+			11 => Deva::DEVA_SHIVA,
+			12 => Deva::DEVA_SURYA_SAVITRI,
+			13 => Deva::DEVA_KAMADEV_MANMATHA,
+			14 => Deva::DEVA_PARVATI_KALI,
+			15 => Deva::DEVA_VISHVADEVA,
+			30 => Deva::DEVA_PITRU
+		],
+		'bhavishya' => [
+			1 => Deva::DEVA_AGNI,
+			2 => Deva::DEVA_BRAHMA,
+			3 => Deva::DEVA_KUBER,
+			4 => Deva::DEVA_GANAPATHI,
+			5 => Deva::DEVA_SARPA,
+			6 => Deva::DEVA_KARTTIKEYA,
+			7 => Deva::DEVA_SURYA,
+			8 => Deva::DEVA_SHIVA_RUDRA,
+			9 => Deva::DEVA_PARVATI_DUGRA,
+			10 => Deva::DEVA_YAMA,
+			11 => Deva::DEVA_VISHVADEVA,
+			12 => Deva::DEVA_VISHNU,
+			13 => Deva::DEVA_KAMADEV,
+			14 => Deva::DEVA_SHIVA,
+			15 => Deva::DEVA_CHANDRA,
+			30 => Deva::DEVA_PITRU
+		]
+	];
 	
 	/**
 	 * Get tiithi using the Harvey formula.

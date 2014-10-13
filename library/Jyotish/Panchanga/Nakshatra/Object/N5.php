@@ -36,6 +36,14 @@ class N5 extends NakshatraObject {
 	protected $nakshatraTranslit = ['ma','r','ga','sha','ii','ra','virama','ssa','aa'];
 	
 	/**
+	 * Deva of nakshatra.
+	 * 
+	 * @var string
+	 * @see Varahamihira. Brihat Samhita. Chapter 98, Verse 4-5.
+	 */
+	protected $nakshatraDeva = Deva::DEVA_CHANDRA;
+	
+	/**
 	 * Type of nakshatra.
 	 * 
 	 * @var string
@@ -43,7 +51,6 @@ class N5 extends NakshatraObject {
 	 */
 	protected $nakshatraType = Nakshatra::TYPE_MRIDU;
 	
-	protected $nakshatraDeva = Deva::DEVA_CHANDRA;
 	protected $nakshatraEnergy = Nakshatra::ENERGY_STHITI;
 	protected $nakshatraGana = Manusha::GANA_DEVA;
 	protected $nakshatraGender = Manusha::GENDER_NEUTER;
