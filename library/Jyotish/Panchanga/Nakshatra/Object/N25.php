@@ -10,9 +10,9 @@ use Jyotish\Panchanga\Nakshatra\Nakshatra;
 use Jyotish\Graha\Graha;
 use Jyotish\Tattva\Jiva\Nara\Deva;
 use Jyotish\Tattva\Jiva\Nara\Manusha;
-use Jyotish\Tattva\Jiva\Pasu\Pasu;
-use Jyotish\Tattva\Maha\Guna;
-use Jyotish\Tattva\Ayurveda\Prakriti;
+use Jyotish\Tattva\Jiva\Pasu;
+use Jyotish\Tattva\Maha;
+use Jyotish\Tattva\Ayurveda;
 
 /**
  * Class of nakshatra 25.
@@ -55,10 +55,10 @@ class N25 extends NakshatraObject {
 	protected $nakshatraGana = Manusha::GANA_MANUSHA;
 	protected $nakshatraGender = Manusha::GENDER_MALE;
 	protected $nakshatraGraha = Graha::GRAHA_GU;
-	protected $nakshatraGuna = Guna::GUNA_SATTVA;
+	protected $nakshatraGuna = Maha::GUNA_SATTVA;
 	protected $nakshatraPurushartha = Manusha::PURUSHARTHA_ARTHA;
 	protected $nakshatraVarna = Manusha::VARNA_BRAHMANA;
-	protected $nakshatraPrakriti = Prakriti::PRAKRITI_VATA;
+	protected $nakshatraPrakriti = Ayurveda::PRAKRITI_VATA;
 	protected $nakshatraYoni = array(
 		'animal' => Pasu::ANIMAL_LION,
 		'gender' => Manusha::GENDER_MALE,

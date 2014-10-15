@@ -7,14 +7,10 @@
 namespace Jyotish\Graha\Object;
 
 use Jyotish\Graha\Graha;
-use Jyotish\Tattva\Maha\Bhuta;
-use Jyotish\Tattva\Maha\Disha;
-use Jyotish\Tattva\Maha\Guna;
+use Jyotish\Tattva\Maha;
 use Jyotish\Tattva\Jiva\Nara\Deva;
 use Jyotish\Tattva\Jiva\Nara\Manusha;
-use Jyotish\Tattva\Ayurveda\Dhatu;
-use Jyotish\Tattva\Ayurveda\Prakriti;
-use Jyotish\Tattva\Ayurveda\Rasa;
+use Jyotish\Tattva\Ayurveda;
 
 /**
  * Class of graha Ma.
@@ -87,7 +83,7 @@ class Ma extends GrahaObject {
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 20.
 	 * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 6.
 	 */
-	protected $grahaBhuta = Bhuta::BHUTA_AGNI;
+	protected $grahaBhuta = Maha::BHUTA_AGNI;
 	
 	/**
 	 * Varna of the Graha.
@@ -105,7 +101,7 @@ class Ma extends GrahaObject {
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 22.
 	 * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 7.
 	 */
-	protected $grahaGuna = Guna::GUNA_TAMA;
+	protected $grahaGuna = Maha::GUNA_TAMA;
 	
 	/**
 	 * Dhatu of the Graha.
@@ -116,8 +112,8 @@ class Ma extends GrahaObject {
 	 */
 	protected $grahaDhatu = array
 	(
-		Dhatu::DHATU_MAMSA,
-		Dhatu::DHATU_MAJA,
+		Ayurveda::DHATU_MAMSA,
+		Ayurveda::DHATU_MAJA,
 	);
 	
 	/**
@@ -127,7 +123,7 @@ class Ma extends GrahaObject {
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 34.
 	 * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 14.
 	 */
-	protected $grahaRasa = Rasa::RASA_KATU;
+	protected $grahaRasa = Ayurveda::RASA_KATU;
 	
 	/**
 	 * Graha exaltation.
@@ -197,7 +193,7 @@ class Ma extends GrahaObject {
 	 * @var string
 	 * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 5.
 	 */
-	protected $grahaDisha = Disha::DISHA_DAKSHINA;
+	protected $grahaDisha = Maha::DISHA_DAKSHINA;
 	
 	/**
 	 * Graha drishti
@@ -228,7 +224,7 @@ class Ma extends GrahaObject {
 	 */
 	protected $grahaPrakriti = array
 	(
-		Prakriti::PRAKRITI_PITTA
+		Ayurveda::PRAKRITI_PITTA
 	);
 
 	public function __construct($options) {

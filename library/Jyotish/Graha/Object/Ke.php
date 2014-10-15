@@ -7,8 +7,7 @@
 namespace Jyotish\Graha\Object;
 
 use Jyotish\Graha\Graha;
-use Jyotish\Tattva\Maha\Disha;
-use Jyotish\Tattva\Maha\Guna;
+use Jyotish\Tattva\Maha;
 use Jyotish\Tattva\Jiva\Nara\Manusha;
 
 /**
@@ -82,7 +81,7 @@ class Ke extends GrahaObject {
 	 * 
 	 * @var string
 	 */
-	protected $grahaGuna = Guna::GUNA_TAMA;
+	protected $grahaGuna = Maha::GUNA_TAMA;
 	
 	/**
 	 * Dhatu of the Graha.
@@ -103,7 +102,7 @@ class Ke extends GrahaObject {
 	 * 
 	 * @var string
 	 */
-	protected $grahaDisha = Disha::DISHA_NAIRUTYA;
+	protected $grahaDisha = Maha::DISHA_NAIRUTYA;
 	
 	/**
 	 * Graha drishti

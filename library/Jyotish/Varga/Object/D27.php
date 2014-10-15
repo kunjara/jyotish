@@ -8,7 +8,7 @@ namespace Jyotish\Varga\Object;
 
 use Jyotish\Ganita\Math;
 use Jyotish\Rashi\Rashi;
-use Jyotish\Tattva\Maha\Bhuta;
+use Jyotish\Tattva\Maha;
 
 /**
  * Class of varga D27.
@@ -43,16 +43,16 @@ class D27 extends \Jyotish\Varga\Varga {
 		$rashiBhuta = $rashiObject->getRashiBhuta();
 		
 		switch ($rashiBhuta) {
-			case Bhuta::BHUTA_AGNI:
+			case Maha::BHUTA_AGNI:
 				$vargaRashi['rashi'] = Math::numberInCycle(1 + $result['units']);
 				break;
-			case Bhuta::BHUTA_PRITVI:
+			case Maha::BHUTA_PRITVI:
 				$vargaRashi['rashi'] = Math::numberInCycle(4 + $result['units']);
 				break;
-			case Bhuta::BHUTA_VAYU:
+			case Maha::BHUTA_VAYU:
 				$vargaRashi['rashi'] = Math::numberInCycle(7 + $result['units']);
 				break;
-			case Bhuta::BHUTA_JALA:
+			case Maha::BHUTA_JALA:
 				$vargaRashi['rashi'] = Math::numberInCycle(10 + $result['units']);
 				break;
 		}

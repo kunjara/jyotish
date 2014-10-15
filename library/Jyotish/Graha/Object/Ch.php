@@ -7,16 +7,11 @@
 namespace Jyotish\Graha\Object;
 
 use Jyotish\Graha\Graha;
-use Jyotish\Panchanga\Tithi\Tithi;
 use Jyotish\Ganita\Math;
-use Jyotish\Tattva\Maha\Bhuta;
-use Jyotish\Tattva\Maha\Disha;
-use Jyotish\Tattva\Maha\Guna;
+use Jyotish\Tattva\Maha;
 use Jyotish\Tattva\Jiva\Nara\Deva;
 use Jyotish\Tattva\Jiva\Nara\Manusha;
-use Jyotish\Tattva\Ayurveda\Dhatu;
-use Jyotish\Tattva\Ayurveda\Prakriti;
-use Jyotish\Tattva\Ayurveda\Rasa;
+use Jyotish\Tattva\Ayurveda;
 
 /**
  * Class of graha Ch.
@@ -87,7 +82,7 @@ class Ch extends GrahaObject {
 	 * 
 	 * @var string
 	 */
-	protected $grahaBhuta = Bhuta::BHUTA_JALA;
+	protected $grahaBhuta = Maha::BHUTA_JALA;
 	
 	/**
 	 * Varna of the Graha.
@@ -105,7 +100,7 @@ class Ch extends GrahaObject {
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 22.
 	 * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 7.
 	 */
-	protected $grahaGuna = Guna::GUNA_SATTVA;
+	protected $grahaGuna = Maha::GUNA_SATTVA;
 	
 	/**
 	 * Dhatu of the Graha.
@@ -116,7 +111,7 @@ class Ch extends GrahaObject {
 	 */
 	protected $grahaDhatu = array
 	(
-		Dhatu::DHATU_RAKTA,
+		Ayurveda::DHATU_RAKTA,
 	);
 	
 	/**
@@ -126,7 +121,7 @@ class Ch extends GrahaObject {
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 34.
 	 * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 14.
 	 */
-	protected $grahaRasa = Rasa::RASA_LAVANA;
+	protected $grahaRasa = Ayurveda::RASA_LAVANA;
 	
 	/**
 	 * Graha exaltation.
@@ -187,7 +182,7 @@ class Ch extends GrahaObject {
 	 * @var string
 	 * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 5.
 	 */
-	protected $grahaDisha = Disha::DISHA_VAYAVYA;
+	protected $grahaDisha = Maha::DISHA_VAYAVYA;
 	
 	/**
 	 * Graha drishti
@@ -218,8 +213,8 @@ class Ch extends GrahaObject {
 	 */
 	protected $grahaPrakriti = array
 	(
-		Prakriti::PRAKRITI_KAPHA,
-		Prakriti::PRAKRITI_VATA
+		Ayurveda::PRAKRITI_KAPHA,
+		Ayurveda::PRAKRITI_VATA
 	);
 
 	public function __construct($options) {

@@ -7,7 +7,7 @@
 namespace Jyotish\Rashi\Object;
 
 use Jyotish\Base\Object;
-use Jyotish\Tattva\Maha\Disha;
+use Jyotish\Tattva\Maha;
 
 /**
  * Parent class for rashi objects.
@@ -264,16 +264,16 @@ class RashiObject extends Object {
 	{
 		switch($this->objectKey){
 			case 1:	case 5:	case 9:
-				$this->rashiDisha = Disha::DISHA_PURVA;
+				$this->rashiDisha = Maha::DISHA_PURVA;
 				break;
 			case 2:	case 6:	case 10:
-				$this->rashiDisha = Disha::DISHA_DAKSHINA;
+				$this->rashiDisha = Maha::DISHA_DAKSHINA;
 				break;
 			case 3: case 7: case 11:
-				$this->rashiDisha = Disha::DISHA_PASCHIMA;
+				$this->rashiDisha = Maha::DISHA_PASCHIMA;
 				break;
 			case 4: case 8: case 12:
-				$this->rashiDisha = Disha::DISHA_UTTARA;
+				$this->rashiDisha = Maha::DISHA_UTTARA;
 		}
 	}
 

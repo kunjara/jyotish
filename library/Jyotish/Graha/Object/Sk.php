@@ -7,14 +7,10 @@
 namespace Jyotish\Graha\Object;
 
 use Jyotish\Graha\Graha;
-use Jyotish\Tattva\Maha\Bhuta;
-use Jyotish\Tattva\Maha\Disha;
-use Jyotish\Tattva\Maha\Guna;
+use Jyotish\Tattva\Maha;
 use Jyotish\Tattva\Jiva\Nara\Deva;
 use Jyotish\Tattva\Jiva\Nara\Manusha;
-use Jyotish\Tattva\Ayurveda\Dhatu;
-use Jyotish\Tattva\Ayurveda\Prakriti;
-use Jyotish\Tattva\Ayurveda\Rasa;
+use Jyotish\Tattva\Ayurveda;
 
 /**
  * Class of graha Sk.
@@ -87,7 +83,7 @@ class Sk extends GrahaObject {
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 20.
 	 * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 6.
 	 */
-	protected $grahaBhuta = Bhuta::BHUTA_JALA;
+	protected $grahaBhuta = Maha::BHUTA_JALA;
 	
 	/**
 	 * Varna of the Graha.
@@ -105,7 +101,7 @@ class Sk extends GrahaObject {
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 22.
 	 * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 7.
 	 */
-	protected $grahaGuna = Guna::GUNA_RAJA;
+	protected $grahaGuna = Maha::GUNA_RAJA;
 	
 	/**
 	 * Dhatu of the Graha.
@@ -116,7 +112,7 @@ class Sk extends GrahaObject {
 	 */
 	protected $grahaDhatu = array
 	(
-		Dhatu::DHATU_SHUKRA,
+		Ayurveda::DHATU_SHUKRA,
 	);
 	
 	/**
@@ -126,7 +122,7 @@ class Sk extends GrahaObject {
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 34.
 	 * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 14.
 	 */
-	protected $grahaRasa = Rasa::RASA_AMLA;
+	protected $grahaRasa = Ayurveda::RASA_AMLA;
 	
 	/**
 	 * Graha exaltation.
@@ -196,7 +192,7 @@ class Sk extends GrahaObject {
 	 * @var string
 	 * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 5.
 	 */
-	protected $grahaDisha = Disha::DISHA_AGNEYA;
+	protected $grahaDisha = Maha::DISHA_AGNEYA;
 	
 	/**
 	 * Graha drishti
@@ -227,8 +223,8 @@ class Sk extends GrahaObject {
 	 */
 	protected $grahaPrakriti = array
 	(
-		Prakriti::PRAKRITI_KAPHA,
-		Prakriti::PRAKRITI_VATA
+		Ayurveda::PRAKRITI_KAPHA,
+		Ayurveda::PRAKRITI_VATA
 	);
 
 	public function __construct($options) {

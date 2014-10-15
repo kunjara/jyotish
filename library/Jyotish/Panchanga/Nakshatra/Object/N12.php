@@ -10,9 +10,9 @@ use Jyotish\Panchanga\Nakshatra\Nakshatra;
 use Jyotish\Graha\Graha;
 use Jyotish\Tattva\Jiva\Nara\Deva;
 use Jyotish\Tattva\Jiva\Nara\Manusha;
-use Jyotish\Tattva\Jiva\Pasu\Pasu;
-use Jyotish\Tattva\Maha\Guna;
-use Jyotish\Tattva\Ayurveda\Prakriti;
+use Jyotish\Tattva\Jiva\Pasu;
+use Jyotish\Tattva\Maha;
+use Jyotish\Tattva\Ayurveda;
 
 /**
  * Class of nakshatra 12.
@@ -55,10 +55,10 @@ class N12 extends NakshatraObject {
 	protected $nakshatraGana = Manusha::GANA_MANUSHA;
 	protected $nakshatraGender = Manusha::GENDER_FEMALE;
 	protected $nakshatraGraha = Graha::GRAHA_SY;
-	protected $nakshatraGuna = Guna::GUNA_RAJA;
+	protected $nakshatraGuna = Maha::GUNA_RAJA;
 	protected $nakshatraPurushartha = Manusha::PURUSHARTHA_MOKSHA;
 	protected $nakshatraVarna = Manusha::VARNA_KSHATRIYA;
-	protected $nakshatraPrakriti = Prakriti::PRAKRITI_VATA;
+	protected $nakshatraPrakriti = Ayurveda::PRAKRITI_VATA;
 	protected $nakshatraYoni = array(
 		'animal' => Pasu::ANIMAL_COW,
 		'gender' => Manusha::GENDER_MALE,

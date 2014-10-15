@@ -4,30 +4,44 @@
  * @license   GNU General Public License version 2 or later
  */
 
-namespace Jyotish\Tattva\Jiva;
+namespace Jyotish\Tattva;
 
 /**
- * Abstract jiva class.
+ * Class of jiva data.
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 class Jiva {
-	/**
-	 * Gender
-	 */
 	const GENDER_MALE   = 'male';
 	const GENDER_FEMALE = 'female';
 	const GENDER_NEUTER = 'neuter';
 	
 	/**
-	 * Type
+	 * Two legged
 	 */
 	const TYPE_NARA     = 'nara';
+	/**
+	 * Four legged
+	 */
 	const TYPE_PASU     = 'pasu';
+	/**
+	 * Aquatic
+	 */
 	const TYPE_JALA     = 'jala';
+	/**
+	 * Insect
+	 */
 	const TYPE_KITA     = 'kita';
+	/**
+	 * Wild
+	 */
 	const TYPE_VANA     = 'vana';
 	
+	/**
+	 * Vasya jiva.
+	 * 
+	 * @var array
+	 */
 	static public $typeVasya = array(
 		self::TYPE_PASU,
 		self::TYPE_NARA,

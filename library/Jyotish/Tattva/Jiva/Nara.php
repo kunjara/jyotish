@@ -4,24 +4,27 @@
  * @license   GNU General Public License version 2 or later
  */
 
-namespace Jyotish\Tattva\Jiva\Nara;
+namespace Jyotish\Tattva\Jiva;
 
 /**
  * Data class of dwipada.
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class Nara extends \Jyotish\Tattva\Jiva\Jiva{
+class Nara extends \Jyotish\Tattva\Jiva{
 	/**
-     * Gana
+     * Devine
      */
 	const GANA_DEVA = 'deva';
+	/**
+	 * Human
+	 */
 	const GANA_MANUSHA = 'manusha';
+	/**
+	 * Demonic
+	 */
 	const GANA_RAKSHASA = 'rakshasa';
 	
-	/**
-	 * Limb
-	 */
 	const LIMB_HEAD = 'head';
 	const LIMB_FACE = 'face';
 	const LIMB_ARMS = 'arms';

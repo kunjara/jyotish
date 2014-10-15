@@ -4,7 +4,7 @@
  * @license   GNU General Public License version 2 or later
  */
 
-namespace Jyotish\Tattva\Jiva\Pasu;
+namespace Jyotish\Tattva\Jiva;
 
 /**
  * Data class of chatushpada.

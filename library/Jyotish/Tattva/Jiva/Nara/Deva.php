@@ -11,8 +11,7 @@ namespace Jyotish\Tattva\Jiva\Nara;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class Deva extends Nara {
-	
+class Deva extends \Jyotish\Tattva\Jiva\Nara {
 	const DEVA_ADITI = 'Aditi';
 	const DEVA_AGNI = 'Agni';
 	const DEVA_AHIRBUDHYANA = 'Ahirbudhyana';

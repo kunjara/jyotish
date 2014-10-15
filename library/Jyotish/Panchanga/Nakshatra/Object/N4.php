@@ -10,9 +10,9 @@ use Jyotish\Panchanga\Nakshatra\Nakshatra;
 use Jyotish\Graha\Graha;
 use Jyotish\Tattva\Jiva\Nara\Deva;
 use Jyotish\Tattva\Jiva\Nara\Manusha;
-use Jyotish\Tattva\Jiva\Pasu\Pasu;
-use Jyotish\Tattva\Maha\Guna;
-use Jyotish\Tattva\Ayurveda\Prakriti;
+use Jyotish\Tattva\Jiva\Pasu;
+use Jyotish\Tattva\Maha;
+use Jyotish\Tattva\Ayurveda;
 
 /**
  * Class of nakshatra 4.
@@ -55,10 +55,10 @@ class N4 extends NakshatraObject {
 	protected $nakshatraGana = Manusha::GANA_MANUSHA;
 	protected $nakshatraGender = Manusha::GENDER_FEMALE;
 	protected $nakshatraGraha = Graha::GRAHA_CH;
-	protected $nakshatraGuna = Guna::GUNA_RAJA;
+	protected $nakshatraGuna = Maha::GUNA_RAJA;
 	protected $nakshatraPurushartha = Manusha::PURUSHARTHA_MOKSHA;
 	protected $nakshatraVarna = Manusha::VARNA_SHUDRA;
-	protected $nakshatraPrakriti = Prakriti::PRAKRITI_KAPHA;
+	protected $nakshatraPrakriti = Ayurveda::PRAKRITI_KAPHA;
 	protected $nakshatraYoni = array(
 		'animal' => Pasu::ANIMAL_SERPENT,
 		'gender' => Manusha::GENDER_MALE,

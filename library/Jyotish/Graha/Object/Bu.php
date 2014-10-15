@@ -7,14 +7,10 @@
 namespace Jyotish\Graha\Object;
 
 use Jyotish\Graha\Graha;
-use Jyotish\Tattva\Maha\Bhuta;
-use Jyotish\Tattva\Maha\Disha;
-use Jyotish\Tattva\Maha\Guna;
+use Jyotish\Tattva\Maha;
 use Jyotish\Tattva\Jiva\Nara\Deva;
 use Jyotish\Tattva\Jiva\Nara\Manusha;
-use Jyotish\Tattva\Ayurveda\Dhatu;
-use Jyotish\Tattva\Ayurveda\Prakriti;
-use Jyotish\Tattva\Ayurveda\Rasa;
+use Jyotish\Tattva\Ayurveda;
 
 /**
  * Class of graha Bu.
@@ -87,7 +83,7 @@ class Bu extends GrahaObject {
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 20.
 	 * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 6.
 	 */
-	protected $grahaBhuta = Bhuta::BHUTA_PRITVI;
+	protected $grahaBhuta = Maha::BHUTA_PRITVI;
 	
 	/**
 	 * Varna of the Graha.
@@ -105,7 +101,7 @@ class Bu extends GrahaObject {
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 22.
 	 * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 7.
 	 */
-	protected $grahaGuna = Guna::GUNA_RAJA;
+	protected $grahaGuna = Maha::GUNA_RAJA;
 	
 	/**
 	 * Dhatu of the Graha.
@@ -116,7 +112,7 @@ class Bu extends GrahaObject {
 	 */
 	protected $grahaDhatu = array
 	(
-		Dhatu::DHATU_RASA,
+		Ayurveda::DHATU_RASA,
 	);
 	
 	/**
@@ -126,7 +122,7 @@ class Bu extends GrahaObject {
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 34.
 	 * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 14.
 	 */
-	protected $grahaRasa = Rasa::RASA_MISHRA;
+	protected $grahaRasa = Ayurveda::RASA_MISHRA;
 	
 	/**
 	 * Graha exaltation.
@@ -196,7 +192,7 @@ class Bu extends GrahaObject {
 	 * @var string
 	 * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 5.
 	 */
-	protected $grahaDisha = Disha::DISHA_UTTARA;
+	protected $grahaDisha = Maha::DISHA_UTTARA;
 	
 	/**
 	 * Graha drishti
@@ -227,9 +223,9 @@ class Bu extends GrahaObject {
 	 */
 	protected $grahaPrakriti = array
 	(
-		Prakriti::PRAKRITI_KAPHA,
-		Prakriti::PRAKRITI_PITTA,
-		Prakriti::PRAKRITI_VATA
+		Ayurveda::PRAKRITI_KAPHA,
+		Ayurveda::PRAKRITI_PITTA,
+		Ayurveda::PRAKRITI_VATA
 	);
 
 	public function __construct($options)

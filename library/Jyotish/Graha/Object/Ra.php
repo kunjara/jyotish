@@ -7,8 +7,7 @@
 namespace Jyotish\Graha\Object;
 
 use Jyotish\Graha\Graha;
-use Jyotish\Tattva\Maha\Disha;
-use Jyotish\Tattva\Maha\Guna;
+use Jyotish\Tattva\Maha;
 use Jyotish\Tattva\Jiva\Nara\Manusha;
 
 /**
@@ -82,7 +81,7 @@ class Ra extends GrahaObject {
 	 * 
 	 * @var string
 	 */
-	protected $grahaGuna = Guna::GUNA_TAMA;
+	protected $grahaGuna = Maha::GUNA_TAMA;
 	
 	/**
 	 * Dhatu of the Graha.
@@ -104,7 +103,7 @@ class Ra extends GrahaObject {
 	 * @var string
 	 * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 5.
 	 */
-	protected $grahaDisha = Disha::DISHA_NAIRUTYA;
+	protected $grahaDisha = Maha::DISHA_NAIRUTYA;
 	
 	/**
 	 * Graha drishti

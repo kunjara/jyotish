@@ -9,8 +9,8 @@ namespace Jyotish\Rashi\Object;
 use Jyotish\Rashi\Rashi;
 use Jyotish\Graha\Graha;
 use Jyotish\Tattva\Jiva\Nara\Manusha;
-use Jyotish\Tattva\Maha\Bhuta;
-use Jyotish\Tattva\Ayurveda\Prakriti;
+use Jyotish\Tattva\Maha;
+use Jyotish\Tattva\Ayurveda;
 
 /**
  * Class of rashi 11.
@@ -70,7 +70,7 @@ class R11 extends RashiObject {
 	 * @var string
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 4, Verse 5-5 1/2.
 	 */
-	protected $rashiPrakriti = Prakriti::PRAKRITI_MISHRA;
+	protected $rashiPrakriti = Ayurveda::PRAKRITI_MISHRA;
 	
 	/**
 	 * Bala of rashi.
@@ -103,7 +103,7 @@ class R11 extends RashiObject {
 	 * @var string
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 4, Verse 21-21 1/2.
 	 */
-	protected $rashiBhuta = Bhuta::BHUTA_VAYU;
+	protected $rashiBhuta = Maha::BHUTA_VAYU;
 	
 	/**
 	 * Ruler of rashi.
