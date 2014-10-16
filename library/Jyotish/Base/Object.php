@@ -15,6 +15,9 @@ use Jyotish\Ganita\Math;
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 class Object {
+	
+	use \Jyotish\Base\GetTrait;
+	
 	/**
 	 * Type of object.
 	 * 

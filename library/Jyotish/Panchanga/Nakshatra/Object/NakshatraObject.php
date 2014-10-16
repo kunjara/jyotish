@@ -14,6 +14,9 @@ use Jyotish\Ganita\Math;
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 class NakshatraObject {
+	
+	use \Jyotish\Base\GetTrait;
+	
 	/**
 	 * Arc length of the nakshatra.
 	 * 
@@ -90,7 +93,7 @@ class NakshatraObject {
 	protected $nakshatraGender;
 	
 	/**
-	 * 
+	 * Graha of nakshatra.
 	 * 
 	 * @var string
 	 */
@@ -137,166 +140,6 @@ class NakshatraObject {
 	 * @var array
 	 */
 	protected $nakshatraRajju = array();
-
-	/**
-	 * Get nakshatra translit.
-	 * 
-	 * @return array
-	 */
-	public function getNakshatraTranslit()
-	{
-		return $this->nakshatraTranslit;
-	}
-	
-	/**
-	 * Get nakshatra start.
-	 * 
-	 * @return array
-	 */
-	public function getNakshatraStart()
-	{
-		return $this->nakshatraStart;
-	}
-	
-	/**
-	 * Get nakshatra end.
-	 * 
-	 * @return array
-	 */
-	public function getNakshatraEnd()
-	{
-		return $this->nakshatraEnd;
-	}
-	
-	/**
-	 * Get nakshatra type.
-	 * 
-	 * @return string
-	 */
-	public function getNakshatraType()
-	{
-		return $this->nakshatraType;
-	}
-	
-	/**
-	 * Get nakshatra Deva.
-	 * 
-	 * @return mixed
-	 */
-	public function getNakshatraDeva()
-	{
-		return $this->nakshatraDeva;
-	}
-	
-	/**
-	 * Get nakshatra energy.
-	 * 
-	 * @return string
-	 */
-	public function getNakshatraEnergy()
-	{
-		return $this->nakshatraEnergy;
-	}
-	
-	/**
-	 * Get nakshatra gana.
-	 * 
-	 * @return string
-	 */
-	public function getNakshatraGana()
-	{
-		return $this->nakshatraGana;
-	}
-	
-	/**
-	 * Get nakshatra gender.
-	 * 
-	 * @return string
-	 */
-	public function getNakshatraGender()
-	{
-		return $this->nakshatraGender;
-	}
-	
-	/**
-	 * Get nakshatra Graha.
-	 * 
-	 * @return string
-	 */
-	public function getNakshatraGraha()
-	{
-		return $this->nakshatraGraha;
-	}
-	
-	/**
-	 * Get nakshatra guna.
-	 * 
-	 * @return string
-	 */
-	public function getNakshatraGuna()
-	{
-		return $this->nakshatraGuna;
-	}
-	
-	/**
-	 * Get nakshatra purushartha.
-	 * 
-	 * @return string
-	 */
-	public function getNakshatraPurushartha()
-	{
-		return $this->nakshatraPurushartha;
-	}
-	
-	/**
-	 * Get nakshatra varna.
-	 * 
-	 * @return string
-	 */
-	public function getNakshatraVarna()
-	{
-		return $this->nakshatraVarna;
-	}
-	
-	/**
-	 * Get nakshatra prakriti.
-	 * 
-	 * @return string
-	 */
-	public function getNakshatraPrakriti()
-	{
-		return $this->nakshatraPrakriti;
-	}
-	
-	/**
-	 * Get nakshatra navatara.
-	 * 
-	 * @return string
-	 */
-	public function getNakshatraNavatara()
-	{
-		return $this->nakshatraNavatara;
-	}
-	
-	/**
-	 * Get nakshatra yoni.
-	 * 
-	 * @return array
-	 */
-	public function getNakshatraYoni()
-	{
-		return $this->nakshatraYoni;
-	}
-	
-	/**
-	 * Get nakshatra rajju.
-	 * 
-	 * @return array
-	 */
-	public function getNakshatraRajju()
-	{
-		return $this->nakshatraRajju;
-	}
 
 	/**
 	 * Set nakshatra start and end.

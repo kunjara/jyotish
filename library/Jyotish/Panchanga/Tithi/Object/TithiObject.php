@@ -14,6 +14,9 @@ use Jyotish\Panchanga\Tithi\Tithi;
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 class TithiObject {
+	
+	use \Jyotish\Base\GetTrait;
+	
 	/**
 	 * Tithi key
 	 * 
@@ -58,56 +61,6 @@ class TithiObject {
 	 */
 	protected $tithiKarana = array();
 
-	/**
-	 * Get tithi translit.
-	 * 
-	 * @return array
-	 */
-	public function getTithiTranslit()
-	{
-		return $this->tithiTranslit;
-	}
-	
-	/**
-	 * Get tithi deva.
-	 * 
-	 * @return string
-	 */
-	public function getTithiDeva()
-	{
-		return $this->tithiDeva;
-	}
-	
-	/**
-	 * Get tithi paksha.
-	 * 
-	 * @return string
-	 */
-	public function getTithiPaksha()
-	{
-		return $this->tithiPaksha;
-	}
-	
-	/**
-	 * Get tithi type.
-	 * 
-	 * @return string
-	 */
-	public function getTithiType()
-	{
-		return $this->tithiType;
-	}
-	
-	/**
-	 * Get tithi karana.
-	 * 
-	 * @return array
-	 */
-	public function getTithiKarana()
-	{
-		return $this->tithiKarana;
-	}
-	
 	/**
 	 * Set tithi Deva.
 	 */

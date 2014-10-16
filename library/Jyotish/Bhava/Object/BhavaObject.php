@@ -46,16 +46,6 @@ class BhavaObject extends Object {
 	protected $bhavaPurushartha;
 	
 	/**
-	 * Get bhava purushartha.
-	 * 
-	 * @return string
-	 */
-	public function getBhavaPurushartha()
-	{
-		return $this->bhavaPurushartha;
-	}
-	
-	/**
 	 * Get bhava ruler (lord).
 	 * 
 	 * @return string

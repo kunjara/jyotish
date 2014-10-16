@@ -12,6 +12,9 @@ namespace Jyotish\Panchanga\Yoga\Object;
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 class YogaObject {
+	
+	use \Jyotish\Base\GetTrait;
+	
 	/**
 	 * Yoga key
 	 * 
@@ -25,16 +28,6 @@ class YogaObject {
 	 * @var string
 	 */
 	protected $yogaDeva;
-	
-	/**
-	 * Get yoga Deva.
-	 * 
-	 * @return string
-	 */
-	public function getYogaDeva()
-	{
-		return $this->yogaDeva;
-	}
 	
 	/**
 	 * Constructor
