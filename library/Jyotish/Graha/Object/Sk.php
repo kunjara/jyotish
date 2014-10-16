@@ -29,6 +29,7 @@ class Sk extends GrahaObject {
 	 * Main name of the graha.
 	 * 
 	 * @var string
+	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 10.
 	 */
 	protected $objectName = 'Shukra';
 	
@@ -36,6 +37,7 @@ class Sk extends GrahaObject {
 	 * Devanagari title 'shukra' in transliteration.
 	 * 
 	 * @var array
+	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 10.
 	 * @see Jyotish\Alphabet\Devanagari
 	 */
 	protected $grahaTranslit = ['sha','u','ka','virama','ra'];
@@ -123,6 +125,14 @@ class Sk extends GrahaObject {
 	 * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 14.
 	 */
 	protected $grahaRasa = Ayurveda::RASA_AMLA;
+	
+	/**
+	 * Graha basis.
+	 * 
+	 * @var string
+	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 37.
+	 */
+	protected $grahaBasis = Maha::BASIS_MULA;
 	
 	/**
 	 * Graha exaltation.

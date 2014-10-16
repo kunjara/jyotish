@@ -27,7 +27,7 @@ class B4 extends BhavaObject {
 	 * @var array
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 11, Verse 5.
 	 */
-	protected $bhavaIndications = array(
+	protected $bhavaKarakatva = array(
 		'conveyances',
 		'relatives',
 		'mother',

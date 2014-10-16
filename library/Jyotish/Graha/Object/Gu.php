@@ -29,6 +29,7 @@ class Gu extends GrahaObject {
 	 * Main name of the graha.
 	 * 
 	 * @var string
+	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 10.
 	 */
 	protected $objectName = 'Guru';
 	
@@ -36,6 +37,7 @@ class Gu extends GrahaObject {
 	 * Devanagari title 'guru' in transliteration.
 	 * 
 	 * @var array
+	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 10.
 	 * @see Jyotish\Alphabet\Devanagari
 	 */
 	protected $grahaTranslit = ['ga','u','ra','u'];
@@ -123,6 +125,14 @@ class Gu extends GrahaObject {
 	 * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 14.
 	 */
 	protected $grahaRasa = Ayurveda::RASA_MADHURA;
+	
+	/**
+	 * Graha basis.
+	 * 
+	 * @var string
+	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 37.
+	 */
+	protected $grahaBasis = Maha::BASIS_JIVA;
 	
 	/**
 	 * Graha exaltation.

@@ -28,6 +28,7 @@ class Sa extends GrahaObject {
 	/**
 	 * Main name of the graha.
 	 * 
+	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 10.
 	 * @var string
 	 */
 	protected $objectName = 'Shani';
@@ -36,6 +37,7 @@ class Sa extends GrahaObject {
 	 * Devanagari title 'shani' in transliteration.
 	 * 
 	 * @var array
+	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 10.
 	 * @see Jyotish\Alphabet\Devanagari
 	 */
 	protected $grahaTranslit = ['sha','na','i'];
@@ -123,6 +125,14 @@ class Sa extends GrahaObject {
 	 * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 14.
 	 */
 	protected $grahaRasa = Ayurveda::RASA_KASHAYA;
+	
+	/**
+	 * Graha basis.
+	 * 
+	 * @var string
+	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 37.
+	 */
+	protected $grahaBasis = Maha::BASIS_DHATU;
 	
 	/**
 	 * Graha exaltation.

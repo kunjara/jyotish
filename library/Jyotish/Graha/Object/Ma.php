@@ -28,6 +28,7 @@ class Ma extends GrahaObject {
 	/**
 	 * Main name of the graha.
 	 * 
+	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 10.
 	 * @var string
 	 */
 	protected $objectName = 'Mangal';
@@ -36,6 +37,7 @@ class Ma extends GrahaObject {
 	 * Devanagari title 'mangala' in transliteration.
 	 * 
 	 * @var array
+	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 10.
 	 * @see Jyotish\Alphabet\Devanagari
 	 */
 	protected $grahaTranslit = ['ma','anusvara','ga','la'];
@@ -124,6 +126,14 @@ class Ma extends GrahaObject {
 	 * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 14.
 	 */
 	protected $grahaRasa = Ayurveda::RASA_KATU;
+	
+	/**
+	 * Graha basis.
+	 * 
+	 * @var string
+	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 37.
+	 */
+	protected $grahaBasis = Maha::BASIS_DHATU;
 	
 	/**
 	 * Graha exaltation.

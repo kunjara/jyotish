@@ -36,7 +36,7 @@ class BhavaObject extends Object {
 	 * @var array
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 11, Verse 2-13.
 	 */
-	protected $bhavaIndications = array();
+	protected $bhavaKarakatva = array();
 
 	/**
 	 * Purushartha of bhava.

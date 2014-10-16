@@ -114,6 +114,14 @@ class GrahaObject extends Object {
 	protected $grahaRasa;
 	
 	/**
+	 * Graha basis.
+	 * 
+	 * @var string
+	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 37.
+	 */
+	protected $grahaBasis;
+	
+	/**
 	 * Graha exaltation.
 	 * 
 	 * @var array

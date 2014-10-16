@@ -30,6 +30,7 @@ class Ch extends GrahaObject {
 	 * Main name of the graha.
 	 * 
 	 * @var string
+	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 10.
 	 */
 	protected $objectName = 'Chandra';
 	
@@ -37,6 +38,7 @@ class Ch extends GrahaObject {
 	 * Devanagari title 'chandra' in transliteration.
 	 * 
 	 * @var array
+	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 10.
 	 * @see Jyotish\Alphabet\Devanagari
 	 */
 	protected $grahaTranslit = ['ca','na','virama','da','virama','ra'];
@@ -122,6 +124,14 @@ class Ch extends GrahaObject {
 	 * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 14.
 	 */
 	protected $grahaRasa = Ayurveda::RASA_LAVANA;
+	
+	/**
+	 * Graha basis.
+	 * 
+	 * @var string
+	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 37.
+	 */
+	protected $grahaBasis = Maha::BASIS_DHATU;
 	
 	/**
 	 * Graha exaltation.

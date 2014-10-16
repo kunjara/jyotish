@@ -86,4 +86,17 @@ class Maha {
 	 * Nadir
 	 */
 	const DISHA_ADHARA = 'adhara';
+	
+	/**
+	 * Mineral
+	 */
+	const BASIS_DHATU = 'dhatu';
+	/**
+	 * Plants and trees
+	 */
+	const BASIS_MULA = 'mula';
+	/**
+	 *  Living beings
+	 */
+	const BASIS_JIVA = 'jiva';
 }

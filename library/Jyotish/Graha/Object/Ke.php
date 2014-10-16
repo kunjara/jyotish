@@ -24,9 +24,18 @@ class Ke extends GrahaObject {
 	protected $objectKey = 'Ke';
 	
 	/**
+	 * Main name of the graha.
+	 * 
+	 * @var string
+	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 10.
+	 */
+	protected $objectName = 'Ketu';
+	
+	/**
 	 * Devanagari title 'ketu' in transliteration.
 	 * 
 	 * @var array
+	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 10.
 	 * @see Jyotish\Alphabet\Devanagari
 	 */
 	protected $grahaTranslit = ['ka','e','ta','u'];
@@ -96,6 +105,14 @@ class Ke extends GrahaObject {
 	 * @var string
 	 */
 	protected $grahaRasa = null;
+	
+	/**
+	 * Graha basis.
+	 * 
+	 * @var string
+	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 37.
+	 */
+	protected $grahaBasis = Maha::BASIS_JIVA;
 	
 	/**
 	 * Graha disha

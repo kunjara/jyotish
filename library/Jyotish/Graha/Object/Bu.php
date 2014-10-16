@@ -29,6 +29,7 @@ class Bu extends GrahaObject {
 	 * Main name of the graha.
 	 * 
 	 * @var string
+	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 10.
 	 */
 	protected $objectName = 'Budha';
 	
@@ -36,6 +37,7 @@ class Bu extends GrahaObject {
 	 * Devanagari title 'budha' in transliteration.
 	 * 
 	 * @var array
+	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 10.
 	 * @see Jyotish\Alphabet\Devanagari
 	 */
 	protected $grahaTranslit = ['ba','u','dha'];
@@ -124,6 +126,14 @@ class Bu extends GrahaObject {
 	 */
 	protected $grahaRasa = Ayurveda::RASA_MISHRA;
 	
+	/**
+	 * Graha basis.
+	 * 
+	 * @var string
+	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 37.
+	 */
+	protected $grahaBasis = Maha::BASIS_JIVA;
+
 	/**
 	 * Graha exaltation.
 	 * 
