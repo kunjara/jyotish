@@ -25,11 +25,24 @@ class Analysis {
 	/**
 	 * Constructor
 	 * 
-	 * @param \Jyotish\Base\Data $dataObject
+	 * @param \Jyotish\Base\Data|array $data
+	 * @throws Exception\InvalidArgumentException
 	 */
-	public function __construct(\Jyotish\Base\Data $dataObject) {
-		$this->dataObject = $dataObject;
-		$this->data = $this->dataObject->getAnalyzedData();
+	public function __construct($data) {
+		if(
+            (is_object($data) && !($data instanceof \Jyotish\Base\Data)) ||
+            (!is_object($data) && !is_array($data))
+        ){
+            throw new Exception\InvalidArgumentException(
+                "Data should be an array or instance of Jyotish\\Base\\Data"
+            );
+        }
+		
+		if (is_object($data)) {
+            $this->data = $data->getData();
+        }else{
+			$this->data = $data;
+		}
 	}
 	
 	/**
