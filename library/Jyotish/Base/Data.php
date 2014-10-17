@@ -38,11 +38,11 @@ class Data {
 
 
 	/**
-	 * Ganita data.
+	 * Analyzed data.
 	 * 
 	 * @var array
 	 */
-	protected $ganitaData;
+	protected $analyzedData;
 	
 	/**
 	 * Array with values ​​of the rashis in the bhavas.
@@ -72,23 +72,23 @@ class Data {
 	 */
 	public function __construct(array $ganitaData) {
 		$this->checkData($ganitaData);
-		$this->ganitaData = $ganitaData;
+		$this->analyzedData = $ganitaData;
 		
-		foreach($this->ganitaData['graha'] as $key => $params){
+		foreach($this->analyzedData['graha'] as $key => $params){
 			if(!isset($params['rashi'])){
 				$units = Math::partsToUnits($params['longitude']);
-				$this->ganitaData['graha'][$key]['rashi'] = $units['units'];
-				$this->ganitaData['graha'][$key]['degree'] = $units['parts'];
+				$this->analyzedData['graha'][$key]['rashi'] = $units['units'];
+				$this->analyzedData['graha'][$key]['degree'] = $units['parts'];
 			}
 		}
 		
-		if(!isset($this->ganitaData['bhava'])){
-			$longitude = $this->ganitaData['extra'][Graha::LAGNA]['longitude'];
+		if(!isset($this->analyzedData['bhava'])){
+			$longitude = $this->analyzedData['extra'][Graha::LAGNA]['longitude'];
 			for($b = 1; $b <= 12; $b++){
-				$this->ganitaData['bhava'][$b]['longitude'] = $longitude < 360 ? $longitude : $longitude - 360;
-				$units = Math::partsToUnits($this->ganitaData['bhava'][$b]['longitude']);
-				$this->ganitaData['bhava'][$b]['rashi'] = $units['units'];
-				$this->ganitaData['bhava'][$b]['degree'] = $units['parts'];
+				$this->analyzedData['bhava'][$b]['longitude'] = $longitude < 360 ? $longitude : $longitude - 360;
+				$units = Math::partsToUnits($this->analyzedData['bhava'][$b]['longitude']);
+				$this->analyzedData['bhava'][$b]['rashi'] = $units['units'];
+				$this->analyzedData['bhava'][$b]['degree'] = $units['parts'];
 				$longitude += 30;
 			}
 		}
@@ -110,9 +110,9 @@ class Data {
 	/**
 	 * Get Ganita data.
 	 */
-	public function getGanitaData()
+	public function getAnalyzedData()
 	{
-		return $this->ganitaData;
+		return $this->analyzedData;
 	}
 
 	/**
@@ -122,7 +122,7 @@ class Data {
 	 */
 	public function getRashiInBhava() {
 		if ($this->rashiInBhava == null) {
-			foreach ($this->ganitaData['bhava'] as $bhava => $params) {
+			foreach ($this->analyzedData['bhava'] as $bhava => $params) {
 				$rashi = $params['rashi'];
 				$this->rashiInBhava[$rashi] = $bhava;
 			}
@@ -137,7 +137,7 @@ class Data {
 	 */
 	public function getGrahaInBhava() {
 		if ($this->grahaInBhava == null) {
-			foreach ($this->ganitaData['graha'] as $graha => $params) {
+			foreach ($this->analyzedData['graha'] as $graha => $params) {
 				$rashi = $params['rashi'];
 
 				if ($this->rashiInBhava == null)
@@ -162,7 +162,7 @@ class Data {
 	 */
 	public function getGrahaInRashi() {
 		if ($this->grahaInRashi == null) {
-			foreach ($this->ganitaData['graha'] as $graha => $params) {
+			foreach ($this->analyzedData['graha'] as $graha => $params) {
 				$rashi = $params['rashi'];
 				$direction = $params['speed'] > 0 ? 1 : -1;
 
@@ -171,7 +171,7 @@ class Data {
 					'direction' => $direction,
 				);
 			}
-			$this->grahaInRashi[Graha::LAGNA]['rashi'] = $this->ganitaData['extra']['Lg']['rashi'];
+			$this->grahaInRashi[Graha::LAGNA]['rashi'] = $this->analyzedData['extra']['Lg']['rashi'];
 			$this->grahaInRashi[Graha::LAGNA]['direction'] = 1;
 		}
 		return $this->grahaInRashi;

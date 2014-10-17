@@ -162,7 +162,7 @@ class GrahaObject extends Object {
 	 * @var array
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 55.
 	 */
-	protected $grahaRelation = array();
+	protected $grahaNaturalRelation = array();
 	
 	/**
 	 * Graha disha
@@ -194,13 +194,13 @@ class GrahaObject extends Object {
 	 * @return mixed
 	 * @throws Exception\InvalidArgumentException
 	 */
-	public function getNaturalRelation($key = null)
+	public function getGrahaNaturalRelation($key = null)
 	{
 		if(is_null($key)){
-			return $this->grahaRelation;
+			return $this->grahaNaturalRelation;
 		}else{
 			if (array_key_exists($key, Graha::$graha)){
-				return $this->grahaRelation[$key];
+				return $this->grahaNaturalRelation[$key];
 			}else{
 				throw new \Jyotish\Graha\Exception\InvalidArgumentException("Graha with the key '$key' does not exist.");
 			}
@@ -243,7 +243,7 @@ class GrahaObject extends Object {
 	 * @param null|array $options Options to set
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 55.
 	 */
-	protected function setNaturalRelation($options)
+	protected function setGrahaNaturalRelation($options)
 	{
 		$relationships = array();
 		$friendsFromMt = [2, 4, 5, 8, 9, 12];
@@ -283,12 +283,12 @@ class GrahaObject extends Object {
 				$relationships[$key] = -1;
 			}else{
 				$G = Graha::getInstance($key, $options);
-				$relationships[$key] = $G->getNaturalRelation($this->objectKey);
+				$relationships[$key] = $G->getGrahaNaturalRelation($this->objectKey);
 			}
 		}
 		$relationships[$this->objectKey] = $options['relationSame'] ? 1 : null;
 		
-		$this->grahaRelation = $relationships;
+		$this->grahaNaturalRelation = $relationships;
 	}
 	
 	/**
@@ -296,7 +296,7 @@ class GrahaObject extends Object {
 	 * 
 	 * @param array $specificRashi
 	 */
-	protected function setSpecificRashi(array $specificRashi)
+	protected function setGrahaSpecificRashi(array $specificRashi)
 	{
 		$this->grahaUcha = array('rashi' => $specificRashi['ex']);
 		$this->grahaNeecha = array('rashi' => $specificRashi['db']);
@@ -312,6 +312,6 @@ class GrahaObject extends Object {
 	public function __construct($options)
 	{
 		$this->setGrahaAltName();
-		$this->setNaturalRelation($options);
+		$this->setGrahaNaturalRelation($options);
 	}
 }

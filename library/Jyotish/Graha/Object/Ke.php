@@ -140,14 +140,14 @@ class Ke extends GrahaObject {
 	 * 
 	 * @param null|array $options Options to set
 	 */
-	protected function setSpecificRashiByViewpoint($options)
+	protected function setGrahaSpecificRashiByViewpoint($options)
 	{
 		switch ($options['specificRashi']){
 			case('parashara'):
-				$this->setSpecificRashi(array('ex' => 8, 'mt' => 9, 'ow' => 5, 'db' => 2));
+				$this->setGrahaSpecificRashi(['ex' => 8, 'mt' => 9, 'ow' => 5, 'db' => 2]);
 				break;
 			default:
-				$this->setSpecificRashi(array('ex' => 9, 'mt' => 5, 'ow' => 12, 'db' => 3));
+				$this->setGrahaSpecificRashi(['ex' => 9, 'mt' => 5, 'ow' => 12, 'db' => 3]);
 				break;
 		}
 	}
@@ -157,18 +157,18 @@ class Ke extends GrahaObject {
 	 * 
 	 * @param null|array $options Options to set
 	 */
-	protected function setNaturalRelation($options)
+	protected function setGrahaNaturalRelation($options)
 	{
 		if($options['relationChaya'] == 'friends'){
 			foreach (Graha::$graha as $key => $name){
 				if($key != Graha::GRAHA_RA){
-					$this->grahaRelation[$key] = -1;
+					$this->grahaNaturalRelation[$key] = -1;
 				}else{
-					$this->grahaRelation[$key] = 1;
+					$this->grahaNaturalRelation[$key] = 1;
 				}
 			}
 		}else{
-			$this->grahaRelation = array(
+			$this->grahaNaturalRelation = array(
 				Graha::GRAHA_SY => -1,
 				Graha::GRAHA_CH => -1,
 				Graha::GRAHA_MA => 1,
@@ -179,12 +179,12 @@ class Ke extends GrahaObject {
 				Graha::GRAHA_RA => -1,
 			);
 		}
-		$this->grahaRelation[$this->objectKey] = $options['relationSame'] ? 1 : null;
+		$this->grahaNaturalRelation[$this->objectKey] = $options['relationSame'] ? 1 : null;
 	}
 
 	public function __construct($options)
 	{
-		$this->setSpecificRashiByViewpoint($options);
+		$this->setGrahaSpecificRashiByViewpoint($options);
 		
 		parent::__construct($options);
 	}

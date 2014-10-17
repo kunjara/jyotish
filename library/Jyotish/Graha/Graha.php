@@ -121,7 +121,7 @@ class Graha {
 		$relation = function($graha1, $graha2)
 		{
 			$Graha = self::getInstance($graha1, array('relationSame' => true));
-			return $Graha->getNaturalRelation($graha2);
+			return $Graha->getGrahaNaturalRelation($graha2);
 		};
 		$relation1 = $relation($graha1, $graha2);
 		$relation2 = $relation($graha2, $graha1);
