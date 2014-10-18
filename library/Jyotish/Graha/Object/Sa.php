@@ -26,6 +26,21 @@ class Sa extends GrahaObject {
 	protected $objectKey = 'Sa';
 	
 	/**
+	 * Unicode of the Graha.
+	 * 
+	 * @var string
+	 */
+	protected $grahaUnicode = '2644';
+	
+	/**
+	 * Avatara of the Graha.
+	 * 
+	 * @var string
+	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 2, Verse 5-7.
+	 */
+	protected $grahaAvatara = 'Kurma';
+	
+	/**
 	 * Main name of the graha.
 	 * 
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 10.
@@ -41,15 +56,6 @@ class Sa extends GrahaObject {
 	 * @see Jyotish\Alphabet\Devanagari
 	 */
 	protected $grahaTranslit = ['sha','na','i'];
-	
-	protected $grahaAvatara = 'Kurma';
-	protected $grahaUnicode = '2644';
-	protected $grahaAgeMaturity = 36;
-	protected $grahaAgePeriod = array
-	(
-		'start' => 69,
-		'end' => 108
-	);
 	
 	/**
 	 * Character of the Graha.
@@ -234,6 +240,12 @@ class Sa extends GrahaObject {
 	protected $grahaPrakriti = array
 	(
 		Ayurveda::PRAKRITI_VATA
+	);
+	protected $grahaAgeMaturity = 36;
+	protected $grahaAgePeriod = array
+	(
+		'start' => 69,
+		'end' => 108
 	);
 
 	public function __construct($options) {

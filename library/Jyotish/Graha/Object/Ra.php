@@ -24,6 +24,21 @@ class Ra extends GrahaObject {
 	protected $objectKey = 'Ra';
 	
 	/**
+	 * Unicode of the Graha.
+	 * 
+	 * @var string
+	 */
+	protected $grahaUnicode = '260A';
+	
+	/**
+	 * Avatara of the Graha.
+	 * 
+	 * @var string
+	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 2, Verse 5-7.
+	 */
+	protected $grahaAvatara = 'Varaha';
+	
+	/**
 	 * Main name of the graha.
 	 * 
 	 * @var string
@@ -39,15 +54,6 @@ class Ra extends GrahaObject {
 	 * @see Jyotish\Alphabet\Devanagari
 	 */
 	protected $grahaTranslit = ['ra','aa','ha','u'];
-	
-	protected $grahaAvatara = 'Varaha';
-	protected $grahaUnicode = '260A';
-	protected $grahaAgeMaturity = 48;
-	protected $grahaAgePeriod = array
-	(
-		'start' => 69,
-		'end' => 108
-	);
 	
 	/**
 	 * Character of the Graha.
@@ -135,6 +141,12 @@ class Ra extends GrahaObject {
 	 * @var array
 	 */
 	protected $grahaPrakriti = null;
+	protected $grahaAgeMaturity = 48;
+	protected $grahaAgePeriod = array
+	(
+		'start' => 69,
+		'end' => 108
+	);
 	
 	/**
 	 * Set exaltation, sebilitation, mooltrikon and own.

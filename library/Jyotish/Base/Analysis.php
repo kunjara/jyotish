@@ -48,10 +48,11 @@ class Analysis {
 	/**
 	 * Get chara karaka.
 	 * 
+	 * @param bool $reverse
 	 * @return array
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 32, Verse 13-17.
 	 */
-	public function getCharaKaraka()
+	public function getCharaKaraka($reverse = false)
 	{
 		$grahas = $this->data['graha'];
 		unset($grahas[Graha::GRAHA_KE]);
@@ -72,6 +73,10 @@ class Analysis {
 			$grahaKaraka[$key] = Karaka::$karaka[$i];
 		}
 		
-		return $grahaKaraka;
+		if($reverse){
+			return array_flip($grahaKaraka);
+		}else{
+			return $grahaKaraka;
+		}
 	}
 }

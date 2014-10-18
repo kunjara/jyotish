@@ -24,6 +24,21 @@ class Ke extends GrahaObject {
 	protected $objectKey = 'Ke';
 	
 	/**
+	 * Unicode of the Graha.
+	 * 
+	 * @var string
+	 */
+	protected $grahaUnicode = '260B';
+	
+	/**
+	 * Avatara of the Graha.
+	 * 
+	 * @var string
+	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 2, Verse 5-7.
+	 */
+	protected $grahaAvatara = 'Matsya';
+	
+	/**
 	 * Main name of the graha.
 	 * 
 	 * @var string
@@ -39,15 +54,6 @@ class Ke extends GrahaObject {
 	 * @see Jyotish\Alphabet\Devanagari
 	 */
 	protected $grahaTranslit = ['ka','e','ta','u'];
-	
-	protected $grahaAvatara = 'Matsya';
-	protected $grahaUnicode = '260B';
-	protected $grahaAgeMaturity = 48;
-	protected $grahaAgePeriod = array
-	(
-		'start' => 69,
-		'end' => 108
-	);
 	
 	/**
 	 * Character of the Graha.
@@ -134,6 +140,12 @@ class Ke extends GrahaObject {
 	 * @var array
 	 */
 	protected $grahaPrakriti = null;
+	protected $grahaAgeMaturity = 48;
+	protected $grahaAgePeriod = array
+	(
+		'start' => 69,
+		'end' => 108
+	);
 
 	/**
 	 * Set exaltation, sebilitation, mooltrikon and own.

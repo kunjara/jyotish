@@ -26,6 +26,21 @@ class Sy extends GrahaObject {
 	protected $objectKey = 'Sy';
 	
 	/**
+	 * Unicode of the Graha.
+	 * 
+	 * @var string
+	 */
+	protected $grahaUnicode = '2609';
+	
+	/**
+	 * Avatara of the Graha.
+	 * 
+	 * @var string
+	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 2, Verse 5-7.
+	 */
+	protected $grahaAvatara = 'Rama';
+	
+	/**
 	 * Main name of the graha.
 	 * 
 	 * @var string
@@ -41,15 +56,6 @@ class Sy extends GrahaObject {
 	 * @see Jyotish\Alphabet\Devanagari
 	 */
 	protected $grahaTranslit = ['sa','uu','ra','virama','ya'];
-
-	protected $grahaAvatara = 'Rama';
-	protected $grahaUnicode = '2609';
-	protected $grahaAgeMaturity = 22;
-	protected $grahaAgePeriod = array
-	(
-		'start' => 23,
-		'end' => 41
-	);
 	
 	/**
 	 * Character of the Graha.
@@ -223,6 +229,12 @@ class Sy extends GrahaObject {
 	protected $grahaPrakriti = array
 	(
 		Ayurveda::PRAKRITI_PITTA,
+	);
+	protected $grahaAgeMaturity = 22;
+	protected $grahaAgePeriod = array
+	(
+		'start' => 23,
+		'end' => 41
 	);
 
 	public function __construct($options) {

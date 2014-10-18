@@ -24,22 +24,30 @@ class GrahaObject extends Object {
 	 * @var string
 	 */
 	protected $objectType = 'graha';
+	
+	/**
+	 * Unicode of the Graha.
+	 * 
+	 * @var string
+	 */
+	protected $grahaUnicode;
+		
+	/**
+	 * Avatara of the Graha.
+	 * 
+	 * @var string
+	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 2, Verse 5-7.
+	 */
+	protected $grahaAvatara;
 
 	/**
 	 * Devanagari graha title in transliteration.
 	 * 
 	 * @var array
+	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 10.
 	 * @see Jyotish\Alphabet\Devanagari
 	 */
 	protected $grahaTranslit;
-	
-	protected $grahaAvatara;
-	protected $grahaUnicode;
-	protected $grahaAgeMaturity;
-	protected $grahaAgePeriod = array(
-		'start',
-		'end'
-	);
 	
 	/**
 	 * Character of the Graha.
@@ -186,6 +194,11 @@ class GrahaObject extends Object {
 	 * @var array
 	 */
 	protected $grahaPrakriti;
+	protected $grahaAgeMaturity;
+	protected $grahaAgePeriod = array(
+		'start',
+		'end'
+	);
 	
 	/**
 	 * Get natural relationships.
