@@ -249,6 +249,7 @@ class Swetest extends AbstractGanita{
 		
 		$bodyParameters['graha'][Graha::GRAHA_KE] = array(
 			'longitude'   => $longitudeKe,
+			'latitude'    => $bodyParameters['graha'][Graha::GRAHA_RA]['latitude'],
 			'speed'       => $bodyParameters['graha'][Graha::GRAHA_RA]['speed'],
 			'rashi'       => $units['units'],
 			'degree'      => $units['parts'],

@@ -45,7 +45,7 @@ class Data {
 	 */
 	protected $dataTemplate = [
 		self::BLOCK_GRAHA => [
-			'element' => ['longitude', /*'latitude', 'speed'*/]
+			'element' => ['longitude', 'latitude', 'speed']
 		],
 		self::BLOCK_EXTRA => [
 			'element' => ['longitude']
@@ -117,6 +117,8 @@ class Data {
 				$longitude += 30;
 			}
 		}
+		
+		$this->rashiInBhava = $this->getRashiInBhava();
 	}
 	
 	/**
@@ -189,12 +191,9 @@ class Data {
 		foreach ($this->data['graha'] as $graha => $params) {
 			$rashi = $params['rashi'];
 
-			if ($this->rashiInBhava == null)
-				$this->getRashiInBhava();
-
 			$bhava = $this->rashiInBhava[$rashi];
 			$direction = $params['speed'] > 0 ? 1 : -1;
-
+			
 			$this->grahaInBhava[$graha] = array(
 				'bhava' => $bhava,
 				'direction' => $direction,
@@ -212,7 +211,7 @@ class Data {
 		foreach ($this->data['graha'] as $graha => $params) {
 			$rashi = $params['rashi'];
 			$direction = $params['speed'] > 0 ? 1 : -1;
-
+			
 			$this->grahaInRashi[$graha] = array(
 				'rashi' => $rashi,
 				'direction' => $direction,
@@ -233,10 +232,7 @@ class Data {
 	 * @return string
 	 */
 	public function getGrahaLabel($graha, $labelType = 0, $userFunction = null) {
-		if (!count($this->grahaInBhava))
-			$grahas = $this->grahaInBhava;
-		else
-			$grahas = $this->grahaInRashi;
+		$grahas = $this->getGrahaInBhava();
 
 		switch ($labelType) {
 			case 0:

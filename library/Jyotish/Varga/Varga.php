@@ -176,6 +176,7 @@ abstract class Varga {
 			$vargaData['bhava'][$k] = array(
 				'rashi' => $rashi,
 				'degree' => $bhava1Varga['degree'],
+				'longitude' => 30 * ($rashi - 1) + $bhava1Varga['degree'],
 			);
 		}
 		foreach ($ganitaData['graha'] as $k => $v) {
@@ -184,6 +185,8 @@ abstract class Varga {
 				'rashi' => $result['rashi'],
 				'degree' => $result['degree'],
 				'speed' => $ganitaData['graha'][$k]['speed'],
+				'longitude' => 30 * ($result['rashi'] - 1) + $result['degree'],
+				'latitude' => $v['latitude'],
 			);
 		}
 		foreach ($ganitaData['extra'] as $k => $v) {
@@ -191,6 +194,7 @@ abstract class Varga {
 			$vargaData['extra'][$k] = array(
 				'rashi' => $result['rashi'],
 				'degree' => $result['degree'],
+				'longitude' => 30 * ($result['rashi'] - 1) + $result['degree'],
 			);
 		}
 		return $vargaData;
