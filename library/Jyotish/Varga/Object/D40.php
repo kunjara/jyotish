@@ -13,16 +13,30 @@ use Jyotish\Ganita\Math;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class D40 extends \Jyotish\Varga\Varga {
+class D40 extends AbstractVarga {
+	/**
+	 * Key of the varga.
+	 * 
+	 * @var string
+	 */
+	protected $vargaKey = 'D40';
 	
-	static public $vargaAltName = array(
+	/**
+	 * Names of the varga.
+	 * 
+	 * @var array
+	 */
+	protected $vargaName = array(
+		'Khavedamsha',
 		'Chatvarimshamsha',
 	);
-	static public $vargaAmsha = 40;
-
-	public function __construct($options) {
-		return $this;
-	}
+	
+	/**
+	 * The number of parts.
+	 * 
+	 * @var int
+	 */
+	protected $vargaAmsha = 40;
 	
 	/**
 	 * Get varga rashi.
@@ -32,7 +46,7 @@ class D40 extends \Jyotish\Varga\Varga {
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 6, Verse 29-30.
 	 */
 	public function getVargaRashi(array $ganitaRashi) {
-		$amshaSize = 30 / self::$vargaAmsha;
+		$amshaSize = 30 / $this->vargaAmsha;
 		$result = Math::partsToUnits($ganitaRashi['degree'], $amshaSize, 'floor');
 		$vargaRashi['degree'] = $result['parts'] * 30 / $amshaSize;
 		
@@ -44,5 +58,8 @@ class D40 extends \Jyotish\Varga\Varga {
 		
 		return $vargaRashi;
 	}
-
+	
+	public function __construct($options) {
+		parent::__construct($options);
+	}
 }

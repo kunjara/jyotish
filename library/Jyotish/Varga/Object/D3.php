@@ -13,13 +13,29 @@ use Jyotish\Ganita\Math;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class D3 extends \Jyotish\Varga\Varga {
-
-	static public $vargaAmsha = 3;
-
-	public function __construct($options) {
-		return $this;
-	}
+class D3 extends AbstractVarga {
+	/**
+	 * Key of the varga.
+	 * 
+	 * @var string
+	 */
+	protected $vargaKey = 'D3';
+	
+	/**
+	 * Names of the varga.
+	 * 
+	 * @var array
+	 */
+	protected $vargaName = array(
+		'Drekkana',
+	);
+	
+	/**
+	 * The number of parts.
+	 * 
+	 * @var int
+	 */
+	protected $vargaAmsha = 3;
 	
 	/**
 	 * Get varga rashi.
@@ -29,7 +45,7 @@ class D3 extends \Jyotish\Varga\Varga {
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 6, Verse 7-8.
 	 */
 	public function getVargaRashi(array $ganitaRashi) {
-		$amshaSize = 30 / self::$vargaAmsha;
+		$amshaSize = 30 / $this->vargaAmsha;
 		$result = Math::partsToUnits($ganitaRashi['degree'], $amshaSize, 'floor');
 		$vargaRashi['degree'] = $result['parts'] * 30 / $amshaSize;
 		
@@ -43,5 +59,8 @@ class D3 extends \Jyotish\Varga\Varga {
 		
 		return $vargaRashi;
 	}
-
+	
+	public function __construct($options) {
+		parent::__construct($options);
+	}
 }

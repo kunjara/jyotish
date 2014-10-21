@@ -6,23 +6,46 @@
 
 namespace Jyotish\Varga\Object;
 
-use Jyotish\Rashi\Rashi;
-
 /**
  * Class of varga D1.
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class D1 extends \Jyotish\Varga\Varga {
-
-	static public $vargaAmsha = 1;
-
-	public function __construct($options) {
-		return $this;
-	}
+class D1 extends AbstractVarga {
+	/**
+	 * Key of the varga.
+	 * 
+	 * @var string
+	 */
+	protected $vargaKey = 'D1';
 	
-	public function getVargaRashi(array $ganitaRashi) {
+	/**
+	 * Names of the varga.
+	 * 
+	 * @var array
+	 */
+	protected $vargaName = array(
+		'Rashi',
+	);
+	
+	/**
+	 * The number of parts.
+	 * 
+	 * @var int
+	 */
+	protected $vargaAmsha = 1;
+	
+	/**
+	 * Get varga rashi.
+	 * 
+	 * @param array $ganitaRashi
+	 * @return array
+	 */
+	protected function getVargaRashi(array $ganitaRashi) {
 		return $ganitaRashi;
 	}
-
+	
+	public function __construct($options) {
+		parent::__construct($options);
+	}
 }

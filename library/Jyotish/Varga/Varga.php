@@ -6,15 +6,13 @@
 
 namespace Jyotish\Varga;
 
-use Jyotish\Ganita\Math;
-
 /**
  * Class with the names of divisional charts and their parameters.
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-abstract class Varga {
-
+class Varga {
+	
 	const VARGA_D1 = 'D1';
 	const VARGA_D2 = 'D2';
 	const VARGA_D3 = 'D3';
@@ -38,7 +36,7 @@ abstract class Varga {
      * @var array 
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 7, Verse 2-4.
      */
-	static public $VARGA = array(
+	static public $varga = array(
 		self::VARGA_D1 => 'Rashi',
 		self::VARGA_D2 => 'Hora',
 		self::VARGA_D3 => 'Drekkana',
@@ -131,73 +129,23 @@ abstract class Varga {
 		self::VARGA_D40 => 0.5,
 		self::VARGA_D45 => 0.5
 	);
-	
-	static public $vargaAltName = null;
-	static public $vargaAmsha;
-	
-	static private $_vargaAbbr;
-	static private $_vargaObject;
 
-
-
-	abstract public function getVargaRashi(array $sweRashi);
-	
-	static public function getInstance($vargaAbbr, $options = null) {
-		if (array_key_exists($vargaAbbr, self::$VARGA)) {
-			
-			$vargaClass = 'Jyotish\\Varga\\Object\\' . $vargaAbbr;
+	/**
+	 * Returns the requested instance of varga class.
+	 * 
+	 * @param string $key The acronym of varga
+	 * @param null|array $options (Optional) Options to set
+	 * @return the requested instance of varga class
+	 * @throws Exception\InvalidArgumentException
+	 */
+	static public function getInstance($key, $options = null) {
+		if (array_key_exists($key, self::$varga)) {
+			$vargaClass = 'Jyotish\\Varga\\Object\\' . $key;
 			$vargaObject = new $vargaClass($options);
-			self::$_vargaAbbr = $vargaAbbr;
-			self::$_vargaObject = $vargaObject;
 
 			return $vargaObject;
 		} else {
-			throw new Exception\InvalidArgumentException("Varga '$vargaAbbr' is not defined.");
+			throw new Exception\InvalidArgumentException("Varga '$key' is not defined.");
 		}
 	}
-	
-	public function getVargaData($ganitaData) {
-		if(is_null($ganitaData)) {
-			throw new Exception\InvalidArgumentException("Ganita data must be an array of calculation positions.");
-		}
-		
-		if(self::$_vargaAbbr == self::VARGA_D1){
-			return $ganitaData;
-		}
-		
-		$bhava1Varga = self::$_vargaObject->getVargaRashi($ganitaData['bhava'][1]);
-		
-		foreach ($ganitaData['bhava'] as $k => $v) {
-			if($k == 1) {
-				$rashi = $bhava1Varga['rashi'];
-			} else {
-				$rashi = Math::numberNext($rashi);
-			}
-			$vargaData['bhava'][$k] = array(
-				'rashi' => $rashi,
-				'degree' => $bhava1Varga['degree'],
-				'longitude' => 30 * ($rashi - 1) + $bhava1Varga['degree'],
-			);
-		}
-		foreach ($ganitaData['graha'] as $k => $v) {
-			$result = self::$_vargaObject->getVargaRashi($v);
-			$vargaData['graha'][$k] = array(
-				'rashi' => $result['rashi'],
-				'degree' => $result['degree'],
-				'speed' => $ganitaData['graha'][$k]['speed'],
-				'longitude' => 30 * ($result['rashi'] - 1) + $result['degree'],
-				'latitude' => $v['latitude'],
-			);
-		}
-		foreach ($ganitaData['extra'] as $k => $v) {
-			$result = self::$_vargaObject->getVargaRashi($v);
-			$vargaData['extra'][$k] = array(
-				'rashi' => $result['rashi'],
-				'degree' => $result['degree'],
-				'longitude' => 30 * ($result['rashi'] - 1) + $result['degree'],
-			);
-		}
-		return $vargaData;
-	}
-	
 }

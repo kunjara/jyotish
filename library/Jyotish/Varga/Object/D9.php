@@ -14,17 +14,30 @@ use Jyotish\Rashi\Rashi;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class D9 extends \Jyotish\Varga\Varga {
+class D9 extends AbstractVarga {
+	/**
+	 * Key of the varga.
+	 * 
+	 * @var string
+	 */
+	protected $vargaKey = 'D9';
 	
-	static public $vargaAltName = array(
+	/**
+	 * Names of the varga.
+	 * 
+	 * @var array
+	 */
+	protected $vargaName = array(
+		'Navamsha',
 		'Navamamsha',
 	);
-
-	static public $vargaAmsha = 9;
-
-	public function __construct($options) {
-		return $this;
-	}
+	
+	/**
+	 * The number of parts.
+	 * 
+	 * @var int
+	 */
+	protected $vargaAmsha = 9;
 	
 	/**
 	 * Get varga rashi.
@@ -33,8 +46,8 @@ class D9 extends \Jyotish\Varga\Varga {
 	 * @return array
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 6, Verse 12.
 	 */
-	public function getVargaRashi(array $ganitaRashi) {
-		$amshaSize = 30 / self::$vargaAmsha;
+	protected function getVargaRashi(array $ganitaRashi) {
+		$amshaSize = 30 / $this->vargaAmsha;
 		$result = Math::partsToUnits($ganitaRashi['degree'], $amshaSize, 'floor');
 		$vargaRashi['degree'] = $result['parts'] * 30 / $amshaSize;
 		
@@ -55,5 +68,8 @@ class D9 extends \Jyotish\Varga\Varga {
 		
 		return $vargaRashi;
 	}
-
+	
+	public function __construct($options) {
+		parent::__construct($options);
+	}
 }

@@ -15,18 +15,32 @@ use Jyotish\Tattva\Maha;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class D27 extends \Jyotish\Varga\Varga {
-
-	static public $vargaAltName = array(
+class D27 extends AbstractVarga {
+	/**
+	 * Key of the varga.
+	 * 
+	 * @var string
+	 */
+	protected $vargaKey = 'D27';
+	
+	/**
+	 * Names of the varga.
+	 * 
+	 * @var array
+	 */
+	protected $vargaName = array(
+		'Saptavimshamsha',
 		'Bhamsha',
 		'Nakshatramsha',
 	);
-	static public $vargaAmsha = 27;
-
-	public function __construct($options) {
-		return $this;
-	}
 	
+	/**
+	 * The number of parts.
+	 * 
+	 * @var int
+	 */
+	protected $vargaAmsha = 27;
+		
 	/**
 	 * Get varga rashi.
 	 * 
@@ -35,7 +49,7 @@ class D27 extends \Jyotish\Varga\Varga {
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 6, Verse 24-26.
 	 */
 	public function getVargaRashi(array $ganitaRashi) {
-		$amshaSize = 30 / self::$vargaAmsha;
+		$amshaSize = 30 / $this->vargaAmsha;
 		$result = Math::partsToUnits($ganitaRashi['degree'], $amshaSize, 'floor');
 		$vargaRashi['degree'] = $result['parts'] * 30 / $amshaSize;
 		
@@ -59,5 +73,8 @@ class D27 extends \Jyotish\Varga\Varga {
 		
 		return $vargaRashi;
 	}
-
+	
+	public function __construct($options) {
+		parent::__construct($options);
+	}
 }
