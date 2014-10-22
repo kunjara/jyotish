@@ -7,6 +7,7 @@
 namespace Jyotish\Base;
 
 use Jyotish\Graha\Graha;
+use Jyotish\Varga\Varga;
 use Jyotish\Tattva\Karaka;
 
 /**
@@ -22,6 +23,14 @@ class Analysis {
 	 */
 	protected $data = array();
 	
+	/**
+	 * D9 varga data.
+	 * 
+	 * @var array
+	 */
+	protected $d9Data = array();
+
+
 	/**
 	 * Constructor
 	 * 
@@ -78,5 +87,45 @@ class Analysis {
 		}else{
 			return $grahaKaraka;
 		}
+	}
+	
+	/**
+	 * Get karakamsha.
+	 * 
+	 * @return int
+	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 33, Verse 1.
+	 */
+	public function getKarakamsha()
+	{
+		$d9Data = $this->getD9Data();
+		$atmaKaraka = $this->getCharaKaraka(true)[Karaka::KARAKA_ATMA];
+		
+		return $d9Data['graha'][$atmaKaraka]['rashi'];
+	}
+	
+	/**
+	 * Get lagnamsha.
+	 * 
+	 * @return int
+	 */
+	public function getLagnamsha()
+	{
+		$d9Data = $this->getD9Data();
+		
+		return $d9Data['extra'][Graha::LAGNA]['rashi'];
+	}
+	
+	/**
+	 * Get D9 varga data.
+	 * 
+	 * @return array
+	 */
+	protected function getD9Data()
+	{
+		if(!count($this->d9Data)){
+			$D9 = Varga::getInstance(Varga::VARGA_D9);
+			$this->d9Data = $D9->getVargaData($this->data);
+		}
+		return $this->d9Data;		
 	}
 }

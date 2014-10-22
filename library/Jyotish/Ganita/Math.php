@@ -155,15 +155,32 @@ class Math {
 	}
 	
 	/**
-	 * Sum of two arrays.
+	 * Sum of arrays.
 	 * 
-	 * @param array $array1
-	 * @param array $array2
+	 * @return array
 	 */
-	static public function arraySum(array $array1, array $array2)
+	static public function arraySum()
 	{
-		foreach($array1 as $key => $value){
-			$array[$key] = array_key_exists($key, $array2) ? $array2[$key] + $value : $value;
+		$arrNum  = func_num_args();
+		$arrList = func_get_args();
+		
+		$array = array();
+		
+		for ($i = 0; $i < $arrNum; $i++) {
+			$arr = $arrList[$i];
+			if(!is_array($arr)){
+				throw new Exception\InvalidArgumentException("Argument of function should be an array.");
+			}
+			
+			foreach($arr as $key => $value) {
+				if(array_key_exists($key, $array)) {
+					$sum = $arr[$key] + $array[$key];
+					
+					$array[$key] = $sum;
+				}else{
+					$array[$key] = $arr[$key];
+				}
+			}
 		}
 		return $array;
 	}
