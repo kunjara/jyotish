@@ -9,6 +9,7 @@ namespace Jyotish\Graha\Object;
 use Jyotish\Base\Object;
 use Jyotish\Graha\Graha;
 use Jyotish\Rashi\Rashi;
+use Jyotish\Bhava\Bhava;
 use Jyotish\Ganita\Math;
 use Jyotish\Tattva\Jiva\Nara\Deva;
 
@@ -223,7 +224,7 @@ class GrahaObject extends Object {
 	/**
 	 * Get bhava, where graha is positioned.
 	 * 
-	 * @return string
+	 * @return int
 	 */
 	public function getBhava()
 	{
@@ -237,6 +238,22 @@ class GrahaObject extends Object {
 		while($grahaRashi <> $bhavaRashi);
 		
 		return $bhava;
+	}
+	
+	/**
+	 * Get ruler of the bhava, where graha is positioned.
+	 * 
+	 * @return string
+	 */
+	public function getDispositor()
+	{
+		$this->checkEnvironment();
+		
+		$bhava = $this->getBhava();
+		$Bhava = Bhava::getInstance($bhava);
+		$Bhava->setEnvironment($this->ganitaData);
+		
+		return $Bhava->getRuler();
 	}
 
 	/**

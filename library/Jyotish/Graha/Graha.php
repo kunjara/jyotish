@@ -24,9 +24,18 @@ class Graha {
 	
 	const LAGNA = 'Lg';
 	
-	const CHARACTER_BENEFIC = 'benefic';
-	const CHARACTER_MALEFIC = 'malefic';
-	const CHARACTER_MISHA   = 'mishra';
+	/**
+	 * Benefic character
+	 */
+	const CHARACTER_SHUBHA = 'shubha';
+	/**
+	 * Malefic character
+	 */
+	const CHARACTER_PAPA   = 'papa';
+	/**
+	 * Mixed character
+	 */
+	const CHARACTER_MISHA  = 'mishra';
 	
 	const RISING_NOREFRAC   = 'norefrac';
 	const RISING_DISCCENTER = 'disccenter';

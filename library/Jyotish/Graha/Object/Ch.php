@@ -65,7 +65,7 @@ class Ch extends GrahaObject {
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 11.
 	 * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 5.
 	 */
-	protected $grahaCharacter = Graha::CHARACTER_BENEFIC;
+	protected $grahaCharacter = Graha::CHARACTER_SHUBHA;
 	
 	/**
 	 * Deva of the Graha.
@@ -271,9 +271,9 @@ class Ch extends GrahaObject {
 		$tithiUnits = Math::partsToUnits(($lonCh - $lonSy), 12);
 		
 		if($tithiUnits['units'] >= 8 and $tithiUnits['units'] < 23){
-			$this->grahaCharacter = Graha::CHARACTER_BENEFIC;
+			$this->grahaCharacter = Graha::CHARACTER_SHUBHA;
 		}else{
-			$this->grahaCharacter = Graha::CHARACTER_MALEFIC;
+			$this->grahaCharacter = Graha::CHARACTER_PAPA;
 		}
 	}
 }

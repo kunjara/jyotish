@@ -39,17 +39,17 @@ class Analysis {
 	 */
 	public function __construct($data) {
 		if(
-            (is_object($data) && !($data instanceof \Jyotish\Base\Data)) ||
-            (!is_object($data) && !is_array($data))
-        ){
-            throw new Exception\InvalidArgumentException(
-                "Data should be an array or instance of Jyotish\\Base\\Data"
-            );
-        }
+			(is_object($data) && !($data instanceof \Jyotish\Base\Data)) ||
+			(!is_object($data) && !is_array($data))
+		){
+			throw new Exception\InvalidArgumentException(
+				"Data should be an array or instance of Jyotish\\Base\\Data"
+			);
+		}
 		
 		if (is_object($data)) {
-            $this->data = $data->getData();
-        }else{
+			$this->data = $data->getData();
+		}else{
 			$this->data = $data;
 		}
 	}

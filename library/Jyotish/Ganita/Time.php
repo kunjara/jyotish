@@ -56,7 +56,7 @@ class Time {
 	 * @param string $format
 	 * @param string $dateTime
 	 * @param string $timeZone
-	 * @param int $offsetUser
+	 * @param int $offsetUser Offset in seconds
 	 * @return DateTime
 	 * @throws Exception\InvalidArgumentException
 	 */

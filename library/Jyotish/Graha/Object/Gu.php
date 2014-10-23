@@ -64,7 +64,7 @@ class Gu extends GrahaObject {
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 11.
 	 * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 5.
 	 */
-	protected $grahaCharacter = Graha::CHARACTER_BENEFIC;
+	protected $grahaCharacter = Graha::CHARACTER_SHUBHA;
 	
 	/**
 	 * Deva of the Graha.

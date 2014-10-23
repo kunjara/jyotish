@@ -61,7 +61,7 @@ class Ke extends GrahaObject {
 	 * @var string
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 11.
 	 */
-	protected $grahaCharacter = Graha::CHARACTER_MALEFIC;
+	protected $grahaCharacter = Graha::CHARACTER_PAPA;
 	
 	/**
 	 * Deva of the Graha.

@@ -64,7 +64,7 @@ class Bu extends GrahaObject {
 	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 11.
 	 * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 5.
 	 */
-	protected $grahaCharacter = Graha::CHARACTER_BENEFIC;
+	protected $grahaCharacter = Graha::CHARACTER_SHUBHA;
 	
 	/**
 	 * Deva of the Graha.
@@ -283,7 +283,7 @@ class Bu extends GrahaObject {
 				$G = Graha::getInstance($key);
 				$G->setEnvironment($this->ganitaData);
 
-				if($G->getGrahaCharacter() == Graha::CHARACTER_BENEFIC)
+				if($G->getGrahaCharacter() == Graha::CHARACTER_SHUBHA)
 					$benefic = $benefic + 1;
 				else
 					$malefic = $malefic + 1;
@@ -293,8 +293,8 @@ class Bu extends GrahaObject {
 		if($benefic > 0 and $malefic > 0)
 			$this->grahaCharacter = Graha::CHARACTER_MISHA;
 		elseif($malefic > 0)
-			$this->grahaCharacter = Graha::CHARACTER_MALEFIC;
+			$this->grahaCharacter = Graha::CHARACTER_PAPA;
 		else
-			$this->grahaCharacter = Graha::CHARACTER_BENEFIC;
+			$this->grahaCharacter = Graha::CHARACTER_SHUBHA;
 	}
 }
