@@ -51,10 +51,17 @@ class N13 extends NakshatraObject {
 	 */
 	protected $nakshatraType = Nakshatra::TYPE_KSHIPRA;
 	
+	/**
+	 * Graha of nakshatra.
+	 * 
+	 * @var string
+	 * @see Satyacharya. Satya Jatakam. Chapter 1, Verse 9.
+	 */
+	protected $nakshatraGraha = Graha::GRAHA_CH;
+	
 	protected $nakshatraEnergy = Nakshatra::ENERGY_SRISHTI;
 	protected $nakshatraGana = Manusha::GANA_DEVA;
 	protected $nakshatraGender = Manusha::GENDER_MALE;
-	protected $nakshatraGraha = Graha::GRAHA_CH;
 	protected $nakshatraGuna = Maha::GUNA_RAJA;
 	protected $nakshatraPurushartha = Manusha::PURUSHARTHA_MOKSHA;
 	protected $nakshatraVarna = Manusha::VARNA_VAISHYA;

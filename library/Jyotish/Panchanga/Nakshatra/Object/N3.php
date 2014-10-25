@@ -51,10 +51,17 @@ class N3 extends NakshatraObject {
 	 */
 	protected $nakshatraType = Nakshatra::TYPE_SADHARANA;
 	
+	/**
+	 * Graha of nakshatra.
+	 * 
+	 * @var string
+	 * @see Satyacharya. Satya Jatakam. Chapter 1, Verse 9.
+	 */
+	protected $nakshatraGraha = Graha::GRAHA_SY;
+	
 	protected $nakshatraEnergy = Nakshatra::ENERGY_LAYA;
 	protected $nakshatraGana = Manusha::GANA_RAKSHASA;
 	protected $nakshatraGender = Manusha::GENDER_FEMALE;
-	protected $nakshatraGraha = Graha::GRAHA_SY;
 	protected $nakshatraGuna = Maha::GUNA_RAJA;
 	protected $nakshatraPurushartha = Manusha::PURUSHARTHA_KAMA;
 	protected $nakshatraVarna = Manusha::VARNA_BRAHMANA;

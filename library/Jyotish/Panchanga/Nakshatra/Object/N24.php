@@ -51,10 +51,17 @@ class N24 extends NakshatraObject {
 	 */
 	protected $nakshatraType = Nakshatra::TYPE_CHARANA;
 	
+	/**
+	 * Graha of nakshatra.
+	 * 
+	 * @var string
+	 * @see Satyacharya. Satya Jatakam. Chapter 1, Verse 9.
+	 */
+	protected $nakshatraGraha = Graha::GRAHA_RA;
+	
 	protected $nakshatraEnergy = Nakshatra::ENERGY_LAYA;
 	protected $nakshatraGana = Manusha::GANA_RAKSHASA;
 	protected $nakshatraGender = Manusha::GENDER_NEUTER;
-	protected $nakshatraGraha = Graha::GRAHA_RA;
 	protected $nakshatraGuna = Maha::GUNA_TAMA;
 	protected $nakshatraPurushartha = Manusha::PURUSHARTHA_DHARMA;
 	protected $nakshatraVarna = Manusha::VARNA_UGRA;

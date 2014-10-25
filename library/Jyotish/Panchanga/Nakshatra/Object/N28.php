@@ -46,10 +46,16 @@ class N28 extends NakshatraObject {
 	 */
 	protected $nakshatraType = Nakshatra::TYPE_KSHIPRA;
 	
+	/**
+	 * Graha of nakshatra.
+	 * 
+	 * @var string
+	 */
+	protected $nakshatraGraha = null;
+	
 	protected $nakshatraEnergy = null;
 	protected $nakshatraGana = Manusha::GANA_DEVA;
 	protected $nakshatraGender = null;
-	protected $nakshatraGraha = null;
 	protected $nakshatraGuna = null;
 	protected $nakshatraPurushartha = null;
 	protected $nakshatraVarna = null;

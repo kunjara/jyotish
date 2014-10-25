@@ -51,10 +51,17 @@ class N19 extends NakshatraObject {
 	 */
 	protected $nakshatraType = Nakshatra::TYPE_TIKSHNA;
 	
+	/**
+	 * Graha of nakshatra.
+	 * 
+	 * @var string
+	 * @see Satyacharya. Satya Jatakam. Chapter 1, Verse 9.
+	 */
+	protected $nakshatraGraha = Graha::GRAHA_KE;
+	
 	protected $nakshatraEnergy = Nakshatra::ENERGY_SRISHTI;
 	protected $nakshatraGana = Manusha::GANA_RAKSHASA;
 	protected $nakshatraGender = Manusha::GENDER_NEUTER;
-	protected $nakshatraGraha = Graha::GRAHA_KE;
 	protected $nakshatraGuna = Maha::GUNA_TAMA;
 	protected $nakshatraPurushartha = Manusha::PURUSHARTHA_KAMA;
 	protected $nakshatraVarna = Manusha::VARNA_UGRA;

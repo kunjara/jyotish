@@ -36,6 +36,30 @@ class NakshatraObject {
 	protected $nakshatraKey;
 	
 	/**
+	 * Deva of nakshatra.
+	 * 
+	 * @var mixed
+	 * @see Varahamihira. Brihat Samhita. Chapter 98, Verse 4-5.
+	 */
+	protected $nakshatraDeva;
+	
+	/**
+	 * Type of nakshatra.
+	 * 
+	 * @var string
+	 * @see Varahamihira. Brihat Samhita. Chapter 98, Verse 6-11.
+	 */
+	protected $nakshatraType;
+	
+	/**
+	 * Graha of nakshatra.
+	 * 
+	 * @var string
+	 * @see Satyacharya. Satya Jatakam. Chapter 1, Verse 9.
+	 */
+	protected $nakshatraGraha;
+	
+	/**
 	 * Devanagari nakshatra title in transliteration.
 	 * 
 	 * @var array
@@ -58,20 +82,6 @@ class NakshatraObject {
 	protected $nakshatraEnd = array();
 	
 	/**
-	 * Deva of nakshatra.
-	 * 
-	 * @var mixed
-	 */
-	protected $nakshatraDeva;
-	
-	/**
-	 * Type of nakshatra.
-	 * 
-	 * @var string
-	 */
-	protected $nakshatraType;
-	
-	/**
 	 * Energy of nakshatra.
 	 * 
 	 * @var string
@@ -91,13 +101,6 @@ class NakshatraObject {
 	 * @var string
 	 */
 	protected $nakshatraGender;
-	
-	/**
-	 * Graha of nakshatra.
-	 * 
-	 * @var string
-	 */
-	protected $nakshatraGraha;
 	
 	/**
 	 * Guna of nakshatra.

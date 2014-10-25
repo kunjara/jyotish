@@ -51,10 +51,17 @@ class N8 extends NakshatraObject {
 	 */
 	protected $nakshatraType = Nakshatra::TYPE_KSHIPRA;
 	
+	/**
+	 * Graha of nakshatra.
+	 * 
+	 * @var string
+	 * @see Satyacharya. Satya Jatakam. Chapter 1, Verse 9.
+	 */
+	protected $nakshatraGraha = Graha::GRAHA_SA;
+	
 	protected $nakshatraEnergy = Nakshatra::ENERGY_STHITI;
 	protected $nakshatraGana = Manusha::GANA_DEVA;
 	protected $nakshatraGender = Manusha::GENDER_MALE;
-	protected $nakshatraGraha = Graha::GRAHA_SA;
 	protected $nakshatraGuna = Maha::GUNA_TAMA;
 	protected $nakshatraPurushartha = Manusha::PURUSHARTHA_DHARMA;
 	protected $nakshatraVarna = Manusha::VARNA_KSHATRIYA;
