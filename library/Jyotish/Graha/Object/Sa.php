@@ -142,10 +142,19 @@ class Sa extends GrahaObject {
 	protected $grahaRasa = Ayurveda::RASA_KASHAYA;
 	
 	/**
+	 * Ritu of the Graha.
+	 * 
+	 * @var string
+	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 45-46.
+	 * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 12.
+	 */
+	protected $grahaRitu = Kala::RITU_SHISHIRA;
+	
+	/**
 	 * Graha basis.
 	 * 
 	 * @var string
-	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 37.
+	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 47.
 	 */
 	protected $grahaBasis = Maha::BASIS_DHATU;
 	

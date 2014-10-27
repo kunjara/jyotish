@@ -34,6 +34,13 @@ class Kala {
 	const KALA_AYANA = 'ayana';
 	const KALA_VARSHA = 'varsha';
 	
+	const RITU_VASANTA = 'vasanta';
+	const RITU_GRISHMA = 'grishma';
+	const RITU_VARSHA = 'varsha';
+	const RITU_SHARAD = 'sharad';
+	const RITU_HEMANTA = 'hemanta';
+	const RITU_SHISHIRA = 'shishira';
+	
 	/**
 	 * The duration of time of one paramanu. Second is divided into 30375 parts.
 	 * 
