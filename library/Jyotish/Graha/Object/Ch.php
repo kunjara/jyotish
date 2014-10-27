@@ -12,6 +12,7 @@ use Jyotish\Tattva\Maha;
 use Jyotish\Tattva\Jiva\Nara\Deva;
 use Jyotish\Tattva\Jiva\Nara\Manusha;
 use Jyotish\Tattva\Ayurveda;
+use Jyotish\Tattva\Kala;
 
 /**
  * Class of graha Ch.
@@ -121,6 +122,14 @@ class Ch extends GrahaObject {
 	(
 		Ayurveda::DHATU_RAKTA,
 	);
+	
+	/**
+	 * Kala of the Graha.
+	 * 
+	 * @var string
+	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 33.
+	 */
+	protected $grahaKala = Kala::KALA_MUHURTA;
 	
 	/**
 	 * Rasa of the Graha.

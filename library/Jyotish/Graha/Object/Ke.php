@@ -106,6 +106,14 @@ class Ke extends GrahaObject {
 	protected $grahaDhatu = null;
 	
 	/**
+	 * Kala of the Graha.
+	 * 
+	 * @var string
+	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 46.
+	 */
+	protected $grahaKala = '3 masas';
+	
+	/**
 	 * Rasa of the Graha.
 	 * 
 	 * @var string

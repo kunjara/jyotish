@@ -4,7 +4,7 @@
  * @license   GNU General Public License version 2 or later
  */
 
-namespace Jyotish\Calendar;
+namespace Jyotish\Tattva\Kala;
 
 /**
  * Samvatsara class

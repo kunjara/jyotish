@@ -6,7 +6,7 @@
 
 namespace Jyotish\Calendar\Event;
 
-use Jyotish\Calendar\Masa;
+use Jyotish\Tattva\Kala\Masa;
 use Jyotish\Panchanga\Tithi\Tithi;
 
 /**

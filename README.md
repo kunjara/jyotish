@@ -26,4 +26,5 @@ They have two license options - one, the GPL, which only means that any code you
 * Varahamihira. Brihat Jataka.
 * Varahamihira. Brihat Samhita.
 * Satyacharya. Satya Jatakam.
+* Srimad-Bhagavatam.
 * Bhavishya Purana.

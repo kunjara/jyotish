@@ -16,7 +16,7 @@ use Jyotish\Panchanga\Yoga\Yoga;
 use Jyotish\Panchanga\Vara\Vara;
 use Jyotish\Panchanga\Karana\Karana;
 use Jyotish\Graha\Graha;
-use Jyotish\Calendar\Masa;
+use Jyotish\Tattva\Kala\Masa;
 
 /**
  * Class to calculate the Panchanga.
