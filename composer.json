@@ -8,6 +8,11 @@
     "require": {
         "php": ">=5.4"
     },
+    "autoload": {
+        "psr-0": {
+            "Jyotish": "library/"
+        }
+    },
     "authors": [
         {
             "name": "Kunjara Lila das",
