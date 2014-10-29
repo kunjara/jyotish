@@ -8,6 +8,7 @@ namespace Jyotish\Dasha\Object;
 
 use Jyotish\Base\Utils;
 use Jyotish\Graha\Graha;
+use Jyotish\Dasha\Dasha;
 use Jyotish\Tattva\Kala\Samvatsara;
 use Jyotish\Panchanga\Nakshatra\Nakshatra;
 
@@ -17,10 +18,27 @@ use Jyotish\Panchanga\Nakshatra\Nakshatra;
  * @author Kunjara Lila das <vladya108@gmail.com>
  * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 46, Verse 12-16.
  */
-class Vimshottari extends \Jyotish\Dasha\Dasha {
-	static protected $_durationTotal = 120;
+class Vimshottari extends AbstractDasha {
+	/**
+	 * Dasha key
+	 * 
+	 * @var string
+	 */
+	protected $dashaKey = Dasha::DASHA_VIMSHOTTARI;
 	
-	static protected $_durationGraha = array(
+	/**
+	 * Duration of dasha.
+	 * 
+	 * @var int
+	 */
+	protected $durationTotal = 120;
+	
+	/**
+	 * Duration of dasha by subperiods.
+	 * 
+	 * @var array
+	 */
+	protected $durationGraha = array(
 		Graha::GRAHA_SY => 6,
 		Graha::GRAHA_CH => 10,
 		Graha::GRAHA_MA => 7,
@@ -32,15 +50,13 @@ class Vimshottari extends \Jyotish\Dasha\Dasha {
 		Graha::GRAHA_SK => 20,
 	);
 	
-	static protected $_orderNakshatra = array();
-	
 	
 
 	public function __construct()
 	{
 		$nakshatras = Nakshatra::nakshatraList();
 		
-		self::$_orderNakshatra = Utils::shiftArray($nakshatras, 3, true);
+		$this->orderNakshatra = Utils::shiftArray($nakshatras, 3, true);
 	}
 	
 	/**

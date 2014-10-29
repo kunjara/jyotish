@@ -141,15 +141,19 @@ abstract class AbstractGanita {
 	/**
 	 * Get coordinates and other parameters of planets and houses.
 	 * 
+	 * @abstract
 	 * @param array $options
+	 * @return array
 	 */
 	abstract public function getParams(array $options);
 	
 	/**
 	 * Get the time of sunrise and sunset of planet.
 	 * 
+	 * @abstract
 	 * @param string $graha
 	 * @param array $options
+	 * @return array
 	 */
 	abstract public function getRisings($graha, array $options);
 }

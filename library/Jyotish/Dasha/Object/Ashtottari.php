@@ -8,6 +8,7 @@ namespace Jyotish\Dasha\Object;
 
 use Jyotish\Base\Utils;
 use Jyotish\Graha\Graha;
+use Jyotish\Dasha\Dasha;
 use Jyotish\Tattva\Kala\Samvatsara;
 use Jyotish\Panchanga\Nakshatra\Nakshatra;
 
@@ -17,10 +18,27 @@ use Jyotish\Panchanga\Nakshatra\Nakshatra;
  * @author Kunjara Lila das <vladya108@gmail.com>
  * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 46, Verse 17-23.
  */
-class Ashtottari extends \Jyotish\Dasha\Dasha {
-	static protected $_durationTotal = 108;
+class Ashtottari extends AbstractDasha {
+	/**
+	 * Dasha key
+	 * 
+	 * @var string
+	 */
+	protected $dashaKey = Dasha::DASHA_ASHTOTTARI;
 	
-	static protected $_durationGraha = array(
+	/**
+	 * Duration of dasha.
+	 * 
+	 * @var int
+	 */
+	protected $durationTotal = 108;
+	
+	/**
+	 * Duration of dasha by subperiods.
+	 * 
+	 * @var array
+	 */
+	protected $durationGraha = array(
 		Graha::GRAHA_SY => 6,
 		Graha::GRAHA_CH => 15,
 		Graha::GRAHA_MA => 8,
@@ -30,8 +48,6 @@ class Ashtottari extends \Jyotish\Dasha\Dasha {
 		Graha::GRAHA_RA => 12,
 		Graha::GRAHA_SK => 21,
 	);
-	
-	static protected $_orderNakshatra = array();
 
 
 
@@ -39,7 +55,7 @@ class Ashtottari extends \Jyotish\Dasha\Dasha {
 	{
 		$nakshatras = Nakshatra::nakshatraList(true);
 		
-		self::$_orderNakshatra = Utils::shiftArray($nakshatras, 6, true);
+		$this->orderNakshatra = Utils::shiftArray($nakshatras, 6, true);
 	}
 	
 	/**
@@ -50,10 +66,10 @@ class Ashtottari extends \Jyotish\Dasha\Dasha {
 	 */
 	public function getStartPeriod(array $nakshatra)
 	{
-		$keysNakshatra	= array_keys(self::$_orderNakshatra);
+		$keysNakshatra	= array_keys($this->orderNakshatra);
 		$indexNum		= array_search($nakshatra['number'], $keysNakshatra) + 1;
 		
-		foreach (self::$_durationGraha as $key => $value){
+		foreach ($this->durationGraha as $key => $value){
 			$G = Graha::getInstance($key);
 			if($G->getGrahaCharacter() == Graha::CHARACTER_PAPA){
 				$part = 4;

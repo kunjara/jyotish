@@ -19,17 +19,15 @@ class Time {
 	const FORMAT_DATE           = 'Y-m-d';
 	const FORMAT_DATETIME       = 'Y-m-d H:i:s';
 	const FORMAT_DATA_DATE      = 'd.m.Y';
-	const FORMAT_DATA_TIME      = 'H:i';
+	const FORMAT_DATA_TIME      = 'H:i:s';
 	const FORMAT_OFFSET_TIME    = '%H:%I';
-	
-
 	
 	/**
 	 * Get real time.
 	 * 
 	 * @return string
 	 */
-	static function getTimeNow() 
+	static public function getTimeNow() 
 	{
 		$dateTimeObject = new DateTime('NOW');
 		$time = $dateTimeObject->format(self::FORMAT_DATA_TIME);
@@ -42,7 +40,7 @@ class Time {
 	 * 
 	 * @return string
 	 */
-	static function getDateNow() 
+	static public function getDateNow() 
 	{
 		$dateTimeObject = new DateTime('NOW');
 		$date = $dateTimeObject->format(self::FORMAT_DATA_DATE);
@@ -94,7 +92,7 @@ class Time {
 	 * @param string $dateTime
 	 * @return string
 	 */
-	static function convertToFormat($format, $dateTime)
+	static public function convertToFormat($format, $dateTime)
 	{
 		$dateTimeObject = DateTime::createFromFormat(self::FORMAT_DATETIME, $dateTime);
 		$timeFormat = $dateTimeObject->format($format);
