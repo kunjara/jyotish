@@ -112,7 +112,7 @@ class Swetest extends AbstractGanita{
 		$this->setOptions($options);
 		
 		$dateTimeString = $this->data['date'] . ' ' . $this->data['time'];
-		$dateTimeFormat = Time::FORMAT_DATA_DATE . ' ' . Time::FORMAT_DATA_TIME;
+		$dateTimeFormat = $this->formatDate . ' ' . $this->formatTime;
 		
 		$offsetUser     = $this->data['offset'];
 		$offsetSystem   = Time::getTimeZoneOffset($this->data['timezone'], $dateTimeString);

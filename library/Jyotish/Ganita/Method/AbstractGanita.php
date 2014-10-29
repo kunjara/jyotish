@@ -45,6 +45,20 @@ abstract class AbstractGanita {
 	protected $rising = Graha::RISING_HINDU;
 	
 	/**
+	 * Date format.
+	 * 
+	 * @var string
+	 */
+	protected $formatDate = Time::FORMAT_DATA_DATE;
+	
+	/**
+	 * Time format.
+	 * 
+	 * @var string
+	 */
+	protected $formatTime = Time::FORMAT_DATA_TIME;
+
+	/**
 	 * Set options.
 	 * 
 	 * @param array $options
@@ -58,7 +72,7 @@ abstract class AbstractGanita {
 			if (method_exists($this, $method)) {
 				$this->$method($value);
 			} else {
-				throw new Exception\InvalidArgumentException("Unknown option: $key");
+				$this->$key = $value;
 			}
 		}
 		return $this;
@@ -78,10 +92,9 @@ abstract class AbstractGanita {
 		} else {
 			throw new Exception\InvalidArgumentException("The ayanamsha '$ayanamsha' is not defined.");
 		}
-		
 		return $this;
 	}
-	
+
 	/**
 	 * Set rising (setting) type for calculation.
 	 * 
