@@ -10,5 +10,5 @@ namespace Jyotish\Rashi\Exception;
  * Exception for Jyotish\Rashi component.
  */
 class InvalidArgumentException extends \InvalidArgumentException implements ExceptionInterface {
-	
+    
 }

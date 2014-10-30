@@ -14,49 +14,49 @@ use Jyotish\Ganita\Math;
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 class D60 extends AbstractVarga {
-	/**
-	 * Key of the varga.
-	 * 
-	 * @var string
-	 */
-	protected $vargaKey = 'D60';
-	
-	/**
-	 * Names of the varga.
-	 * 
-	 * @var array
-	 */
-	protected $vargaName = array(
-		'Shashtiamsha',
-	);
-	
-	/**
-	 * The number of parts.
-	 * 
-	 * @var int
-	 */
-	protected $vargaAmsha = 60;
-	
-	/**
-	 * Get varga rashi.
-	 * 
-	 * @param array $ganitaRashi
-	 * @return array
-	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 6, Verse 33-41.
-	 */
-	public function getVargaRashi(array $ganitaRashi) {
-		$amshaSize = 30 / $this->vargaAmsha;
-		$result = Math::partsToUnits($ganitaRashi['degree'], $amshaSize, 'floor');
-		$vargaRashi['degree'] = $result['parts'] * 30 / $amshaSize;
-		
-		$stepRashi = floor($ganitaRashi['degree'] * 2) % 12 + 1;
-		
-		$vargaRashi['rashi'] = Math::numberInCycle($ganitaRashi['rashi'], $stepRashi);
-		
-		return $vargaRashi;
-	}
-	
-	public function __construct($options) {
-		parent::__construct($options);
-	}
+    /**
+     * Key of the varga.
+     * 
+     * @var string
+     */
+    protected $vargaKey = 'D60';
+
+    /**
+     * Names of the varga.
+     * 
+     * @var array
+     */
+    protected $vargaName = array(
+        'Shashtiamsha',
+    );
+
+    /**
+     * The number of parts.
+     * 
+     * @var int
+     */
+    protected $vargaAmsha = 60;
+
+    /**
+     * Get varga rashi.
+     * 
+     * @param array $ganitaRashi
+     * @return array
+     * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 6, Verse 33-41.
+     */
+    public function getVargaRashi(array $ganitaRashi) {
+        $amshaSize = 30 / $this->vargaAmsha;
+        $result = Math::partsToUnits($ganitaRashi['degree'], $amshaSize, 'floor');
+        $vargaRashi['degree'] = $result['parts'] * 30 / $amshaSize;
+
+        $stepRashi = floor($ganitaRashi['degree'] * 2) % 12 + 1;
+
+        $vargaRashi['rashi'] = Math::numberInCycle($ganitaRashi['rashi'], $stepRashi);
+
+        return $vargaRashi;
+    }
+
+    public function __construct($options) {
+        parent::__construct($options);
+    }
 }

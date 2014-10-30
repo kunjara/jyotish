@@ -10,5 +10,5 @@ namespace Jyotish\Varga\Exception;
  * Base exception interface for Varga objects.
  */
 interface ExceptionInterface {
-	
+    
 }

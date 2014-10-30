@@ -10,5 +10,5 @@ namespace Jyotish\Base\Exception;
  * Exception for Jyotish\Base.
  */
 class InvalidArgumentException extends \InvalidArgumentException implements ExceptionInterface {
-	
+    
 }

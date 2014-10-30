@@ -10,5 +10,5 @@ namespace Jyotish\Panchanga\Nakshatra\Exception;
  * Jyotish\Panchanga\Nakshatra Exceptions.
  */
 interface ExceptionInterface {
-	
+    
 }

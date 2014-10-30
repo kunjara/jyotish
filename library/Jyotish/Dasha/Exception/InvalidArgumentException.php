@@ -10,5 +10,5 @@ namespace Jyotish\Dasha\Exception;
  * Exception for Jyotish\Dasha component.
  */
 class InvalidArgumentException extends \InvalidArgumentException implements ExceptionInterface {
-	
+    
 }

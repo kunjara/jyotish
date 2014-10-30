@@ -18,112 +18,111 @@ use Jyotish\Tattva\Ayurveda;
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 class R8 extends RashiObject {
-	/**
-	 * Rashi key
-	 * 
-	 * @var int
-	 */
-	protected $objectKey = 8;
-	
-	/**
-	 * Devanagari title 'vrishchika' in transliteration.
-	 * 
-	 * @var array
-	 * @see Jyotish\Alphabet\Devanagari
-	 */
-	protected $rashiTranslit = ['va','r','sha','virama','ca','i','ka'];
-	
-	/**
-	 * Unicode of rashi.
-	 * 
-	 * @var string
-	 */
-	protected $rashiUnicode = '264F';
-	
-	/**
-	 * Limb of Kaal Purush.
-	 * 
-	 * @var string
-	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 4, Verse 4-4 1/2.
-	 */
-	protected $rashiLimb = Manusha::LIMB_PRIVITIES;
-	
-	/**
-	 * Bhava of rashi.
-	 * 
-	 * @var string
-	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 4, Verse 5-5 1/2.
-	 */
-	protected $rashiBhava = Rashi::BHAVA_STHIRA;
-	
-	/**
-	 * Gender of rashi.
-	 * 
-	 * @var string
-	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 4, Verse 5-5 1/2.
-	 */
-	protected $rashiGender = Manusha::GENDER_FEMALE;
-	
-	/**
-	 * Prakriti of rashi.
-	 * 
-	 * @var string
-	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 4, Verse 5-5 1/2.
-	 */
-	protected $rashiPrakriti = Ayurveda::PRAKRITI_KAPHA;
-	
-	/**
-	 * Bala of rashi.
-	 * 
-	 * @var string
-	 * @see Varahamihira. Brihat Jataka. Chapter 1, Verse 10.
-	 */
-	protected $rashiBala  = Rashi::BALA_DINA;
-	
-	/**
-	 * Daya of rashi.
-	 * 
-	 * @var string
-	 * @see Varahamihira. Brihat Jataka. Chapter 1, Verse 10.
-	 */
-	protected $rashiDaya = Rashi::DAYA_SIRSHA;
-	
-	/**
-	 * Type of rashi.
-	 * 
-	 * @var string
-	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 4, Verse 15-16 1/2.
-	 * @see Varahamihira. Brihat Jataka. Chapter 1, Verse 17.
-	 */
-	protected $rashiType = Manusha::TYPE_KITA;
-	
-	/**
-	 * Bhuta of rashi.
-	 * 
-	 * @var string
-	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 4, Verse 15-16 1/2.
-	 */
-	protected $rashiBhuta = Maha::BHUTA_JALA;
-	
-	/**
-	 * Ruler of rashi.
-	 * 
-	 * @var string
-	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 4, Verse 15-16 1/2.
-	 */
-	protected $rashiRuler = Graha::GRAHA_MA;
-	
-	/**
-	 * Varna of rashi.
-	 * 
-	 * @var string
-	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 4, Verse 15-16 1/2.
-	 */
-	protected $rashiVarna = Manusha::VARNA_BRAHMANA;
+    /**
+     * Rashi key
+     * 
+     * @var int
+     */
+    protected $objectKey = 8;
 
-	public function __construct($options)
-	{
-		parent::__construct($options);
-	}
+    /**
+     * Devanagari title 'vrishchika' in transliteration.
+     * 
+     * @var array
+     * @see Jyotish\Alphabet\Devanagari
+     */
+    protected $rashiTranslit = ['va','r','sha','virama','ca','i','ka'];
 
+    /**
+     * Unicode of rashi.
+     * 
+     * @var string
+     */
+    protected $rashiUnicode = '264F';
+
+    /**
+     * Limb of Kaal Purush.
+     * 
+     * @var string
+     * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 4, Verse 4-4 1/2.
+     */
+    protected $rashiLimb = Manusha::LIMB_PRIVITIES;
+
+    /**
+     * Bhava of rashi.
+     * 
+     * @var string
+     * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 4, Verse 5-5 1/2.
+     */
+    protected $rashiBhava = Rashi::BHAVA_STHIRA;
+
+    /**
+     * Gender of rashi.
+     * 
+     * @var string
+     * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 4, Verse 5-5 1/2.
+     */
+    protected $rashiGender = Manusha::GENDER_FEMALE;
+
+    /**
+     * Prakriti of rashi.
+     * 
+     * @var string
+     * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 4, Verse 5-5 1/2.
+     */
+    protected $rashiPrakriti = Ayurveda::PRAKRITI_KAPHA;
+
+    /**
+     * Bala of rashi.
+     * 
+     * @var string
+     * @see Varahamihira. Brihat Jataka. Chapter 1, Verse 10.
+     */
+    protected $rashiBala  = Rashi::BALA_DINA;
+
+    /**
+     * Daya of rashi.
+     * 
+     * @var string
+     * @see Varahamihira. Brihat Jataka. Chapter 1, Verse 10.
+     */
+    protected $rashiDaya = Rashi::DAYA_SIRSHA;
+
+    /**
+     * Type of rashi.
+     * 
+     * @var string
+     * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 4, Verse 15-16 1/2.
+     * @see Varahamihira. Brihat Jataka. Chapter 1, Verse 17.
+     */
+    protected $rashiType = Manusha::TYPE_KITA;
+
+    /**
+     * Bhuta of rashi.
+     * 
+     * @var string
+     * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 4, Verse 15-16 1/2.
+     */
+    protected $rashiBhuta = Maha::BHUTA_JALA;
+
+    /**
+     * Ruler of rashi.
+     * 
+     * @var string
+     * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 4, Verse 15-16 1/2.
+     */
+    protected $rashiRuler = Graha::GRAHA_MA;
+
+    /**
+     * Varna of rashi.
+     * 
+     * @var string
+     * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 4, Verse 15-16 1/2.
+     */
+    protected $rashiVarna = Manusha::VARNA_BRAHMANA;
+
+    public function __construct($options)
+    {
+        parent::__construct($options);
+    }
 }

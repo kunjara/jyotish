@@ -14,39 +14,38 @@ use Jyotish\Tattva\Jiva\Nara\Manusha;
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 class B1 extends BhavaObject {
-	/**
-	 * Bhava key
-	 * 
-	 * @var int
-	 */
-	protected $objectKey = 1;
-	
-	/**
-	 * Indications of bhava.
-	 * 
-	 * @var array
-	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 11, Verse 2.
-	 */
-	protected $bhavaKarakatva = array(
-		'physique',
-		'appearance',
-		'intellect',
-		'vigour',
-		'weakness',
-		'happiness',
-		'grief',
-		'innate nature',
-	);
-	
-	/**
-	 * Purushartha of bhava.
-	 * 
-	 * @var string
-	 */
-	protected $bhavaPurushartha = Manusha::PURUSHARTHA_DHARMA;
+    /**
+     * Bhava key
+     * 
+     * @var int
+     */
+    protected $objectKey = 1;
 
-	public function __construct($options) {
-		parent::__construct($options);
-	}
+    /**
+     * Indications of bhava.
+     * 
+     * @var array
+     * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 11, Verse 2.
+     */
+    protected $bhavaKarakatva = array(
+        'physique',
+        'appearance',
+        'intellect',
+        'vigour',
+        'weakness',
+        'happiness',
+        'grief',
+        'innate nature',
+    );
 
+    /**
+     * Purushartha of bhava.
+     * 
+     * @var string
+     */
+    protected $bhavaPurushartha = Manusha::PURUSHARTHA_DHARMA;
+
+    public function __construct($options) {
+        parent::__construct($options);
+    }
 }

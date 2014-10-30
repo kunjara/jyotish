@@ -10,5 +10,5 @@ namespace Jyotish\Bhava\Exception;
  * Base exception interface for Bhava objects.
  */
 interface ExceptionInterface {
-	
+    
 }

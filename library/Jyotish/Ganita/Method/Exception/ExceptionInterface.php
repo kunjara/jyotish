@@ -10,5 +10,5 @@ namespace Jyotish\Ganita\Method\Exception;
  * Jyotish\Ganita\Method Exceptions.
  */
 interface ExceptionInterface {
-	
+    
 }

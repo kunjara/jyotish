@@ -10,5 +10,5 @@ namespace Jyotish\Panchanga\Yoga\Exception;
  * Jyotish\Panchanga\Yoga InvalidArgumentException.
  */
 class InvalidArgumentException extends \InvalidArgumentException implements ExceptionInterface {
-	
+    
 }

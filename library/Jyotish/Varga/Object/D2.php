@@ -14,51 +14,51 @@ use Jyotish\Ganita\Math;
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 class D2 extends AbstractVarga {
-	/**
-	 * Key of the varga.
-	 * 
-	 * @var string
-	 */
-	protected $vargaKey = 'D2';
-	
-	/**
-	 * Names of the varga.
-	 * 
-	 * @var array
-	 */
-	protected $vargaName = array(
-		'Hora',
-	);
-	
-	/**
-	 * The number of parts.
-	 * 
-	 * @var int
-	 */
-	protected $vargaAmsha = 2;
-	
-	/**
-	 * Get varga rashi.
-	 * 
-	 * @param array $ganitaRashi
-	 * @return array
-	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 6, Verse 5-6.
-	 */
-	public function getVargaRashi(array $ganitaRashi) {
-		$amshaSize = 30 / $this->vargaAmsha;
-		$result = Math::partsToUnits($ganitaRashi['degree'], $amshaSize, 'floor');
-		$vargaRashi['degree'] = $result['parts'] * 30 / $amshaSize;
-		
-		if(($ganitaRashi['degree'] < 15 and $ganitaRashi['rashi'] % 2) or ($ganitaRashi['degree'] >= 15 and !($ganitaRashi['rashi'] % 2))) {
-			$vargaRashi['rashi'] = 5;
-		} else {
-			$vargaRashi['rashi'] = 4;
-		}
-		
-		return $vargaRashi;
-	}
-	
-	public function __construct($options) {
-		parent::__construct($options);
-	}
+    /**
+     * Key of the varga.
+     * 
+     * @var string
+     */
+    protected $vargaKey = 'D2';
+
+    /**
+     * Names of the varga.
+     * 
+     * @var array
+     */
+    protected $vargaName = array(
+        'Hora',
+    );
+
+    /**
+     * The number of parts.
+     * 
+     * @var int
+     */
+    protected $vargaAmsha = 2;
+
+    /**
+     * Get varga rashi.
+     * 
+     * @param array $ganitaRashi
+     * @return array
+     * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 6, Verse 5-6.
+     */
+    public function getVargaRashi(array $ganitaRashi) {
+        $amshaSize = 30 / $this->vargaAmsha;
+        $result = Math::partsToUnits($ganitaRashi['degree'], $amshaSize, 'floor');
+        $vargaRashi['degree'] = $result['parts'] * 30 / $amshaSize;
+
+        if(($ganitaRashi['degree'] < 15 and $ganitaRashi['rashi'] % 2) or ($ganitaRashi['degree'] >= 15 and !($ganitaRashi['rashi'] % 2))) {
+            $vargaRashi['rashi'] = 5;
+        } else {
+            $vargaRashi['rashi'] = 4;
+        }
+
+        return $vargaRashi;
+    }
+
+    public function __construct($options) {
+        parent::__construct($options);
+    }
 }

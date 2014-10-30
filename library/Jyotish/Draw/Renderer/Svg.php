@@ -19,117 +19,116 @@ use DOMText;
  */
 class Svg extends AbstractRenderer implements \Jyotish\Draw\Renderer\SvgInterface {
 
-	public function __construct($width, $height) {
-		$this->resource = new DOMDocument('1.0', 'utf-8');
-		$this->resource->formatOutput = true;
-		$this->svg = $this->resource->createElement('svg');
-		$this->svg->setAttribute('xmlns', "http://www.w3.org/2000/svg");
-		$this->svg->setAttribute('version', '1.1');
-		$this->svg->setAttribute('width', $width);
-		$this->svg->setAttribute('height', $height);
-		$this->svg->setAttribute('class', 'chakra');
-		$this->svg->setAttribute('viewBox', "0 0 {$width} {$height}");
+    public function __construct($width, $height) {
+        $this->resource = new DOMDocument('1.0', 'utf-8');
+        $this->resource->formatOutput = true;
+        $this->svg = $this->resource->createElement('svg');
+        $this->svg->setAttribute('xmlns', "http://www.w3.org/2000/svg");
+        $this->svg->setAttribute('version', '1.1');
+        $this->svg->setAttribute('width', $width);
+        $this->svg->setAttribute('height', $height);
+        $this->svg->setAttribute('class', 'chakra');
+        $this->svg->setAttribute('viewBox', "0 0 {$width} {$height}");
 
-		$this->resource->appendChild($this->svg);
-		
-		$this->appendRootElement('style', array('type' => 'text/css'), '
-			polygon:hover {fill: #eee;}
-			text {font-family: Arial;}
-		');
-		$this->appendRootElement('rect', array('width' => $width, 'height' => $height, 'fill' => 'white'));
-	}
+        $this->resource->appendChild($this->svg);
 
-	public function drawPolygon($points) {
-		$colorSrokeRgb = Utils::htmlToRgb($this->strokeColor);
-		$colorStrokeString = 'rgb(' . implode(', ', $colorSrokeRgb) . ')';
+        $this->appendRootElement('style', array('type' => 'text/css'), '
+            polygon:hover {fill: #eee;}
+            text {font-family: Arial;}
+        ');
+        $this->appendRootElement('rect', array('width' => $width, 'height' => $height, 'fill' => 'white'));
+    }
 
-		$colorFillRgb = Utils::htmlToRgb($this->fillColor);
-		$colorFillString = 'rgb(' . implode(', ', $colorFillRgb) . ')';
+    public function drawPolygon($points) {
+        $colorSrokeRgb = Utils::htmlToRgb($this->strokeColor);
+        $colorStrokeString = 'rgb(' . implode(', ', $colorSrokeRgb) . ')';
 
-		$pointsString = implode(' ', $points);
+        $colorFillRgb = Utils::htmlToRgb($this->fillColor);
+        $colorFillString = 'rgb(' . implode(', ', $colorFillRgb) . ')';
 
-		$attributes['points'] = $pointsString;
-		$attributes['fill'] = $colorFillString;
-		$attributes['stroke'] = $colorStrokeString;
-		$attributes['stroke-width'] = $this->strokeWidth;
-		$attributes['stroke-linejoin'] = 'round';
+        $pointsString = implode(' ', $points);
 
-		$this->appendRootElement('polygon', $attributes);
-	}
+        $attributes['points'] = $pointsString;
+        $attributes['fill'] = $colorFillString;
+        $attributes['stroke'] = $colorStrokeString;
+        $attributes['stroke-width'] = $this->strokeWidth;
+        $attributes['stroke-linejoin'] = 'round';
 
-	public function drawText($text, $x = 0, $y = 0, $options = array()) {
-		$colorRgb = Utils::htmlToRgb($this->fontColor);
-		$color = 'rgb(' . implode(', ', $colorRgb) . ')';
-		
-		$attributes['x'] = $x;
-		$attributes['y'] = $y;
-		$attributes['fill'] = $color;
-		$attributes['font-size'] = $this->fontSize * 1.2;
-		
-		if(!isset($options['align'])) $options['align'] = 'left';
-		switch ($options['align']) {
-			case 'center':
-				$textAnchor = 'middle';
-				break;
-			case 'right':
-				$textAnchor = 'end';
-				break;
-			case 'left':
-			default:
-				$textAnchor = 'start';
-				break;
-		}
-		
-		if(!isset($options['valign'])) $options['valign'] = 'bottom';
-		switch ($options['valign']) {
-			case 'top':
-				$attributes['y'] += $this->fontSize;
-				break;
-			case 'middle':
-				$attributes['y'] += $this->fontSize / 2;
-				break;
-			case 'bottom':
-			default:
-				$attributes['y'] += 0;
-				break;
-		}
-		
-		$attributes['style'] = 'text-anchor: ' . $textAnchor;
-		
-		if(!isset($options['orientation'])) $options['orientation'] = 0;
-		$attributes['transform'] = 'rotate('
-				. (- $options['orientation'])
-				. ', '
-				. ($x)
-				. ', ' . ($y)
-				. ')';
-		
-		$this->appendRootElement('text', $attributes, html_entity_decode($text, ENT_COMPAT | ENT_HTML5, 'UTF-8'));
-	}
+        $this->appendRootElement('polygon', $attributes);
+    }
 
-	protected function appendRootElement($tagName, $attributes = array(), $textContent = null) {
-		$newElement = $this->createElement($tagName, $attributes, $textContent);
-		$this->svg->appendChild($newElement);
-	}
+    public function drawText($text, $x = 0, $y = 0, $options = array()) {
+        $colorRgb = Utils::htmlToRgb($this->fontColor);
+        $color = 'rgb(' . implode(', ', $colorRgb) . ')';
 
-	protected function createElement($tagName, $attributes = array(), $textContent = null) {
-		$element = $this->resource->createElement($tagName);
-		foreach ($attributes as $k => $v) {
-			$element->setAttribute($k, $v);
-		}
-		if ($textContent !== null) {
-			$element->appendChild(new DOMText((string) $textContent));
-		}
-		return $element;
-	}
+        $attributes['x'] = $x;
+        $attributes['y'] = $y;
+        $attributes['fill'] = $color;
+        $attributes['font-size'] = $this->fontSize * 1.2;
 
-	public function setFontName($value) {
-		return;
-	}
+        if(!isset($options['align'])) $options['align'] = 'left';
+        switch ($options['align']) {
+            case 'center':
+                $textAnchor = 'middle';
+                break;
+            case 'right':
+                $textAnchor = 'end';
+                break;
+            case 'left':
+            default:
+                $textAnchor = 'start';
+                break;
+        }
 
-	public function render() {
-		header("Content-Type: image/svg+xml");
-		echo $this->resource->saveXML();
-	}
+        if(!isset($options['valign'])) $options['valign'] = 'bottom';
+        switch ($options['valign']) {
+            case 'top':
+                $attributes['y'] += $this->fontSize;
+                break;
+            case 'middle':
+                $attributes['y'] += $this->fontSize / 2;
+                break;
+            case 'bottom':
+            default:
+                $attributes['y'] += 0;
+                break;
+        }
 
+        $attributes['style'] = 'text-anchor: ' . $textAnchor;
+
+        if(!isset($options['orientation'])) $options['orientation'] = 0;
+        $attributes['transform'] = 'rotate('
+                . (- $options['orientation'])
+                . ', '
+                . ($x)
+                . ', ' . ($y)
+                . ')';
+
+        $this->appendRootElement('text', $attributes, html_entity_decode($text, ENT_COMPAT | ENT_HTML5, 'UTF-8'));
+    }
+
+    protected function appendRootElement($tagName, $attributes = array(), $textContent = null) {
+        $newElement = $this->createElement($tagName, $attributes, $textContent);
+        $this->svg->appendChild($newElement);
+    }
+
+    protected function createElement($tagName, $attributes = array(), $textContent = null) {
+        $element = $this->resource->createElement($tagName);
+        foreach ($attributes as $k => $v) {
+            $element->setAttribute($k, $v);
+        }
+        if ($textContent !== null) {
+            $element->appendChild(new DOMText((string) $textContent));
+        }
+        return $element;
+    }
+
+    public function setFontName($value) {
+        return;
+    }
+
+    public function render() {
+        header("Content-Type: image/svg+xml");
+        echo $this->resource->saveXML();
+    }
 }

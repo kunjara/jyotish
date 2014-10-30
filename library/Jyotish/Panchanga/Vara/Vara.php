@@ -12,14 +12,14 @@ namespace Jyotish\Panchanga\Vara;
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 class Vara {
-	
-	static public $VARA = array(
-		1 => 'Ravivar',
-		2 => 'Somavar',
-		3 => 'Mangalavar',
-		4 => 'Budhavar',
-		5 => 'Guruvar',
-		6 => 'Shukravar',
-		7 => 'Shanivar'
-	);
+
+    static public $VARA = array(
+        1 => 'Ravivar',
+        2 => 'Somavar',
+        3 => 'Mangalavar',
+        4 => 'Budhavar',
+        5 => 'Guruvar',
+        6 => 'Shukravar',
+        7 => 'Shanivar'
+    );
 }

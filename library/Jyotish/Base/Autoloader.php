@@ -12,20 +12,16 @@ namespace Jyotish\Base;
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 class Autoloader {
+    public function __construct() {}
 
-	public function __construct() {
-		
-	}
+    public static function autoload($file) {
+        $file = str_replace('\\', '/', $file);
+        $filepath = stream_resolve_include_path($file . '.php');
 
-	public static function autoload($file) {
-		$file = str_replace('\\', '/', $file);
-		$filepath = stream_resolve_include_path($file . '.php');
-
-		if (file_exists($filepath)) {
-			require_once ($filepath);
-		}
-	}
-
+        if (file_exists($filepath)) {
+            require_once ($filepath);
+        }
+    }
 }
 
 spl_autoload_register('Jyotish\Base\Autoloader::autoload');

@@ -14,53 +14,53 @@ use Jyotish\Ganita\Math;
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 class D3 extends AbstractVarga {
-	/**
-	 * Key of the varga.
-	 * 
-	 * @var string
-	 */
-	protected $vargaKey = 'D3';
-	
-	/**
-	 * Names of the varga.
-	 * 
-	 * @var array
-	 */
-	protected $vargaName = array(
-		'Drekkana',
-	);
-	
-	/**
-	 * The number of parts.
-	 * 
-	 * @var int
-	 */
-	protected $vargaAmsha = 3;
-	
-	/**
-	 * Get varga rashi.
-	 * 
-	 * @param array $ganitaRashi
-	 * @return array
-	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 6, Verse 7-8.
-	 */
-	public function getVargaRashi(array $ganitaRashi) {
-		$amshaSize = 30 / $this->vargaAmsha;
-		$result = Math::partsToUnits($ganitaRashi['degree'], $amshaSize, 'floor');
-		$vargaRashi['degree'] = $result['parts'] * 30 / $amshaSize;
-		
-		if($ganitaRashi['degree'] < 10) {
-			$vargaRashi['rashi'] = Math::numberInCycle($ganitaRashi['rashi']);
-		} elseif($ganitaRashi['degree'] >= 10 and $ganitaRashi['degree'] < 20) {
-			$vargaRashi['rashi'] = Math::numberInCycle($ganitaRashi['rashi'], 5);
-		} else {
-			$vargaRashi['rashi'] = Math::numberInCycle($ganitaRashi['rashi'], 9);
-		}
-		
-		return $vargaRashi;
-	}
-	
-	public function __construct($options) {
-		parent::__construct($options);
-	}
+    /**
+     * Key of the varga.
+     * 
+     * @var string
+     */
+    protected $vargaKey = 'D3';
+
+    /**
+     * Names of the varga.
+     * 
+     * @var array
+     */
+    protected $vargaName = array(
+        'Drekkana',
+    );
+
+    /**
+     * The number of parts.
+     * 
+     * @var int
+     */
+    protected $vargaAmsha = 3;
+
+    /**
+     * Get varga rashi.
+     * 
+     * @param array $ganitaRashi
+     * @return array
+     * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 6, Verse 7-8.
+     */
+    public function getVargaRashi(array $ganitaRashi) {
+        $amshaSize = 30 / $this->vargaAmsha;
+        $result = Math::partsToUnits($ganitaRashi['degree'], $amshaSize, 'floor');
+        $vargaRashi['degree'] = $result['parts'] * 30 / $amshaSize;
+
+        if($ganitaRashi['degree'] < 10) {
+            $vargaRashi['rashi'] = Math::numberInCycle($ganitaRashi['rashi']);
+        } elseif($ganitaRashi['degree'] >= 10 and $ganitaRashi['degree'] < 20) {
+            $vargaRashi['rashi'] = Math::numberInCycle($ganitaRashi['rashi'], 5);
+        } else {
+            $vargaRashi['rashi'] = Math::numberInCycle($ganitaRashi['rashi'], 9);
+        }
+
+        return $vargaRashi;
+    }
+
+    public function __construct($options) {
+        parent::__construct($options);
+    }
 }

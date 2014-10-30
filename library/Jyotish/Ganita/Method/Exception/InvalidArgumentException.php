@@ -10,5 +10,5 @@ namespace Jyotish\Ganita\Method\Exception;
  * Jyotish\Ganita\Method InvalidArgumentException.
  */
 class InvalidArgumentException extends \InvalidArgumentException implements ExceptionInterface {
-	
+    
 }

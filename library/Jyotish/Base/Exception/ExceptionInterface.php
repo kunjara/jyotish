@@ -10,5 +10,5 @@ namespace Jyotish\Base\Exception;
  * Base exception interface.
  */
 interface ExceptionInterface {
-	
+    
 }

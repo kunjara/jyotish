@@ -13,63 +13,62 @@ namespace Jyotish\Draw\Plot\Chakra\Render;
  */
 class Image extends AbstractRender implements \Jyotish\Draw\Renderer\ImageInterface {
 
-	public function __construct($adapter) {
-		parent::__construct($adapter);
-	}
+    public function __construct($adapter) {
+        parent::__construct($adapter);
+    }
 
-	protected function drawRashiLabel($leftOffset, $topOffset) {
-		$chakraStyle = 'Jyotish\Draw\Plot\Chakra\Style\\' . $this->chakraStyle;
-		$chakraObject = new $chakraStyle();
+    protected function drawRashiLabel($leftOffset, $topOffset) {
+        $chakraStyle = 'Jyotish\Draw\Plot\Chakra\Style\\' . $this->chakraStyle;
+        $chakraObject = new $chakraStyle();
 
-		$rashiLabelPoints = $chakraObject->getRashiLabelPoints(
-				$this->chakraSize, 
-				array(
-					'offsetBorder' => $this->offsetBorder,
-				), $this->data
-		);
+        $rashiLabelPoints = $chakraObject->getRashiLabelPoints(
+                $this->chakraSize, 
+                array(
+                    'offsetBorder' => $this->offsetBorder,
+                ), $this->data
+        );
 
-		foreach ($rashiLabelPoints as $rashi => $point) {
-			$this->adapter->drawText(
-					$rashi, 
-					$point['x'] + $leftOffset, 
-					$point['y'] + $topOffset, 
-					array(
-						'align' => $point['align'], 
-						'valign' => $point['valign'],
-					)
-			);
-		}
-	}
+        foreach ($rashiLabelPoints as $rashi => $point) {
+            $this->adapter->drawText(
+                    $rashi, 
+                    $point['x'] + $leftOffset, 
+                    $point['y'] + $topOffset, 
+                    array(
+                        'align' => $point['align'], 
+                        'valign' => $point['valign'],
+                    )
+            );
+        }
+    }
 
-	protected function drawGrahaLabel($leftOffset, $topOffset) {
-		$chakraStyle = 'Jyotish\Draw\Plot\Chakra\Style\\' . $this->chakraStyle;
-		$chakraObject = new $chakraStyle();
+    protected function drawGrahaLabel($leftOffset, $topOffset) {
+        $chakraStyle = 'Jyotish\Draw\Plot\Chakra\Style\\' . $this->chakraStyle;
+        $chakraObject = new $chakraStyle();
 
-		$grahaLabelPoints = $chakraObject->getGrahaLabelPoints(
-				$this->chakraSize, 
-				array(
-					'offsetBorder' => $this->offsetBorder,
-					'widthOffsetLabel' => $this->widthOffsetLabel,
-					'heightOffsetLabel' => $this->heightOffsetLabel,
-				), $this->data
-		);
-		
-		foreach ($grahaLabelPoints as $graha => $point) {
-			$grahaLabel = $this->data->getGrahaLabel($graha, $this->labelGrahaType, $this->labelGrahaCallback);
-			
-			//$labelBox = imagettfbbox($labelGraha['fontSize'], 0, $labelGraha['fontName'], $label);
-			//$labelWidth = $labelBox[2] - $labelBox[0];
-			
-			$this->adapter->drawText(
-					$grahaLabel, 
-					$point['x'] + $leftOffset,
-					$point['y'] + $topOffset, 
-					array(
-						'align' => $point['align'],
-						'valign' => $point['valign'],
-					)
-			);
-		}
-	}
+        $grahaLabelPoints = $chakraObject->getGrahaLabelPoints(
+                $this->chakraSize, 
+                array(
+                    'offsetBorder' => $this->offsetBorder,
+                    'widthOffsetLabel' => $this->widthOffsetLabel,
+                    'heightOffsetLabel' => $this->heightOffsetLabel,
+                ), $this->data
+        );
 
+        foreach ($grahaLabelPoints as $graha => $point) {
+            $grahaLabel = $this->data->getGrahaLabel($graha, $this->labelGrahaType, $this->labelGrahaCallback);
+
+            //$labelBox = imagettfbbox($labelGraha['fontSize'], 0, $labelGraha['fontName'], $label);
+            //$labelWidth = $labelBox[2] - $labelBox[0];
+
+            $this->adapter->drawText(
+                    $grahaLabel, 
+                    $point['x'] + $leftOffset,
+                    $point['y'] + $topOffset, 
+                    array(
+                        'align' => $point['align'],
+                        'valign' => $point['valign'],
+                    )
+            );
+        }
+    }
 }

@@ -10,5 +10,5 @@ namespace Jyotish\Draw\Renderer\Exception;
  * Jyotish\Draw\Renderer InvalidArgumentException.
  */
 class InvalidArgumentException extends \InvalidArgumentException implements ExceptionInterface {
-	
+    
 }

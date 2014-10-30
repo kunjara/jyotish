@@ -15,59 +15,59 @@ use Jyotish\Rashi\Rashi;
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 class BhavaObject extends Object {
-	/**
-	 * Object type
-	 * 
-	 * @var string
-	 */
-	protected $objectType = 'bhava';
-	
-	/**
-	 * Devanagari bhava title in transliteration.
-	 * 
-	 * @var array
-	 * @see Jyotish\Alphabet\Devanagari
-	 */
-	protected $bhavaTranslit;
-	
-	/**
-	 * Indications of bhava.
-	 * 
-	 * @var array
-	 * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 11, Verse 2-13.
-	 */
-	protected $bhavaKarakatva = array();
+    /**
+     * Object type
+     * 
+     * @var string
+     */
+    protected $objectType = 'bhava';
 
-	/**
-	 * Purushartha of bhava.
-	 * 
-	 * @var string
-	 */
-	protected $bhavaPurushartha;
-	
-	/**
-	 * Get bhava ruler (lord).
-	 * 
-	 * @return string
-	 */
-	public function getRuler()
-	{
-		$this->checkEnvironment();
-		
-		$rashi = $this->ganitaData['bhava'][$this->objectKey]['rashi'];
-		$Rashi = Rashi::getInstance((int)$rashi);
-		$ruler = $Rashi->getRashiRuler();
-		
-		return $ruler;
-	}
+    /**
+     * Devanagari bhava title in transliteration.
+     * 
+     * @var array
+     * @see Jyotish\Alphabet\Devanagari
+     */
+    protected $bhavaTranslit;
 
-	/**
-	 * Constructor
-	 * 
+    /**
+     * Indications of bhava.
+     * 
+     * @var array
+     * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 11, Verse 2-13.
+     */
+    protected $bhavaKarakatva = array();
+
+    /**
+     * Purushartha of bhava.
+     * 
+     * @var string
+     */
+    protected $bhavaPurushartha;
+
+    /**
+     * Get bhava ruler (lord).
+     * 
+     * @return string
+     */
+    public function getRuler()
+    {
+        $this->checkEnvironment();
+
+        $rashi = $this->ganitaData['bhava'][$this->objectKey]['rashi'];
+        $Rashi = Rashi::getInstance((int)$rashi);
+        $ruler = $Rashi->getRashiRuler();
+
+        return $ruler;
+    }
+
+    /**
+     * Constructor
+     * 
      * @param array $options
      */
-	public function __construct($options)
-	{
-		return $this;
-	}
+    public function __construct($options)
+    {
+        return $this;
+    }
 }

@@ -14,43 +14,40 @@ use Jyotish\Base\Utils;
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 class Language {
-	
-	/**
-	 * Convert translit to html code.
-	 * 
-	 * @param array|string $translit
-	 * @return string
-	 */
-	static public function translitToHtml($translit)
-	{
-		if(is_array($translit)){
-			foreach ($translit as $tr){
-				$html .= self::_trToHtml($tr);
-			}
-		}else{
-			$html = self::_trToHtml($tr);
-		}
-		
-		return $html;
-	}
-	
-	static protected function _trToHtml($tr)
-	{
-		switch ($tr) {
-			case null:
-				return;
-			case ' ':
-				return $tr;
-			default:
-				break;
-		}
-		
-		if(defined('static::'.$tr)){
-			return Utils::unicodeToHtml(constant('static::'.$tr));
-		}else{
-			throw new Exception\InvalidArgumentException("Transliteration '$tr' is not defined.");
-		}
-	}
-}
+    /**
+     * Convert translit to html code.
+     * 
+     * @param array|string $translit
+     * @return string
+     */
+    static public function translitToHtml($translit)
+    {
+        if(is_array($translit)){
+            foreach ($translit as $tr){
+                $html .= self::_trToHtml($tr);
+            }
+        }else{
+            $html = self::_trToHtml($tr);
+        }
 
-?>
+        return $html;
+    }
+
+    static protected function _trToHtml($tr)
+    {
+        switch ($tr) {
+            case null:
+                return;
+            case ' ':
+                return $tr;
+            default:
+                break;
+        }
+
+        if(defined('static::'.$tr)){
+            return Utils::unicodeToHtml(constant('static::'.$tr));
+        }else{
+            throw new Exception\InvalidArgumentException("Transliteration '$tr' is not defined.");
+        }
+    }
+}

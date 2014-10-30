@@ -10,5 +10,5 @@ namespace Jyotish\Rashi\Exception;
  * Base exception interface for Rashi objects.
  */
 interface ExceptionInterface {
-	
+    
 }

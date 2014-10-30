@@ -10,5 +10,5 @@ namespace Jyotish\Panchanga\Tithi\Exception;
  * Jyotish\Panchanga\Tithi InvalidArgumentException.
  */
 class InvalidArgumentException extends \InvalidArgumentException implements ExceptionInterface {
-	
+    
 }

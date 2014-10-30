@@ -12,7 +12,5 @@ namespace Jyotish\Draw\Renderer;
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 interface ImageInterface {
-	
+    
 }
-
-?>

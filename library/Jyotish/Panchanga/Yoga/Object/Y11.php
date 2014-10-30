@@ -14,17 +14,16 @@ use Jyotish\Tattva\Jiva\Nara\Deva;
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 class Y11 extends YogaObject {
-	/**
-	 * Yoga key
-	 * 
-	 * @var int
-	 */
-	protected $yogaKey = 11;
-	
-	protected $yogaDeva = Deva::DEVA_RATRI;
+    /**
+     * Yoga key
+     * 
+     * @var int
+     */
+    protected $yogaKey = 11;
 
-	public function __construct($options) {
-		parent::__construct($options);
-	}
+    protected $yogaDeva = Deva::DEVA_RATRI;
 
+    public function __construct($options) {
+        parent::__construct($options);
+    }
 }

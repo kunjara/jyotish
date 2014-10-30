@@ -10,5 +10,5 @@ namespace Jyotish\Panchanga\Exception;
  * Base exception interface for Panchanga.
  */
 interface ExceptionInterface {
-	
+    
 }

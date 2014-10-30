@@ -20,63 +20,62 @@ use Jyotish\Tattva\Ayurveda;
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 class N25 extends NakshatraObject {
-	/**
-	 * Nakshatra key
-	 * 
-	 * @var int
-	 */
-	protected $nakshatraKey = 25;
-	
-	/**
-	 * Devanagari title 'purva bhadrapada' in transliteration.
-	 * 
-	 * @var array
-	 * @see Jyotish\Alphabet\Devanagari
-	 */
-	protected $nakshatraTranslit = ['pa','uu','ra','virama','va',' ','bha','aa','da','virama','ra','pa','da','aa'];
-	
-	/**
-	 * Deva of nakshatra.
-	 * 
-	 * @var string
-	 * @see Varahamihira. Brihat Samhita. Chapter 98, Verse 4-5.
-	 */
-	protected $nakshatraDeva = Deva::DEVA_AJIKAPADA;
-	
-	/**
-	 * Type of nakshatra.
-	 * 
-	 * @var string
-	 * @see Varahamihira. Brihat Samhita. Chapter 98, Verse 8.
-	 */
-	protected $nakshatraType = Nakshatra::TYPE_UGRA;
-	
-	/**
-	 * Graha of nakshatra.
-	 * 
-	 * @var string
-	 * @see Satyacharya. Satya Jatakam. Chapter 1, Verse 9.
-	 */
-	protected $nakshatraGraha = Graha::GRAHA_GU;
-	
-	protected $nakshatraEnergy = Nakshatra::ENERGY_SRISHTI;
-	protected $nakshatraGana = Manusha::GANA_MANUSHA;
-	protected $nakshatraGender = Manusha::GENDER_MALE;
-	protected $nakshatraGuna = Maha::GUNA_SATTVA;
-	protected $nakshatraPurushartha = Manusha::PURUSHARTHA_ARTHA;
-	protected $nakshatraVarna = Manusha::VARNA_BRAHMANA;
-	protected $nakshatraPrakriti = Ayurveda::PRAKRITI_VATA;
-	protected $nakshatraYoni = array(
-		'animal' => Pasu::ANIMAL_LION,
-		'gender' => Manusha::GENDER_MALE,
-	);
-	protected $nakshatraRajju = array(
-		'lift' => Nakshatra::LIFT_AVAROHA,
-		'limb' => Nakshatra::LIMB_NABHI,
-	);
+    /**
+     * Nakshatra key
+     * 
+     * @var int
+     */
+    protected $nakshatraKey = 25;
 
-	public function __construct($options) {
-		parent::__construct($options);
-	}
+    /**
+     * Devanagari title 'purva bhadrapada' in transliteration.
+     * 
+     * @var array
+     * @see Jyotish\Alphabet\Devanagari
+     */
+    protected $nakshatraTranslit = ['pa','uu','ra','virama','va',' ','bha','aa','da','virama','ra','pa','da','aa'];
 
+    /**
+     * Deva of nakshatra.
+     * 
+     * @var string
+     * @see Varahamihira. Brihat Samhita. Chapter 98, Verse 4-5.
+     */
+    protected $nakshatraDeva = Deva::DEVA_AJIKAPADA;
+
+    /**
+     * Type of nakshatra.
+     * 
+     * @var string
+     * @see Varahamihira. Brihat Samhita. Chapter 98, Verse 8.
+     */
+    protected $nakshatraType = Nakshatra::TYPE_UGRA;
+
+    /**
+     * Graha of nakshatra.
+     * 
+     * @var string
+     * @see Satyacharya. Satya Jatakam. Chapter 1, Verse 9.
+     */
+    protected $nakshatraGraha = Graha::GRAHA_GU;
+
+    protected $nakshatraEnergy = Nakshatra::ENERGY_SRISHTI;
+    protected $nakshatraGana = Manusha::GANA_MANUSHA;
+    protected $nakshatraGender = Manusha::GENDER_MALE;
+    protected $nakshatraGuna = Maha::GUNA_SATTVA;
+    protected $nakshatraPurushartha = Manusha::PURUSHARTHA_ARTHA;
+    protected $nakshatraVarna = Manusha::VARNA_BRAHMANA;
+    protected $nakshatraPrakriti = Ayurveda::PRAKRITI_VATA;
+    protected $nakshatraYoni = array(
+        'animal' => Pasu::ANIMAL_LION,
+        'gender' => Manusha::GENDER_MALE,
+    );
+    protected $nakshatraRajju = array(
+        'lift' => Nakshatra::LIFT_AVAROHA,
+        'limb' => Nakshatra::LIMB_NABHI,
+    );
+
+    public function __construct($options) {
+        parent::__construct($options);
+    }
 }

@@ -15,14 +15,14 @@ use Jyotish\Panchanga\Tithi\Tithi;
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 class BengalHolidays extends \Jyotish\Calendar\Event{
-	static public $eventsTitle = 'Bengal specific Holidays';
+    static public $eventsTitle = 'Bengal specific Holidays';
 
-	static public $eventsList = array(
-		array(
-			self::COL_NAME => 'Durga Puja',
-			self::COL_MASA => Masa::NAME_ASHVIN,
-			self::COL_TITHI => Tithi::NAME_SAPTAMI,
-			self::COL_PAKSHA => Tithi::PAKSHA_SHUKLA,
-		),
-	);
+    static public $eventsList = array(
+        array(
+            self::COL_NAME => 'Durga Puja',
+            self::COL_MASA => Masa::NAME_ASHVIN,
+            self::COL_TITHI => Tithi::NAME_SAPTAMI,
+            self::COL_PAKSHA => Tithi::PAKSHA_SHUKLA,
+        ),
+    );
 }

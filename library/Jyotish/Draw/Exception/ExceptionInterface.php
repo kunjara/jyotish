@@ -10,5 +10,5 @@ namespace Jyotish\Draw\Exception;
  * Jyotish\Draw Exceptions.
  */
 interface ExceptionInterface {
-	
+    
 }

@@ -10,5 +10,5 @@ namespace Jyotish\Alphabet\Exception;
  * Jyotish\Alphabet Exceptions.
  */
 interface ExceptionInterface {
-	
+    
 }

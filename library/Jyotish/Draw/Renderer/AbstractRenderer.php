@@ -15,99 +15,99 @@ use Jyotish\Draw\Plot\Chakra\AbstractChakra;
  */
 abstract class AbstractRenderer {
 
-	protected $resource = null;
-	protected $data = null;
-	
-	protected $topOffset = 0;
-	protected $leftOffset = 0;
-	
-	protected $fontSize = 10;
-	protected $fontName = null;
-	protected $fontColor = '000';
-	
-	protected $strokeWidth = 1;
-	protected $strokeColor = '000';
-	
-	protected $fillColor = 'fff';
+    protected $resource = null;
+    protected $data = null;
 
-	
+    protected $topOffset = 0;
+    protected $leftOffset = 0;
 
-	public function get($name) {
-		if (isset($this->$name)) {
-			return $this->$name;
-		}
+    protected $fontSize = 10;
+    protected $fontName = null;
+    protected $fontColor = '000';
 
-		return null;
-	}
+    protected $strokeWidth = 1;
+    protected $strokeColor = '000';
 
-	public function getResource() {
-		return $this->resource;
-	}
+    protected $fillColor = 'fff';
 
-	public function getData() {
-		return $this->data;
-	}
 
-	public function setOptions($options) {
-		foreach ($options as $key => $value) {
-			$method = 'set' . $key;
-			if (method_exists($this, $method)) {
-				$this->$method($value);
-			}
-		}
-		return $this;
-	}
 
-	public function setTopOffset($value) {
-		if (!is_numeric($value) || intval($value) < 0) {
-			throw new Exception\OutOfRangeException(
-					'Vertical position must be greater than or equals 0.'
-			);
-		}
-		$this->topOffset = intval($value);
-		return $this;
-	}
+    public function get($name) {
+        if (isset($this->$name)) {
+            return $this->$name;
+        }
 
-	public function setLeftOffset($value) {
-		if (!is_numeric($value) || intval($value) < 0) {
-			throw new Exception\OutOfRangeException(
-					'Horizontal position must be greater than or equals 0.'
-			);
-		}
-		$this->leftOffset = intval($value);
-		return $this;
-	}
+        return null;
+    }
 
-	public function setFontSize($value) {
-		if (!is_numeric($value) || intval($value) < 8) {
-			throw new Exception\OutOfRangeException(
-					'Font size must be greater than or equals 8.'
-			);
-		}
-		$this->fontSize = intval($value);
-		return $this;
-	}
+    public function getResource() {
+        return $this->resource;
+    }
 
-	public function setFontColor($value) {
-		$this->fontColor = $value;
-		return $this;
-	}
-	
-	public function setStrokeWidth($value) {
-		if (!is_numeric($value) || floatval($value) < 0) {
-			throw new Exception\OutOfRangeException(
-					'Stroke width must be greater than or equals 0.'
-			);
-		}
-		$this->strokeWidth = $value;
-		return $this;
-	}
+    public function getData() {
+        return $this->data;
+    }
 
-	abstract public function drawPolygon($points);
-	
-	abstract public function drawText($text, $x, $y, $options);
+    public function setOptions($options) {
+        foreach ($options as $key => $value) {
+            $method = 'set' . $key;
+            if (method_exists($this, $method)) {
+                $this->$method($value);
+            }
+        }
+        return $this;
+    }
 
-	abstract public function setFontName($value);
+    public function setTopOffset($value) {
+        if (!is_numeric($value) || intval($value) < 0) {
+            throw new Exception\OutOfRangeException(
+                    'Vertical position must be greater than or equals 0.'
+            );
+        }
+        $this->topOffset = intval($value);
+        return $this;
+    }
 
-	abstract public function render();
+    public function setLeftOffset($value) {
+        if (!is_numeric($value) || intval($value) < 0) {
+            throw new Exception\OutOfRangeException(
+                    'Horizontal position must be greater than or equals 0.'
+            );
+        }
+        $this->leftOffset = intval($value);
+        return $this;
+    }
+
+    public function setFontSize($value) {
+        if (!is_numeric($value) || intval($value) < 8) {
+            throw new Exception\OutOfRangeException(
+                    'Font size must be greater than or equals 8.'
+            );
+        }
+        $this->fontSize = intval($value);
+        return $this;
+    }
+
+    public function setFontColor($value) {
+        $this->fontColor = $value;
+        return $this;
+    }
+
+    public function setStrokeWidth($value) {
+        if (!is_numeric($value) || floatval($value) < 0) {
+            throw new Exception\OutOfRangeException(
+                    'Stroke width must be greater than or equals 0.'
+            );
+        }
+        $this->strokeWidth = $value;
+        return $this;
+    }
+
+    abstract public function drawPolygon($points);
+
+    abstract public function drawText($text, $x, $y, $options);
+
+    abstract public function setFontName($value);
+
+    abstract public function render();
 }

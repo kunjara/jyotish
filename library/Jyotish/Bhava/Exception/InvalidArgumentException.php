@@ -10,5 +10,5 @@ namespace Jyotish\Bhava\Exception;
  * Exception for Jyotish\Bhava component.
  */
 class InvalidArgumentException extends \InvalidArgumentException implements ExceptionInterface {
-	
+    
 }

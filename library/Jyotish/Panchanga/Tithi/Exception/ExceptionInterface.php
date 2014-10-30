@@ -10,5 +10,5 @@ namespace Jyotish\Panchanga\Tithi\Exception;
  * Jyotish\Panchanga\Tithi Exceptions.
  */
 interface ExceptionInterface {
-	
+    
 }

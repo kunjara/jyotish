@@ -10,5 +10,5 @@ namespace Jyotish\Ganita\Method\Exception;
  * Jyotish\Ganita\Method UnexpectedValueException.
  */
 class UnexpectedValueException extends \UnexpectedValueException implements ExceptionInterface {
-	
+    
 }

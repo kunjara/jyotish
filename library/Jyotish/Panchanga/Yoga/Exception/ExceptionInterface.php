@@ -10,5 +10,5 @@ namespace Jyotish\Panchanga\Yoga\Exception;
  * Jyotish\Panchanga\Yoga Exceptions.
  */
 interface ExceptionInterface {
-	
+    
 }

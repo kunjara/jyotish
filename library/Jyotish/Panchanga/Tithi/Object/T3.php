@@ -14,33 +14,32 @@ use Jyotish\Panchanga\Karana\Karana;
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 class T3 extends TithiObject {
-	/**
-	 * Tithi key
-	 * 
-	 * @var int
-	 */
-	protected $tithiKey = 3;
-	
-	/**
-	 * Devanagari number 3 in transliteration.
-	 * 
-	 * @var array
-	 * @see Jyotish\Alphabet\Devanagari
-	 */
-	protected $tithiTranslit = ['d3'];
-	
-	/**
-	 * Karana of tithi.
-	 * 
-	 * @var string
-	 */
-	protected $tithiKarana = array(
-		1 => Karana::NAME_TAITILA,
-		2 => Karana::NAME_GARA
-	);
-	
-	public function __construct($options) {
-		parent::__construct($options);
-	}
+    /**
+     * Tithi key
+     * 
+     * @var int
+     */
+    protected $tithiKey = 3;
 
+    /**
+     * Devanagari number 3 in transliteration.
+     * 
+     * @var array
+     * @see Jyotish\Alphabet\Devanagari
+     */
+    protected $tithiTranslit = ['d3'];
+
+    /**
+     * Karana of tithi.
+     * 
+     * @var string
+     */
+    protected $tithiKarana = array(
+        1 => Karana::NAME_TAITILA,
+        2 => Karana::NAME_GARA
+    );
+
+    public function __construct($options) {
+        parent::__construct($options);
+    }
 }

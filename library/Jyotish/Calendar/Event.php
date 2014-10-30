@@ -12,11 +12,11 @@ namespace Jyotish\Calendar;
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 class Event {
-	/**
-	 * Columns of the table
-	 */
-	const COL_NAME = 'name';
-	const COL_MASA = 'masa';
-	const COL_TITHI = 'tithi';
-	const COL_PAKSHA = 'paksha';
+    /**
+     * Columns of the table
+     */
+    const COL_NAME = 'name';
+    const COL_MASA = 'masa';
+    const COL_TITHI = 'tithi';
+    const COL_PAKSHA = 'paksha';
 }

@@ -10,5 +10,5 @@ namespace Jyotish\Tattva\Exception;
  * Jyotish\Tattva Exceptions.
  */
 interface ExceptionInterface {
-	
+    
 }

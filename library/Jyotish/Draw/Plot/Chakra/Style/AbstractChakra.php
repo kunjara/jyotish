@@ -15,20 +15,20 @@ use Jyotish\Base\Data;
  */
 abstract class AbstractChakra {
 
-	const STYLE_NORTH = 'north';
-	const STYLE_SOUTH = 'south';
-	const STYLE_EAST = 'east';
+    const STYLE_NORTH = 'north';
+    const STYLE_SOUTH = 'south';
+    const STYLE_EAST = 'east';
 
-	static public $styles = array(
-		self::STYLE_NORTH,
-		self::STYLE_SOUTH,
-		self::STYLE_EAST,
-	);
-	static private $_bhavaPoints = array();
+    static public $styles = array(
+        self::STYLE_NORTH,
+        self::STYLE_SOUTH,
+        self::STYLE_EAST,
+    );
+    static private $_bhavaPoints = array();
 
-	abstract public function getBhavaPoints($size, $left, $top);
+    abstract public function getBhavaPoints($size, $left, $top);
 
-	abstract public function getRashiLabelPoints($size, array $labelRashi, Data $drawData);
+    abstract public function getRashiLabelPoints($size, array $labelRashi, Data $drawData);
 
-	abstract public function getGrahaLabelPoints($size, array $labelGraha, Data $drawData);
+    abstract public function getGrahaLabelPoints($size, array $labelGraha, Data $drawData);
 }
