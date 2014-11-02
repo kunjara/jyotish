@@ -66,9 +66,10 @@ class Ashtottari extends AbstractDasha {
      */
     public function getStartPeriod(array $nakshatra)
     {
-        $keysNakshatra	= array_keys($this->orderNakshatra);
-        $indexNum		= array_search($nakshatra['number'], $keysNakshatra) + 1;
-
+        $keysNakshatra = array_keys($this->orderNakshatra);
+        $indexNum      = array_search($nakshatra['number'], $keysNakshatra) + 1;
+        
+        $partSum = 0;
         foreach ($this->durationGraha as $key => $value){
             $G = Graha::getInstance($key);
             if($G->getGrahaCharacter() == Graha::CHARACTER_PAPA){
@@ -77,7 +78,7 @@ class Ashtottari extends AbstractDasha {
                 $part = 3;
             }
 
-            $partSum = $partSum + $part;
+            $partSum += $part;
             if($partSum >= $indexNum)
                 break;
         }
@@ -87,9 +88,9 @@ class Ashtottari extends AbstractDasha {
         $result['graha'] = $key;
         $result['total'] = round($this->durationTotal() * Samvatsara::DUR_GREGORIAN * 86400);
 
-        $durationGraha		= $this->durationGraha();
-        $durationNakshatra	= round($durationGraha[$key] * Samvatsara::DUR_GREGORIAN * 86400 / $part);
-        $result['start']	= $durationNakshatra * ($num - 1) + round($durationNakshatra * (100 - $nakshatra['left']) / 100);
+        $durationGraha     = $this->durationGraha();
+        $durationNakshatra = round($durationGraha[$key] * Samvatsara::DUR_GREGORIAN * 86400 / $part);
+        $result['start']   = $durationNakshatra * ($num - 1) + round($durationNakshatra * (100 - $nakshatra['left']) / 100);
 
         return $result;
     }

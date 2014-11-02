@@ -231,7 +231,8 @@ class AshtakaVarga implements \Iterator {
                     }else{
                         $distance = Math::numberInCycle($this->ganitaData['extra'][$graha]['rashi'], $i);
                     }
-
+                    
+                    if(!isset($this->bhinnAshtakavarga[$varga][$distance])) $this->bhinnAshtakavarga[$varga][$distance] = 0;
                     $this->bhinnAshtakavarga[$varga][$distance] += $bindu;
                 }
             }

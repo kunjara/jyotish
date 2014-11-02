@@ -84,12 +84,12 @@ abstract class AbstractDasha {
         else
             $withAbhijit = false;
 
-        $userData		= $panchanga->getUserData();
+        $userData       = $panchanga->getUserData();
         $dateTimeString = $userData['date'] . ' ' . $userData['time'];
         $dateTimeFormat = Time::FORMAT_DATA_DATE . ' ' . Time::FORMAT_DATA_TIME;
         $this->_dateTimeObject = Time::getDateTimeUtc($dateTimeFormat, $dateTimeString, $userData['timezone']);
 
-        $nakshatra	= $panchanga->getNakshatra(true, $withAbhijit);
+        $nakshatra  = $panchanga->getNakshatra(true, $withAbhijit);
         $periodData = $this->getStartPeriod($nakshatra);
 
         $this->_dateTimeObject->sub(new DateInterval('PT'.$periodData['start'].'S'));
@@ -97,15 +97,15 @@ abstract class AbstractDasha {
         $this->_dateTimeObject->add(new DateInterval('PT'.$periodData['total'].'S'));
         $periodEndString = $this->_dateTimeObject->format(Time::FORMAT_DATETIME);
 
-        $periodOrder	= Utils::shiftArray($this->durationGraha(), $periodData['graha']);
+        $periodOrder = Utils::shiftArray($this->durationGraha(), $periodData['graha']);
 
         $periodTotal = array(
-            'nesting'	=> 0,
-            'name'		=> $this->dashaKey,
-            'duration'	=> $periodData['total'],
-            'start'		=> $periodStartString,
-            'end'		=> $periodEndString,
-            'order'		=> $periodOrder,
+            'nesting'  => 0,
+            'name'     => $this->dashaKey,
+            'duration' => $periodData['total'],
+            'start'    => $periodStartString,
+            'end'      => $periodEndString,
+            'order'    => $periodOrder,
         );
 
         $periodsCalc	= $this->calcDashaPeriods($periodTotal, $nestingMax);

@@ -76,7 +76,7 @@ class Analysis {
                 }
             }
         );
-
+        $i = 0;
         foreach($grahas as $key => $data){
             $i += 1;
             $grahaKaraka[$key] = Karaka::$karaka[$i];

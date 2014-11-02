@@ -22,18 +22,19 @@ class Language {
      */
     static public function translitToHtml($translit)
     {
+        $html = '';
         if(is_array($translit)){
             foreach ($translit as $tr){
-                $html .= self::_trToHtml($tr);
+                $html .= self::trToHtml($tr);
             }
         }else{
-            $html = self::_trToHtml($tr);
+            $html = self::trToHtml($tr);
         }
 
         return $html;
     }
 
-    static protected function _trToHtml($tr)
+    static protected function trToHtml($tr)
     {
         switch ($tr) {
             case null:

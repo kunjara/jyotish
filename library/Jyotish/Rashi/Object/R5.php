@@ -128,15 +128,15 @@ class R5 extends RashiObject {
      */
     protected function setRashiType($options)
     {
-        if($options['simhaVana']){
+        if($options['rashi5Vana']){
             $this->rashiType = Manusha::TYPE_VANA;
         }
     }
 
     public function __construct($options)
     {
-        $this->setRashiType($options);
-
         parent::__construct($options);
+        
+        $this->setRashiType($this->options);
     }
 }

@@ -255,15 +255,12 @@ class Data {
                 break;
         }
 
-        if ($grahas[$graha]['direction'] == 1) {
+        if ($graha == Graha::GRAHA_RA or $graha == Graha::GRAHA_KE or $graha == Graha::LAGNA) {
             $grahaLabel = $label;
-        } else {
-            if ($graha == Graha::GRAHA_RA or $graha == Graha::GRAHA_KE) {
-                $grahaLabel = $label;
-            } else {
-                $grahaLabel = '(' . $label . ')';
-            }
+        }else{
+            $grahaLabel = $grahas[$graha]['direction'] == 1 ? $label : '(' . $label . ')';
         }
+        
         return $grahaLabel;
     }
 }

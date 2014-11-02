@@ -238,9 +238,9 @@ class Ra extends GrahaObject {
 
     public function __construct($options)
     {
-        $this->setGrahaSpecificRashiByViewpoint($options);
-        $this->setGrahaDrishti($options);
-
         parent::__construct($options);
+        
+        $this->setGrahaSpecificRashiByViewpoint($this->options);
+        $this->setGrahaDrishti($this->options);
     }
 }

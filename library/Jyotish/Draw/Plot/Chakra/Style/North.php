@@ -139,7 +139,8 @@ final class North extends AbstractChakra {
         foreach ($grahas as $graha => $value) {
             $bhava = $value['bhava'];
             $myPoints[$graha]['bhava'] = $bhava;
-
+            if(!isset($offsetSum[$bhava])) $offsetSum[$bhava] = 0;
+                
             if ($bhava == 1) {
                 $myPoints[$graha]['x'] = self::$_bhavaPoints[$bhava][0] * $ratio;
                 $myPoints[$graha]['y'] = self::$_bhavaPoints[$bhava][1] * $ratio - $offsetCorner - $offsetSum[$bhava];

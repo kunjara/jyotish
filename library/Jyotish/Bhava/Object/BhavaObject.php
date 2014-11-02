@@ -64,10 +64,10 @@ class BhavaObject extends Object {
     /**
      * Constructor
      * 
-     * @param array $options
+     * @param null|array $options Options to set
      */
     public function __construct($options)
     {
-        return $this;
+        parent::__construct($options);
     }
 }

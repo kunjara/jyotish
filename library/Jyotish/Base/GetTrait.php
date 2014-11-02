@@ -18,7 +18,7 @@ trait GetTrait {
      * @param string $property
      * @return mixed
      */
-    public function get($property)
+    public function __get($property)
     {
         if(property_exists($this, $property)){
             return($this->$property);
@@ -38,7 +38,7 @@ trait GetTrait {
         if(substr($name, 0, 3) == 'get'){
             $property = lcfirst(substr($name, 3));
 
-            return $this->get($property);
+            return $this->$property;
         }
     }
 }

@@ -16,6 +16,15 @@ use Jyotish\Tattva\Maha;
  */
 class RashiObject extends Object {
     /**
+     * Options of rashi object.
+     * 
+     * @var array
+     */
+    protected $options = array(
+        'rashi5Vana' => false,
+    );
+    
+    /**
      * Object type
      * 
      * @var string
@@ -149,10 +158,12 @@ class RashiObject extends Object {
     /**
      * Constructor
      * 
-     * @param array $options
+     * @param null|array $options Options to set
      */
     public function __construct($options)
     {
+        parent::__construct($options);
+        
         $this->setRashiDisha();
     }
 }

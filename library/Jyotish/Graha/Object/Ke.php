@@ -212,8 +212,8 @@ class Ke extends GrahaObject {
 
     public function __construct($options)
     {
-        $this->setGrahaSpecificRashiByViewpoint($options);
-
         parent::__construct($options);
+        
+        $this->setGrahaSpecificRashiByViewpoint($this->options);
     }
 }

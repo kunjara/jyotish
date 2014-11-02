@@ -72,9 +72,9 @@ class Vimshottari extends AbstractDasha {
         $result['graha'] = $N->getNakshatraGraha();
         $result['total'] = round($this->durationTotal() * Samvatsara::DUR_GREGORIAN * 86400);
 
-        $durationGraha		= $this->durationGraha();
-        $durationNakshatra	= $durationGraha[$result['graha']] * Samvatsara::DUR_GREGORIAN * 86400;
-        $result['start']	= round($durationNakshatra * (100 - $nakshatra['left']) / 100);
+        $durationGraha     = $this->durationGraha();
+        $durationNakshatra = $durationGraha[$result['graha']] * Samvatsara::DUR_GREGORIAN * 86400;
+        $result['start']   = round($durationNakshatra * (100 - $nakshatra['left']) / 100);
 
         return $result;
     }

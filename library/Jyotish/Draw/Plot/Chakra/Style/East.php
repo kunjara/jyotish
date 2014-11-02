@@ -182,6 +182,7 @@ final class East extends AbstractChakra {
 
         foreach ($grahas as $graha => $value) {
             $bhava = $value['rashi'];
+            if(!isset($offsetSum[$bhava])) $offsetSum[$bhava] = 0;
 
             if ($bhava == 1 or $bhava == 4 or $bhava == 7 or $bhava == 10) {
                 $myPoints[$graha]['x'] = self::$_bhavaPoints[$bhava][6] * $ratio + $offsetBorder + $offsetSum[$bhava];

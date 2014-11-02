@@ -20,6 +20,18 @@ use Jyotish\Tattva\Jiva\Nara\Deva;
  */
 class GrahaObject extends Object {
     /**
+     * Options of graha object.
+     * 
+     * @var array
+     */
+    protected $options = array(
+        'relationSame' => false,
+        'relationChaya' => '',
+        'specificRashi' => '',
+        'drishtiRahu' => '',
+    );
+    
+    /**
      * Object type
      * 
      * @var string
@@ -357,7 +369,9 @@ class GrahaObject extends Object {
      */
     public function __construct($options)
     {
+        parent::__construct($options);
+        
         $this->setGrahaAltName();
-        $this->setGrahaNaturalRelation($options);
+        $this->setGrahaNaturalRelation($this->options);
     }
 }
