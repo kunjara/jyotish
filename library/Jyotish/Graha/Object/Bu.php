@@ -301,7 +301,7 @@ class Bu extends GrahaObject {
                 $G = Graha::getInstance($key);
                 $G->setEnvironment($this->ganitaData);
 
-                if($G->getGrahaCharacter() == Graha::CHARACTER_SHUBHA)
+                if($G->grahaCharacter == Graha::CHARACTER_SHUBHA)
                     $benefic = $benefic + 1;
                 else
                     $malefic = $malefic + 1;

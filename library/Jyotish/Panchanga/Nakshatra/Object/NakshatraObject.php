@@ -168,7 +168,7 @@ class NakshatraObject {
                 break;
             default:
                 $this->nakshatraStart = Math::dmsMulti(self::$nakshatraArc, $this->nakshatraKey - 1);
-                $this->nakshatraEnd = Math::dmsSum($this->getNakshatraStart(), self::$nakshatraArc);
+                $this->nakshatraEnd = Math::dmsSum($this->nakshatraStart, self::$nakshatraArc);
             }
         }else{
             if($this->nakshatraKey == 28) {
@@ -176,7 +176,7 @@ class NakshatraObject {
             }
 
             $this->nakshatraStart = Math::dmsMulti(self::$nakshatraArc, $this->nakshatraKey - 1);
-            $this->nakshatraEnd = Math::dmsSum($this->getNakshatraStart(), self::$nakshatraArc);
+            $this->nakshatraEnd = Math::dmsSum($this->nakshatraStart, self::$nakshatraArc);
         }
     }
 

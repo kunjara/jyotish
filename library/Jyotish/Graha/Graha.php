@@ -110,7 +110,7 @@ class Graha {
         foreach (Graha::$graha as $key => $name){
             $Graha = self::getInstance($key);
 
-            if($Graha->getGrahaCharacter() == $character)
+            if($Graha->grahaCharacter == $character)
                 $result[$key] = $name;
             else
                 continue;
@@ -130,7 +130,7 @@ class Graha {
         $relation = function($graha1, $graha2)
         {
             $Graha = self::getInstance($graha1, array('relationSame' => true));
-            return $Graha->getGrahaNaturalRelation($graha2);
+            return $Graha->grahaNaturalRelation[$graha2];
         };
         $relation1 = $relation($graha1, $graha2);
         $relation2 = $relation($graha2, $graha1);

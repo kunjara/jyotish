@@ -86,7 +86,7 @@ class D30 extends AbstractVarga {
             $trait = 'negative';
 
         $grahaObject = Graha::getInstance($lord);
-        $grahaSwaRashi = $grahaObject->getGrahaSwa();
+        $grahaSwaRashi = $grahaObject->grahaSwa;
         $vargaRashi['rashi'] = $grahaSwaRashi[$trait]['rashi'];
 
         return $vargaRashi;

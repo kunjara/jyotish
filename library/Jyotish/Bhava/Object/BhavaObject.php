@@ -56,7 +56,7 @@ class BhavaObject extends Object {
 
         $rashi = $this->ganitaData['bhava'][$this->objectKey]['rashi'];
         $Rashi = Rashi::getInstance((int)$rashi);
-        $ruler = $Rashi->getRashiRuler();
+        $ruler = $Rashi->rashiRuler;
 
         return $ruler;
     }

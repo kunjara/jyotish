@@ -72,7 +72,7 @@ class Ashtottari extends AbstractDasha {
         $partSum = 0;
         foreach ($this->durationGraha as $key => $value){
             $G = Graha::getInstance($key);
-            if($G->getGrahaCharacter() == Graha::CHARACTER_PAPA){
+            if($G->grahaCharacter == Graha::CHARACTER_PAPA){
                 $part = 4;
             }else{
                 $part = 3;

@@ -240,9 +240,8 @@ class Data {
                 break;
             case 1:
                 if ($graha != Graha::LAGNA) {
-                    $grahaClass = 'Jyotish\Graha\Object\\' . $graha;
-                    $grahaObject = new $grahaClass();
-                    $label = Utils::unicodeToHtml($grahaObject->getGrahaUnicode());
+                    $grahaObject = Graha::getInstance($graha);
+                    $label = Utils::unicodeToHtml($grahaObject->grahaUnicode);
                 } else {
                     $label = $graha;
                 }

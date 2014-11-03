@@ -149,7 +149,7 @@ class Ra extends GrahaObject {
      * 
      * @var array
      */
-    protected $grahaDrishti = null;
+    protected $grahaDrishti = array();
 
     /**
      * Prakriti of graha

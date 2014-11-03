@@ -26,19 +26,4 @@ trait GetTrait {
             throw new Exception\InvalidArgumentException("Property '$property' does not exist.");
         }
     }
-
-    /**
-     * Overloading 'getProperty' methods in jyotish objects.
-     * 
-     * @param string $name
-     * @param array $arguments
-     * @return mixed
-     */
-    public function __call($name, $arguments) {
-        if(substr($name, 0, 3) == 'get'){
-            $property = lcfirst(substr($name, 3));
-
-            return $this->$property;
-        }
-    }
 }

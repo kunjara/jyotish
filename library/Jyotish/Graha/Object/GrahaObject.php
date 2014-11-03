@@ -230,26 +230,6 @@ class GrahaObject extends Object {
     );
 
     /**
-     * Get natural relationships.
-     * 
-     * @param null|string $key (Optional)
-     * @return mixed
-     * @throws Exception\InvalidArgumentException
-     */
-    public function getGrahaNaturalRelation($key = null)
-    {
-        if(is_null($key)){
-            return $this->grahaNaturalRelation;
-        }else{
-            if (array_key_exists($key, Graha::$graha)){
-                return $this->grahaNaturalRelation[$key];
-            }else{
-                throw new \Jyotish\Graha\Exception\InvalidArgumentException("Graha with the key '$key' does not exist.");
-            }
-        }
-    }
-
-    /**
      * Get bhava, where graha is positioned.
      * 
      * @return int
@@ -259,6 +239,7 @@ class GrahaObject extends Object {
         $this->checkEnvironment();
 
         $grahaRashi = $this->ganitaData['graha'][$this->objectKey]['rashi'];
+        $bhava = 0;
         do{
             $bhava++;
             $bhavaRashi = $this->ganitaData['bhava'][$bhava]['rashi'];
@@ -312,14 +293,14 @@ class GrahaObject extends Object {
 
         $friends = array();
         $R = Rashi::getInstance($rashiUcha);
-        $gFriend = $R->getRashiRuler();
+        $gFriend = $R->rashiRuler;
         if($this->objectKey != $gFriend) $friends[] = $gFriend;
 
         $relation = function($distance) use($rashiMool){
             foreach($distance as $step){
                 $r = Math::numberInCycle($rashiMool, $step);
                 $R = Rashi::getInstance((int)$r);
-                $gRuler = $R->getRashiRuler();
+                $gRuler = $R->rashiRuler;
 
                 if($this->objectKey == $gRuler) continue;
                 $grahas[] = $gRuler;
@@ -341,7 +322,7 @@ class GrahaObject extends Object {
                 $relationships[$key] = -1;
             }else{
                 $G = Graha::getInstance($key, $options);
-                $relationships[$key] = $G->getGrahaNaturalRelation($this->objectKey);
+                $relationships[$key] = $G->grahaNaturalRelation[$this->objectKey];
             }
         }
         $relationships[$this->objectKey] = $options['relationSame'] ? 1 : null;

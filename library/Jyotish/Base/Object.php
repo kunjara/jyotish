@@ -121,13 +121,13 @@ class Object {
             if($key == $this->objectKey) continue;
 
             $Graha = Graha::getInstance($key, $options);
-            $grahaDrishti = $Graha->getGrahaDrishti();
+            $grahaDrishti = $Graha->grahaDrishti;
 
             $distanse = Math::distanceInCycle(
                 $this->ganitaData['graha'][$key]['rashi'], 
                 $this->objectRashi
             );
-            $isAspected[$key] = $grahaDrishti[$distanse];
+            $isAspected[$key] = isset($grahaDrishti[$distanse]) ? $grahaDrishti[$distanse] : null;
         }
         return $isAspected;
     }

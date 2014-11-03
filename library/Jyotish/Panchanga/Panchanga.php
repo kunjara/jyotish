@@ -108,7 +108,7 @@ class Panchanga {
 
         $tithi['number'] = $tithiUnits['units'];
         $tithi['name'] = Tithi::$tithi[$tithi['number']];
-        $tithi['paksha'] = $tithiObject->getTithiPaksha();
+        $tithi['paksha'] = $tithiObject->tithiPaksha;
         $tithi['left'] = ($unit - $tithiUnits['parts']) * 100 / $unit;
 
         if($withLimit){
@@ -137,13 +137,13 @@ class Panchanga {
         if($withAbhijit){
             if($nakshatraUnits['units'] == 21 or $nakshatraUnits['units'] == 22){
                 $Abhijit = Nakshatra::getInstance(28);
-                $abhijitStart	= Math::dmsToDecimal($Abhijit->getNakshatraStart());
-                $abhijitEnd		= Math::dmsToDecimal($Abhijit->getNakshatraEnd());
+                $abhijitStart	= Math::dmsToDecimal($Abhijit->nakshatraStart);
+                $abhijitEnd		= Math::dmsToDecimal($Abhijit->nakshatraEnd);
 
                 if($lonCh < $abhijitStart){
                     $nakshatra['number'] = 21;
                     $N = Nakshatra::getInstance($nakshatra['number']);
-                    $nStart = Math::dmsToDecimal($N->getNakshatraStart());
+                    $nStart = Math::dmsToDecimal($N->nakshatraStart);
                     $unit = $abhijitStart - $nStart;
                     $left = $abhijitStart - $lonCh;
                 }elseif($lonCh >= $abhijitStart and $lonCh < $abhijitEnd){
@@ -153,7 +153,7 @@ class Panchanga {
                 }else{
                     $nakshatra['number'] = 22;
                     $N = Nakshatra::getInstance($nakshatra['number']);
-                    $nEnd = Math::dmsToDecimal($N->getNakshatraEnd());
+                    $nEnd = Math::dmsToDecimal($N->nakshatraEnd);
                     $unit = $nEnd - $abhijitEnd;
                     $left = $nEnd - $lonCh;
                 }
@@ -288,7 +288,7 @@ class Panchanga {
         }
 
         $tithiObject = Tithi::getInstance($this->tithi['number']);
-        $karanaArray = $tithiObject->getTithiKarana();
+        $karanaArray = $tithiObject->tithiKarana;
         $karanaName = $karanaArray[$number];
         $karanaNumber = array_search($karanaName, Karana::$KARANA);
 

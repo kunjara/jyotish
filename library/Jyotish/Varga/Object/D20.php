@@ -51,7 +51,7 @@ class D20 extends AbstractVarga {
         $vargaRashi['degree'] = $result['parts'] * 30 / $amshaSize;
 
         $rashiObject = Rashi::getInstance((int)$ganitaRashi['rashi']);
-        $rashiBhava = $rashiObject->getRashiBhava();
+        $rashiBhava = $rashiObject->rashiBhava;
 
         switch ($rashiBhava) {
             case Rashi::BHAVA_CHARA:
