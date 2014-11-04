@@ -12,57 +12,101 @@ namespace Jyotish\Bhava;
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 class Bhava {
+    const NAME_1 = 'Tanu';
+    const NAME_2 = 'Dhana';
+    const NAME_3 = 'Sahaja';
+    const NAME_4 = 'Sukha';
+    const NAME_5 = 'Putra';
+    const NAME_6 = 'Ari';
+    const NAME_7 = 'Yuvati';
+    const NAME_8 = 'Mrityu';
+    const NAME_9 = 'Dharma';
+    const NAME_10 = 'Karma';
+    const NAME_11 = 'Labha';
+    const NAME_12 = 'Vyaya';
+    
     /**
-     * Array of all bhavas.
+     * Names of bhavas.
      * 
      * @var array 
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 7, Verse 37-38.
      */
     static public $bhava = array(
-        1 => 'Tanu',
-        2 => 'Dhana',
-        3 => 'Sahaja',
-        4 => 'Sukha',
-        5 => 'Putra',
-        6 => 'Ari',
-        7 => 'Yuvati',
-        8 => 'Mrityu',
-        9 => 'Dharma',
-        10 => 'Karma',
-        11 => 'Labha',
-        12 => 'Vyaya',
+        1 => self::NAME_1,
+        2 => self::NAME_2,
+        3 => self::NAME_3,
+        4 => self::NAME_4,
+        5 => self::NAME_5,
+        6 => self::NAME_6,
+        7 => self::NAME_7,
+        8 => self::NAME_8,
+        9 => self::NAME_9,
+        10 => self::NAME_10,
+        11 => self::NAME_11,
+        12 => self::NAME_12,
     );
-
-    /**
-     * Upachaya bhavas.
-     * 
-     * @var array
-     * @see Varahamihira. Brihat Jataka. Chapter 1, Verse 15.
-     */
-    static public $bhavaUpachaya = array(3, 6, 10, 11);
 
     /**
      * Kendra (chatustaya) bhavas.
      * 
      * @var array
+     * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 7, Verse 33-36.
      * @see Varahamihira. Brihat Jataka. Chapter 1, Verse 17.
      */
     static public $bhavaKendra = array(1, 4, 7, 10);
-
+    
     /**
-     * Trikon bhavas.
+     * Panaphara bhavas (succedents).
      * 
      * @var array
+     * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 7, Verse 33-36.
+     * @see Varahamihira. Brihat Jataka. Chapter 1, Verse 18.
      */
-    static public $bhavaTrikon = array(1, 5, 9);
+    static public $bhavaPanaphara = array(2, 5, 8, 11);
+    
+    /**
+     * Apoklima bhavas (cedents).
+     * 
+     * @var array
+     * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 7, Verse 33-36.
+     * @see Varahamihira. Brihat Jataka. Chapter 1, Verse 18.
+     */
+    static public $bhavaApoklima = array(3, 6, 9, 12);
 
+    /**
+     * Trikona bhavas.
+     * 
+     * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 7, Verse 33-36.
+     * @var array
+     */
+    static public $bhavaTrikona = array(1, 5, 9);
+    
     /**
      * Dusthana bhavas.
      * 
+     * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 7, Verse 33-36.
      * @var array
      */
     static public $bhavaDusthana = array(6, 8, 12);
+    
+    /**
+     * Chaturashra bhavas.
+     * 
+     * @var array
+     * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 7, Verse 33-36.
+     * @see Varahamihira. Brihat Jataka. Chapter 1, Verse 16.
+     */
+    static public $bhavaChaturashra = array(4, 8);
 
+    /**
+     * Upachaya bhavas.
+     * 
+     * @var array
+     * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 7, Verse 33-36.
+     * @see Varahamihira. Brihat Jataka. Chapter 1, Verse 15.
+     */
+    static public $bhavaUpachaya = array(3, 6, 10, 11);
+    
     /**
      * Devanagari 'bhava' in transliteration.
      * 

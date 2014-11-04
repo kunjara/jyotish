@@ -47,7 +47,7 @@ class Sa extends GrahaObject {
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 10.
      * @var string
      */
-    protected $objectName = 'Shani';
+    protected $objectName = Deva::DEVA_SHANI;
 
     /**
      * Devanagari title 'shani' in transliteration.

@@ -52,31 +52,31 @@ class D30 extends AbstractVarga {
 
         if($ganitaRashi['degree'] < 5) {
             if($ganitaRashi['rashi'] % 2) {
-                $lord = Graha::GRAHA_MA;
+                $lord = Graha::KEY_MA;
             } else {
-                $lord = Graha::GRAHA_SK;
+                $lord = Graha::KEY_SK;
             }
         } elseif($ganitaRashi['degree'] >= 5 and $ganitaRashi['degree'] < 10) {
             if($ganitaRashi['rashi'] % 2) {
-                $lord = Graha::GRAHA_SA;
+                $lord = Graha::KEY_SA;
             } else {
-                $lord = Graha::GRAHA_BU;
+                $lord = Graha::KEY_BU;
             }
         } elseif($ganitaRashi['degree'] >= 10 and $ganitaRashi['degree'] < 18) {
 
-            $lord = Graha::GRAHA_GU;
+            $lord = Graha::KEY_GU;
 
         } elseif($ganitaRashi['degree'] >= 18 and $ganitaRashi['degree'] < 25){
             if($ganitaRashi['rashi'] % 2) {
-                $lord = Graha::GRAHA_BU;
+                $lord = Graha::KEY_BU;
             } else {
-                $lord = Graha::GRAHA_SA;
+                $lord = Graha::KEY_SA;
             }
         } else {
             if($ganitaRashi['rashi'] % 2) {
-                $lord = Graha::GRAHA_SK;
+                $lord = Graha::KEY_SK;
             } else {
-                $lord = Graha::GRAHA_MA;
+                $lord = Graha::KEY_MA;
             }
         }
 

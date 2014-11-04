@@ -39,14 +39,14 @@ class Ashtottari extends AbstractDasha {
      * @var array
      */
     protected $durationGraha = array(
-        Graha::GRAHA_SY => 6,
-        Graha::GRAHA_CH => 15,
-        Graha::GRAHA_MA => 8,
-        Graha::GRAHA_BU => 17,
-        Graha::GRAHA_SA => 10,
-        Graha::GRAHA_GU => 19,
-        Graha::GRAHA_RA => 12,
-        Graha::GRAHA_SK => 21,
+        Graha::KEY_SY => 6,
+        Graha::KEY_CH => 15,
+        Graha::KEY_MA => 8,
+        Graha::KEY_BU => 17,
+        Graha::KEY_SA => 10,
+        Graha::KEY_GU => 19,
+        Graha::KEY_RA => 12,
+        Graha::KEY_SK => 21,
     );
 
 

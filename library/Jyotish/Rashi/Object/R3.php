@@ -39,6 +39,14 @@ class R3 extends RashiObject {
      * @var string
      */
     protected $rashiUnicode = '264A';
+    
+    /**
+     * Main name of rashi.
+     * 
+     * @var string
+     * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 4, Verse 3.
+     */
+    protected $objectName = Rashi::NAME_3;
 
     /**
      * Limb of Kaal Purush.
@@ -111,7 +119,7 @@ class R3 extends RashiObject {
      * @var string
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 4, Verse 9-9 1/2.
      */
-    protected $rashiRuler = Graha::GRAHA_BU;
+    protected $rashiRuler = Graha::KEY_BU;
 
     /**
      * Varna of rashi.

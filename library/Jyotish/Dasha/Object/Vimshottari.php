@@ -39,15 +39,15 @@ class Vimshottari extends AbstractDasha {
      * @var array
      */
     protected $durationGraha = array(
-        Graha::GRAHA_SY => 6,
-        Graha::GRAHA_CH => 10,
-        Graha::GRAHA_MA => 7,
-        Graha::GRAHA_RA => 18,
-        Graha::GRAHA_GU => 16,
-        Graha::GRAHA_SA => 19,
-        Graha::GRAHA_BU => 17,
-        Graha::GRAHA_KE => 7,
-        Graha::GRAHA_SK => 20,
+        Graha::KEY_SY => 6,
+        Graha::KEY_CH => 10,
+        Graha::KEY_MA => 7,
+        Graha::KEY_RA => 18,
+        Graha::KEY_GU => 16,
+        Graha::KEY_SA => 19,
+        Graha::KEY_BU => 17,
+        Graha::KEY_KE => 7,
+        Graha::KEY_SK => 20,
     );
 
 

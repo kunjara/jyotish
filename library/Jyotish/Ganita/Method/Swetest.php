@@ -41,25 +41,25 @@ class Swetest extends AbstractGanita{
     );
 
     protected $inputPlanets = array(
-        Graha::GRAHA_SY => '0',
-        Graha::GRAHA_CH => '1',
-        Graha::GRAHA_BU => '2',
-        Graha::GRAHA_SK => '3',
-        Graha::GRAHA_MA => '4',
-        Graha::GRAHA_GU => '5',
-        Graha::GRAHA_SA => '6',
-        Graha::GRAHA_RA => 'm',
+        Graha::KEY_SY => '0',
+        Graha::KEY_CH => '1',
+        Graha::KEY_BU => '2',
+        Graha::KEY_SK => '3',
+        Graha::KEY_MA => '4',
+        Graha::KEY_GU => '5',
+        Graha::KEY_SA => '6',
+        Graha::KEY_RA => 'm',
     );
 
     protected $outputPlanets = array(
-        'Sun'       => Graha::GRAHA_SY,
-        'Moon'      => Graha::GRAHA_CH,
-        'Mercury'   => Graha::GRAHA_BU,
-        'Venus'     => Graha::GRAHA_SK,
-        'Mars'      => Graha::GRAHA_MA,
-        'Jupiter'   => Graha::GRAHA_GU,
-        'Saturn'    => Graha::GRAHA_SA,
-        'meanNode'  => Graha::GRAHA_RA,
+        'Sun'       => Graha::KEY_SY,
+        'Moon'      => Graha::KEY_CH,
+        'Mercury'   => Graha::KEY_BU,
+        'Venus'     => Graha::KEY_SK,
+        'Mars'      => Graha::KEY_MA,
+        'Jupiter'   => Graha::KEY_GU,
+        'Saturn'    => Graha::KEY_SA,
+        'meanNode'  => Graha::KEY_RA,
     );
     protected $outputHouses = array(
         'house1'    => 1,
@@ -76,7 +76,7 @@ class Swetest extends AbstractGanita{
         'house12'   => 12,
     );
     protected $outputExtra = array(
-        'Ascendant' => Graha::LAGNA,
+        'Ascendant' => Graha::KEY_LG,
         'MC'        => 'MC',
         'ARMC'      => 'ARMC',
         'Vertex'    => 'Vertex',
@@ -153,7 +153,7 @@ class Swetest extends AbstractGanita{
      * @param array $options
      * @return array
      */
-    public function getRisings($graha = Graha::GRAHA_SY, array $options = array())
+    public function getRisings($graha = Graha::KEY_SY, array $options = array())
     {
         $this->setOptions($options);
 
@@ -243,18 +243,18 @@ class Swetest extends AbstractGanita{
             }
         }
 
-        $longitudeKe = Calc::contraLon($bodyParameters['graha'][Graha::GRAHA_RA]['longitude']);
-        $ascensionKe = Calc::contraLon($bodyParameters['graha'][Graha::GRAHA_RA]['ascension']);
+        $longitudeKe = Calc::contraLon($bodyParameters['graha'][Graha::KEY_RA]['longitude']);
+        $ascensionKe = Calc::contraLon($bodyParameters['graha'][Graha::KEY_RA]['ascension']);
         $units = Math::partsToUnits($longitudeKe);
 
-        $bodyParameters['graha'][Graha::GRAHA_KE] = array(
+        $bodyParameters['graha'][Graha::KEY_KE] = array(
             'longitude'   => $longitudeKe,
-            'latitude'    => $bodyParameters['graha'][Graha::GRAHA_RA]['latitude'],
-            'speed'       => $bodyParameters['graha'][Graha::GRAHA_RA]['speed'],
+            'latitude'    => $bodyParameters['graha'][Graha::KEY_RA]['latitude'],
+            'speed'       => $bodyParameters['graha'][Graha::KEY_RA]['speed'],
             'rashi'       => $units['units'],
             'degree'      => $units['parts'],
             'ascension'   => $ascensionKe,
-            'declination' => $bodyParameters['graha'][Graha::GRAHA_RA]['declination']
+            'declination' => $bodyParameters['graha'][Graha::KEY_RA]['declination']
         );
 
         asort($bodyParameters['graha']);

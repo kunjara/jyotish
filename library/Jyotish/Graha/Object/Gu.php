@@ -47,7 +47,7 @@ class Gu extends GrahaObject {
      * @var string
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 10.
      */
-    protected $objectName = 'Guru';
+    protected $objectName = Deva::DEVA_GURU;
 
     /**
      * Devanagari title 'guru' in transliteration.

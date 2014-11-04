@@ -48,7 +48,7 @@ class Ch extends GrahaObject {
      * @var string
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 10.
      */
-    protected $objectName = 'Chandra';
+    protected $objectName = Deva::DEVA_CHANDRA;
 
     /**
      * Devanagari title 'chandra' in transliteration.
@@ -281,8 +281,8 @@ class Ch extends GrahaObject {
      */
     protected function setGrahaCharacter()
     {
-        $lonCh = $this->ganitaData['graha'][Graha::GRAHA_CH]['longitude'];
-        $lonSy = $this->ganitaData['graha'][Graha::GRAHA_SY]['longitude'];		
+        $lonCh = $this->ganitaData['graha'][Graha::KEY_CH]['longitude'];
+        $lonSy = $this->ganitaData['graha'][Graha::KEY_SY]['longitude'];		
 
         if($lonCh < $lonSy) $lonCh = $lonCh + 360;
 

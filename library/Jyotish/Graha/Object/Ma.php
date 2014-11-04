@@ -47,7 +47,7 @@ class Ma extends GrahaObject {
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 10.
      * @var string
      */
-    protected $objectName = 'Mangal';
+    protected $objectName = Deva::DEVA_MANGAL;
 
     /**
      * Devanagari title 'mangala' in transliteration.

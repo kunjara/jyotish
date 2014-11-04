@@ -57,7 +57,7 @@ class N2 extends NakshatraObject {
      * @var string
      * @see Satyacharya. Satya Jatakam. Chapter 1, Verse 9.
      */
-    protected $nakshatraGraha = Graha::GRAHA_SK;
+    protected $nakshatraGraha = Graha::KEY_SK;
 
     protected $nakshatraEnergy = Nakshatra::ENERGY_STHITI;
     protected $nakshatraGana = Manusha::GANA_MANUSHA;

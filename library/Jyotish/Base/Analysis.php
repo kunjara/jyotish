@@ -64,8 +64,8 @@ class Analysis {
     public function getCharaKaraka($reverse = false)
     {
         $grahas = $this->data['graha'];
-        unset($grahas[Graha::GRAHA_KE]);
-        $grahas[Graha::GRAHA_RA]['degree'] = 30 - $grahas[Graha::GRAHA_RA]['degree'];
+        unset($grahas[Graha::KEY_KE]);
+        $grahas[Graha::KEY_RA]['degree'] = 30 - $grahas[Graha::KEY_RA]['degree'];
 
         uasort($grahas, 
             function ($d1, $d2){
@@ -112,7 +112,7 @@ class Analysis {
     {
         $d9Data = $this->getD9Data();
 
-        return $d9Data['extra'][Graha::LAGNA]['rashi'];
+        return $d9Data['extra'][Graha::KEY_LG]['rashi'];
     }
 
     /**

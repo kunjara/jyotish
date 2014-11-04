@@ -98,8 +98,8 @@ class Panchanga {
     {
         $unit = 12;
 
-        $lonCh = $this->ganitaParamsData['graha'][Graha::GRAHA_CH]['longitude'];
-        $lonSy = $this->ganitaParamsData['graha'][Graha::GRAHA_SY]['longitude'];		
+        $lonCh = $this->ganitaParamsData['graha'][Graha::KEY_CH]['longitude'];
+        $lonSy = $this->ganitaParamsData['graha'][Graha::KEY_SY]['longitude'];		
 
         if($lonCh < $lonSy) $lonCh = $lonCh + 360;
 
@@ -131,7 +131,7 @@ class Panchanga {
     {
         $unit = 360/27;
 
-        $lonCh = $this->ganitaParamsData['graha'][Graha::GRAHA_CH]['longitude'];
+        $lonCh = $this->ganitaParamsData['graha'][Graha::KEY_CH]['longitude'];
         $nakshatraUnits = Math::partsToUnits($lonCh, $unit);
 
         if($withAbhijit){
@@ -192,8 +192,8 @@ class Panchanga {
     {
         $unit = 360/27;
 
-        $lonCh = $this->ganitaParamsData['graha'][Graha::GRAHA_CH]['longitude'];
-        $lonSy = $this->ganitaParamsData['graha'][Graha::GRAHA_SY]['longitude'];
+        $lonCh = $this->ganitaParamsData['graha'][Graha::KEY_CH]['longitude'];
+        $lonSy = $this->ganitaParamsData['graha'][Graha::KEY_SY]['longitude'];
         $lonSum = $lonCh + $lonSy;
 
         if($lonSum > 360) {

@@ -44,7 +44,7 @@ class Ra extends GrahaObject {
      * @var string
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 10.
      */
-    protected $objectName = 'Rahu';
+    protected $objectName = Graha::NAME_RA;
 
     /**
      * Devanagari title 'rahu' in transliteration.
@@ -215,7 +215,7 @@ class Ra extends GrahaObject {
     {
         if($options['relationChaya'] == 'friends'){
             foreach (Graha::$graha as $key => $name){
-                if($key != Graha::GRAHA_KE){
+                if($key != Graha::KEY_KE){
                     $this->grahaNaturalRelation[$key] = -1;
                 }else{
                     $this->grahaNaturalRelation[$key] = 1;
@@ -223,14 +223,14 @@ class Ra extends GrahaObject {
             }
         }else{
             $this->grahaNaturalRelation = array(
-                Graha::GRAHA_SY => -1,
-                Graha::GRAHA_CH => -1,
-                Graha::GRAHA_MA => -1,
-                Graha::GRAHA_BU => 1,
-                Graha::GRAHA_GU => 0,
-                Graha::GRAHA_SK => 1,
-                Graha::GRAHA_SA => 1,
-                Graha::GRAHA_KE => -1,
+                Graha::KEY_SY => -1,
+                Graha::KEY_CH => -1,
+                Graha::KEY_MA => -1,
+                Graha::KEY_BU => 1,
+                Graha::KEY_GU => 0,
+                Graha::KEY_SK => 1,
+                Graha::KEY_SA => 1,
+                Graha::KEY_KE => -1,
             );
         }
         $this->grahaNaturalRelation[$this->objectKey] = $options['relationSame'] ? 1 : null;

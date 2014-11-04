@@ -12,8 +12,17 @@ namespace Jyotish\Rashi;
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 class Rashi {
+    /**
+     * Movable
+     */
     const BHAVA_CHARA   = 'chara';
+    /**
+     * Fixed
+     */
     const BHAVA_STHIRA  = 'sthira';
+    /**
+     * Dual
+     */
     const BHAVA_DVISVA  = 'dvisva';
 
     const BALA_RATRI    = 'ratri';
@@ -22,26 +31,39 @@ class Rashi {
     const DAYA_SIRSHA   = 'sirsha';
     const DAYA_PRUSHTA  = 'prushta';
     const DAYA_UBHAYA   = 'ubhaya';
+    
+    const NAME_1 = 'Mesha';
+    const NAME_2 = 'Vrishabha';
+    const NAME_3 = 'Mithuna';
+    const NAME_4 = 'Karka';
+    const NAME_5 = 'Simha';
+    const NAME_6 = 'Kanya';
+    const NAME_7 = 'Tula';
+    const NAME_8 = 'Vrishchika';
+    const NAME_9 = 'Dhanu';
+    const NAME_10 = 'Makara';
+    const NAME_11 = 'Kumbha';
+    const NAME_12 = 'Meena';
 
     /**
-     * Array of all rashis.
+     * Names of rashis.
      * 
      * @var array 
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 4, Verse 3.
      */
     static public $rashi = array(
-        1 => 'Mesha',
-        2 => 'Vrishabha',
-        3 => 'Mithuna',
-        4 => 'Karka',
-        5 => 'Simha',
-        6 => 'Kanya',
-        7 => 'Tula',
-        8 => 'Vrishchika',
-        9 => 'Dhanu',
-        10 => 'Makara',
-        11 => 'Kumbha',
-        12 => 'Meena',
+        1 => self::NAME_1,
+        2 => self::NAME_2,
+        3 => self::NAME_3,
+        4 => self::NAME_4,
+        5 => self::NAME_5,
+        6 => self::NAME_6,
+        7 => self::NAME_7,
+        8 => self::NAME_8,
+        9 => self::NAME_9,
+        10 => self::NAME_10,
+        11 => self::NAME_11,
+        12 => self::NAME_12,
     );
 
     /**

@@ -57,7 +57,7 @@ class N24 extends NakshatraObject {
      * @var string
      * @see Satyacharya. Satya Jatakam. Chapter 1, Verse 9.
      */
-    protected $nakshatraGraha = Graha::GRAHA_RA;
+    protected $nakshatraGraha = Graha::KEY_RA;
 
     protected $nakshatraEnergy = Nakshatra::ENERGY_LAYA;
     protected $nakshatraGana = Manusha::GANA_RAKSHASA;

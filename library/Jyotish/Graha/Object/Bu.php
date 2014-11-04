@@ -47,7 +47,7 @@ class Bu extends GrahaObject {
      * @var string
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 10.
      */
-    protected $objectName = 'Budha';
+    protected $objectName = Deva::DEVA_BUDHA;
 
     /**
      * Devanagari title 'budha' in transliteration.

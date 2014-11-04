@@ -6,23 +6,28 @@
 
 namespace Jyotish\Graha;
 
+use Jyotish\Tattva\Jiva\Nara\Deva;
+
 /**
  * Class with Graha names and attributes.
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 class Graha {
-    const GRAHA_SY = 'Sy';
-    const GRAHA_CH = 'Ch';
-    const GRAHA_MA = 'Ma';
-    const GRAHA_BU = 'Bu';
-    const GRAHA_GU = 'Gu';
-    const GRAHA_SK = 'Sk';
-    const GRAHA_SA = 'Sa';
-    const GRAHA_RA = 'Ra';
-    const GRAHA_KE = 'Ke';
-
-    const LAGNA = 'Lg';
+    const KEY_SY = 'Sy';
+    const KEY_CH = 'Ch';
+    const KEY_MA = 'Ma';
+    const KEY_BU = 'Bu';
+    const KEY_GU = 'Gu';
+    const KEY_SK = 'Sk';
+    const KEY_SA = 'Sa';
+    const KEY_RA = 'Ra';
+    const KEY_KE = 'Ke';
+    const KEY_LG = 'Lg';
+    
+    const NAME_RA = 'Rahu';
+    const NAME_KE = 'Ketu';
+    const NAME_LG = 'Lagna';
 
     /**
      * Benefic character
@@ -48,15 +53,15 @@ class Graha {
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 10.
      */
     static public $graha = array(
-        self::GRAHA_SY => 'Surya',
-        self::GRAHA_CH => 'Chandra',
-        self::GRAHA_MA => 'Mangala',
-        self::GRAHA_BU => 'Budha',
-        self::GRAHA_GU => 'Guru',
-        self::GRAHA_SK => 'Shukra',
-        self::GRAHA_SA => 'Shani',
-        self::GRAHA_RA => 'Rahu',
-        self::GRAHA_KE => 'Ketu'
+        self::KEY_SY => Deva::DEVA_SURYA,
+        self::KEY_CH => Deva::DEVA_CHANDRA,
+        self::KEY_MA => Deva::DEVA_MANGAL,
+        self::KEY_BU => Deva::DEVA_BUDHA,
+        self::KEY_GU => Deva::DEVA_GURU,
+        self::KEY_SK => Deva::DEVA_SHUKRA,
+        self::KEY_SA => Deva::DEVA_SHANI,
+        self::KEY_RA => self::NAME_RA,
+        self::KEY_KE => self::NAME_KE,
     );
 
     /**

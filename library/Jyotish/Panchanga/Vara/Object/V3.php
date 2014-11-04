@@ -15,7 +15,7 @@ use Jyotish\Graha\Graha;
  */
 class V3 extends \Jyotish\Panchanga\Vara\Vara {
 
-    static public $varaGraha = Graha::GRAHA_MA;
+    static public $varaGraha = Graha::KEY_MA;
 
     public function __construct($options) {
         return $this;

@@ -108,7 +108,7 @@ class Data {
         }
 
         if(!isset($this->data['bhava'])){
-            $longitude = $this->data['extra'][Graha::LAGNA]['longitude'];
+            $longitude = $this->data['extra'][Graha::KEY_LG]['longitude'];
             for($b = 1; $b <= 12; $b++){
                 $this->data['bhava'][$b]['longitude'] = $longitude < 360 ? $longitude : $longitude - 360;
                 $units = Math::partsToUnits($this->data['bhava'][$b]['longitude']);
@@ -136,7 +136,7 @@ class Data {
         $checkBlock = function($block, $value){
             if($block == self::BLOCK_GRAHA) $elements = Graha::$graha;
             elseif($block == self::BLOCK_BHAVA) $elements = Bhava::$bhava;
-            elseif($block == self::BLOCK_EXTRA) $elements = [Graha::LAGNA => 'Lagna'];
+            elseif($block == self::BLOCK_EXTRA) $elements = [Graha::KEY_LG => 'Lagna'];
             else $elements = array();
 
             foreach ($elements as $key => $name){
@@ -217,8 +217,8 @@ class Data {
                 'direction' => $direction,
             );
         }
-        $this->grahaInRashi[Graha::LAGNA]['rashi'] = $this->data['extra']['Lg']['rashi'];
-        $this->grahaInRashi[Graha::LAGNA]['direction'] = 1;
+        $this->grahaInRashi[Graha::KEY_LG]['rashi'] = $this->data['extra']['Lg']['rashi'];
+        $this->grahaInRashi[Graha::KEY_LG]['direction'] = 1;
 
         return $this->grahaInRashi;
     }
@@ -239,7 +239,7 @@ class Data {
                 $label = $graha;
                 break;
             case 1:
-                if ($graha != Graha::LAGNA) {
+                if ($graha != Graha::KEY_LG) {
                     $grahaObject = Graha::getInstance($graha);
                     $label = Utils::unicodeToHtml($grahaObject->grahaUnicode);
                 } else {
@@ -254,7 +254,7 @@ class Data {
                 break;
         }
 
-        if ($graha == Graha::GRAHA_RA or $graha == Graha::GRAHA_KE or $graha == Graha::LAGNA) {
+        if ($graha == Graha::KEY_RA or $graha == Graha::KEY_KE or $graha == Graha::KEY_LG) {
             $grahaLabel = $label;
         }else{
             $grahaLabel = $grahas[$graha]['direction'] == 1 ? $label : '(' . $label . ')';

@@ -16,7 +16,7 @@ use Jyotish\Base\Data;
  */
 final class East extends AbstractChakra {
 
-    static public $graha = Graha::GRAHA_SY;
+    static public $graha = Graha::KEY_SY;
     static private $_bhavaPoints = array(
         1 => array(
             1, 0,

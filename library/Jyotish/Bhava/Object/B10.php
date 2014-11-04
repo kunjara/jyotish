@@ -6,6 +6,7 @@
 
 namespace Jyotish\Bhava\Object;
 
+use Jyotish\Bhava\Bhava;
 use Jyotish\Tattva\Jiva\Nara\Manusha;
 
 /**
@@ -20,6 +21,14 @@ class B10 extends BhavaObject {
      * @var int
      */
     protected $objectKey = 10;
+    
+    /**
+     * Main name of bhava.
+     * 
+     * @var string
+     * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 7, Verse 37-38.
+     */
+    protected $objectName = Bhava::NAME_10;
 
     /**
      * Indications of bhava.
