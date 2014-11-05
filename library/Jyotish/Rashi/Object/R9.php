@@ -57,22 +57,6 @@ class R9 extends RashiObject {
     protected $rashiLimb = Manusha::LIMB_THIGHS;
 
     /**
-     * Bhava of rashi.
-     * 
-     * @var string
-     * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 4, Verse 5-5 1/2.
-     */
-    protected $rashiBhava = Rashi::BHAVA_DVISVA;
-
-    /**
-     * Gender of rashi.
-     * 
-     * @var string
-     * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 4, Verse 5-5 1/2.
-     */
-    protected $rashiGender = Manusha::GENDER_MALE;
-
-    /**
      * Prakriti of rashi.
      * 
      * @var string

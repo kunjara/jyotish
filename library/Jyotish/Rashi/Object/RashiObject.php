@@ -6,8 +6,10 @@
 
 namespace Jyotish\Rashi\Object;
 
+use Jyotish\Rashi\Rashi;
 use Jyotish\Base\Object;
 use Jyotish\Tattva\Maha;
+use Jyotish\Tattva\Jiva;
 
 /**
  * Parent class for rashi objects.
@@ -134,6 +136,35 @@ class RashiObject extends Object {
     protected $rashiRuler;
 
     /**
+     * Set rashi bhava.
+     * 
+     * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 4, Verse 5-5 1/2.
+     */
+    protected function setRashiBhava()
+    {
+        switch($this->objectKey){
+            case 1: case 4: case 7: case 10:
+                $this->rashiBhava = Rashi::BHAVA_CHARA;
+                break;
+            case 2: case 5: case 8: case 11:
+                $this->rashiBhava = Rashi::BHAVA_STHIRA;
+                break;
+            case 3: case 6: case 9: case 12:
+                $this->rashiBhava = Rashi::BHAVA_DVISVA;
+        }
+    }
+    
+    /**
+     * Set rashi gender.
+     * 
+     * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 4, Verse 5-5 1/2.
+     */
+    protected function setRashiGender()
+    {
+        $this->rashiGender = ($this->objectKey % 2) ? Jiva::GENDER_MALE : Jiva::GENDER_FEMALE;
+    }
+
+    /**
      * Set rashi disha.
      * 
      * @see Varahamihira. Brihat Jataka. Chapter 1, Verse 11.
@@ -164,6 +195,8 @@ class RashiObject extends Object {
     {
         parent::__construct($options);
         
+        $this->setRashiBhava();
+        $this->setRashiGender();
         $this->setRashiDisha();
     }
 }
