@@ -69,6 +69,7 @@ class R10 extends RashiObject {
      * 
      * @var string
      * @see Varahamihira. Brihat Jataka. Chapter 1, Verse 10.
+     * @see Kalyana Varma. Saravali. Chapter 3, Verse 24.
      */
     protected $rashiBala  = Rashi::BALA_RATRI;
 
@@ -77,6 +78,7 @@ class R10 extends RashiObject {
      * 
      * @var string
      * @see Varahamihira. Brihat Jataka. Chapter 1, Verse 10.
+     * @see Kalyana Varma. Saravali. Chapter 3, Verse 24.
      */
     protected $rashiDaya = Rashi::DAYA_PRUSHTA;
 
@@ -106,6 +108,7 @@ class R10 extends RashiObject {
      * 
      * @var string
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 4, Verse 19-20.
+     * @see Kalyana Varma. Saravali. Chapter 3, Verse 11.
      */
     protected $rashiRuler = Graha::KEY_SA;
 

@@ -61,6 +61,7 @@ class RashiObject extends Object {
      * 
      * @var string
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 4, Verse 5-5 1/2.
+     * @see Kalyana Varma. Saravali. Chapter 3, Verse 20-21.
      */
     protected $rashiBhava;
 
@@ -69,6 +70,7 @@ class RashiObject extends Object {
      * 
      * @var string
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 4, Verse 5-5 1/2.
+     * @see Kalyana Varma. Saravali. Chapter 3, Verse 20-21.
      */
     protected $rashiGender;
 
@@ -85,6 +87,7 @@ class RashiObject extends Object {
      * 
      * @var string
      * @see Varahamihira. Brihat Jataka. Chapter 1, Verse 10.
+     * @see Kalyana Varma. Saravali. Chapter 3, Verse 24.
      */
     protected $rashiBala;
 
@@ -93,6 +96,7 @@ class RashiObject extends Object {
      * 
      * @var string
      * @see Varahamihira. Brihat Jataka. Chapter 1, Verse 10.
+     * @see Kalyana Varma. Saravali. Chapter 3, Verse 24.
      */
     protected $rashiDaya;
 
@@ -101,6 +105,7 @@ class RashiObject extends Object {
      * 
      * @var string
      * @see Varahamihira. Brihat Jataka. Chapter 1, Verse 11.
+     * @see Kalyana Varma. Saravali. Chapter 3, Verse 22.
      */
     protected $rashiDisha;
 
@@ -125,6 +130,7 @@ class RashiObject extends Object {
      * Bhuta of rashi.
      * 
      * @var string
+     * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 4, Verse 22-24.
      */
     protected $rashiBhuta;
 
@@ -132,6 +138,8 @@ class RashiObject extends Object {
      * Ruler of rashi.
      * 
      * @var string
+     * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 4, Verse 22-24.
+     * @see Kalyana Varma. Saravali. Chapter 3, Verse 11.
      */
     protected $rashiRuler;
 
@@ -139,6 +147,7 @@ class RashiObject extends Object {
      * Set rashi bhava.
      * 
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 4, Verse 5-5 1/2.
+     * @see Kalyana Varma. Saravali. Chapter 3, Verse 20-21.
      */
     protected function setRashiBhava()
     {
@@ -158,6 +167,7 @@ class RashiObject extends Object {
      * Set rashi gender.
      * 
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 4, Verse 5-5 1/2.
+     * @see Kalyana Varma. Saravali. Chapter 3, Verse 20-21.
      */
     protected function setRashiGender()
     {
@@ -168,6 +178,7 @@ class RashiObject extends Object {
      * Set rashi disha.
      * 
      * @see Varahamihira. Brihat Jataka. Chapter 1, Verse 11.
+     * @see Kalyana Varma. Saravali. Chapter 3, Verse 22.
      */
     protected function setRashiDisha()
     {
