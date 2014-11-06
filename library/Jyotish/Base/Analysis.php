@@ -21,14 +21,14 @@ class Analysis {
      * 
      * @var array
      */
-    protected $data = array();
+    protected $ganitaData = array();
 
     /**
-     * D9 varga data.
+     * Varga data.
      * 
      * @var array
      */
-    protected $d9Data = array();
+    protected $vargaData = array();
 
 
     /**
@@ -48,9 +48,9 @@ class Analysis {
         }
 
         if (is_object($data)) {
-            $this->data = $data->getData();
+            $this->ganitaData = $data->getData();
         }else{
-            $this->data = $data;
+            $this->ganitaData = $data;
         }
     }
 
@@ -63,7 +63,7 @@ class Analysis {
      */
     public function getCharaKaraka($reverse = false)
     {
-        $grahas = $this->data['graha'];
+        $grahas = $this->ganitaData['graha'];
         unset($grahas[Graha::KEY_KE]);
         $grahas[Graha::KEY_RA]['degree'] = 30 - $grahas[Graha::KEY_RA]['degree'];
 
@@ -97,7 +97,7 @@ class Analysis {
      */
     public function getKarakamsha()
     {
-        $d9Data = $this->getD9Data();
+        $d9Data = $this->getVargaData();
         $atmaKaraka = $this->getCharaKaraka(true)[Karaka::KARAKA_ATMA];
 
         return $d9Data['graha'][$atmaKaraka]['rashi'];
@@ -110,22 +110,24 @@ class Analysis {
      */
     public function getLagnamsha()
     {
-        $d9Data = $this->getD9Data();
+        $d9Data = $this->getVargaData();
 
         return $d9Data['extra'][Graha::KEY_LG]['rashi'];
     }
 
     /**
-     * Get D9 varga data.
+     * Get varga data.
      * 
+     * @param string $varga
      * @return array
      */
-    protected function getD9Data()
+    public function getVargaData($varga = 'd9')
     {
-        if(!count($this->d9Data)){
-            $D9 = Varga::getInstance(Varga::VARGA_D9);
-            $this->d9Data = $D9->getVargaData($this->data);
+        $v = strtoupper($varga);
+        if(!isset($this->vargaData[$v])){
+            $Varga = Varga::getInstance(($v));
+            $this->vargaData[$v] = $Varga->getVargaData($this->ganitaData);
         }
-        return $this->d9Data;		
+        return $this->vargaData[$v];
     }
 }
