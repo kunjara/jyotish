@@ -79,7 +79,7 @@ abstract class AbstractDasha {
             );
         }
 
-        if($this->dashaKey == Dasha::DASHA_ASHTOTTARI)
+        if($this->dashaKey == Dasha::NAME_ASHTOTTARI)
             $withAbhijit = true;
         else
             $withAbhijit = false;
