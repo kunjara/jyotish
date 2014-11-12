@@ -7,6 +7,7 @@
 namespace Jyotish\Base;
 
 use Jyotish\Graha\Graha;
+use Jyotish\Graha\Lagna;
 use Jyotish\Bhava\Bhava;
 use Jyotish\Base\Utils;
 use Jyotish\Ganita\Math;
@@ -167,6 +168,29 @@ class Data {
     public function getData()
     {
         return $this->data;
+    }
+    
+    /**
+     * Calculation of extra lagnas.
+     * 
+     * @param null|array $lagnas Array of lagna keys
+     * @throws Exception\InvalidArgumentException
+     */
+    public function calcExtraLagna(array $lagnas = null)
+    {
+        $Lagna = new Lagna($this->data);
+        
+        if(is_null($lagnas)){
+            $lagnas = array_keys(Lagna::$lagna);
+        }
+        
+        foreach ($lagnas as $key){
+            if (!array_key_exists($key, Lagna::$lagna)){
+                throw new Exception\InvalidArgumentException("Lagna with the key '$key' does not exist.");
+            }
+            $calcLagna = 'calc'.$key;
+            $this->data['extra'][$key] = $Lagna->$calcLagna();
+        }
     }
 
     /**

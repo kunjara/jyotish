@@ -17,9 +17,7 @@ class Math {
     /**
      * Conversion of angular degrees (hours), minutes and seconds of arc to decimal representation of an angle.
      * 
-     * @param int $d
-     * @param int $m
-     * @param float $s
+     * @param array $dms Array of values: d - degrees, m - minutes, s - seconds
      * @return float
      */
     static public function dmsToDecimal(array $dms)
@@ -70,11 +68,11 @@ class Math {
 
         switch ($flagRound) {
             case 'floor':
-                $totalUnits	= floor($totalParts / $partsInUnit);
+                $totalUnits	= (int)floor($totalParts / $partsInUnit);
                 break;
             case 'ceil':
             default:
-                $totalUnits	= ceil($totalParts / $partsInUnit);
+                $totalUnits	= (int)ceil($totalParts / $partsInUnit);
                 break;
         }
 
@@ -119,7 +117,7 @@ class Math {
         if($number < $cycle) {
             $numberCycle = $number;
         } else {
-            $numberCycle = fmod($number, $cycle);
+            $numberCycle = (int)fmod($number, $cycle);
             if($numberCycle == 0) {
                 $numberCycle = $cycle;
             }

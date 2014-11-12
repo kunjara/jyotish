@@ -218,25 +218,25 @@ class Swetest extends AbstractGanita{
 
             if (array_key_exists($bodyName, $this->outputPlanets)) {
                 $bodyParameters['graha'][$this->outputPlanets[$bodyName]] = array(
-                    'longitude' => $parameters[1],
-                    'latitude' => $parameters[2],
-                    'speed' => $parameters[3],
-                    'ascension' => $parameters[4],
-                    'declination' => $parameters[5],
+                    'longitude' => (float)$parameters[1],
+                    'latitude' => (float)$parameters[2],
+                    'speed' => (float)$parameters[3],
+                    'ascension' => (float)$parameters[4],
+                    'declination' => (float)$parameters[5],
                     'rashi' => $units['units'],
                     'degree' => $units['parts'],
                 );
             } elseif (array_key_exists($bodyName, $this->outputHouses)) {
                 $bodyParameters['bhava'][$this->outputHouses[$bodyName]] = array(
-                    'longitude' => $parameters[1],
-                    'ascension' => $parameters[2],
-                    'declination' => $parameters[3],
+                    'longitude' => (float)$parameters[1],
+                    'ascension' => (float)$parameters[2],
+                    'declination' => (float)$parameters[3],
                     'rashi' => $units['units'],
                     'degree' => $units['parts'],
                 );
             } else {
                 $bodyParameters['extra'][$this->outputExtra[$bodyName]] = array(
-                    'longitude' => $parameters[1],
+                    'longitude' => (float)$parameters[1],
                     'rashi'     => $units['units'],
                     'degree'    => $units['parts'],
                 );

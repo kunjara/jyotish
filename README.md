@@ -23,9 +23,11 @@ They have two license options - one, the GPL, which only means that any code you
 ## Literature
 
 * Maharishi Parashara. Brihat Parashara Hora Shastra.
+* Maharishi Jaimini. Jaimini Upadesha Sutras.
 * Varahamihira. Brihat Jataka.
 * Varahamihira. Brihat Samhita.
 * Kalyana Varma. Saravali.
 * Satyacharya. Satya Jatakam.
+* Kalidas. Uttara Kalamritam.
 * Srimad-Bhagavatam.
 * Bhavishya Purana.
