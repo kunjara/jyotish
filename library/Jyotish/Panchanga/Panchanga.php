@@ -223,18 +223,18 @@ class Panchanga {
     {
         $dateUser = new DateTime($this->userData['date'].' '.$this->userData['time']);
         $dateUserU = $dateUser->format('U');
-        $dateRising[2] = new DateTime($this->ganitaRisingsData['time'][2]['rising']);
+        $dateRising[2] = new DateTime($this->ganitaRisingsData[Graha::KEY_SY][2]['rising']);
         $dateRisingU[2] = $dateRising[2]->format('U');
-        $dateRising[3] = new DateTime($this->ganitaRisingsData['time'][3]['rising']);
+        $dateRising[3] = new DateTime($this->ganitaRisingsData[Graha::KEY_SY][3]['rising']);
         $dateRisingU[3] = $dateRising[3]->format('U');
 
         if($dateUser >= $dateRising[3]) {
             $index = 1;
-            $dateRising[4] = new DateTime($this->ganitaRisingsData['time'][4]['rising']);
+            $dateRising[4] = new DateTime($this->ganitaRisingsData[Graha::KEY_SY][4]['rising']);
             $dateRisingU[4] = $dateRising[4]->format('U');
         }else{
             $index = 0;
-            $dateRising[1] = new DateTime($this->ganitaRisingsData['time'][1]['rising']);
+            $dateRising[1] = new DateTime($this->ganitaRisingsData[Graha::KEY_SY][1]['rising']);
             $dateRisingU[1] = $dateRising[1]->format('U');
         }
 
@@ -245,15 +245,15 @@ class Panchanga {
 
             $duration = $dateRisingU[3 + $index] - $dateRisingU[2 + $index];
             $vara['left'] = ($dateRisingU[3 + $index] - $dateUserU) * 100 / $duration;
-            $vara['start'] = $this->ganitaRisingsData['time'][2 + $index]['rising'];
-            $vara['end'] = $this->ganitaRisingsData['time'][3 + $index]['rising'];
+            $vara['start'] = $this->ganitaRisingsData[Graha::KEY_SY][2 + $index]['rising'];
+            $vara['end'] = $this->ganitaRisingsData[Graha::KEY_SY][3 + $index]['rising'];
         } else {
             $varaNumber != 0 ? $vara['number'] = $varaNumber : $vara['number'] = 7;
 
             $duration = $dateRisingU[2 + $index] - $dateRisingU[1 + $index];
             $vara['left'] = ($dateRisingU[2 + $index] - $dateUserU) * 100 / $duration;
-            $vara['start'] = $this->ganitaRisingsData['time'][1 + $index]['rising'];
-            $vara['end'] = $this->ganitaRisingsData['time'][2 + $index]['rising'];
+            $vara['start'] = $this->ganitaRisingsData[Graha::KEY_SY][1 + $index]['rising'];
+            $vara['end'] = $this->ganitaRisingsData[Graha::KEY_SY][2 + $index]['rising'];
         }
 
         $vara['name'] = Vara::$VARA[$vara['number']];

@@ -87,15 +87,15 @@ abstract class AbstractDasha {
         $userData       = $panchanga->getUserData();
         $dateTimeString = $userData['date'] . ' ' . $userData['time'];
         $dateTimeFormat = Time::FORMAT_DATA_DATE . ' ' . Time::FORMAT_DATA_TIME;
-        $this->_dateTimeObject = Time::getDateTimeUtc($dateTimeFormat, $dateTimeString, $userData['timezone']);
+        $this->dateTimeObject = Time::getDateTimeUtc($dateTimeFormat, $dateTimeString, $userData['timezone']);
 
         $nakshatra  = $panchanga->getNakshatra(true, $withAbhijit);
         $periodData = $this->getStartPeriod($nakshatra);
 
-        $this->_dateTimeObject->sub(new DateInterval('PT'.$periodData['start'].'S'));
-        $periodStartString = $this->_dateTimeObject->format(Time::FORMAT_DATETIME);
-        $this->_dateTimeObject->add(new DateInterval('PT'.$periodData['total'].'S'));
-        $periodEndString = $this->_dateTimeObject->format(Time::FORMAT_DATETIME);
+        $this->dateTimeObject->sub(new DateInterval('PT'.$periodData['start'].'S'));
+        $periodStartString = $this->dateTimeObject->format(Time::FORMAT_DATETIME);
+        $this->dateTimeObject->add(new DateInterval('PT'.$periodData['total'].'S'));
+        $periodEndString = $this->dateTimeObject->format(Time::FORMAT_DATETIME);
 
         $periodOrder = Utils::shiftArray($this->durationGraha(), $periodData['graha']);
 
@@ -109,7 +109,7 @@ abstract class AbstractDasha {
         );
 
         $periodsCalc	= $this->calcDashaPeriods($periodTotal, $nestingMax);
-
+        
         return $periodsCalc;
     }
 
@@ -132,20 +132,20 @@ abstract class AbstractDasha {
 
             $durationGraha = $this->durationGraha();
             $duration = round($periodData['duration'] * $durationGraha[$graha] / $this->durationTotal());
-            $periodData[$graha]['duration'] = $duration;
+            $periodData[$graha]['duration'] = (int)$duration;
 
             if($i == 1){
-                $this->_dateTimeObject = Time::getDateTimeUtc(Time::FORMAT_DATETIME, $periodData['start']);
-                $periodData[$graha]['start'] = $this->_dateTimeObject->format(Time::FORMAT_DATETIME);
+                $this->dateTimeObject = Time::getDateTimeUtc(Time::FORMAT_DATETIME, $periodData['start']);
+                $periodData[$graha]['start'] = $this->dateTimeObject->format(Time::FORMAT_DATETIME);
             }else{
-                $periodData[$graha]['start'] = $this->_dateTimeObject->format(Time::FORMAT_DATETIME);
+                $periodData[$graha]['start'] = $this->dateTimeObject->format(Time::FORMAT_DATETIME);
             }
 
             //if($i == count($periodData['order'])){
             //	$periodData[$graha]['end'] = $periodData['end'];
             //}else{
-                $this->_dateTimeObject->add(new DateInterval('PT'.$duration.'S'));
-                $periodData[$graha]['end'] = $this->_dateTimeObject->format(Time::FORMAT_DATETIME);
+                $this->dateTimeObject->add(new DateInterval('PT'.$duration.'S'));
+                $periodData[$graha]['end'] = $this->dateTimeObject->format(Time::FORMAT_DATETIME);
             //}
 
             // Define subperiods

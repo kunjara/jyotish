@@ -116,7 +116,7 @@ class Swetest extends AbstractGanita{
 
         $offsetUser     = $this->data['offset'];
         $offsetSystem   = Time::getTimeZoneOffset($this->data['timezone'], $dateTimeString);
-        $offsetUser     != $offsetSystem ? $offset = $offsetUser : $offset = false;
+        $offset         = $offsetUser != $offsetSystem ? $offsetUser : $offset = false;
 
         $dateTimeObject = Time::getDateTimeUtc($dateTimeFormat, $dateTimeString, $this->data['timezone'], $offset);
 
@@ -193,12 +193,11 @@ class Swetest extends AbstractGanita{
             $dateRising = $risingObject->format(Time::FORMAT_DATETIME);
             $dateSetting = $settingObject->format(Time::FORMAT_DATETIME);
 
-            $bodyRising['time'][$i] = array(
+            $bodyRising[$graha][$i] = array(
                 'rising'  => $dateRising,
                 'setting' => $dateSetting,
             );
         }
-        $bodyRising['graha'] = $graha;
 
         return $bodyRising;
     }

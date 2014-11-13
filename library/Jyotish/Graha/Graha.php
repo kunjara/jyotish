@@ -14,19 +14,58 @@ use Jyotish\Tattva\Jiva\Nara\Deva;
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 class Graha {
+    /**
+     * Key of Sun
+     */
     const KEY_SY = 'Sy';
+    /**
+     * Key of Moon
+     */
     const KEY_CH = 'Ch';
+    /**
+     * Key of Mars
+     */
     const KEY_MA = 'Ma';
+    /**
+     * Key of Mercury
+     */
     const KEY_BU = 'Bu';
+    /**
+     * Key of Jupiter
+     */
     const KEY_GU = 'Gu';
+    /**
+     * Key of Venus
+     */
     const KEY_SK = 'Sk';
+    /**
+     * Key of Saturn
+     */
     const KEY_SA = 'Sa';
+    /**
+     * Key of Rahu (north lunar node)
+     */
     const KEY_RA = 'Ra';
+    /**
+     * Key of Ketu (south lunar node)
+     */
     const KEY_KE = 'Ke';
+    /**
+     * Key of Ascendant
+     */
     const KEY_LG = 'Lg';
     
+    /**
+     * Name of Rahu (north lunar node)
+     */
     const NAME_RA = 'Rahu';
+    /**
+     * Name of Ketu (south lunar node)
+     */
     const NAME_KE = 'Ketu';
+    /**
+     * Name of Ascendant
+     */
     const NAME_LG = 'Lagna';
 
     /**
