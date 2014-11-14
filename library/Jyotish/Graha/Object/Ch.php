@@ -35,6 +35,14 @@ class Ch extends GrahaObject {
     protected $grahaUnicode = '263D';
 
     /**
+     * Amsha of the Graha.
+     * 
+     * @var string
+     * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 2, Verse 2.
+     */
+    protected $grahaAmsha = Graha::AMSHA_PARAMATMA;
+    
+    /**
      * Avatara of the Graha.
      * 
      * @var string

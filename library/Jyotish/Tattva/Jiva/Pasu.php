@@ -48,7 +48,9 @@ class Pasu {
 
         if($animal1 == $animal2){
             return 'same';
-        }elseif($hostile[$animal1] == $animal2 or $hostile[$animal2] == $animal1){
+        }elseif(
+                (isset($hostile[$animal1]) and $hostile[$animal1] == $animal2) or 
+                (isset($hostile[$animal2]) and $hostile[$animal2] == $animal1)){
             return 'hostile';
         }else{
             return 'friendly';

@@ -75,11 +75,20 @@ class Graha {
     /**
      * Malefic character
      */
-    const CHARACTER_PAPA   = 'papa';
+    const CHARACTER_PAPA = 'papa';
     /**
      * Mixed character
      */
-    const CHARACTER_MISHA  = 'mishra';
+    const CHARACTER_MISHA = 'mishra';
+    
+    /**
+     * Paramatma amsha
+     */
+    const AMSHA_PARAMATMA = 'paramatma';
+    /**
+     * Jeeva amsha
+     */
+    const AMSHA_JIVATMA = 'jivatma';
 
     const RISING_NOREFRAC   = 'norefrac';
     const RISING_DISCCENTER = 'disccenter';

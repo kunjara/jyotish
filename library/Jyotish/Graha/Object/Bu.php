@@ -34,6 +34,14 @@ class Bu extends GrahaObject {
     protected $grahaUnicode = '263F';
 
     /**
+     * Amsha of the Graha.
+     * 
+     * @var string
+     * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 2, Verse 2.
+     */
+    protected $grahaAmsha = Graha::AMSHA_JIVATMA;
+    
+    /**
      * Avatara of the Graha.
      * 
      * @var string
@@ -294,6 +302,9 @@ class Bu extends GrahaObject {
      */
     protected function setGrahaCharacter()
     {
+        $benefic = 0;
+        $malefic = 0;
+        
         foreach($this->ganitaData['graha'] as $key => $params){
             if($key == $this->objectKey) continue;
 

@@ -46,6 +46,15 @@ class GrahaObject extends Object {
     protected $grahaUnicode;
 
     /**
+     * Amsha of the Graha.
+     * 
+     * @var string
+     * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 2, Verse 2.
+     */
+    protected $grahaAmsha;
+
+
+    /**
      * Avatara of the Graha.
      * 
      * @var string

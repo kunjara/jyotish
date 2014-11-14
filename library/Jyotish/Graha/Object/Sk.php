@@ -34,6 +34,14 @@ class Sk extends GrahaObject {
     protected $grahaUnicode = '2640';
 
     /**
+     * Amsha of the Graha.
+     * 
+     * @var string
+     * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 2, Verse 2.
+     */
+    protected $grahaAmsha = Graha::AMSHA_JIVATMA;
+    
+    /**
      * Avatara of the Graha.
      * 
      * @var string
