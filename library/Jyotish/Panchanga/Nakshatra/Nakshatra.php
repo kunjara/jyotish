@@ -12,18 +12,33 @@ namespace Jyotish\Panchanga\Nakshatra;
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 class Nakshatra {
-
-    const PADA_1 = 1;
-    const PADA_2 = 2;
-    const PADA_3 = 3;
-    const PADA_4 = 4;
-
+    /**
+     * Fixed constellation
+     */
     const TYPE_DHRUVA = 'dhruva';
+    /**
+     * Movable constellation
+     */
     const TYPE_CHARANA = 'charana';
+    /**
+     * Sharp & Horrible constellation
+     */
     const TYPE_TIKSHNA = 'tikshna';
+    /**
+     * Delicate & Friendly constellation
+     */
     const TYPE_MRIDU = 'mridu';
+    /**
+     * Mixed constellation
+     */
     const TYPE_SADHARANA = 'sadharana';
+    /**
+     * Cruel constellation
+     */
     const TYPE_UGRA = 'ugra';
+    /**
+     * Small constellation
+     */
     const TYPE_KSHIPRA = 'kshipra';
 
     const ENERGY_SRISHTI = 'srishti';
