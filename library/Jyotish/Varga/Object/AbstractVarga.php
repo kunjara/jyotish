@@ -56,7 +56,7 @@ abstract class AbstractVarga {
             throw new \Jyotish\Varga\Exception\InvalidArgumentException("Ganita data must be an array of calculation positions.");
         }
 
-        if($this->vargaKey == Varga::VARGA_D1){
+        if($this->vargaKey == Varga::KEY_D1){
             return $ganitaData;
         }
 
