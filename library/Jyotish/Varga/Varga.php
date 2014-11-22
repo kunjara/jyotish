@@ -13,17 +13,17 @@ namespace Jyotish\Varga;
  */
 class Varga {
 
-    const KEY_D1 = 'D1';
-    const KEY_D2 = 'D2';
-    const KEY_D3 = 'D3';
-    const KEY_D4 = 'D4';
-    const KEY_D7 = 'D7';
-    const KEY_D9 = 'D9';
+    const KEY_D1  = 'D1';
+    const KEY_D2  = 'D2';
+    const KEY_D3  = 'D3';
+    const KEY_D4  = 'D4';
+    const KEY_D7  = 'D7';
+    const KEY_D9  = 'D9';
     const KEY_D10 = 'D10';
     const KEY_D12 = 'D12';
     const KEY_D16 = 'D16';
     const KEY_D20 = 'D20';
-    const KEY_D24	= 'D24';
+    const KEY_D24 = 'D24';
     const KEY_D27 = 'D27';
     const KEY_D30 = 'D30';
     const KEY_D40 = 'D40';
@@ -37,12 +37,12 @@ class Varga {
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 7, Verse 2-4.
      */
     static public $varga = array(
-        self::KEY_D1 => 'Rashi',
-        self::KEY_D2 => 'Hora',
-        self::KEY_D3 => 'Drekkana',
-        self::KEY_D4 => 'Chaturthamsha',
-        self::KEY_D7 => 'Saptamamsha',
-        self::KEY_D9 => 'Navamsha',
+        self::KEY_D1  => 'Rashi',
+        self::KEY_D2  => 'Hora',
+        self::KEY_D3  => 'Drekkana',
+        self::KEY_D4  => 'Chaturthamsha',
+        self::KEY_D7  => 'Saptamamsha',
+        self::KEY_D9  => 'Navamsha',
         self::KEY_D10 => 'Dashamsha',
         self::KEY_D12 => 'Dvadashamsha',
         self::KEY_D16 => 'Shodashamsha',

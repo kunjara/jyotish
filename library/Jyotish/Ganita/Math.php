@@ -61,7 +61,8 @@ class Math {
      * @param string $flagRound
      * @return array
      */
-    static public function partsToUnits($totalParts, $partsInUnit = 30, $flagRound = 'ceil') {
+    static public function partsToUnits($totalParts, $partsInUnit = 30, $flagRound = 'ceil')
+    {
         if($partsInUnit <= 0){
             throw new Exception\InvalidArgumentException("Parts in unit must be greater than zero.");
         }
@@ -106,20 +107,34 @@ class Math {
      * @param int $distance
      * @return int
      */
-    static public function numberInCycle($n, $distance = 1, $cycle = 12) {
-        /*
-        if(!is_int($n)){
-            throw new Exception\InvalidArgumentException("Number of object must be an integer.");
+    static public function numberInCycle($n, $distance = 1, $cycle = 12)
+    {
+        if($distance == 0){
+            throw new Exception\InvalidArgumentException("Distance should not be zero.");
         }
-         */
-        $number = $n + ($distance - 1);
-
-        if($number < $cycle) {
-            $numberCycle = $number;
-        } else {
-            $numberCycle = (int)fmod($number, $cycle);
-            if($numberCycle == 0) {
-                $numberCycle = $cycle;
+        
+        if($distance > 0){
+            $distanceCycle = $distance - 1;
+        }else{
+            $distanceCycle = $distance;
+        }
+        
+        $number = $n + $distanceCycle;
+        
+        if($number > 0){
+            if($number < $cycle) {
+                $numberCycle = $number;
+            } else {
+                $numberCycle = (int)fmod($number, $cycle);
+                if($numberCycle == 0) {
+                    $numberCycle = $cycle;
+                }
+            }
+        }else{
+            if(abs($number) < $cycle){
+                $numberCycle = $cycle - abs($number);
+            }else{
+                $numberCycle = $cycle - (int)fmod(abs($number), $cycle);
             }
         }
 
@@ -132,7 +147,8 @@ class Math {
      * @param int $n
      * @return int
      */
-    static public function numberNext($n, $cycle = 12) {
+    static public function numberNext($n, $cycle = 12)
+    {
         $nNext    = $n + 1;
         $nInCycle = self::numberInCycle($nNext, 1, $cycle);
 
@@ -145,12 +161,24 @@ class Math {
      * @param int $n
      * @return int
      */
-    static public function numberPrev($n, $cycle = 12) {
+    static public function numberPrev($n, $cycle = 12)
+    {
         $nPrev    = $n - 1;
         $nInCycle = self::numberInCycle($nPrev, 1, $cycle);
 
         return $nInCycle;
     }
+    
+    /**
+     * Return sign of number.
+     * 
+     * @param mixed $number
+     * @return int
+     */
+    static public function sign($number)
+    { 
+        return $number > 0 ? 1 : ($number < 0 ? -1 : 0); 
+    } 
 
     /**
      * Sum of arrays.

@@ -19,6 +19,15 @@ class Object {
     use \Jyotish\Base\GetTrait;
     
     /**
+     * Next position
+     */
+    const POS_NEXT = 'next';
+    /**
+     * Previous position
+     */
+    const POS_PREV = 'prev';
+    
+    /**
      * Options of jyotish object.
      * 
      * @var array
@@ -69,10 +78,11 @@ class Object {
     {
         $this->ganitaData  = $ganitaData;
 
-        if($this->objectType == 'rashi')
+        if($this->objectType == 'rashi'){
             $this->objectRashi = $this->objectKey;
-        else
+        }else{
             $this->objectRashi = $this->ganitaData[$this->objectType][$this->objectKey]['rashi'];
+        }
     }
 
     /**
@@ -163,8 +173,8 @@ class Object {
         $this->checkEnvironment();
 
         $isHemmed = array();
-        $p = 'prev';
-        $n = 'next';
+        $p = self::POS_PREV;
+        $n = self::POS_NEXT;
 
         $$p = Math::numberPrev($this->objectRashi);
         $$n = Math::numberNext($this->objectRashi);
