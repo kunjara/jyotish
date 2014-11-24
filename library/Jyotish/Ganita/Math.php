@@ -92,12 +92,15 @@ class Math {
      */
     static public function distanceInCycle($n1, $n2, $cycle = 12)
     {
-        if($n1 <= $n2){
-            $dn = $n2 - $n1 + 1;
-        }else{
-            $dn = $cycle - ($n1 - $n2) + 1;
+        if($n1 > $cycle or $n2 > $cycle){
+            throw new Exception\InvalidArgumentException("Number in cycle should not be greater than size of the cycle $cycle.");
         }
-        return $dn;
+        if($n1 <= $n2){
+            $distance = $n2 - $n1 + 1;
+        }else{
+            $distance = $cycle - ($n1 - $n2) + 1;
+        }
+        return $distance;
     }
 
     /**
