@@ -95,9 +95,9 @@ class Graha {
     const RISING_HINDU      = 'hindu';
 
     /**
-     * Names of Grahas.
+     * List of Grahas.
      * 
-     * @var string
+     * @var array
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 10.
      */
     static public $graha = array(
