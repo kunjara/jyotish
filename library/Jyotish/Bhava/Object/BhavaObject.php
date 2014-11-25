@@ -69,7 +69,7 @@ class BhavaObject extends Object {
     * 
     * @return array
     */
-   public function getTatkalikaMitra()
+   public function getTatkalikaMitra($withoutChaya = true)
    {
        $this->checkEnvironment();
 
@@ -80,8 +80,10 @@ class BhavaObject extends Object {
        }
        
        $grahas = Graha::$graha;
-       unset($grahas[Graha::KEY_RA]);
-       unset($grahas[Graha::KEY_KE]);
+       if($withoutChaya){
+            unset($grahas[Graha::KEY_RA]);
+            unset($grahas[Graha::KEY_KE]); 
+       }
        
        foreach ($grahas as $key => $name){
            $rashi = $this->ganitaData['graha'][$key]['rashi'];

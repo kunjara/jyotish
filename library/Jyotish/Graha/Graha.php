@@ -170,6 +170,27 @@ class Graha {
         }
         return $result;
     }
+    
+    /**
+     * Get grahas by amsha.
+     * 
+     * @param string $amsha
+     * @return array
+     */
+    static public function getGrahaByAmsha($amsha)
+    {
+        $result = array();
+
+        foreach (Graha::$graha as $key => $name){
+            $Graha = self::getInstance($key);
+
+            if($Graha->grahaAmsha == $amsha)
+                $result[$key] = $name;
+            else
+                continue;
+        }
+        return $result;
+    }
 
     /**
      * Get mutual relationship between grahas in points.
