@@ -181,10 +181,10 @@ class Ra extends GrahaObject {
     {
         switch ($options['specificRashi']){
             case('parashara'):
-                $this->setGrahaSpecificRashi(['ex' => 2, 'mt' => 3, 'ow' => 11, 'db' => 8]);
+                $this->setGrahaSpecificRashi(['ucha' => 2, 'mool' => 3, 'swa' => 11, 'neecha' => 8]);
                 break;
             default:
-                $this->setGrahaSpecificRashi(['ex' => 3, 'mt' => 11, 'ow' => 6, 'db' => 9]);
+                $this->setGrahaSpecificRashi(['ucha' => 3, 'mool' => 11, 'swa' => 6, 'neecha' => 9]);
                 break;
         }
     }

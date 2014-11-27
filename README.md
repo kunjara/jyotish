@@ -29,5 +29,6 @@ They have two license options - one, the GPL, which only means that any code you
 * Kalyana Varma. Saravali.
 * Satyacharya. Satya Jatakam.
 * Kalidas. Uttara Kalamritam.
+* Venkatesh Sharma. Sarvarth Chintamani.
 * Srimad-Bhagavatam.
 * Bhavishya Purana.

@@ -32,6 +32,23 @@ class Rashi {
     const DAYA_PRUSHTA  = 'prushta';
     const DAYA_UBHAYA   = 'ubhaya';
     
+    /**
+     * Ucha (exaltation)
+     */
+    const SPECIFIC_UCHA = 'ucha';
+    /**
+     * Moolatrikona
+     */
+    const SPECIFIC_MOOL = 'mool';
+    /**
+     * Swakshetra (own)
+     */
+    const SPECIFIC_SWA = 'swa';
+    /**
+     * Neecha (debilitation)
+     */
+    const SPECIFIC_NEECHA = 'neecha';
+    
     const NAME_1 = 'Mesha';
     const NAME_2 = 'Vrishabha';
     const NAME_3 = 'Mithuna';

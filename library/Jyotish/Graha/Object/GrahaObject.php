@@ -11,6 +11,7 @@ use Jyotish\Graha\Graha;
 use Jyotish\Rashi\Rashi;
 use Jyotish\Bhava\Bhava;
 use Jyotish\Ganita\Math;
+use Jyotish\Varga\Varga;
 use Jyotish\Tattva\Jiva\Nara\Deva;
 
 /**
@@ -273,6 +274,27 @@ class GrahaObject extends Object {
 
         return $Bhava->getRuler();
     }
+    
+    /**
+     * Whether the graha is vargottama.
+     * 
+     * @return boolean
+     * @see Venkatesh Sharma. Sarvarth Chintamani. Chapter 1, Verse 50.
+     */
+    public function isVargottama()
+    {
+        $this->checkEnvironment();
+        
+        $d1Data = $this->ganitaData;
+        
+        $Varga9 = Varga::getInstance('D9');
+        $d9Data = $Varga9->getVargaData($d1Data);
+        
+        if($d1Data['graha'][$this->objectKey]['rashi'] == $d9Data['graha'][$this->objectKey]['rashi'])
+            return true;
+        else
+            return false;
+    }
 
     /**
      * Set alternative graha names.
@@ -346,10 +368,10 @@ class GrahaObject extends Object {
      */
     protected function setGrahaSpecificRashi(array $specificRashi)
     {
-        $this->grahaUcha = array('rashi' => $specificRashi['ex']);
-        $this->grahaNeecha = array('rashi' => $specificRashi['db']);
-        $this->grahaMool = array('rashi' => $specificRashi['mt']);
-        $this->grahaSwa = array('rashi' => $specificRashi['ow']);
+        $this->grahaUcha = ['rashi' => $specificRashi['ucha']];
+        $this->grahaMool = ['rashi' => $specificRashi['mool']];
+        $this->grahaSwa = ['rashi' => $specificRashi['swa']];
+        $this->grahaNeecha = ['rashi' => $specificRashi['neecha']];
     }
 
     /**

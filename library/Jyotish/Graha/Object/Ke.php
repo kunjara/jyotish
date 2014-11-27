@@ -180,10 +180,10 @@ class Ke extends GrahaObject {
     {
         switch ($options['specificRashi']){
             case('parashara'):
-                $this->setGrahaSpecificRashi(['ex' => 8, 'mt' => 9, 'ow' => 5, 'db' => 2]);
+                $this->setGrahaSpecificRashi(['ucha' => 8, 'mool' => 9, 'swa' => 5, 'neecha' => 2]);
                 break;
             default:
-                $this->setGrahaSpecificRashi(['ex' => 9, 'mt' => 5, 'ow' => 12, 'db' => 3]);
+                $this->setGrahaSpecificRashi(['ucha' => 9, 'mool' => 5, 'swa' => 12, 'neecha' => 3]);
                 break;
         }
     }
