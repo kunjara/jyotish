@@ -276,7 +276,7 @@ class GrahaObject extends Object {
     }
     
     /**
-     * Whether the graha is vargottama.
+     * Whether the graha is vargottama (in the same sign in rasi and navamsha).
      * 
      * @return boolean
      * @see Venkatesh Sharma. Sarvarth Chintamani. Chapter 1, Verse 50.
@@ -295,13 +295,33 @@ class GrahaObject extends Object {
         else
             return false;
     }
+    
+    /**
+     * Whether the graha is astangata (combustion).
+     * 
+     * @return boolean
+     */
+    public function isAstangata()
+    {
+        if(in_array($this->objectKey, [Graha::KEY_SY, Graha::KEY_RA, Graha::KEY_KE]))
+                return false;
+        
+        $this->checkEnvironment();
+        
+        $degreeSy = $this->ganitaData['graha'][Graha::KEY_SY]['longitude'];
+        $degreeGr = $this->ganitaData['graha'][$this->objectKey]['longitude'];
+        
+        $grahaDistance = abs($degreeSy - $degreeGr);
+        
+        return $grahaDistance <= 6 ? true : false;
+    }
 
     /**
      * Set alternative graha names.
      */
     protected function setGrahaAltName()
     {
-        if($this->objectKey != 'Ra' and $this->objectKey != 'Ke'){
+        if($this->objectKey != Graha::KEY_RA and $this->objectKey != Graha::KEY_KE){
             $grahaAltName = 'deva'.$this->objectName;
             $this->objectAltName = Deva::${$grahaAltName};
         }

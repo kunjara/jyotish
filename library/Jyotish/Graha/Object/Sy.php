@@ -198,7 +198,7 @@ class Sy extends GrahaObject {
      * @see Varahamihira. Brihat Jataka. Chapter 1, Verse 14.
      */
     protected $grahaMool = array
-        (
+    (
         'rashi' => 5,
         'start' => 0,
         'end' => 20
