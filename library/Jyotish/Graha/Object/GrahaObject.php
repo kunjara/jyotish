@@ -315,6 +315,48 @@ class GrahaObject extends Object {
         
         return $grahaDistance <= 6 ? true : false;
     }
+    
+    /**
+     * Whether the graha is gocharastha.
+     * 
+     * @return int
+     * @see Venkatesh Sharma. Sarvarth Chintamani. Chapter 1, Verse 23-24.
+     */
+    public function isGocharastha()
+    {
+        $this->checkEnvironment();
+        
+        $gocharaRashi[] = $this->grahaUcha['rashi'];
+        $gocharaRashi[] = $this->grahaMool['rashi'];
+        if(isset($this->grahaSwa['positive'])){
+            $gocharaRashi[]  = $this->grahaSwa['positive']['rashi'];
+            $gocharaRashi[]  = $this->grahaSwa['negative']['rashi'];
+        }else{
+            $gocharaRashi[]  = $this->grahaSwa['rashi'];
+        }
+        
+        $gocharaRashi = array_unique($gocharaRashi);
+        $grahaInGochara = in_array($this->objectRashi, $gocharaRashi) ? true : false;
+        
+        $bhavaDusthana = Bhava::$bhavaDusthana;
+        $grahaInDusthana = in_array($this->getBhava(), $bhavaDusthana) ? true : false;
+        
+        $grahaIsAstangata = $this->isAstangata();
+        
+        $grahaInNeecha = $this->grahaNeecha['rashi'] == $this->ganitaData['graha'][$this->objectKey]['rashi'] ? true : false;
+        
+        if($grahaInGochara)
+            if(!$grahaIsAstangata and !$grahaInDusthana) 
+                $result = 1;
+            else
+                $result = 0;
+        elseif($grahaIsAstangata or $grahaInDusthana or $grahaInNeecha)
+            $result = -1;
+        else
+            $result = 0;
+        
+        return $result;
+    }
 
     /**
      * Set alternative graha names.
