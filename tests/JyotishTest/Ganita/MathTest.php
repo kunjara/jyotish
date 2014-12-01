@@ -12,7 +12,45 @@ use Jyotish\Ganita\Math;
  * @group Ganita
  */
 class MathTest extends \PHPUnit_Framework_TestCase{
+    /**
+     * @dataProvider providerDmsToDecimal
+     */
+    public function testDmsToDecimal($dms, $decimalActual)
+    {
+        $decimalExpected = Math::dmsToDecimal($dms);
+        $this->assertEquals($decimalExpected, $decimalActual);
+    }
     
+    public function providerDmsToDecimal()
+    {
+        return [
+            [['d' => 13, 'm' => 20], 13.333333333333],
+            [['d' => -13, 'm' => 20], -13.333333333333],
+            [['d' => 26, 'm' => -80], -27.333333333333],
+            [['d' => 26, 'm' => 0, 's' => 60], 26.016666666667],
+            [['d' => -13, 'm' => -20, 's' => -60], -13.35],
+        ];
+    }
+    
+    /**
+     * @dataProvider providerDecimalToDms
+     */
+    public function testDecimalToDms($decimal, $dmsActual)
+    {
+        $dmsExpected = Math::decimalToDms($decimal);
+        $this->assertEquals($dmsExpected, $dmsActual);
+    }
+    
+    public function providerDecimalToDms()
+    {
+        return [
+            [13.3333333333333333, ['d' => 13, 'm' => 20]],
+            [-13.3333333333333333, ['d' => -13, 'm' => 20]],
+            [26.0166666666666667, ['d' => 26, 'm' => 1]],
+            [-13.35, ['d' => -13, 'm' => 21]],
+        ];
+    }
+
     public function testNumberInCycle()
     {
         for ($i = -13; $i <= 13; $i++){

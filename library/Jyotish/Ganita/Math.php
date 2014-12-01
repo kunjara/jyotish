@@ -39,10 +39,18 @@ class Math {
     static public function decimalToDms($decimal)
     {
         $x = abs($decimal);
-        $result['d'] = floor($x);
+        $result['d'] = (int)floor($x);
+        
         $x = ($x - $result['d']) * 60; 
-        $result['m'] = floor($x);  
-        $result['s'] = ($x - $result['m']) * 60;
+        $result['m'] = (int)floor($x);
+        
+        $result['s'] = round(($x - $result['m']) * 60, 10);
+        if($result['s'] == 0){
+            unset($result['s']);
+        }elseif($result['s'] == 60){
+            $result['m'] += 1;
+            unset($result['s']);
+        }
 
         if ($decimal < 0) {
             if ($result['d'] != 0) $result['d'] *= -1; 
