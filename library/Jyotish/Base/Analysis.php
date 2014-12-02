@@ -17,6 +17,15 @@ use Jyotish\Tattva\Karaka;
  */
 class Analysis {
     /**
+     * Parashara system
+     */
+    const SYSTEM_PARASHARA = 'parashara';
+    /**
+     * Jaimini system
+     */
+    const SYSTEM_JAIMINI = 'jaimini';
+    
+    /**
      * Analyzed data.
      * 
      * @var array
@@ -60,26 +69,36 @@ class Analysis {
      * @param bool $reverse
      * @return array
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 32, Verse 13-17.
+     * @see Maharishi Jaimini. Jaimini Upadesha Sutras. Chapter 1, Quarter 1, Verse 11-18
      */
-    public function getCharaKaraka($reverse = false)
+    public function getCharaKaraka($reverse = false, $system = self::SYSTEM_PARASHARA)
     {
         $grahas = $this->ganitaData['graha'];
         unset($grahas[Graha::KEY_KE]);
-        $grahas[Graha::KEY_RA]['degree'] = 30 - $grahas[Graha::KEY_RA]['degree'];
+        switch($system){
+            case self::SYSTEM_JAIMINI:
+                unset($grahas[Graha::KEY_RA]);
+                break;
+            case self::SYSTEM_PARASHARA:
+            default:
+                $grahas[Graha::KEY_RA]['degree'] = 30 - $grahas[Graha::KEY_RA]['degree'];
+        }
 
         uasort($grahas, 
             function ($d1, $d2){
                 if($d1['degree'] == $d2['degree']) {
                     return 0;
                 }else{
-                    return ($d1['degree'] < $d2['degree']) ? -1 : 1;
+                    return ($d1['degree'] < $d2['degree']) ? 1 : -1;
                 }
             }
         );
+        
         $i = 0;
+        $karakas = Karaka::karakaList($system);
         foreach($grahas as $key => $data){
+            $grahaKaraka[$key] = $karakas[$i];
             $i += 1;
-            $grahaKaraka[$key] = Karaka::$karaka[$i];
         }
 
         if($reverse){
@@ -98,7 +117,7 @@ class Analysis {
     public function getKarakamsha()
     {
         $d9Data = $this->getVargaData();
-        $atmaKaraka = $this->getCharaKaraka(true)[Karaka::KARAKA_ATMA];
+        $atmaKaraka = $this->getCharaKaraka(true)[Karaka::NAME_ATMA];
 
         return $d9Data['graha'][$atmaKaraka]['rashi'];
     }

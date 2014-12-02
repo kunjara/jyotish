@@ -6,6 +6,8 @@
 
 namespace Jyotish\Tattva;
 
+use Jyotish\Base\Analysis;
+
 /**
  * Class of karaka data.
  *
@@ -15,49 +17,66 @@ class Karaka {
     /**
      * Own self
      */
-    const KARAKA_ATMA    = 'Atmakaraka';
+    const NAME_ATMA = 'Atmakaraka';
     /**
      * Advisor
      */
-    const KARAKA_AMATYA  = 'Amatyakaraka';
+    const NAME_AMATYA = 'Amatyakaraka';
     /**
      * Brothers and sisters
      */
-    const KARAKA_BHRATRU = 'Bhratrukaraka';
+    const NAME_BHRATRU = 'Bhratrukaraka';
     /**
      * Mother
      */
-    const KARAKA_MATRU   = 'Matrukaraka';
+    const NAME_MATRU = 'Matrukaraka';
     /**
      * Father
      */
-    const KARAKA_PITRU   = 'Pitrukaraka';
+    const NAME_PITRU = 'Pitrukaraka';
     /**
      * Children
      */
-    const KARAKA_PUTRA   = 'Putrakaraka';
+    const NAME_PUTRA = 'Putrakaraka';
     /**
      * Cousins and relations
      */
-    const KARAKA_GNATI   = 'Gnatikaraka';
+    const NAME_GNATI = 'Gnatikaraka';
     /**
      * Husband, wife
      */
-    const KARAKA_DARA    = 'Darakaraka';
+    const NAME_DARA = 'Darakaraka';
 
     /**
-     * List of karakas.
+     * List of all karakas.
      * 
      * @var array
      */
-    public static $karaka = array(
-        1 => self::KARAKA_DARA,
-        2 => self::KARAKA_GNATI,
-        3 => self::KARAKA_PUTRA,
-        4 => self::KARAKA_PITRU,
-        5 => self::KARAKA_MATRU,
-        6 => self::KARAKA_BHRATRU,
-        7 => self::KARAKA_AMATYA,
-        8 => self::KARAKA_ATMA,
+    static public $karaka = array(
+        self::NAME_ATMA,
+        self::NAME_AMATYA,
+        self::NAME_BHRATRU,
+        self::NAME_MATRU,
+        self::NAME_PITRU,
+        self::NAME_PUTRA,
+        self::NAME_GNATI,
+        self::NAME_DARA,
     );
+    
+    /**
+     * Get list of karakas depending on the system.
+     * 
+     * @param string $system
+     * @return array
+     */
+    static public function karakaList($system = Analysis::SYSTEM_PARASHARA)
+    {
+        $list = self::$karaka;
+        
+        if($system == Analysis::SYSTEM_JAIMINI){
+            unset($list[4]);
+            $list = array_values($list);
+        }
+        return $list;
+    }
 }
