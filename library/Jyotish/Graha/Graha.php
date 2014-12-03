@@ -93,6 +93,10 @@ class Graha {
     const RISING_NOREFRAC   = 'norefrac';
     const RISING_DISCCENTER = 'disccenter';
     const RISING_HINDU      = 'hindu';
+    
+    const LIST_NAVA  = 'nava';
+    const LIST_SAPTA = 'sapta';
+    const LIST_CHAYA = 'chaya';
 
     /**
      * List of Grahas.
@@ -212,5 +216,27 @@ class Graha {
         $add = ($relation1 < 0 or $relation2 < 0) ? 2 : 3;
 
         return $relation1 + $relation2 + $add;
+    }
+    
+    /**
+     * Get list of grahas.
+     * 
+     * @param string $option
+     * @return array
+     */
+    static public function grahaList($option = self::LIST_NAVA)
+    {
+        switch ($option){
+            case self::LIST_SAPTA:
+                $list = array_slice(self::$graha, 0, 7);
+                break;
+            case self::LIST_CHAYA:
+                $list = array_slice(self::$graha, 7);
+                break;
+            case self::LIST_NAVA:
+            default:
+                $list = self::$graha;
+        }
+        return $list;
     }
 }

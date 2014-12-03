@@ -79,11 +79,8 @@ class BhavaObject extends Object {
            $mitraRashi[$rashi] = $distance;
        }
        
-       $grahas = Graha::$graha;
-       if($withoutChaya){
-            unset($grahas[Graha::KEY_RA]);
-            unset($grahas[Graha::KEY_KE]); 
-       }
+       $listOption = $withoutChaya ? Graha::LIST_SAPTA : Graha::LIST_NAVA;
+       $grahas = Graha::grahaList($listOption);
        
        foreach ($grahas as $key => $name){
            $rashi = $this->ganitaData['graha'][$key]['rashi'];
