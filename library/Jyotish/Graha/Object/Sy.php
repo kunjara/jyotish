@@ -171,11 +171,10 @@ class Sy extends GrahaObject {
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 49-50.
      * @see Varahamihira. Brihat Jataka. Chapter 1, Verse 13. 
      */
-    protected $grahaUcha = array
-    (
+    protected $grahaUcha = [
         'rashi' => 1,
         'degree' => 10
-    );
+    ];
 
     /**
      * Graha debilitation.
@@ -184,11 +183,10 @@ class Sy extends GrahaObject {
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 49-50.
      * @see Varahamihira. Brihat Jataka. Chapter 1, Verse 13.
      */
-    protected $grahaNeecha = array
-    (
+    protected $grahaNeecha = [
         'rashi' => 7,
         'degree' => 10
-    );
+    ];
 
     /**
      * Graha mooltrikon.
@@ -197,12 +195,11 @@ class Sy extends GrahaObject {
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 51-54.
      * @see Varahamihira. Brihat Jataka. Chapter 1, Verse 14.
      */
-    protected $grahaMool = array
-    (
+    protected $grahaMool = [
         'rashi' => 5,
         'start' => 0,
         'end' => 20
-    );
+    ];
 
     /**
      * Own sign of the graha.
@@ -210,12 +207,13 @@ class Sy extends GrahaObject {
      * @var array
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 51-54.
      */
-    protected $grahaSwa = array
-    (
-        'rashi' => 5,
-        'start' => 20,
-        'end' => 30
-    );
+    protected $grahaSwa = [
+        [
+            'rashi' => 5,
+            'start' => 20,
+            'end' => 30
+        ]
+    ];
 
     /**
      * Graha disha
@@ -231,8 +229,7 @@ class Sy extends GrahaObject {
      * @var array
      * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 13.
      */
-    protected $grahaDrishti = array
-    (
+    protected $grahaDrishti = [
         1 => 1,
         2 => 0,
         3 => 0.25,
@@ -245,7 +242,7 @@ class Sy extends GrahaObject {
         10 => 0.25,
         11 => 0,
         12 => 0,
-    );
+    ];
 
     /**
      * Prakriti of graha

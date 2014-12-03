@@ -204,7 +204,7 @@ class Ke extends GrahaObject {
                 }
             }
         }else{
-            $this->grahaNaturalRelation = array(
+            $this->grahaNaturalRelation = [
                 Graha::KEY_SY => -1,
                 Graha::KEY_CH => -1,
                 Graha::KEY_MA => 1,
@@ -213,7 +213,7 @@ class Ke extends GrahaObject {
                 Graha::KEY_SK => 1,
                 Graha::KEY_SA => -1,
                 Graha::KEY_RA => -1,
-            );
+            ];
         }
         $this->grahaNaturalRelation[$this->objectKey] = $options['relationSame'] ? 1 : null;
     }

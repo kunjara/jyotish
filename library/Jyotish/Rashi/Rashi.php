@@ -35,19 +35,31 @@ class Rashi {
     /**
      * Ucha (exaltation)
      */
-    const SPECIFIC_UCHA = 'ucha';
+    const GRAHA_UCHA = 'ucha';
     /**
      * Moolatrikona
      */
-    const SPECIFIC_MOOL = 'mool';
+    const GRAHA_MOOL = 'mool';
     /**
      * Swakshetra (own)
      */
-    const SPECIFIC_SWA = 'swa';
+    const GRAHA_SWA = 'swa';
+    /**
+     * Friend
+     */
+    const GRAHA_FRIEND  = 'friend';
+    /**
+     * Neutral
+     */
+    const GRAHA_NEUTRAL = 'neutral';
+    /**
+     * Enemy
+     */
+    const GRAHA_ENEMY   = 'enemy';
     /**
      * Neecha (debilitation)
      */
-    const SPECIFIC_NEECHA = 'neecha';
+    const GRAHA_NEECHA = 'neecha';
     
     const NAME_1 = 'Mesha';
     const NAME_2 = 'Vrishabha';

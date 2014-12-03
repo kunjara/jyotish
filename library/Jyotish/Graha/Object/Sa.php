@@ -173,11 +173,10 @@ class Sa extends GrahaObject {
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 49-50.
      * @see Varahamihira. Brihat Jataka. Chapter 1, Verse 13.
      */
-    protected $grahaUcha = array
-    (
+    protected $grahaUcha = [
         'rashi' => 7,
         'degree' => 20
-    );
+    ];
 
     /**
      * Graha debilitation.
@@ -186,11 +185,10 @@ class Sa extends GrahaObject {
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 49-50.
      * @see Varahamihira. Brihat Jataka. Chapter 1, Verse 13.
      */
-    protected $grahaNeecha = array
-    (
+    protected $grahaNeecha = [
         'rashi' => 1,
         'degree' => 20
-    );
+    ];
 
     /**
      * Graha mooltrikon.
@@ -199,12 +197,11 @@ class Sa extends GrahaObject {
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 51-54.
      * @see Varahamihira. Brihat Jataka. Chapter 1, Verse 14.
      */
-    protected $grahaMool = array
-    (
+    protected $grahaMool = [
         'rashi' => 11,
         'start' => 0,
         'end' => 20
-    );
+    ];
 
     /**
      * Own sign of the graha.
@@ -212,21 +209,18 @@ class Sa extends GrahaObject {
      * @var array
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 51-54.
      */
-    protected $grahaSwa = array
-    (
-        'positive' => array
-        (
+    protected $grahaSwa = [
+        'positive' => [
             'rashi' => 11,
             'start' => 20,
             'end' => 30
-        ),
-        'negative' => array
-        (
+        ],
+        'negative' => [
             'rashi' => 10,
             'start' => 0,
             'end' => 30
-        )
-    );
+        ]
+    ];
 
     /**
      * Graha disha
@@ -242,8 +236,7 @@ class Sa extends GrahaObject {
      * @var array
      * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 13.
      */
-    protected $grahaDrishti = array
-    (
+    protected $grahaDrishti = [
         1 => 1,
         2 => 0,
         3 => 1,
@@ -256,7 +249,7 @@ class Sa extends GrahaObject {
         10 => 1,
         11 => 0,
         12 => 0,
-    );
+    ];
 
     /**
      * Prakriti of graha

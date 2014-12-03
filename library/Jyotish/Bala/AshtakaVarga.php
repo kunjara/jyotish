@@ -68,7 +68,7 @@ class AshtakaVarga implements \Iterator {
         Graha::KEY_GU => [5, 6, 9, 11],
         Graha::KEY_SK => [6, 7, 12],
         Graha::KEY_SA => [1, 2, 4, 7, 8, 9, 10, 11],
-        Graha::KEY_LG    => [3, 4, 6, 10, 11, 12]
+        Graha::KEY_LG => [3, 4, 6, 10, 11, 12]
     ];
 
     /**
@@ -85,7 +85,7 @@ class AshtakaVarga implements \Iterator {
         Graha::KEY_GU => [1, 2, 4, 7, 8, 10, 11],
         Graha::KEY_SK => [3, 4, 5, 7, 9, 10, 11],
         Graha::KEY_SA => [3, 5, 6, 11],
-        Graha::KEY_LG    => [3, 6, 10, 11]
+        Graha::KEY_LG => [3, 6, 10, 11]
     ];
 
     /**
@@ -102,7 +102,7 @@ class AshtakaVarga implements \Iterator {
         Graha::KEY_GU => [6, 10, 11, 12],
         Graha::KEY_SK => [6, 8, 11, 12],
         Graha::KEY_SA => [1, 4, 7, 8, 9, 10, 11],
-        Graha::KEY_LG    => [1, 3, 6, 10, 11]
+        Graha::KEY_LG => [1, 3, 6, 10, 11]
     ];
 
     /**
@@ -119,7 +119,7 @@ class AshtakaVarga implements \Iterator {
         Graha::KEY_GU => [6, 8, 11, 12],
         Graha::KEY_SK => [1, 2, 3, 4, 5, 8, 9, 11],
         Graha::KEY_SA => [1, 2, 4, 7, 8, 9, 10, 11],
-        Graha::KEY_LG    => [1, 2, 4, 6, 8, 10, 11]
+        Graha::KEY_LG => [1, 2, 4, 6, 8, 10, 11]
     ];
 
     /**
@@ -136,7 +136,7 @@ class AshtakaVarga implements \Iterator {
         Graha::KEY_GU => [1, 2, 3, 4, 7, 8, 10, 11],
         Graha::KEY_SK => [2, 5, 6, 9, 10, 11],
         Graha::KEY_SA => [3, 5, 6, 12],
-        Graha::KEY_LG    => [1, 2, 4, 5, 6, 7, 9, 10, 11]
+        Graha::KEY_LG => [1, 2, 4, 5, 6, 7, 9, 10, 11]
     ];
 
     /**
@@ -153,7 +153,7 @@ class AshtakaVarga implements \Iterator {
         Graha::KEY_GU => [5, 8, 9, 10, 11],
         Graha::KEY_SK => [1, 2, 3, 4, 5, 8, 9, 10, 11],
         Graha::KEY_SA => [3, 4, 5, 8, 9, 10, 11],
-        Graha::KEY_LG    => [1, 2, 3, 4, 5, 8, 9, 11]
+        Graha::KEY_LG => [1, 2, 3, 4, 5, 8, 9, 11]
     ];
 
     /**
@@ -170,7 +170,7 @@ class AshtakaVarga implements \Iterator {
         Graha::KEY_GU => [5, 6, 11, 12],
         Graha::KEY_SK => [6, 11, 12],
         Graha::KEY_SA => [3, 5, 6, 11],
-        Graha::KEY_LG    => [1, 3, 4, 6, 10, 11]
+        Graha::KEY_LG => [1, 3, 4, 6, 10, 11]
     ];
 
     /**
@@ -187,7 +187,7 @@ class AshtakaVarga implements \Iterator {
         Graha::KEY_GU => [1, 2, 4, 5, 6, 7, 9, 10, 11],
         Graha::KEY_SK => [1, 2, 3, 4, 5, 8, 9],
         Graha::KEY_SA => [1, 3, 4, 6, 10, 11],
-        Graha::KEY_LG    => [3, 6, 10, 11]
+        Graha::KEY_LG => [3, 6, 10, 11]
     ];
 
     /**

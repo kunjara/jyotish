@@ -198,18 +198,18 @@ class Ra extends GrahaObject {
     {
         switch ($options['drishtiRahu']){
             case('srath'):
-                $this->grahaDrishti = array(
+                $this->grahaDrishti = [
                     2 => 1,
                     7 => 1,
                     12 => 1
-                );
+                ];
                 break;
             default:
-                $this->grahaDrishti = array(
+                $this->grahaDrishti = [
                     5 => 1,
                     7 => 1,
                     9 => 1
-                );
+                ];
                 break;
         }
     }
@@ -230,7 +230,7 @@ class Ra extends GrahaObject {
                 }
             }
         }else{
-            $this->grahaNaturalRelation = array(
+            $this->grahaNaturalRelation = [
                 Graha::KEY_SY => -1,
                 Graha::KEY_CH => -1,
                 Graha::KEY_MA => -1,
@@ -239,7 +239,7 @@ class Ra extends GrahaObject {
                 Graha::KEY_SK => 1,
                 Graha::KEY_SA => 1,
                 Graha::KEY_KE => -1,
-            );
+            ];
         }
         $this->grahaNaturalRelation[$this->objectKey] = $options['relationSame'] ? 1 : null;
     }

@@ -267,12 +267,54 @@ class GrahaObject extends Object {
     public function getDispositor()
     {
         $this->checkEnvironment();
-
-        $bhava = $this->getBhava();
-        $Bhava = Bhava::getInstance($bhava);
-        $Bhava->setEnvironment($this->ganitaData);
-
-        return $Bhava->getRuler();
+        
+        $rashi = $this->ganitaData['graha'][$this->objectKey]['rashi'];
+        $Rashi = Rashi::getInstance($rashi);
+        
+        return $Rashi->rashiRuler;;
+    }
+    
+    /**
+     * Get state of the graha, depending on its position in rashi.
+     * 
+     * @return string
+     */
+    public function getRashiAvastha()
+    {
+        $rashi = $this->ganitaData['graha'][$this->objectKey]['rashi'];
+        $degree = $this->ganitaData['graha'][$this->objectKey]['degree'];
+        
+        if($rashi == $this->grahaUcha['rashi']){
+            if($this->objectKey == Graha::KEY_CH or $this->objectKey == Graha::KEY_BU){
+                if($degree >= 0 and $degree < $this->grahaUcha['degree']) return Rashi::GRAHA_UCHA;
+            }else{
+                return Rashi::GRAHA_UCHA;
+            }
+        }
+        
+        if($rashi == $this->grahaNeecha['rashi'])
+            return Rashi::GRAHA_NEECHA;
+        
+        if($rashi == $this->grahaMool['rashi'] and $degree >= $this->grahaMool['start'] and $degree < $this->grahaMool['end'])
+            return Rashi::GRAHA_MOOL;
+        
+        foreach ($this->grahaSwa as $key => $value){
+            if($rashi == $value['rashi'] and $degree >= $value['start'] and $degree < $value['end'])
+                return Rashi::GRAHA_SWA;
+        }
+        
+        $relation = $this->grahaNaturalRelation;
+        $dispositor = $this->getDispositor();
+        switch ($relation[$dispositor]){
+            case 1:
+                return Rashi::GRAHA_FRIEND;
+                break;
+            case 0:
+                return Rashi::GRAHA_NEUTRAL;
+                break;
+            case -1:
+                return Rashi::GRAHA_ENEMY;
+        }
     }
     
     /**
@@ -326,24 +368,17 @@ class GrahaObject extends Object {
     {
         $this->checkEnvironment();
         
-        $gocharaRashi[] = $this->grahaUcha['rashi'];
-        $gocharaRashi[] = $this->grahaMool['rashi'];
-        if(isset($this->grahaSwa['positive'])){
-            $gocharaRashi[]  = $this->grahaSwa['positive']['rashi'];
-            $gocharaRashi[]  = $this->grahaSwa['negative']['rashi'];
-        }else{
-            $gocharaRashi[]  = $this->grahaSwa['rashi'];
-        }
+        $rashiAvastha = $this->getRashiAvastha();
         
-        $gocharaRashi = array_unique($gocharaRashi);
-        $grahaInGochara = in_array($this->objectRashi, $gocharaRashi) ? true : false;
+        $avasthaGochara = [Rashi::GRAHA_UCHA, Rashi::GRAHA_MOOL, Rashi::GRAHA_SWA];
+        $grahaInGochara = in_array($rashiAvastha, $avasthaGochara) ? true : false;
         
         $bhavaDusthana = Bhava::$bhavaDusthana;
         $grahaInDusthana = in_array($this->getBhava(), $bhavaDusthana) ? true : false;
         
         $grahaIsAstangata = $this->isAstangata();
         
-        $grahaInNeecha = $this->grahaNeecha['rashi'] == $this->ganitaData['graha'][$this->objectKey]['rashi'] ? true : false;
+        $grahaInNeecha = $rashiAvastha == Rashi::GRAHA_NEECHA ? true : false;
         
         if($grahaInGochara)
             if(!$grahaIsAstangata and !$grahaInDusthana) 
@@ -357,7 +392,7 @@ class GrahaObject extends Object {
         
         return $result;
     }
-
+    
     /**
      * Set alternative graha names.
      */
@@ -430,10 +465,24 @@ class GrahaObject extends Object {
      */
     protected function setGrahaSpecificRashi(array $specificRashi)
     {
-        $this->grahaUcha = ['rashi' => $specificRashi['ucha']];
-        $this->grahaMool = ['rashi' => $specificRashi['mool']];
-        $this->grahaSwa = ['rashi' => $specificRashi['swa']];
-        $this->grahaNeecha = ['rashi' => $specificRashi['neecha']];
+        $this->grahaUcha   = [
+            'rashi' => $specificRashi['ucha']
+        ];
+        $this->grahaMool   = [
+            'rashi' => $specificRashi['mool'],
+            'start' => 0,
+            'end'   => 30
+        ];
+        $this->grahaSwa    = [
+            [
+                'rashi' => $specificRashi['swa'],
+                'start' => 0,
+                'end'   => 30
+            ]
+        ];
+        $this->grahaNeecha = [
+            'rashi' => $specificRashi['neecha']
+        ];
     }
 
     /**
