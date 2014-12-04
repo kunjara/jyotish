@@ -223,6 +223,7 @@ class GrahaObject extends Object {
      * Graha drishti
      * 
      * @var array
+     * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 26, Verse 2-5.
      * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 13.
      */
     protected $grahaDrishti = array();

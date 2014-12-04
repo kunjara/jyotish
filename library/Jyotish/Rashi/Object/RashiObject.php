@@ -142,6 +142,14 @@ class RashiObject extends Object {
      * @see Kalyana Varma. Saravali. Chapter 3, Verse 11.
      */
     protected $rashiRuler;
+    
+    /**
+     * Drishti of rashi.
+     * 
+     * @var array
+     * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 8, Verse 1-3.
+     */
+    protected $rashiDrishti;
 
     /**
      * Set rashi bhava.
@@ -163,6 +171,29 @@ class RashiObject extends Object {
         }
     }
     
+    /**
+     * Set rashi drishti.
+     * 
+     * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 8, Verse 1-3.
+     */
+    protected function setRashiDrishti()
+    {
+        switch($this->rashiBhava){
+            case Rashi::BHAVA_CHARA:
+                $drishti = array_diff([2, 5, 8, 11], [$this->objectKey + 1]);
+                break;
+            case Rashi::BHAVA_STHIRA:
+                $drishti = array_diff([1, 4, 7, 10], [$this->objectKey - 1]);
+                break;
+            case Rashi::BHAVA_DVISVA:
+                $drishti = array_diff([3, 6, 9, 12], [$this->objectKey]);
+        }
+        foreach ($drishti as $num => $rashi){
+           $result[$rashi] = 1;
+        }
+        $this->rashiDrishti = $result;
+    }
+
     /**
      * Set rashi gender.
      * 
@@ -207,6 +238,7 @@ class RashiObject extends Object {
         parent::__construct($options);
         
         $this->setRashiBhava();
+        $this->setRashiDrishti();
         $this->setRashiGender();
         $this->setRashiDisha();
     }

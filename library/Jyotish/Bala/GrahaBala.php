@@ -46,6 +46,24 @@ class GrahaBala extends Analysis {
         self::VARGA_AMSHA,
         self::VARGA_KENDRADI,
     );
+    
+    /**
+     * Constructor
+     * 
+     * @param array $ganitaData
+     */
+    public function __construct($ganitaData)
+    {
+        parent::__construct($ganitaData);
+        $this->balaGraha = Graha::grahaList(Graha::LIST_SAPTA);
+        
+        $this->bala['total'] = [];
+        foreach ($this->balaVarga as $varga){
+            $balaVarga = 'bala'.ucfirst($varga);
+            $this->bala[$varga] = $this->$balaVarga();
+            $this->bala['total'] = Math::arraySum($this->bala[$varga], $this->bala['total']);
+        }
+    }
 
     /**
      * This kind of strength is based on the planets placed in different houses 
@@ -130,19 +148,11 @@ class GrahaBala extends Analysis {
         return $bala;
     }
     
-    public function __construct($ganitaData)
-    {
-        parent::__construct($ganitaData);
-        $this->balaGraha = Graha::grahaList(Graha::LIST_SAPTA);
-        
-        $this->bala['total'] = [];
-        foreach ($this->balaVarga as $varga){
-            $balaVarga = 'bala'.ucfirst($varga);
-            $this->bala[$varga] = $this->$balaVarga();
-            $this->bala['total'] = Math::arraySum($this->bala[$varga], $this->bala['total']);
-        }
-    }
-    
+    /**
+     * Get graha bala.
+     * 
+     * @return array
+     */
     public function getBala()
     {
         return $this->bala;
