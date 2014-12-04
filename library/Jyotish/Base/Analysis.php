@@ -67,6 +67,7 @@ class Analysis {
      * Get chara karaka.
      * 
      * @param bool $reverse
+     * @param string $system Jyotish system
      * @return array
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 32, Verse 13-17.
      * @see Maharishi Jaimini. Jaimini Upadesha Sutras. Chapter 1, Quarter 1, Verse 11-18
