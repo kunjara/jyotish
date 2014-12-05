@@ -7,6 +7,7 @@
 namespace Jyotish\Base;
 
 use Jyotish\Graha\Graha;
+use Jyotish\Rashi\Rashi;
 use Jyotish\Ganita\Math;
 
 /**
@@ -145,6 +146,35 @@ class Object {
                 $this->objectRashi
             );
             $isAspected[$key] = isset($grahaDrishti[$distanse]) ? $grahaDrishti[$distanse] : null;
+        }
+        return $isAspected;
+    }
+    
+    /**
+     * Get aspect by rashis.
+     * 
+     * @return array
+     */
+    public function isAspectedByRashi()
+    {
+        $this->checkEnvironment();
+        
+        foreach (Rashi::$rashi as $key => $name){
+            if($key == $this->objectKey) continue;
+            
+            $Rashi = Rashi::getInstance($key);
+            $rashiDrishti = $Rashi->rashiDrishti;
+            
+            if(isset($rashiDrishti[$this->objectRashi])){
+                $isAspected['rashi'][$key] = $rashiDrishti[$this->objectRashi];
+            }
+        }
+        
+        foreach (Graha::$graha as $key => $name){
+            $grahaRashi = $this->ganitaData['graha'][$key]['rashi'];
+            if(array_key_exists($grahaRashi, $isAspected['rashi'])){
+                $isAspected['graha'][$key] = 1;
+            }
         }
         return $isAspected;
     }
