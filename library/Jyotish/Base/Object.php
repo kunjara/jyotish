@@ -170,6 +170,7 @@ class Object {
             }
         }
         
+        $isAspected['graha'] = [];
         foreach (Graha::$graha as $key => $name){
             $grahaRashi = $this->ganitaData['graha'][$key]['rashi'];
             if(array_key_exists($grahaRashi, $isAspected['rashi'])){
