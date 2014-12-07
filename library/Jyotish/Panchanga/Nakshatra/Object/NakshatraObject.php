@@ -36,6 +36,14 @@ class NakshatraObject {
     protected $nakshatraKey;
 
     /**
+     * The number of taras (stars) of the nakshatra.
+     * 
+     * @var int
+     * @see Varahamihira. Brihat Samhita. Chapter 98, Verse 1-3.
+     */
+    protected $nakshatraTara;
+
+    /**
      * Deva of nakshatra.
      * 
      * @var mixed
@@ -57,7 +65,7 @@ class NakshatraObject {
      * @var string
      * @see Satyacharya. Satya Jatakam. Chapter 1, Verse 9.
      */
-    protected $nakshatraGraha;
+    protected $nakshatraRuler;
 
     /**
      * Devanagari nakshatra title in transliteration.

@@ -51,7 +51,7 @@ class N28 extends NakshatraObject {
      * 
      * @var string
      */
-    protected $nakshatraGraha = null;
+    protected $nakshatraRuler = null;
 
     protected $nakshatraEnergy = null;
     protected $nakshatraGana = Manusha::GANA_DEVA;

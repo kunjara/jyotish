@@ -34,6 +34,14 @@ class N27 extends NakshatraObject {
      * @see Jyotish\Alphabet\Devanagari
      */
     protected $nakshatraTranslit = ['ra','e','va','ta','ii'];
+    
+    /**
+     * The number of taras (stars) of the nakshatra.
+     * 
+     * @var int
+     * @see Varahamihira. Brihat Samhita. Chapter 98, Verse 1-3.
+     */
+    protected $nakshatraTara = 32;
 
     /**
      * Deva of nakshatra.
@@ -57,7 +65,7 @@ class N27 extends NakshatraObject {
      * @var string
      * @see Satyacharya. Satya Jatakam. Chapter 1, Verse 9.
      */
-    protected $nakshatraGraha = Graha::KEY_BU;
+    protected $nakshatraRuler = Graha::KEY_BU;
 
     protected $nakshatraEnergy = Nakshatra::ENERGY_LAYA;
     protected $nakshatraGana = Manusha::GANA_DEVA;

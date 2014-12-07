@@ -34,6 +34,14 @@ class N20 extends NakshatraObject {
      * @see Jyotish\Alphabet\Devanagari
      */
     protected $nakshatraTranslit = ['pa','uu','ra','virama','va','aa','ssa','aa','ddha','aa'];
+    
+    /**
+     * The number of taras (stars) of the nakshatra.
+     * 
+     * @var int
+     * @see Varahamihira. Brihat Samhita. Chapter 98, Verse 1-3.
+     */
+    protected $nakshatraTara = 2;
 
     /**
      * Deva of nakshatra.
@@ -57,7 +65,7 @@ class N20 extends NakshatraObject {
      * @var string
      * @see Satyacharya. Satya Jatakam. Chapter 1, Verse 9.
      */
-    protected $nakshatraGraha = Graha::KEY_SK;
+    protected $nakshatraRuler = Graha::KEY_SK;
 
     protected $nakshatraEnergy = Nakshatra::ENERGY_STHITI;
     protected $nakshatraGana = Manusha::GANA_MANUSHA;

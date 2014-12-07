@@ -34,6 +34,14 @@ class N14 extends NakshatraObject {
      * @see Jyotish\Alphabet\Devanagari
      */
     protected $nakshatraTranslit = ['ca','i','ta','virama','ra','aa'];
+    
+    /**
+     * The number of taras (stars) of the nakshatra.
+     * 
+     * @var int
+     * @see Varahamihira. Brihat Samhita. Chapter 98, Verse 1-3.
+     */
+    protected $nakshatraTara = 1;
 
     /**
      * Deva of nakshatra.
@@ -57,7 +65,7 @@ class N14 extends NakshatraObject {
      * @var string
      * @see Satyacharya. Satya Jatakam. Chapter 1, Verse 9.
      */
-    protected $nakshatraGraha = Graha::KEY_MA;
+    protected $nakshatraRuler = Graha::KEY_MA;
 
     protected $nakshatraEnergy = Nakshatra::ENERGY_STHITI;
     protected $nakshatraGana = Manusha::GANA_RAKSHASA;
