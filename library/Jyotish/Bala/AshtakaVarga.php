@@ -16,7 +16,7 @@ use Jyotish\Ganita\Math;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class AshtakaVarga implements \Iterator {
+class AshtakaVarga {
     
     use \Jyotish\Base\DataTrait;
 
@@ -237,55 +237,5 @@ class AshtakaVarga implements \Iterator {
             if($varga != Graha::KEY_LG)
                 $this->sarvAshtakavarga = Math::arraySum($this->bhinnAshtakavarga[$varga], $this->sarvAshtakavarga);
         }
-    }
-
-    /**
-     * rewind(): defined by Iterator interface.
-     *
-     * @see    Iterator::rewind()
-     * @return void
-     */
-    public function rewind() {
-        $this->position = 0;
-    }
-
-    /**
-     * current(): defined by Iterator interface.
-     *
-     * @see    Iterator::current()
-     * @return mixed
-     */
-    public function current() {
-        return $this->bhinnAshtakavarga[$this->key()];
-    }
-
-    /**
-     * key(): defined by Iterator interface.
-     *
-     * @see    Iterator::key()
-     * @return mixed
-     */
-    public function key() {
-        return $this->ashtakavarga[$this->position];
-    }
-
-    /**
-     * next(): defined by Iterator interface.
-     *
-     * @see    Iterator::next()
-     * @return void
-     */
-    public function next() {
-        ++$this->position;
-    }
-
-    /**
-     * valid(): defined by Iterator interface.
-     *
-     * @see    Iterator::valid()
-     * @return bool
-     */
-    public function valid() {
-        return isset($this->ashtakavarga[$this->position]);
     }
 }
