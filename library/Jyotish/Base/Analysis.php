@@ -16,6 +16,9 @@ use Jyotish\Tattva\Karaka;
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 class Analysis {
+    
+    use \Jyotish\Base\DataTrait;
+    
     /**
      * Parashara system
      */
@@ -24,13 +27,6 @@ class Analysis {
      * Jaimini system
      */
     const SYSTEM_JAIMINI = 'jaimini';
-    
-    /**
-     * Analyzed data.
-     * 
-     * @var array
-     */
-    protected $ganitaData = array();
 
     /**
      * Varga data.
@@ -44,23 +40,9 @@ class Analysis {
      * Constructor
      * 
      * @param \Jyotish\Base\Data|array $data
-     * @throws Exception\InvalidArgumentException
      */
     public function __construct($data) {
-        if(
-            (is_object($data) && !($data instanceof \Jyotish\Base\Data)) ||
-            (!is_object($data) && !is_array($data))
-        ){
-            throw new Exception\InvalidArgumentException(
-                "Data should be an array or instance of Jyotish\\Base\\Data"
-            );
-        }
-
-        if (is_object($data)) {
-            $this->ganitaData = $data->getData();
-        }else{
-            $this->ganitaData = $data;
-        }
+        $this->setData($data);
     }
 
     /**
@@ -141,10 +123,12 @@ class Analysis {
      * @param string $varga
      * @return array
      */
-    public function getVargaData($varga = 'd9')
+    public function getVargaData($varga = 'D9')
     {
         $v = strtoupper($varga);
         if(!isset($this->vargaData[$v])){
+            if($varga == 'D1') return $this->ganitaData;
+            
             $Varga = Varga::getInstance(($v));
             $this->vargaData[$v] = $Varga->getVargaData($this->ganitaData);
         }

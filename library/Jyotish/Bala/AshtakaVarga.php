@@ -17,12 +17,8 @@ use Jyotish\Ganita\Math;
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 class AshtakaVarga implements \Iterator {
-    /**
-     * Array of ganita data.
-     * 
-     * @var array
-     */
-    protected $ganitaData = array();
+    
+    use \Jyotish\Base\DataTrait;
 
     /**
      * Bhinnashtakavarga (Prashtarashtakavarga) of 7 grahas and lagna.
@@ -214,9 +210,9 @@ class AshtakaVarga implements \Iterator {
         }
     }
 
-    public function __construct($ganitaData)
+    public function __construct($data)
     {
-        $this->ganitaData = $ganitaData;
+        $this->setData($data);
         $this->rewind();
 
         foreach($this->ashtakavarga as $varga){
