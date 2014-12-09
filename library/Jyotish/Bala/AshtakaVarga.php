@@ -213,7 +213,6 @@ class AshtakaVarga {
     public function __construct($data)
     {
         $this->setData($data);
-        $this->rewind();
 
         foreach($this->ashtakavarga as $varga){
             $binduVarga = 'bindu'.$varga;
