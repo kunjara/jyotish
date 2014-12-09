@@ -185,20 +185,20 @@ class Object {
      * 
      * @return array
      */
-    public function isConnected()
+    public function isConjuncted()
     {
         $this->checkEnvironment();
 
-        $isConnected = array();
+        $isConjuncted = array();
 
         foreach (Graha::$graha as $key => $name){
             if($key == $this->objectKey) continue;
 
             if($this->ganitaData['graha'][$key]['rashi'] == $this->objectRashi){
-                $isConnected[$key] = $name;
+                $isConjuncted[$key] = $name;
             }
         }
-        return $isConnected;
+        return $isConjuncted;
     }
 
     /**
