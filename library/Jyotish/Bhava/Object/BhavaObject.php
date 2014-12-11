@@ -6,7 +6,6 @@
 
 namespace Jyotish\Bhava\Object;
 
-use Jyotish\Base\Object;
 use Jyotish\Graha\Graha;
 use Jyotish\Rashi\Rashi;
 use Jyotish\Ganita\Math;
@@ -16,7 +15,7 @@ use Jyotish\Ganita\Math;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class BhavaObject extends Object {
+class BhavaObject extends \Jyotish\Base\Object {
     /**
      * Object type
      * 

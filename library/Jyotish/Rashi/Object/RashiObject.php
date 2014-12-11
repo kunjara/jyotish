@@ -7,16 +7,16 @@
 namespace Jyotish\Rashi\Object;
 
 use Jyotish\Rashi\Rashi;
-use Jyotish\Base\Object;
 use Jyotish\Tattva\Maha;
 use Jyotish\Tattva\Jiva;
+use Jyotish\Ganita\Math;
 
 /**
  * Parent class for rashi objects.
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class RashiObject extends Object {
+class RashiObject extends \Jyotish\Base\Object {
     /**
      * Options of rashi object.
      * 
@@ -150,6 +150,15 @@ class RashiObject extends Object {
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 8, Verse 1-3.
      */
     protected $rashiDrishti;
+    
+    /**
+     * The sign in the eleventh from chara rashis (movable signs), ninth from 
+     * sthira rashis (fixed signs) and seventh from dvisva rashis (dual signs) 
+     * are their badhasthanas (places of obstrunction).
+     * 
+     * @var int
+     */
+    protected $rashiBadhaksthana;
 
     /**
      * Set rashi bhava.
@@ -172,26 +181,33 @@ class RashiObject extends Object {
     }
     
     /**
-     * Set rashi drishti.
+     * Set rashi drishti and badhaksthana.
      * 
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 8, Verse 1-3.
      */
-    protected function setRashiDrishti()
+    protected function setRashiDrishtiBadhaksthana()
     {
         switch($this->rashiBhava){
             case Rashi::BHAVA_CHARA:
-                $drishti = array_diff([2, 5, 8, 11], [$this->objectKey + 1]);
+                $rashis = array_diff([2, 5, 8, 11], [$this->objectKey + 1]);
+                $badhak = 11;
                 break;
             case Rashi::BHAVA_STHIRA:
-                $drishti = array_diff([1, 4, 7, 10], [$this->objectKey - 1]);
+                $rashis = array_diff([1, 4, 7, 10], [$this->objectKey - 1]);
+                $badhak = 9;
                 break;
             case Rashi::BHAVA_DVISVA:
-                $drishti = array_diff([3, 6, 9, 12], [$this->objectKey]);
+                $rashis = array_diff([3, 6, 9, 12], [$this->objectKey]);
+                $badhak = 7;
         }
-        foreach ($drishti as $num => $rashi){
-           $result[$rashi] = 1;
+        
+        foreach ($rashis as $rashi){
+           $drishti[$rashi] = 1;
         }
-        $this->rashiDrishti = $result;
+        $badhaksthana = Math::numberInCycle($this->objectKey, $badhak);
+        
+        $this->rashiDrishti = $drishti;
+        $this->rashiBadhaksthana = $badhaksthana;
     }
 
     /**
@@ -238,7 +254,7 @@ class RashiObject extends Object {
         parent::__construct($options);
         
         $this->setRashiBhava();
-        $this->setRashiDrishti();
+        $this->setRashiDrishtiBadhaksthana();
         $this->setRashiGender();
         $this->setRashiDisha();
     }

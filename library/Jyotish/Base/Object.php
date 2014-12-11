@@ -181,7 +181,7 @@ class Object {
     }
 
     /**
-     * Get connection with other grahas.
+     * Get conjunct with other grahas.
      * 
      * @return array
      */
