@@ -43,7 +43,7 @@ class Dhana extends YogaBase {
         'BuInLgPacGuSa',
         'GuInLgPacMaBu',
         'SkInLgPacBuSa',
-        'SaInLgPacMaGu'
+        'SaInLgPacMaGu',
     ];
     
     /**

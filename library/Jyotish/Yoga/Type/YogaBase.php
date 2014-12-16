@@ -6,6 +6,9 @@
 
 namespace Jyotish\Yoga\Type;
 
+use Jyotish\Graha\Graha;
+use Jyotish\Rashi\Rashi;
+
 /**
  * Base class for yoga combinations.
  *
@@ -34,6 +37,89 @@ class YogaBase implements \Iterator, \Countable{
      */
     public function __construct($data) {
         $this->setData($data);
+    }
+    
+    /**
+     * Whether parivarthana yoga.
+     * 
+     * @param string $graha1 Key of graha
+     * @param string $graha2 Key of graha
+     * @return boolean
+     */
+    public function yogaParivarthana($graha1, $graha2)
+    {
+        $Graha1 = Graha::getInstance($graha1);
+        $Graha2 = Graha::getInstance($graha2);
+        foreach ($Graha1->grahaSwa as $key => $data) $rashi1Swa[] = $data['rashi']; 
+        foreach ($Graha2->grahaSwa as $key => $data) $rashi2Swa[] = $data['rashi']; 
+        
+        if(
+            in_array($this->ganitaData['graha'][$graha1]['rashi'], $rashi2Swa) and
+            in_array($this->ganitaData['graha'][$graha2]['rashi'], $rashi1Swa)
+        )
+            return true;
+        else
+            return false;
+    }
+    
+    /**
+     * If the lord of a kendras establishes relationship with a trikonas lord, 
+     * a Rajayoga will obtain.
+     * 
+     * @return boolean
+     * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 41, Verse 28.
+     */
+    public function yogaRaja()
+    {
+        $bhavaRulers = function(array $bavas){
+            foreach ($bavas as $bhava){
+                $Rashi = Rashi::getInstance($this->ganitaData['bhava'][$bhava]['rashi']);
+                $rulers[] = $Rashi->rashiRuler;
+            }
+            $rulers = array_unique($rulers);
+            return $rulers;
+        };
+        
+        $kendraRulers = $bhavaRulers(Bhava::$bhavaKendra);
+        $trikonaRulers = $bhavaRulers(Bhava::$bhavaTrikona);
+        
+        foreach ($kendraRulers as $kendraRuler){
+            foreach ($trikonaRulers as $trikonaRuler){
+                $KendraRuler = Graha::getInstance($kendraRuler);
+                $KendraRuler->setEnvironment($this->ganitaData);
+                $TrikonaRuler = Graha::getInstance($trikonaRuler);
+                $TrikonaRuler->setEnvironment($this->ganitaData);
+                
+                // Parivarthana
+                if($this->yogaParivarthana($kendraRuler, $trikonaRuler)){
+                    $isParivarthana = true;
+                    break;
+                }
+                
+                // Conjunct
+                $kendraRulerIsConjuncted = $KendraRuler->isConjuncted();
+                if(isset($kendraRulerIsConjuncted[$trikonaRuler])){
+                    $isConjuncted = true;
+                    break;
+                }
+                
+                // Ascpect
+                $kendraRulerIsAspected = $KendraRuler->isAspectedByGraha();
+                $trikonaRulerIsAspected = $TrikonaRuler->isAspectedByGraha();
+                if(
+                    $kendraRulerIsAspected[$trikonaRuler] == 1 and
+                    $trikonaRulerIsAspected[$kendraRuler] == 1
+                ){
+                    $isAspected = true;
+                    break;
+                }
+            }
+        }
+        
+        if($isParivarthana or $isConjuncted or $isAspected)
+            return true;
+        else
+            return false;
     }
 
     /**
@@ -96,5 +182,4 @@ class YogaBase implements \Iterator, \Countable{
     {
         return count($this->yogas);
     }
-    
 }
