@@ -7,6 +7,7 @@
 namespace Jyotish\Base;
 
 use Jyotish\Graha\Graha;
+use Jyotish\Rashi\Rashi;
 use Jyotish\Varga\Varga;
 use Jyotish\Tattva\Karaka;
 
@@ -133,5 +134,21 @@ class Analysis {
             $this->vargaData[$v] = $Varga->getVargaData($this->ganitaData);
         }
         return $this->vargaData[$v];
+    }
+    
+    /**
+     * Get rulers of bhavas.
+     * 
+     * @param array $bhavas
+     * @return array
+     */
+    public function getBhavaRulers(array $bhavas)
+    {
+        foreach ($bhavas as $bhava){
+            $Rashi = Rashi::getInstance($this->ganitaData['bhava'][$bhava]['rashi']);
+            $rulers[] = $Rashi->rashiRuler;
+        }
+        $rulers = array_unique($rulers);
+        return $rulers;
     }
 }

@@ -7,7 +7,7 @@
 namespace Jyotish\Yoga\Type;
 
 use Jyotish\Graha\Graha;
-use Jyotish\Rashi\Rashi;
+use Jyotish\Base\Analysis;
 
 /**
  * Base class for yoga combinations.
@@ -45,6 +45,7 @@ class YogaBase implements \Iterator, \Countable{
      * @param string $graha1 Key of graha
      * @param string $graha2 Key of graha
      * @return boolean
+     * @see Mantreswara. Phaladeepika. Chapter 6, Verse 32.
      */
     public function yogaParivarthana($graha1, $graha2)
     {
@@ -71,17 +72,10 @@ class YogaBase implements \Iterator, \Countable{
      */
     public function yogaRaja()
     {
-        $bhavaRulers = function(array $bavas){
-            foreach ($bavas as $bhava){
-                $Rashi = Rashi::getInstance($this->ganitaData['bhava'][$bhava]['rashi']);
-                $rulers[] = $Rashi->rashiRuler;
-            }
-            $rulers = array_unique($rulers);
-            return $rulers;
-        };
+        $Analysis = new Analysis($this->ganitaData);
         
-        $kendraRulers = $bhavaRulers(Bhava::$bhavaKendra);
-        $trikonaRulers = $bhavaRulers(Bhava::$bhavaTrikona);
+        $kendraRulers = $Analysis->getBhavaRulers(Bhava::$bhavaKendra);
+        $trikonaRulers = $Analysis->getBhavaRulers(Bhava::$bhavaTrikona);
         
         foreach ($kendraRulers as $kendraRuler){
             foreach ($trikonaRulers as $trikonaRuler){
