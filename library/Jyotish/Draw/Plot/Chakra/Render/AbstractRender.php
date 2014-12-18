@@ -102,8 +102,8 @@ abstract class AbstractRender {
         return $this;
     }
 
-    public function drawChakra($drawData, $leftOffset, $topOffset, $options) {
-        $this->data = $drawData;
+    public function drawChakra($Data, $leftOffset, $topOffset, $options) {
+        $this->data = $Data;
 
         $chakraStyleClass  = 'Jyotish\Draw\Plot\Chakra\Style\\' . ucfirst(strtolower($this->chakraStyle));
         $chakraStyleObject = new $chakraStyleClass();

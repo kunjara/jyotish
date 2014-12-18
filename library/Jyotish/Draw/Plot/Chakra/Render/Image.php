@@ -55,7 +55,7 @@ class Image extends AbstractRender implements \Jyotish\Draw\Renderer\ImageInterf
         );
 
         foreach ($grahaLabelPoints as $graha => $point) {
-            $grahaLabel = $this->data->getGrahaLabel($graha, $this->labelGrahaType, $this->labelGrahaCallback);
+            $grahaLabel = $this->adapter->getGrahaLabel($this->data, $graha, $this->labelGrahaType, $this->labelGrahaCallback);
 
             //$labelBox = imagettfbbox($labelGraha['fontSize'], 0, $labelGraha['fontName'], $label);
             //$labelWidth = $labelBox[2] - $labelBox[0];

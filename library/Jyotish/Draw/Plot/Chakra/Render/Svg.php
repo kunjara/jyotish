@@ -55,7 +55,7 @@ class Svg extends AbstractRender implements \Jyotish\Draw\Renderer\SvgInterface 
         );
 
         foreach ($grahaLabelPoints as $graha => $point) {
-            $grahaLabel = $this->data->getGrahaLabel($graha, $this->labelGrahaType, $this->labelGrahaCallback);
+            $grahaLabel = $this->adapter->getGrahaLabel($this->data, $graha, $this->labelGrahaType, $this->labelGrahaCallback);
 
             $this->adapter->drawText(
                     $grahaLabel, 

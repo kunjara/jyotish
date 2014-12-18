@@ -147,10 +147,6 @@ final class South extends AbstractChakra {
         foreach ($grahas as $graha => $value) {
             $bhava = $value['rashi'];
             if(!isset($offsetSum[$bhava])) $offsetSum[$bhava] = 0;
-            
-            $labelType = isset($labelGraha['labelType']) ? $labelGraha['labelType'] : null;
-            $labelCallback = isset($labelGraha['labelCallback']) ? $labelGraha['labelCallback'] : null;
-            $label = $drawData->getGrahaLabel($graha, $labelType, $labelCallback);
 
             if ($bhava == 1 or $bhava == 11 or $bhava == 12) {
                 $myPoints[$graha]['x'] = self::$_bhavaPoints[$bhava][2] * $ratio + $offsetBorder + $offsetSum[$bhava];

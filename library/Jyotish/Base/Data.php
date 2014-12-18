@@ -7,9 +7,8 @@
 namespace Jyotish\Base;
 
 use Jyotish\Graha\Graha;
-use Jyotish\Graha\Lagna;
 use Jyotish\Bhava\Bhava;
-use Jyotish\Base\Utils;
+use Jyotish\Graha\Lagna;
 use Jyotish\Ganita\Math;
 
 /**
@@ -67,7 +66,7 @@ class Data {
      * 
      * @var array
      */
-    protected $data;
+    protected $ganitaData;
 
     /**
      * Array with values ​​of the rashis in the bhavas.
@@ -99,22 +98,22 @@ class Data {
         $this->checkData($ganitaData);
 
         foreach ($this->dataRequired as $block){
-            foreach($this->data[$block] as $key => $params){
+            foreach($this->ganitaData[$block] as $key => $params){
                 if(!isset($params['rashi'])){
                     $units = Math::partsToUnits($params['longitude']);
-                    $this->data[$block][$key]['rashi'] = $units['units'];
-                    $this->data[$block][$key]['degree'] = $units['parts'];
+                    $this->ganitaData[$block][$key]['rashi'] = $units['units'];
+                    $this->ganitaData[$block][$key]['degree'] = $units['parts'];
                 }
             }
         }
 
-        if(!isset($this->data['bhava'])){
-            $longitude = $this->data['extra'][Graha::KEY_LG]['longitude'];
+        if(!isset($this->ganitaData['bhava'])){
+            $longitude = $this->ganitaData['extra'][Graha::KEY_LG]['longitude'];
             for($b = 1; $b <= 12; $b++){
-                $this->data['bhava'][$b]['longitude'] = $longitude < 360 ? $longitude : $longitude - 360;
-                $units = Math::partsToUnits($this->data['bhava'][$b]['longitude']);
-                $this->data['bhava'][$b]['rashi'] = $units['units'];
-                $this->data['bhava'][$b]['degree'] = $units['parts'];
+                $this->ganitaData['bhava'][$b]['longitude'] = $longitude < 360 ? $longitude : $longitude - 360;
+                $units = Math::partsToUnits($this->ganitaData['bhava'][$b]['longitude']);
+                $this->ganitaData['bhava'][$b]['rashi'] = $units['units'];
+                $this->ganitaData['bhava'][$b]['degree'] = $units['parts'];
                 $longitude += 30;
             }
         }
@@ -154,7 +153,7 @@ class Data {
         foreach ($ganitaData as $block => $value){
             if(defined('self::BLOCK_'.strtoupper($block))){
                 $checkBlock($block, $value);
-                $this->data[$block] = $value;
+                $this->ganitaData[$block] = $value;
             }else{
                 continue;
             }
@@ -167,7 +166,7 @@ class Data {
      */
     public function getData()
     {
-        return $this->data;
+        return $this->ganitaData;
     }
     
     /**
@@ -178,7 +177,7 @@ class Data {
      */
     public function calcExtraLagna(array $lagnas = null)
     {
-        $Lagna = new Lagna($this->data);
+        $Lagna = new Lagna($this->ganitaData);
         
         if(is_null($lagnas)){
             $lagnas = array_keys(Lagna::$lagna);
@@ -189,7 +188,7 @@ class Data {
                 throw new Exception\InvalidArgumentException("Lagna with the key '$key' does not exist.");
             }
             $calcLagna = 'calc'.$key;
-            $this->data['extra'][$key] = $Lagna->$calcLagna();
+            $this->ganitaData['extra'][$key] = $Lagna->$calcLagna();
         }
     }
 
@@ -199,7 +198,7 @@ class Data {
      * @return array
      */
     public function getRashiInBhava() {
-        foreach ($this->data['bhava'] as $bhava => $params) {
+        foreach ($this->ganitaData['bhava'] as $bhava => $params) {
             $rashi = $params['rashi'];
             $this->rashiInBhava[$rashi] = $bhava;
         }
@@ -212,7 +211,7 @@ class Data {
      * @return array
      */
     public function getGrahaInBhava() {
-        foreach ($this->data['graha'] as $graha => $params) {
+        foreach ($this->ganitaData['graha'] as $graha => $params) {
             $rashi = $params['rashi'];
 
             $bhava = $this->rashiInBhava[$rashi];
@@ -232,7 +231,7 @@ class Data {
      * @return array
      */
     public function getGrahaInRashi() {
-        foreach ($this->data['graha'] as $graha => $params) {
+        foreach ($this->ganitaData['graha'] as $graha => $params) {
             $rashi = $params['rashi'];
             $direction = $params['speed'] > 0 ? 1 : -1;
 
@@ -241,49 +240,9 @@ class Data {
                 'direction' => $direction,
             );
         }
-        $this->grahaInRashi[Graha::KEY_LG]['rashi'] = $this->data['extra']['Lg']['rashi'];
+        $this->grahaInRashi[Graha::KEY_LG]['rashi'] = $this->ganitaData['extra']['Lg']['rashi'];
         $this->grahaInRashi[Graha::KEY_LG]['direction'] = 1;
 
         return $this->grahaInRashi;
-    }
-
-    /**
-     * Return graha label.
-     * 
-     * @param string $graha
-     * @param int $labelType
-     * @param string $userFunction
-     * @return string
-     */
-    public function getGrahaLabel($graha, $labelType = 0, $userFunction = null) {
-        $grahas = $this->getGrahaInBhava();
-
-        switch ($labelType) {
-            case 0:
-                $label = $graha;
-                break;
-            case 1:
-                if ($graha != Graha::KEY_LG) {
-                    $grahaObject = Graha::getInstance($graha);
-                    $label = Utils::unicodeToHtml($grahaObject->grahaUnicode);
-                } else {
-                    $label = $graha;
-                }
-                break;
-            case 2:
-                $label = call_user_func($userFunction, $graha);
-                break;
-            default:
-                $label = $graha;
-                break;
-        }
-
-        if ($graha == Graha::KEY_RA or $graha == Graha::KEY_KE or $graha == Graha::KEY_LG) {
-            $grahaLabel = $label;
-        }else{
-            $grahaLabel = $grahas[$graha]['direction'] == 1 ? $label : '(' . $label . ')';
-        }
-        
-        return $grahaLabel;
     }
 }

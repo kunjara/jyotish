@@ -38,13 +38,13 @@ class Draw {
         $this->adapterObject->drawText($text, $x, $y, $options);
     }
 
-    public function drawChakra(Data $drawData, $topOffset = 0, $leftOffset = 0, $options = array()) {
+    public function drawChakra(Data $Data, $topOffset = 0, $leftOffset = 0, $options = array()) {
         $chakraAdapterName = 'Jyotish\Draw\Plot\Chakra\Render\\' . $this->adapter;
         $chakraAdapterObject = new $chakraAdapterName($this->adapterObject);
 
         $this->setOptions($options);
         $chakraAdapterObject->setOptions($options);
-        $chakraAdapterObject->drawChakra($drawData, $topOffset, $leftOffset, $options);
+        $chakraAdapterObject->drawChakra($Data, $topOffset, $leftOffset, $options);
     }
 
     public function render() {

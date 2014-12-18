@@ -6,7 +6,9 @@
 
 namespace Jyotish\Draw\Renderer;
 
-use Jyotish\Draw\Plot\Chakra\AbstractChakra;
+use Jyotish\Graha\Graha;
+use Jyotish\Base\Data;
+use Jyotish\Base\Utils;
 
 /**
  * Abstract class for rendering.
@@ -40,6 +42,46 @@ abstract class AbstractRenderer {
         return null;
     }
 
+    /**
+     * Return graha label.
+     * 
+     * @param string $graha
+     * @param int $labelType
+     * @param string $userFunction
+     * @return string
+     */
+    public function getGrahaLabel(Data $Data, $graha, $labelType = 0, $userFunction = null) {
+        $grahas = $Data->getGrahaInBhava();
+
+        switch ($labelType) {
+            case 0:
+                $label = $graha;
+                break;
+            case 1:
+                if ($graha != Graha::KEY_LG) {
+                    $grahaObject = Graha::getInstance($graha);
+                    $label = Utils::unicodeToHtml($grahaObject->grahaUnicode);
+                } else {
+                    $label = $graha;
+                }
+                break;
+            case 2:
+                $label = call_user_func($userFunction, $graha);
+                break;
+            default:
+                $label = $graha;
+                break;
+        }
+
+        if ($graha == Graha::KEY_RA or $graha == Graha::KEY_KE or $graha == Graha::KEY_LG) {
+            $grahaLabel = $label;
+        }else{
+            $grahaLabel = $grahas[$graha]['direction'] == 1 ? $label : '(' . $label . ')';
+        }
+        
+        return $grahaLabel;
+    }
+    
     public function getResource() {
         return $this->resource;
     }

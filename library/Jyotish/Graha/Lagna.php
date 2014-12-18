@@ -16,6 +16,9 @@ use Jyotish\Rashi\Rashi;
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 class Lagna {
+    
+    use \Jyotish\Base\DataTrait;
+    
     /**
      * Key of Indu lagna
      */
@@ -46,23 +49,9 @@ class Lagna {
      * Constructor
      * 
      * @param \Jyotish\Base\Data|array $data
-     * @throws Exception\InvalidArgumentException
      */
     public function __construct($data) {
-        if(
-            (is_object($data) && !($data instanceof \Jyotish\Base\Data)) ||
-            (!is_object($data) && !is_array($data))
-        ){
-            throw new Exception\InvalidArgumentException(
-                "Data should be an array or instance of Jyotish\\Base\\Data"
-            );
-        }
-
-        if (is_object($data)) {
-            $this->ganitaData = $data->getData();
-        }else{
-            $this->ganitaData = $data;
-        }
+        $this->setData($data);
     }
     
     /**
