@@ -56,6 +56,11 @@ class Data {
         self::BLOCK_USER => ['gender']
     ];
 
+    /**
+     * Required data blocks.
+     * 
+     * @var array
+     */
     protected $dataRequired = [
         self::BLOCK_GRAHA, 
         self::BLOCK_EXTRA
@@ -66,35 +71,29 @@ class Data {
      * 
      * @var array
      */
-    protected $ganitaData;
+    protected $ganitaData = null;
 
     /**
      * Array with values ​​of the rashis in the bhavas.
      * 
      * @var array
      */
-    protected $rashiInBhava = array();
+    protected $rashiInBhava = null;
 
     /**
-     * Array with values ​​of the grahas in the bhavas.
+     * A point taken as the lagna.
      * 
-     * @var array
+     * @var string
      */
-    protected $grahaInBhava = array();
-
-    /**
-     * Array with values ​​of the grahas in the rashis.
-     * 
-     * @var array
-     */
-    protected $grahaInRashi = array();
+    protected $lagna = Graha::KEY_LG;
 
     /**
      * Constructor
      * 
      * @param array $ganitaData
+     * @param int $lagna
      */
-    public function __construct(array $ganitaData) {
+    public function __construct(array $ganitaData, $lagna = Graha::KEY_LG) {
         $this->checkData($ganitaData);
 
         foreach ($this->dataRequired as $block){
@@ -107,23 +106,31 @@ class Data {
             }
         }
 
-        if(!isset($this->ganitaData['bhava'])){
-            $longitude = $this->ganitaData['extra'][Graha::KEY_LG]['longitude'];
+        if(!isset($this->ganitaData[self::BLOCK_BHAVA]) or $this->lagna != $lagna){
+            if(array_key_exists($lagna, Graha::$graha)){
+                $block = self::BLOCK_GRAHA;
+                $this->lagna = $lagna;
+            }else{
+                $block = self::BLOCK_EXTRA;
+                $this->lagna = Graha::KEY_LG;
+            }
+            $this->ganitaData[self::BLOCK_MORE]['lagna'] = $this->lagna;
+            
+            $longitude = $this->ganitaData[$block][$lagna]['longitude'];
             for($b = 1; $b <= 12; $b++){
-                $this->ganitaData['bhava'][$b]['longitude'] = $longitude < 360 ? $longitude : $longitude - 360;
-                $units = Math::partsToUnits($this->ganitaData['bhava'][$b]['longitude']);
-                $this->ganitaData['bhava'][$b]['rashi'] = $units['units'];
-                $this->ganitaData['bhava'][$b]['degree'] = $units['parts'];
+                $this->ganitaData[self::BLOCK_BHAVA][$b]['longitude'] = $longitude < 360 ? $longitude : $longitude - 360;
+                $units = Math::partsToUnits($this->ganitaData[self::BLOCK_BHAVA][$b]['longitude']);
+                $this->ganitaData[self::BLOCK_BHAVA][$b]['rashi'] = $units['units'];
+                $this->ganitaData[self::BLOCK_BHAVA][$b]['degree'] = $units['parts'];
                 $longitude += 30;
             }
         }
-
-        $this->rashiInBhava = $this->getRashiInBhava();
     }
 
     /**
      * Check incoming data.
      * 
+     * @param $ganitaData Data set
      * @throws Exception\InvalidArgumentException
      */
     protected function checkData($ganitaData)
@@ -188,7 +195,7 @@ class Data {
                 throw new Exception\InvalidArgumentException("Lagna with the key '$key' does not exist.");
             }
             $calcLagna = 'calc'.$key;
-            $this->ganitaData['extra'][$key] = $Lagna->$calcLagna();
+            $this->ganitaData[self::BLOCK_EXTRA][$key] = $Lagna->$calcLagna();
         }
     }
 
@@ -198,9 +205,11 @@ class Data {
      * @return array
      */
     public function getRashiInBhava() {
-        foreach ($this->ganitaData['bhava'] as $bhava => $params) {
-            $rashi = $params['rashi'];
-            $this->rashiInBhava[$rashi] = $bhava;
+        if(is_null($this->rashiInBhava)){
+            foreach ($this->ganitaData[self::BLOCK_BHAVA] as $bhava => $params) {
+                $rashi = $params['rashi'];
+                $this->rashiInBhava[$rashi] = $bhava;
+            }
         }
         return $this->rashiInBhava;
     }
@@ -211,18 +220,18 @@ class Data {
      * @return array
      */
     public function getGrahaInBhava() {
-        foreach ($this->ganitaData['graha'] as $graha => $params) {
+        foreach ($this->ganitaData[self::BLOCK_GRAHA] as $graha => $params) {
             $rashi = $params['rashi'];
 
-            $bhava = $this->rashiInBhava[$rashi];
+            $bhava = $this->getRashiInBhava()[$rashi];
             $direction = $params['speed'] > 0 ? 1 : -1;
 
-            $this->grahaInBhava[$graha] = array(
+            $grahaInBhava[$graha] = array(
                 'bhava' => $bhava,
                 'direction' => $direction,
             );
         }
-        return $this->grahaInBhava;
+        return $grahaInBhava;
     }
 
     /**
@@ -231,18 +240,18 @@ class Data {
      * @return array
      */
     public function getGrahaInRashi() {
-        foreach ($this->ganitaData['graha'] as $graha => $params) {
+        foreach ($this->ganitaData[self::BLOCK_GRAHA] as $graha => $params) {
             $rashi = $params['rashi'];
             $direction = $params['speed'] > 0 ? 1 : -1;
 
-            $this->grahaInRashi[$graha] = array(
+            $grahaInRashi[$graha] = array(
                 'rashi' => $rashi,
                 'direction' => $direction,
             );
         }
-        $this->grahaInRashi[Graha::KEY_LG]['rashi'] = $this->ganitaData['extra']['Lg']['rashi'];
-        $this->grahaInRashi[Graha::KEY_LG]['direction'] = 1;
+        $grahaInRashi[Graha::KEY_LG]['rashi'] = $this->ganitaData[self::BLOCK_EXTRA]['Lg']['rashi'];
+        $grahaInRashi[Graha::KEY_LG]['direction'] = 1;
 
-        return $this->grahaInRashi;
+        return $grahaInRashi;
     }
 }
