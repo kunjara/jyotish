@@ -136,8 +136,6 @@ class Object {
         $this->checkEnvironment();
         
         foreach (Graha::$graha as $key => $name){
-            if($key == $this->objectKey) continue;
-
             $Graha = Graha::getInstance($key, $options);
             $grahaDrishti = $Graha->grahaDrishti;
 
@@ -145,7 +143,12 @@ class Object {
                 $this->ganitaData['graha'][$key]['rashi'], 
                 $this->objectRashi
             );
-            $isAspected[$key] = isset($grahaDrishti[$distanse]) ? $grahaDrishti[$distanse] : null;
+            
+            if($key == $this->objectKey or !isset($grahaDrishti[$distanse])) {
+                $isAspected[$key] = null;
+            }else{
+                $isAspected[$key] =  $grahaDrishti[$distanse];
+            }
         }
         return $isAspected;
     }

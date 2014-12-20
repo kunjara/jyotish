@@ -7,6 +7,7 @@
 namespace Jyotish\Yoga\Type;
 
 use Jyotish\Graha\Graha;
+use Jyotish\Bhava\Bhava;
 use Jyotish\Base\Analysis;
 
 /**
@@ -76,6 +77,10 @@ class YogaBase implements \Iterator, \Countable{
         
         $kendraRulers = $Analysis->getBhavaRulers(Bhava::$bhavaKendra);
         $trikonaRulers = $Analysis->getBhavaRulers(Bhava::$bhavaTrikona);
+        
+        $isParivarthana = false;
+        $isConjuncted = false;
+        $isAspected = false;
         
         foreach ($kendraRulers as $kendraRuler){
             foreach ($trikonaRulers as $trikonaRuler){
