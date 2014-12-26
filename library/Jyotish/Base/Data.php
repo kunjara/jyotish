@@ -7,8 +7,8 @@
 namespace Jyotish\Base;
 
 use Jyotish\Graha\Graha;
-use Jyotish\Bhava\Bhava;
 use Jyotish\Graha\Lagna;
+use Jyotish\Bhava\Bhava;
 use Jyotish\Ganita\Math;
 
 /**

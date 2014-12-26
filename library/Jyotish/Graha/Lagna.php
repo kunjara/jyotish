@@ -39,13 +39,6 @@ class Lagna {
     );
     
     /**
-     * Analyzed data.
-     * 
-     * @var array
-     */
-    protected $ganitaData = array();
-    
-    /**
      * Constructor
      * 
      * @param \Jyotish\Base\Data|array $data
