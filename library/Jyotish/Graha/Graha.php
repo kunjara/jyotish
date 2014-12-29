@@ -155,40 +155,26 @@ class Graha {
     }
 
     /**
-     * Get grahas by character.
+     * Get grahas by feature.
      * 
-     * @param string $character
+     * @param string $feature Feature of graha
+     * @param string $value Value of feature
      * @return array
      */
-    static public function getGrahaByCharacter($character)
+    static public function getGrahaByFeature($feature, $value)
     {
         $result = array();
 
         foreach (Graha::$graha as $key => $name){
             $Graha = self::getInstance($key);
+            
+            $grahaFeature = 'graha' . ucfirst(strtolower($feature));
+            
+            if(!property_exists($Graha, $grahaFeature)){
+                throw new Exception\UnexpectedValueException("Graha feature '$grahaFeature' does not exist.");
+            }
 
-            if($Graha->grahaCharacter == $character)
-                $result[$key] = $name;
-            else
-                continue;
-        }
-        return $result;
-    }
-    
-    /**
-     * Get grahas by amsha.
-     * 
-     * @param string $amsha
-     * @return array
-     */
-    static public function getGrahaByAmsha($amsha)
-    {
-        $result = array();
-
-        foreach (Graha::$graha as $key => $name){
-            $Graha = self::getInstance($key);
-
-            if($Graha->grahaAmsha == $amsha)
+            if($Graha->$grahaFeature == $value)
                 $result[$key] = $name;
             else
                 continue;

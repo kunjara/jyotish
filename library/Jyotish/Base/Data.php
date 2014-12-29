@@ -53,7 +53,12 @@ class Data {
         self::BLOCK_BHAVA => [
             'element' => ['longitude']
         ],
-        self::BLOCK_USER => ['gender']
+        self::BLOCK_USER => [
+            'gender'
+        ],
+        self::BLOCK_MORE => [
+            'lagna'
+        ]
     ];
 
     /**
