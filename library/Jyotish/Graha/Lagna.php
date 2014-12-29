@@ -71,7 +71,9 @@ class Lagna {
         
         $ruler9FromLg = $rashiRuler($this->ganitaData['bhava'][9]['rashi']);
         $ruler9FromCh = $rashiRuler(Math::numberInCycle($this->ganitaData['graha'][Graha::KEY_CH]['rashi'], 9));
+        
         $distance = ($kala[$ruler9FromLg] + $kala[$ruler9FromCh]) % 12;
+        if($distance == 0) $distance = 12;
         
         $rashiIL = Math::numberInCycle($this->ganitaData['graha'][Graha::KEY_CH]['rashi'], $distance);
         $degreeIL = $this->ganitaData['graha'][Graha::KEY_CH]['degree'];
