@@ -61,16 +61,16 @@ class Dasha {
     /**
      * Returns the requested instance of dasha class.
      * 
-     * @param string $key The acronym of dasha
+     * @param string $name The name of dasha
      * @return the requested instance of dasha class
      * @throws Exception\InvalidArgumentException
      */
-    static public function getInstance($key) {
-        if (!in_array($key, self::$dasha)) {
-            throw new Exception\InvalidArgumentException("Dasha '$key' does not exist.");
+    static public function getInstance($name) {
+        if (!in_array($name, self::$dasha)) {
+            throw new Exception\InvalidArgumentException("Dasha '$name' does not exist.");
         }
 
-        $dashaClass = 'Jyotish\Dasha\Object\\' . $key;
+        $dashaClass = 'Jyotish\Dasha\Object\\' . $name;
         $dashaObject = new $dashaClass();
 
         return $dashaObject;

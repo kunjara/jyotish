@@ -94,8 +94,17 @@ class Graha {
     const RISING_DISCCENTER = 'disccenter';
     const RISING_HINDU      = 'hindu';
     
+    /**
+     * Nine grahas
+     */
     const LIST_NAVA  = 'nava';
+    /**
+     * Seven grahas
+     */
     const LIST_SAPTA = 'sapta';
+    /**
+     * Shadowy grahas
+     */
     const LIST_CHAYA = 'chaya';
 
     /**
@@ -138,8 +147,10 @@ class Graha {
     /**
      * Returns the requested instance of graha class.
      * 
-     * @param string $key The acronym of graha
+     * @param string $key The key of graha
      * @param null|array $options (Optional) Options to set
+     * - `relationSame`: relationship between the same grahas
+     * - `relationChaya`: relationship between the chaya grahas
      * @return the requested instance of graha class
      * @throws Exception\InvalidArgumentException
      */
@@ -207,8 +218,8 @@ class Graha {
     /**
      * Get list of grahas.
      * 
-     * @param string $option
-     * @return array
+     * @param string $option The option to list grahas.
+     * @return array List of grahas.
      */
     static public function grahaList($option = self::LIST_NAVA)
     {

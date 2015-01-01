@@ -99,10 +99,14 @@ class Utils {
     /**
      * Degree, minutes and seconds to string.
      * 
-     * @param array $dms
+     * @param array $dms Array of values: d - degrees, m - minutes, s - seconds.
+     * For example,
+     * <pre>
+     * ['d' => 30, 'm' => 20, 's' => 10]
+     * </pre>
      * @return string
      */	
-    static function dmsToStirng($dms)
+    static function dmsToStirng(array $dms)
     {
         $d = $dms['d'].'&deg;';
         $m = !empty($dms['m']) ? $dms['m'].'\'' : '';

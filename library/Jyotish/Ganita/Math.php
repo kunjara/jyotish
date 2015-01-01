@@ -15,9 +15,14 @@ class Math {
     const M_RAD = 0.01745329251994329577;
 
     /**
-     * Conversion of angular degrees (hours), minutes and seconds of arc to decimal representation of an angle.
+     * Conversion of angular degrees (hours), minutes and seconds of arc to 
+     * decimal representation of an angle.
      * 
-     * @param array $dms Array of values: d - degrees, m - minutes, s - seconds
+     * @param array $dms Array of values: d - degrees, m - minutes, s - seconds.
+     * For example, 
+     * <pre>
+     * ['d' => 30, 'm' => 20, 's' => 10]
+     * </pre>
      * @return float
      */
     static public function dmsToDecimal(array $dms)
