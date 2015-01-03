@@ -51,13 +51,13 @@ class Yoga {
      * @throws Exception\InvalidArgumentException
      */
     static public function getInstance($number, $options = null) {
-        if (array_key_exists($number, self::$yoga)) {
-            $yogaClass = 'Jyotish\\Panchanga\\Yoga\\Object\\Y' . $number;
-            $yogaObject = new $yogaClass($options);
-
-            return $yogaObject;
-        } else {
+        if (!array_key_exists($number, self::$yoga)) {
             throw new Exception\InvalidArgumentException("Yoga with the number '$number' does not exist.");
         }
+        
+        $yogaClass = 'Jyotish\\Panchanga\\Yoga\\Object\\Y' . $number;
+        $yogaObject = new $yogaClass($options);
+
+        return $yogaObject;
     }
 }

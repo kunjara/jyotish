@@ -124,13 +124,13 @@ class Bhava {
      * @throws Exception\InvalidArgumentException
      */
     static public function getInstance($number, $options = null) {
-        if (array_key_exists($number, self::$bhava)) {
-            $bhavaClass = 'Jyotish\\Bhava\\Object\\B' . $number;
-            $bhavaObject = new $bhavaClass($options);
-
-            return $bhavaObject;
-        } else {
+        if (!array_key_exists($number, self::$bhava)) {
             throw new Exception\InvalidArgumentException("Bhava with the number '$number' does not exist.");
         }
+        
+        $bhavaClass = 'Jyotish\\Bhava\\Object\\B' . $number;
+        $bhavaObject = new $bhavaClass($options);
+
+        return $bhavaObject;
     }
 }

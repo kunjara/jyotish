@@ -161,14 +161,14 @@ class Graha {
      * @throws Exception\InvalidArgumentException
      */
     static public function getInstance($key, $options = null) {
-        if (array_key_exists($key, self::$graha)) {
-            $grahaClass = 'Jyotish\Graha\Object\\' . $key;
-            $grahaObject = new $grahaClass($options);
-
-            return $grahaObject;
-        } else {
+        if (!array_key_exists($key, self::$graha)) {
             throw new Exception\InvalidArgumentException("Graha with the key '$key' does not exist.");
         }
+        
+        $grahaClass = 'Jyotish\Graha\Object\\' . $key;
+        $grahaObject = new $grahaClass($options);
+
+        return $grahaObject;
     }
 
     /**

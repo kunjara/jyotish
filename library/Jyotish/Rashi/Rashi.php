@@ -6,6 +6,8 @@
 
 namespace Jyotish\Rashi;
 
+use Jyotish\Graha\Graha;
+
 /**
  * Class with Rashi names and attributes.
  *
@@ -94,6 +96,20 @@ class Rashi {
         11 => self::NAME_11,
         12 => self::NAME_12,
     );
+    
+    /**
+     * Trimsamsa is division of each sign into thirty equal parts, each part 
+     * being a degree.
+     * 
+     * @var array
+     */
+    static private $trimshamshaRuler = array(
+        Graha::KEY_MA => 5,
+        Graha::KEY_SA => 5,
+        Graha::KEY_GU => 8,
+        Graha::KEY_BU => 7,
+        Graha::KEY_SK => 5
+    );
 
     /**
      * Devanagari 'rashi' in transliteration.
@@ -108,18 +124,32 @@ class Rashi {
      * 
      * @param int $key The number of rashi
      * @param null|array $options (Optional) Options to set
-     * - `rashi5Vana`: set type of jiva for 5 rashi as vana (wild)
+     * - `rashi5Vana`: set type of jiva for 5th rashi as vana (wild)
      * @return the requested instance of rashi class
      * @throws Exception\InvalidArgumentException
      */
     static public function getInstance($key, $options = null) {
-        if (array_key_exists($key, self::$rashi)) {
-            $rashiClass = 'Jyotish\\Rashi\\Object\\R' . $key;
-            $rashiObject = new $rashiClass($options);
-
-            return $rashiObject;
-        } else {
+        if (!array_key_exists($key, self::$rashi)) {
             throw new Exception\InvalidArgumentException("Rashi with the key '$key' does not exist.");
         }
+        
+        $rashiClass = 'Jyotish\\Rashi\\Object\\R' . $key;
+        $rashiObject = new $rashiClass($options);
+
+        return $rashiObject;
+    }
+    
+    /**
+     * Get trimshamsha rulers.
+     * 
+     * @param int $key Rashi key
+     * @return array Trimshamsha rulers
+     * @see Varahamihira. Brihat Jataka. Chapter 1, Verse 7.
+     */
+    static public function trimshamshaRulerList($key)
+    {
+        $rulers = $key % 2 ? self::$trimshamshaRuler : array_reverse(self::$trimshamshaRuler);
+        
+        return $rulers;
     }
 }
