@@ -67,11 +67,11 @@ abstract class AbstractDasha {
     /**
      * Get all periods and subperiods.
      * 
-     * @param \Jyotish\Panchanga\Panchanga $panchanga
+     * @param \Jyotish\Panchanga\Panchanga $Panchanga
      * @param int $nestingMax
      * @return array
      */
-    public function getDashaPeriods(\Jyotish\Panchanga\Panchanga $panchanga, $nestingMax = 3)
+    public function getDashaPeriods(\Jyotish\Panchanga\Panchanga $Panchanga, $nestingMax = 3)
     {
         if(!is_numeric($nestingMax) || intval($nestingMax) > Dasha::NESTING_MAX){
             throw new Exception\InvalidArgumentException(
@@ -84,12 +84,12 @@ abstract class AbstractDasha {
         else
             $withAbhijit = false;
 
-        $userData       = $panchanga->getUserData();
+        $userData       = $Panchanga->getData()['user'];
         $dateTimeString = $userData['date'] . ' ' . $userData['time'];
         $dateTimeFormat = Time::FORMAT_DATA_DATE . ' ' . Time::FORMAT_DATA_TIME;
         $this->dateTimeObject = Time::getDateTimeUtc($dateTimeFormat, $dateTimeString, $userData['timezone']);
 
-        $nakshatra  = $panchanga->getNakshatra(true, $withAbhijit);
+        $nakshatra  = $Panchanga->getNakshatra(true, $withAbhijit);
         $periodData = $this->getStartPeriod($nakshatra);
 
         $this->dateTimeObject->sub(new DateInterval('PT'.$periodData['start'].'S'));

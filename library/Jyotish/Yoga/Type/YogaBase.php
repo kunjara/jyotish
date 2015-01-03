@@ -45,7 +45,7 @@ class YogaBase implements \Iterator, \Countable{
      * 
      * @param string $graha1 Key of graha
      * @param string $graha2 Key of graha
-     * @return boolean
+     * @return bool
      * @see Mantreswara. Phaladeepika. Chapter 6, Verse 32.
      */
     public function yogaParivarthana($graha1, $graha2)
@@ -68,7 +68,7 @@ class YogaBase implements \Iterator, \Countable{
      * If the lord of a kendras establishes relationship with a trikonas lord, 
      * a Rajayoga will obtain.
      * 
-     * @return boolean
+     * @return bool
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 41, Verse 28.
      */
     public function yogaRaja()

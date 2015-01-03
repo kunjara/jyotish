@@ -30,27 +30,13 @@ class Panchanga {
      * @var Ganita
      */
     private $ganitaObject = null;
-
+    
     /**
-     * Array of user data.
+     * Ganita data.
      * 
      * @var array
      */
-    private $userData = array();
-
-    /**
-     * Array of ganita params data.
-     * 
-     * @var array
-     */
-    private $ganitaParamsData = array();
-
-    /**
-     * Array of gantia risings data.
-     * 
-     * @var array
-     */
-    private $ganitaRisingsData = array();
+    private $ganitaData = array();
 
     /**
      * Calculated tithi.
@@ -70,9 +56,9 @@ class Panchanga {
         if($ganitaData instanceof \Jyotish\Ganita\Method\AbstractGanita){
             $this->ganitaObject = $ganitaData;
             $this->setData();
-            $this->ganitaRisingsData = $this->ganitaObject->getRisings();
+            $this->ganitaData['rising'] = $this->ganitaObject->getRisings();
         }elseif(is_array($ganitaData)){
-            $this->ganitaParamsData = $ganitaData;
+            $this->ganitaData = $ganitaData;
         }else{
             throw new Exception\InvalidArgumentException(
                 'Ganita data must be a Ganita object or an array of ganita params.'
@@ -89,21 +75,22 @@ class Panchanga {
     }
 
     /**
-     * Get Tithi
+     * Get Tithi. Ending Moment of elongation of the Moon, the lunar day, the 
+     * angular relationship between Sun and Moon (Apparent Moon minus Apparent Sun).
      * 
-     * @param	boolean $withLimit
-     * @return	array
+     * @param bool $withLimit Time limit
+     * @return array
      */
     public function getTithi($withLimit = false)
     {
         $unit = 12;
 
-        $lonCh = $this->ganitaParamsData['graha'][Graha::KEY_CH]['longitude'];
-        $lonSy = $this->ganitaParamsData['graha'][Graha::KEY_SY]['longitude'];		
+        $lngCh = $this->ganitaData['graha'][Graha::KEY_CH]['longitude'];
+        $lngSy = $this->ganitaData['graha'][Graha::KEY_SY]['longitude'];		
 
-        if($lonCh < $lonSy) $lonCh = $lonCh + 360;
+        if($lngCh < $lngSy) $lngCh = $lngCh + 360;
 
-        $tithiUnits = Math::partsToUnits(($lonCh - $lonSy), $unit);
+        $tithiUnits = Math::partsToUnits(($lngCh - $lngSy), $unit);
         $tithiObject = Tithi::getInstance($tithiUnits['units']);
 
         $tithi['number'] = $tithiUnits['units'];
@@ -122,40 +109,43 @@ class Panchanga {
     }
 
     /**
-     * Get Nakshatra
+     * Get Nakshatra. Ending Moment of asterism of the day, that is, the stellar 
+     * mansion in which graha is located for an observer at the center of the Earth. 
      * 
-     * @param	boolean $withLimit
-     * @return	array
+     * @param bool $withLimit Time limit
+     * @param bool $withAbhijit Take into account the Abhijit nakshatra
+     * @param string $grahaKey Graha key (default: Ch)
+     * @return array
      */
-    public function getNakshatra($withLimit = false, $withAbhijit = false)
+    public function getNakshatra($withLimit = false, $withAbhijit = false, $grahaKey = Graha::KEY_CH)
     {
         $unit = 360/27;
 
-        $lonCh = $this->ganitaParamsData['graha'][Graha::KEY_CH]['longitude'];
-        $nakshatraUnits = Math::partsToUnits($lonCh, $unit);
+        $lngGraha = $this->ganitaData['graha'][$grahaKey]['longitude'];
+        $nakshatraUnits = Math::partsToUnits($lngGraha, $unit);
 
         if($withAbhijit){
             if($nakshatraUnits['units'] == 21 or $nakshatraUnits['units'] == 22){
                 $Abhijit = Nakshatra::getInstance(28);
-                $abhijitStart	= Math::dmsToDecimal($Abhijit->nakshatraStart);
-                $abhijitEnd		= Math::dmsToDecimal($Abhijit->nakshatraEnd);
+                $abhijitStart = Math::dmsToDecimal($Abhijit->nakshatraStart);
+                $abhijitEnd   = Math::dmsToDecimal($Abhijit->nakshatraEnd);
 
-                if($lonCh < $abhijitStart){
+                if($lngGraha < $abhijitStart){
                     $nakshatra['number'] = 21;
                     $N = Nakshatra::getInstance($nakshatra['number']);
                     $nStart = Math::dmsToDecimal($N->nakshatraStart);
                     $unit = $abhijitStart - $nStart;
-                    $left = $abhijitStart - $lonCh;
-                }elseif($lonCh >= $abhijitStart and $lonCh < $abhijitEnd){
+                    $left = $abhijitStart - $lngGraha;
+                }elseif($lngGraha >= $abhijitStart and $lngGraha < $abhijitEnd){
                     $nakshatra['number'] = 28;
                     $unit = $abhijitEnd - $abhijitStart;
-                    $left = $abhijitEnd - $lonCh;
+                    $left = $abhijitEnd - $lngGraha;
                 }else{
                     $nakshatra['number'] = 22;
                     $N = Nakshatra::getInstance($nakshatra['number']);
                     $nEnd = Math::dmsToDecimal($N->nakshatraEnd);
                     $unit = $nEnd - $abhijitEnd;
-                    $left = $nEnd - $lonCh;
+                    $left = $nEnd - $lngGraha;
                 }
                 $nakshatra['ratio'] = $unit / Math::dmsToDecimal(Nakshatra::$nakshatraArc);
             }else{
@@ -183,24 +173,25 @@ class Panchanga {
     }
 
     /**
-     * Get Yoga
+     * Get Yoga. Ending Moment of the angular relationship between Sun and Moon 
+     * (Apparent Moon plus Apparent Sun).
      * 
-     * @param	boolean $withLimit
-     * @return	array
+     * @param bool $withLimit Time limit
+     * @return array
      */
     public function getYoga($withLimit = false)
     {
         $unit = 360/27;
 
-        $lonCh = $this->ganitaParamsData['graha'][Graha::KEY_CH]['longitude'];
-        $lonSy = $this->ganitaParamsData['graha'][Graha::KEY_SY]['longitude'];
-        $lonSum = $lonCh + $lonSy;
+        $lngCh  = $this->ganitaData['graha'][Graha::KEY_CH]['longitude'];
+        $lngSy  = $this->ganitaData['graha'][Graha::KEY_SY]['longitude'];
+        $lngSum = $lngCh + $lngSy;
 
-        if($lonSum > 360) {
-            $lonSum = $lonSum - 360;
+        if($lngSum > 360) {
+            $lngSum = $lngSum - 360;
         }
 
-        $yogaUnits = Math::partsToUnits($lonSum, $unit);
+        $yogaUnits = Math::partsToUnits($lngSum, $unit);
 
         $yoga['number'] = $yogaUnits['units'];
         $yoga['name'] = Yoga::$yoga[$yoga['number']];
@@ -215,26 +206,26 @@ class Panchanga {
     }
 
     /**
-     * Get Varana
+     * Get Varana. The seven weekdays.
      * 
-     * @return	array
+     * @return array
      */
     public function getVara()
     {
-        $dateUser = new DateTime($this->userData['date'].' '.$this->userData['time']);
+        $dateUser = new DateTime($this->ganitaData['user']['date'].' '.$this->ganitaData['user']['time']);
         $dateUserU = $dateUser->format('U');
-        $dateRising[2] = new DateTime($this->ganitaRisingsData[Graha::KEY_SY][2]['rising']);
+        $dateRising[2] = new DateTime($this->ganitaData['rising'][Graha::KEY_SY][2]['rising']);
         $dateRisingU[2] = $dateRising[2]->format('U');
-        $dateRising[3] = new DateTime($this->ganitaRisingsData[Graha::KEY_SY][3]['rising']);
+        $dateRising[3] = new DateTime($this->ganitaData['rising'][Graha::KEY_SY][3]['rising']);
         $dateRisingU[3] = $dateRising[3]->format('U');
 
         if($dateUser >= $dateRising[3]) {
             $index = 1;
-            $dateRising[4] = new DateTime($this->ganitaRisingsData[Graha::KEY_SY][4]['rising']);
+            $dateRising[4] = new DateTime($this->ganitaData['rising'][Graha::KEY_SY][4]['rising']);
             $dateRisingU[4] = $dateRising[4]->format('U');
         }else{
             $index = 0;
-            $dateRising[1] = new DateTime($this->ganitaRisingsData[Graha::KEY_SY][1]['rising']);
+            $dateRising[1] = new DateTime($this->ganitaData['rising'][Graha::KEY_SY][1]['rising']);
             $dateRisingU[1] = $dateRising[1]->format('U');
         }
 
@@ -245,15 +236,15 @@ class Panchanga {
 
             $duration = $dateRisingU[3 + $index] - $dateRisingU[2 + $index];
             $vara['left'] = ($dateRisingU[3 + $index] - $dateUserU) * 100 / $duration;
-            $vara['start'] = $this->ganitaRisingsData[Graha::KEY_SY][2 + $index]['rising'];
-            $vara['end'] = $this->ganitaRisingsData[Graha::KEY_SY][3 + $index]['rising'];
+            $vara['start'] = $this->ganitaData['rising'][Graha::KEY_SY][2 + $index]['rising'];
+            $vara['end'] = $this->ganitaData['rising'][Graha::KEY_SY][3 + $index]['rising'];
         } else {
             $varaNumber != 0 ? $vara['number'] = $varaNumber : $vara['number'] = 7;
 
             $duration = $dateRisingU[2 + $index] - $dateRisingU[1 + $index];
             $vara['left'] = ($dateRisingU[2 + $index] - $dateUserU) * 100 / $duration;
-            $vara['start'] = $this->ganitaRisingsData[Graha::KEY_SY][1 + $index]['rising'];
-            $vara['end'] = $this->ganitaRisingsData[Graha::KEY_SY][2 + $index]['rising'];
+            $vara['start'] = $this->ganitaData['rising'][Graha::KEY_SY][1 + $index]['rising'];
+            $vara['end'] = $this->ganitaData['rising'][Graha::KEY_SY][2 + $index]['rising'];
         }
 
         $vara['name'] = Vara::$VARA[$vara['number']];
@@ -262,10 +253,10 @@ class Panchanga {
     }
 
     /**
-     * Get Karana
+     * Get Karana. Ending Moment of half of a Tithi.
      * 
-     * @param	boolean $withLimit
-     * @return	array
+     * @param bool $withLimit Time limit
+     * @return array
      */
     public function getKarana($withLimit = false)
     {
@@ -278,7 +269,7 @@ class Panchanga {
             $number = 1;
             $left = $this->tithi['left'] - 50;
             if($withLimit){
-                $dateUser = new DateTime($this->userData['date'].' '.$this->userData['time']);
+                $dateUser = new DateTime($this->ganitaData['user']['date'].' '.$this->ganitaData['user']['time']);
                 $tithiEnd = new DateTime($this->tithi['end']);
                 $dateUserU = $dateUser->format('U');
                 $tithiEndU = $tithiEnd->format('U');
@@ -300,26 +291,26 @@ class Panchanga {
     }
 
     /**
-     * Get user data.
+     * Get data.
      * 
      * @return array
      */
-    public function getUserData()
+    public function getData()
     {
-        return $this->userData;
+        return $this->ganitaData;
     }
 
     /**
      * Set data for Panchanga.
      * 
-     * @param array $data
+     * @param array $userData
      */
-    private function setData(array $data = null)
+    private function setData(array $userData = null)
     {
-        if(!is_null($data)) $this->ganitaObject->setData($data);
+        if(!is_null($userData)) $this->ganitaObject->setData($userData);
 
-        $this->userData = $this->ganitaObject->getData();
-        $this->ganitaParamsData = $this->ganitaObject->getParams();
+        $this->ganitaData['user'] = $this->ganitaObject->getData();
+        $this->ganitaData = array_merge($this->ganitaData, $this->ganitaObject->getParams());
     }
 
     /**
@@ -353,9 +344,9 @@ class Panchanga {
             $anga['ratio'] = 1;
         }
 
-        $dateUser	= new DateTime($this->userData['date'].' '.$this->userData['time']);
-        $durAnga	= $durMonth * $anga['ratio'] / $nAnga;
-        $Panchanga	= clone $this;
+        $dateUser  = new DateTime($this->ganitaData['user']['date'].' '.$this->ganitaData['user']['time']);
+        $durAnga   = $durMonth * $anga['ratio'] / $nAnga;
+        $Panchanga = clone $this;
 
         $timeLeft = round($durAnga * ($anga['left'] / 100) / 2);
 
@@ -363,10 +354,10 @@ class Panchanga {
         do {
             $timeEndObject = $dateUser->add(new DateInterval('PT'.$timeLeft.'S'));
 
-            $Panchanga->setData(array(
-                    'date' => $timeEndObject->format(Time::FORMAT_DATA_DATE), 
-                    'time' => $timeEndObject->format(Time::FORMAT_DATA_TIME)
-            ));
+            $Panchanga->setData([
+                'date' => $timeEndObject->format(Time::FORMAT_DATA_DATE), 
+                'time' => $timeEndObject->format(Time::FORMAT_DATA_TIME)
+            ]);
 
             if($function == 'getNakshatra'){
                 $angaEnd = $Panchanga->$function(false, $anga['abhijit']);

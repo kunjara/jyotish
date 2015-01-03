@@ -321,7 +321,7 @@ class GrahaObject extends Object {
     /**
      * Whether the graha is vargottama (in the same sign in rasi and navamsha).
      * 
-     * @return boolean
+     * @return bool
      * @see Venkatesh Sharma. Sarvarth Chintamani. Chapter 1, Verse 50.
      */
     public function isVargottama()
@@ -342,7 +342,7 @@ class GrahaObject extends Object {
     /**
      * Whether the graha is astangata (combustion).
      * 
-     * @return boolean
+     * @return bool
      */
     public function isAstangata()
     {
