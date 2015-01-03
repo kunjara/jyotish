@@ -26,7 +26,7 @@ class Bhava {
     const NAME_12 = 'Vyaya';
     
     /**
-     * Names of bhavas.
+     * List of bhavas.
      * 
      * @var array 
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 7, Verse 37-38.

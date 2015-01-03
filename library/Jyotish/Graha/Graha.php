@@ -99,11 +99,15 @@ class Graha {
      */
     const LIST_NAVA  = 'nava';
     /**
-     * Seven grahas
+     * Seven grahas (without Rahu and Ketu)
      */
     const LIST_SAPTA = 'sapta';
     /**
-     * Shadowy grahas
+     * five grahas (without Surya, Chandra, Rahu and Ketu)
+     */
+    const LIST_PANCHA = 'pancha';
+    /**
+     * Shadowy grahas (Rahu and Ketu)
      */
     const LIST_CHAYA = 'chaya';
 
@@ -151,6 +155,8 @@ class Graha {
      * @param null|array $options (Optional) Options to set
      * - `relationSame`: relationship between the same grahas
      * - `relationChaya`: relationship between the chaya grahas
+     * - `specificRashi`: set specific rashi for chaya grahas
+     * - `drishtiRahu`: set drishti for Rahu
      * @return the requested instance of graha class
      * @throws Exception\InvalidArgumentException
      */
@@ -196,8 +202,8 @@ class Graha {
     /**
      * Get mutual relationship between grahas in points.
      * 
-     * @param string $graha1
-     * @param string $graha2
+     * @param string $graha1 Graha key
+     * @param string $graha2 Graha key
      * @return int
      */
     static public function getMutualRelation($graha1, $graha2)
@@ -226,6 +232,9 @@ class Graha {
         switch ($option){
             case self::LIST_SAPTA:
                 $list = array_slice(self::$graha, 0, 7);
+                break;
+            case self::LIST_PANCHA:
+                $list = array_slice(self::$graha, 2, 5);
                 break;
             case self::LIST_CHAYA:
                 $list = array_slice(self::$graha, 7);

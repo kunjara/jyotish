@@ -98,6 +98,7 @@ class Mahapurusha extends YogaBase {
      * @param string $key Key of graha.
      * @return bool
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 75, Verse 1-2.
+     * @see Mantreswara. Phaladeepika. Chapter 6, Verse 1.
      */
     private function yogaGraha($key)
     {

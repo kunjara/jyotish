@@ -37,7 +37,7 @@ class Rashi {
      */
     const GRAHA_UCHA = 'ucha';
     /**
-     * Moolatrikona
+     * Moolatrikona (trinal strength)
      */
     const GRAHA_MOOL = 'mool';
     /**
@@ -75,7 +75,7 @@ class Rashi {
     const NAME_12 = 'Meena';
 
     /**
-     * Names of rashis.
+     * List of rashis.
      * 
      * @var array 
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 4, Verse 3.
@@ -108,6 +108,7 @@ class Rashi {
      * 
      * @param int $key The number of rashi
      * @param null|array $options (Optional) Options to set
+     * - `rashi5Vana`: set type of jiva for 5 rashi as vana (wild)
      * @return the requested instance of rashi class
      * @throws Exception\InvalidArgumentException
      */
