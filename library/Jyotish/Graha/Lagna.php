@@ -75,12 +75,12 @@ class Lagna {
         $distance = ($kala[$ruler9FromLg] + $kala[$ruler9FromCh]) % 12;
         if($distance == 0) $distance = 12;
         
-        $rashiIL = Math::numberInCycle($this->ganitaData['graha'][Graha::KEY_CH]['rashi'], $distance);
+        $rashiIL  = Math::numberInCycle($this->ganitaData['graha'][Graha::KEY_CH]['rashi'], $distance);
         $degreeIL = $this->ganitaData['graha'][Graha::KEY_CH]['degree'];
-        $longitudeIL = ($rashiIL - 1) * 30 + $degreeIL;
+        $lngIL    = ($rashiIL - 1) * 30 + $degreeIL;
         
         return [
-            'longitude' => $longitudeIL,
+            'longitude' => $lngIL,
             'rashi' => $rashiIL,
             'degree' => $degreeIL
         ];
@@ -100,13 +100,35 @@ class Lagna {
         
         $result1 = (1 - $nakshatra['left'] / 100) * 360;
         $result2 = $result1 + $this->ganitaData['extra'][Graha::KEY_LG]['longitude'];
-        $lonSL   = $result2 > 360 ? $result2 - 360 : $result2;
-        $unitSL  = Math::partsToUnits($lonSL);
+        $lngSL   = $result2 > 360 ? $result2 - 360 : $result2;
+        $unitSL  = Math::partsToUnits($lngSL);
         
         return [
-            'longitude' => $lonSL,
+            'longitude' => $lngSL,
             'rashi' => $unitSL['units'],
             'degree' => $unitSL['parts']
         ];
+    }
+    
+    /**
+     * Generation of lagnas.
+     * 
+     * @param null|array $lagnaKeys Array of lagna keys
+     * @throws Exception\InvalidArgumentException
+     */
+    public function generateLagna(array $lagnaKeys = null)
+    {
+        if(is_null($lagnaKeys)){
+            $lagnaKeys = array_keys(self::$lagna);
+        }
+        
+        foreach ($lagnaKeys as $key){
+            if (!array_key_exists($key, self::$lagna)){
+                throw new Exception\InvalidArgumentException("Lagna with the key '$key' does not exist.");
+            }
+            
+            $calcLagna = 'calc'.$key;
+            yield $key => $this->$calcLagna();
+        }
     }
 }

@@ -7,8 +7,9 @@
 namespace Jyotish\Base;
 
 use Jyotish\Graha\Graha;
-use Jyotish\Graha\Lagna;
 use Jyotish\Bhava\Bhava;
+use Jyotish\Graha\Lagna;
+use Jyotish\Bhava\Arudha;
 use Jyotish\Ganita\Math;
 
 /**
@@ -184,23 +185,30 @@ class Data {
     /**
      * Calculation of extra lagnas.
      * 
-     * @param null|array $lagnas Array of lagna keys
-     * @throws Exception\InvalidArgumentException
+     * @param null|array $lagnaKeys Array of lagna keys
      */
-    public function calcExtraLagna(array $lagnas = null)
+    public function calcExtraLagna(array $lagnaKeys = null)
     {
         $Lagna = new Lagna($this->ganitaData);
+        $generateLagna = $Lagna->generateLagna($lagnaKeys);
         
-        if(is_null($lagnas)){
-            $lagnas = array_keys(Lagna::$lagna);
+        foreach ($generateLagna as $key => $data){
+            $this->ganitaData[self::BLOCK_EXTRA][$key] = $data;
         }
+    }
+    
+    /**
+     * Calculation of arudhas.
+     * 
+     * @param null|array $arudhaKeys Array of arudha keys
+     */
+    public function calcBhavaArudha(array $arudhaKeys = null)
+    {
+        $Arudha = new Arudha($this->ganitaData);
+        $generateArudha = $Arudha->generateArudha($arudhaKeys);
         
-        foreach ($lagnas as $key){
-            if (!array_key_exists($key, Lagna::$lagna)){
-                throw new Exception\InvalidArgumentException("Lagna with the key '$key' does not exist.");
-            }
-            $calcLagna = 'calc'.$key;
-            $this->ganitaData[self::BLOCK_EXTRA][$key] = $Lagna->$calcLagna();
+        foreach ($generateArudha as $key => $data){
+            $this->ganitaData[self::BLOCK_EXTRA][$key] = $data;
         }
     }
 
