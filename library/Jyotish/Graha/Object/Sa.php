@@ -268,7 +268,7 @@ class Sa extends GrahaObject {
         'end' => 108
     );
 
-    public function __construct($options) {
+    public function __construct($options = null) {
         parent::__construct($options);
     }
 }

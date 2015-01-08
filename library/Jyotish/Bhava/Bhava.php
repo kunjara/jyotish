@@ -119,11 +119,11 @@ class Bhava {
      * Returns the requested instance of bhava class.
      * 
      * @param int $number The number of bhava
-     * @param null|array $options (Optional) Options to set
+     * @param null|array $options Options to set (optional)
      * @return the requested instance of bhava class
      * @throws Exception\InvalidArgumentException
      */
-    static public function getInstance($number, $options = null) {
+    static public function getInstance($number, array $options = null) {
         if (!array_key_exists($number, self::$bhava)) {
             throw new Exception\InvalidArgumentException("Bhava with the number '$number' does not exist.");
         }

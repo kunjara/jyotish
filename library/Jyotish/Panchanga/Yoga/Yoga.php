@@ -46,11 +46,11 @@ class Yoga {
      * Returns the requested instance of yoga class.
      * 
      * @param int $number The number of yoga
-     * @param null|array $options (Optional) Options to set
+     * @param null|array $options Options to set (optional)
      * @return the requested instance of yoga class
      * @throws Exception\InvalidArgumentException
      */
-    static public function getInstance($number, $options = null) {
+    static public function getInstance($number, array $options = null) {
         if (!array_key_exists($number, self::$yoga)) {
             throw new Exception\InvalidArgumentException("Yoga with the number '$number' does not exist.");
         }

@@ -77,11 +77,12 @@ class Tithi {
      * Returns the requested instance of tithi class.
      * 
      * @param int $number The number of tithi
-     * @param null|array $options (Optional) Options to set
+     * @param null|array $options Options to set (optional)
+     * * - `tithiDeva`: tithi deva iformation
      * @return the requested instance of tithi class
      * @throws Exception\InvalidArgumentException
      */
-    static public function getInstance($number, $options = null) {
+    static public function getInstance($number, array $options = null) {
         if (!array_key_exists($number, self::$tithi)) {
             throw new Exception\InvalidArgumentException("Tithi with the number '$number' does not exist.");
         }
@@ -141,10 +142,10 @@ class Tithi {
     /**
      * Get tiithi using the Harvey formula.
      * 
-     * @param	ind $day
-     * @param	int $month
-     * @param	int $year
-     * @return	int
+     * @param ind $day
+     * @param int $month
+     * @param int $year
+     * @return int
      */
     static public function getTithiByHarvey($day, $month, $year) {
         if ($month <= 2) {
@@ -155,11 +156,11 @@ class Tithi {
             $yearH = $year;
         }
 
-        $eq			= floor($yearH/100);
-        $eq1		= floor($eq/3) + floor($eq/4) + 6 - $eq;
-        $eq2		= (round(($yearH/$eq - floor($yearH/$eq)) * 209) + $monthH + $eq1 + $day)/30;
+        $eq  = floor($yearH/100);
+        $eq1 = floor($eq/3) + floor($eq/4) + 6 - $eq;
+        $eq2 = (round(($yearH/$eq - floor($yearH/$eq)) * 209) + $monthH + $eq1 + $day)/30;
 
-        $tithi		= round(($eq2 - floor($eq2))*30 + 1);
+        $tithi = round(($eq2 - floor($eq2))*30 + 1);
 
         return $tithi;
     }

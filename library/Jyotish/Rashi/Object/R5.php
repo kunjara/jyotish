@@ -128,7 +128,7 @@ class R5 extends RashiObject {
         }
     }
 
-    public function __construct($options)
+    public function __construct($options = null)
     {
         parent::__construct($options);
         

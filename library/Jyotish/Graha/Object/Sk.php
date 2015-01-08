@@ -269,7 +269,7 @@ class Sk extends GrahaObject {
         'end' => 22
     );
 
-    public function __construct($options) {
+    public function __construct($options = null) {
         parent::__construct($options);
     }
 }

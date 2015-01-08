@@ -16,6 +16,16 @@ use Jyotish\Panchanga\Tithi\Tithi;
 class TithiObject {
 
     use \Jyotish\Base\GetTrait;
+    use \Jyotish\Base\OptionTrait;
+    
+    /**
+     * Options of tithi object.
+     * 
+     * @var array
+     */
+    protected $options = array(
+        'tithiDeva' => 'varahamihira',
+    );
 
     /**
      * Tithi key
@@ -124,7 +134,9 @@ class TithiObject {
      */
     public function __construct($options)
     {
-        $this->setTithiDeva($options);
+        $this->setOptions($options);
+        
+        $this->setTithiDeva($this->options);
         $this->setTithiPaksha();
         $this->setTithiType();
     }

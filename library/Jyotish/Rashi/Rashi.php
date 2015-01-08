@@ -123,12 +123,12 @@ class Rashi {
      * Returns the requested instance of rashi class.
      * 
      * @param int $key The number of rashi
-     * @param null|array $options (Optional) Options to set
+     * @param null|array $options Options to set (optional)
      * - `rashi5Vana`: set type of jiva for 5th rashi as vana (wild)
      * @return the requested instance of rashi class
      * @throws Exception\InvalidArgumentException
      */
-    static public function getInstance($key, $options = null) {
+    static public function getInstance($key, array $options = null) {
         if (!array_key_exists($key, self::$rashi)) {
             throw new Exception\InvalidArgumentException("Rashi with the key '$key' does not exist.");
         }

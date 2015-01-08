@@ -270,7 +270,7 @@ class Bu extends GrahaObject {
         'end' => 14
     );
 
-    public function __construct($options)
+    public function __construct($options = null)
     {
         parent::__construct($options);
     }

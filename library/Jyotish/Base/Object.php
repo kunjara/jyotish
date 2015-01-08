@@ -18,6 +18,7 @@ use Jyotish\Ganita\Math;
 class Object {
 
     use \Jyotish\Base\GetTrait;
+    use \Jyotish\Base\OptionTrait;
     
     /**
      * Next position
@@ -27,13 +28,6 @@ class Object {
      * Previous position
      */
     const POS_PREV = 'prev';
-    
-    /**
-     * Options of jyotish object.
-     * 
-     * @var array
-     */
-    protected $options = array();
     
     /**
      * Type of object.
@@ -102,27 +96,6 @@ class Object {
     {
         if(is_null($this->ganitaData))
             throw new Exception\UnderflowException("Environment for object '{$this->objectType} {$this->objectKey}' must be setted.");
-    }
-    
-    /**
-     * Set options for jyotish object.
-     * 
-     * @param null|array $options
-     * @throws Exception\InvalidArgumentException
-     */
-    protected function setOptions($options)
-    {
-        if (is_array($options)){
-            foreach ($options as $optionName => $optionValue) {
-                if (isset($this->options[$optionName])) {
-                    $this->options[$optionName] = $optionValue;
-                }else{
-                    throw new Exception\InvalidArgumentException("Option '$optionName' does not exist.");
-                }
-            }
-        }elseif(!is_null($options)){
-            throw new Exception\InvalidArgumentException("Options must be an array.");
-        }
     }
 
     /**
@@ -240,7 +213,7 @@ class Object {
      * 
      * @param null|array $options Options to set
      */
-    public function __construct($options = null)
+    public function __construct($options)
     {
         $this->setOptions($options);
     }

@@ -218,7 +218,7 @@ class Ke extends GrahaObject {
         $this->grahaNaturalRelation[$this->objectKey] = $options['relationSame'] ? 1 : null;
     }
 
-    public function __construct($options)
+    public function __construct($options = null)
     {
         parent::__construct($options);
         

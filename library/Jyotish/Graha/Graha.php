@@ -152,7 +152,7 @@ class Graha {
      * Returns the requested instance of graha class.
      * 
      * @param string $key The key of graha
-     * @param null|array $options (Optional) Options to set
+     * @param null|array $options Options to set (optional)
      * - `relationSame`: relationship between the same grahas
      * - `relationChaya`: relationship between the chaya grahas
      * - `specificRashi`: set specific rashi for chaya grahas
@@ -160,7 +160,7 @@ class Graha {
      * @return the requested instance of graha class
      * @throws Exception\InvalidArgumentException
      */
-    static public function getInstance($key, $options = null) {
+    static public function getInstance($key, array $options = null) {
         if (!array_key_exists($key, self::$graha)) {
             throw new Exception\InvalidArgumentException("Graha with the key '$key' does not exist.");
         }

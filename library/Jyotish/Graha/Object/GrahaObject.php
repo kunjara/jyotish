@@ -408,7 +408,7 @@ class GrahaObject extends Object {
     /**
      * Set natural relationships.
      * 
-     * @param null|array $options Options to set
+     * @param array $options Options to set
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 55.
      */
     protected function setGrahaNaturalRelation($options)

@@ -51,7 +51,7 @@ class B7 extends BhavaObject {
      */
     protected $bhavaPurushartha = Manusha::PURUSHARTHA_KAMA;
 
-    public function __construct($options) {
+    public function __construct($options = null) {
         parent::__construct($options);
     }
 }

@@ -120,11 +120,12 @@ class Nakshatra {
      * Returns the requested instance of nakshatra class.
      * 
      * @param int $key The number of nakshatra
-     * @param null|array $options (Optional) Options to set
+     * @param null|array $options Options to set (optional)
+     * - `withAbhijit`: with Abhijit
      * @return the requested instance of nakshatra class
      * @throws Exception\InvalidArgumentException
      */
-    static public function getInstance($key, $options = null)
+    static public function getInstance($key, array $options = null)
     {
         if (!array_key_exists($key, self::$nakshatra)) {
             throw new Exception\InvalidArgumentException("Nakshatra with the number '$key' does not exist.");

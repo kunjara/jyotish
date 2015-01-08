@@ -116,7 +116,7 @@ class R1 extends RashiObject {
      */
     protected $rashiVarna = Manusha::VARNA_KSHATRIYA;
 
-    public function __construct($options)
+    public function __construct($options = null)
     {
         parent::__construct($options);
     }

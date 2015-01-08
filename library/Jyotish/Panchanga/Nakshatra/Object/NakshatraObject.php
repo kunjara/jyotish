@@ -16,6 +16,16 @@ use Jyotish\Ganita\Math;
 class NakshatraObject {
     
     use \Jyotish\Base\GetTrait;
+    use \Jyotish\Base\OptionTrait;
+    
+    /**
+     * Options of nakshatra object.
+     * 
+     * @var array
+     */
+    protected $options = array(
+        'withAbhijit' => false,
+    );
 
     /**
      * Arc length of the nakshatra.
@@ -155,12 +165,12 @@ class NakshatraObject {
     /**
      * Set nakshatra start and end.
      * 
-     * @param bool $withAbhijit
+     * @param array $options Options to set
      * @return void
      */
-    protected function setNakshatraStartEnd($withAbhijit)
+    protected function setNakshatraStartEnd($options)
     {
-        if($withAbhijit){
+        if($options['withAbhijit']){
             switch ($this->nakshatraKey){
             case 21:
                 $this->nakshatraStart = Math::dmsMulti(self::$nakshatraArc, 20);
@@ -207,11 +217,13 @@ class NakshatraObject {
     /**
      * Constructor
      * 
-     * @param array $options
+     * @param null|array $options Options to set
      */
     public function __construct($options)
     {
-        $this->setNakshatraStartEnd($options['withAbhijit']);
+        $this->setOptions($options);
+        
+        $this->setNakshatraStartEnd($this->options);
         $this->setNakshatraNavatara();
     }
 }
