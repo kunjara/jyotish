@@ -39,7 +39,7 @@ class T24 extends TithiObject {
         2 => Karana::NAME_GARA
     );
 
-    public function __construct($options) {
+    public function __construct($options = null) {
         parent::__construct($options);
     }
 }

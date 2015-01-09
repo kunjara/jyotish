@@ -76,6 +76,7 @@ class Utils {
      * 
      * @param array $array
      * @param string $startKey
+     * @param bool $preserveKeys
      * @return array
      */ 
     static public function shiftArray($array, $startKey, $preserveKeys = false){

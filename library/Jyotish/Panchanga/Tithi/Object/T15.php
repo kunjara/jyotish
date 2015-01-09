@@ -40,7 +40,7 @@ class T15 extends TithiObject {
     );
 
 
-    public function __construct($options) {
+    public function __construct($options = null) {
         parent::__construct($options);
     }
 }

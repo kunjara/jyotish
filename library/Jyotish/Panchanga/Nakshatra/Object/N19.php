@@ -83,7 +83,7 @@ class N19 extends NakshatraObject {
         'limb' => Nakshatra::LIMB_PADA,
     );
 
-    public function __construct($options) {
+    public function __construct($options = null) {
         parent::__construct($options);
     }
 }

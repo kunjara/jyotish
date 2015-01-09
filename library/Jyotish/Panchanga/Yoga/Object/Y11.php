@@ -23,7 +23,7 @@ class Y11 extends YogaObject {
 
     protected $yogaDeva = Deva::DEVA_RATRI;
 
-    public function __construct($options) {
+    public function __construct($options = null) {
         parent::__construct($options);
     }
 }

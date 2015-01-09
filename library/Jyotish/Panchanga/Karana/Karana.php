@@ -7,7 +7,7 @@
 namespace Jyotish\Panchanga\Karana;
 
 /**
- * Class with Karana names.
+ * Data Karana class.
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
@@ -25,7 +25,12 @@ class Karana {
     const NAME_NAGA	= 'Naga';
     const NAME_KINSTUGNA = 'Kinstugna';
 
-    static public $KARANA = array(
+    /**
+     * Array of all karanas.
+     * 
+     * @var array 
+     */
+    static public $karana = array(
         1 => self::NAME_BAVA,
         2 => self::NAME_BALAVA,
         3 => self::NAME_KAULAVA,

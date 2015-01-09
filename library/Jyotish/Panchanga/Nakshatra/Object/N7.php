@@ -83,7 +83,7 @@ class N7 extends NakshatraObject {
         'limb' => Nakshatra::LIMB_NABHI,
     );
 
-    public function __construct($options) {
+    public function __construct($options = null) {
         parent::__construct($options);
     }
 }

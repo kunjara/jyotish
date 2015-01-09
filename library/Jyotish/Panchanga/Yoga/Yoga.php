@@ -7,7 +7,7 @@
 namespace Jyotish\Panchanga\Yoga;
 
 /**
- * Class with Yoga names.
+ * Data Yoga class.
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */

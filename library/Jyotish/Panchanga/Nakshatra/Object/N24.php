@@ -83,7 +83,7 @@ class N24 extends NakshatraObject {
         'limb' => Nakshatra::LIMB_KANTHA,
     );
 
-    public function __construct($options) {
+    public function __construct($options = null) {
         parent::__construct($options);
     }
 }

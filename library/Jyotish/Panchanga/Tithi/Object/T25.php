@@ -39,7 +39,7 @@ class T25 extends TithiObject {
         2 => Karana::NAME_VISHTI
     );
 
-    public function __construct($options) {
+    public function __construct($options = null) {
         parent::__construct($options);
     }
 }

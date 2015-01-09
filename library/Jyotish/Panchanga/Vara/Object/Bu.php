@@ -6,6 +6,7 @@
 
 namespace Jyotish\Panchanga\Vara\Object;
 
+use Jyotish\Panchanga\Vara\Vara;
 use Jyotish\Graha\Graha;
 
 /**
@@ -13,11 +14,22 @@ use Jyotish\Graha\Graha;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class V4 extends \Jyotish\Panchanga\Vara\Vara {
+class Bu extends VaraObject {
+    /**
+     * Vara key.
+     * 
+     * @var string
+     */
+    protected $varaKey = Graha::KEY_BU;
+    
+    /**
+     * Vara name.
+     * 
+     * @var string
+     */
+    protected $varaName = Vara::NAME_BU;
 
-    static public $varaGraha = Graha::KEY_BU;
-
-    public function __construct($options) {
+    public function __construct($options = null) {
         return $this;
     }
 }
