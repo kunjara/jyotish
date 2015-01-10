@@ -128,7 +128,7 @@ class Nakshatra {
     static public function getInstance($key, array $options = null)
     {
         if (!array_key_exists($key, self::$nakshatra)) {
-            throw new Exception\InvalidArgumentException("Nakshatra with the number '$key' does not exist.");
+            throw new \Jyotish\Panchanga\Exception\InvalidArgumentException("Nakshatra with the number '$key' does not exist.");
         }
 
         $nakshatraClass = 'Jyotish\\Panchanga\\Nakshatra\\Object\\N' . $key;

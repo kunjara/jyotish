@@ -84,7 +84,7 @@ class Tithi {
      */
     static public function getInstance($number, array $options = null) {
         if (!array_key_exists($number, self::$tithi)) {
-            throw new Exception\InvalidArgumentException("Tithi with the number '$number' does not exist.");
+            throw new \Jyotish\Panchanga\Exception\InvalidArgumentException("Tithi with the number '$number' does not exist.");
         }
         
         $tithiClass = 'Jyotish\\Panchanga\\Tithi\\Object\\T' . $number;

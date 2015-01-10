@@ -190,7 +190,7 @@ class NakshatraObject {
             }
         }else{
             if($this->nakshatraKey == 28) {
-                throw new Exception\InvalidArgumentException("Parameters of 28 nakshatra are determined only with argument 'withAbhijit' = true.");
+                throw new \Jyotish\Panchanga\Exception\InvalidArgumentException("Parameters of 28 nakshatra are determined only with argument 'withAbhijit' = true.");
             }
 
             $this->nakshatraStart = Math::dmsMulti(self::$nakshatraArc, $this->nakshatraKey - 1);

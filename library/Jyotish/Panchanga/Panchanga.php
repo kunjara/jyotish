@@ -24,6 +24,12 @@ use Jyotish\Tattva\Kala\Masa;
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 class Panchanga {
+    const ANGA_TITHI     = 'tithi';
+    const ANGA_NAKSHATRA = 'nakshatra';
+    const ANGA_YOGA      = 'yoga';
+    const ANGA_VARA      = 'vara';
+    const ANGA_KARANA    = 'karana';
+    
     /**
      * Ganita object.
      * 
