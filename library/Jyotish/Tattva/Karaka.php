@@ -6,6 +6,7 @@
 
 namespace Jyotish\Tattva;
 
+use Jyotish\Graha\Graha;
 use Jyotish\Base\Analysis;
 
 /**
@@ -46,13 +47,17 @@ class Karaka {
      * Husband, wife
      */
     const NAME_DARA = 'Darakaraka';
+    /**
+     * Death
+     */
+    const NAME_AYUSH = 'Ayushkaraka';
 
     /**
-     * List of all karakas.
+     * List of chara karakas.
      * 
      * @var array
      */
-    static public $karaka = array(
+    static public $karakaChara = array(
         self::NAME_ATMA,
         self::NAME_AMATYA,
         self::NAME_BHRATRU,
@@ -64,6 +69,21 @@ class Karaka {
     );
     
     /**
+     * List of sthira karakas.
+     * 
+     * @var array
+     */
+    static public $karakaSthira = array(
+        Graha::KEY_SY => self::NAME_PUTRA,
+        Graha::KEY_CH => self::NAME_MATRU,
+        Graha::KEY_MA => self::NAME_BHRATRU,
+        Graha::KEY_BU => self::NAME_GNATI,
+        Graha::KEY_GU => self::NAME_PUTRA,
+        Graha::KEY_SK => self::NAME_DARA,
+        Graha::KEY_SA => self::NAME_AYUSH
+    );
+
+    /**
      * Get list of karakas depending on the system.
      * 
      * @param string $system
@@ -71,7 +91,7 @@ class Karaka {
      */
     static public function karakaList($system = Analysis::SYSTEM_PARASHARA)
     {
-        $list = self::$karaka;
+        $list = self::$karakaChara;
         
         if($system == Analysis::SYSTEM_JAIMINI){
             unset($list[4]);

@@ -13,7 +13,72 @@ namespace Jyotish\Muhurta\Samskara;
  */
 class NamaKarana {
     /**
-     * List of the appropriate starting sound to name
+     * List of the sounds appropriate to rashis.
+     * 
+     * @var array
+     */
+    static public $namaRashi = [
+        1 => [
+            'a'    => ['_a'],
+            'la'   => ['la','aa'],
+        ],
+        2 => [
+            'u'    => ['_u'],
+            'va'   => ['va','aa'],
+            'i'    => ['_i'],
+            'e'    => ['_e'],
+            'o'    => ['_o'],
+        ],
+        3 => [
+            'ka'   => ['ka', 'aa'],
+            'chha' => ['cha'],
+            'bha'  => ['bha','aa'],
+            'na'   => ['na','aa'],
+        ],
+        4 => [
+            'bha'  => ['bha','aa'],
+            'ha'   => ['ha','aa'],
+        ],
+        5 => [
+            'ta'   => ['tta','aa'],
+        ],
+        6 => [
+            'pa'   => ['pa','aa'],
+            'tha'  => ['tha'],
+            'ya'   => ['ya','aa'],
+            'na'   => ['na','aa'],
+        ],
+        7 => [
+            'ra'   => ['ra','aa'],
+            'ta'   => ['ta','aa'],
+        ],
+        8 => [
+            'na'   => ['na','aa'],
+            'ya'   => ['ya','aa'],
+        ],
+        9 => [
+            'bha'  => ['bha','aa'],
+            'pha'  => ['pha','aa'],
+            'dha'  => ['dha','aa'],
+        ],
+        10 => [
+            'tha'  => ['ttha'],
+            'ja'   => ['ja','aa'],
+        ],
+        11 => [
+            'ga'   => ['ga','aa'],
+            'sa'   => ['sa','aa'],
+        ],
+        12 => [
+            'da'   => ['dda','aa'],
+            'cha'  => ['ca','aa'],
+            'na'   => ['na','aa'],
+            'dha'  => ['dha','aa'],
+        ]
+    ];
+
+    /**
+     * List of the sounds appropriate to nakshatra padas.
      * 
      * @var array
      */
