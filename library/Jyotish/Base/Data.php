@@ -201,10 +201,11 @@ class Data {
      * Calculation of arudhas.
      * 
      * @param null|array $arudhaKeys Array of arudha keys
+     * @param null|array $options Options to set (optional)
      */
-    public function calcBhavaArudha(array $arudhaKeys = null)
+    public function calcBhavaArudha(array $arudhaKeys = null, array $options = null)
     {
-        $Arudha = new Arudha($this->ganitaData);
+        $Arudha = new Arudha($this->ganitaData, $options);
         $generateArudha = $Arudha->generateArudha($arudhaKeys);
         
         foreach ($generateArudha as $key => $data){

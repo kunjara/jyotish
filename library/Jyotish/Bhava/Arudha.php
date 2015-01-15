@@ -17,6 +17,7 @@ use Jyotish\Ganita\Math;
 class Arudha{
     
     use \Jyotish\Base\DataTrait;
+    use \Jyotish\Base\OptionTrait;
     
     /**
      * Key of Arudha lagna
@@ -88,19 +89,31 @@ class Arudha{
     );
     
     /**
+     * Options of Arudha calculation.
+     * 
+     * @var array
+     */
+    protected $options = array(
+        'useException' => true,
+        'exceptionRang' => 7.5,
+    );
+    
+    /**
      * Constructor
      * 
      * @param \Jyotish\Base\Data|array $data
+     * @param null|array $options Options to set 
      */
-    public function __construct($data) {
+    public function __construct($data, $options = null) {
         $this->setData($data);
+        $this->setOptions($options);
     }
     
     /**
      * Arudha calculation.
      * 
      * @param string $key Arudha key
-     * @param null|array $options (Optional) Options to set
+     * @param null|array $options Options to set (optional)
      * @return array
      * @throws Exception\InvalidArgumentException
      */
@@ -127,19 +140,30 @@ class Arudha{
 
         $lngDiff = $lngRuler - $lngBhava;
         $lngArudha = $lngRuler + $lngDiff;
-
+        
         if($lngArudha >= 360){
             $lngArudha = $lngArudha - 360;
         }elseif($lngArudha < 0){
             $lngArudha = 360 + $lngArudha;
         }
 
-        $unitArudha  = Math::partsToUnits($lngArudha);
+        $unitArudha = Math::partsToUnits($lngArudha);
+        $rashiArudha = $unitArudha['units'];
+        
+        if($this->options['useException']){
+            if(
+                Math::inRange($lngDiff, 0 - $this->options['exceptionRang'], $this->options['exceptionRang']) or
+                Math::inRange(abs($lngDiff), 90 - $this->options['exceptionRang'], 90 + $this->options['exceptionRang'])
+            ){
+                $rashiArudha = Math::numberInCycle($unitArudha['units'], 10);
+                $lngArudha = ($rashiArudha - 1) * 30 + $unitArudha['parts'];
+            }
+        }
         
         return [
             'longitude' => $lngArudha,
-            'rashi' => $unitArudha['units'],
-            'degree' => $unitArudha['parts']
+            'rashi' => $rashiArudha,
+            'degree' => $unitArudha['parts'],
         ];
     }
     

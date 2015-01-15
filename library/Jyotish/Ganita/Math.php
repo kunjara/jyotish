@@ -268,4 +268,22 @@ class Math {
 
         return $result;
     }
+    
+    /**
+     * Check the value in range.
+     * 
+     * @param mixed $value The value to test
+     * @param mixed $min The minimum value in the range
+     * @param mixed $max The maximum value in the range
+     * @return boolean
+     * @throws Exception\InvalidArgumentException
+     */
+    static public function inRange($value, $min, $max)
+    {
+        if($max <= $min){
+            throw new Exception\InvalidArgumentException("The maximum value must be greater than the minimum.");
+        }
+        
+        return ($value >= $min and $value < $max) ? true : false;
+    }
 }
