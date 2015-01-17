@@ -38,7 +38,7 @@ class Math {
     /**
      * Finds degrees (hours), minutes and seconds of arc for a given angle.
      * 
-     * @param float $decimal
+     * @param float $decimal Decimal value of the arc in degrees
      * @return array
      */
     static public function decimalToDms($decimal)
@@ -69,10 +69,11 @@ class Math {
     /**
      * Finds unints and parts from total parts. 
      * 
-     * @param float $totalParts
-     * @param int $partsInUnit
-     * @param string $flagRound
+     * @param float $totalParts Initial value
+     * @param int $partsInUnit Number of parts in the unit
+     * @param string $flagRound Rounding flag
      * @return array
+     * @throws Exception\InvalidArgumentException
      */
     static public function partsToUnits($totalParts, $partsInUnit = 30, $flagRound = 'ceil')
     {
@@ -98,10 +99,11 @@ class Math {
     /**
      * Calculates the distance in a cycle.
      * 
-     * @param int $n1
-     * @param int $n2
+     * @param int $n1 First position
+     * @param int $n2 Second position
      * @param int $cycle Size of cycle
      * @return int
+     * @throws Exception\InvalidArgumentException
      */
     static public function distanceInCycle($n1, $n2, $cycle = 12)
     {
@@ -119,9 +121,11 @@ class Math {
     /**
      * Calculates the number in a cycle.
      * 
-     * @param int $n
-     * @param int $distance
+     * @param int $n Initial position
+     * @param int $distance Distance between the positions
+     * @param int $cycle Size of cycle
      * @return int
+     * @throws Exception\InvalidArgumentException
      */
     static public function numberInCycle($n, $distance = 1, $cycle = 12)
     {
@@ -160,7 +164,8 @@ class Math {
     /**
      * Next number in a cycle.
      * 
-     * @param int $n
+     * @param int $n Initial position
+     * @param int $cycle Size of cycle
      * @return int
      */
     static public function numberNext($n, $cycle = 12)
@@ -174,7 +179,8 @@ class Math {
     /**
      * Previous number in a cycle.
      * 
-     * @param int $n
+     * @param int $n Initial position
+     * @param int $cycle Size of cycle
      * @return int
      */
     static public function numberPrev($n, $cycle = 12)
@@ -188,7 +194,7 @@ class Math {
     /**
      * Return sign of number.
      * 
-     * @param mixed $number
+     * @param mixed $number Test number
      * @return int
      */
     static public function sign($number)
@@ -200,6 +206,7 @@ class Math {
      * Sum of arrays.
      * 
      * @return array
+     * @throws Exception\InvalidArgumentException
      */
     static public function arraySum()
     {
