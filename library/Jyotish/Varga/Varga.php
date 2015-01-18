@@ -134,7 +134,7 @@ class Varga {
      * Returns the requested instance of varga class.
      * 
      * @param string $key The key of varga
-     * @param null|array $options (Optional) Options to set
+     * @param null|array $options Options to set (optional)
      * @return the requested instance of varga class
      * @throws Exception\InvalidArgumentException
      */

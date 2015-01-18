@@ -26,10 +26,10 @@ class D24 extends AbstractVarga {
      * 
      * @var array
      */
-    protected $vargaName = array(
+    protected $vargaNames = [
         'Chaturvimshamsha',
         'Siddhamsha',
-    );
+    ];
 
     /**
      * The number of parts.

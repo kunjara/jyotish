@@ -27,10 +27,10 @@ class D45 extends AbstractVarga {
      * 
      * @var array
      */
-    protected $vargaName = array(
+    protected $vargaNames = [
         'Akshavedamsha',
         'Panchachatvarimshamsha',
-    );
+    ];
 
     /**
      * The number of parts.

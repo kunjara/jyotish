@@ -27,7 +27,7 @@ abstract class AbstractVarga {
      * 
      * @var array
      */
-    protected $vargaName = array();
+    protected $vargaNames = array();
 
     /**
      * The number of parts.

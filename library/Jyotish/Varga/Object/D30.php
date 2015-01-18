@@ -27,9 +27,9 @@ class D30 extends AbstractVarga {
      * 
      * @var array
      */
-    protected $vargaName = array(
+    protected $vargaNames = [
         'Trimshamsha',
-    );
+    ];
 
     /**
      * The number of parts.
