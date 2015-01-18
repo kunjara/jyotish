@@ -56,6 +56,16 @@ class Sy extends GrahaObject {
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 10.
      */
     protected $objectName = Deva::DEVA_SURYA;
+    
+    /**
+     * Names of the graha.
+     * 
+     * @var array
+     * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 2.
+     */
+    protected $objectNames = [
+        'Heli',
+    ];
 
     /**
      * Devanagari title 'surya' in transliteration.

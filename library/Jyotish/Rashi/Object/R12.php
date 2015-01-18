@@ -47,6 +47,18 @@ class R12 extends RashiObject {
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 4, Verse 3.
      */
     protected $objectName = Rashi::NAME_12;
+    
+    /**
+     * All names of the rashi.
+     * 
+     * @var array
+     * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 4, Verse 3.
+     * @see Varahamihira. Brihat Jataka. Chapter 1, Verse 8.
+     */
+    protected $objectNames = [
+        Rashi::NAME_12,
+        'Antyabha',
+    ];
 
     /**
      * Limb of Kaal Purush.

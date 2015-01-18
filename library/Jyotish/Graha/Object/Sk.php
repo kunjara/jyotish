@@ -56,6 +56,19 @@ class Sk extends GrahaObject {
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 10.
      */
     protected $objectName = Deva::DEVA_SHUKRA;
+    
+    /**
+     * Names of the graha.
+     * 
+     * @var array
+     * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 3.
+     */
+    protected $objectNames = [
+        'Bhrigu',
+        'Bhrigusuta',
+        'Sita',
+        'Asphujit',
+    ];
 
     /**
      * Devanagari title 'shukra' in transliteration.

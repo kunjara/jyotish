@@ -53,6 +53,19 @@ class Ra extends GrahaObject {
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 10.
      */
     protected $objectName = Graha::NAME_RA;
+    
+    /**
+     * Names of the graha.
+     * 
+     * @var array
+     * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 3.
+     */
+    protected $objectNames = [
+        Graha::NAME_RA,
+        'Tamas',
+        'Agu',
+        'Asura',
+    ];
 
     /**
      * Devanagari title 'rahu' in transliteration.

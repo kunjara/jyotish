@@ -395,13 +395,15 @@ class GrahaObject extends Object {
     }
     
     /**
-     * Set alternative graha names.
+     * Set graha names.
+     * 
+     * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 10.
      */
-    protected function setGrahaAltName()
+    protected function setGrahaNames()
     {
         if($this->objectKey != Graha::KEY_RA and $this->objectKey != Graha::KEY_KE){
-            $grahaAltName = 'deva'.$this->objectName;
-            $this->objectAltName = Deva::${$grahaAltName};
+            $nameDeva = 'name'.$this->objectName;
+            $this->objectNames = array_merge(Deva::${$nameDeva}, $this->objectNames);
         }
     }
 
@@ -495,7 +497,7 @@ class GrahaObject extends Object {
     {
         parent::__construct($options);
         
-        $this->setGrahaAltName();
+        $this->setGrahaNames();
         $this->setGrahaNaturalRelation($this->options);
     }
 }

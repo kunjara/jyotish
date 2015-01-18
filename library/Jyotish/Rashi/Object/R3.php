@@ -47,6 +47,18 @@ class R3 extends RashiObject {
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 4, Verse 3.
      */
     protected $objectName = Rashi::NAME_3;
+    
+    /**
+     * All names of the rashi.
+     * 
+     * @var array
+     * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 4, Verse 3.
+     * @see Varahamihira. Brihat Jataka. Chapter 1, Verse 8.
+     */
+    protected $objectNames = [
+        Rashi::NAME_3,
+        'Jituma',
+    ];
 
     /**
      * Limb of Kaal Purush.

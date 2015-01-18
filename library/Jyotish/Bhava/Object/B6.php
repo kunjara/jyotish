@@ -23,12 +23,16 @@ class B6 extends BhavaObject {
     protected $objectKey = 6;
     
     /**
-     * Main name of bhava.
+     * All names of the bhava.
      * 
-     * @var string
+     * @var array
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 7, Verse 37-38.
+     * @see Varahamihira. Brihat Jataka. Chapter 1, Verse 15-16.
      */
-    protected $objectName = Bhava::NAME_6;
+    protected $objectNames = [
+        Bhava::NAME_6,
+        'Kshata',
+    ];
 
     /**
      * Indications of bhava.

@@ -57,6 +57,16 @@ class Ch extends GrahaObject {
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 10.
      */
     protected $objectName = Deva::DEVA_CHANDRA;
+    
+    /**
+     * Names of the graha.
+     * 
+     * @var array
+     * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 2.
+     */
+    protected $objectNames = [
+        'Sitarashmi',
+    ];
 
     /**
      * Devanagari title 'chandra' in transliteration.

@@ -62,7 +62,7 @@ class Object {
      * 
      * @var array
      */
-    protected $objectAltName = array();
+    protected $objectNames = array();
 
     /**
      * Environment - position of the planets in the format of the ganita output data.

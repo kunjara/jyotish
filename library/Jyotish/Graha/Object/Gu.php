@@ -56,6 +56,20 @@ class Gu extends GrahaObject {
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 10.
      */
     protected $objectName = Deva::DEVA_GURU;
+    
+    /**
+     * Names of the graha.
+     * 
+     * @var array
+     * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 3.
+     */
+    protected $objectNames = [
+        'Jiva',
+        'Angira',
+        'Suraguru',
+        'Vachasampati',
+        'Ijya',
+    ];
 
     /**
      * Devanagari title 'guru' in transliteration.

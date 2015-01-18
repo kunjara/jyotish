@@ -80,8 +80,14 @@ class Deva extends \Jyotish\Tattva\Jiva\Nara {
     const DEVA_VISHVADEVA = 'Vishvadeva';
     const DEVA_YAMA = 'Yama';
     const DEVA_YAMA_DHARMA = 'Dharmaraja';
+    
+    static public $triMurti = array(
+        self::DEVA_BRAHMA,
+        self::DEVA_VISHNU,
+        self::DEVA_SHIVA
+    );
 
-    static public $devaVishnu = array(
+    static public $nameVishnu = array(
         self::DEVA_VISHNU,
         self::DEVA_VISHNU_ISHVARA,
         self::DEVA_VISHNU_HARI,
@@ -90,17 +96,17 @@ class Deva extends \Jyotish\Tattva\Jiva\Nara {
         self::DEVA_VISHNU_YAJNESHVARA,
     );
 
-    static public $devaShiva = array(
+    static public $nameShiva = array(
         self::DEVA_SHIVA,
         self::DEVA_SHIVA_RUDRA,
     );	
 
-    static public $devaBrahma = array(
+    static public $nameBrahma = array(
         self::DEVA_BRAHMA,
         self::DEVA_BRAHMA_PRAJAPATI,
     );
 
-    static public $devaSurya = array(
+    static public $nameSurya = array(
         self::DEVA_SURYA,
         self::DEVA_SURYA_MITRA,
         self::DEVA_SURYA_RAVI,
@@ -108,37 +114,37 @@ class Deva extends \Jyotish\Tattva\Jiva\Nara {
         self::DEVA_SURYA_VIVASVAN,
     );
 
-    static public $devaChandra = array(
+    static public $nameChandra = array(
         self::DEVA_CHANDRA,
         self::DEVA_CHANDRA_SOMA,
     );
 
-    static public $devaGuru = array(
+    static public $nameGuru = array(
         self::DEVA_GURU,
         self::DEVA_GURU_BRIHASPATI,
     );
 
-    static public $devaMangal = array(
+    static public $nameMangal = array(
         self::DEVA_MANGAL,
         self::DEVA_MANGAL_KUJA,
     );
 
-    static public $devaBudha = array(
+    static public $nameBudha = array(
         self::DEVA_BUDHA,
         self::DEVA_BUDHA_KUMAR,
     );
 
-    static public $devaShukra = array(
+    static public $nameShukra = array(
         self::DEVA_SHUKRA,
         self::DEVA_SHUKRA_USHANAS,
     );
 
-    static public $devaShani = array(
+    static public $nameShani = array(
         self::DEVA_SHANI,
         self::DEVA_SHANI_SHANAISHCHARA,
     );
 
-    static public $devaKarttikeya = array(
+    static public $nameKarttikeya = array(
         self::DEVA_KARTTIKEYA,
         self::DEVA_KARTTIKEYA_MURUGAN,
         self::DEVA_KARTTIKEYA_SENAPATI,
@@ -146,14 +152,14 @@ class Deva extends \Jyotish\Tattva\Jiva\Nara {
         self::DEVA_KARTTIKEYA_SUBRAMANYA,
     );
 
-    static public $devaParvati = array(
+    static public $nameParvati = array(
         self::DEVA_PARVATI,
         self::DEVA_PARVATI_DUGRA,
         self::DEVA_PARVATI_GAURI,
         self::DEVA_PARVATI_KALI,
     );
 
-    static public $devaYama = array(
+    static public $nameYama = array(
         self::DEVA_YAMA,
         self::DEVA_YAMA_DHARMA,
     );

@@ -56,6 +56,19 @@ class Sa extends GrahaObject {
      * @var string
      */
     protected $objectName = Deva::DEVA_SHANI;
+    
+    /**
+     * Names of the graha.
+     * 
+     * @var array
+     * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 2.
+     */
+    protected $objectNames = [
+        'Kona',
+        'Manda',
+        'Suryaputra',
+        'Asita',
+    ];
 
     /**
      * Devanagari title 'shani' in transliteration.

@@ -56,6 +56,19 @@ class Ma extends GrahaObject {
      * @var string
      */
     protected $objectName = Deva::DEVA_MANGAL;
+    
+    /**
+     * Names of the graha.
+     * 
+     * @var array
+     * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 2.
+     */
+    protected $objectNames = [
+        'Ara',
+        'Vakra',
+        'Kruradrik',
+        'Avaneya'
+    ];
 
     /**
      * Devanagari title 'mangala' in transliteration.
