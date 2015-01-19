@@ -25,11 +25,11 @@ Trait OptionTrait {
                 if (isset($this->options[$optionName])) {
                     $this->options[$optionName] = $optionValue;
                 }else{
-                    throw new Exception\InvalidArgumentException("Option '$optionName' does not exist.");
+                    throw new \Jyotish\Base\Exception\InvalidArgumentException("Option '$optionName' does not exist.");
                 }
             }
         }elseif(!is_null($options)){
-            throw new Exception\InvalidArgumentException("Options must be an array.");
+            throw new \Jyotish\Base\Exception\InvalidArgumentException("Options must be an array.");
         }
     }
 }

@@ -17,13 +17,14 @@ trait GetTrait {
      * 
      * @param string $property
      * @return mixed
+     * @throws Exception\InvalidArgumentException
      */
     public function __get($property)
     {
         if(property_exists($this, $property)){
             return($this->$property);
         }else{
-            throw new Exception\InvalidArgumentException("Property '$property' does not exist.");
+            throw new \Jyotish\Base\Exception\InvalidArgumentException("Property '$property' does not exist.");
         }
     }
 }

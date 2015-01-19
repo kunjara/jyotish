@@ -30,7 +30,7 @@ trait DataTrait {
             (is_object($data) && !($data instanceof \Jyotish\Base\Data)) ||
             (!is_object($data) && !is_array($data))
         ){
-            throw new Exception\InvalidArgumentException(
+            throw new \Jyotish\Base\Exception\InvalidArgumentException(
                 "Data should be an array or instance of Jyotish\\Base\\Data"
             );
         }
