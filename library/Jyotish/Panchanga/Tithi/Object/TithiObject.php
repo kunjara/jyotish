@@ -15,8 +15,8 @@ use Jyotish\Panchanga\Tithi\Tithi;
  */
 class TithiObject {
 
-    use \Jyotish\Base\GetTrait;
-    use \Jyotish\Base\OptionTrait;
+    use \Jyotish\Base\Traits\GetTrait;
+    use \Jyotish\Base\Traits\OptionTrait;
     
     /**
      * Options of tithi object.

@@ -18,7 +18,7 @@ use Jyotish\Ganita\Math;
  */
 class AshtakaVarga {
     
-    use \Jyotish\Base\DataTrait;
+    use \Jyotish\Base\Traits\DataTrait;
 
     /**
      * Bhinnashtakavarga (Prashtarashtakavarga) of 7 grahas and lagna.

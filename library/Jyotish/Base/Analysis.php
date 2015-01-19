@@ -18,7 +18,7 @@ use Jyotish\Tattva\Karaka;
  */
 class Analysis {
     
-    use \Jyotish\Base\DataTrait;
+    use \Jyotish\Base\Traits\DataTrait;
     
     /**
      * Parashara system

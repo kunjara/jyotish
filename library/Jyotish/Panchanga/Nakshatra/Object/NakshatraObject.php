@@ -15,8 +15,8 @@ use Jyotish\Ganita\Math;
  */
 class NakshatraObject {
     
-    use \Jyotish\Base\GetTrait;
-    use \Jyotish\Base\OptionTrait;
+    use \Jyotish\Base\Traits\GetTrait;
+    use \Jyotish\Base\Traits\OptionTrait;
     
     /**
      * Options of nakshatra object.

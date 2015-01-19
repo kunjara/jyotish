@@ -17,7 +17,7 @@ use Jyotish\Rashi\Rashi;
  */
 class Lagna {
     
-    use \Jyotish\Base\DataTrait;
+    use \Jyotish\Base\Traits\DataTrait;
     
     /**
      * Key of Indu lagna

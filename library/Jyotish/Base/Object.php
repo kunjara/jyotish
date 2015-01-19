@@ -17,8 +17,8 @@ use Jyotish\Ganita\Math;
  */
 class Object {
 
-    use \Jyotish\Base\GetTrait;
-    use \Jyotish\Base\OptionTrait;
+    use \Jyotish\Base\Traits\GetTrait;
+    use \Jyotish\Base\Traits\OptionTrait;
     
     /**
      * Next position
@@ -101,7 +101,7 @@ class Object {
     /**
      * Get aspect by grahas.
      * 
-     * @param null|array $options (Optional) Options to set
+     * @param null|array $options Options to set (optional)
      * @return array
      */
     public function isAspectedByGraha($options = null)

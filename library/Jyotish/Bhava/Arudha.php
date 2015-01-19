@@ -16,8 +16,8 @@ use Jyotish\Ganita\Math;
  */
 class Arudha{
     
-    use \Jyotish\Base\DataTrait;
-    use \Jyotish\Base\OptionTrait;
+    use \Jyotish\Base\Traits\DataTrait;
+    use \Jyotish\Base\Traits\OptionTrait;
     
     /**
      * Key of Arudha lagna

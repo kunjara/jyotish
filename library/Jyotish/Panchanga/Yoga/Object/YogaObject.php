@@ -13,7 +13,7 @@ namespace Jyotish\Panchanga\Yoga\Object;
  */
 class YogaObject {
 
-    use \Jyotish\Base\GetTrait;
+    use \Jyotish\Base\Traits\GetTrait;
 
     /**
      * Yoga key

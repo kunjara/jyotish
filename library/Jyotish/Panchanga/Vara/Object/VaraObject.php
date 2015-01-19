@@ -13,7 +13,7 @@ namespace Jyotish\Panchanga\Vara\Object;
  */
 class VaraObject {
     
-    use \Jyotish\Base\GetTrait;
+    use \Jyotish\Base\Traits\GetTrait;
     
     /**
      * Vara key.

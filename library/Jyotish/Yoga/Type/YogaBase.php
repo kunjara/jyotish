@@ -17,7 +17,7 @@ use Jyotish\Base\Analysis;
  */
 class YogaBase implements \Iterator, \Countable{
     
-    use \Jyotish\Base\DataTrait;
+    use \Jyotish\Base\Traits\DataTrait;
     
     /**
      * Type of yogas.

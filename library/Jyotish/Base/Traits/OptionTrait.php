@@ -4,7 +4,7 @@
  * @license   GNU General Public License version 2 or later
  */
 
-namespace Jyotish\Base;
+namespace Jyotish\Base\Traits;
 
 /**
  * OptionTrait provides a setting options.
