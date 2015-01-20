@@ -6,9 +6,9 @@
 
 namespace Jyotish\Yoga\Type;
 
+use Jyotish\Yoga\Yoga;
 use Jyotish\Graha\Graha;
 use Jyotish\Bhava\Bhava;
-use Jyotish\Yoga\Yoga;
 
 /**
  * Dhana yoga class.
@@ -66,7 +66,7 @@ class Dhana extends YogaBase {
      * @return bool
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 41, Verse 2.
      */
-    public function yogaSkInB5MaInB11()
+    public function hasSkInB5MaInB11()
     {
         if(
             ($this->ganitaData['bhava'][5]['rashi'] == 2 or $this->ganitaData['bhava'][5]['rashi'] == 7) and
@@ -86,7 +86,7 @@ class Dhana extends YogaBase {
      * @return bool
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 41, Verse 3.
      */
-    public function yogaBuInB5ChMaGuInB11()
+    public function hasBuInB5ChMaGuInB11()
     {
         if(
             ($this->ganitaData['bhava'][5]['rashi'] == 3 or $this->ganitaData['bhava'][5]['rashi'] == 6) and
@@ -108,7 +108,7 @@ class Dhana extends YogaBase {
      * @return bool
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 41, Verse 4.
      */
-    public function yogaSyInB5ChGuSaInB11()
+    public function hasSyInB5ChGuSaInB11()
     {
         if(
             $this->ganitaData['bhava'][5]['rashi'] == 5 and
@@ -130,7 +130,7 @@ class Dhana extends YogaBase {
      * @return bool
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 41, Verse 5.
      */
-    public function yogaSaInB5SyChInB11()
+    public function hasSaInB5SyChInB11()
     {
         if(
             ($this->ganitaData['bhava'][5]['rashi'] == 10 or $this->ganitaData['bhava'][5]['rashi'] == 11) and
@@ -151,7 +151,7 @@ class Dhana extends YogaBase {
      * @return bool
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 41, Verse 6.
      */
-    public function yogaGuInB5BuInB11()
+    public function hasGuInB5BuInB11()
     {
         if(
             ($this->ganitaData['bhava'][5]['rashi'] == 9 or $this->ganitaData['bhava'][5]['rashi'] == 12) and
@@ -170,7 +170,7 @@ class Dhana extends YogaBase {
      * @return bool
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 41, Verse 7.
      */
-    public function yogaMaInB5SkInB11()
+    public function hasMaInB5SkInB11()
     {
         if(
             ($this->ganitaData['bhava'][5]['rashi'] == 1 or $this->ganitaData['bhava'][5]['rashi'] == 8) and
@@ -190,7 +190,7 @@ class Dhana extends YogaBase {
      * @return bool
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 41, Verse 8.
      */
-    public function yogaChInB5SaInB11()
+    public function hasChInB5SaInB11()
     {
         if(
             $this->ganitaData['bhava'][5]['rashi'] == 4 and
@@ -210,7 +210,7 @@ class Dhana extends YogaBase {
      * @return bool
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 41, Verse 9.
      */
-    public function yogaSyInLgPacMaGu()
+    public function hasSyInLgPacMaGu()
     {
         if(
             $this->ganitaData['bhava'][1]['rashi'] == 5 and
@@ -231,7 +231,7 @@ class Dhana extends YogaBase {
      * @return bool
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 41, Verse 10.
      */
-    public function yogaChInLgPacBuGu()
+    public function hasChInLgPacBuGu()
     {
         if(
             $this->ganitaData['bhava'][1]['rashi'] == 4 and
@@ -252,7 +252,7 @@ class Dhana extends YogaBase {
      * @return bool
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 41, Verse 11.
      */
-    public function yogaMaInLgPacBuSkSa()
+    public function hasMaInLgPacBuSkSa()
     {
         if(
             ($this->ganitaData['bhava'][1]['rashi'] == 1 or $this->ganitaData['bhava'][1]['rashi'] == 8) and
@@ -274,7 +274,7 @@ class Dhana extends YogaBase {
      * @return bool
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 41, Verse 12.
      */
-    public function yogaBuInLgPacGuSa()
+    public function hasBuInLgPacGuSa()
     {
         if(
             ($this->ganitaData['bhava'][1]['rashi'] == 3 or $this->ganitaData['bhava'][1]['rashi'] == 6) and
@@ -295,7 +295,7 @@ class Dhana extends YogaBase {
      * @return bool
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 41, Verse 13.
      */
-    public function yogaGuInLgPacMaBu()
+    public function hasGuInLgPacMaBu()
     {
         if(
             ($this->ganitaData['bhava'][1]['rashi'] == 9 or $this->ganitaData['bhava'][1]['rashi'] == 12) and
@@ -316,7 +316,7 @@ class Dhana extends YogaBase {
      * @return bool
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 41, Verse 14.
      */
-    public function yogaSkInLgPacBuSa()
+    public function hasSkInLgPacBuSa()
     {
         if(
             ($this->ganitaData['bhava'][1]['rashi'] == 2 or $this->ganitaData['bhava'][1]['rashi'] == 7) and
@@ -337,7 +337,7 @@ class Dhana extends YogaBase {
      * @return bool
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 41, Verse 15.
      */
-    public function yogaSaInLgPacMaGu()
+    public function hasSaInLgPacMaGu()
     {
         if(
             ($this->ganitaData['bhava'][1]['rashi'] == 10 or $this->ganitaData['bhava'][1]['rashi'] == 11) and

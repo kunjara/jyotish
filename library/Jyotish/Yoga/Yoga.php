@@ -28,4 +28,16 @@ class Yoga {
      * Raja yoga (royal association)
      */
     const TYPE_RAJA = 'raja';
+    /**
+     * Parivarthana yoga
+     */
+    const TYPE_PARIVARTHANA = 'parivarthana';
+    
+    const MAHAPURUSHA_MAHA = 'maha';
+    const MAHAPURUSHA_KHALA = 'khala';
+    const MAHAPURUSHA_DAINYA = 'dainya';
+    
+    const INTERPLAY_PARIVARTHANA = 'parivarthana';
+    const INTERPLAY_CONJUNCT = 'conjunct';
+    const INTERPLAY_ASPECT = 'aspect';
 }

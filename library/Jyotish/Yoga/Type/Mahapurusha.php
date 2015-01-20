@@ -6,10 +6,8 @@
 
 namespace Jyotish\Yoga\Type;
 
-use Jyotish\Graha\Graha;
-use Jyotish\Rashi\Rashi;
-use Jyotish\Bhava\Bhava;
 use Jyotish\Yoga\Yoga;
+use Jyotish\Graha\Graha;
 
 /**
  * Pancha Mahapurusha yoga class.
@@ -38,14 +36,21 @@ class Mahapurusha extends YogaBase {
     ];
     
     /**
+     * Constructor
+     */
+    public function __construct($data) {
+        parent::__construct($data);
+    }
+    
+    /**
      * One of the Mahapurusha Yogas, it happens when Mangal is exalted or in own 
      * sign, identical with a quadrant (Kendra).
      * 
      * @return bool
      */
-    public function yogaRuchaka()
+    public function hasRuchaka()
     {
-        return $this->yogaGraha(Graha::KEY_MA);
+        return $this->hasMahapurusha(Graha::KEY_MA);
     }
 
     /**
@@ -54,9 +59,9 @@ class Mahapurusha extends YogaBase {
      * 
      * @return bool
      */
-    public function yogaBhadra()
+    public function hasBhadra()
     {
-        return $this->yogaGraha(Graha::KEY_BU);
+        return $this->hasMahapurusha(Graha::KEY_BU);
     }
     
     /**
@@ -65,9 +70,9 @@ class Mahapurusha extends YogaBase {
      * 
      * @return bool
      */
-    public function yogaHamsa()
+    public function hasHamsa()
     {
-        return $this->yogaGraha(Graha::KEY_GU);
+        return $this->hasMahapurusha(Graha::KEY_GU);
     }
     
     /**
@@ -76,9 +81,9 @@ class Mahapurusha extends YogaBase {
      * 
      * @return bool
      */
-    public function yogaMalavya()
+    public function hasMalavya()
     {
-        return $this->yogaGraha(Graha::KEY_SK);
+        return $this->hasMahapurusha(Graha::KEY_SK);
     }
     
     /**
@@ -87,34 +92,8 @@ class Mahapurusha extends YogaBase {
      * 
      * @return bool
      */
-    public function yogaShasha()
+    public function hasShasha()
     {
-        return $this->yogaGraha(Graha::KEY_SA);
-    }
-    
-    /**
-     * Is there Mahapurush yoga for the graha.
-     * 
-     * @param string $key Key of graha.
-     * @return bool
-     * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 75, Verse 1-2.
-     * @see Mantreswara. Phaladeepika. Chapter 6, Verse 1.
-     */
-    private function yogaGraha($key)
-    {
-        $Graha = Graha::getInstance($key);
-        $Graha->setEnvironment($this->ganitaData);
-        
-        $grahaBhava = $Graha->getBhava();
-        $grahaAvastha = $Graha->getRashiAvastha();
-        
-        if(
-            in_array($grahaBhava, Bhava::$bhavaKendra) and 
-            in_array($grahaAvastha, [Rashi::GRAHA_UCHA, Rashi::GRAHA_MOOL, Rashi::GRAHA_SWA])
-        ){
-            return true;
-        }else{
-            return false;
-        }
+        return $this->hasMahapurusha(Graha::KEY_SA);
     }
 }

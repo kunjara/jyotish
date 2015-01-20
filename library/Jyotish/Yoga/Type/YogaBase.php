@@ -7,15 +7,15 @@
 namespace Jyotish\Yoga\Type;
 
 use Jyotish\Graha\Graha;
+use Jyotish\Rashi\Rashi;
 use Jyotish\Bhava\Bhava;
-use Jyotish\Base\Analysis;
 
 /**
  * Base class for yoga combinations.
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class YogaBase implements \Iterator, \Countable{
+class YogaBase {
     
     use \Jyotish\Base\Traits\DataTrait;
     
@@ -41,14 +41,14 @@ class YogaBase implements \Iterator, \Countable{
     }
     
     /**
-     * Whether parivarthana yoga.
+     * Is there Parivarthana yoga.
      * 
      * @param string $graha1 Key of graha
      * @param string $graha2 Key of graha
      * @return bool
      * @see Mantreswara. Phaladeepika. Chapter 6, Verse 32.
      */
-    public function yogaParivarthana($graha1, $graha2)
+    public function hasParivarthana($graha1, $graha2)
     {
         $Graha1 = Graha::getInstance($graha1);
         $Graha2 = Graha::getInstance($graha2);
@@ -65,120 +65,44 @@ class YogaBase implements \Iterator, \Countable{
     }
     
     /**
-     * If the lord of a kendras establishes relationship with a trikonas lord, 
-     * a Rajayoga will obtain.
+     * Is there Mahapurusha yoga for the graha.
      * 
+     * @param string $key Key of graha.
      * @return bool
-     * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 41, Verse 28.
+     * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 75, Verse 1-2.
+     * @see Mantreswara. Phaladeepika. Chapter 6, Verse 1.
      */
-    public function yogaRaja()
+    public function hasMahapurusha($key)
     {
-        $Analysis = new Analysis($this->ganitaData);
+        $Graha = Graha::getInstance($key);
+        $Graha->setEnvironment($this->ganitaData);
         
-        $kendraRulers = $Analysis->getBhavaRulers(Bhava::$bhavaKendra);
-        $trikonaRulers = $Analysis->getBhavaRulers(Bhava::$bhavaTrikona);
+        $grahaBhava = $Graha->getBhava();
+        $grahaAvastha = $Graha->getRashiAvastha();
         
-        $isParivarthana = false;
-        $isConjuncted = false;
-        $isAspected = false;
-        
-        foreach ($kendraRulers as $kendraRuler){
-            foreach ($trikonaRulers as $trikonaRuler){
-                $KendraRuler = Graha::getInstance($kendraRuler);
-                $KendraRuler->setEnvironment($this->ganitaData);
-                $TrikonaRuler = Graha::getInstance($trikonaRuler);
-                $TrikonaRuler->setEnvironment($this->ganitaData);
-                
-                // Parivarthana
-                if($this->yogaParivarthana($kendraRuler, $trikonaRuler)){
-                    $isParivarthana = true;
-                    break;
-                }
-                
-                // Conjunct
-                $kendraRulerIsConjuncted = $KendraRuler->isConjuncted();
-                if(isset($kendraRulerIsConjuncted[$trikonaRuler])){
-                    $isConjuncted = true;
-                    break;
-                }
-                
-                // Ascpect
-                $kendraRulerIsAspected = $KendraRuler->isAspectedByGraha();
-                $trikonaRulerIsAspected = $TrikonaRuler->isAspectedByGraha();
-                if(
-                    $kendraRulerIsAspected[$trikonaRuler] == 1 and
-                    $trikonaRulerIsAspected[$kendraRuler] == 1
-                ){
-                    $isAspected = true;
-                    break;
-                }
-            }
-        }
-        
-        if($isParivarthana or $isConjuncted or $isAspected)
+        if(
+            in_array($grahaBhava, Bhava::$bhavaKendra) and 
+            in_array($grahaAvastha, [Rashi::GRAHA_UCHA, Rashi::GRAHA_MOOL, Rashi::GRAHA_SWA])
+        ){
             return true;
-        else
+        }else{
             return false;
+        }
     }
-
+    
     /**
-     * rewind(): defined by Iterator interface.
-     *
-     * @return void
-     */
-    public function rewind()
-    {
-        $this->position = 0;
-    }
-
-    /**
-     * current(): defined by Iterator interface.
-     *
-     * @return bool
-     */
-    public function current()
-    {
-        $yoga = 'yoga'.$this->yogas[$this->position];
-        return $this->$yoga();
-    }
-
-    /**
-     * key(): defined by Iterator interface.
-     *
+     * Gnerate list of present yogas.
+     * 
      * @return string
      */
-    public function key()
+    public function generateYoga()
     {
-        return $this->yogas[$this->position];
-    }
-
-    /**
-     * next(): defined by Iterator interface.
-     *
-     * @return void
-     */
-    public function next()
-    {
-        ++$this->position;
-    }
-
-    /**
-     * valid(): defined by Iterator interface.
-     *
-     * @return bool
-     */
-    public function valid()
-    {
-        return isset($this->yogas[$this->position]);
-    }
-
-    /**
-     * Returns the number of yogas.
-     * 
-     * @return int
-     */
-    public function count()
-    {
-        return count($this->yogas);
+        foreach ($this->yogas as $yoga){
+            $hasYoga = 'has'.$yoga;
+            
+            if($this->$hasYoga()){
+                yield $yoga;
+            }
+        }
     }
 }
