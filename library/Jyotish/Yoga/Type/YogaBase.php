@@ -6,6 +6,7 @@
 
 namespace Jyotish\Yoga\Type;
 
+use Jyotish\Yoga\Yoga;
 use Jyotish\Graha\Graha;
 use Jyotish\Rashi\Rashi;
 use Jyotish\Bhava\Bhava;
@@ -18,6 +19,7 @@ use Jyotish\Bhava\Bhava;
 class YogaBase {
     
     use \Jyotish\Base\Traits\DataTrait;
+    use \Jyotish\Base\Traits\OptionTrait;
     
     /**
      * Type of yogas.
@@ -34,10 +36,23 @@ class YogaBase {
     protected $yogas = array();
     
     /**
-     * Constructor
+     * Options of Yoga calculation.
+     * 
+     * @var array
      */
-    public function __construct($data) {
+    protected $options = array(
+        'outputAmple' => false,
+    );
+    
+    /**
+     * Constructor
+     * 
+     * @param \Jyotish\Base\Data|array $data
+     * @param null|array $options Options to set (optional)
+     */
+    public function __construct($data, array $options = null) {
         $this->setData($data);
+        $this->setOptions($options);
     }
     
     /**
@@ -56,12 +71,29 @@ class YogaBase {
         foreach ($Graha2->grahaSwa as $key => $data) $rashi2Swa[] = $data['rashi']; 
         
         if(
-            in_array($this->ganitaData['graha'][$graha1]['rashi'], $rashi2Swa) and
+            in_array($this->ganitaData['graha'][$graha1]['rashi'], $rashi2Swa) and 
             in_array($this->ganitaData['graha'][$graha2]['rashi'], $rashi1Swa)
-        )
-            return true;
-        else
+        ){
+            if($this->options['outputAmple']){
+                $Graha1->setEnvironment($this->ganitaData);
+                $Graha2->setEnvironment($this->ganitaData);
+                $graha1Bhava = $Graha1->getBhava();
+                $graha2Bhava = $Graha2->getBhava();
+                
+                if(in_array($graha1Bhava, Bhava::$bhavaDusthana) or in_array($graha2Bhava, Bhava::$bhavaDusthana)){
+                    $subtype = Yoga::MAHAPURUSHA_DAINYA;
+                }elseif($graha1Bhava == 3 or $graha2Bhava == 3){
+                    $subtype = Yoga::MAHAPURUSHA_KHALA;
+                }else{
+                    $subtype = Yoga::MAHAPURUSHA_MAHA;
+                }
+                return $subtype;
+            }else{
+                return true;
+            }
+        }else{
             return false;
+        }
     }
     
     /**

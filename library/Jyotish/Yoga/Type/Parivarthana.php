@@ -24,9 +24,12 @@ class Parivarthana extends YogaBase {
     
     /**
      * Constructor
+     * 
+     * @param \Jyotish\Base\Data|array $data
+     * @param null|array $options Options to set (optional)
      */
-    public function __construct($data) {
-        parent::__construct($data);
+    public function __construct($data, array $options = null) {
+        parent::__construct($data, $options);
     }
     
     /**
@@ -47,11 +50,17 @@ class Parivarthana extends YogaBase {
                     continue;
                 }
                 
-                if($this->hasParivarthana($key1, $key2)){
-                    yield [
+                if($subtype = $this->hasParivarthana($key1, $key2)){
+                    $result = [
                         'graha1' => $key1,
                         'graha2' => $key2,
                     ];
+                    
+                    if($this->options['outputAmple']){
+                        $result = array_merge($result, ['subtype' => $subtype,]);
+                    }
+                    
+                    yield $result;
                 }
             }
         }

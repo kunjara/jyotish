@@ -17,7 +17,7 @@ class Yoga {
      */
     const TYPE_DHANA = 'dhana';
     /**
-     * Mahapurusha yoga
+     * Mahapurusha yoga (great persons)
      */
     const TYPE_MAHAPURUSHA = 'mahapurusha';
     /**
@@ -29,7 +29,7 @@ class Yoga {
      */
     const TYPE_RAJA = 'raja';
     /**
-     * Parivarthana yoga
+     * Parivarthana yoga (bhava exchange)
      */
     const TYPE_PARIVARTHANA = 'parivarthana';
     
