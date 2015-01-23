@@ -17,6 +17,9 @@ use Jyotish\Ganita\Time;
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 abstract class AbstractDasha {
+    
+    use \Jyotish\Base\Traits\GetTrait;
+    
     /**
      * Dasha key
      * 

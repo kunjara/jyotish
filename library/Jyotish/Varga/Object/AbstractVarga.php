@@ -15,6 +15,9 @@ use Jyotish\Ganita\Math;
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 abstract class AbstractVarga {
+    
+    use \Jyotish\Base\Traits\GetTrait;
+    
     /**
      * Key of the varga.
      * 
