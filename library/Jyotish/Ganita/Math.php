@@ -136,7 +136,7 @@ class Math {
         if($distance > 0){
             $distanceCycle = $distance - 1;
         }else{
-            $distanceCycle = $distance;
+            $distanceCycle = $distance + 1;
         }
         
         $number = $n + $distanceCycle;

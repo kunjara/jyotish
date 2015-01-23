@@ -72,7 +72,7 @@ class BhavaObject extends \Jyotish\Base\Object {
    {
        $this->checkEnvironment();
 
-       $mitraBhava = [-3, -2, -1, 1, 2, 3];
+       $mitraBhava = [-4, -3, -2, 1, 2, 3];
        foreach ($mitraBhava as $distance){
            $rashi = Math::numberInCycle($this->objectRashi, $distance);
            $mitraRashi[$rashi] = $distance;
