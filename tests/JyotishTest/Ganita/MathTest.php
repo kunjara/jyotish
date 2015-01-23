@@ -58,8 +58,8 @@ class MathTest extends \PHPUnit_Framework_TestCase{
             $numbersExpected[] = Math::numberInCycle(1, $i);
         }
         $numbersActual = [
-            12, 
-            1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 
+            1, 
+            2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 1, 
             1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12,
             1
         ];
@@ -81,6 +81,23 @@ class MathTest extends \PHPUnit_Framework_TestCase{
             [1, 6, 6],
             [6, 1, 8],
             [8, 4, 9],
+        ];
+    }
+    
+    /**
+     * @dataProvider providerInRange
+     */
+    public function testInRange($value, $min, $max)
+    {
+        $this->assertTrue(Math::inRange($value, $min, $max));
+    }
+    
+    public function providerInRange()
+    {
+        return [
+            [2, 2, 3],
+            [1, 0, 2],
+            [1, -2, 2],
         ];
     }
 }
