@@ -9,8 +9,8 @@
         "php": ">=5.5"
     },
     "autoload": {
-        "psr-0": {
-            "Jyotish": "library/"
+        "psr-4": {
+            "Jyotish\\": "src/Jyotish"
         }
     },
     "authors": [
