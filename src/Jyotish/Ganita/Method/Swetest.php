@@ -10,6 +10,7 @@ use DateTime;
 use DateInterval;
 use DateTimeZone;
 use Jyotish\Graha\Graha;
+use Jyotish\Graha\Lagna;
 use Jyotish\Ganita\Math;
 use Jyotish\Ganita\Time;
 use Jyotish\Ganita\Ayanamsha;
@@ -76,8 +77,8 @@ class Swetest extends AbstractGanita{
         'house12'   => 12,
     );
     protected $outputExtra = array(
-        'Ascendant' => Graha::KEY_LG,
-        'MC'        => 'MC',
+        'Ascendant' => Lagna::KEY_LG,
+        'MC'        => Lagna::KEY_MLG,
         'ARMC'      => 'ARMC',
         'Vertex'    => 'Vertex',
     );

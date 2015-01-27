@@ -6,6 +6,7 @@
 
 namespace Jyotish\Graha;
 
+use Jyotish\Graha\Lagna;
 use Jyotish\Tattva\Jiva\Nara\Deva;
 
 /**
@@ -53,7 +54,7 @@ class Graha {
     /**
      * Key of Ascendant
      */
-    const KEY_LG = 'Lg';
+    const KEY_LG = Lagna::KEY_LG;
     
     /**
      * Name of Rahu (north lunar node)
@@ -63,10 +64,6 @@ class Graha {
      * Name of Ketu (south lunar node)
      */
     const NAME_KE = 'Ketu';
-    /**
-     * Name of Ascendant
-     */
-    const NAME_LG = 'Lagna';
 
     /**
      * Benefic character

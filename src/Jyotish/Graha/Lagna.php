@@ -20,6 +20,23 @@ class Lagna {
     use \Jyotish\Base\Traits\DataTrait;
     
     /**
+     * Key of Janma lagna (Ascendant)
+     */
+    const KEY_LG = 'Lg';
+    /**
+     * Key of Patala lagna 
+     */
+    const KEY_PLG = 'PLg';
+    /**
+     * Key of Astha lagna
+     */
+    const KEY_ALG = 'ALg';
+    /**
+     * Key of Madhya lagna
+     */
+    const KEY_MLG = 'MLg';
+    
+    /**
      * Key of Indu lagna
      */
     const KEY_IL = 'IL';
@@ -27,6 +44,11 @@ class Lagna {
      * Key of Shree lagna
      */
     const KEY_SL = 'SL';
+    
+    /**
+     * Name of Ascendant
+     */
+    const NAME_LG = 'Lagna';
     
     /**
      * List of extra lagnas.
