@@ -7,8 +7,9 @@
 namespace Jyotish\Base;
 
 use Jyotish\Graha\Graha;
-use Jyotish\Bhava\Bhava;
 use Jyotish\Graha\Lagna;
+use Jyotish\Graha\Upagraha;
+use Jyotish\Bhava\Bhava;
 use Jyotish\Bhava\Arudha;
 use Jyotish\Ganita\Math;
 
@@ -22,6 +23,10 @@ class Data {
      * Graha block
      */
     const BLOCK_GRAHA = 'graha';
+    /**
+     * Upagraha block
+     */
+    const BLOCK_UPAGRAHA = 'upagraha';
     /**
      * Extra block
      */
@@ -47,6 +52,9 @@ class Data {
     protected $dataTemplate = [
         self::BLOCK_GRAHA => [
             'element' => ['longitude', 'latitude', 'speed']
+        ],
+        self::BLOCK_UPAGRAHA => [
+            'element' => ['longitude']
         ],
         self::BLOCK_EXTRA => [
             'element' => ['longitude']
@@ -210,6 +218,21 @@ class Data {
         
         foreach ($generateArudha as $key => $data){
             $this->ganitaData[self::BLOCK_EXTRA][$key] = $data;
+        }
+    }
+    
+    /**
+     * Calculation of upagrahas.
+     * 
+     * @param null|array $upagrahaKeys Array of upagraha keys
+     */
+    public function calcUpagraha(array $upagrahaKeys = null)
+    {
+        $Upagraha = new Upagraha($this->ganitaData);
+        $generateUpagraha = $Upagraha->generateUpagraha($upagrahaKeys);
+        
+        foreach ($generateUpagraha as $key => $data){
+            $this->ganitaData[self::BLOCK_UPAGRAHA][$key] = $data;
         }
     }
 
