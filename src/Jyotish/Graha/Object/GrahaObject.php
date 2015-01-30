@@ -282,6 +282,8 @@ class GrahaObject extends Object {
      */
     public function getRashiAvastha()
     {
+        $this->checkEnvironment();
+        
         $rashi = $this->ganitaData['graha'][$this->objectKey]['rashi'];
         $degree = $this->ganitaData['graha'][$this->objectKey]['degree'];
         
@@ -346,6 +348,8 @@ class GrahaObject extends Object {
      */
     public function isAstangata()
     {
+        $this->checkEnvironment();
+        
         if(in_array($this->objectKey, [Graha::KEY_SY, Graha::KEY_RA, Graha::KEY_KE]))
                 return false;
         
