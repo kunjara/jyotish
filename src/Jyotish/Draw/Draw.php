@@ -14,7 +14,7 @@ use Jyotish\Base\Data;
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 class Draw {
-    protected $adapter = null;
+    protected $adapterName = null;
     protected $adapterNamespace = 'Jyotish\Draw\Renderer\\';
     protected $adapterObject;
 
@@ -25,8 +25,8 @@ class Draw {
             );
         }
 
-        $this->adapter = ucwords(strtolower($adapter));
-        $adapterName = $this->adapterNamespace . $this->adapter;
+        $this->adapterName = ucwords(strtolower($adapter));
+        $adapterName = $this->adapterNamespace . $this->adapterName;
         $this->adapterObject = new $adapterName($width, $height);
     }
 
@@ -39,7 +39,7 @@ class Draw {
     }
 
     public function drawChakra(Data $Data, $topOffset = 0, $leftOffset = 0, $options = array()) {
-        $chakraAdapterName = 'Jyotish\Draw\Plot\Chakra\Render\\' . $this->adapter;
+        $chakraAdapterName = 'Jyotish\Draw\Plot\Chakra\Render\\' . $this->adapterName;
         $chakraAdapterObject = new $chakraAdapterName($this->adapterObject);
 
         $this->setOptions($options);

@@ -27,10 +27,10 @@ class Image extends AbstractRenderer implements \Jyotish\Draw\Renderer\ImageInte
     }
 
     public function drawPolygon($points) {
-        $colorRgb = Utils::htmlToRgb($this->strokeColor);
+        $colorRgb = Utils::htmlToRgb($this->options['strokeColor']);
         $color = $this->allocateColor($this->resource, $colorRgb['r'], $colorRgb['g'], $colorRgb['b']);
 
-        imagesetthickness($this->resource, $this->strokeWidth);
+        imagesetthickness($this->resource, $this->options['strokeWidth']);
 
         $numPoints = count($points) / 2;
 
@@ -40,22 +40,22 @@ class Image extends AbstractRenderer implements \Jyotish\Draw\Renderer\ImageInte
     }
 
     public function drawText($text, $x = 0, $y = 0, $options = array()) {
-        $colorRgb = Utils::htmlToRgb($this->fontColor);
+        $colorRgb = Utils::htmlToRgb($this->options['fontColor']);
         $color = $this->allocateColor($this->resource, $colorRgb['r'], $colorRgb['g'], $colorRgb['b']);
 
-        if ($this->fontName == null) {
-            $this->fontName = 3;
+        if ($this->options['fontName'] == null) {
+            $this->options['fontName'] = 3;
         }
 
         if(!isset($options['orientation'])) $options['orientation'] = 0;
-        if (is_numeric($this->fontName)) {
+        if (is_numeric($this->options['fontName'])) {
             if ($options['orientation']) {
                 throw new Exception\RuntimeException(
                         'No orientation possible with GD internal font.'
                 );
             }
-            $fontWidth = imagefontwidth($this->fontName);
-            $fontHeight = imagefontheight($this->fontName);
+            $fontWidth = imagefontwidth($this->options['fontName']);
+            $fontHeight = imagefontheight($this->options['fontName']);
 
             switch ($options['align']) {
                 case 'left':
@@ -81,14 +81,14 @@ class Image extends AbstractRenderer implements \Jyotish\Draw\Renderer\ImageInte
                     break;
             }
 
-            imagestring($this->resource, $this->fontName, $positionX, $positionY, $text, $this->fontColor);
+            imagestring($this->resource, $this->options['fontName'], $positionX, $positionY, $text, $this->options['fontColor']);
         } else {
             if (!function_exists('imagettfbbox')) {
                 throw new Exception\RuntimeException(
                         'A font was provided, but this instance of PHP does not have TTF (FreeType) support');
             }
 
-            $box = imagettfbbox($this->fontSize, 0, $this->fontName, $text);
+            $box = imagettfbbox($this->options['fontSize'], 0, $this->options['fontName'], $text);
 
             if(!isset($options['align'])) $options['align'] = 'left';
             switch ($options['align']) {
@@ -120,12 +120,12 @@ class Image extends AbstractRenderer implements \Jyotish\Draw\Renderer\ImageInte
 
             imagettftext(
                     $this->resource, 
-                    $this->fontSize, 
+                    $this->options['fontSize'], 
                     $options['orientation'], 
                     $x - ($width * cos(pi() * $options['orientation'] / 180)) + ($height * sin(pi() * $options['orientation'] / 180)), 
                     $y + ($height * cos(pi() * $options['orientation'] / 180)) + ($width * sin(pi() * $options['orientation'] / 180)), 
                     $color, 
-                    $this->fontName, 
+                    $this->options['fontName'], 
                     $text
             );
         }
@@ -140,7 +140,7 @@ class Image extends AbstractRenderer implements \Jyotish\Draw\Renderer\ImageInte
             throw new Exception\InvalidArgumentException("The font '{$value}' does not exist.");
         }
 
-        $this->fontName = $value;
+        $this->options['fontName'] = $value;
         return $this;
     }
 

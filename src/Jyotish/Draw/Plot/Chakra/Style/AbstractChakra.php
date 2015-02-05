@@ -14,9 +14,17 @@ use Jyotish\Base\Data;
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 abstract class AbstractChakra {
-
+    /**
+     * North Indian style
+     */
     const STYLE_NORTH = 'north';
+    /**
+     * South Indian style
+     */
     const STYLE_SOUTH = 'south';
+    /**
+     * Eastern Indian Style
+     */
     const STYLE_EAST = 'east';
 
     static public $styles = array(
@@ -24,11 +32,12 @@ abstract class AbstractChakra {
         self::STYLE_SOUTH,
         self::STYLE_EAST,
     );
-    static private $_bhavaPoints = array();
+    
+    protected $bhavaPoints = array();
 
     abstract public function getBhavaPoints($size, $left, $top);
 
-    abstract public function getRashiLabelPoints($size, array $labelRashi, Data $drawData);
+    abstract public function getRashiLabelPoints(Data $drawData, array $options);
 
-    abstract public function getGrahaLabelPoints($size, array $labelGraha, Data $drawData);
+    abstract public function getGrahaLabelPoints(Data $drawData, array $options);
 }

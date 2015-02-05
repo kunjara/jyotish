@@ -20,19 +20,19 @@ abstract class AbstractRenderer {
     protected $resource = null;
     protected $data = null;
 
-    protected $topOffset = 0;
-    protected $leftOffset = 0;
-
-    protected $fontSize = 10;
-    protected $fontName = null;
-    protected $fontColor = '000';
-
-    protected $strokeWidth = 1;
-    protected $strokeColor = '000';
-
-    protected $fillColor = 'fff';
-
-
+    protected $options = [
+        'topOffset' => 0,
+        'leftOffset' => 0,
+        
+        'fontSize' => 10,
+        'fontName' => null,
+        'fontColor' => '000',
+        
+        'strokeWidth' => 1,
+        'strokeColor' => '000',
+        
+        'fillColor' => 'fff',
+    ];
 
     public function get($name) {
         if (isset($this->$name)) {
@@ -46,14 +46,14 @@ abstract class AbstractRenderer {
      * Return graha label.
      * 
      * @param string $graha
-     * @param int $labelType
-     * @param string $userFunction
+     * @param Data $Data
+     * @param array $options
      * @return string
      */
-    public function getGrahaLabel(Data $Data, $graha, $labelType = 0, $userFunction = null) {
+    public function getGrahaLabel($graha, Data $Data, array $options) {
         $grahas = $Data->getGrahaInBhava();
 
-        switch ($labelType) {
+        switch ($options['labelGrahaType']) {
             case 0:
                 $label = $graha;
                 break;
@@ -66,7 +66,7 @@ abstract class AbstractRenderer {
                 }
                 break;
             case 2:
-                $label = call_user_func($userFunction, $graha);
+                $label = call_user_func($options['labelGrahaCallback'], $graha);
                 break;
             default:
                 $label = $graha;
@@ -97,7 +97,6 @@ abstract class AbstractRenderer {
                 $this->$method($value);
             }
         }
-        return $this;
     }
 
     public function setTopOffset($value) {
@@ -106,8 +105,7 @@ abstract class AbstractRenderer {
                     'Vertical position must be greater than or equals 0.'
             );
         }
-        $this->topOffset = intval($value);
-        return $this;
+        $this->options['topOffset'] = intval($value);
     }
 
     public function setLeftOffset($value) {
@@ -116,8 +114,7 @@ abstract class AbstractRenderer {
                     'Horizontal position must be greater than or equals 0.'
             );
         }
-        $this->leftOffset = intval($value);
-        return $this;
+        $this->options['leftOffset'] = intval($value);
     }
 
     public function setFontSize($value) {
@@ -126,13 +123,11 @@ abstract class AbstractRenderer {
                     'Font size must be greater than or equals 8.'
             );
         }
-        $this->fontSize = intval($value);
-        return $this;
+        $this->options['fontSize'] = intval($value);
     }
 
     public function setFontColor($value) {
-        $this->fontColor = $value;
-        return $this;
+        $this->options['fontColor'] = $value;
     }
 
     public function setStrokeWidth($value) {
@@ -141,8 +136,7 @@ abstract class AbstractRenderer {
                     'Stroke width must be greater than or equals 0.'
             );
         }
-        $this->strokeWidth = $value;
-        return $this;
+        $this->options['strokeWidth'] = $value;
     }
 
     abstract public function drawPolygon($points);

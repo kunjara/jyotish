@@ -18,15 +18,10 @@ class Svg extends AbstractRender implements \Jyotish\Draw\Renderer\SvgInterface 
     }
 
     protected function drawRashiLabel($leftOffset, $topOffset) {
-        $chakraStyle = 'Jyotish\Draw\Plot\Chakra\Style\\' . $this->chakraStyle;
+        $chakraStyle = 'Jyotish\Draw\Plot\Chakra\Style\\' . $this->options['chakraStyle'];
         $chakraObject = new $chakraStyle();
 
-        $rashiLabelPoints = $chakraObject->getRashiLabelPoints(
-                $this->chakraSize, 
-                array(
-                    'offsetBorder' => $this->offsetBorder,
-                ), $this->data
-        );
+        $rashiLabelPoints = $chakraObject->getRashiLabelPoints($this->data, $this->options);
 
         foreach ($rashiLabelPoints as $rashi => $point) {
             $this->adapter->drawText(
@@ -42,20 +37,16 @@ class Svg extends AbstractRender implements \Jyotish\Draw\Renderer\SvgInterface 
     }
 
     protected function drawGrahaLabel($leftOffset, $topOffset) {
-        $chakraStyle = 'Jyotish\Draw\Plot\Chakra\Style\\' . $this->chakraStyle;
+        $chakraStyle = 'Jyotish\Draw\Plot\Chakra\Style\\' . $this->options['chakraStyle'];
         $chakraObject = new $chakraStyle();
 
-        $grahaLabelPoints = $chakraObject->getGrahaLabelPoints(
-                $this->chakraSize, 
-                array(
-                    'offsetBorder' => $this->offsetBorder,
-                    'widthOffsetLabel' => $this->widthOffsetLabel,
-                    'heightOffsetLabel' => $this->heightOffsetLabel,
-                ), $this->data
-        );
+        $grahaLabelPoints = $chakraObject->getGrahaLabelPoints($this->data, $this->options);
 
         foreach ($grahaLabelPoints as $graha => $point) {
-            $grahaLabel = $this->adapter->getGrahaLabel($this->data, $graha, $this->labelGrahaType, $this->labelGrahaCallback);
+            $grahaLabel = $this->adapter->getGrahaLabel($graha, $this->data, [
+                'labelGrahaType' => $this->options['labelGrahaType'], 
+                'labelGrahaCallback' => $this->options['labelGrahaCallback']
+            ]);
 
             $this->adapter->drawText(
                     $grahaLabel, 

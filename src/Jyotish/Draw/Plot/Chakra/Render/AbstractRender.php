@@ -15,16 +15,20 @@ use Jyotish\Draw\Plot\Chakra\Style\AbstractChakra;
  */
 abstract class AbstractRender {
     protected $adapter = null;
-    protected $chakraSize = 200;
-    protected $chakraStyle = AbstractChakra::STYLE_NORTH;
-
-    protected $offsetBorder = 4;
-    protected $offsetLabel = 4;
-    protected $widthOffsetLabel = 20;
-    protected $heightOffsetLabel = 14;
-
-    protected $labelGrahaType = 0;
-    protected $labelGrahaCallback = null;
+    
+    protected $options = [
+        'chakraSize' => 200,
+        'chakraStyle' => AbstractChakra::STYLE_NORTH,
+        'dataBlocks' => ['graha'],
+        
+        'offsetBorder' => 4,
+        'offsetLabel' => 4,
+        'widthOffsetLabel' => 20,
+        'heightOffsetLabel' => 14,
+        
+        'labelGrahaType' => 0,
+        'labelGrahaCallback' => null,
+    ];
 
     public function __construct($adapter) {
         $this->adapter = $adapter;
@@ -50,8 +54,7 @@ abstract class AbstractRender {
                     'Chakra size must be greater than 100.'
             );
         }
-        $this->chakraSize = intval($value);
-        return $this;
+        $this->options['chakraSize'] = intval($value);
     }
 
     public function setChakraStyle($value) {
@@ -60,8 +63,12 @@ abstract class AbstractRender {
                     "Invalid chakra style provided must be 'north', 'south' or 'east'."
             );
         }
-        $this->chakraStyle = $value;
-        return $this;
+        $this->options['chakraStyle'] = $value;
+    }
+    
+    public function setDataBlocks(array $blocks)
+    {
+        $this->options['dataBlocks'] = $blocks;
     }
 
     public function setOffsetBorder($value) {
@@ -70,8 +77,7 @@ abstract class AbstractRender {
                     'Border offset must be greater than or equals 0.'
             );
         }
-        $this->offsetBorder = intval($value);
-        return $this;
+        $this->options['offsetBorder'] = intval($value);
     }
 
     public function setOffsetLabel($value) {
@@ -80,8 +86,7 @@ abstract class AbstractRender {
                     'Label offset must be greater than or equals 0.'
             );
         }
-        $this->offsetLabel = intval($value);
-        return $this;
+        $this->options['offsetLabel'] = intval($value);
     }
 
     public function setLabelGrahaType($value) {
@@ -90,35 +95,35 @@ abstract class AbstractRender {
                     "Invalid label type provided must be 0, 1 or 2."
             );
         }
-        $this->labelGrahaType = $value;
-        return $this;
+        $this->options['labelGrahaType'] = $value;
     }
 
     public function setLabelGrahaCallback($value) {
         if (!is_callable($value)) {
             throw new Exception\RuntimeException("Function $value not supported.");
         }
-        $this->labelGrahaCallback = $value;
-        return $this;
+        $this->options['labelGrahaCallback'] = $value;
     }
 
     public function drawChakra($Data, $leftOffset, $topOffset, $options) {
         $this->data = $Data;
 
-        $chakraStyleClass  = 'Jyotish\Draw\Plot\Chakra\Style\\' . ucfirst(strtolower($this->chakraStyle));
+        $chakraStyleClass  = 'Jyotish\Draw\Plot\Chakra\Style\\' . ucfirst(strtolower($this->options['chakraStyle']));
         $chakraStyleObject = new $chakraStyleClass();
-        $bhavaPoints       = $chakraStyleObject->getBhavaPoints($this->chakraSize, $leftOffset, $topOffset);
+        $bhavaPoints       = $chakraStyleObject->getBhavaPoints($this->options['chakraSize'], $leftOffset, $topOffset);
 
         foreach ($bhavaPoints as $points) {
             $this->adapter->drawPolygon($points);
         }
 
-        if (isset($options['labelRashiFont']))
+        if (isset($options['labelRashiFont'])){
             $this->adapter->setOptions($options['labelRashiFont']);
+        }
         $this->drawRashiLabel($leftOffset, $topOffset);
 
-        if (isset($options['labelGrahaFont']))
+        if (isset($options['labelGrahaFont'])){
             $this->adapter->setOptions($options['labelGrahaFont']);
+        }
         $this->drawGrahaLabel($leftOffset, $topOffset);
     }
 }

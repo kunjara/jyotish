@@ -40,10 +40,10 @@ class Svg extends AbstractRenderer implements \Jyotish\Draw\Renderer\SvgInterfac
     }
 
     public function drawPolygon($points) {
-        $colorSrokeRgb = Utils::htmlToRgb($this->strokeColor);
+        $colorSrokeRgb = Utils::htmlToRgb($this->options['strokeColor']);
         $colorStrokeString = 'rgb(' . implode(', ', $colorSrokeRgb) . ')';
 
-        $colorFillRgb = Utils::htmlToRgb($this->fillColor);
+        $colorFillRgb = Utils::htmlToRgb($this->options['fillColor']);
         $colorFillString = 'rgb(' . implode(', ', $colorFillRgb) . ')';
 
         $pointsString = implode(' ', $points);
@@ -51,20 +51,20 @@ class Svg extends AbstractRenderer implements \Jyotish\Draw\Renderer\SvgInterfac
         $attributes['points'] = $pointsString;
         $attributes['fill'] = $colorFillString;
         $attributes['stroke'] = $colorStrokeString;
-        $attributes['stroke-width'] = $this->strokeWidth;
+        $attributes['stroke-width'] = $this->options['strokeWidth'];
         $attributes['stroke-linejoin'] = 'round';
 
         $this->appendRootElement('polygon', $attributes);
     }
 
     public function drawText($text, $x = 0, $y = 0, $options = array()) {
-        $colorRgb = Utils::htmlToRgb($this->fontColor);
+        $colorRgb = Utils::htmlToRgb($this->options['fontColor']);
         $color = 'rgb(' . implode(', ', $colorRgb) . ')';
 
         $attributes['x'] = $x;
         $attributes['y'] = $y;
         $attributes['fill'] = $color;
-        $attributes['font-size'] = $this->fontSize * 1.2;
+        $attributes['font-size'] = $this->options['fontSize'] * 1.2;
 
         if(!isset($options['align'])) $options['align'] = 'left';
         switch ($options['align']) {
@@ -83,10 +83,10 @@ class Svg extends AbstractRenderer implements \Jyotish\Draw\Renderer\SvgInterfac
         if(!isset($options['valign'])) $options['valign'] = 'bottom';
         switch ($options['valign']) {
             case 'top':
-                $attributes['y'] += $this->fontSize;
+                $attributes['y'] += $this->options['fontSize'];
                 break;
             case 'middle':
-                $attributes['y'] += $this->fontSize / 2;
+                $attributes['y'] += $this->options['fontSize'] / 2;
                 break;
             case 'bottom':
             default:
