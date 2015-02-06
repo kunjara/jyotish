@@ -91,12 +91,14 @@ abstract class AbstractRenderer {
     }
 
     public function setOptions($options) {
-        foreach ($options as $key => $value) {
-            $method = 'set' . $key;
-            if (method_exists($this, $method)) {
-                $this->$method($value);
-            }
-        }
+        if($options){
+           foreach ($options as $key => $value) {
+                $method = 'set' . $key;
+                if (method_exists($this, $method)) {
+                    $this->$method($value);
+                }
+            } 
+        } 
     }
 
     public function setTopOffset($value) {

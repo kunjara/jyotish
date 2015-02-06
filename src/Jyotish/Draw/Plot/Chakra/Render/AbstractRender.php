@@ -7,6 +7,7 @@
 namespace Jyotish\Draw\Plot\Chakra\Render;
 
 use Jyotish\Draw\Plot\Chakra\Style\AbstractChakra;
+use Jyotish\Base\Data;
 
 /**
  * Abstract class for rendering Chakra.
@@ -14,8 +15,32 @@ use Jyotish\Draw\Plot\Chakra\Style\AbstractChakra;
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 abstract class AbstractRender {
-    protected $adapter = null;
+    /**
+     * Adapter object.
+     * 
+     * @var Image|Svg
+     */
+    protected $adapterObject = null;
     
+    /**
+     * Chakra object.
+     * 
+     * @var North|South|East
+     */
+    protected $chakraObject = null;
+    
+    /**
+     * Data object.
+     * 
+     * @var Data
+     */
+    protected $dataObject = null;
+
+    /**
+     * Options to set.
+     * 
+     * @var array
+     */
     protected $options = [
         'chakraSize' => 200,
         'chakraStyle' => AbstractChakra::STYLE_NORTH,
@@ -30,22 +55,59 @@ abstract class AbstractRender {
         'labelGrahaCallback' => null,
     ];
 
-    public function __construct($adapter) {
-        $this->adapter = $adapter;
+    /**
+     * Constructor
+     * 
+     * @param Image|Svg $adapterObject
+     */
+    public function __construct($adapterObject) {
+        $this->adapterObject = $adapterObject;
+    }
+    
+    /**
+     * Draw chakra.
+     * 
+     * @param Data $Data
+     * @param int $x
+     * @param int $y
+     * @param null|array $options Options to set (optional)
+     */
+    public function drawChakra(Data $Data, $x, $y, array $options = null) {
+        $this->dataObject = $Data;
+        
+        $chakraStyle = 'Jyotish\Draw\Plot\Chakra\Style\\' . ucfirst($this->options['chakraStyle']);
+        $this->chakraObject = new $chakraStyle();
+
+        $bhavaPoints = $this->chakraObject->getBhavaPoints($this->options['chakraSize'], $x, $y);
+
+        foreach ($bhavaPoints as $points) {
+            $this->adapterObject->drawPolygon($points);
+        }
+
+        if (isset($options['labelRashiFont'])){
+            $this->adapterObject->setOptions($options['labelRashiFont']);
+        }
+        $this->drawRashiLabel($x, $y);
+
+        if (isset($options['labelGrahaFont'])){
+            $this->adapterObject->setOptions($options['labelGrahaFont']);
+        }
+        $this->drawGrahaLabel($x, $y);
     }
 
     public function setOptions($options) {
-        foreach ($options as $key => $value) {
-            if (is_array($value)) {
-                //$this->adapter->setOptions($value);
-            } else {
-                $method = 'set' . $key;
-                if (method_exists($this, $method)) {
-                    $this->$method($value);
+        if($options){
+            foreach ($options as $key => $value) {
+                if (is_array($value)) {
+                    //$this->adapterObject->setOptions($value);
+                } else {
+                    $method = 'set' . $key;
+                    if (method_exists($this, $method)) {
+                        $this->$method($value);
+                    }
                 }
             }
         }
-        return $this;
     }
 
     public function setChakraSize($value) {
@@ -63,7 +125,7 @@ abstract class AbstractRender {
                     "Invalid chakra style provided must be 'north', 'south' or 'east'."
             );
         }
-        $this->options['chakraStyle'] = $value;
+        $this->options['chakraStyle'] = strtolower($value);
     }
     
     public function setDataBlocks(array $blocks)
@@ -103,27 +165,5 @@ abstract class AbstractRender {
             throw new Exception\RuntimeException("Function $value not supported.");
         }
         $this->options['labelGrahaCallback'] = $value;
-    }
-
-    public function drawChakra($Data, $leftOffset, $topOffset, $options) {
-        $this->data = $Data;
-
-        $chakraStyleClass  = 'Jyotish\Draw\Plot\Chakra\Style\\' . ucfirst(strtolower($this->options['chakraStyle']));
-        $chakraStyleObject = new $chakraStyleClass();
-        $bhavaPoints       = $chakraStyleObject->getBhavaPoints($this->options['chakraSize'], $leftOffset, $topOffset);
-
-        foreach ($bhavaPoints as $points) {
-            $this->adapter->drawPolygon($points);
-        }
-
-        if (isset($options['labelRashiFont'])){
-            $this->adapter->setOptions($options['labelRashiFont']);
-        }
-        $this->drawRashiLabel($leftOffset, $topOffset);
-
-        if (isset($options['labelGrahaFont'])){
-            $this->adapter->setOptions($options['labelGrahaFont']);
-        }
-        $this->drawGrahaLabel($leftOffset, $topOffset);
     }
 }

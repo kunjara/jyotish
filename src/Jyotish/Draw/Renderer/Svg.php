@@ -18,7 +18,12 @@ use DOMText;
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 class Svg extends AbstractRenderer implements \Jyotish\Draw\Renderer\SvgInterface {
-
+    /**
+     * Constructor
+     * 
+     * @param int $width Width of drawing
+     * @param int $height Height of drawing
+     */
     public function __construct($width, $height) {
         $this->resource = new DOMDocument('1.0', 'utf-8');
         $this->resource->formatOutput = true;
