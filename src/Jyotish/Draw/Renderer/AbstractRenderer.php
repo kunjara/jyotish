@@ -51,14 +51,12 @@ abstract class AbstractRenderer {
      * @return string
      */
     public function getGrahaLabel($graha, Data $Data, array $options) {
-        $grahas = $Data->getGrahaInBhava();
-
         switch ($options['labelGrahaType']) {
             case 0:
                 $label = $graha;
                 break;
             case 1:
-                if ($graha != Graha::KEY_LG) {
+                if (array_key_exists($graha, Graha::$graha)) {
                     $grahaObject = Graha::getInstance($graha);
                     $label = Utils::unicodeToHtml($grahaObject->grahaUnicode);
                 } else {
@@ -73,10 +71,15 @@ abstract class AbstractRenderer {
                 break;
         }
 
-        if ($graha == Graha::KEY_RA or $graha == Graha::KEY_KE or $graha == Graha::KEY_LG) {
+        if ($graha == Graha::KEY_RA or $graha == Graha::KEY_KE) {
             $grahaLabel = $label;
         }else{
-            $grahaLabel = $grahas[$graha]['direction'] == 1 ? $label : '(' . $label . ')';
+            if(isset($params['speed'])){
+                $direction = $params['speed'] > 0 ? 1 : -1;
+            }else{
+                $direction = 1;
+            }
+            $grahaLabel = $direction == 1 ? $label : '(' . $label . ')';
         }
         
         return $grahaLabel;

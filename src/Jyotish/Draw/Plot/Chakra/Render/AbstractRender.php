@@ -44,7 +44,6 @@ abstract class AbstractRender {
     protected $options = [
         'chakraSize' => 200,
         'chakraStyle' => AbstractChakra::STYLE_NORTH,
-        'dataBlocks' => ['graha'],
         
         'offsetBorder' => 4,
         'offsetLabel' => 4,
@@ -126,11 +125,6 @@ abstract class AbstractRender {
             );
         }
         $this->options['chakraStyle'] = strtolower($value);
-    }
-    
-    public function setDataBlocks(array $blocks)
-    {
-        $this->options['dataBlocks'] = $blocks;
     }
 
     public function setOffsetBorder($value) {

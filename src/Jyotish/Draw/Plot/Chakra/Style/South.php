@@ -83,10 +83,9 @@ final class South extends AbstractChakra {
         $ratio = round($options['chakraSize'] / 4);
         $offsetBorder = $options['offsetBorder'];
         $offsetSum = array();
-        $grahas = $Data->getGrahaInRashi();
+        $bodies = $Data->getBodyInRashi();
 
-        foreach ($grahas as $graha => $value) {
-            $bhava = $value['rashi'];
+        foreach ($bodies as $graha => $bhava) {
             if(!isset($offsetSum[$bhava])) $offsetSum[$bhava] = 0;
 
             if ($bhava == 1 or $bhava == 11 or $bhava == 12) {

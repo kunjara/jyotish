@@ -79,8 +79,8 @@ class Swetest extends AbstractGanita{
     protected $outputExtra = array(
         'Ascendant' => Lagna::KEY_LG,
         'MC'        => Lagna::KEY_MLG,
-        'ARMC'      => 'ARMC',
-        'Vertex'    => 'Vertex',
+        //'ARMC'      => 'ARMC',
+        //'Vertex'    => 'Vertex',
     );
 
     public function __construct($swe)
@@ -209,7 +209,7 @@ class Swetest extends AbstractGanita{
 
         foreach ($input as $k => $v) {
             // Break if swetest warning
-            if($k == 24) break;
+            if($k == 22) break;
 
             $parametersString = str_replace(' ', '', $v);
             $parameters = explode(',', $parametersString);

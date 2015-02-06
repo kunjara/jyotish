@@ -127,10 +127,9 @@ final class East extends AbstractChakra {
         $offsetBorder = $options['offsetBorder'];
         $offsetCorner = $offsetBorder * 4;
         $offsetSum = array();
-        $grahas = $Data->getGrahaInRashi();
+        $bodies = $Data->getBodyInRashi();
 
-        foreach ($grahas as $graha => $value) {
-            $bhava = $value['rashi'];
+        foreach ($bodies as $graha => $bhava) {
             if(!isset($offsetSum[$bhava])) $offsetSum[$bhava] = 0;
 
             if ($bhava == 1 or $bhava == 4 or $bhava == 7 or $bhava == 10) {

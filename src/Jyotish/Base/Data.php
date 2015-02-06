@@ -252,43 +252,39 @@ class Data {
     }
 
     /**
-     * Get graha in bhava.
+     * Get bodies in bhava.
      * 
      * @return array
      */
-    public function getGrahaInBhava() {
-        foreach ($this->ganitaData[self::BLOCK_GRAHA] as $graha => $params) {
-            $rashi = $params['rashi'];
+    public function getBodyInBhava() {
+        foreach ([self::BLOCK_GRAHA, self::BLOCK_EXTRA, self::BLOCK_UPAGRAHA] as $block){
+            if(!isset($this->ganitaData[$block])) continue;
+            
+            foreach ($this->ganitaData[$block] as $body => $params) {
+                $rashi = $params['rashi'];
+                $bhava = $this->getRashiInBhava()[$rashi];
 
-            $bhava = $this->getRashiInBhava()[$rashi];
-            $direction = $params['speed'] > 0 ? 1 : -1;
-
-            $grahaInBhava[$graha] = array(
-                'bhava' => $bhava,
-                'direction' => $direction,
-            );
+                $bodyInBhava[$body] = $bhava;
+            }
         }
-        return $grahaInBhava;
+        return $bodyInBhava;
     }
 
     /**
-     * Get graha in rashi.
+     * Get bodies in rashi.
      * 
      * @return array
      */
-    public function getGrahaInRashi() {
-        foreach ($this->ganitaData[self::BLOCK_GRAHA] as $graha => $params) {
-            $rashi = $params['rashi'];
-            $direction = $params['speed'] > 0 ? 1 : -1;
+    public function getBodyInRashi() {
+        foreach ([self::BLOCK_GRAHA, self::BLOCK_EXTRA, self::BLOCK_UPAGRAHA] as $block){
+            if(!isset($this->ganitaData[$block])) continue;
+            
+            foreach ($this->ganitaData[$block] as $body => $params) {
+                $rashi = $params['rashi'];
 
-            $grahaInRashi[$graha] = array(
-                'rashi' => $rashi,
-                'direction' => $direction,
-            );
+                $bodyInRashi[$body] = $rashi;
+            }
         }
-        $grahaInRashi[Graha::KEY_LG]['rashi'] = $this->ganitaData[self::BLOCK_EXTRA]['Lg']['rashi'];
-        $grahaInRashi[Graha::KEY_LG]['direction'] = 1;
-
-        return $grahaInRashi;
+        return $bodyInRashi;
     }
 }
