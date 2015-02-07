@@ -33,13 +33,21 @@ abstract class AbstractRenderer {
         
         'fillColor' => 'fff',
     ];
-
-    public function get($name) {
-        if (isset($this->$name)) {
-            return $this->$name;
-        }
-
-        return null;
+    
+    /**
+     * Set options.
+     * 
+     * @param array $options Options to set
+     */
+    public function setOptions($options) {
+        if($options){
+           foreach ($options as $key => $value) {
+                $method = 'set' . $key;
+                if (method_exists($this, $method)) {
+                    $this->$method($value);
+                }
+            } 
+        } 
     }
 
     /**
@@ -70,38 +78,18 @@ abstract class AbstractRenderer {
                 $label = $graha;
                 break;
         }
+        
+        $data = $Data->getData();
 
-        if ($graha == Graha::KEY_RA or $graha == Graha::KEY_KE) {
-            $grahaLabel = $label;
+        if(array_key_exists($graha, Graha::grahaList(Graha::LIST_SAPTA))){
+            $vakraCheshta = $data['graha'][$graha]['speed'] < 0 ? true : false;
         }else{
-            if(isset($params['speed'])){
-                $direction = $params['speed'] > 0 ? 1 : -1;
-            }else{
-                $direction = 1;
-            }
-            $grahaLabel = $direction == 1 ? $label : '(' . $label . ')';
+            $vakraCheshta = false;
         }
         
+        $grahaLabel = $vakraCheshta ? '(' . $label . ')' : $label;
+        
         return $grahaLabel;
-    }
-    
-    public function getResource() {
-        return $this->resource;
-    }
-
-    public function getData() {
-        return $this->data;
-    }
-
-    public function setOptions($options) {
-        if($options){
-           foreach ($options as $key => $value) {
-                $method = 'set' . $key;
-                if (method_exists($this, $method)) {
-                    $this->$method($value);
-                }
-            } 
-        } 
     }
 
     public function setTopOffset($value) {

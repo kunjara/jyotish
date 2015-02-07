@@ -64,6 +64,26 @@ abstract class AbstractRender {
     }
     
     /**
+     * Set options.
+     * 
+     * @param array $options Options to set
+     */
+    public function setOptions(array $options) {
+        if($options){
+            foreach ($options as $key => $value) {
+                if (is_array($value)) {
+                    //$this->adapterObject->setOptions($value);
+                } else {
+                    $method = 'set' . $key;
+                    if (method_exists($this, $method)) {
+                        $this->$method($value);
+                    }
+                }
+            }
+        }
+    }
+    
+    /**
      * Draw chakra.
      * 
      * @param Data $Data
@@ -92,21 +112,6 @@ abstract class AbstractRender {
             $this->adapterObject->setOptions($options['labelGrahaFont']);
         }
         $this->drawGrahaLabel($x, $y);
-    }
-
-    public function setOptions($options) {
-        if($options){
-            foreach ($options as $key => $value) {
-                if (is_array($value)) {
-                    //$this->adapterObject->setOptions($value);
-                } else {
-                    $method = 'set' . $key;
-                    if (method_exists($this, $method)) {
-                        $this->$method($value);
-                    }
-                }
-            }
-        }
     }
 
     public function setChakraSize($value) {

@@ -6,7 +6,6 @@
 
 namespace Jyotish\Draw\Renderer;
 
-use Jyotish\Draw\Plot\Chakra\AbstractChakra;
 use Jyotish\Base\Utils;
 
 /**
