@@ -99,4 +99,31 @@ class Maha {
      *  Living beings
      */
     const BASIS_JIVA = 'jiva';
+    
+    const COLOR_BLACK = 'black';
+    const COLOR_COPPER = 'copper';
+    const COLOR_FAWN = 'fawn';
+    const COLOR_GOLD = 'gold';
+    const COLOR_GREEN = 'green';
+    const COLOR_INDIAN_RED = 'indian red';
+    const COLOR_RED = 'red';
+    const COLOR_SCARLET = 'scarlet';
+    const COLOR_SPRING_GREEN = 'spring green';
+    const COLOR_VARIEGATED = 'variegated';
+    const COLOR_WHITE = 'white';
+    const COLOR_YELLOW = 'yellow';
+    
+    static public $color = [
+        self::COLOR_BLACK => '000000',
+        self::COLOR_COPPER => 'b87333',
+        self::COLOR_FAWN => 'e5aa70',
+        self::COLOR_GOLD => 'ffd700',
+        self::COLOR_GREEN => '008000',
+        self::COLOR_INDIAN_RED => 'cd5c5c',
+        self::COLOR_RED => 'ff0000',
+        self::COLOR_SCARLET => 'ff2400',
+        self::COLOR_SPRING_GREEN => '00ff7f',
+        self::COLOR_WHITE => 'ffffff',
+        self::COLOR_YELLOW => 'ffff00',
+    ];
 }

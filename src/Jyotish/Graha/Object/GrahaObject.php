@@ -12,6 +12,7 @@ use Jyotish\Rashi\Rashi;
 use Jyotish\Bhava\Bhava;
 use Jyotish\Ganita\Math;
 use Jyotish\Varga\Varga;
+use Jyotish\Tattva\Maha;
 use Jyotish\Tattva\Jiva\Nara\Deva;
 
 /**
@@ -80,6 +81,15 @@ class GrahaObject extends Object {
      * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 5.
      */
     protected $grahaCharacter;
+    
+    /**
+     * Colors of the Graha.
+     * 
+     * @var string
+     * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 16-17.
+     * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 4-5.
+     */
+    protected $grahaColor = array();
 
     /**
      * Deva of the Graha.

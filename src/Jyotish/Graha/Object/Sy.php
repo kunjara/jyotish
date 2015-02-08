@@ -84,6 +84,18 @@ class Sy extends GrahaObject {
      * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 5.
      */
     protected $grahaCharacter = Graha::CHARACTER_PAPA;
+    
+    /**
+     * Colors of the Graha.
+     * 
+     * @var string
+     * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 16-17.
+     * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 4-5.
+     */
+    protected $grahaColor = [
+        Maha::COLOR_INDIAN_RED,
+        Maha::COLOR_COPPER,
+    ];
 
     /**
      * Deva of the Graha.
