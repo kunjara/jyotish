@@ -20,41 +20,4 @@ class Svg extends AbstractRender implements \Jyotish\Draw\Renderer\SvgInterface 
     public function __construct($adapterObject) {
         parent::__construct($adapterObject);
     }
-
-    protected function drawRashiLabel($x, $y) {
-        $rashiLabelPoints = $this->chakraObject->getRashiLabelPoints($this->dataObject, $this->options);
-
-        foreach ($rashiLabelPoints as $rashi => $point) {
-             $this->adapterObject->drawText(
-                    $rashi, 
-                    $point['x'] + $x, 
-                    $point['y'] + $y, 
-                    array(
-                        'align' => $point['align'], 
-                        'valign' => $point['valign'],
-                    )
-            );
-        }
-    }
-
-    protected function drawGrahaLabel($x, $y) {
-        $grahaLabelPoints = $this->chakraObject->getGrahaLabelPoints($this->dataObject, $this->options);
-
-        foreach ($grahaLabelPoints as $graha => $point) {
-            $grahaLabel =  $this->adapterObject->getGrahaLabel($graha, $this->dataObject, [
-                'labelGrahaType' => $this->options['labelGrahaType'], 
-                'labelGrahaCallback' => $this->options['labelGrahaCallback']
-            ]);
-
-             $this->adapterObject->drawText(
-                    $grahaLabel, 
-                    $point['x'] + $x,
-                    $point['y'] + $y, 
-                    array(
-                        'align' => $point['align'],
-                        'valign' => $point['valign'],
-                    )
-            );
-        }
-    }
 }

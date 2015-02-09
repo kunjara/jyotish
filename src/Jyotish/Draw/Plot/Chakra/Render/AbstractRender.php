@@ -6,6 +6,7 @@
 
 namespace Jyotish\Draw\Plot\Chakra\Render;
 
+use Jyotish\Graha\Graha;
 use Jyotish\Draw\Plot\Chakra\Style\AbstractChakra;
 use Jyotish\Base\Data;
 
@@ -98,20 +99,50 @@ abstract class AbstractRender {
         $this->chakraObject = new $chakraStyle();
 
         $bhavaPoints = $this->chakraObject->getBhavaPoints($this->options['chakraSize'], $x, $y);
-
         foreach ($bhavaPoints as $points) {
             $this->adapterObject->drawPolygon($points);
         }
-
-        if (isset($options['labelRashiFont'])){
-            $this->adapterObject->setOptions($options['labelRashiFont']);
+        
+        $this->drawRashiLabel($x, $y, $options);
+        
+        $this->drawBodyLabel($x, $y, $options);
+    }
+    
+    protected function drawRashiLabel($x, $y, $options){
+        if (isset($options['labelRashiFont'])) $this->adapterObject->setOptions($options['labelRashiFont']);
+        
+        $rashiLabelPoints = $this->chakraObject->getRashiLabelPoints($this->dataObject, $this->options);
+        foreach ($rashiLabelPoints as $rashi => $point) {
+            $this->adapterObject->drawText(
+                $rashi, 
+                $point['x'] + $x, 
+                $point['y'] + $y, 
+                ['align' => $point['align'], 'valign' => $point['valign']]
+            );
         }
-        $this->drawRashiLabel($x, $y);
+    }
+    
+    protected function drawBodyLabel($x, $y, $options){
+        if (isset($options['labelGrahaFont'])) $this->adapterObject->setOptions($options['labelGrahaFont']);
+        
+        $bodyLabelPoints = $this->chakraObject->getBodyLabelPoints($this->dataObject, $this->options);
+        foreach ($bodyLabelPoints as $body => $point) {
+            if(!array_key_exists($body, Graha::$graha) and isset($options['labelExtraFont'])){
+                $this->adapterObject->setOptions($options['labelExtraFont']);
+            }
+            
+            $grahaLabel = $this->adapterObject->getGrahaLabel($body, $this->dataObject, [
+                'labelGrahaType' => $this->options['labelGrahaType'], 
+                'labelGrahaCallback' => $this->options['labelGrahaCallback']
+            ]);
 
-        if (isset($options['labelGrahaFont'])){
-            $this->adapterObject->setOptions($options['labelGrahaFont']);
+            $this->adapterObject->drawText(
+                $grahaLabel, 
+                $point['x'] + $x,
+                $point['y'] + $y, 
+                ['align' => $point['align'], 'valign' => $point['valign']]
+            );
         }
-        $this->drawGrahaLabel($x, $y);
     }
 
     public function setChakraSize($value) {

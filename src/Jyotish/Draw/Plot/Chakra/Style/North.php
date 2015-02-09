@@ -78,7 +78,7 @@ final class North extends AbstractChakra {
         return $myPoints;
     }
 
-    public function getGrahaLabelPoints(Data $Data, array $options) {
+    public function getBodyLabelPoints(Data $Data, array $options) {
         $ratio = round($options['chakraSize'] / 4);
         $offsetBorder = $options['offsetBorder'];
         $offsetCorner = $offsetBorder * 5;

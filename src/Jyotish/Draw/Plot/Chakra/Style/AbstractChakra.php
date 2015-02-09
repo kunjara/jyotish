@@ -39,5 +39,5 @@ abstract class AbstractChakra {
 
     abstract public function getRashiLabelPoints(Data $drawData, array $options);
 
-    abstract public function getGrahaLabelPoints(Data $drawData, array $options);
+    abstract public function getBodyLabelPoints(Data $drawData, array $options);
 }
