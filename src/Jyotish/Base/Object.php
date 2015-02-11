@@ -85,6 +85,8 @@ class Object {
         }else{
             $this->objectRashi = $this->ganitaData[$this->objectType][$this->objectKey]['rashi'];
         }
+        
+        return $this;
     }
 
     /**

@@ -285,7 +285,8 @@ class Ch extends GrahaObject {
         'end' => 4
     );
 
-    public function __construct($options = null) {
+    public function __construct($options = null)
+    {
         parent::__construct($options);
     }
 
@@ -294,10 +295,12 @@ class Ch extends GrahaObject {
      * 
      * @param array $ganitaData
      */
-    public function setEnvironment(array $ganitaData) {
+    public function setEnvironment(array $ganitaData)
+    {
         parent::setEnvironment($ganitaData);
 
         $this->setGrahaCharacter();
+        
         return $this;
     }
 

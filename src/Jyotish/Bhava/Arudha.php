@@ -131,8 +131,7 @@ class Arudha{
             $bhavaKey = substr($key, 1);
         }
 
-        $Bhava = Bhava::getInstance($bhavaKey);
-        $Bhava->setEnvironment($this->ganitaData);
+        $Bhava = Bhava::getInstance($bhavaKey)->setEnvironment($this->ganitaData);
         $bhavaRuler = $Bhava->getRuler();
 
         $lngRuler = $this->ganitaData['graha'][$bhavaRuler]['longitude'];

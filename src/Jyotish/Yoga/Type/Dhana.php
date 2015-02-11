@@ -52,8 +52,7 @@ class Dhana extends YogaBase {
     public function __construct($data) {
         parent::__construct($data);
         
-        $Lg = Bhava::getInstance(1);
-        $Lg->setEnvironment($this->ganitaData);
+        $Lg = Bhava::getInstance(1)->setEnvironment($this->ganitaData);
         
         $this->lg['aspect']   = $Lg->isAspectedByGraha();
         $this->lg['conjunct'] = $Lg->isConjuncted();
