@@ -47,7 +47,6 @@ abstract class AbstractRender {
         'chakraStyle' => AbstractChakra::STYLE_NORTH,
         
         'offsetBorder' => 4,
-        'offsetLabel' => 4,
         'widthOffsetLabel' => 20,
         'heightOffsetLabel' => 14,
         
@@ -73,9 +72,9 @@ abstract class AbstractRender {
         if($options){
             foreach ($options as $key => $value) {
                 if (is_array($value)) {
-                    //$this->adapterObject->setOptions($value);
+                    continue;
                 } else {
-                    $method = 'set' . $key;
+                    $method = 'set' . ucfirst($key);
                     if (method_exists($this, $method)) {
                         $this->$method($value);
                     }
@@ -172,13 +171,22 @@ abstract class AbstractRender {
         $this->options['offsetBorder'] = intval($value);
     }
 
-    public function setOffsetLabel($value) {
+    public function setWidthOffsetLabel($value) {
         if (!is_numeric($value) || intval($value) < 0) {
             throw new Exception\OutOfRangeException(
                     'Label offset must be greater than or equals 0.'
             );
         }
-        $this->options['offsetLabel'] = intval($value);
+        $this->options['widthOffsetLabel'] = intval($value);
+    }
+    
+    public function setHeightOffsetLabel($value) {
+        if (!is_numeric($value) || intval($value) < 0) {
+            throw new Exception\OutOfRangeException(
+                    'Label offset must be greater than or equals 0.'
+            );
+        }
+        $this->options['heightOffsetLabel'] = intval($value);
     }
 
     public function setLabelGrahaType($value) {
