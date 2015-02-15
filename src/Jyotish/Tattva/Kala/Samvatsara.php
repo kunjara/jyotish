@@ -13,23 +13,50 @@ namespace Jyotish\Tattva\Kala;
  */
 class Samvatsara {
     /**
-     * Duration of the year in days
+     * Duration of the year in Gregorian calendar. 
      */
     const DUR_GREGORIAN	= 365.2425;
-    const DUR_JULIAN	= 365.25;
     /**
-     * Samvatsara's vimshatika
+     * Duration of the year in Julian calendar. 
+     */
+    const DUR_JULIAN	= 365.25;
+    
+    /**
+     * Brahma vimshatika.
      */
     const VIMSHATIKA_BRAHMA	= 'Brahma-Vimshatika';
-    const VIMSHATIKA_VISHNU	= 'Vishnu-Vimshatika';
-    const VIMSHATIKA_RUDRA	= 'Rudra-Vimshatika';
-
     /**
-     * Name of Samvatsara
+     * Vishnu vimshatika.
+     */
+    const VIMSHATIKA_VISHNU	= 'Vishnu-Vimshatika';
+    /**
+     * Rudra vimshatika.
+     */
+    const VIMSHATIKA_RUDRA	= 'Rudra-Vimshatika';
+    
+    const SAMVAT_VIKRAM = 'Vikram';
+    const SAMVAT_SHAK = 'Shak';
+    const SAMVAT_GUPTA = 'Gupta';
+    const SAMVAT_GAURABDA = 'Gaurabda';
+    
+    /**
+     * List of Samvat.
      * 
      * @var array
      */
-    static public $SAMVATSARA = array(
+    static public $samvat = array(
+        self::SAMVAT_VIKRAM => -57,
+        self::SAMVAT_SHAK => 78,
+        self::SAMVAT_GUPTA => 320,
+        self::SAMVAT_GAURABDA => 1486
+    );
+
+    /**
+     * List of Samvatsara.
+     * 
+     * @var array
+     */
+    static public $samvatsara = array(
         1 => 'Prabhava',
         2 => 'Vibhava',
         3 => 'Shukla',

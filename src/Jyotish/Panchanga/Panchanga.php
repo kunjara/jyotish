@@ -344,7 +344,7 @@ class Panchanga {
             $nAnga = 27;
             $anga['ratio'] = 1;
         }elseif($function == 'getNakshatra'){
-            $durMonth = Masa::DUR_SIDERIAL * 86400;
+            $durMonth = Masa::DUR_SIDEREAL * 86400;
             $nAnga = 27;
         }else{
             $anga['ratio'] = 1;

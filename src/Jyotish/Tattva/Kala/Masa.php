@@ -7,23 +7,26 @@
 namespace Jyotish\Tattva\Kala;
 
 /**
- * Masa class with Month names
+ * Masa class with month names.
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 class Masa {
     /**
-     * Duration of the sidereal and synodic months measured in days
+     * Duration of the sidereal month measured in days.
      */
-    const DUR_SIDERIAL	= 27.3216610;
+    const DUR_SIDEREAL	= 27.3216610;
+    /**
+     * Duration of the synodic month measured in days.
+     */
     const DUR_SYNODIC	= 29.5305882;
 
     /**
-     * Name of Masa
+     * List of Masa.
      * 
      * @var array
      */
-    static public $MASA = array(
+    static public $masa = array(
         1 => 'Chaitra',
         2 => 'Vaishakha',
         3 => 'Jyeshtha',

@@ -6,9 +6,6 @@
 
 namespace Jyotish\Calendar\Event;
 
-use Jyotish\Tattva\Kala\Masa;
-use Jyotish\Panchanga\Tithi\Tithi;
-
 /**
  * Bengal specific Holidays
  *
@@ -18,11 +15,30 @@ class BengalHolidays extends \Jyotish\Calendar\Event{
     static public $eventsTitle = 'Bengal specific Holidays';
 
     static public $eventsList = array(
-        array(
+        [
             self::COL_NAME => 'Durga Puja',
-            self::COL_MASA => Masa::NAME_ASHVIN,
-            self::COL_TITHI => Tithi::NAME_SAPTAMI,
-            self::COL_PAKSHA => Tithi::PAKSHA_SHUKLA,
-        ),
+            self::COL_MASA => 7,
+            self::COL_TITHI => 7,
+        ],
+        [
+            self::COL_NAME => 'Jagaddhatri Puja',
+            self::COL_MASA => 8,
+            self::COL_TITHI => 9,
+        ],
+        [
+            self::COL_NAME => 'Jahnu Saptami',
+            self::COL_MASA => 2,
+            self::COL_TITHI => 7,
+        ],
+        [
+            self::COL_NAME => 'Lakshmi Puja',
+            self::COL_MASA => 7,
+            self::COL_TITHI => 15,
+        ],
+        [
+            self::COL_NAME => 'Sarasvati Puja',
+            self::COL_MASA => 11,
+            self::COL_TITHI => 5,
+        ]
     );
 }
