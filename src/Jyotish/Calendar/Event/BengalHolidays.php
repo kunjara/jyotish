@@ -7,14 +7,14 @@
 namespace Jyotish\Calendar\Event;
 
 /**
- * Bengal specific Holidays
+ * Bengal specific Holidays.
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 class BengalHolidays extends \Jyotish\Calendar\Event{
     static public $eventsTitle = 'Bengal specific Holidays';
 
-    static public $eventsList = array(
+    static public $eventsList = [
         [
             self::COL_NAME => 'Durga Puja',
             self::COL_MASA => 7,
@@ -40,5 +40,5 @@ class BengalHolidays extends \Jyotish\Calendar\Event{
             self::COL_MASA => 11,
             self::COL_TITHI => 5,
         ]
-    );
+    ];
 }

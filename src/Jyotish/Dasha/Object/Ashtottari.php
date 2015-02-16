@@ -67,7 +67,7 @@ class Ashtottari extends AbstractDasha {
     public function getStartPeriod(array $nakshatra)
     {
         $keysNakshatra = array_keys($this->orderNakshatra);
-        $indexNum      = array_search($nakshatra['number'], $keysNakshatra) + 1;
+        $indexNum      = array_search($nakshatra['key'], $keysNakshatra) + 1;
         
         $partSum = 0;
         foreach ($this->durationGraha as $key => $value){

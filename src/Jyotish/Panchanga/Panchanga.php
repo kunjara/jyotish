@@ -99,8 +99,8 @@ class Panchanga {
         $tithiUnits = Math::partsToUnits(($lngCh - $lngSy), $unit);
         $tithiObject = Tithi::getInstance($tithiUnits['units']);
 
-        $tithi['number'] = $tithiUnits['units'];
-        $tithi['name'] = Tithi::$tithi[$tithi['number']];
+        $tithi['key'] = $tithiUnits['units'];
+        $tithi['name'] = Tithi::$tithi[$tithi['key']];
         $tithi['paksha'] = $tithiObject->tithiPaksha;
         $tithi['left'] = ($unit - $tithiUnits['parts']) * 100 / $unit;
 
@@ -137,38 +137,38 @@ class Panchanga {
                 $abhijitEnd   = Math::dmsToDecimal($Abhijit->nakshatraEnd);
 
                 if($lngGraha < $abhijitStart){
-                    $nakshatra['number'] = 21;
-                    $N = Nakshatra::getInstance($nakshatra['number']);
+                    $nakshatra['key'] = 21;
+                    $N = Nakshatra::getInstance($nakshatra['key']);
                     $nStart = Math::dmsToDecimal($N->nakshatraStart);
                     $unit = $abhijitStart - $nStart;
                     $left = $abhijitStart - $lngGraha;
                 }elseif($lngGraha >= $abhijitStart and $lngGraha < $abhijitEnd){
-                    $nakshatra['number'] = 28;
+                    $nakshatra['key'] = 28;
                     $unit = $abhijitEnd - $abhijitStart;
                     $left = $abhijitEnd - $lngGraha;
                 }else{
-                    $nakshatra['number'] = 22;
-                    $N = Nakshatra::getInstance($nakshatra['number']);
+                    $nakshatra['key'] = 22;
+                    $N = Nakshatra::getInstance($nakshatra['key']);
                     $nEnd = Math::dmsToDecimal($N->nakshatraEnd);
                     $unit = $nEnd - $abhijitEnd;
                     $left = $nEnd - $lngGraha;
                 }
                 $nakshatra['ratio'] = $unit / Math::dmsToDecimal(Nakshatra::$nakshatraArc);
             }else{
-                $nakshatra['number'] = $nakshatraUnits['units'];
+                $nakshatra['key'] = $nakshatraUnits['units'];
                 $nakshatra['ratio'] = 1;
                 $left = $unit - $nakshatraUnits['parts'];
             }
             $nakshatra['abhijit'] = true;
         }else{
-            $nakshatra['number'] = $nakshatraUnits['units'];
+            $nakshatra['key'] = $nakshatraUnits['units'];
             $nakshatra['ratio'] = 1;
             $nakshatra['abhijit'] = false;
             $left = $unit - $nakshatraUnits['parts'];
         }
 
         $nakshatra['left'] = $left * 100 / $unit;
-        $nakshatra['name'] = Nakshatra::$nakshatra[$nakshatra['number']];
+        $nakshatra['name'] = Nakshatra::$nakshatra[$nakshatra['key']];
 
         if($withLimit){
             $limits = $this->limitAnga($nakshatra, __FUNCTION__);
@@ -199,8 +199,8 @@ class Panchanga {
 
         $yogaUnits = Math::partsToUnits($lngSum, $unit);
 
-        $yoga['number'] = $yogaUnits['units'];
-        $yoga['name'] = Yoga::$yoga[$yoga['number']];
+        $yoga['key'] = $yogaUnits['units'];
+        $yoga['name'] = Yoga::$yoga[$yoga['key']];
         $yoga['left'] = ($unit - $yogaUnits['parts']) * 100 / $unit;
 
         if($withLimit){
@@ -220,41 +220,28 @@ class Panchanga {
     {
         $dateUser = new DateTime($this->ganitaData['user']['date'].' '.$this->ganitaData['user']['time']);
         $dateUserU = $dateUser->format('U');
-        $dateRising[2] = new DateTime($this->ganitaData['rising'][Graha::KEY_SY][2]['rising']);
-        $dateRisingU[2] = $dateRising[2]->format('U');
-        $dateRising[3] = new DateTime($this->ganitaData['rising'][Graha::KEY_SY][3]['rising']);
-        $dateRisingU[3] = $dateRising[3]->format('U');
-
-        if($dateUser >= $dateRising[3]) {
+        $varaNumber = $dateUser->format('w');
+        
+        for($i = 1; $i <= 4; $i++){
+            $dateRising[$i] = new DateTime($this->ganitaData['rising'][Graha::KEY_SY][$i]['rising']);
+            $dateRisingU[$i] = $dateRising[$i]->format('U');
+        }
+        
+        if($dateUser >= $dateRising[2]){
             $index = 1;
-            $dateRising[4] = new DateTime($this->ganitaData['rising'][Graha::KEY_SY][4]['rising']);
-            $dateRisingU[4] = $dateRising[4]->format('U');
         }else{
             $index = 0;
-            $dateRising[1] = new DateTime($this->ganitaData['rising'][Graha::KEY_SY][1]['rising']);
-            $dateRisingU[1] = $dateRising[1]->format('U');
+            $varaNumber = $varaNumber != 0 ? $varaNumber - 1 : 6;
         }
+        
+        $duration = $dateRisingU[2 + $index] - $dateRisingU[1 + $index];
 
-        $varaNumber = $dateUser->format('w');
-
-        if($dateUser >= $dateRising[2 + $index]) {
-            $vara['number'] = $varaNumber + 1;
-
-            $duration = $dateRisingU[3 + $index] - $dateRisingU[2 + $index];
-            $vara['left'] = ($dateRisingU[3 + $index] - $dateUserU) * 100 / $duration;
-            $vara['start'] = $this->ganitaData['rising'][Graha::KEY_SY][2 + $index]['rising'];
-            $vara['end'] = $this->ganitaData['rising'][Graha::KEY_SY][3 + $index]['rising'];
-        } else {
-            $varaNumber != 0 ? $vara['number'] = $varaNumber : $vara['number'] = 7;
-
-            $duration = $dateRisingU[2 + $index] - $dateRisingU[1 + $index];
-            $vara['left'] = ($dateRisingU[2 + $index] - $dateUserU) * 100 / $duration;
-            $vara['start'] = $this->ganitaData['rising'][Graha::KEY_SY][1 + $index]['rising'];
-            $vara['end'] = $this->ganitaData['rising'][Graha::KEY_SY][2 + $index]['rising'];
-        }
-
-        $vara['name'] = Vara::$VARA[$vara['number']];
-
+        $vara['left'] = ($dateRisingU[2 + $index] - $dateUserU) * 100 / $duration;
+        $vara['start'] = $this->ganitaData['rising'][Graha::KEY_SY][1 + $index]['rising'];
+        $vara['end'] = $this->ganitaData['rising'][Graha::KEY_SY][2 + $index]['rising'];
+        $vara['key'] = array_keys(Vara::$vara)[$varaNumber];
+        $vara['name'] = array_values(Vara::$vara)[$varaNumber];
+        
         return $vara;
     }
 
@@ -284,12 +271,12 @@ class Panchanga {
             }
         }
 
-        $tithiObject = Tithi::getInstance($this->tithi['number']);
+        $tithiObject = Tithi::getInstance($this->tithi['key']);
         $karanaArray = $tithiObject->tithiKarana;
         $karanaName = $karanaArray[$number];
-        $karanaNumber = array_search($karanaName, Karana::$KARANA);
+        $karanaNumber = array_search($karanaName, Karana::$karana);
 
-        $karana['number'] = $karanaNumber;
+        $karana['key'] = $karanaNumber;
         $karana['name'] = $karanaName;
         $karana['left'] = $left * 2;
 
