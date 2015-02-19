@@ -6,8 +6,9 @@
 
 namespace Jyotish\Dasha\Object;
 
-use Jyotish\Dasha\Dasha;
 use DateInterval;
+use Jyotish\Dasha\Dasha;
+use Jyotish\Panchanga\Panchanga;
 use Jyotish\Base\Utils;
 use Jyotish\Ganita\Time;
 
@@ -74,7 +75,7 @@ abstract class AbstractDasha {
      * @param int $nestingMax
      * @return array
      */
-    public function getDashaPeriods(\Jyotish\Panchanga\Panchanga $Panchanga, $nestingMax = 3)
+    public function getDashaPeriods(Panchanga $Panchanga, $nestingMax = 3)
     {
         if(!is_numeric($nestingMax) || intval($nestingMax) > Dasha::NESTING_MAX){
             throw new Exception\InvalidArgumentException(

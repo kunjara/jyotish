@@ -24,12 +24,40 @@ use Jyotish\Tattva\Kala\Masa;
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 class Panchanga {
+    /**
+     * Tithi anga
+     */
     const ANGA_TITHI     = 'tithi';
+    /**
+     * Nakshatra anga
+     */
     const ANGA_NAKSHATRA = 'nakshatra';
+    /**
+     * Yoga anga
+     */
     const ANGA_YOGA      = 'yoga';
+    /**
+     * Vara anga
+     */
     const ANGA_VARA      = 'vara';
+    /**
+     * Karana anga
+     */
     const ANGA_KARANA    = 'karana';
     
+    /**
+     * List of angas.
+     * 
+     * @var array
+     */
+    static public $anga = [
+        self::ANGA_TITHI,
+        self::ANGA_NAKSHATRA,
+        self::ANGA_YOGA,
+        self::ANGA_VARA,
+        self::ANGA_KARANA
+    ];
+
     /**
      * Ganita object.
      * 
@@ -61,8 +89,7 @@ class Panchanga {
     {
         if($ganitaData instanceof \Jyotish\Ganita\Method\AbstractGanita){
             $this->ganitaObject = $ganitaData;
-            $this->setData();
-            $this->ganitaData['rising'] = $this->ganitaObject->getRisings();
+            $this->setData(null, true);
         }elseif(is_array($ganitaData)){
             $this->ganitaData = $ganitaData;
         }else{
@@ -99,6 +126,7 @@ class Panchanga {
         $tithiUnits = Math::partsToUnits(($lngCh - $lngSy), $unit);
         $tithiObject = Tithi::getInstance($tithiUnits['units']);
 
+        $tithi['anga'] = self::ANGA_TITHI;
         $tithi['key'] = $tithiUnits['units'];
         $tithi['name'] = Tithi::$tithi[$tithi['key']];
         $tithi['paksha'] = $tithiObject->tithiPaksha;
@@ -130,6 +158,7 @@ class Panchanga {
         $lngGraha = $this->ganitaData['graha'][$grahaKey]['longitude'];
         $nakshatraUnits = Math::partsToUnits($lngGraha, $unit);
 
+        $nakshatra['anga'] = self::ANGA_NAKSHATRA;
         if($withAbhijit){
             if($nakshatraUnits['units'] == 21 or $nakshatraUnits['units'] == 22){
                 $Abhijit = Nakshatra::getInstance(28);
@@ -199,6 +228,7 @@ class Panchanga {
 
         $yogaUnits = Math::partsToUnits($lngSum, $unit);
 
+        $yoga['anga'] = self::ANGA_YOGA;
         $yoga['key'] = $yogaUnits['units'];
         $yoga['name'] = Yoga::$yoga[$yoga['key']];
         $yoga['left'] = ($unit - $yogaUnits['parts']) * 100 / $unit;
@@ -214,9 +244,10 @@ class Panchanga {
     /**
      * Get Varana. The seven weekdays.
      * 
+     * @param bool $withLimit Time limit
      * @return array
      */
-    public function getVara()
+    public function getVara($withLimit = false)
     {
         $dateUser = new DateTime($this->ganitaData['user']['date'].' '.$this->ganitaData['user']['time']);
         $dateUserU = $dateUser->format('U');
@@ -236,11 +267,15 @@ class Panchanga {
         
         $duration = $dateRisingU[2 + $index] - $dateRisingU[1 + $index];
 
+        $vara['anga'] = self::ANGA_VARA;
         $vara['left'] = ($dateRisingU[2 + $index] - $dateUserU) * 100 / $duration;
-        $vara['start'] = $this->ganitaData['rising'][Graha::KEY_SY][1 + $index]['rising'];
-        $vara['end'] = $this->ganitaData['rising'][Graha::KEY_SY][2 + $index]['rising'];
         $vara['key'] = array_keys(Vara::$vara)[$varaNumber];
         $vara['name'] = array_values(Vara::$vara)[$varaNumber];
+        
+        if($withLimit){
+            $vara['start'] = $this->ganitaData['rising'][Graha::KEY_SY][1 + $index]['rising'];
+            $vara['end'] = $this->ganitaData['rising'][Graha::KEY_SY][2 + $index]['rising'];
+        }
         
         return $vara;
     }
@@ -276,6 +311,7 @@ class Panchanga {
         $karanaName = $karanaArray[$number];
         $karanaNumber = array_search($karanaName, Karana::$karana);
 
+        $karana['anga'] = self::ANGA_KARANA;
         $karana['key'] = $karanaNumber;
         $karana['name'] = $karanaName;
         $karana['left'] = $left * 2;
@@ -298,11 +334,14 @@ class Panchanga {
      * 
      * @param array $userData
      */
-    private function setData(array $userData = null)
+    public function setData(array $userData = null, $calcRising = false)
     {
         if(!is_null($userData)) $this->ganitaObject->setData($userData);
 
         $this->ganitaData['user'] = $this->ganitaObject->getData();
+        if($calcRising) {
+            $this->ganitaData['rising'] = $this->ganitaObject->getRisings();
+        }
         $this->ganitaData = array_merge($this->ganitaData, $this->ganitaObject->getParams());
     }
 
