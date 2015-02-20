@@ -32,10 +32,12 @@ class Muhurta {
      */
     public function getTimeStamps($period = 1)
     {
+        $dateTimeObject = Time::getDateTimeUtc2($this->panchangaObject->getData()['user']);
+        $dateTimeObject->modify('+' . $period . ' day');
+        
         foreach (Panchanga::$anga as $angaName){
             $getAnga = 'get' . ucfirst($angaName);
-            $angaData = $this->panchangaObject->$getAnga(true);
-            $timeStamps[] = $angaData;
+            $timeStamps[] = $this->panchangaObject->$getAnga(true);
         }
         
         usort($timeStamps, 

@@ -73,7 +73,7 @@ class Time {
                 throw new Exception\InvalidArgumentException("The offset must be an integer value in seconds.");
             }
 
-            $offsetTotal	= $offsetSystem - $offsetUser;
+            $offsetTotal = $offsetSystem - $offsetUser;
 
             if($offsetTotal > 0) {
                 $dateTimeObject->add(new DateInterval('PT'.$offsetTotal.'S'));
@@ -82,6 +82,24 @@ class Time {
             }
         }
 
+        return $dateTimeObject;
+    }
+    
+    /**
+     * Get new DateTime object from user data.
+     * 
+     * @param array $data User data
+     * @return DateTime
+     */
+    static public function getDateTimeUtc2(array $data){
+        $dateTimeFormat = Time::FORMAT_DATA_DATE . ' ' . Time::FORMAT_DATA_TIME;
+        $dateTimeString = $data['date'] . ' ' . $data['time'];
+        
+        $offsetSystem   = Time::getTimeZoneOffset($data['timezone'], $dateTimeString);
+        $offset         = $data['offset'] != $offsetSystem ? $data['offset'] : false;
+        
+        $dateTimeObject = Time::getDateTimeUtc($dateTimeFormat, $dateTimeString, $data['timezone'], $offset);
+        
         return $dateTimeObject;
     }
 
