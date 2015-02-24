@@ -133,12 +133,12 @@ abstract class AbstractGanita {
             } else {
                 throw new Exception\UnexpectedValueException("Unknown data: $dataName = $dataValue");
             }
-
-            if (empty($this->data['date']))
-                $this->data['date'] = Time::getDateNow();
-            if (empty($this->data['time']))
-                $this->data['time'] = Time::getTimeNow();
         }
+        
+        if (empty($this->data['date']))
+            $this->data['date'] = Time::getDateNow();
+        if (empty($this->data['time']))
+            $this->data['time'] = Time::getTimeNow();
     }
 
     /**

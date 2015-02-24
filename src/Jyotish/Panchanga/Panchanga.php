@@ -89,7 +89,7 @@ class Panchanga {
     {
         if($ganitaData instanceof \Jyotish\Ganita\Method\AbstractGanita){
             $this->ganitaObject = $ganitaData;
-            $this->setData(null, true);
+            $this->setData();
         }elseif(is_array($ganitaData)){
             $this->ganitaData = $ganitaData;
         }else{
@@ -249,6 +249,8 @@ class Panchanga {
      */
     public function getVara($withLimit = false)
     {
+        $this->ganitaData['rising'] = $this->ganitaObject->getRisings();
+        
         $dateUser = new DateTime($this->ganitaData['user']['date'].' '.$this->ganitaData['user']['time']);
         $dateUserU = $dateUser->format('U');
         $varaNumber = $dateUser->format('w');
@@ -288,6 +290,8 @@ class Panchanga {
      */
     public function getKarana($withLimit = false)
     {
+        $this->getTithi(true);
+        
         if($this->tithi['left'] < 50){
             $number = 2;
             $left = $this->tithi['left'];
@@ -334,14 +338,11 @@ class Panchanga {
      * 
      * @param array $userData
      */
-    public function setData(array $userData = null, $calcRising = false)
+    public function setData(array $userData = null)
     {
         if(!is_null($userData)) $this->ganitaObject->setData($userData);
 
         $this->ganitaData['user'] = $this->ganitaObject->getData();
-        if($calcRising) {
-            $this->ganitaData['rising'] = $this->ganitaObject->getRisings();
-        }
         $this->ganitaData = array_merge($this->ganitaData, $this->ganitaObject->getParams());
     }
 
@@ -405,6 +406,7 @@ class Panchanga {
         );
 
         unset($Panchanga);
+        
         return $result;
     }
 }

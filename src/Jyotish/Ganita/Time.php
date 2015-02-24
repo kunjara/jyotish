@@ -47,9 +47,25 @@ class Time {
 
         return $date;
     }
+    
+    /**
+     * Get new DateTime object from a string formatted according to the specified format.
+     * 
+     * @param string $format
+     * @param string $dateTime
+     * @param string $timeZone
+     * @return DateTime
+     */
+    static public function getDateTime($format, $dateTime, $timeZone = 'UTC')
+    {
+        $timeZoneObject = new DateTimeZone($timeZone);
+        $dateTimeObject = DateTime::createFromFormat($format, $dateTime, $timeZoneObject);
+        
+        return $dateTimeObject;
+    }
 
     /**
-     *  Get new DateTime object formatted according to the specified format.
+     * Get a new DateTime object in UTC timezone.
      * 
      * @param string $format
      * @param string $dateTime
@@ -60,19 +76,18 @@ class Time {
      */
     static public function getDateTimeUtc($format, $dateTime, $timeZone = 'UTC', $offsetUser = false)
     {
-        $timeZoneObject = new DateTimeZone($timeZone);
-        $dateTimeObject = DateTime::createFromFormat($format, $dateTime, $timeZoneObject);
-        $offsetSystem	= self::getTimeZoneOffset($timeZone, $dateTime);
+        $dateTimeObject = self::getDateTime($format, $dateTime, $timeZone);
 
         if ($timeZone != 'UTC') {
             $dateTimeObject->setTimezone(new DateTimeZone('UTC'));
         }
-
+        
         if($offsetUser) {
             if (!is_int($offsetUser)) {
                 throw new Exception\InvalidArgumentException("The offset must be an integer value in seconds.");
             }
 
+            $offsetSystem = self::getTimeZoneOffset($timeZone, $dateTime);
             $offsetTotal = $offsetSystem - $offsetUser;
 
             if($offsetTotal > 0) {
