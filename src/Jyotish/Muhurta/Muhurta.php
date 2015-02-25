@@ -71,11 +71,15 @@ class Muhurta {
         $getAnga = 'get' . ucfirst($angaName);
         $angaData = $this->panchangaObject->$getAnga(true);
         $nextTime = $angaData['end'];
-        $this->timeStamps[] = $angaData;
         
         if(is_null($this->dateTimeObject)){
             $this->dateTimeObject = clone($this->dateTimeObjectStart);
+            $angaData['start'] = null;
+        }else{
+            $angaData['start'] = end($this->timeStamps)['end'];
         }
+        
+        $this->timeStamps[] = $angaData;
         
         $this->dateTimeObject->modify($nextTime)->modify('+ 3 minutes');
         
