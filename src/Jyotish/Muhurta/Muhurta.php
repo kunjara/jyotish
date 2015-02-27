@@ -62,9 +62,10 @@ class Muhurta {
     }
     
     /**
-     * Get timestamps of panchanga.
+     * Calculate timestamps of panchanga.
      * 
      * @param string $angaName
+     * @return void
      */
     protected function calcPanchanga($angaName)
     {
@@ -72,7 +73,7 @@ class Muhurta {
         $angaData = $this->panchangaObject->$getAnga(true);
         $nextTime = $angaData['end'];
         
-        if(is_null($this->dateTimeObject)){
+        if(!isset($this->dateTimeObject)){
             $this->dateTimeObject = clone($this->dateTimeObjectStart);
             $angaData['start'] = null;
         }else{
