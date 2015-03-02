@@ -174,7 +174,7 @@ class Swetest extends AbstractGanita{
         exec($string, $out);
 
         for($i = 1; $i <= 4; $i++) {
-            preg_match("#rise\s((.*\d+)\s+(\d{1,2}:.*))\sset\s((.*\d+)\s+(\d{1,2}:.*))#", $out[$i+1], $matches);
+            preg_match("#rise\s((.*\d+)\s+(\d{1,2}:.*))\sset\s((.*\d+)\s+(\d{1,2}:[\d\s\.:]+))#", $out[$i+1], $matches);
 
             $risingString  = str_replace(' ', '', $matches[2]).' '.str_replace(' ', '', $matches[3]);
             $settingString = str_replace(' ', '', $matches[5]).' '.str_replace(' ', '', $matches[6]);
