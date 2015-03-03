@@ -4,7 +4,7 @@
  * @license   GNU General Public License version 2 or later
  */
 
-namespace Jyotish\Calendar\Event;
+namespace Jyotish\Calendar;
 
 /**
  * Bengal specific Holidays.
@@ -19,6 +19,11 @@ class BengalHolidays extends \Jyotish\Calendar\Event{
             self::COL_NAME => 'Jahnu Saptami',
             self::COL_MASA => 2,
             self::COL_TITHI => 7,
+        ],
+        [
+            self::COL_NAME => 'Ganga Puja',
+            self::COL_MASA => 3,
+            self::COL_TITHI => 10,
         ],
         [
             self::COL_NAME => 'Durga Puja',

@@ -7,12 +7,12 @@
 namespace Jyotish\Calendar;
 
 /**
- * Appearance days of the Lord.
+ * Appearance days of the Lord and His Incarnations.
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 class LordAppearance extends Event{
-    static public $eventsTitle = 'Appearance days of the Lord';
+    static public $eventsTitle = 'Appearance days of the Lord and His Incarnations';
     
     static public $eventsList = [
         [
