@@ -16,24 +16,24 @@ class BengalHolidays extends \Jyotish\Calendar\Event{
 
     static public $eventsList = [
         [
-            self::COL_NAME => 'Durga Puja',
-            self::COL_MASA => 7,
+            self::COL_NAME => 'Jahnu Saptami',
+            self::COL_MASA => 2,
             self::COL_TITHI => 7,
         ],
         [
-            self::COL_NAME => 'Jagaddhatri Puja',
-            self::COL_MASA => 8,
-            self::COL_TITHI => 9,
-        ],
-        [
-            self::COL_NAME => 'Jahnu Saptami',
-            self::COL_MASA => 2,
+            self::COL_NAME => 'Durga Puja',
+            self::COL_MASA => 7,
             self::COL_TITHI => 7,
         ],
         [
             self::COL_NAME => 'Lakshmi Puja',
             self::COL_MASA => 7,
             self::COL_TITHI => 15,
+        ],
+        [
+            self::COL_NAME => 'Jagaddhatri Puja',
+            self::COL_MASA => 8,
+            self::COL_TITHI => 9,
         ],
         [
             self::COL_NAME => 'Sarasvati Puja',

@@ -18,5 +18,4 @@ class Event {
     const COL_NAME = 'name';
     const COL_MASA = 'masa';
     const COL_TITHI = 'tithi';
-    const COL_PAKSHA = 'paksha';
 }
