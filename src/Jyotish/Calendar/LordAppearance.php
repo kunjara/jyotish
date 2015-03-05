@@ -31,6 +31,11 @@ class LordAppearance extends Event{
             self::COL_TITHI => 15,
         ],
         [
+            self::COL_NAME => 'Shri Krishna Janmashtami',
+            self::COL_MASA => 6,
+            self::COL_TITHI => 23,
+        ],
+        [
             self::COL_NAME => 'Radhashtami',
             self::COL_MASA => 6,
             self::COL_TITHI > 8,
@@ -39,11 +44,6 @@ class LordAppearance extends Event{
             self::COL_NAME => 'Shri Vamana Dvadashi',
             self::COL_MASA => 6,
             self::COL_TITHI => 12,
-        ],
-        [
-            self::COL_NAME => 'Shri Krishna Janmashtami',
-            self::COL_MASA => 6,
-            self::COL_TITHI => 23,
         ],
         [
             self::COL_NAME => 'Shri Advaita Acharya',

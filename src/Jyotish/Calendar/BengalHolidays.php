@@ -44,6 +44,11 @@ class BengalHolidays extends \Jyotish\Calendar\Event{
             self::COL_NAME => 'Sarasvati Puja',
             self::COL_MASA => 11,
             self::COL_TITHI => 5,
+        ],
+        [
+            self::COL_NAME => 'Shiva Ratri',
+            self::COL_MASA => 12,
+            self::COL_TITHI => 29,
         ]
     ];
 }
