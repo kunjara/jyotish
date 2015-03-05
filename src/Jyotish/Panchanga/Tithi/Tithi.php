@@ -36,9 +36,12 @@ class Tithi {
     const TYPE_JAYA = 'jaya';
     const TYPE_RIKTA = 'rikta';
     const TYPE_PURNA = 'purna';
-
+    
     const PAKSHA_SHUKLA = 'shukla';
     const PAKSHA_KRISHNA = 'krishna';
+    
+    const LIST_PANCHANGA = 'panchanga';
+    const LIST_MASA = 'masa';
 
     static public $tithi = array(
         1 => self::NAME_PRATIPAD,
@@ -91,6 +94,25 @@ class Tithi {
         $tithiObject = new $tithiClass($options);
 
         return $tithiObject;
+    }
+    
+    /**
+     * Returns the list of tithis.
+     * 
+     * @param string $listType
+     * @return array
+     */
+    static public function tithiList($listType = self::LIST_PANCHANGA)
+    {
+        switch ($listType){
+            case self::LIST_MASA:
+                $result = array_slice(self::$tithi, 15, null, true) + array_slice(self::$tithi, 0, 15, true);
+                break;
+            case self::LIST_PANCHANGA:
+            default:
+                $result = self::$tithi;
+        }
+        return $result;
     }
 
     /**
