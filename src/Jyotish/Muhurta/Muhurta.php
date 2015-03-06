@@ -15,6 +15,12 @@ use Jyotish\Ganita\Time;
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 class Muhurta {
+    const PANCHAKA_MRITYU = 1;
+    const PANCHAKA_AGNI   = 2;
+    const PANCHAKA_RAJA   = 4;
+    const PANCHAKA_CHORA  = 6;
+    const PANCHAKA_ROGA   = 8;
+    
     protected $panchangaObject = null;
     
     protected $dateTimeObject = null;
