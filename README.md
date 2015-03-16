@@ -10,7 +10,7 @@ The files in this library are released under the GNU General Public License vers
 
 ### Demo
 
-To test Jyotish library, a demo website is online: [jyotish.su](http://jyotish.su).
+To test Jyotish library, a demo website is online: [jyotish.su](http://jyotish.su), or visit social dating service [abboom.com](https://abboom.com)
 
 ## Third-party libraries
 
