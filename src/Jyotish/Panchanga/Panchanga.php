@@ -155,7 +155,18 @@ class Panchanga {
     {
         $unit = 360/27;
 
-        $lngGraha = $this->ganitaData['graha'][$grahaKey]['longitude'];
+        if(array_key_exists($grahaKey, Graha::$graha)){
+            $lngGraha = $this->ganitaData['graha'][$grahaKey]['longitude'];
+        }else{
+            if(!isset($this->ganitaData['extra'][$grahaKey]['longitude'])){
+                throw new Exception\InvalidArgumentException(
+                    "Longitude value for the key '$grahaKey' is not defined."
+                );
+            }else{
+                $lngGraha = $this->ganitaData['extra'][$grahaKey]['longitude'];
+            }
+        }
+        
         $nakshatraUnits = Math::partsToUnits($lngGraha, $unit);
 
         $nakshatra['anga'] = self::ANGA_NAKSHATRA;
