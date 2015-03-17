@@ -209,6 +209,16 @@ class Panchanga {
 
         $nakshatra['left'] = $left * 100 / $unit;
         $nakshatra['name'] = Nakshatra::$nakshatra[$nakshatra['key']];
+        
+        if($nakshatra['left'] < 100 and $nakshatra['left'] >= 75){
+            $nakshatra['pada'] = 1;
+        }elseif($nakshatra['left'] < 75 and $nakshatra['left'] >= 50){
+            $nakshatra['pada'] = 2;
+        }elseif($nakshatra['left'] < 50 and $nakshatra['left'] >= 25){
+            $nakshatra['pada'] = 3;
+        }else{
+            $nakshatra['pada'] = 4;
+        }
 
         if($withLimit){
             $limits = $this->limitAnga($nakshatra, __FUNCTION__);
