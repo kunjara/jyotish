@@ -52,13 +52,17 @@ class Muhurta {
      * Get timestamps of muhurta.
      * 
      * @param int $period Period of time in days, which is calculated muhurta
+     * @param null|array $angas Components of Panchanga
      * @return array
      */
-    public function getTimeStamps($period = 1)
+    public function getTimeStamps($period = 1, array $angas = null)
     {
-        if($period > 1) $this->dateTimeObjectEnd->modify('+' . $period . ' days');
+        if($period > 1)
+            $this->dateTimeObjectEnd->modify('+' . $period . ' days');
+        if(is_null($angas)) 
+            $angas = Panchanga::$anga;
         
-        foreach (Panchanga::$anga as $angaName){
+        foreach ($angas as $angaName){
             $this->calcPanchanga($angaName);
         }
         
