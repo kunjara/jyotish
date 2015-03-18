@@ -6,6 +6,8 @@
 
 namespace Jyotish\Panchanga\Nakshatra;
 
+use Jyotish\Base\Utils;
+
 /**
  * Class with Nakshatra names and attributes.
  *
@@ -157,5 +159,39 @@ class Nakshatra {
             $result = $nakshatras;
         }
         return $result;
+    }
+    
+    /**
+     * Returns the list of navataras for nakshatra. Will be very useful when 
+     * choosing Muhurta.
+     * 
+     * @param string $nakshatraKey Nakshatra key
+     * @return array
+     */
+    static public function nakshatraNavatara($nakshatraKey){
+        if (!array_key_exists($nakshatraKey, self::nakshatraList())) {
+            throw new \Jyotish\Panchanga\Exception\InvalidArgumentException("Nakshatra with the number '$key' does not exist.");
+        }
+        
+        $nakshatas = Utils::shiftArray(self::nakshatraList(), $nakshatraKey, true);
+
+        $number = 1;
+        $block = 1;
+        
+        foreach ($nakshatas as $key => $name){
+            $navataras[$key] = [
+                'block' => $block,
+                'number' => $number,
+                'name' => self::$navatara[$number]
+            ];
+            
+            $number++;
+            if($number > 9){
+                $block += 1;
+                $number = 1;
+            }
+        }
+        
+        return $navataras;
     }
 }
