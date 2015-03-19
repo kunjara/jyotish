@@ -170,7 +170,7 @@ class Nakshatra {
      */
     static public function nakshatraNavatara($nakshatraKey){
         if (!array_key_exists($nakshatraKey, self::nakshatraList())) {
-            throw new \Jyotish\Panchanga\Exception\InvalidArgumentException("Nakshatra with the number '$key' does not exist.");
+            throw new \Jyotish\Panchanga\Exception\InvalidArgumentException("Nakshatra with the number '$nakshatraKey' does not exist.");
         }
         
         $nakshatas = Utils::shiftArray(self::nakshatraList(), $nakshatraKey, true);
