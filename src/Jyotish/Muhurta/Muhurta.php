@@ -44,8 +44,14 @@ class Muhurta {
         $dateTimeFormat = Time::FORMAT_DATA_DATE . ' ' . Time::FORMAT_DATA_TIME;
         $dateTimeString = $userData['date'] . ' ' . $userData['time'];
         
-        $this->dateTimeObjectStart = Time::getDateTime($dateTimeFormat, $dateTimeString, $userData['timezone']);
+        $this->dateTimeObjectStart = Time::getDateTimeUtc($dateTimeFormat, $dateTimeString, $userData['timezone'], $userData['offset']);
         $this->dateTimeObjectEnd = clone($this->dateTimeObjectStart);
+        $this->dateTimeObjectStart->modify('-1 day');
+        
+        $this->panchangaObject->setData([
+            'date' => $this->dateTimeObjectStart->format(Time::FORMAT_DATA_DATE),
+            'time' => $this->dateTimeObjectStart->format(Time::FORMAT_DATA_TIME),
+        ]);
     }
     
     /**
