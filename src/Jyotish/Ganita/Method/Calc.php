@@ -16,20 +16,6 @@ use Jyotish\Ganita\Math;
  */
 class Calc {
     /**
-     * Get contra longitude value.
-     * 
-     * @param float $longitude
-     * @return float
-     */
-    static public function contraLon($longitude)
-    {
-        $lonContra = $longitude + 180;
-        $lonResult = $lonContra >= 360 ? $lonContra - 360 : $lonContra;
-
-        return $lonResult;
-    }
-
-    /**
      * Equation of time.
      * 
      * @param string $date

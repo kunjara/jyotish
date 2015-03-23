@@ -14,7 +14,6 @@ use Jyotish\Graha\Lagna;
 use Jyotish\Ganita\Math;
 use Jyotish\Ganita\Time;
 use Jyotish\Ganita\Ayanamsha;
-use Jyotish\Ganita\Method\Calc;
 
 /**
  * Class for calculate the positions of the planets using the application swetest.
@@ -236,8 +235,8 @@ class Swetest extends AbstractGanita{
             }
         }
 
-        $longitudeKe = Calc::contraLon($bodyParameters['graha'][Graha::KEY_RA]['longitude']);
-        $ascensionKe = Calc::contraLon($bodyParameters['graha'][Graha::KEY_RA]['ascension']);
+        $longitudeKe = Math::oppositeValue($bodyParameters['graha'][Graha::KEY_RA]['longitude'], 360);
+        $ascensionKe = Math::oppositeValue($bodyParameters['graha'][Graha::KEY_RA]['ascension'], 360);
         $units = Math::partsToUnits($longitudeKe);
 
         $bodyParameters['graha'][Graha::KEY_KE] = array(

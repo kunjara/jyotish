@@ -293,4 +293,19 @@ class Math {
         
         return ($value >= $min and $value < $max) ? true : false;
     }
+    
+    /**
+     * Get opposite value.
+     * 
+     * @param float $value Initial value
+     * @param int $cycle Size of cycle
+     * @return float
+     */
+    static public function oppositeValue($value, $cycle = 12)
+    {
+        $oppositeValue = $value + $cycle / 2;
+        $result = $oppositeValue >= $cycle ? $oppositeValue - $cycle : $oppositeValue;
+
+        return $result;
+    }
 }
