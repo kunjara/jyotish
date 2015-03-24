@@ -160,30 +160,4 @@ class Tithi {
             30 => Deva::DEVA_PITRU
         ]
     ];
-
-    /**
-     * Get tiithi using the Harvey formula.
-     * 
-     * @param ind $day
-     * @param int $month
-     * @param int $year
-     * @return int
-     */
-    static public function getTithiByHarvey($day, $month, $year) {
-        if ($month <= 2) {
-            $monthH	= $month + 12;
-            $yearH = $year - 1;
-        } else {
-            $monthH = $month;
-            $yearH = $year;
-        }
-
-        $eq  = floor($yearH/100);
-        $eq1 = floor($eq/3) + floor($eq/4) + 6 - $eq;
-        $eq2 = (round(($yearH/$eq - floor($yearH/$eq)) * 209) + $monthH + $eq1 + $day)/30;
-
-        $tithi = round(($eq2 - floor($eq2))*30 + 1);
-
-        return $tithi;
-    }
 }
