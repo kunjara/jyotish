@@ -33,3 +33,4 @@ They have two license options - one, the GPL, which only means that any code you
 * Mantreswara. Phaladeepika.
 * Srimad-Bhagavatam.
 * Bhavishya Purana.
+* Surya Siddhanta.

@@ -86,15 +86,48 @@ class Graha {
      * Jeeva amsha
      */
     const AMSHA_JIVATMA = 'jivatma';
+    
+    /**
+     * When a planet gets retrograde and remains in that very sign
+     */
+    const CHESHTA_VAKRA = 'vakra';
+    /**
+     * If a planet moves into the sign behind that sign
+     */
+    const CHESHTA_ANUVAKRA = 'anuvakra';
+    /**
+     * When the gati or speed is reduced to zero
+     */
+    const CHESHTA_VIKALA = 'vikala';
+    /**
+     * When the gati (speed) is less than the madhya gati (mid speed)
+     */
+    const CHESHTA_MANDA = 'manda';
+    /**
+     * If the gati (speed) goes on decreasing continously after madhya gati (mid speed) 
+     */
+    const CHESHTA_MANDATARA = 'mandatara';
+    /**
+     * If the gati (speed) is equal to madhya gati (mid speed)
+     */
+    const CHESHTA_SAMA = 'sama';
+    /**
+     * If the gati (speed) is faster than sama
+     */
+    const CHESHTA_CHARA = 'chara';
+    /**
+     * Entering next sign in accelerated motion
+     */
+    const CHESHTA_ATICHARA = 'atichara';
 
-    const RISING_NOREFRAC   = 'norefrac';
+    const RISING_NOREFRAC = 'norefrac';
     const RISING_DISCCENTER = 'disccenter';
-    const RISING_HINDU      = 'hindu';
+    const RISING_HINDU = 'hindu';
     
     /**
      * Nine grahas
      */
-    const LIST_NAVA  = 'nava';
+    const LIST_NAVA = 'nava';
     /**
      * Seven grahas (without Rahu and Ketu)
      */
@@ -125,7 +158,39 @@ class Graha {
         self::KEY_RA => self::NAME_RA,
         self::KEY_KE => self::NAME_KE,
     );
-
+    
+    /**
+     * Planetary motions and the strengths allotted to them.
+     * 
+     * @var array
+     * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 27, Verse 21-23.
+     */
+    static public $balaCheshta = array(
+        self::CHESHTA_VAKRA => 60,
+        self::CHESHTA_ANUVAKRA => 30,
+        self::CHESHTA_VIKALA => 15,
+        self::CHESHTA_MANDA => 15,
+        self::CHESHTA_MANDATARA => 7.5,
+        self::CHESHTA_SAMA => 30,
+        self::CHESHTA_CHARA => 45,
+        self::CHESHTA_ATICHARA => 30,
+    );
+    
+    /**
+     * Combustion orbs.
+     * 
+     * @var array
+     * @see Surya Siddhanta. Chapter 9, Verse 6-9.
+     */
+    static public $bhagaAstangata = array(
+        self::KEY_CH => null,
+        self::KEY_MA => 17,
+        self::KEY_BU => [self::CHESHTA_SAMA => 14, self::CHESHTA_VAKRA => 12],
+        self::KEY_GU => 11,
+        self::KEY_SK => [self::CHESHTA_SAMA => 10, self::CHESHTA_VAKRA => 8],
+        self::KEY_SA => 15,
+    );
+    
     /**
      * Specifications for risings and settings.
      * 
