@@ -1,0 +1,363 @@
+
+  Swetest computes a complete set of geocentric planetary positions,
+  for a given date or a sequence of dates.
+  Input can either be a date or an absolute julian day number.
+  0:00 (midnight).
+  With the proper options, swetest can be used to output a printed
+  ephemeris and transfer the data into other programs like spreadsheets
+  for graphical display.
+  Version: $Header: /home/dieter/sweph/RCS/swetest.c,v 1.75 2009/04/01 13:18:36 dieter Exp $
+
+
+  Command line options:
+     help commands:
+        -?, -h  display whole info
+        -hcmd   display commands
+        -hplan  display planet numbers
+        -hform  display format characters
+        -hdate  display input date format
+        -hexamp  display examples
+     input time formats:
+        -bDATE  begin date; e.g. -b1.1.1992 if
+                Note: the date format is day month year (European style).
+        -bj...  begin date as an absolute Julian day number; e.g. -bj2415020.5
+        -j...   same as -bj
+        -tHH.MMSS  input time (ephemeris time)
+        -ut     input date is universal time
+	-utHH:MM:SS input time
+	-utHH.MMSS input time
+     object, number of steps, step with
+        -pSEQ   planet sequence to be computed.
+                See the letter coding below.
+        -dX     differential ephemeris: print differential ephemeris between
+                body X and each body in list given by -p
+                example: -p2 -d0 -fJl -n366 -b1.1.1992 prints the longitude
+                distance between SUN (planet 0) and MERCURY (planet 2)
+                for a full year starting at 1 Jan 1992.
+	-DX	midpoint ephemeris, works the same way as the differential
+		mode -d described above, but outputs the midpoint position.
+        -nN     output data for N consecutive days; if no -n option
+                is given, the default is 1. If the option -n without a
+                number is given, the default is 20.
+        -sN     timestep N days, default 1. This option is only meaningful
+                when combined with option -n.
+		     output format:
+        -fSEQ   use SEQ as format sequence for the output columns;
+                default is PLBRS.
+        -head   don't print the header before the planet data. This option
+                is useful when you want to paste the output into a
+                spreadsheet for displaying graphical ephemeris.
+        +head   header before every step (with -s..) 
+        -gPPP   use PPP as gap between output columns; default is a single
+                blank.  -g followed by white space sets the
+                gap to the TAB character; which is useful for data entry
+                into spreadsheets.
+     astrological house system:
+        -house[long,lat,hsys]	
+		include house cusps. The longitude, latitude (degrees with
+		DECIMAL fraction) and house system letter can be given, with
+		commas separated, + for east and north. If none are given,
+		Greenwich UK and Placidus is used: 0.00,51.50,p.
+		The output lists 12 house cusps, Asc, MC, ARMC and Vertex.
+		Houses can only be computed if option -ut is given.
+        -hsy[hsys]	
+		house system to be used (for house positions of planets)
+		for long, lat, hsys, see -house
+        -geopos[long,lat,elev]	
+		Geographic position. Can be used for azimuth and altitude
+                or topocentric or house cups calculations.
+                The longitude, latitude (degrees with DECIMAL fraction)
+		and elevation (meters) can be given, with
+		commas separated, + for east and north. If none are given,
+		Greenwich is used: 0,51.5,0
+     sidereal astrology:
+	-ay..   ayanamsa, with number of method, e.g. ay0 for Fagan/Bradley
+	-sid..    sidereal, with number of method; 'sid0' for Fagan/Bradley
+	                                           'sid1' for Lahiri
+	-sidt0..  sidereal, projection on ecliptic of t0 
+	-sidsp..  sidereal, projection on solar system plane 
+	     ephemeris specifications:
+        -edirPATH change the directory of the ephemeris files 
+        -eswe   swiss ephemeris
+        -ejpl   jpl ephemeris (DE406), or with ephemeris file name
+                -ejplde200.eph 
+        -emos   moshier ephemeris
+        -true             true positions
+        -noaberr          no aberration
+        -nodefl           no gravitational light deflection
+	-noaberr -nodefl  astrometric positions
+        -j2000            no precession (i.e. J2000 positions)
+        -icrs             ICRS (use Internat. Celestial Reference System)
+        -nonut            no nutation 
+        -speed            calculate high precision speed 
+        -speed3           'low' precision speed from 3 positions 
+                          do not use this option. -speed parameter
+			  is faster and preciser 
+	-iXX	          force iflag to value XX
+        -testaa96         test example in AA 96, B37,
+                          i.e. venus, j2450442.5, DE200.
+                          attention: use precession IAU1976
+                          and nutation 1980 (s. swephlib.h)
+        -testaa95
+        -testaa97
+        -roundsec         round to seconds
+        -roundmin         round to minutes
+     observer position:
+        -hel    compute heliocentric positions
+        -bary   compute barycentric positions (bar. earth instead of node) 
+        -topo[long,lat,elev]	
+		topocentric positions. The longitude, latitude (degrees with
+		DECIMAL fraction) and elevation (meters) can be given, with
+		commas separated, + for east and north. If none are given,
+		Zürich is used: 8.55,47.38,400
+
+	     special events:
+        -solecl solar eclipse
+                output 1st line:
+                  eclipse date,
+                  time of maximum,
+                  core shadow width (negative with total eclipses),
+                  fraction of solar diameter that is eclipsed
+                output 2nd line:
+                  start and end times for partial and total phase
+                output 3rd line:
+                  geographical longitude and latitude of maximum eclipse,
+                  totality duration at that geographical position,
+                output with -local, see below.
+        -occult occultation of planet or star by the moon. Use -p to 
+                specify planet (-pf -xfAldebaran for stars) 
+                output format same as with -solecl
+        -lunecl lunar eclipse
+                output 1st line:
+                  eclipse date,
+                  time of maximum,
+                output 2nd line:
+                  6 contacts for start and end of penumbral, partial, and
+                  total phase
+        -local  only with -solecl or -occult, if the next event of this
+                kind is wanted for a given geogr. position.
+                Use -geopos[long,lat,elev] to specify that position.
+                If -local is not set, the program 
+                searches for the next event anywhere on earth.
+                output 1st line:
+                  eclipse date,
+                  time of maximum,
+                  fraction of solar diameter that is eclipsed
+                output 2nd line:
+                  local eclipse duration,
+                  local four contacts,
+        -hev[type] heliacal events,
+		type 1 = heliacal rising
+		type 2 = heliacal setting
+		type 3 = evening first
+		type 4 = morning last
+	        type 0 or missing = all four events are listed.
+        -rise   rising and setting of a planet or star.
+                Use -geopos[long,lat,elev] to specify geographical position.
+		        -metr   southern and northern meridian transit of a planet of star
+                Use -geopos[long,lat,elev] to specify geographical position.
+     specifications for eclipses:
+        -total  total eclipse (only with -solecl, -lunecl)
+        -partial partial eclipse (only with -solecl, -lunecl)
+        -annular annular eclipse (only with -solecl)
+        -anntot annular-total (hybrid) eclipse (only with -solecl)
+        -penumbral penumbral lunar eclipse (only with -lunecl)
+        -central central eclipse (only with -solecl, nonlocal)
+        -noncentral non-central eclipse (only with -solecl, nonlocal)
+     specifications for risings and settings:
+        -norefrac   neglect refraction (with option -rise)
+        -disccenter find rise of disc center (with option -rise)
+	-hindu      hindu version of sunrise (with option -rise)
+     specifications for heliacal events:
+        -at[press,temp,rhum,visr]:
+	            pressure in hPa
+		    temperature in degrees Celsius
+		    relative humidity in 
+		    visual range, interpreted as follows:
+		      > 1 : meteorological range in km
+		      1>visr>0 : total atmospheric coefficient (ktot)
+		      = 0 : calculated from press, temp, rhum
+		    Default values are -at1013.25,15,40,0
+         -obs[age,SN] age of observer and Snellen ratio
+	            Default values are -obs36,1
+         -opt[age,SN,binocular,magn,diam,transm]
+	            age and SN as with -obs
+		    0 monocular or 1 binocular
+		    telescope magnification
+		    optical aperture in mm
+		    optical transmission
+		    Default values: -opt36,1,1,1,0,0 (naked eye)
+     backward search:
+        -bwd
+
+  Planet selection letters:
+     planetary lists:
+        d (default) main factors 0123456789mtABCcg
+        p main factors as above, plus main asteroids DEFGHI
+        h ficticious factors J..X
+        a all factors
+        (the letters above can only appear as a single letter)
+
+     single planet letters:
+        0 Sun (character zero)
+        1 Moon (character 1)
+        2 Mercury
+        ....
+        9 Pluto
+        m mean lunar node
+        t true lunar node
+        n nutation
+        o obliquity of ecliptic
+	q delta t
+        A mean lunar apogee (Lilith, Black Moon) 
+        B osculating lunar apogee 
+        c intp. lunar apogee 
+        g intp. lunar perigee 
+        C Earth (in heliocentric or barycentric calculation)
+     dwarf planets, plutoids
+        F Ceres
+	9 Pluto
+	s -xs136199   Eris
+	s -xs136472   Makemake
+	s -xs136108   Haumea
+     some minor planets:
+        D Chiron
+        E Pholus
+        G Pallas 
+        H Juno 
+        I Vesta 
+        s minor planet, with MPC number given in -xs
+     fixed stars:
+        f fixed star, with name or number given in -xf option
+	f -xfSirius   Sirius
+     fictitious objects:
+        J Cupido 
+        K Hades 
+        L Zeus 
+        M Kronos 
+        N Apollon 
+        O Admetos 
+        P Vulkanus 
+        Q Poseidon 
+        R Isis (Sevin) 
+        S Nibiru (Sitchin) 
+        T Harrington 
+        U Leverrier's Neptune
+        V Adams' Neptune
+        W Lowell's Pluto
+        X Pickering's Pluto
+        Y Vulcan
+        Z White Moon
+	w Waldemath's dark Moon
+        z hypothetical body, with number given in -xz
+        e print a line of labels
+          
+
+  Output format SEQ letters:
+  In the standard setting five columns of coordinates are printed with
+  the default format PLBRS. You can change the default by providing an
+  option like -fCCCC where CCCC is your sequence of columns.
+  The coding of the sequence is like this:
+        y year
+        Y year.fraction_of_year
+        p planet index
+        P planet name
+        J absolute juldate
+        T date formatted like 23.02.1992 
+        t date formatted like 920223 for 1992 february 23
+        L longitude in degree ddd°mm'ss"
+        l longitude decimal
+        Z longitude ddsignmm'ss"
+        S speed in longitude in degree ddd:mm:ss per day
+        SS speed for all values specified in fmt
+        s speed longitude decimal (degrees/day)
+        ss speed for all values specified in fmt
+        B latitude degree
+        b latitude decimal
+        R distance decimal in AU
+        r distance decimal in AU, Moon in seconds parallax
+          relative distance (1000=nearest, 0=furthest)
+        A Rectascension in hh:mm:ss
+        a rectascension hours decimal
+        D Declination degree
+        d declination decimal
+        I Azimuth degree
+        i Azimuth decimal
+        H Height degree
+        h Height decimal
+        K Height (with refraction) degree
+        k Height (with refraction) decimal
+        G house position in degrees
+        g house position in degrees decimal
+        j house number 1.0 - 12.99999
+        X x-, y-, and z-coordinates ecliptical
+        x x-, y-, and z-coordinates equatorial
+        U unit vector ecliptical
+        u unit vector equatorial
+        Q l, b, r, dl, db, dr, a, d, da, dd
+	n nodes (mean): ascending/descending (Me - Ne); longitude decimal
+	N nodes (osculating): ascending/descending, longitude; decimal
+	f apsides (mean): perihel, aphel, second focal point; longitude dec.
+	F apsides (osc.): perihel, aphel, second focal point; longitude dec.
+	+ phase angle
+	- phase
+	* elongation
+	/ apparent diameter of disc (without refraction)
+	= magnitude
+	
+  Date entry:
+  In the interactive mode, when you are asked for a start date,
+  you can enter data in one of the following formats:
+
+        1.2.1991        three integers separated by a nondigit character for
+                        day month year. Dates are interpreted as Gregorian
+                        after 4.10.1582 and as Julian Calender before.
+                        Time is always set to midnight.
+                        If the three letters jul are appended to the date,
+                        the Julian calendar is used even after 1582.
+                        If the four letters greg are appended to the date,
+                        the Gregorian calendar is used even before 1582.
+
+        j2400123.67     the letter j followed by a real number, for
+                        the absolute Julian daynumber of the start date.
+                        Fraction .5 indicates midnight, fraction .0
+                        indicates noon, other times of the day can be
+                        chosen accordingly.
+
+        <RETURN>        repeat the last entry
+        
+        .               stop the program
+
+        +20             advance the date by 20 days
+
+        -10             go back in time 10 days
+
+
+  Examples:
+
+    swetest -p2 -b1.12.1900 -n15 -s2
+	ephemeris of Mercury (-p2) starting on 1 Dec 1900,
+	15 positions (-n15) in two-day steps (-s2)
+
+    swetest -p2 -b1.12.1900 -n15 -s2 -fTZ -roundsec -g, -head
+	same, but output format =  date and zodiacal position (-fTZ),
+	separated by comma (-g,) and rounded to seconds (-roundsec),
+	without header (-head).
+
+    swetest -ps -xs433 -b1.12.1900
+	position of asteroid 433 Eros (-ps -xs433)
+
+    swetest -pf -xfAldebaran -b1.1.2000
+	position of fixed star Aldebaran 
+
+    swetest -p1 -d0 -b1.12.1900 -n10 -fPTl -head
+	angular distance of moon (-p1) from sun (-d0) for 10
+	consecutive days (-n10).
+
+    swetest -p6 -DD -b1.12.1900 -n100 -s5 -fPTZ -head -roundmin
+      Midpoints between Saturn (-p6) and Chiron (-DD) for 100
+      consecutive steps (-n100) with 5-day steps (-s5) with
+      longitude in degree-sign format (-f..Z) rounded to minutes (-roundmin)
+
+    swetest -b5.1.2002 -p -house12.05,49.50,k -ut12:30
+	Koch houses for a location in Germany at a given date and time
