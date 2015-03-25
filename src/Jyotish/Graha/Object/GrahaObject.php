@@ -249,7 +249,7 @@ class GrahaObject extends Object {
         'start',
         'end'
     );
-    protected $grahaAngularSpedAvg = array();
+    protected $grahaLongitudeSpeedAvg = array();
 
     /**
      * Get bhava, where graha is positioned.
@@ -329,6 +329,18 @@ class GrahaObject extends Object {
             case -1:
                 return Rashi::GRAHA_ENEMY;
         }
+    }
+    
+    /**
+     * Get speed of graha in longitude.
+     * 
+     * @return float Degrees per day
+     */
+    public function getLongitudeSpeed()
+    {
+        $this->checkEnvironment();
+        
+        return $this->ganitaData['graha'][$this->objectKey]['speed'];
     }
     
     /**
@@ -502,7 +514,7 @@ class GrahaObject extends Object {
             'rashi' => $specificRashi['neecha']
         ];
     }
-
+    
     /**
      * Constructor
      * 

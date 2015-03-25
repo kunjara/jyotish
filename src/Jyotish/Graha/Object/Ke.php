@@ -181,7 +181,7 @@ class Ke extends GrahaObject {
         'start' => 69,
         'end' => 108
     );
-    protected $grahaAngularSpedAvg = ['d' => 0, 'm' => 3, 's' => 10.8];
+    protected $grahaLongitudeSpeedAvg = ['d' => 0, 'm' => 3, 's' => 10.8];
 
     /**
      * Set exaltation, sebilitation, mooltrikon and own.

@@ -284,7 +284,7 @@ class Ch extends GrahaObject {
         'start' => 0,
         'end' => 4
     );
-    protected $grahaAngularSpedAvg = ['d' => 13, 'm' => 10, 's' => 35];
+    protected $grahaLongitudeSpeedAvg = ['d' => 13, 'm' => 10, 's' => 35];
 
     public function __construct($options = null)
     {

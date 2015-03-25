@@ -295,7 +295,7 @@ class Bu extends GrahaObject {
         'start' => 5,
         'end' => 14
     );
-    protected $grahaAngularSpedAvg = ['d' => 4, 'm' => 5, 's' => 32.4];
+    protected $grahaLongitudeSpeedAvg = ['d' => 4, 'm' => 5, 's' => 32.4];
 
     public function __construct($options = null)
     {
