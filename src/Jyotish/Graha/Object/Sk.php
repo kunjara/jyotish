@@ -292,6 +292,7 @@ class Sk extends GrahaObject {
         'start' => 15,
         'end' => 22
     );
+    protected $grahaAngularSpedAvg = ['d' => 1, 'm' => 36, 's' => 7.7];
 
     public function __construct($options = null) {
         parent::__construct($options);

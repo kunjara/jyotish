@@ -293,6 +293,7 @@ class Ma extends GrahaObject {
         'start' => 42,
         'end' => 56
     );
+    protected $grahaAngularSpedAvg = ['d' => 0, 'm' => 31, 's' => 26.5];
 
     public function __construct($options = null) {
         parent::__construct($options);

@@ -249,6 +249,7 @@ class GrahaObject extends Object {
         'start',
         'end'
     );
+    protected $grahaAngularSpedAvg = array();
 
     /**
      * Get bhava, where graha is positioned.
