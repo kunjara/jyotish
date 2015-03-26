@@ -12,7 +12,6 @@ use Jyotish\Rashi\Rashi;
 use Jyotish\Bhava\Bhava;
 use Jyotish\Ganita\Math;
 use Jyotish\Varga\Varga;
-use Jyotish\Tattva\Maha;
 use Jyotish\Tattva\Jiva\Nara\Deva;
 
 /**
@@ -29,6 +28,7 @@ class GrahaObject extends Object {
     protected $options = array(
         'relationSame' => false,
         'relationChaya' => '',
+        'bhagaAstangata' => 6,
         'specificRashi' => '',
         'drishtiRahu' => '',
     );
@@ -373,17 +373,27 @@ class GrahaObject extends Object {
     {
         $this->checkEnvironment();
         
-        if(in_array($this->objectKey, [Graha::KEY_SY, Graha::KEY_RA, Graha::KEY_KE]))
-                return false;
-        
-        $this->checkEnvironment();
+        if(in_array($this->objectKey, [
+            Graha::KEY_SY, Graha::KEY_CH, Graha::KEY_RA, Graha::KEY_KE
+        ])) return false;
         
         $degreeSy = $this->ganitaData['graha'][Graha::KEY_SY]['longitude'];
         $degreeGr = $this->ganitaData['graha'][$this->objectKey]['longitude'];
         
-        $grahaDistance = abs($degreeSy - $degreeGr);
+        $distanceGraha = abs($degreeSy - $degreeGr);
         
-        return $grahaDistance <= 6 ? true : false;
+        if($this->options['bhagaAstangata'] == 'ss'){
+            if(in_array($this->objectKey, [Graha::KEY_BU, Graha::KEY_SK])){
+                $cheshta = $this->getLongitudeSpeed() >= 0 ? Graha::CHESHTA_SAMA : Graha::CHESHTA_VAKRA;
+                $distanceAstangata = Graha::$bhagaAstangata[$this->objectKey][$cheshta];
+            }else{
+                $distanceAstangata = Graha::$bhagaAstangata[$this->objectKey];
+            }
+        }else{
+            $distanceAstangata = $this->options['bhagaAstangata'];
+        }
+        
+        return $distanceGraha <= $distanceAstangata ? true : false;
     }
     
     /**
