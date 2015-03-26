@@ -18,7 +18,7 @@ Trait OptionTrait {
      * @param null|array $options Options to set(optional)
      * @throws Exception\InvalidArgumentException
      */
-    protected function setOptions($options)
+    public function setOptions($options)
     {
         if (is_array($options)){
             foreach ($options as $optionName => $optionValue) {
@@ -31,5 +31,7 @@ Trait OptionTrait {
         }elseif(!is_null($options)){
             throw new \Jyotish\Base\Exception\InvalidArgumentException("Options must be an array.");
         }
+        
+        return $this;
     }
 }
