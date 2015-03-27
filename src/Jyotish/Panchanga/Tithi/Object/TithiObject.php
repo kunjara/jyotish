@@ -6,6 +6,7 @@
 
 namespace Jyotish\Panchanga\Tithi\Object;
 
+use Jyotish\Base\Literature;
 use Jyotish\Panchanga\Tithi\Tithi;
 
 /**
@@ -24,7 +25,7 @@ class TithiObject {
      * @var array
      */
     protected $options = array(
-        'tithiDeva' => 'varahamihira',
+        'tithiDeva' => Literature::BOOK_BS,
     );
 
     /**
@@ -78,10 +79,10 @@ class TithiObject {
     {
         $number = ($this->tithiKey > 15 and $this->tithiKey < 30) ? $this->tithiKey - 15 : $this->tithiKey;
 
-        if(!is_null($options) and in_array($options['tithiDeva'], ['bhavishya', 'varahamihira'])){
+        if(!is_null($options) and in_array($options['tithiDeva'], [Literature::BOOK_BS, Literature::BOOK_BP])){
             $this->tithiDeva = Tithi::$tithiDeva[$options['tithiDeva']][$number];
         }else{
-            $this->tithiDeva = Tithi::$tithiDeva['varahamihira'][$number];
+            $this->tithiDeva = Tithi::$tithiDeva[Literature::BOOK_BS][$number];
         }
     }
 
