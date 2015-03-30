@@ -6,6 +6,7 @@
 
 namespace Jyotish\Graha;
 
+use Jyotish\Base\Literature;
 use Jyotish\Graha\Lagna;
 use Jyotish\Tattva\Jiva\Nara\Deva;
 
@@ -181,14 +182,25 @@ class Graha {
      * 
      * @var array
      * @see Surya Siddhanta. Chapter 9, Verse 6-9.
+     * @see Varahamihira. Brihat Jataka. Chapter 7, Verse 2. Notes.
      */
     static public $bhagaAstangata = array(
-        self::KEY_CH => null,
-        self::KEY_MA => 17,
-        self::KEY_BU => [self::CHESHTA_SAMA => 14, self::CHESHTA_VAKRA => 12],
-        self::KEY_GU => 11,
-        self::KEY_SK => [self::CHESHTA_SAMA => 10, self::CHESHTA_VAKRA => 8],
-        self::KEY_SA => 15,
+        Literature::BOOK_SS => [
+            self::KEY_CH => null,
+            self::KEY_MA => 17,
+            self::KEY_BU => [self::CHESHTA_SAMA => 14, self::CHESHTA_VAKRA => 12],
+            self::KEY_GU => 11,
+            self::KEY_SK => [self::CHESHTA_SAMA => 10, self::CHESHTA_VAKRA => 8],
+            self::KEY_SA => 15,
+        ],
+        Literature::BOOK_BJ => [
+            self::KEY_CH => 12,
+            self::KEY_MA => 17,
+            self::KEY_BU => [self::CHESHTA_SAMA => 14, self::CHESHTA_VAKRA => 12],
+            self::KEY_GU => 11,
+            self::KEY_SK => [self::CHESHTA_SAMA => 10, self::CHESHTA_VAKRA => 8],
+            self::KEY_SA => 15,
+        ]
     );
     
     /**

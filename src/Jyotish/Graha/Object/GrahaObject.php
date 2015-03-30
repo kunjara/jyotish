@@ -6,6 +6,7 @@
 
 namespace Jyotish\Graha\Object;
 
+use Jyotish\Base\Literature;
 use Jyotish\Base\Object;
 use Jyotish\Graha\Graha;
 use Jyotish\Rashi\Rashi;
@@ -367,27 +368,31 @@ class GrahaObject extends Object {
     /**
      * Whether the graha is astangata (combustion).
      * 
-     * @return bool
+     * @return mixed
      */
     public function isAstangata()
     {
         $this->checkEnvironment();
         
         if(in_array($this->objectKey, [
-            Graha::KEY_SY, Graha::KEY_CH, Graha::KEY_RA, Graha::KEY_KE
-        ])) return false;
+            Graha::KEY_SY, Graha::KEY_RA, Graha::KEY_KE
+        ])) return null;
         
         $degreeSy = $this->ganitaData['graha'][Graha::KEY_SY]['longitude'];
         $degreeGr = $this->ganitaData['graha'][$this->objectKey]['longitude'];
         
         $distanceGraha = abs($degreeSy - $degreeGr);
         
-        if($this->options['bhagaAstangata'] == 'ss'){
-            if(in_array($this->objectKey, [Graha::KEY_BU, Graha::KEY_SK])){
+        if(in_array($this->options['bhagaAstangata'], [Literature::BOOK_SS, Literature::BOOK_BJ])){
+            $bhagas = Graha::$bhagaAstangata[$this->options['bhagaAstangata']];
+            
+            if(is_array($bhagas[$this->objectKey])){
                 $cheshta = $this->getLongitudeSpeed() >= 0 ? Graha::CHESHTA_SAMA : Graha::CHESHTA_VAKRA;
-                $distanceAstangata = Graha::$bhagaAstangata[$this->objectKey][$cheshta];
+                $distanceAstangata = $bhagas[$this->objectKey][$cheshta];
+            }elseif(is_int($bhagas[$this->objectKey])){
+                $distanceAstangata = $bhagas[$this->objectKey];
             }else{
-                $distanceAstangata = Graha::$bhagaAstangata[$this->objectKey];
+                return null;
             }
         }else{
             $distanceAstangata = $this->options['bhagaAstangata'];
