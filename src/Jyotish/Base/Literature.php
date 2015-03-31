@@ -66,7 +66,7 @@ class Literature {
      * 
      * @var array
      */
-    public $book = array(
+    static public $book = array(
         self::BOOK_BPHS => 'Brihat Parashara Hora Shastra',
         self::BOOK_US => 'Upadesha Sutras',
         self::BOOK_BJ => 'Brihat Jataka',
