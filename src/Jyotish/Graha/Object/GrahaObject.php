@@ -368,7 +368,7 @@ class GrahaObject extends Object {
     /**
      * Whether the graha is astangata (combustion).
      * 
-     * @return mixed
+     * @return null|bool|array Combustion data
      */
     public function isAstangata()
     {
@@ -388,17 +388,27 @@ class GrahaObject extends Object {
             
             if(is_array($bhagas[$this->objectKey])){
                 $cheshta = $this->getLongitudeSpeed() >= 0 ? Graha::CHESHTA_SAMA : Graha::CHESHTA_VAKRA;
-                $distanceAstangata = $bhagas[$this->objectKey][$cheshta];
+                $distanceCombustion = $bhagas[$this->objectKey][$cheshta];
             }elseif(is_int($bhagas[$this->objectKey])){
-                $distanceAstangata = $bhagas[$this->objectKey];
+                $distanceCombustion = $bhagas[$this->objectKey];
             }else{
                 return null;
             }
         }else{
-            $distanceAstangata = $this->options['bhagaAstangata'];
+            $distanceCombustion = $this->options['bhagaAstangata'];
         }
         
-        return $distanceGraha <= $distanceAstangata ? true : false;
+        if($distanceGraha <= $distanceCombustion){
+            $percent = ($distanceCombustion - $distanceGraha) * 100 / $distanceCombustion;
+            
+            return [
+                'distance' => $distanceGraha,
+                'combustion' => $distanceCombustion,
+                'percent' => $percent,
+            ];
+        }else{
+            return false;
+        }
     }
     
     /**
