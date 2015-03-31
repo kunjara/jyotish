@@ -229,6 +229,7 @@ class Graha {
      * @param null|array $options Options to set (optional)
      * - `relationSame`: relationship between the same grahas
      * - `relationChaya`: relationship between the chaya grahas
+     * - `bhagaAstangata`: degree of combustion or data source
      * - `specificRashi`: set specific rashi for chaya grahas
      * - `drishtiRahu`: set drishti for Rahu
      * @return the requested instance of graha class

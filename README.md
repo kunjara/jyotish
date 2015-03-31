@@ -1,4 +1,8 @@
-## *Jyotish* library!
+## Jyotish library!
+
+[![Total Downloads](https://poser.pugx.org/kunjara/jyotish/downloads.svg)](https://packagist.org/packages/kunjara/jyotish)
+[![Latest Unstable Version](https://poser.pugx.org/kunjara/jyotish/v/unstable.svg)](https://packagist.org/packages/kunjara/jyotish)
+[![License](https://poser.pugx.org/kunjara/jyotish/license.svg)](https://packagist.org/packages/kunjara/jyotish)
 
 ### System Requirements
 
