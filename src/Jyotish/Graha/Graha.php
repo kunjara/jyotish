@@ -204,6 +204,38 @@ class Graha {
     );
     
     /**
+     * Mrityu bhaga.
+     * 
+     * @var array
+     * @see Vaidyanatha Dikshita. Jataka Parijata. Chapter 1, Verse 57.
+     * @see Venkatesh Sharma. Sarvarth Chintamani. Chapter 10, Verse 47-50.
+     * @see Mantreswara. Phaladeepika. Chapter 13, Verse 10.
+     */
+    static public $bhagaMrityu = array(
+        Literature::BOOK_JP => [
+            self::KEY_CH => [
+                1 => 8, 2 => 25, 3 => 22, 4 => 22,
+                5 => 21, 6 => 1, 7 => 4, 8 => 23,
+                9 => 18, 10 => 20, 11 => 20, 12 => 10
+            ]
+        ],
+        Literature::BOOK_SC => [
+            self::KEY_CH => [
+                1 => 20, 2 => 25, 3 => 22, 4 => 22,
+                5 => 21, 6 => 1, 7 => 4, 8 => 23,
+                9 => 18, 10 => 20, 11 => 15, 12 => 10
+            ]
+        ],
+        Literature::BOOK_PH => [
+            self::KEY_CH => [
+                1 => 26, 2 => 12, 3 => 13, 4 => 25,
+                5 => 24, 6 => 11, 7 => 26, 8 => 14,
+                9 => 13, 10 => 25, 11 => 5, 12 => 12
+            ]
+        ]
+    );
+
+        /**
      * Specifications for risings and settings.
      * 
      * @var array

@@ -49,6 +49,10 @@ class Literature {
      */
     const BOOK_PH = 'ph';
     /**
+     * Jataka Parijata
+     */
+    const BOOK_JP = 'jp';
+    /**
      * Srimad-Bhagavatam
      */
     const BOOK_SB = 'sb';
@@ -76,6 +80,7 @@ class Literature {
         self::BOOK_UK => 'Uttara Kalamritam',
         self::BOOK_SC => 'Sarvarth Chintamani',
         self::BOOK_PH => 'Phaladeepika',
+        self::BOOK_JP => 'Jataka Parijata',
         self::BOOK_SB => 'Srimad-Bhagavatam',
         self::BOOK_BP => 'Bhavishya Purana',
         self::BOOK_SS => 'Surya Siddhanta',
