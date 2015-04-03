@@ -308,4 +308,26 @@ class Math {
 
         return $result;
     }
+    
+    /**
+     * Simplify the number.
+     * 
+     * @param int $number
+     * @return int
+     */
+    static public function simplifyNumber($number)
+    {
+        $i = 0;
+        
+        if($number <= 9) {
+            return $number;
+        }else{
+            $numString = strval($number);
+            while($numString[$i] != ''){
+                $num += $numString[$i];
+                $i += 1;
+            }
+            return self::simplifyNumber($num);
+        }
+    }
 }

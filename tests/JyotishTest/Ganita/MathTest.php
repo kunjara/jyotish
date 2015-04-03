@@ -100,4 +100,24 @@ class MathTest extends \PHPUnit_Framework_TestCase{
             [1, -2, 2],
         ];
     }
+    
+    /**
+     * @dataProvider providerSimplifyNumber
+     */
+    public function testSimplifyNumber($number, $numActual)
+    {
+        $numExpected = Math::simplifyNumber($number);
+        $this->assertEquals($numExpected, $numActual);
+    }
+    
+    public function providerSimplifyNumber()
+    {
+        return [
+            [3, 3],
+            [10, 1],
+            [28, 1],
+            [288, 9],
+            [98765, 8]
+        ];
+    }
 }
