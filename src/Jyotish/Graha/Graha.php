@@ -187,14 +187,11 @@ class Graha {
     static public $bhagaAstangata = array(
         Literature::BOOK_SS => [
             self::KEY_CH => null,
-            self::KEY_MA => 17,
-            self::KEY_BU => [self::CHESHTA_SAMA => 14, self::CHESHTA_VAKRA => 12],
-            self::KEY_GU => 11,
-            self::KEY_SK => [self::CHESHTA_SAMA => 10, self::CHESHTA_VAKRA => 8],
-            self::KEY_SA => 15,
         ],
         Literature::BOOK_BJ => [
             self::KEY_CH => 12,
+        ],
+        Literature::COMMON => [
             self::KEY_MA => 17,
             self::KEY_BU => [self::CHESHTA_SAMA => 14, self::CHESHTA_VAKRA => 12],
             self::KEY_GU => 11,
@@ -214,25 +211,45 @@ class Graha {
     static public $bhagaMrityu = array(
         Literature::BOOK_JP => [
             self::KEY_CH => [
-                1 => 8, 2 => 25, 3 => 22, 4 => 22,
-                5 => 21, 6 => 1, 7 => 4, 8 => 23,
-                9 => 18, 10 => 20, 11 => 20, 12 => 10
+                1 => 8, 2 => 25, 3 => 22, 4 => 22, 5 => 21, 6 => 1, 7 => 4, 8 => 23, 9 => 18, 10 => 20, 11 => 20, 12 => 10
             ]
         ],
         Literature::BOOK_SC => [
             self::KEY_CH => [
-                1 => 20, 2 => 25, 3 => 22, 4 => 22,
-                5 => 21, 6 => 1, 7 => 4, 8 => 23,
-                9 => 18, 10 => 20, 11 => 15, 12 => 10
+                1 => 20, 2 => 25, 3 => 22, 4 => 22, 5 => 21, 6 => 1, 7 => 4, 8 => 23, 9 => 18, 10 => 20, 11 => 15, 12 => 10
             ]
         ],
         Literature::BOOK_PH => [
             self::KEY_CH => [
-                1 => 26, 2 => 12, 3 => 13, 4 => 25,
-                5 => 24, 6 => 11, 7 => 26, 8 => 14,
-                9 => 13, 10 => 25, 11 => 5, 12 => 12
+                1 => 26, 2 => 12, 3 => 13, 4 => 25, 5 => 24, 6 => 11, 7 => 26, 8 => 14, 9 => 13, 10 => 25, 11 => 5, 12 => 12
             ]
-        ]
+        ],
+        Literature::COMMON => [
+            self::KEY_SY => [
+                1 => 20, 2 => 9, 3 => 12, 4 => 6, 5 => 8, 6 => 24, 7 => 16, 8 => 17, 9 => 22, 10 => 2, 11 => 3, 12 => 23
+            ],
+            self::KEY_MA => [
+                1 => 19, 2 => 28, 3 => 25, 4 => 23, 5 => 29, 6 => 28, 7 => 14, 8 => 21, 9 => 2, 10 => 15, 11 => 11, 12 => 6
+            ],
+            self::KEY_BU => [
+                1 => 15, 2 => 14, 3 => 13, 4 => 12, 5 => 8, 6 => 18, 7 => 20, 8 => 10, 9 => 21, 10 => 22, 11 => 7, 12 => 5
+            ],
+            self::KEY_GU => [
+                1 => 19, 2 => 29, 3 => 12, 4 => 27, 5 => 6, 6 => 4, 7 => 13, 8 => 10, 9 => 17, 10 => 11, 11 => 15, 12 => 28
+            ],
+            self::KEY_SK => [
+                1 => 28, 2 => 15, 3 => 11, 4 => 17, 5 => 10, 6 => 13, 7 => 4, 8 => 6, 9 => 27, 10 => 12, 11 => 29, 12 => 19
+            ],
+            self::KEY_SA => [
+                1 => 10, 2 => 4, 3 => 7, 4 => 9, 5 => 12, 6 => 16, 7 => 3, 8 => 18, 9 => 28, 10 => 14, 11 => 13, 12 => 15
+            ],
+            self::KEY_RA => [
+                1 => 14, 2 => 13, 3 => 12, 4 => 11, 5 => 24, 6 => 23, 7 => 22, 8 => 21, 9 => 10, 10 => 20, 11 => 18, 12 => 8
+            ],
+            self::KEY_KE => [
+                1 => 8, 2 => 18, 3 => 20, 4 => 10, 5 => 21, 6 => 22, 7 => 23, 8 => 24, 9 => 11, 10 => 12, 11 => 13, 12 => 14
+            ]
+        ],
     );
 
         /**
@@ -351,5 +368,43 @@ class Graha {
                 $list = self::$graha;
         }
         return $list;
+    }
+    
+    /**
+     * Get combustion orbs.
+     * 
+     * @param string $book
+     * @return array
+     */
+    static public function listBhagaAstangata($book = Literature::BOOK_SS)
+    {
+        if(in_array($book, [Literature::BOOK_SS, Literature::BOOK_BJ])){
+            $bhaga[self::KEY_CH] = self::$bhagaAstangata[$book][self::KEY_CH];
+        }else{
+            $bhaga[self::KEY_CH] = self::$bhagaAstangata[Literature::BOOK_SS][self::KEY_CH];
+        }
+        
+        $bhagas = array_merge($bhaga, self::$bhagaAstangata[Literature::COMMON]);
+        
+        return $bhagas;
+    }
+
+    /**
+     * Get list of mrityu bhaga.
+     * 
+     * @param string $book
+     * @return array
+     */
+    static public function listBhagaMrityu($book = Literature::BOOK_JP)
+    {
+        if(in_array($book, [Literature::BOOK_JP, Literature::BOOK_SC, Literature::BOOK_PH])){
+            $bhaga[self::KEY_CH] = self::$bhagaMrityu[$book][self::KEY_CH];
+        }else{
+            $bhaga[self::KEY_CH] = self::$bhagaMrityu[Literature::BOOK_JP][self::KEY_CH];
+        }
+        
+        $bhagas = array_merge($bhaga, self::$bhagaMrityu[Literature::COMMON]);
+        
+        return $bhagas;
     }
 }

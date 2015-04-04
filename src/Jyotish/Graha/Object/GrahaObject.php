@@ -384,7 +384,7 @@ class GrahaObject extends Object {
         $distanceGraha = abs($degreeSy - $degreeGr);
         
         if(in_array($this->options['bhagaAstangata'], [Literature::BOOK_SS, Literature::BOOK_BJ])){
-            $bhagas = Graha::$bhagaAstangata[$this->options['bhagaAstangata']];
+            $bhagas = Graha::listBhagaAstangata($this->options['bhagaAstangata']);
             
             if(is_array($bhagas[$this->objectKey])){
                 $cheshta = $this->getLongitudeSpeed() >= 0 ? Graha::CHESHTA_SAMA : Graha::CHESHTA_VAKRA;

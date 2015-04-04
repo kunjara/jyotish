@@ -64,6 +64,10 @@ class Literature {
      * Surya Siddhanta
      */
     const BOOK_SS = 'ss';
+    /**
+     * Common
+     */
+    const COMMON = 'common';
     
     /**
      * List of literatures.
