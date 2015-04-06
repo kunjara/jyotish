@@ -420,8 +420,6 @@ class GrahaObject extends Object {
      */
     public function isMrityu()
     {
-        if($this->objectKey == Graha::KEY_SY) return false;
-        
         $this->checkEnvironment();
         
         $rashiMrityu = $this->ganitaData['graha'][$this->objectKey]['rashi'];
