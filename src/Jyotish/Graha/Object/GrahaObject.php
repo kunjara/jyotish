@@ -30,6 +30,7 @@ class GrahaObject extends Object {
         'relationSame' => false,
         'relationChaya' => '',
         'bhagaAstangata' => 6,
+        'bhagaMrityu' => Literature::BOOK_JP,
         'specificRashi' => '',
         'drishtiRahu' => '',
     );
@@ -411,6 +412,32 @@ class GrahaObject extends Object {
         }
     }
     
+    /**
+     * Whether the graha is in mrityu bhaga. Indicate when to mrityu bhaga remains 
+     * less than 2 degrees.
+     * 
+     * @return bool|float Distance to mrityu bhaga
+     */
+    public function isMrityu()
+    {
+        if($this->objectKey == Graha::KEY_SY) return false;
+        
+        $this->checkEnvironment();
+        
+        $rashiMrityu = $this->ganitaData['graha'][$this->objectKey]['rashi'];
+        $degMrityu = Graha::listBhagaMrityu($this->options['bhagaMrityu'])[$this->objectKey][$rashiMrityu];
+        $lonMrityu = ($rashiMrityu - 1) * 30 + $degMrityu;
+        $lonGraha = $this->ganitaData['graha'][$this->objectKey]['longitude'];
+        
+        $distanceGraha = abs($lonMrityu - $lonGraha);
+        
+        if($distanceGraha > 2){
+            return false;
+        }else{
+            return $distanceGraha;
+        }
+    }
+
     /**
      * Whether the graha is gocharastha.
      * 

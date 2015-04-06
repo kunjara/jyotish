@@ -252,7 +252,7 @@ class Graha {
         ],
     );
 
-        /**
+    /**
      * Specifications for risings and settings.
      * 
      * @var array
@@ -279,6 +279,7 @@ class Graha {
      * - `relationSame`: relationship between the same grahas
      * - `relationChaya`: relationship between the chaya grahas
      * - `bhagaAstangata`: degree of combustion or data source
+     * - `bhagaMrityu`: data source of mrityu bhaga
      * - `specificRashi`: set specific rashi for chaya grahas
      * - `drishtiRahu`: set drishti for Rahu
      * @return the requested instance of graha class
