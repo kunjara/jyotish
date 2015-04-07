@@ -435,6 +435,37 @@ class GrahaObject extends Object {
             return $distanceGraha;
         }
     }
+    
+    /**
+     * Whether the graha is in planetary war.
+     * 
+     * @return bool|array
+     * @see Surya Siddhanta. Chapter 7, Verse 18-23.
+     * @see Varahamihira. Brihat Samhita. Chapter 17.
+     * @todo Determine who the winner and loser
+     */
+    public function isYuddha()
+    {
+        $this->checkEnvironment();
+        
+        if(in_array($this->objectKey, [
+            Graha::KEY_SY, Graha::KEY_CH, Graha::KEY_RA, Graha::KEY_KE
+        ])) return null;
+        
+        $lonGraha = $this->ganitaData['graha'][$this->objectKey]['longitude'];
+        $grahas = Graha::grahaList(Graha::LIST_PANCHA);
+        $isYuddha = false;
+        
+        foreach ($grahas as $key => $name){
+            if($key == $this->objectKey) continue;
+            
+            $distance = abs($lonGraha - $this->ganitaData['graha'][$key]['longitude']);
+            if($distance <= 1){
+                $isYuddha[$key] = $distance;
+            }
+        }
+        return $isYuddha;
+    }
 
     /**
      * Whether the graha is gocharastha.
