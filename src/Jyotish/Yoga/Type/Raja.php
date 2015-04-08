@@ -42,7 +42,9 @@ class Raja extends YogaBase {
         $Analysis = new Analysis($this->ganitaData);
         
         $kendraRulers = $Analysis->getBhavaRulers(Bhava::$bhavaKendra);
-        $trikonaRulers = $Analysis->getBhavaRulers(Bhava::$bhavaTrikona);
+        $bhavaTrikona = Bhava::$bhavaTrikona;
+        array_shift($bhavaTrikona);
+        $trikonaRulers = $Analysis->getBhavaRulers($bhavaTrikona);
         
         foreach ($kendraRulers as $kendraRuler){
             foreach ($trikonaRulers as $trikonaRuler){

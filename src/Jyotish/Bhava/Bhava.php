@@ -79,7 +79,7 @@ class Bhava {
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 7, Verse 33-36.
      * @var array
      */
-    static public $bhavaTrikona = array(5, 9);
+    static public $bhavaTrikona = array(1, 5, 9);
     
     /**
      * Dusthana bhavas.
@@ -107,6 +107,22 @@ class Bhava {
      */
     static public $bhavaUpachaya = array(3, 6, 10, 11);
     
+    /**
+     * Trishadaya bhavas.
+     * 
+     * @var array
+     * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 34, Verse 2-7.
+     */
+    static public $bhavaTrishadaya = array(3, 6, 11);
+    
+    /**
+     * Parashraya bhavas.
+     * 
+     * @var array
+     * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 34, Verse 2-7.
+     */
+    static public $bhavaParashraya = array(2, 8, 12);
+
     /**
      * Devanagari 'bhava' in transliteration.
      * 
