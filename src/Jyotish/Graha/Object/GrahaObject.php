@@ -346,7 +346,7 @@ class GrahaObject extends Object {
     }
     
     /**
-     * Whether the graha is vargottama (in the same sign in rasi and navamsha).
+     * Determine if the graha is vargottama (in the same sign in rasi and navamsha).
      * 
      * @return bool
      * @see Venkatesh Sharma. Sarvarth Chintamani. Chapter 1, Verse 50.
@@ -367,7 +367,33 @@ class GrahaObject extends Object {
     }
     
     /**
-     * Whether the graha is astangata (combustion).
+     * Determine if the graha is yogakaraka.
+     * 
+     * @return boolean
+     * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 34, Verse 13.
+     */
+    public function isYogakaraka()
+    {
+        $this->checkEnvironment();
+        
+        $yogaKarakas = [
+            Graha::KEY_MA => [4, 5],
+            Graha::KEY_SK => [10, 11],
+            Graha::KEY_SA => [2, 7]
+        ];
+        
+        if(array_key_exists($this->objectKey, $yogaKarakas)){
+            $lagna = $this->ganitaData['extra'][Graha::KEY_LG]['rashi'];
+            $isYogakaraka = in_array($lagna, $yogaKarakas[$this->objectKey]) ? true : false;
+            
+            return $isYogakaraka;
+        }else{
+            return false;
+        }
+    }
+
+    /**
+     * Determine if the graha is astangata (combustion).
      * 
      * @return null|bool|array Combustion data
      */
@@ -413,7 +439,7 @@ class GrahaObject extends Object {
     }
     
     /**
-     * Whether the graha is in mrityu bhaga. Indicate when to mrityu bhaga remains 
+     * Determine if the graha is in mrityu bhaga. Indicate when to mrityu bhaga remains 
      * less than 2 degrees.
      * 
      * @return bool|float Distance to mrityu bhaga
@@ -437,7 +463,7 @@ class GrahaObject extends Object {
     }
     
     /**
-     * Whether the graha is in planetary war.
+     * Determine if the graha is in planetary war.
      * 
      * @return bool|array
      * @see Surya Siddhanta. Chapter 7, Verse 18-23.
@@ -468,7 +494,7 @@ class GrahaObject extends Object {
     }
 
     /**
-     * Whether the graha is gocharastha.
+     * Determine if the graha is gocharastha.
      * 
      * @return int
      * @see Venkatesh Sharma. Sarvarth Chintamani. Chapter 1, Verse 23-24.
