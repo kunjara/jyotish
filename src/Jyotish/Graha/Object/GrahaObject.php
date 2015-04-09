@@ -254,21 +254,41 @@ class GrahaObject extends Object {
     protected $grahaLongitudeSpeedAvg = array();
 
     /**
-     * Get bhava, where graha is positioned.
+     * Get bhava, where graha is positioned or owned.
      * 
-     * @return int
+     * @param null|string $which Which bhava to get (optional)
+     * @return int|array
      */
-    public function getBhava()
+    public function getBhava($which = null)
     {
         $this->checkEnvironment();
 
-        $grahaRashi = $this->ganitaData['graha'][$this->objectKey]['rashi'];
-        $bhava = 0;
-        do{
-            $bhava++;
-            $bhavaRashi = $this->ganitaData['bhava'][$bhava]['rashi'];
+        $getBhava = function($rashi){
+            $bhava = 0;
+            do{
+                $bhava++;
+                $bhavaRashi = $this->ganitaData['bhava'][$bhava]['rashi'];
+            }
+            while($rashi <> $bhavaRashi);
+            return $bhava;
+        };
+        
+        switch($which){
+            case Rashi::GRAHA_SWA:
+                $swa = $this->grahaSwa;
+                
+                if(isset($swa['positive'])){
+                    $bhava[] = $getBhava($swa['positive']['rashi']);
+                    $bhava[] = $getBhava($swa['negative']['rashi']);
+                }else{
+                    $bhava = $getBhava($swa[0]['rashi']);
+                }
+                break;
+            case null:
+            default:
+                $grahaRashi = $this->ganitaData['graha'][$this->objectKey]['rashi'];
+                $bhava = $getBhava($grahaRashi);
         }
-        while($grahaRashi <> $bhavaRashi);
 
         return $bhava;
     }
