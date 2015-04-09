@@ -6,6 +6,7 @@
 
 namespace Jyotish\Graha\Object;
 
+use Jyotish\Base\Literature;
 use Jyotish\Graha\Graha;
 use Jyotish\Tattva\Maha;
 use Jyotish\Tattva\Jiva\Nara\Manusha;
@@ -187,16 +188,18 @@ class Ke extends GrahaObject {
      * Set exaltation, sebilitation, mooltrikon and own.
      * 
      * @param null|array $options Options to set
+     * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 47, Verse 34-39.
+     * @see Venkatesh Sharma. Sarvarth Chintamani. Chapter 16, Verse 1-2.
      */
     protected function setGrahaSpecificRashiByViewpoint($options)
     {
         switch ($options['specificRashi']){
-            case('parashara'):
-                $this->setGrahaSpecificRashi(['ucha' => 8, 'mool' => 9, 'swa' => 5, 'neecha' => 2]);
+            case Literature::BOOK_SC:
+                $this->setGrahaSpecificRashi(['ucha' => 8, 'mool' => 5, 'swa' => null, 'neecha' => 2]);
                 break;
+            case Literature::BOOK_BPHS:
             default:
-                $this->setGrahaSpecificRashi(['ucha' => 9, 'mool' => 5, 'swa' => 12, 'neecha' => 3]);
-                break;
+                $this->setGrahaSpecificRashi(['ucha' => 8, 'mool' => 9, 'swa' => 8, 'neecha' => 2]);
         }
     }
 

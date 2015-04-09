@@ -31,7 +31,7 @@ class GrahaObject extends Object {
         'relationChaya' => '',
         'bhagaAstangata' => 6,
         'bhagaMrityu' => Literature::BOOK_JP,
-        'specificRashi' => '',
+        'specificRashi' => Literature::BOOK_BPHS,
         'drishtiRahu' => '',
     );
     
@@ -257,7 +257,7 @@ class GrahaObject extends Object {
      * Get bhava, where graha is positioned or owned.
      * 
      * @param null|string $which Which bhava to get (optional)
-     * @return int|array
+     * @return null|int|array
      */
     public function getBhava($which = null)
     {
@@ -281,7 +281,7 @@ class GrahaObject extends Object {
                     $bhava[] = $getBhava($swa['positive']['rashi']);
                     $bhava[] = $getBhava($swa['negative']['rashi']);
                 }else{
-                    $bhava = $getBhava($swa[0]['rashi']);
+                    $bhava = is_null($swa[0]['rashi']) ? null : $getBhava($swa[0]['rashi']);
                 }
                 break;
             case null:
@@ -305,7 +305,7 @@ class GrahaObject extends Object {
         $rashi = $this->ganitaData['graha'][$this->objectKey]['rashi'];
         $Rashi = Rashi::getInstance($rashi);
         
-        return $Rashi->rashiRuler;;
+        return $Rashi->rashiRuler;
     }
     
     /**
@@ -625,18 +625,27 @@ class GrahaObject extends Object {
         $this->grahaUcha   = [
             'rashi' => $specificRashi['ucha']
         ];
+        
         $this->grahaMool   = [
             'rashi' => $specificRashi['mool'],
             'start' => 0,
             'end'   => 30
         ];
-        $this->grahaSwa    = [
-            [
-                'rashi' => $specificRashi['swa'],
-                'start' => 0,
-                'end'   => 30
-            ]
-        ];
+        
+        if(is_null($specificRashi['swa'])){
+            $this->grahaSwa = [
+                ['rashi' => null]
+            ];
+        }else{
+            $this->grahaSwa = [
+                [
+                    'rashi' => $specificRashi['swa'],
+                    'start' => 0,
+                    'end'   => 30
+                ]
+            ];
+        }
+        
         $this->grahaNeecha = [
             'rashi' => $specificRashi['neecha']
         ];
