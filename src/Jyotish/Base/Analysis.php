@@ -6,6 +6,7 @@
 
 namespace Jyotish\Base;
 
+use Jyotish\Base\Literature;
 use Jyotish\Graha\Graha;
 use Jyotish\Rashi\Rashi;
 use Jyotish\Varga\Varga;
@@ -19,15 +20,6 @@ use Jyotish\Tattva\Karaka;
 class Analysis {
     
     use \Jyotish\Base\Traits\DataTrait;
-    
-    /**
-     * Parashara system
-     */
-    const SYSTEM_PARASHARA = 'parashara';
-    /**
-     * Jaimini system
-     */
-    const SYSTEM_JAIMINI = 'jaimini';
 
     /**
      * Varga data.
@@ -55,15 +47,15 @@ class Analysis {
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 32, Verse 13-17.
      * @see Maharishi Jaimini. Jaimini Upadesha Sutras. Chapter 1, Quarter 1, Verse 11-18
      */
-    public function getCharaKaraka($reverse = false, $system = self::SYSTEM_PARASHARA)
+    public function getCharaKaraka($reverse = false, $system = Literature::BOOK_BPHS)
     {
         $grahas = $this->ganitaData['graha'];
         unset($grahas[Graha::KEY_KE]);
         switch($system){
-            case self::SYSTEM_JAIMINI:
+            case Literature::BOOK_US:
                 unset($grahas[Graha::KEY_RA]);
                 break;
-            case self::SYSTEM_PARASHARA:
+            case Literature::BOOK_BPHS:
             default:
                 $grahas[Graha::KEY_RA]['degree'] = 30 - $grahas[Graha::KEY_RA]['degree'];
         }
