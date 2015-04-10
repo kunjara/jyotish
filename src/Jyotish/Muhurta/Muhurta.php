@@ -46,7 +46,7 @@ class Muhurta {
         
         $this->dateTimeObjectStart = Time::getDateTimeUtc($dateTimeFormat, $dateTimeString, $userData['timezone'], $userData['offset']);
         $this->dateTimeObjectEnd = clone($this->dateTimeObjectStart);
-        $this->dateTimeObjectStart->modify('-1 day');
+        $this->dateTimeObjectStart->modify('-'.(86400 - $userData['offset']).' seconds');
         
         $this->panchangaObject->setData([
             'date' => $this->dateTimeObjectStart->format(Time::FORMAT_DATA_DATE),
