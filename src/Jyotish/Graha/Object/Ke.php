@@ -6,7 +6,7 @@
 
 namespace Jyotish\Graha\Object;
 
-use Jyotish\Base\Literature;
+use Jyotish\Base\Biblio;
 use Jyotish\Graha\Graha;
 use Jyotish\Tattva\Maha;
 use Jyotish\Tattva\Jiva\Nara\Manusha;
@@ -194,10 +194,10 @@ class Ke extends GrahaObject {
     protected function setGrahaSpecificRashiByViewpoint($options)
     {
         switch ($options['specificRashi']){
-            case Literature::BOOK_SC:
+            case Biblio::BOOK_SC:
                 $this->setGrahaSpecificRashi(['ucha' => 8, 'mool' => 5, 'swa' => null, 'neecha' => 2]);
                 break;
-            case Literature::BOOK_BPHS:
+            case Biblio::BOOK_BPHS:
             default:
                 $this->setGrahaSpecificRashi(['ucha' => 8, 'mool' => 9, 'swa' => 8, 'neecha' => 2]);
         }

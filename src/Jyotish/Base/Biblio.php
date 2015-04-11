@@ -7,11 +7,11 @@
 namespace Jyotish\Base;
 
 /**
- * Literature data class.
+ * Biblio data class.
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class Literature {
+class Biblio {
     /**
      * Brihat Parashara Hora Shastra
      */
@@ -64,6 +64,20 @@ class Literature {
      * Surya Siddhanta
      */
     const BOOK_SS = 'ss';
+    
+    /**
+     * Parashara
+     */
+    const AUTHOR_PARASHARA = 'parashara';
+    /**
+     * Jaimini
+     */
+    const AUTHOR_JAIMINI = 'jaimini';
+    /**
+     * Varahamihira
+     */
+    const AUTHOR_VARAHAMIHIRA = 'varahamihira';
+    
     /**
      * Common
      */

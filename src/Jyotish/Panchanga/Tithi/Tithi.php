@@ -6,7 +6,7 @@
 
 namespace Jyotish\Panchanga\Tithi;
 
-use Jyotish\Base\Literature;
+use Jyotish\Base\Biblio;
 use Jyotish\Tattva\Jiva\Nara\Deva;
 
 /**
@@ -124,7 +124,7 @@ class Tithi {
      * @see Bhavishya Purana. Brahma parva, Chapter 102.
      */
     static public $tithiDeva = [
-        Literature::BOOK_BS => [
+        Biblio::BOOK_BS => [
             1 => Deva::DEVA_BRAHMA,
             2 => Deva::DEVA_VIDHATA,
             3 => Deva::DEVA_VISHNU_HARI,
@@ -142,7 +142,7 @@ class Tithi {
             15 => Deva::DEVA_VISHVADEVA,
             30 => Deva::DEVA_PITRU
         ],
-        Literature::BOOK_BP => [
+        Biblio::BOOK_BP => [
             1 => Deva::DEVA_AGNI,
             2 => Deva::DEVA_BRAHMA,
             3 => Deva::DEVA_KUBER,

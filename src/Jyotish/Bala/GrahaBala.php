@@ -6,7 +6,7 @@
 
 namespace Jyotish\Bala;
 
-use Jyotish\Base\Literature;
+use Jyotish\Base\Biblio;
 use Jyotish\Base\Analysis;
 use Jyotish\Graha\Graha;
 use Jyotish\Rashi\Rashi;
@@ -112,7 +112,7 @@ class GrahaBala extends Analysis {
      */
     protected function balaAmsha()
     {
-        $charaKaraka = $this->getCharaKaraka(false, Literature::BOOK_US);
+        $charaKaraka = $this->getCharaKaraka(false, Biblio::AUTHOR_JAIMINI);
         $this->atmaKaraka = array_search(\Jyotish\Tattva\Karaka::NAME_ATMA, $charaKaraka);
         $value = 70;
         

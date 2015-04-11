@@ -6,7 +6,7 @@
 
 namespace Jyotish\Graha\Object;
 
-use Jyotish\Base\Literature;
+use Jyotish\Base\Biblio;
 use Jyotish\Base\Object;
 use Jyotish\Graha\Graha;
 use Jyotish\Rashi\Rashi;
@@ -30,8 +30,8 @@ class GrahaObject extends Object {
         'relationSame' => false,
         'relationChaya' => '',
         'bhagaAstangata' => 6,
-        'bhagaMrityu' => Literature::BOOK_JP,
-        'specificRashi' => Literature::BOOK_BPHS,
+        'bhagaMrityu' => Biblio::BOOK_JP,
+        'specificRashi' => Biblio::BOOK_BPHS,
         'drishtiRahu' => '',
     );
     
@@ -430,7 +430,7 @@ class GrahaObject extends Object {
         
         $distanceGraha = abs($degreeSy - $degreeGr);
         
-        if(in_array($this->options['bhagaAstangata'], [Literature::BOOK_SS, Literature::BOOK_BJ])){
+        if(in_array($this->options['bhagaAstangata'], [Biblio::BOOK_SS, Biblio::BOOK_BJ])){
             $bhagas = Graha::listBhagaAstangata($this->options['bhagaAstangata']);
             
             if(is_array($bhagas[$this->objectKey])){

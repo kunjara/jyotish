@@ -6,7 +6,7 @@
 
 namespace Jyotish\Tattva;
 
-use Jyotish\Base\Literature;
+use Jyotish\Base\Biblio;
 use Jyotish\Graha\Graha;
 
 /**
@@ -89,14 +89,21 @@ class Karaka {
      * @param string $system
      * @return array
      */
-    static public function karakaList($system = Literature::BOOK_BPHS)
+    static public function karakaList($system = Biblio::BOOK_BPHS)
     {
         $list = self::$karakaChara;
         
-        if($system == Literature::BOOK_US){
-            unset($list[4]);
-            $list = array_values($list);
+        switch ($system){
+            case Biblio::AUTHOR_JAIMINI:
+            case Biblio::BOOK_US:
+                unset($list[4]);
+                $list = array_values($list);
+                break;
+            case Biblio::AUTHOR_PARASHARA:
+            case Biblio::BOOK_BPHS:
+            default: 
         }
+        
         return $list;
     }
 }

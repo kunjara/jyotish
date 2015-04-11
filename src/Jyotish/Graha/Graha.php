@@ -6,7 +6,7 @@
 
 namespace Jyotish\Graha;
 
-use Jyotish\Base\Literature;
+use Jyotish\Base\Biblio;
 use Jyotish\Graha\Lagna;
 use Jyotish\Tattva\Jiva\Nara\Deva;
 
@@ -185,13 +185,13 @@ class Graha {
      * @see Varahamihira. Brihat Jataka. Chapter 7, Verse 2. Notes.
      */
     static public $bhagaAstangata = array(
-        Literature::BOOK_SS => [
+        Biblio::BOOK_SS => [
             self::KEY_CH => null,
         ],
-        Literature::BOOK_BJ => [
+        Biblio::BOOK_BJ => [
             self::KEY_CH => 12,
         ],
-        Literature::COMMON => [
+        Biblio::COMMON => [
             self::KEY_MA => 17,
             self::KEY_BU => [self::CHESHTA_SAMA => 14, self::CHESHTA_VAKRA => 12],
             self::KEY_GU => 11,
@@ -209,22 +209,22 @@ class Graha {
      * @see Mantreswara. Phaladeepika. Chapter 13, Verse 10.
      */
     static public $bhagaMrityu = array(
-        Literature::BOOK_JP => [
+        Biblio::BOOK_JP => [
             self::KEY_CH => [
                 1 => 8, 2 => 25, 3 => 22, 4 => 22, 5 => 21, 6 => 1, 7 => 4, 8 => 23, 9 => 18, 10 => 20, 11 => 20, 12 => 10
             ]
         ],
-        Literature::BOOK_SC => [
+        Biblio::BOOK_SC => [
             self::KEY_CH => [
                 1 => 20, 2 => 25, 3 => 22, 4 => 22, 5 => 21, 6 => 1, 7 => 4, 8 => 23, 9 => 18, 10 => 20, 11 => 15, 12 => 10
             ]
         ],
-        Literature::BOOK_PH => [
+        Biblio::BOOK_PH => [
             self::KEY_CH => [
                 1 => 26, 2 => 12, 3 => 13, 4 => 25, 5 => 24, 6 => 11, 7 => 26, 8 => 14, 9 => 13, 10 => 25, 11 => 5, 12 => 12
             ]
         ],
-        Literature::COMMON => [
+        Biblio::COMMON => [
             self::KEY_SY => [
                 1 => 20, 2 => 9, 3 => 12, 4 => 6, 5 => 8, 6 => 24, 7 => 16, 8 => 17, 9 => 22, 10 => 2, 11 => 3, 12 => 23
             ],
@@ -377,15 +377,15 @@ class Graha {
      * @param string $book
      * @return array
      */
-    static public function listBhagaAstangata($book = Literature::BOOK_SS)
+    static public function listBhagaAstangata($book = Biblio::BOOK_SS)
     {
-        if(in_array($book, [Literature::BOOK_SS, Literature::BOOK_BJ])){
+        if(in_array($book, [Biblio::BOOK_SS, Biblio::BOOK_BJ])){
             $bhaga[self::KEY_CH] = self::$bhagaAstangata[$book][self::KEY_CH];
         }else{
-            $bhaga[self::KEY_CH] = self::$bhagaAstangata[Literature::BOOK_SS][self::KEY_CH];
+            $bhaga[self::KEY_CH] = self::$bhagaAstangata[Biblio::BOOK_SS][self::KEY_CH];
         }
         
-        $bhagas = array_merge($bhaga, self::$bhagaAstangata[Literature::COMMON]);
+        $bhagas = array_merge($bhaga, self::$bhagaAstangata[Biblio::COMMON]);
         
         return $bhagas;
     }
@@ -396,15 +396,15 @@ class Graha {
      * @param string $book
      * @return array
      */
-    static public function listBhagaMrityu($book = Literature::BOOK_JP)
+    static public function listBhagaMrityu($book = Biblio::BOOK_JP)
     {
-        if(in_array($book, [Literature::BOOK_JP, Literature::BOOK_SC, Literature::BOOK_PH])){
+        if(in_array($book, [Biblio::BOOK_JP, Biblio::BOOK_SC, Biblio::BOOK_PH])){
             $bhaga[self::KEY_CH] = self::$bhagaMrityu[$book][self::KEY_CH];
         }else{
-            $bhaga[self::KEY_CH] = self::$bhagaMrityu[Literature::BOOK_JP][self::KEY_CH];
+            $bhaga[self::KEY_CH] = self::$bhagaMrityu[Biblio::BOOK_JP][self::KEY_CH];
         }
         
-        $bhagas = array_merge($bhaga, self::$bhagaMrityu[Literature::COMMON]);
+        $bhagas = array_merge($bhaga, self::$bhagaMrityu[Biblio::COMMON]);
         
         return $bhagas;
     }
