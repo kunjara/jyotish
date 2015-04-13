@@ -459,18 +459,19 @@ class GrahaObject extends Object {
     }
     
     /**
-     * Determine if the graha is in mrityu bhaga. Indicate when to mrityu bhaga remains 
-     * less than 2 degrees.
+     * Determine if the graha is in mrityu bhaga. Indicate when to mrityu bhaga 
+     * remains less than 2 degrees.
      * 
      * @return bool|float Distance to mrityu bhaga
+     * @see Vaidyanatha Dikshita. Jataka Parijata. Chapter 1, Verse 57.
      */
     public function isMrityu()
     {
         $this->checkEnvironment();
         
-        $rashiMrityu = $this->ganitaData['graha'][$this->objectKey]['rashi'];
-        $degMrityu = Graha::listBhagaMrityu($this->options['bhagaMrityu'])[$this->objectKey][$rashiMrityu];
-        $lonMrityu = ($rashiMrityu - 1) * 30 + $degMrityu;
+        $rashiGraha = $this->ganitaData['graha'][$this->objectKey]['rashi'];
+        $degMrityu = Graha::listBhagaMrityu($this->options['bhagaMrityu'])[$this->objectKey][$rashiGraha];
+        $lonMrityu = ($rashiGraha - 1) * 30 + $degMrityu;
         $lonGraha = $this->ganitaData['graha'][$this->objectKey]['longitude'];
         
         $distanceGraha = abs($lonMrityu - $lonGraha);
@@ -482,6 +483,31 @@ class GrahaObject extends Object {
         }
     }
     
+    /**
+     * Determine if the graha is in pushkara bhaga. Indicate when to pushkara bhaga 
+     * remains less than 1 degree.
+     * 
+     * @return bool|float Distance to pushkara bhaga
+     * @see Vaidyanatha Dikshita. Jataka Parijata. Chapter 1, Verse 58.
+     * @todo Determine if graha is in pushkara navamsha
+     */
+    public function isPushkara()
+    {
+        $this->checkEnvironment();
+        
+        $rashiGraha = $this->ganitaData['graha'][$this->objectKey]['rashi'];
+        $degGraha = $this->ganitaData['graha'][$this->objectKey]['degree'];
+        $degPushkara = Rashi::$pushkaraBhaga[$rashiGraha];
+        
+        $distanceGraha = abs($degGraha - $degPushkara);
+        
+        if($distanceGraha > 1){
+            return false;
+        }else{
+            return $distanceGraha;
+        }
+    }
+
     /**
      * Determine if the graha is in planetary war.
      * 

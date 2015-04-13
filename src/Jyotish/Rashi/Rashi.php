@@ -98,6 +98,27 @@ class Rashi {
     );
     
     /**
+     * Pushkara bhaga.
+     * 
+     * @var array
+     * @see Vaidyanatha Dikshita. Jataka Parijata. Chapter 1, Verse 58.
+     */
+    static public $pushkaraBhaga = array(
+        1 => 21,
+        2 => 14,
+        3 => 18,
+        4 => 8,
+        5 => 19,
+        6 => 9,
+        7 => 24,
+        8 => 11,
+        9 => 23,
+        10 => 14,
+        11 => 19,
+        12 => 9
+    );
+
+    /**
      * Trimsamsa is division of each sign into thirty equal parts, each part 
      * being a degree.
      * 
@@ -110,7 +131,7 @@ class Rashi {
         Graha::KEY_BU => 7,
         Graha::KEY_SK => 5
     );
-
+    
     /**
      * Devanagari 'rashi' in transliteration.
      * 
