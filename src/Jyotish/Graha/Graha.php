@@ -141,6 +141,15 @@ class Graha {
      * Shadowy grahas (Rahu and Ketu)
      */
     const LIST_CHAYA = 'chaya';
+    
+    /**
+     * Pushkara bhaga
+     */
+    const PUSHKARA_BHAGA = 'bhaga';
+    /**
+     * Pushkara navamsha
+     */
+    const PUSHKARA_NAVAMSHA = 'navamsha';
 
     /**
      * List of Grahas.

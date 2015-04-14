@@ -484,27 +484,51 @@ class GrahaObject extends Object {
     }
     
     /**
-     * Determine if the graha is in pushkara bhaga. Indicate when to pushkara bhaga 
-     * remains less than 1 degree.
+     * Determine if the graha is in pushkara bhaga or pushkara navamsha. Indicate 
+     * when to pushkara bhaga remains less than 1 degree.
      * 
-     * @return bool|float Distance to pushkara bhaga
+     * @return bool|int|float Distance to pushkara bhaga
      * @see Vaidyanatha Dikshita. Jataka Parijata. Chapter 1, Verse 58.
-     * @todo Determine if graha is in pushkara navamsha
      */
-    public function isPushkara()
+    public function isPushkara($type = Graha::PUSHKARA_NAVAMSHA)
     {
         $this->checkEnvironment();
         
         $rashiGraha = $this->ganitaData['graha'][$this->objectKey]['rashi'];
         $degGraha = $this->ganitaData['graha'][$this->objectKey]['degree'];
-        $degPushkara = Rashi::$pushkaraBhaga[$rashiGraha];
+        $valNavamsha = Math::dmsToDecimal(['d' => 3, 'm' => 20]);
         
-        $distanceGraha = abs($degGraha - $degPushkara);
-        
-        if($distanceGraha > 1){
-            return false;
-        }else{
-            return $distanceGraha;
+        switch ($type){
+            case Graha::PUSHKARA_BHAGA:
+                $degPushkara = Rashi::$pushkaraBhaga[$rashiGraha];
+                $distanceGraha = abs($degGraha - $degPushkara);
+                
+                if($distanceGraha < 1){
+                    return $distanceGraha;
+                }else{
+                    return false;
+                }
+                break;
+            case Graha::PUSHKARA_NAVAMSHA:
+            default:
+                $numNavamsha = null;
+                for($i = 0; $i <= 1; $i++){
+                    $degNavamsha['start'] = (Rashi::$pushkaraNavamsha[$rashiGraha][$i] - 1) * $valNavamsha;
+                    $degNavamsha['end'] = $degNavamsha['start'] + $valNavamsha;
+                    
+                    if($degGraha >= $degNavamsha['start'] and $degGraha < $degNavamsha['end']){
+                        $numNavamsha = Rashi::$pushkaraNavamsha[$rashiGraha][$i];
+                        break;
+                    }
+                }
+                
+                if(!is_null($numNavamsha)){
+                    $number = ($rashiGraha - 1) * 9 + $numNavamsha;
+                    $navamsha = Math::numberInCycle(1, $number);
+                    return $navamsha;
+                }else{
+                    return false;
+                }
         }
     }
 

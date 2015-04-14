@@ -117,6 +117,26 @@ class Rashi {
         11 => 19,
         12 => 9
     );
+    
+    /**
+     * Pushkara navamsha.
+     * 
+     * @var array
+     */
+    static public $pushkaraNavamsha = array(
+        1 => [7, 9],
+        2 => [3, 5],
+        3 => [6, 8],
+        4 => [1, 3],
+        5 => [7, 9],
+        6 => [3, 5],
+        7 => [6, 8],
+        8 => [1, 3],
+        9 => [7, 9],
+        10 => [3, 5],
+        11 => [6, 8],
+        12 => [1, 3]
+    );
 
     /**
      * Trimsamsa is division of each sign into thirty equal parts, each part 
