@@ -342,7 +342,7 @@ class Bu extends GrahaObject {
         }
 
         if($benefic > 0 and $malefic > 0)
-            $this->grahaCharacter = Graha::CHARACTER_MISHA;
+            $this->grahaCharacter = Graha::CHARACTER_MISHRA;
         elseif($malefic > 0)
             $this->grahaCharacter = Graha::CHARACTER_PAPA;
         else

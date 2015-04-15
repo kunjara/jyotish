@@ -77,7 +77,7 @@ class Graha {
     /**
      * Mixed character
      */
-    const CHARACTER_MISHA = 'mishra';
+    const CHARACTER_MISHRA = 'mishra';
     
     /**
      * Paramatma amsha
