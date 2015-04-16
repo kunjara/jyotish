@@ -78,6 +78,14 @@ class Graha {
      * Mixed character
      */
     const CHARACTER_MISHRA = 'mishra';
+    /**
+     * Yogakaraka (functional only for Ma, Sk, Sa)
+     */
+    const CHARACTER_YOGAKARAKA = 'yogakaraka';
+    /**
+     * Kendradhi patya dosha (functional only for Gu, Bu)
+     */
+    const CHARACTER_KENDRADHI = 'kendradhi';
     
     /**
      * Paramatma amsha

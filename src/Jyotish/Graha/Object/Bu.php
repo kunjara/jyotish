@@ -324,28 +324,6 @@ class Bu extends GrahaObject {
      */
     protected function setGrahaCharacter()
     {
-        $benefic = 0;
-        $malefic = 0;
-        
-        foreach($this->ganitaData['graha'] as $key => $params){
-            if($key == $this->objectKey) continue;
-
-            if($params['rashi'] == $this->ganitaData['graha'][$this->objectKey]['rashi']){
-                $G = Graha::getInstance($key);
-                $G->setEnvironment($this->ganitaData);
-
-                if($G->grahaCharacter == Graha::CHARACTER_SHUBHA)
-                    $benefic = $benefic + 1;
-                else
-                    $malefic = $malefic + 1;
-            }
-        }
-
-        if($benefic > 0 and $malefic > 0)
-            $this->grahaCharacter = Graha::CHARACTER_MISHRA;
-        elseif($malefic > 0)
-            $this->grahaCharacter = Graha::CHARACTER_PAPA;
-        else
-            $this->grahaCharacter = Graha::CHARACTER_SHUBHA;
+        $this->grahaCharacter = $this->getConjunctCharacter();
     }
 }

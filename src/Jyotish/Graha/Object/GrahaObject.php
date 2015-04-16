@@ -76,7 +76,7 @@ class GrahaObject extends Object {
     protected $grahaTranslit;
 
     /**
-     * Character of the Graha.
+     * Character of the Graha (natural beneficence).
      * 
      * @var string
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 11.
@@ -353,6 +353,52 @@ class GrahaObject extends Object {
         }
     }
     
+    /**
+     * Get graha character depending on what bhava it is (functional beneficence).
+     * 
+     * @return string
+     * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 34, Verse 2-7.
+     */
+    public function getBhavaCharacter()
+    {
+        $bhava = $this->getBhava(Rashi::GRAHA_SWA);
+        $bhavaKendra = Bhava::$bhavaKendra;
+        array_shift($bhavaKendra);
+        
+        if(is_int($bhava)){
+            if(in_array($bhava, Bhava::$bhavaTrikona)){
+                $character = Graha::CHARACTER_SHUBHA;
+            }elseif(in_array($bhava, Bhava::$bhavaTrishadaya) or $bhava == 8){
+                $character = Graha::CHARACTER_PAPA;
+            }elseif(in_array($bhava, $bhavaKendra)){
+                $character = Graha::CHARACTER_MISHRA;
+            }else{
+                $character = $this->getConjunctCharacter();
+            }
+        }else{
+            if($this->isYogakaraka()){
+                $character = Graha::CHARACTER_YOGAKARAKA;
+            }elseif(Math::arrayInArray($bhava, $bhavaKendra, true)){
+                $character = Graha::CHARACTER_KENDRADHI;
+            }elseif(
+                    (in_array(1, $bhava)) or
+                    (Math::arrayInArray($bhava, Bhava::$bhavaParashraya) and Math::arrayInArray($bhava, Bhava::$bhavaTrikona)) or
+                    (Math::arrayInArray($bhava, Bhava::$bhavaTrishadaya) and Math::arrayInArray($bhava, Bhava::$bhavaTrikona))
+            ){
+                $character = Graha::CHARACTER_SHUBHA;
+            }elseif(
+                    Math::arrayInArray($bhava, Bhava::$bhavaParashraya) or
+                    Math::arrayInArray($bhava, Bhava::$bhavaTrishadaya)
+            ){
+                $character = Graha::CHARACTER_PAPA;
+            }else{
+                $character = Graha::CHARACTER_MISHRA;
+            }
+        }
+        
+        return $character;
+    }
+
     /**
      * Get speed of graha in longitude.
      * 
@@ -701,6 +747,40 @@ class GrahaObject extends Object {
         ];
     }
     
+    /**
+     * Get graha character depending on the conjuntion with the other planets.
+     * 
+     * @return string
+     */
+    protected function getConjunctCharacter()
+    {
+        $benefic = 0;
+        $malefic = 0;
+        
+        foreach($this->ganitaData['graha'] as $key => $params){
+            if($key == $this->objectKey) continue;
+
+            if($params['rashi'] == $this->objectRashi){
+                $G = Graha::getInstance($key);
+                $G->setEnvironment($this->ganitaData);
+
+                if($G->grahaCharacter == Graha::CHARACTER_SHUBHA)
+                    $benefic = $benefic + 1;
+                else
+                    $malefic = $malefic + 1;
+            }
+        }
+        
+        if(($benefic > 0 and $malefic > 0) or ($benefic == 0 and $malefic == 0))
+            $character = Graha::CHARACTER_MISHRA;
+        elseif($malefic > 0)
+            $character = Graha::CHARACTER_PAPA;
+        else
+            $character = Graha::CHARACTER_SHUBHA;
+        
+        return $character;
+    }
+
     /**
      * Constructor
      * 

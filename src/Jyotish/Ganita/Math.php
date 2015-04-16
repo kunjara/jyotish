@@ -233,6 +233,35 @@ class Math {
         }
         return $array;
     }
+    
+    /**
+     * Checks if a values of array1 exists in an array2.
+     * 
+     * @param array $array1
+     * @param array $array2
+     * @param bool $strict
+     * @return bool
+     */
+    static public function arrayInArray(array $array1, array $array2, $strict = false){
+        foreach ($array1 as $value){
+            if(in_array($value, $array2)){
+                $return = true;
+                if($strict){
+                    continue;
+                }else{
+                    break;
+                }
+            }else{
+                $return = false;
+                if($strict){
+                    break;
+                }else{
+                    continue;
+                }
+            }
+        }
+        return $return;     
+    }
 
     /**
      * Sum of two values of arc angular degrees (hours), minutes and seconds.
