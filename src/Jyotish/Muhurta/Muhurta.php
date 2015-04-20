@@ -40,13 +40,13 @@ class Muhurta {
     {
         $this->panchangaObject = $Panchanga;
         
-        $userData = $this->panchangaObject->getData()['user'];
+        $this->ganitaData = $this->panchangaObject->getData();
         $dateTimeFormat = Time::FORMAT_DATA_DATE . ' ' . Time::FORMAT_DATA_TIME;
-        $dateTimeString = $userData['date'] . ' ' . $userData['time'];
+        $dateTimeString = $this->ganitaData['user']['date'] . ' ' . $this->ganitaData['user']['time'];
         
-        $this->dateTimeObjectStart = Time::getDateTimeUtc($dateTimeFormat, $dateTimeString, $userData['timezone'], $userData['offset']);
+        $this->dateTimeObjectStart = Time::getDateTime($dateTimeFormat, $dateTimeString, $this->ganitaData['user']['timezone']);
         $this->dateTimeObjectEnd = clone($this->dateTimeObjectStart);
-        $this->dateTimeObjectStart->modify('-'.(86400 - $userData['offset']).' seconds');
+        $this->dateTimeObjectStart->modify('-1 day');
         
         $this->panchangaObject->setData([
             'date' => $this->dateTimeObjectStart->format(Time::FORMAT_DATA_DATE),
@@ -73,6 +73,7 @@ class Muhurta {
         }
         
         $this->sort();
+        $this->clear();
         
         return $this->timeStamps;
     }
@@ -125,6 +126,17 @@ class Muhurta {
         );
     }
     
+    protected function clear()
+    {
+        $dateTimeEnd = Time::getDateTime2($this->ganitaData['user']);
+        
+        foreach ($this->timeStamps as $key => $timeStamp){
+            if(is_null($timeStamp['start']) or $timeStamp['end'] < $dateTimeEnd->format(Time::FORMAT_DATETIME)){
+                unset($this->timeStamps[$key]);
+            }
+        }
+    }
+
     protected function reset()
     {
         unset($this->dateTimeObject);

@@ -51,19 +51,35 @@ class Time {
     /**
      * Get new DateTime object from a string formatted according to the specified format.
      * 
-     * @param string $format
-     * @param string $dateTime
+     * @param string $dateTimeFormat
+     * @param string $dateTimeString
      * @param string $timeZone
      * @return DateTime
      */
-    static public function getDateTime($format, $dateTime, $timeZone = 'UTC')
+    static public function getDateTime($dateTimeFormat, $dateTimeString, $timeZone = 'UTC')
     {
         $timeZoneObject = new DateTimeZone($timeZone);
-        $dateTimeObject = DateTime::createFromFormat($format, $dateTime, $timeZoneObject);
+        $dateTimeObject = DateTime::createFromFormat($dateTimeFormat, $dateTimeString, $timeZoneObject);
         
         return $dateTimeObject;
     }
-
+    
+    /**
+     * Get new DateTime object from user data.
+     * 
+     * @param array $data User data
+     * @return DateTime
+     */
+    static public function getDateTime2(array $data)
+    {
+        $dateTimeFormat = Time::FORMAT_DATA_DATE . ' ' . Time::FORMAT_DATA_TIME;
+        $dateTimeString = $data['date'] . ' ' . $data['time'];
+        
+        $dateTimeObject = self::getDateTime($dateTimeFormat, $dateTimeString, $data['timezone']);
+        
+        return $dateTimeObject;
+    }
+    
     /**
      * Get a new DateTime object in UTC timezone.
      * 
@@ -101,7 +117,7 @@ class Time {
     }
     
     /**
-     * Get new DateTime object from user data.
+     * Get new DateTime object from user data in UTC timezone.
      * 
      * @param array $data User data
      * @return DateTime

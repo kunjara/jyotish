@@ -24,6 +24,9 @@ use Jyotish\Tattva\Kala\Masa;
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 class Panchanga {
+    
+    use \Jyotish\Base\Traits\DataTrait;
+    
     /**
      * Tithi anga
      */
@@ -64,13 +67,6 @@ class Panchanga {
      * @var Ganita
      */
     private $ganitaObject = null;
-    
-    /**
-     * Ganita data.
-     * 
-     * @var array
-     */
-    private $ganitaData = array();
 
     /**
      * Calculated tithi.
@@ -342,16 +338,6 @@ class Panchanga {
         $karana['left'] = $left * 2;
 
         return $karana;
-    }
-
-    /**
-     * Get data.
-     * 
-     * @return array
-     */
-    public function getData()
-    {
-        return $this->ganitaData;
     }
 
     /**
