@@ -149,6 +149,10 @@ class Graha {
      * Shadowy grahas (Rahu and Ketu)
      */
     const LIST_CHAYA = 'chaya';
+    /**
+     * The speed of the slowest to the fastest
+     */
+    const LIST_CHESHTA = 'cheshta';
     
     /**
      * Pushkara bhaga
@@ -380,6 +384,12 @@ class Graha {
                 break;
             case self::LIST_CHAYA:
                 $list = array_slice(self::$graha, 7);
+                break;
+            case self::LIST_CHESHTA:
+                $order = [self::KEY_SA, self::KEY_GU, self::KEY_MA, self::KEY_SY, self::KEY_SK, self::KEY_BU, self::KEY_CH];
+                foreach ($order as $key){
+                    $list[$key] = self::$graha[$key];
+                }
                 break;
             case self::LIST_NAVA:
             default:

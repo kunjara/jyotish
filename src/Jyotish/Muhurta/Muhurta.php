@@ -15,6 +15,15 @@ use Jyotish\Ganita\Time;
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 class Muhurta {
+    /**
+     * Yama hora
+     */
+    const HORA_YAMA = 'yama';
+    /**
+     * Kala hora
+     */
+    const HORA_KALA = 'kala';
+    
     const PANCHAKA_MRITYU = 1;
     const PANCHAKA_AGNI   = 2;
     const PANCHAKA_RAJA   = 4;
@@ -39,19 +48,7 @@ class Muhurta {
     public function __construct(Panchanga $Panchanga)
     {
         $this->panchangaObject = $Panchanga;
-        
         $this->ganitaData = $this->panchangaObject->getData();
-        $dateTimeFormat = Time::FORMAT_DATA_DATE . ' ' . Time::FORMAT_DATA_TIME;
-        $dateTimeString = $this->ganitaData['user']['date'] . ' ' . $this->ganitaData['user']['time'];
-        
-        $this->dateTimeObjectStart = Time::getDateTime($dateTimeFormat, $dateTimeString, $this->ganitaData['user']['timezone']);
-        $this->dateTimeObjectEnd = clone($this->dateTimeObjectStart);
-        $this->dateTimeObjectStart->modify('-1 day');
-        
-        $this->panchangaObject->setData([
-            'date' => $this->dateTimeObjectStart->format(Time::FORMAT_DATA_DATE),
-            'time' => $this->dateTimeObjectStart->format(Time::FORMAT_DATA_TIME),
-        ]);
     }
     
     /**
@@ -63,10 +60,11 @@ class Muhurta {
      */
     public function getTimeStamps($period = 1, array $angas = null)
     {
-        if($period > 1)
-            $this->dateTimeObjectEnd->modify('+' . $period . ' days');
-        if(is_null($angas)) 
+        $this->init($period);
+        
+        if(is_null($angas)){
             $angas = Panchanga::$anga;
+        }
         
         foreach ($angas as $angaName){
             $this->calcPanchanga($angaName);
@@ -113,6 +111,21 @@ class Muhurta {
         $this->reset();
     }
     
+    protected function init($period)
+    {
+        $this->dateTimeObjectStart = Time::getDateTime2($this->ganitaData['user']);
+        $this->dateTimeObjectEnd = clone($this->dateTimeObjectStart);
+        $this->dateTimeObjectStart->modify('-1 day');
+        
+        $this->panchangaObject->setData([
+            'date' => $this->dateTimeObjectStart->format(Time::FORMAT_DATA_DATE),
+            'time' => $this->dateTimeObjectStart->format(Time::FORMAT_DATA_TIME),
+        ]);
+        
+        if($period > 1) 
+            $this->dateTimeObjectEnd->modify('+' . $period . ' days');
+    }
+
     protected function sort()
     {
         usort($this->timeStamps, 
