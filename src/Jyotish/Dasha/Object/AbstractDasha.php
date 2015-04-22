@@ -6,6 +6,7 @@
 
 namespace Jyotish\Dasha\Object;
 
+use DateTime;
 use DateInterval;
 use Jyotish\Dasha\Dasha;
 use Jyotish\Panchanga\Panchanga;
@@ -88,10 +89,8 @@ abstract class AbstractDasha {
         else
             $withAbhijit = false;
 
-        $userData       = $Panchanga->getData()['user'];
-        $dateTimeString = $userData['date'] . ' ' . $userData['time'];
-        $dateTimeFormat = Time::FORMAT_DATA_DATE . ' ' . Time::FORMAT_DATA_TIME;
-        $this->dateTimeObject = Time::getDateTimeUtc($dateTimeFormat, $dateTimeString, $userData['timezone']);
+        $userData = $Panchanga->getData()['user'];
+        $this->dateTimeObject = new DateTime($userData['date'].' '.$userData['time']);
 
         $nakshatra  = $Panchanga->getNakshatra(true, $withAbhijit);
         $periodData = $this->getStartPeriod($nakshatra);
@@ -139,7 +138,7 @@ abstract class AbstractDasha {
             $periodData[$graha]['duration'] = (int)$duration;
 
             if($i == 1){
-                $this->dateTimeObject = Time::getDateTimeUtc(Time::FORMAT_DATETIME, $periodData['start']);
+                $this->dateTimeObject = new DateTime($periodData['start']);
                 $periodData[$graha]['start'] = $this->dateTimeObject->format(Time::FORMAT_DATETIME);
             }else{
                 $periodData[$graha]['start'] = $this->dateTimeObject->format(Time::FORMAT_DATETIME);

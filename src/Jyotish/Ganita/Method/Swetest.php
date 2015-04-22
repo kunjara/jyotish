@@ -111,7 +111,7 @@ class Swetest extends AbstractGanita{
     {
         $this->setOptions($options);
 
-        $dateTimeObject = Time::getDateTimeUtc2($this->data);
+        $dateTimeObject = Time::createDateTimeUtc($this->data);
 
         $dir    = $this->swe['sweph'];
         $date   = $dateTimeObject->format(Time::FORMAT_DATA_DATE);

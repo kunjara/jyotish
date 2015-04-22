@@ -21,89 +21,41 @@ class Time {
     const FORMAT_DATA_DATE      = 'd.m.Y';
     const FORMAT_DATA_TIME      = 'H:i:s';
     const FORMAT_OFFSET_TIME    = '%H:%I';
-
-    /**
-     * Get real time.
-     * 
-     * @return string
-     */
-    static public function getTimeNow() 
-    {
-        $dateTimeObject = new DateTime('NOW');
-        $time = $dateTimeObject->format(self::FORMAT_DATA_TIME);
-
-        return $time;
-    }
-
-    /**
-     * Get real date.
-     * 
-     * @return string
-     */
-    static public function getDateNow() 
-    {
-        $dateTimeObject = new DateTime('NOW');
-        $date = $dateTimeObject->format(self::FORMAT_DATA_DATE);
-
-        return $date;
-    }
     
     /**
-     * Get new DateTime object from a string formatted according to the specified format.
-     * 
-     * @param string $dateTimeFormat
-     * @param string $dateTimeString
-     * @param string $timeZone
-     * @return DateTime
-     */
-    static public function getDateTime($dateTimeFormat, $dateTimeString, $timeZone = 'UTC')
-    {
-        $timeZoneObject = new DateTimeZone($timeZone);
-        $dateTimeObject = DateTime::createFromFormat($dateTimeFormat, $dateTimeString, $timeZoneObject);
-        
-        return $dateTimeObject;
-    }
-    
-    /**
-     * Get new DateTime object from user data.
+     * Create new DateTime object from user data.
      * 
      * @param array $data User data
      * @return DateTime
      */
-    static public function getDateTime2(array $data)
+    static public function createDateTime(array $data)
     {
-        $dateTimeFormat = Time::FORMAT_DATA_DATE . ' ' . Time::FORMAT_DATA_TIME;
-        $dateTimeString = $data['date'] . ' ' . $data['time'];
+        $dateTime = $data['date'] . ' ' . $data['time'];
+        $timeZone = !is_null($data['timezone']) ? new DateTimeZone($data['timezone']) : null;
         
-        $dateTimeObject = self::getDateTime($dateTimeFormat, $dateTimeString, $data['timezone']);
+        $dateTimeObject = new DateTime($dateTime, $timeZone);
         
         return $dateTimeObject;
     }
     
     /**
-     * Get a new DateTime object in UTC timezone.
+     * Create new DateTime object from user data in UTC timezone.
      * 
-     * @param string $format
-     * @param string $dateTime
-     * @param string $timeZone
-     * @param int $offsetUser Offset in seconds
+     * @param array $data User data
      * @return DateTime
-     * @throws Exception\InvalidArgumentException
      */
-    static public function getDateTimeUtc($format, $dateTime, $timeZone = 'UTC', $offsetUser = false)
+    static public function createDateTimeUtc(array $data)
     {
-        $dateTimeObject = self::getDateTime($format, $dateTime, $timeZone);
+        $dateTimeObject = self::createDateTime($data);
 
-        if ($timeZone != 'UTC') {
+        if ($data['timezone'] != 'UTC') {
             $dateTimeObject->setTimezone(new DateTimeZone('UTC'));
         }
         
+        $offsetSystem = self::getTimeZoneOffset($data['timezone'], $data['date'] . ' ' . $data['time']);
+        $offsetUser = $data['offset'] != $offsetSystem ? $data['offset'] : false;
+        
         if($offsetUser) {
-            if (!is_int($offsetUser)) {
-                throw new Exception\InvalidArgumentException("The offset must be an integer value in seconds.");
-            }
-
-            $offsetSystem = self::getTimeZoneOffset($timeZone, $dateTime);
             $offsetTotal = $offsetSystem - $offsetUser;
 
             if($offsetTotal > 0) {
@@ -113,24 +65,6 @@ class Time {
             }
         }
 
-        return $dateTimeObject;
-    }
-    
-    /**
-     * Get new DateTime object from user data in UTC timezone.
-     * 
-     * @param array $data User data
-     * @return DateTime
-     */
-    static public function getDateTimeUtc2(array $data){
-        $dateTimeFormat = Time::FORMAT_DATA_DATE . ' ' . Time::FORMAT_DATA_TIME;
-        $dateTimeString = $data['date'] . ' ' . $data['time'];
-        
-        $offsetSystem   = Time::getTimeZoneOffset($data['timezone'], $dateTimeString);
-        $offset         = $data['offset'] != $offsetSystem ? $data['offset'] : false;
-        
-        $dateTimeObject = Time::getDateTimeUtc($dateTimeFormat, $dateTimeString, $data['timezone'], $offset);
-        
         return $dateTimeObject;
     }
 

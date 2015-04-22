@@ -113,7 +113,7 @@ class Muhurta {
     
     protected function init($period)
     {
-        $this->dateTimeObjectStart = Time::getDateTime2($this->ganitaData['user']);
+        $this->dateTimeObjectStart = Time::createDateTime($this->ganitaData['user']);
         $this->dateTimeObjectEnd = clone($this->dateTimeObjectStart);
         $this->dateTimeObjectStart->modify('-1 day');
         
@@ -141,7 +141,7 @@ class Muhurta {
     
     protected function clear()
     {
-        $dateTimeEnd = Time::getDateTime2($this->ganitaData['user']);
+        $dateTimeEnd = Time::createDateTime($this->ganitaData['user']);
         
         foreach ($this->timeStamps as $key => $timeStamp){
             if(is_null($timeStamp['start']) or $timeStamp['end'] < $dateTimeEnd->format(Time::FORMAT_DATETIME)){

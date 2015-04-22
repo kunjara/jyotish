@@ -9,6 +9,7 @@ namespace Jyotish\Ganita\Method;
 use Jyotish\Ganita\Time;
 use Jyotish\Ganita\Ayanamsha;
 use Jyotish\Graha\Graha;
+use DateTime;
 
 /**
  * Class for calculate the positions of the planets.
@@ -24,7 +25,7 @@ abstract class AbstractGanita {
     protected $data = array(
         'date'      => null,
         'time'      => null,
-        'timezone'  => 'UTC',
+        'timezone'  => null,
         'offset'    => 0,
         'longitude' => 0,
         'latitude'  => 0,
@@ -135,10 +136,16 @@ abstract class AbstractGanita {
             }
         }
         
-        if (empty($this->data['date']))
-            $this->data['date'] = Time::getDateNow();
-        if (empty($this->data['time']))
-            $this->data['time'] = Time::getTimeNow();
+        $datetime = new DateTime();
+        
+        if (empty($this->data['date'])){
+            $this->data['date'] = $datetime->format(Time::FORMAT_DATA_DATE);
+        }
+            
+        if (empty($this->data['time'])){
+            $this->data['time'] = $datetime->format(Time::FORMAT_DATA_TIME);
+        }
+            
     }
 
     /**
