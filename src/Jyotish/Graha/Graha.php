@@ -129,8 +129,19 @@ class Graha {
      */
     const CHESHTA_ATICHARA = 'atichara';
 
+    /**
+     * Neglect refraction rise
+     */
     const RISING_NOREFRAC = 'norefrac';
+    /**
+     * Disc center rise
+     */
     const RISING_DISCCENTER = 'disccenter';
+    /**
+     * Hindu sunrise - astronomical sunrise + time taken by the Sun to rise half 
+     * of its diameter + time taken by the Sun to rise further to neutralize 
+     * refraction effect.
+     */
     const RISING_HINDU = 'hindu';
     
     /**
