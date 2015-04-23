@@ -72,11 +72,11 @@ class Analysis {
             }
         );
         
-        $i = 0;
         $karakas = Karaka::karakaList($system);
+        reset($karakas);
         foreach($grahas as $key => $data){
-            $grahaKaraka[$key] = $karakas[$i];
-            $i += 1;
+            $grahaKaraka[$key] = current($karakas);
+            next($karakas);
         }
 
         if($reverse){

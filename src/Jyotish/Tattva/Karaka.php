@@ -16,6 +16,43 @@ use Jyotish\Graha\Graha;
  */
 class Karaka {
     /**
+     * Atmakaraka key
+     */
+    const KEY_ATMA = 'AK';
+    /**
+     * Amatyakaraka key
+     */
+    const KEY_AMATYA = 'AmK';
+    /**
+     * Bhratrukaraka key
+     */
+    const KEY_BHRATRU = 'BK';
+    /**
+     * Matrukaraka key
+     */
+    const KEY_MATRU = 'MK';
+    /**
+     * Pitrukaraka key
+     */
+    const KEY_PITRU = 'PiK';
+    /**
+     * Putrakaraka key
+     */
+    const KEY_PUTRA = 'PK';
+    /**
+     * Gnatikaraka key
+     */
+    const KEY_GNATI = 'GK';
+    /**
+     * Darakaraka key
+     */
+    const KEY_DARA = 'DK';
+    /**
+     * Ayushkaraka key
+     */
+    const KEY_AYUSH = 'AyK';
+    
+    /**
      * Own self
      */
     const NAME_ATMA = 'Atmakaraka';
@@ -57,15 +94,16 @@ class Karaka {
      * 
      * @var array
      */
-    static public $karakaChara = array(
-        self::NAME_ATMA,
-        self::NAME_AMATYA,
-        self::NAME_BHRATRU,
-        self::NAME_MATRU,
-        self::NAME_PITRU,
-        self::NAME_PUTRA,
-        self::NAME_GNATI,
-        self::NAME_DARA,
+    static public $karaka = array(
+        self::KEY_ATMA => self::NAME_ATMA,
+        self::KEY_AMATYA => self::NAME_AMATYA,
+        self::KEY_BHRATRU => self::NAME_BHRATRU,
+        self::KEY_MATRU => self::NAME_MATRU,
+        self::KEY_PITRU => self::NAME_PITRU,
+        self::KEY_PUTRA => self::NAME_PUTRA,
+        self::KEY_GNATI => self::NAME_GNATI,
+        self::KEY_DARA => self::NAME_DARA,
+        self::KEY_AYUSH => self::NAME_AYUSH,
     );
     
     /**
@@ -91,13 +129,13 @@ class Karaka {
      */
     static public function karakaList($system = Biblio::BOOK_BPHS)
     {
-        $list = self::$karakaChara;
+        $list = self::$karaka;
+        array_pop($list);
         
         switch ($system){
             case Biblio::AUTHOR_JAIMINI:
             case Biblio::BOOK_US:
-                unset($list[4]);
-                $list = array_values($list);
+                unset($list[self::KEY_PITRU]);
                 break;
             case Biblio::AUTHOR_PARASHARA:
             case Biblio::BOOK_BPHS:
