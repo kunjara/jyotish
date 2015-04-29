@@ -50,21 +50,6 @@ class MathTest extends \PHPUnit_Framework_TestCase{
             [-13.35, ['d' => -13, 'm' => 21]],
         ];
     }
-
-    public function testNumberInCycle()
-    {
-        for ($i = -13; $i <= 13; $i++){
-            if($i == 0) continue;
-            $numbersExpected[] = Math::numberInCycle(1, $i);
-        }
-        $numbersActual = [
-            1, 
-            2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 1, 
-            1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12,
-            1
-        ];
-        $this->assertEquals($numbersExpected, $numbersActual);
-    }
     
     /**
      * @dataProvider providerDistanceInCycle
@@ -84,6 +69,51 @@ class MathTest extends \PHPUnit_Framework_TestCase{
         ];
     }
     
+    /**
+     * @expectedException InvalidArgumentException 
+     */
+    public function testNumberInCycle()
+    {
+        for ($i = -13; $i <= 13; $i++){
+            $numbersExpected[] = Math::numberInCycle(1, $i);
+        }
+        $numbersActual = [
+            1, 
+            2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 1, 
+            1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12,
+            1
+        ];
+        $this->assertEquals($numbersExpected, $numbersActual);
+    }
+    
+    /**
+     * @depends testNumberInCycle
+     */
+    public function testNumberNext()
+    {
+        for($i = 1; $i <= 14; $i++){
+            $numbersExpected[] = Math::numberNext($i);
+        }
+        $numbersActual = [
+            2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 1, 2, 3
+        ];
+        $this->assertEquals($numbersExpected, $numbersActual);
+    }
+    
+    /**
+     * @depends testNumberInCycle
+     */
+    public function testNumberPrev()
+    {
+        for($i = 1; $i <= 14; $i++){
+            $numbersExpected[] = Math::numberPrev($i);
+        }
+        $numbersActual = [
+            12, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 1
+        ];
+        $this->assertEquals($numbersExpected, $numbersActual);
+    }
+
     /**
      * @dataProvider providerInRange
      */
