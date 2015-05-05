@@ -61,11 +61,11 @@ class Ashtottari extends AbstractDasha {
     /**
      * Get start period.
      * 
-     * @param array $nakshatra
      * @return array
      */
-    public function getStartPeriod(array $nakshatra)
+    public function getStartPeriod()
     {
+        $nakshatra = $this->panchangaObject->getNakshatra(true, true);
         $keysNakshatra = array_keys($this->orderNakshatra);
         $indexNum      = array_search($nakshatra['key'], $keysNakshatra) + 1;
         
@@ -86,29 +86,11 @@ class Ashtottari extends AbstractDasha {
         $num = $part - ($partSum - $indexNum);
 
         $result['graha'] = $key;
-        $result['total'] = round($this->durationTotal() * Samvatsara::DUR_GREGORIAN * 86400);
+        $result['total'] = $this->durationTotal * Samvatsara::DUR_GREGORIAN * 86400;
 
-        $durationGraha     = $this->durationGraha();
-        $durationNakshatra = round($durationGraha[$key] * Samvatsara::DUR_GREGORIAN * 86400 / $part);
+        $durationNakshatra = round($this->durationGraha[$key] * Samvatsara::DUR_GREGORIAN * 86400 / $part);
         $result['start']   = $durationNakshatra * ($num - 1) + round($durationNakshatra * (100 - $nakshatra['left']) / 100);
 
         return $result;
-    }
-
-    /**
-     * Get the order of the grahas.
-     * 
-     * @param string $graha
-     * @param int $nesting
-     * @return array
-     */
-    public function getOrderGraha($graha, $nesting = null)
-    {
-        $result = Utils::shiftArray($this->durationGraha(), $graha);
-        next($result);
-        $nextGraha = key($result);
-        $nextResult = Utils::shiftArray($this->durationGraha(), $nextGraha);
-
-        return $nextResult;
     }
 }

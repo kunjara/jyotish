@@ -12,8 +12,6 @@ namespace Jyotish\Dasha;
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 class Dasha {
-    const NESTING_MAX = 3;
-    
     /**
      * Name of period with nesting is equal to 1
      */

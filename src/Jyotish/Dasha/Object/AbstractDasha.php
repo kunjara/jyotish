@@ -8,7 +8,6 @@ namespace Jyotish\Dasha\Object;
 
 use DateTime;
 use DateInterval;
-use Jyotish\Dasha\Dasha;
 use Jyotish\Panchanga\Panchanga;
 use Jyotish\Base\Utils;
 use Jyotish\Ganita\Time;
@@ -21,6 +20,15 @@ use Jyotish\Ganita\Time;
 abstract class AbstractDasha {
     
     use \Jyotish\Base\Traits\GetTrait;
+    
+    /**
+     * Options of dasha object.
+     * 
+     * @var array
+     */
+    protected $options = array(
+        'nesting' => 3,
+    );
     
     /**
      * Dasha key
@@ -49,131 +57,129 @@ abstract class AbstractDasha {
      * @var array
      */
     protected $orderNakshatra = array();
+    
+    protected $panchangaObject = null;
+    
+    protected $ganitaData = null;
 
     /**
      * Get start period.
      * 
      * @abstract
-     * @param array $nakshatra
      * @return array
      */
-    abstract public function getStartPeriod(array $nakshatra);
+    abstract public function getStartPeriod();
 
     /**
      * Get the order of the grahas.
      * 
-     * @abstract
      * @param string $graha
-     * @param int $nesting
      * @return array
      */
-    abstract public function getOrderGraha($graha, $nesting = null);
+    public function getOrderGraha($graha)
+    {
+        $result = Utils::shiftArray($this->durationGraha, $graha);
+
+        return $result;
+    }
 
     /**
      * Get all periods and subperiods.
      * 
-     * @param \Jyotish\Panchanga\Panchanga $Panchanga
-     * @param int $nestingMax
      * @return array
      */
-    public function getDashaPeriods(Panchanga $Panchanga, $nestingMax = 3)
+    public function getPeriods()
     {
-        if(!is_numeric($nestingMax) || intval($nestingMax) > Dasha::NESTING_MAX){
-            throw new Exception\InvalidArgumentException(
-                "Maximum nesting must be less than or equals 6."
-            );
-        }
+        $this->checkPanchanga();
+        
+        $this->dateTimeObject = Time::createDateTime($this->ganitaData['user']);
+        $periodStart = $this->getStartPeriod();
 
-        if($this->dashaKey == Dasha::NAME_ASHTOTTARI)
-            $withAbhijit = true;
-        else
-            $withAbhijit = false;
-
-        $userData = $Panchanga->getData()['user'];
-        $this->dateTimeObject = new DateTime($userData['date'].' '.$userData['time']);
-
-        $nakshatra  = $Panchanga->getNakshatra(true, $withAbhijit);
-        $periodData = $this->getStartPeriod($nakshatra);
-
-        $this->dateTimeObject->sub(new DateInterval('PT'.$periodData['start'].'S'));
+        $this->dateTimeObject->sub(new DateInterval('PT'.$periodStart['start'].'S'));
         $periodStartString = $this->dateTimeObject->format(Time::FORMAT_DATETIME);
-        $this->dateTimeObject->add(new DateInterval('PT'.$periodData['total'].'S'));
+        $this->dateTimeObject->add(new DateInterval('PT'.$periodStart['total'].'S'));
         $periodEndString = $this->dateTimeObject->format(Time::FORMAT_DATETIME);
 
-        $periodOrder = Utils::shiftArray($this->durationGraha(), $periodData['graha']);
-
-        $periodTotal = array(
+        $periodData = array(
             'nesting'  => 0,
             'name'     => $this->dashaKey,
-            'duration' => $periodData['total'],
+            'key'      => '',
+            'duration' => $periodStart['total'],
             'start'    => $periodStartString,
             'end'      => $periodEndString,
-            'order'    => $periodOrder,
+            'order'    => $this->getOrderGraha($periodStart['graha']),
         );
 
-        $periodsCalc	= $this->calcDashaPeriods($periodTotal, $nestingMax);
+        $calcPeriods = $this->calcPeriods($periodData);
+        unset($calcPeriods['order']);
         
-        return $periodsCalc;
+        return $calcPeriods;
     }
 
     /**
      * Recursive calculation of periods.
      * 
      * @param array $periodData
-     * @param int $nestingMax
      * @return array
      */
-    private function calcDashaPeriods($periodData, $nestingMax = 3)
+    public function calcPeriods($periodData)
     {
         $i = 0;
+        
         foreach($periodData['order'] as $graha => $info){
             $i++;
 
             $nesting = $periodData['nesting'] + 1;
-            $periodData[$graha]['nesting'] = $nesting;
-            $periodData[$graha]['name'] = constant('Jyotish\Dasha\Dasha::NESTING_'.$nesting);
+            $periodData['periods'][$graha]['nesting'] = $nesting;
+            $periodData['periods'][$graha]['name'] = constant('Jyotish\Dasha\Dasha::NESTING_'.$nesting);
+            $periodData['periods'][$graha]['key'] = $graha;
 
-            $durationGraha = $this->durationGraha();
-            $duration = round($periodData['duration'] * $durationGraha[$graha] / $this->durationTotal());
-            $periodData[$graha]['duration'] = (int)$duration;
+            $duration = round($periodData['duration'] * $this->durationGraha[$graha] / $this->durationTotal);
+            $periodData['periods'][$graha]['duration'] = (int)$duration;
 
             if($i == 1){
                 $this->dateTimeObject = new DateTime($periodData['start']);
-                $periodData[$graha]['start'] = $this->dateTimeObject->format(Time::FORMAT_DATETIME);
+                $periodData['periods'][$graha]['start'] = $this->dateTimeObject->format(Time::FORMAT_DATETIME);
             }else{
-                $periodData[$graha]['start'] = $this->dateTimeObject->format(Time::FORMAT_DATETIME);
+                $periodData['periods'][$graha]['start'] = $this->dateTimeObject->format(Time::FORMAT_DATETIME);
             }
 
             //if($i == count($periodData['order'])){
-            //	$periodData[$graha]['end'] = $periodData['end'];
+            //	$periodData['periods'][$graha]['end'] = $periodData['end'];
             //}else{
                 $this->dateTimeObject->add(new DateInterval('PT'.$duration.'S'));
-                $periodData[$graha]['end'] = $this->dateTimeObject->format(Time::FORMAT_DATETIME);
+                $periodData['periods'][$graha]['end'] = $this->dateTimeObject->format(Time::FORMAT_DATETIME);
             //}
 
             // Define subperiods
-            if($nesting < $nestingMax){
-                $periodData[$graha]['order'] = $this->getOrderGraha($graha, $nesting);
-                $periodData[$graha]	= $this->calcDashaPeriods($periodData[$graha]);
-            }else{
-                $periodData[$graha]['order'] = null;
+            if($nesting < $this->options['nesting']){
+                $periodData['periods'][$graha]['order'] = $this->getOrderGraha($graha);
+                $periodData['periods'][$graha] = $this->calcPeriods($periodData['periods'][$graha]);
             }
-        }	
+            unset($periodData['periods'][$graha]['order']);
+        }
         return $periodData;
     }
-
-    public function durationTotal()
+    
+    /**
+     * Set panchanga.
+     * 
+     * @param \Jyotish\Panchanga\Panchanga $Panchanga
+     */
+    public function setPanchanga(Panchanga $Panchanga)
     {
-        return $this->durationTotal;
+        $this->panchangaObject = $Panchanga;
+        $this->ganitaData = $this->panchangaObject->getData();
     }
-
-    public function durationGraha()
+    
+    /**
+     * Check panchanga.
+     * 
+     * @throws Exception\UnderflowException
+     */
+    protected function checkPanchanga()
     {
-        return $this->durationGraha;
-    }
-
-    public function orderNakshatra()
-    {
-        return $this->orderNakshatra;
+        if(is_null($this->panchangaObject))
+            throw new \Jyotish\Dasha\Exception\UnderflowException("Panchanga for dasha object must be setted.");
     }
 }

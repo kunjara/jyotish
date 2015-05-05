@@ -65,30 +65,16 @@ class Vimshottari extends AbstractDasha {
      * @param array $nakshatra
      * @return array
      */
-    public function getStartPeriod(array $nakshatra)
+    public function getStartPeriod()
     {
-        $N = Nakshatra::getInstance((int)$nakshatra['key']);
+        $nakshatra = $this->panchangaObject->getNakshatra(true);
+        $N = Nakshatra::getInstance($nakshatra['key']);
 
         $result['graha'] = $N->nakshatraRuler;
-        $result['total'] = round($this->durationTotal() * Samvatsara::DUR_GREGORIAN * 86400);
+        $result['total'] = $this->durationTotal * Samvatsara::DUR_GREGORIAN * 86400;
 
-        $durationGraha     = $this->durationGraha();
-        $durationNakshatra = $durationGraha[$result['graha']] * Samvatsara::DUR_GREGORIAN * 86400;
+        $durationNakshatra = $this->durationGraha[$result['graha']] * Samvatsara::DUR_GREGORIAN * 86400;
         $result['start']   = round($durationNakshatra * (100 - $nakshatra['left']) / 100);
-
-        return $result;
-    }
-
-    /**
-     * Get the order of the grahas.
-     * 
-     * @param string $graha
-     * @param int $nesting
-     * @return array
-     */
-    public function getOrderGraha($graha, $nesting = null)
-    {
-        $result = Utils::shiftArray($this->durationGraha(), $graha);
 
         return $result;
     }
