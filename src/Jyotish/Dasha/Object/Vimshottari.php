@@ -50,12 +50,16 @@ class Vimshottari extends AbstractDasha {
         Graha::KEY_SK => 20,
     );
 
-
-
-    public function __construct()
+    /**
+     * Constructor
+     * 
+     * @param null|array $options Options to set
+     */
+    public function __construct($options = null)
     {
+        parent::__construct($options);
+        
         $nakshatras = Nakshatra::nakshatraList();
-
         $this->orderNakshatra = Utils::shiftArray($nakshatras, 3, true);
     }
 

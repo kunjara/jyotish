@@ -23,7 +23,12 @@ Trait OptionTrait {
         if (is_array($options)){
             foreach ($options as $optionName => $optionValue) {
                 if (isset($this->options[$optionName])) {
-                    $this->options[$optionName] = $optionValue;
+                    $setOption = 'setOption'.ucfirst($optionName);
+                    if(method_exists($this, $setOption)){
+                        $this->$setOption($optionValue);
+                    }else{
+                        $this->options[$optionName] = $optionValue;
+                    }
                 }else{
                     throw new \Jyotish\Base\Exception\InvalidArgumentException("Option '$optionName' does not exist.");
                 }

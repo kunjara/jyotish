@@ -60,16 +60,18 @@ class Dasha {
      * Returns the requested instance of dasha class.
      * 
      * @param string $name The name of dasha
+     * @param null|array $options Options to set (optional)
+     * - `nesting`: nesting of periods
      * @return the requested instance of dasha class
      * @throws Exception\InvalidArgumentException
      */
-    static public function getInstance($name) {
+    static public function getInstance($name, array $options = null) {
         if (!in_array($name, self::$dasha)) {
             throw new Exception\InvalidArgumentException("Dasha '$name' does not exist.");
         }
 
         $dashaClass = 'Jyotish\Dasha\Object\\' . $name;
-        $dashaObject = new $dashaClass();
+        $dashaObject = new $dashaClass($options);
 
         return $dashaObject;
     }

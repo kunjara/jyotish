@@ -20,6 +20,7 @@ use Jyotish\Ganita\Time;
 abstract class AbstractDasha {
     
     use \Jyotish\Base\Traits\GetTrait;
+    use \Jyotish\Base\Traits\OptionTrait;
     
     /**
      * Options of dasha object.
@@ -69,6 +70,16 @@ abstract class AbstractDasha {
      * @return array
      */
     abstract public function getStartPeriod();
+    
+    /**
+     * Constructor
+     * 
+     * @param null|array $options Options to set
+     */
+    public function __construct($options)
+    {
+        $this->setOptions($options);
+    }
 
     /**
      * Get the order of the grahas.
@@ -173,13 +184,30 @@ abstract class AbstractDasha {
     }
     
     /**
+     * Set nesting of periods.
+     * 
+     * @param int $nesting
+     * @throws \Jyotish\Dasha\Exception\InvalidArgumentException
+     */
+    public function setOptionNesting($nesting)
+    {
+        if(!is_numeric($nesting) || intval($nesting) > 6){
+            throw new \Jyotish\Dasha\Exception\InvalidArgumentException(
+                "Maximum nesting must be less than or equals 6."
+            );
+        }
+        $this->options['nesting'] = $nesting;
+    }
+
+    /**
      * Check panchanga.
      * 
-     * @throws Exception\UnderflowException
+     * @throws \Jyotish\Dasha\Exception\UnderflowException
      */
     protected function checkPanchanga()
     {
-        if(is_null($this->panchangaObject))
+        if(is_null($this->panchangaObject)){
             throw new \Jyotish\Dasha\Exception\UnderflowException("Panchanga for dasha object must be setted.");
+        }
     }
 }

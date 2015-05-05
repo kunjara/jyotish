@@ -49,12 +49,16 @@ class Ashtottari extends AbstractDasha {
         Graha::KEY_SK => 21,
     );
 
-
-
-    public function __construct()
+    /**
+     * Constructor
+     * 
+     * @param null|array $options Options to set
+     */
+    public function __construct($options = null)
     {
+        parent::__construct($options);
+        
         $nakshatras = Nakshatra::nakshatraList(true);
-
         $this->orderNakshatra = Utils::shiftArray($nakshatras, 6, true);
     }
 
