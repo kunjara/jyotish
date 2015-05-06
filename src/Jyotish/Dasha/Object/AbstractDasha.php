@@ -8,6 +8,7 @@ namespace Jyotish\Dasha\Object;
 
 use DateTime;
 use DateInterval;
+use Jyotish\Graha\Graha;
 use Jyotish\Panchanga\Panchanga;
 use Jyotish\Base\Utils;
 use Jyotish\Ganita\Time;
@@ -97,9 +98,10 @@ abstract class AbstractDasha {
     /**
      * Get all periods and subperiods.
      * 
+     * @param string $periodKey Key of period
      * @return array
      */
-    public function getPeriods()
+    public function getPeriods($periodKey = null)
     {
         $this->checkPanchanga();
         
@@ -121,7 +123,7 @@ abstract class AbstractDasha {
             'order'    => $this->getOrderGraha($periodStart['graha']),
         );
 
-        $calcPeriods = $this->calcPeriods($periodData);
+        $calcPeriods = $this->calcPeriods($periodData, $periodKey);
         unset($calcPeriods['order']);
         
         return $calcPeriods;
@@ -131,9 +133,10 @@ abstract class AbstractDasha {
      * Recursive calculation of periods.
      * 
      * @param array $periodData
+     * @param string $periodKey
      * @return array
      */
-    public function calcPeriods($periodData)
+    private function calcPeriods($periodData, $periodKey)
     {
         $i = 0;
         
@@ -143,7 +146,7 @@ abstract class AbstractDasha {
             $nesting = $periodData['nesting'] + 1;
             $periodData['periods'][$graha]['nesting'] = $nesting;
             $periodData['periods'][$graha]['name'] = constant('Jyotish\Dasha\Dasha::NESTING_'.$nesting);
-            $periodData['periods'][$graha]['key'] = $graha;
+            $periodData['periods'][$graha]['key'] = $periodData['key'].$graha;
 
             $duration = round($periodData['duration'] * $this->durationGraha[$graha] / $this->durationTotal);
             $periodData['periods'][$graha]['duration'] = (int)$duration;
@@ -162,12 +165,28 @@ abstract class AbstractDasha {
                 $periodData['periods'][$graha]['end'] = $this->dateTimeObject->format(Time::FORMAT_DATETIME);
             //}
 
+            // Choose period with the specified key
+            if(!is_null($periodKey)){
+                $periodArray = str_split($periodKey, 2);
+                $gr = array_shift($periodArray);
+                if(!empty($gr) and !array_key_exists($gr, Graha::$graha)){
+                    throw new \Jyotish\Dasha\Exception\RuntimeException(
+                        "Period key '$gr' does not exist."
+                    );
+                }
+                $subperiodKey = implode('', $periodArray);
+
+                if($graha != $gr){
+                    continue;
+                }
+            }
+            
             // Define subperiods
             if($nesting < $this->options['nesting']){
                 $periodData['periods'][$graha]['order'] = $this->getOrderGraha($graha);
-                $periodData['periods'][$graha] = $this->calcPeriods($periodData['periods'][$graha]);
-            }
-            unset($periodData['periods'][$graha]['order']);
+                $periodData['periods'][$graha] = $this->calcPeriods($periodData['periods'][$graha], $subperiodKey);
+                unset($periodData['periods'][$graha]['order']);
+            } 
         }
         return $periodData;
     }
