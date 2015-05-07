@@ -9,6 +9,7 @@ namespace Jyotish\Graha\Object;
 use Jyotish\Base\Biblio;
 use Jyotish\Base\Object;
 use Jyotish\Graha\Graha;
+use Jyotish\Graha\Avastha;
 use Jyotish\Rashi\Rashi;
 use Jyotish\Bhava\Bhava;
 use Jyotish\Ganita\Math;
@@ -353,6 +354,84 @@ class GrahaObject extends Object {
         }
     }
     
+    /**
+     * Get avastha of graha.
+     * 
+     * @return array
+     */
+    public function getAvastha()
+    {
+        $this->checkEnvironment();
+        
+        $avastha[Avastha::TYPE_BALADI] = $this->getAvasthaBaladi();
+        $avastha[Avastha::TYPE_JAGRADI] = $this->getAvasthaJagradi();
+        
+        return $avastha;
+    }
+    
+    /**
+     * Get baladi avastha of graha.
+     * 
+     * @return string
+     * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 45, Verse 3.
+     */
+    public function getAvasthaBaladi()
+    {
+        $this->checkEnvironment();
+        
+        $grahaBhaga = $this->ganitaData['graha'][$this->objectKey]['degree'];
+        $grahaRashi = $this->ganitaData['graha'][$this->objectKey]['rashi'];
+        
+        $avasthaBhaga = $grahaRashi % 2 ? $grahaBhaga : 30 - $grahaBhaga;
+        
+        switch($avasthaBhaga){
+            case ($avasthaBhaga >= 0 and $avasthaBhaga < 6):
+                $avastha = Avastha::NAME_BALA;
+                break;
+            case ($avasthaBhaga >= 6 and $avasthaBhaga < 12):
+                $avastha = Avastha::NAME_KUMARA;
+                break;
+            case ($avasthaBhaga >= 12 and $avasthaBhaga < 18):
+                $avastha = Avastha::NAME_YUVA;
+                break;
+            case ($avasthaBhaga >= 18 and $avasthaBhaga < 24):
+                $avastha = Avastha::NAME_VRIDHA;
+                break;
+            case ($avasthaBhaga >= 24 and $avasthaBhaga < 30):
+                $avastha = Avastha::NAME_MRITA;
+        }
+        return $avastha;
+    }
+    
+    /**
+     * Get jagradi avastha of graha.
+     * 
+     * @return string
+     * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 45, Verse 5.
+     */
+    public function getAvasthaJagradi()
+    {
+        $this->checkEnvironment();
+        
+        $avasthaRashi = $this->getRashiAvastha();
+        
+        switch ($avasthaRashi){
+            case Rashi::GRAHA_UCHA:
+            case Rashi::GRAHA_MOOL:
+            case Rashi::GRAHA_SWA:
+                $avastha = Avastha::NAME_JAGRATA;
+                break;
+            case Rashi::GRAHA_FRIEND:
+            case Rashi::GRAHA_NEUTRAL:
+                $avastha = Avastha::NAME_SWAPNA;
+                break;
+            case Rashi::GRAHA_ENEMY:
+            case Rashi::GRAHA_NEECHA:
+                $avastha = Avastha::NAME_SUSHUPTA;
+        }
+        return $avastha;
+    }
+
     /**
      * Get graha character depending on what bhava it is (functional beneficence).
      * 

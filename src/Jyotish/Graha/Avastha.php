@@ -12,6 +12,12 @@ namespace Jyotish\Graha;
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 class Avastha {
+    const TYPE_BALADI = 'baladi';
+    const TYPE_JAGRADI = 'jagradi';
+    const TYPE_DEEPTADI = 'deeptadi';
+    const TYPE_LAJJITADI = 'lajjitadi';
+    const TYPE_SAYANADI = 'sayanadi';
+    
     /**
      * Infant state
      */
@@ -36,11 +42,11 @@ class Avastha {
     /**
      * Awakening state
      */
-    const NAME_JAGRITA = 'jagrita';
+    const NAME_JAGRATA = 'jagrata';
     /**
      * Dreaming state
      */
-    const NAME_SVAPNA = 'svapna';
+    const NAME_SWAPNA = 'swapna';
     /**
      * Sleeping state
      */
@@ -49,7 +55,7 @@ class Avastha {
     /**
      * Graha in its exaltation sign.
      */
-    const NAME_DIPTA = 'dipta';
+    const NAME_DEEPTA = 'deepta';
     /**
      * Graha in own sign.
      */
@@ -156,14 +162,14 @@ class Avastha {
      * Sleeping state
      */
     const NAME_NIDRA = 'nidra';
-
+    
     /**
-     * Results of age avasthas.
+     * Results of baladi (age) avasthas.
      * 
      * @var array
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 45, Verse 4.
      */
-    public static $avasthaAge = [
+    public static $avasthaBaladi = [
         self::NAME_BALA => .25,
         self::NAME_KUMARA => .5,
         self::NAME_YUVA => 1,
@@ -172,25 +178,25 @@ class Avastha {
     ];
     
     /**
-     * Results of wake avasthas.
+     * Results of jagradi (wake) avasthas.
      * 
      * @var array
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 45, Verse 6.
      */
-    public static $avasthaWake = [
-        self::NAME_JAGRITA => 1,
-        self::NAME_SVAPNA => .5,
+    public static $avasthaJagradi = [
+        self::NAME_JAGRATA => 1,
+        self::NAME_SWAPNA => .5,
         self::NAME_SUSHUPTA => 0
     ];
     
     /**
-     * Results of mood avasthas.
+     * Results of deeptadi (mood) avasthas.
      * 
      * @var array
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 45, Verse 8-10.
      */
-    public static $avasthaMood = [
-        self::NAME_DIPTA => 1,
+    public static $avasthaDeeptadi = [
+        self::NAME_DEEPTA => 1,
         self::NAME_SWASTHA => 1,
         self::NAME_PRAMUDITA => 1,
         self::NAME_SHANTA => .5,
@@ -202,12 +208,12 @@ class Avastha {
     ];
     
     /**
-     * Avasthas associated with tone.
+     * Lajjitadi avasthas (associated with tone).
      * 
      * @var array
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 45, Verse 11-18.
      */
-    public static $avasthaTone = [
+    public static $avasthaLajjitadi = [
         self::NAME_LAJJITA,
         self::NAME_GARVITA,
         self::NAME_KSHUDHITA,
@@ -217,12 +223,12 @@ class Avastha {
     ];
     
     /**
-     * Avasthas associated with action.
+     * Sayanadi avasthas (associated with action).
      * 
      * @var array
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 45, Verse 30-37.
      */
-    public static $avasthaAction = [
+    public static $avasthaSayanadi = [
         self::NAME_SAYANA,
         self::NAME_UPAVESHANA,
         self::NAME_NETRAPANI,
