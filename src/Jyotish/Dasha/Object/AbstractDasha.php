@@ -105,8 +105,11 @@ abstract class AbstractDasha {
     {
         $this->checkPanchanga();
         
-        $this->dateTimeObject = Time::createDateTime($this->ganitaData['user']);
+        $timeZone = !is_null($this->ganitaData['timezone']) ? new DateTimeZone($this->ganitaData['timezone']) : null;
         $periodStart = $this->getStartPeriod();
+        
+        $this->dateTimeObjectNow = new DateTime('now', $timeZone);
+        $this->dateTimeObject = Time::createDateTime($this->ganitaData['user']);
 
         $this->dateTimeObject->sub(new DateInterval('PT'.$periodStart['start'].'S'));
         $periodStartString = $this->dateTimeObject->format(Time::FORMAT_DATETIME);
@@ -157,6 +160,7 @@ abstract class AbstractDasha {
             }else{
                 $periodData['periods'][$graha]['start'] = $this->dateTimeObject->format(Time::FORMAT_DATETIME);
             }
+            $dateTimeObjectStart = clone($this->dateTimeObject);
 
             //if($i == count($periodData['order'])){
             //	$periodData['periods'][$graha]['end'] = $periodData['end'];
@@ -164,9 +168,15 @@ abstract class AbstractDasha {
                 $this->dateTimeObject->add(new DateInterval('PT'.$duration.'S'));
                 $periodData['periods'][$graha]['end'] = $this->dateTimeObject->format(Time::FORMAT_DATETIME);
             //}
-
+            $dateTimeObjectEnd = clone($this->dateTimeObject);
+            
             // Choose period with the specified key
-            if(!is_null($periodKey)){
+            if($periodKey == 'now'){
+                if(!($dateTimeObjectStart < $this->dateTimeObjectNow and $dateTimeObjectEnd > $this->dateTimeObjectNow)){
+                    $subperiodKey = 'now';
+                    continue;
+                }
+            }elseif(!is_null($periodKey)){
                 $periodArray = str_split($periodKey, 2);
                 $gr = array_shift($periodArray);
                 if(!empty($gr) and !array_key_exists($gr, Graha::$graha)){
@@ -180,7 +190,7 @@ abstract class AbstractDasha {
                     continue;
                 }
             }
-            
+
             // Define subperiods
             if($nesting < $this->options['nesting']){
                 $periodData['periods'][$graha]['order'] = $this->getOrderGraha($graha);

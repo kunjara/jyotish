@@ -361,8 +361,6 @@ class GrahaObject extends Object {
      */
     public function getAvastha()
     {
-        $this->checkEnvironment();
-        
         $avastha[Avastha::TYPE_BALADI] = $this->getAvasthaBaladi();
         $avastha[Avastha::TYPE_JAGRADI] = $this->getAvasthaJagradi();
         
@@ -411,11 +409,9 @@ class GrahaObject extends Object {
      */
     public function getAvasthaJagradi()
     {
-        $this->checkEnvironment();
+        $rashiAvastha = $this->getRashiAvastha();
         
-        $avasthaRashi = $this->getRashiAvastha();
-        
-        switch ($avasthaRashi){
+        switch ($rashiAvastha){
             case Rashi::GRAHA_UCHA:
             case Rashi::GRAHA_MOOL:
             case Rashi::GRAHA_SWA:
