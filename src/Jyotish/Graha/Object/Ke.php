@@ -208,18 +208,18 @@ class Ke extends GrahaObject {
      * 
      * @param null|array $options Options to set
      */
-    protected function setGrahaNaturalRelation($options)
+    protected function setGrahaRelation($options)
     {
         if($options['relationChaya'] == 'friends'){
             foreach (Graha::$graha as $key => $name){
                 if($key != Graha::KEY_RA){
-                    $this->grahaNaturalRelation[$key] = -1;
+                    $this->grahaRelation[$key] = -1;
                 }else{
-                    $this->grahaNaturalRelation[$key] = 1;
+                    $this->grahaRelation[$key] = 1;
                 }
             }
         }else{
-            $this->grahaNaturalRelation = [
+            $this->grahaRelation = [
                 Graha::KEY_SY => -1,
                 Graha::KEY_CH => -1,
                 Graha::KEY_MA => 1,
@@ -230,7 +230,7 @@ class Ke extends GrahaObject {
                 Graha::KEY_RA => -1,
             ];
         }
-        $this->grahaNaturalRelation[$this->objectKey] = $options['relationSame'] ? 1 : null;
+        $this->grahaRelation[$this->objectKey] = $options['relationSame'] ? 1 : null;
     }
 
     public function __construct($options = null)

@@ -222,7 +222,7 @@ class GrahaObject extends Object {
      * @var array
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 55.
      */
-    protected $grahaNaturalRelation = array();
+    protected $grahaRelation = array();
 
     /**
      * Graha disha
@@ -340,7 +340,7 @@ class GrahaObject extends Object {
                 return Rashi::GRAHA_SWA;
         }
         
-        $relation = $this->grahaNaturalRelation;
+        $relation = $this->grahaRelation;
         $dispositor = $this->getDispositor();
         switch ($relation[$dispositor]){
             case 1:
@@ -738,7 +738,7 @@ class GrahaObject extends Object {
      * @param array $options Options to set
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 55.
      */
-    protected function setGrahaNaturalRelation($options)
+    protected function setGrahaRelation($options)
     {
         $relationships = array();
         $friendsFromMt = [2, 4, 5, 8, 9, 12];
@@ -778,12 +778,12 @@ class GrahaObject extends Object {
                 $relationships[$key] = -1;
             }else{
                 $G = Graha::getInstance($key, $options);
-                $relationships[$key] = $G->grahaNaturalRelation[$this->objectKey];
+                $relationships[$key] = $G->grahaRelation[$this->objectKey];
             }
         }
         $relationships[$this->objectKey] = $options['relationSame'] ? 1 : null;
 
-        $this->grahaNaturalRelation = $relationships;
+        $this->grahaRelation = $relationships;
     }
 
     /**
@@ -866,6 +866,6 @@ class GrahaObject extends Object {
         parent::__construct($options);
         
         $this->setGrahaNames();
-        $this->setGrahaNaturalRelation($this->options);
+        $this->setGrahaRelation($this->options);
     }
 }
