@@ -487,6 +487,43 @@ class GrahaObject extends Object {
     }
     
     /**
+     * Get tatkalika (temporary) relations.
+     * 
+     * @return array
+     * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 56.
+     */
+    public function getTempRelation()
+    {
+        $this->checkEnvironment();
+        
+        $relation = array();
+        $friendsRashi = [2, 3, 4, 10, 11, 12];
+        
+        foreach($this->ganitaData['graha'] as $key => $data){
+            if($this->objectKey == $key) continue;
+            
+            $distance = Math::distanceInCycle($this->objectRashi, $data['rashi']);
+            
+            $relation[$key] = in_array($distance, $friendsRashi) ? 1 : -1;
+        }
+        
+        return $relation;
+    }
+    
+    /**
+     * Get summary relations.
+     * 
+     * @return array
+     * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 57-58.
+     */
+    public function getRelation()
+    {
+        $relation = Math::arraySum($this->grahaRelation, $this->getTempRelation());
+        
+        return $relation;
+    }
+
+    /**
      * Determine if the graha is vargottama (in the same sign in rasi and navamsha).
      * 
      * @return bool
@@ -733,14 +770,14 @@ class GrahaObject extends Object {
     }
 
     /**
-     * Set natural relationships.
+     * Set naisargika (natural) relations.
      * 
      * @param array $options Options to set
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 55.
      */
     protected function setGrahaRelation($options)
     {
-        $relationships = array();
+        $relation = array();
         $friendsFromMt = [2, 4, 5, 8, 9, 12];
         $enemiesFromMt = [3, 6, 7, 10, 11];
 
@@ -752,7 +789,7 @@ class GrahaObject extends Object {
         $gFriend = $R->rashiRuler;
         if($this->objectKey != $gFriend) $friends[] = $gFriend;
 
-        $relation = function($distance) use($rashiMool){
+        $getRelation = function($distance) use($rashiMool){
             foreach($distance as $step){
                 $r = Math::numberInCycle($rashiMool, $step);
                 $R = Rashi::getInstance((int)$r);
@@ -764,26 +801,26 @@ class GrahaObject extends Object {
             return $grahas;
         };
 
-        $friends = array_unique(array_merge($friends, $relation($friendsFromMt)));
-        $enemies = array_unique($relation($enemiesFromMt));
+        $friends = array_unique(array_merge($friends, $getRelation($friendsFromMt)));
+        $enemies = array_unique($getRelation($enemiesFromMt));
 
         foreach (Graha::$graha as $key => $name){
             if($this->objectKey == $key) continue;
 
             if(in_array($key, $friends) and in_array($key, $enemies)){
-                $relationships[$key] = 0;
+                $relation[$key] = 0;
             }elseif(in_array($key, $friends)){
-                $relationships[$key] = 1;
+                $relation[$key] = 1;
             }elseif(in_array($key, $enemies)){
-                $relationships[$key] = -1;
+                $relation[$key] = -1;
             }else{
                 $G = Graha::getInstance($key, $options);
-                $relationships[$key] = $G->grahaRelation[$this->objectKey];
+                $relation[$key] = $G->grahaRelation[$this->objectKey];
             }
         }
-        $relationships[$this->objectKey] = $options['relationSame'] ? 1 : null;
+        $relation[$this->objectKey] = $options['relationSame'] ? 1 : null;
 
-        $this->grahaRelation = $relationships;
+        $this->grahaRelation = $relation;
     }
 
     /**
