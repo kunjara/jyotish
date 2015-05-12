@@ -363,6 +363,7 @@ class GrahaObject extends Object {
     {
         $avastha[Avastha::TYPE_BALADI] = $this->getAvasthaBaladi();
         $avastha[Avastha::TYPE_JAGRADI] = $this->getAvasthaJagradi();
+        $avastha[Avastha::TYPE_DEEPTADI] = $this->getAvasthaDeeptadi();
         
         return $avastha;
     }
@@ -425,6 +426,55 @@ class GrahaObject extends Object {
             case Rashi::GRAHA_NEECHA:
                 $avastha = Avastha::NAME_SUSHUPTA;
         }
+        return $avastha;
+    }
+    
+    /**
+     * Get deeptadi avastha of graha.
+     * 
+     * @return string
+     * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 45, Verse 8-10.
+     */
+    public function getAvasthaDeeptadi()
+    {
+        $rashiAvastha = $this->getRashiAvastha();
+        
+        switch ($rashiAvastha){
+            case Rashi::GRAHA_UCHA:
+                $avastha[] = Avastha::NAME_DEEPTA;
+                break;
+            case Rashi::GRAHA_SWA:
+                $avastha[] = Avastha::NAME_SWASTHA;
+                break;
+            case Rashi::GRAHA_FRIEND:
+                $relation = $this->getRelation()[$this->objectRashi];
+                if($relation == 2){
+                    $avastha[] = Avastha::NAME_PRAMUDITA;
+                }else{
+                    $avastha[] = Avastha::NAME_SHANTA;
+                }
+                break;
+            case Rashi::GRAHA_NEUTRAL:
+                $avastha[] = Avastha::NAME_DINA;
+                break;
+            case Rashi::GRAHA_ENEMY:
+                $relation = $this->getRelation()[$this->objectRashi];
+                if($relation == -2){
+                    $avastha[] = Avastha::NAME_KHALA;
+                }else{
+                    $avastha[] = Avastha::NAME_DUKHITA;
+                }   
+        }
+        $maleficsAll = Graha::getGrahaByFeature('character', Graha::CHARACTER_PAPA);
+        $maleficsConjuncted = array_intersect_key($this->isConjuncted(), $maleficsAll);
+        if(count($maleficsConjuncted)){
+            $avastha[] = Avastha::NAME_VIKALA;
+        }
+        
+        if($this->isAstangata()){
+            $avastha[] = Avastha::NAME_KOPA;
+        }
+        
         return $avastha;
     }
 
