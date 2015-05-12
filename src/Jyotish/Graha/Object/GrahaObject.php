@@ -441,6 +441,7 @@ class GrahaObject extends Object {
         
         switch ($rashiAvastha){
             case Rashi::GRAHA_UCHA:
+            case Rashi::GRAHA_MOOL:
                 $avastha[] = Avastha::NAME_DEEPTA;
                 break;
             case Rashi::GRAHA_SWA:
@@ -455,6 +456,7 @@ class GrahaObject extends Object {
                 }
                 break;
             case Rashi::GRAHA_NEUTRAL:
+            case Rashi::GRAHA_NEECHA:
                 $avastha[] = Avastha::NAME_DINA;
                 break;
             case Rashi::GRAHA_ENEMY:
