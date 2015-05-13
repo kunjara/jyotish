@@ -70,7 +70,7 @@ class Dasha {
             throw new Exception\InvalidArgumentException("Dasha '$type' does not exist.");
         }
 
-        $dashaClass = 'Jyotish\Dasha\Object\\' . $type;
+        $dashaClass = 'Jyotish\Dasha\Object\\' . ucfirst($type);
         $dashaObject = new $dashaClass($options);
 
         return $dashaObject;
