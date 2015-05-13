@@ -24,7 +24,7 @@ class Vimshottari extends AbstractDasha {
      * 
      * @var string
      */
-    protected $dashaKey = Dasha::NAME_VIMSHOTTARI;
+    protected $dashaType = Dasha::TYPE_VIMSHOTTARI;
 
     /**
      * Duration of dasha.

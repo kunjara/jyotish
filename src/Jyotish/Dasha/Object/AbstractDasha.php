@@ -37,7 +37,7 @@ abstract class AbstractDasha {
      * 
      * @var string
      */
-    protected $dashaKey;
+    protected $dashaType;
 
     /**
      * Duration of dasha.
@@ -118,7 +118,7 @@ abstract class AbstractDasha {
 
         $periodData = array(
             'nesting'  => 0,
-            'name'     => $this->dashaKey,
+            'type'     => $this->dashaType,
             'key'      => '',
             'duration' => $periodStart['total'],
             'start'    => $periodStartString,
@@ -148,7 +148,7 @@ abstract class AbstractDasha {
 
             $nesting = $periodData['nesting'] + 1;
             $periodData['periods'][$graha]['nesting'] = $nesting;
-            $periodData['periods'][$graha]['name'] = constant('Jyotish\Dasha\Dasha::NESTING_'.$nesting);
+            $periodData['periods'][$graha]['type'] = constant('Jyotish\Dasha\Dasha::NESTING_'.$nesting);
             $periodData['periods'][$graha]['key'] = $periodData['key'].$graha;
 
             $duration = round($periodData['duration'] * $this->durationGraha[$graha] / $this->durationTotal);

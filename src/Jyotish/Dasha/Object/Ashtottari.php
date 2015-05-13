@@ -24,7 +24,7 @@ class Ashtottari extends AbstractDasha {
      * 
      * @var string
      */
-    protected $dashaKey = Dasha::NAME_ASHTOTTARI;
+    protected $dashaType = Dasha::TYPE_ASHTOTTARI;
 
     /**
      * Duration of dasha.

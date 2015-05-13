@@ -13,64 +13,64 @@ namespace Jyotish\Dasha;
  */
 class Dasha {
     /**
+     * Vimshottari dasha
+     */
+    const TYPE_VIMSHOTTARI = 'vimshottari';
+    /**
+     * Ashtottari dasha
+     */
+    const TYPE_ASHTOTTARI	= 'ashtottari';
+    
+    /**
      * Name of period with nesting is equal to 1
      */
-    const NESTING_1 = 'Mahadasha';
+    const NESTING_1 = 'mahadasha';
     /**
      * Name of period with nesting is equal to 2
      */
-    const NESTING_2 = 'Antardasha';
+    const NESTING_2 = 'antardasha';
     /**
      * Name of period with nesting is equal to 3
      */
-    const NESTING_3 = 'Pratyantardasha';
+    const NESTING_3 = 'pratyantardasha';
     /**
      * Name of period with nesting is equal to 4
      */
-    const NESTING_4 = 'Sookshma-antardasha';
+    const NESTING_4 = 'sookshmantardasha';
     /**
      * Name of period with nesting is equal to 5
      */
-    const NESTING_5 = 'Prana-antardasha';
+    const NESTING_5 = 'pranantardasha';
     /**
      * Name of period with nesting is equal to 6
      */
-    const NESTING_6 = 'Deha-antardasha';
-    
-    /**
-     * Vimshottari name
-     */
-    const NAME_VIMSHOTTARI = 'Vimshottari';
-    /**
-     * Ashtottari name
-     */
-    const NAME_ASHTOTTARI	= 'Ashtottari';
+    const NESTING_6 = 'dehantardasha';
 
     /**
-     * Names of dashas.
+     * Types of dashas.
      * 
      * @var array
      */
     static public $dasha = array(
-        self::NAME_VIMSHOTTARI,
-        self::NAME_ASHTOTTARI,
+        self::TYPE_VIMSHOTTARI,
+        self::TYPE_ASHTOTTARI,
     );
 
     /**
      * Returns the requested instance of dasha class.
      * 
-     * @param string $name The name of dasha
+     * @param string $type The type of dasha
      * @param null|array $options Options to set (optional)
      * - `nesting`: nesting of periods
      * @return the requested instance of dasha class
      * @throws Exception\InvalidArgumentException
      */
-    static public function getInstance($name, array $options = null) {
-        if (!in_array($name, self::$dasha)) {
-            throw new Exception\InvalidArgumentException("Dasha '$name' does not exist.");
+    static public function getInstance($type, array $options = null) {
+        if (!in_array($type, self::$dasha)) {
+            throw new Exception\InvalidArgumentException("Dasha '$type' does not exist.");
         }
 
-        $dashaClass = 'Jyotish\Dasha\Object\\' . $name;
+        $dashaClass = 'Jyotish\Dasha\Object\\' . $type;
         $dashaObject = new $dashaClass($options);
 
         return $dashaObject;
