@@ -448,7 +448,7 @@ class GrahaObject extends Object {
                 $avastha[] = Avastha::NAME_SWASTHA;
                 break;
             case Rashi::GRAHA_FRIEND:
-                $relation = $this->getRelation()[$this->objectRashi];
+                $relation = $this->getRelation()[$this->getDispositor()];
                 if($relation == 2){
                     $avastha[] = Avastha::NAME_PRAMUDITA;
                 }else{
@@ -460,7 +460,7 @@ class GrahaObject extends Object {
                 $avastha[] = Avastha::NAME_DINA;
                 break;
             case Rashi::GRAHA_ENEMY:
-                $relation = $this->getRelation()[$this->objectRashi];
+                $relation = $this->getRelation()[$this->getDispositor()];
                 if($relation == -2){
                     $avastha[] = Avastha::NAME_KHALA;
                 }else{
