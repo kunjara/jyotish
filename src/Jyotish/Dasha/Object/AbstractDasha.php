@@ -105,7 +105,7 @@ abstract class AbstractDasha {
     {
         $this->checkPanchanga();
         
-        $timeZone = !is_null($this->ganitaData['timezone']) ? new DateTimeZone($this->ganitaData['timezone']) : null;
+        $timeZone = isset($this->ganitaData['timezone']) ? new DateTimeZone($this->ganitaData['timezone']) : null;
         $periodStart = $this->getStartPeriod();
         
         $this->dateTimeObjectNow = new DateTime('now', $timeZone);
