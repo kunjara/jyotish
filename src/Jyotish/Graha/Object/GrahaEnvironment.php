@@ -6,6 +6,7 @@
 
 namespace Jyotish\Graha\Object;
 
+use Jyotish\Base\Biblio;
 use Jyotish\Graha\Graha;
 use Jyotish\Graha\Avastha;
 use Jyotish\Rashi\Rashi;
