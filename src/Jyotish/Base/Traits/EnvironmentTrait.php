@@ -162,4 +162,52 @@ trait EnvironmentTrait {
 
         return $isHemmed;
     }
+    
+    /**
+     * Determine if the jyotish object is affected.
+     * 
+     * @param null|string $feature Feature of graha (optional)
+     * @param null|string $value Value of feature (optional)
+     * @return bool|array
+     */
+    public function isAffected($feature = null, $value = null)
+    {
+        if(is_null($feature)){
+            $grahas = Graha::$graha;
+        }else{
+            $grahas = Graha::getGrahaByFeature($feature, $value);
+        }
+        
+        $grahaAspected = array_intersect_key($this->isAspectedByGraha(), $grahas);
+        $grahaAspected1 = array_intersect($grahaAspected, [1]);
+        if(count($grahaAspected1)){
+            $isAspected = $grahaAspected1;
+        }else{
+            $isAspected = false;
+        }
+        
+        $grahaConjuncted = array_intersect_key($this->isConjuncted(), $grahas);
+        if(count($grahaConjuncted)){
+            $isConjuncted = $grahaConjuncted;
+        }else{
+            $isConjuncted = false;
+        }
+        
+        $grahaHemmed = array_intersect_key($this->isHemmed(), $grahas);
+        if(array_search('prev', $grahaHemmed) and array_search('next', $grahaHemmed)){
+            $isHemmed = $grahaHemmed;
+        }else{
+            $isHemmed = false;
+        }
+
+        if($isHemmed or $isAspected or $isConjuncted){
+            return [
+                'aspect' => $isAspected,
+                'conjunct' => $isConjuncted,
+                'hem' => $isHemmed,
+            ];
+        }else{
+            return false;
+        }
+    }
 }
