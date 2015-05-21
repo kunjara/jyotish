@@ -266,8 +266,6 @@ class Panchanga {
      */
     public function getVara($withLimit = false)
     {
-        $this->ganitaData['rising'] = $this->ganitaObject->getRisings();
-        
         $dateUser = new DateTime($this->ganitaData['user']['date'].' '.$this->ganitaData['user']['time']);
         $dateUserU = $dateUser->format('U');
         $varaNumber = $dateUser->format('w');
@@ -350,6 +348,7 @@ class Panchanga {
         if(!is_null($userData)) $this->ganitaObject->setData($userData);
 
         $this->ganitaData['user'] = $this->ganitaObject->getData();
+        $this->ganitaData['rising'] = $this->ganitaObject->getRisings();
         $this->ganitaData = array_merge($this->ganitaData, $this->ganitaObject->getParams());
     }
 
