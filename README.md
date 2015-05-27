@@ -6,7 +6,7 @@
 
 ### System Requirements
 
-Jyotish library requires PHP 5.5 or later.
+Jyotish library requires PHP 5.5.19 or later.
 
 ### License
 
