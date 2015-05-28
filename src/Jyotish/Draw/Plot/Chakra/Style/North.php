@@ -32,20 +32,8 @@ final class North extends AbstractChakra {
         11 => [3, 1,   4, 0,   4, 2],
         12 => [3, 1,   2, 0,   4, 0,]
     );
-
-    public function getBhavaPoints($size, $leftOffset = 0, $topOffset = 0) {
-        foreach ($this->bhavaPoints as $bhavaKey => $bhavaPoints) {
-            foreach ($bhavaPoints as $point => $value) {
-                if ($value != 0) {
-                    $myPoints[$bhavaKey][] = $point % 2 ? $value * round($size / 4) + $topOffset : $value * round($size / 4) + $leftOffset;
-                } else {
-                    $myPoints[$bhavaKey][] = $point % 2 ? $topOffset : $leftOffset;
-                }
-            }
-        }
-
-        return $myPoints;
-    }
+    
+    protected $divider = 4;
 
     public function getRashiLabelPoints(Data $Data, array $options) {
         $ratio = round($options['chakraSize'] / 4);
