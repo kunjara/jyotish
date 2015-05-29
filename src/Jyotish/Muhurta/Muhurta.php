@@ -118,7 +118,8 @@ class Muhurta {
         
         $this->timeStamps[] = $angaData;
         
-        $this->dateTimeObject->modify($nextTime)->modify('+ 4 minutes');
+        // Eliminate the error of end calculation
+        $this->dateTimeObject->modify($nextTime)->modify('+ 8 minutes');
         
         if($nextTime < $this->dateTimeObjectEnd->format(Time::FORMAT_DATETIME)){
             $this->panchangaObject->setData([
