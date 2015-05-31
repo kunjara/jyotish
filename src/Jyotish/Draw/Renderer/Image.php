@@ -13,7 +13,7 @@ use Jyotish\Base\Utils;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class Image extends AbstractRenderer implements \Jyotish\Draw\Renderer\ImageInterface {
+class Image extends AbstractRender implements \Jyotish\Draw\Renderer\ImageInterface {
 
     public function __construct($width, $height) {
         $this->resource = imagecreatetruecolor($width, $height);
@@ -130,7 +130,7 @@ class Image extends AbstractRenderer implements \Jyotish\Draw\Renderer\ImageInte
         }
     }
 
-    public function setFontName($value) {
+    public function setOptionFontName($value) {
         if (empty($value)) {
             throw new Exception\InvalidArgumentException("Options 'fontName' is required and must be name of font.");
         }
@@ -140,7 +140,6 @@ class Image extends AbstractRenderer implements \Jyotish\Draw\Renderer\ImageInte
         }
 
         $this->options['fontName'] = $value;
-        return $this;
     }
 
     public function allocateColor($image, $r, $g, $b, $alpha = 100) {

@@ -42,7 +42,7 @@ class Draw {
     public function __construct($width, $height, $adapter = self::ADAPTER_IMAGE) {
         if (!in_array(strtolower($adapter), [self::ADAPTER_IMAGE, self::ADAPTER_SVG])) {
             throw new Exception\UnexpectedValueException(
-                    "Invalid renderer provided must be 'image' or 'svg'."
+                "Invalid renderer provided must be 'image' or 'svg'."
             );
         }
 

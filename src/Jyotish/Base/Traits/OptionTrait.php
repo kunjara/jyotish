@@ -29,8 +29,6 @@ Trait OptionTrait {
                     }else{
                         $this->options[$optionName] = $optionValue;
                     }
-                }else{
-                    throw new \Jyotish\Base\Exception\InvalidArgumentException("Option '$optionName' does not exist.");
                 }
             }
         }elseif(!is_null($options)){

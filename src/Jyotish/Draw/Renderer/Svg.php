@@ -16,7 +16,7 @@ use DOMText;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class Svg extends AbstractRenderer implements \Jyotish\Draw\Renderer\SvgInterface {
+class Svg extends AbstractRender implements \Jyotish\Draw\Renderer\SvgInterface {
     /**
      * Constructor
      * 
@@ -125,10 +125,6 @@ class Svg extends AbstractRenderer implements \Jyotish\Draw\Renderer\SvgInterfac
             $element->appendChild(new DOMText((string) $textContent));
         }
         return $element;
-    }
-
-    public function setFontName($value) {
-        return;
     }
 
     public function render() {

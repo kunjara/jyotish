@@ -16,6 +16,9 @@ use Jyotish\Base\Data;
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 abstract class AbstractRender {
+    
+    use \Jyotish\Base\Traits\OptionTrait;
+    
     /**
      * Adapter object.
      * 
@@ -61,26 +64,6 @@ abstract class AbstractRender {
      */
     public function __construct($adapterObject) {
         $this->adapterObject = $adapterObject;
-    }
-    
-    /**
-     * Set options.
-     * 
-     * @param array $options Options to set
-     */
-    public function setOptions(array $options) {
-        if($options){
-            foreach ($options as $key => $value) {
-                if (is_array($value)) {
-                    continue;
-                } else {
-                    $method = 'set' . ucfirst($key);
-                    if (method_exists($this, $method)) {
-                        $this->$method($value);
-                    }
-                }
-            }
-        }
     }
     
     /**
@@ -144,7 +127,7 @@ abstract class AbstractRender {
         }
     }
 
-    public function setChakraSize($value) {
+    public function setOptionChakraSize($value) {
         if (!is_numeric($value) || intval($value) < 100) {
             throw new Exception\OutOfRangeException(
                     'Chakra size must be greater than 100.'
@@ -153,7 +136,7 @@ abstract class AbstractRender {
         $this->options['chakraSize'] = intval($value);
     }
 
-    public function setChakraStyle($value) {
+    public function setOptionChakraStyle($value) {
         if (!in_array($value, AbstractChakra::$styles)) {
             throw new Exception\UnexpectedValueException(
                     "Invalid chakra style provided must be 'north', 'south' or 'east'."
@@ -162,7 +145,7 @@ abstract class AbstractRender {
         $this->options['chakraStyle'] = strtolower($value);
     }
 
-    public function setOffsetBorder($value) {
+    public function setOptionOffsetBorder($value) {
         if (!is_numeric($value) || intval($value) < 0) {
             throw new Exception\OutOfRangeException(
                     'Border offset must be greater than or equals 0.'
@@ -171,7 +154,7 @@ abstract class AbstractRender {
         $this->options['offsetBorder'] = intval($value);
     }
 
-    public function setWidthOffsetLabel($value) {
+    public function setOptionWidthOffsetLabel($value) {
         if (!is_numeric($value) || intval($value) < 0) {
             throw new Exception\OutOfRangeException(
                     'Label offset must be greater than or equals 0.'
@@ -180,7 +163,7 @@ abstract class AbstractRender {
         $this->options['widthOffsetLabel'] = intval($value);
     }
     
-    public function setHeightOffsetLabel($value) {
+    public function setOptionHeightOffsetLabel($value) {
         if (!is_numeric($value) || intval($value) < 0) {
             throw new Exception\OutOfRangeException(
                     'Label offset must be greater than or equals 0.'
@@ -189,7 +172,7 @@ abstract class AbstractRender {
         $this->options['heightOffsetLabel'] = intval($value);
     }
 
-    public function setLabelGrahaType($value) {
+    public function setOptionLabelGrahaType($value) {
         if (!in_array($value, array(0, 1, 2))) {
             throw new Exception\UnexpectedValueException(
                     "Invalid label type provided must be 0, 1 or 2."
@@ -198,7 +181,7 @@ abstract class AbstractRender {
         $this->options['labelGrahaType'] = $value;
     }
 
-    public function setLabelGrahaCallback($value) {
+    public function setOptionLabelGrahaCallback($value) {
         if (!is_callable($value)) {
             throw new Exception\RuntimeException("Function $value not supported.");
         }

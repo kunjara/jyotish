@@ -15,7 +15,9 @@ use Jyotish\Base\Utils;
  * 
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-abstract class AbstractRenderer {
+abstract class AbstractRender {
+    
+    use \Jyotish\Base\Traits\OptionTrait;
 
     protected $resource = null;
     protected $data = null;
@@ -25,7 +27,7 @@ abstract class AbstractRenderer {
         'leftOffset' => 0,
         
         'fontSize' => 10,
-        'fontName' => null,
+        'fontName' => '',
         'fontColor' => '000',
         
         'strokeWidth' => 1,
@@ -33,22 +35,6 @@ abstract class AbstractRenderer {
         
         'fillColor' => 'fff',
     ];
-    
-    /**
-     * Set options.
-     * 
-     * @param array $options Options to set
-     */
-    public function setOptions($options) {
-        if($options){
-           foreach ($options as $key => $value) {
-                $method = 'set' . $key;
-                if (method_exists($this, $method)) {
-                    $this->$method($value);
-                }
-            } 
-        } 
-    }
 
     /**
      * Return graha label.
@@ -92,7 +78,7 @@ abstract class AbstractRenderer {
         return $grahaLabel;
     }
 
-    public function setTopOffset($value) {
+    public function setOptionTopOffset($value) {
         if (!is_numeric($value) || intval($value) < 0) {
             throw new Exception\OutOfRangeException(
                     'Vertical position must be greater than or equals 0.'
@@ -101,7 +87,7 @@ abstract class AbstractRenderer {
         $this->options['topOffset'] = intval($value);
     }
 
-    public function setLeftOffset($value) {
+    public function setOptionLeftOffset($value) {
         if (!is_numeric($value) || intval($value) < 0) {
             throw new Exception\OutOfRangeException(
                     'Horizontal position must be greater than or equals 0.'
@@ -110,7 +96,7 @@ abstract class AbstractRenderer {
         $this->options['leftOffset'] = intval($value);
     }
 
-    public function setFontSize($value) {
+    public function setOptionFontSize($value) {
         if (!is_numeric($value) || intval($value) < 8) {
             throw new Exception\OutOfRangeException(
                     'Font size must be greater than or equals 8.'
@@ -119,11 +105,11 @@ abstract class AbstractRenderer {
         $this->options['fontSize'] = intval($value);
     }
 
-    public function setFontColor($value) {
+    public function setOptionFontColor($value) {
         $this->options['fontColor'] = $value;
     }
 
-    public function setStrokeWidth($value) {
+    public function setOptionStrokeWidth($value) {
         if (!is_numeric($value) || floatval($value) < 0) {
             throw new Exception\OutOfRangeException(
                     'Stroke width must be greater than or equals 0.'
@@ -135,8 +121,6 @@ abstract class AbstractRenderer {
     abstract public function drawPolygon($points);
 
     abstract public function drawText($text, $x, $y, $options);
-
-    abstract public function setFontName($value);
 
     abstract public function render();
 }
