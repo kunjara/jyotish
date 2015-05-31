@@ -25,7 +25,11 @@ class Image extends AbstractRender implements \Jyotish\Draw\Renderer\ImageInterf
         );
     }
 
-    public function drawPolygon($points) {
+    public function drawPolygon($points, array $options = null) {
+        if(isset($options)){
+            $this->setOptions($options);
+        }
+        
         $colorRgb = Utils::htmlToRgb($this->options['strokeColor']);
         $color = $this->allocateColor($this->resource, $colorRgb['r'], $colorRgb['g'], $colorRgb['b']);
 
@@ -38,7 +42,11 @@ class Image extends AbstractRender implements \Jyotish\Draw\Renderer\ImageInterf
         );
     }
 
-    public function drawText($text, $x = 0, $y = 0, $options = array()) {
+    public function drawText($text, $x = 0, $y = 0, array $options = null) {
+        if(isset($options)){
+            $this->setOptions($options);
+        }
+        
         $colorRgb = Utils::htmlToRgb($this->options['fontColor']);
         $color = $this->allocateColor($this->resource, $colorRgb['r'], $colorRgb['g'], $colorRgb['b']);
 
@@ -46,9 +54,8 @@ class Image extends AbstractRender implements \Jyotish\Draw\Renderer\ImageInterf
             $this->options['fontName'] = 3;
         }
 
-        if(!isset($options['orientation'])) $options['orientation'] = 0;
         if (is_numeric($this->options['fontName'])) {
-            if ($options['orientation']) {
+            if ($this->options['textOrientation']) {
                 throw new Exception\RuntimeException(
                         'No orientation possible with GD internal font.'
                 );
@@ -56,7 +63,7 @@ class Image extends AbstractRender implements \Jyotish\Draw\Renderer\ImageInterf
             $fontWidth = imagefontwidth($this->options['fontName']);
             $fontHeight = imagefontheight($this->options['fontName']);
 
-            switch ($options['align']) {
+            switch ($this->options['textAlign']) {
                 case 'left':
                     $positionX = $x;
                     break;
@@ -68,7 +75,7 @@ class Image extends AbstractRender implements \Jyotish\Draw\Renderer\ImageInterf
                     break;
             }
 
-            switch ($options['valign']) {
+            switch ($this->options['textValign']) {
                 case 'top':
                     $positionY = $y;
                     break;
@@ -89,8 +96,7 @@ class Image extends AbstractRender implements \Jyotish\Draw\Renderer\ImageInterf
 
             $box = imagettfbbox($this->options['fontSize'], 0, $this->options['fontName'], $text);
 
-            if(!isset($options['align'])) $options['align'] = 'left';
-            switch ($options['align']) {
+            switch ($this->options['textAlign']) {
                 case 'center':
                     $width = ($box[2] - $box[0]) / 2;
                     break;
@@ -103,8 +109,7 @@ class Image extends AbstractRender implements \Jyotish\Draw\Renderer\ImageInterf
                     break;
             }
 
-            if(!isset($options['valign'])) $options['valign'] = 'bottom';
-            switch ($options['valign']) {
+            switch ($this->options['textValign']) {
                 case 'top':
                     $height = ($box[1] - $box[7]);
                     break;
@@ -120,9 +125,9 @@ class Image extends AbstractRender implements \Jyotish\Draw\Renderer\ImageInterf
             imagettftext(
                     $this->resource, 
                     $this->options['fontSize'], 
-                    $options['orientation'], 
-                    $x - ($width * cos(pi() * $options['orientation'] / 180)) + ($height * sin(pi() * $options['orientation'] / 180)), 
-                    $y + ($height * cos(pi() * $options['orientation'] / 180)) + ($width * sin(pi() * $options['orientation'] / 180)), 
+                    $this->options['textOrientation'], 
+                    $x - ($width * cos(pi() * $this->options['textOrientation'] / 180)) + ($height * sin(pi() * $this->options['textOrientation'] / 180)), 
+                    $y + ($height * cos(pi() * $this->options['textOrientation'] / 180)) + ($width * sin(pi() * $this->options['textOrientation'] / 180)), 
                     $color, 
                     $this->options['fontName'], 
                     $text

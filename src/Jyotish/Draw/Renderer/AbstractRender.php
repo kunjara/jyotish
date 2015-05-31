@@ -30,6 +30,10 @@ abstract class AbstractRender {
         'fontName' => '',
         'fontColor' => '000',
         
+        'textAlign' => 'left',
+        'textValign' => 'bottom',
+        'textOrientation' => 0,
+        
         'strokeWidth' => 1,
         'strokeColor' => '000',
         
@@ -118,9 +122,9 @@ abstract class AbstractRender {
         $this->options['strokeWidth'] = $value;
     }
 
-    abstract public function drawPolygon($points);
+    abstract public function drawPolygon($points, array $options = null);
 
-    abstract public function drawText($text, $x, $y, $options);
+    abstract public function drawText($text, $x, $y, array $options = null);
 
     abstract public function render();
 }

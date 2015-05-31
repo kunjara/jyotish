@@ -8,7 +8,6 @@ namespace Jyotish\Draw\Renderer;
 
 use Jyotish\Base\Utils;
 use DOMDocument;
-use DOMElement;
 use DOMText;
 
 /**
@@ -24,8 +23,11 @@ class Svg extends AbstractRender implements \Jyotish\Draw\Renderer\SvgInterface 
      * @param int $height Height of drawing
      */
     public function __construct($width, $height) {
+        $this->options['attributes'] = [];
+        
         $this->resource = new DOMDocument('1.0', 'utf-8');
         $this->resource->formatOutput = true;
+        
         $this->svg = $this->resource->createElement('svg');
         $this->svg->setAttribute('xmlns', "http://www.w3.org/2000/svg");
         $this->svg->setAttribute('version', '1.1');
@@ -43,7 +45,11 @@ class Svg extends AbstractRender implements \Jyotish\Draw\Renderer\SvgInterface 
         $this->appendRootElement('rect', array('width' => $width, 'height' => $height, 'fill' => 'white'));
     }
 
-    public function drawPolygon($points) {
+    public function drawPolygon($points, array $options = null) {
+        if(isset($options)){
+            $this->setOptions($options);
+        }
+        
         $colorSrokeRgb = Utils::htmlToRgb($this->options['strokeColor']);
         $colorStrokeString = 'rgb(' . implode(', ', $colorSrokeRgb) . ')';
 
@@ -57,11 +63,21 @@ class Svg extends AbstractRender implements \Jyotish\Draw\Renderer\SvgInterface 
         $attributes['stroke'] = $colorStrokeString;
         $attributes['stroke-width'] = $this->options['strokeWidth'];
         $attributes['stroke-linejoin'] = 'round';
+        
+        if(isset($this->options['attributes']) and is_array($this->options['attributes'])){
+            foreach($this->options['attributes'] as $name => $value){
+                $attributes[$name] = $value;
+            }
+        }
 
         $this->appendRootElement('polygon', $attributes);
     }
 
-    public function drawText($text, $x = 0, $y = 0, $options = array()) {
+    public function drawText($text, $x = 0, $y = 0, array $options = null) {
+        if(isset($options)){
+            $this->setOptions($options);
+        }
+        
         $colorRgb = Utils::htmlToRgb($this->options['fontColor']);
         $color = 'rgb(' . implode(', ', $colorRgb) . ')';
 
@@ -69,9 +85,8 @@ class Svg extends AbstractRender implements \Jyotish\Draw\Renderer\SvgInterface 
         $attributes['y'] = $y;
         $attributes['fill'] = $color;
         $attributes['font-size'] = $this->options['fontSize'] * 1.2;
-
-        if(!isset($options['align'])) $options['align'] = 'left';
-        switch ($options['align']) {
+        
+        switch ($this->options['textAlign']) {
             case 'center':
                 $textAnchor = 'middle';
                 break;
@@ -84,8 +99,7 @@ class Svg extends AbstractRender implements \Jyotish\Draw\Renderer\SvgInterface 
                 break;
         }
 
-        if(!isset($options['valign'])) $options['valign'] = 'bottom';
-        switch ($options['valign']) {
+        switch ($this->options['textValign']) {
             case 'top':
                 $attributes['y'] += $this->options['fontSize'];
                 break;
@@ -100,9 +114,8 @@ class Svg extends AbstractRender implements \Jyotish\Draw\Renderer\SvgInterface 
 
         $attributes['style'] = 'text-anchor: ' . $textAnchor;
 
-        if(!isset($options['orientation'])) $options['orientation'] = 0;
         $attributes['transform'] = 'rotate('
-                . (- $options['orientation'])
+                . (- $this->options['textOrientation'])
                 . ', '
                 . ($x)
                 . ', ' . ($y)

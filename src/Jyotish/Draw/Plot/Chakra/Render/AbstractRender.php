@@ -81,8 +81,13 @@ abstract class AbstractRender {
         $this->chakraObject = new $chakraStyle();
 
         $bhavaPoints = $this->chakraObject->getBhavaPoints($this->options['chakraSize'], $x, $y);
+        
+        $options['attributes'] = [
+            'class' => 'bhava',
+        ];
+        
         foreach ($bhavaPoints as $points) {
-            $this->adapterObject->drawPolygon($points);
+            $this->adapterObject->drawPolygon($points, $options);
         }
         
         $this->drawRashiLabel($x, $y, $options);
@@ -99,7 +104,7 @@ abstract class AbstractRender {
                 $rashi, 
                 $point['x'] + $x, 
                 $point['y'] + $y, 
-                ['align' => $point['align'], 'valign' => $point['valign']]
+                ['textAlign' => $point['textAlign'], 'textValign' => $point['textValign']]
             );
         }
     }
@@ -122,7 +127,7 @@ abstract class AbstractRender {
                 $grahaLabel, 
                 $point['x'] + $x,
                 $point['y'] + $y, 
-                ['align' => $point['align'], 'valign' => $point['valign']]
+                ['textAlign' => $point['textAlign'], 'textValign' => $point['textValign']]
             );
         }
     }
