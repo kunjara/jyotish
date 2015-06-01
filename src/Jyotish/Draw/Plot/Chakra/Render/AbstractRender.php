@@ -7,8 +7,9 @@
 namespace Jyotish\Draw\Plot\Chakra\Render;
 
 use Jyotish\Graha\Graha;
-use Jyotish\Draw\Plot\Chakra\Style\AbstractChakra;
 use Jyotish\Base\Data;
+use Jyotish\Base\Utils;
+use Jyotish\Draw\Plot\Chakra\Style\AbstractChakra;
 
 /**
  * Abstract class for rendering Chakra.
@@ -54,7 +55,11 @@ abstract class AbstractRender {
         'heightOffsetLabel' => 14,
         
         'labelGrahaType' => 0,
-        'labelGrahaCallback' => null,
+        'labelGrahaCallback' => '',
+        
+        'labelRashiFont' => [],
+        'labelGrahaFont' => [],
+        'labelExtraFont' => [],
     ];
 
     /**
@@ -75,28 +80,43 @@ abstract class AbstractRender {
      * @param null|array $options Options to set (optional)
      */
     public function drawChakra(Data $Data, $x, $y, array $options = null) {
+        if(isset($options)){
+            $this->setOptions($options);
+        }
+        
         $this->dataObject = $Data;
+        $data = $this->dataObject->getData();
         
         $chakraStyle = 'Jyotish\Draw\Plot\Chakra\Style\\' . ucfirst($this->options['chakraStyle']);
         $this->chakraObject = new $chakraStyle();
 
         $bhavaPoints = $this->chakraObject->getBhavaPoints($this->options['chakraSize'], $x, $y);
         
-        $options['attributes'] = [
-            'class' => 'bhava',
-        ];
-        
-        foreach ($bhavaPoints as $points) {
-            $this->adapterObject->drawPolygon($points, $options);
+        foreach ($bhavaPoints as $number => $points) {
+            if($this->options['chakraStyle'] == AbstractChakra::STYLE_NORTH){
+                $bhava = ' bhava'.$number;
+                $rashi = ' rashi'.$data['bhava'][$number]['rashi'];
+            }else{
+                $rashi = ' rashi'.$number;
+                $bhava = '';
+            }
+            
+            $this->options['attributes'] = [
+                'class' => 'bhava'.$bhava.$rashi,
+            ];
+            
+            $this->adapterObject->drawPolygon($points, $this->options);
         }
         
-        $this->drawRashiLabel($x, $y, $options);
+        $this->drawRashiLabel($x, $y, $this->options);
         
-        $this->drawBodyLabel($x, $y, $options);
+        $this->drawBodyLabel($x, $y, $this->options);
     }
     
     protected function drawRashiLabel($x, $y, $options){
-        if (isset($options['labelRashiFont'])) $this->adapterObject->setOptions($options['labelRashiFont']);
+        if(isset($options['labelRashiFont'])){
+            $this->adapterObject->setOptions($options['labelRashiFont']);
+        }
         
         $rashiLabelPoints = $this->chakraObject->getRashiLabelPoints($this->dataObject, $this->options);
         foreach ($rashiLabelPoints as $rashi => $point) {
@@ -110,26 +130,70 @@ abstract class AbstractRender {
     }
     
     protected function drawBodyLabel($x, $y, $options){
-        if (isset($options['labelGrahaFont'])) $this->adapterObject->setOptions($options['labelGrahaFont']);
+        if(isset($options['labelGrahaFont'])){
+            $this->adapterObject->setOptions($options['labelGrahaFont']);
+        }
         
         $bodyLabelPoints = $this->chakraObject->getBodyLabelPoints($this->dataObject, $this->options);
+        
         foreach ($bodyLabelPoints as $body => $point) {
             if(!array_key_exists($body, Graha::$graha) and isset($options['labelExtraFont'])){
                 $this->adapterObject->setOptions($options['labelExtraFont']);
             }
             
-            $grahaLabel = $this->adapterObject->getGrahaLabel($body, $this->dataObject, [
+            $bodyLabel = $this->getBodyLabel($body, [
                 'labelGrahaType' => $this->options['labelGrahaType'], 
                 'labelGrahaCallback' => $this->options['labelGrahaCallback']
             ]);
 
             $this->adapterObject->drawText(
-                $grahaLabel, 
+                $bodyLabel,
                 $point['x'] + $x,
-                $point['y'] + $y, 
+                $point['y'] + $y,
                 ['textAlign' => $point['textAlign'], 'textValign' => $point['textValign']]
             );
         }
+    }
+    
+    /**
+     * Return body label.
+     * 
+     * @param string $body
+     * @param array $options
+     * @return string
+     */
+    protected function getBodyLabel($body, array $options) {
+        switch ($options['labelGrahaType']) {
+            case 0:
+                $label = $body;
+                break;
+            case 1:
+                if (array_key_exists($body, Graha::$graha)) {
+                    $grahaObject = Graha::getInstance($body);
+                    $label = Utils::unicodeToHtml($grahaObject->grahaUnicode);
+                } else {
+                    $label = $body;
+                }
+                break;
+            case 2:
+                $label = call_user_func($options['labelGrahaCallback'], $body);
+                break;
+            default:
+                $label = $body;
+                break;
+        }
+        
+        $data = $this->dataObject->getData();
+
+        if(array_key_exists($graha, Graha::grahaList(Graha::LIST_SAPTA))){
+            $vakraCheshta = $data['graha'][$graha]['speed'] < 0 ? true : false;
+        }else{
+            $vakraCheshta = false;
+        }
+        
+        $grahaLabel = $vakraCheshta ? '(' . $label . ')' : $label;
+        
+        return $grahaLabel;
     }
 
     public function setOptionChakraSize($value) {

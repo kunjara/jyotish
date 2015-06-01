@@ -81,11 +81,10 @@ class Draw {
      * @param null|array $options Options to set (optional)
      */
     public function drawChakra(Data $Data, $x, $y, array $options = null) {
+        $this->setOptions($options);
+        
         $chakraAdapterClass = 'Jyotish\Draw\Plot\Chakra\Render\\' . $this->adapterName;
         $chakraAdapterObject = new $chakraAdapterClass($this->adapterObject);
-
-        $this->setOptions($options);
-        $chakraAdapterObject->setOptions($options);
         $chakraAdapterObject->drawChakra($Data, $x, $y, $options);
     }
 

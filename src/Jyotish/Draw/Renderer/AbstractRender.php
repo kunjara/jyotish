@@ -6,10 +6,6 @@
 
 namespace Jyotish\Draw\Renderer;
 
-use Jyotish\Graha\Graha;
-use Jyotish\Base\Data;
-use Jyotish\Base\Utils;
-
 /**
  * Abstract class for rendering.
  * 
@@ -19,8 +15,12 @@ abstract class AbstractRender {
     
     use \Jyotish\Base\Traits\OptionTrait;
 
+    /**
+     * Drawing resource.
+     * 
+     * @var img|svg 
+     */
     protected $resource = null;
-    protected $data = null;
 
     protected $options = [
         'topOffset' => 0,
@@ -39,48 +39,6 @@ abstract class AbstractRender {
         
         'fillColor' => 'fff',
     ];
-
-    /**
-     * Return graha label.
-     * 
-     * @param string $graha
-     * @param Data $Data
-     * @param array $options
-     * @return string
-     */
-    public function getGrahaLabel($graha, Data $Data, array $options) {
-        switch ($options['labelGrahaType']) {
-            case 0:
-                $label = $graha;
-                break;
-            case 1:
-                if (array_key_exists($graha, Graha::$graha)) {
-                    $grahaObject = Graha::getInstance($graha);
-                    $label = Utils::unicodeToHtml($grahaObject->grahaUnicode);
-                } else {
-                    $label = $graha;
-                }
-                break;
-            case 2:
-                $label = call_user_func($options['labelGrahaCallback'], $graha);
-                break;
-            default:
-                $label = $graha;
-                break;
-        }
-        
-        $data = $Data->getData();
-
-        if(array_key_exists($graha, Graha::grahaList(Graha::LIST_SAPTA))){
-            $vakraCheshta = $data['graha'][$graha]['speed'] < 0 ? true : false;
-        }else{
-            $vakraCheshta = false;
-        }
-        
-        $grahaLabel = $vakraCheshta ? '(' . $label . ')' : $label;
-        
-        return $grahaLabel;
-    }
 
     public function setOptionTopOffset($value) {
         if (!is_numeric($value) || intval($value) < 0) {
