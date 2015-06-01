@@ -7,9 +7,10 @@
 namespace Jyotish\Draw\Plot\Chakra\Render;
 
 use Jyotish\Graha\Graha;
+use Jyotish\Rashi\Rashi;
 use Jyotish\Base\Data;
 use Jyotish\Base\Utils;
-use Jyotish\Draw\Plot\Chakra\Style\AbstractChakra;
+use Jyotish\Draw\Plot\Chakra\Style\AbstractChakra as Chakra;
 
 /**
  * Abstract class for rendering Chakra.
@@ -48,7 +49,7 @@ abstract class AbstractRender {
      */
     protected $options = [
         'chakraSize' => 200,
-        'chakraStyle' => AbstractChakra::STYLE_NORTH,
+        'chakraStyle' => Chakra::STYLE_NORTH,
         
         'offsetBorder' => 4,
         'widthOffsetLabel' => 20,
@@ -93,12 +94,14 @@ abstract class AbstractRender {
         $bhavaPoints = $this->chakraObject->getBhavaPoints($this->options['chakraSize'], $x, $y);
         
         foreach ($bhavaPoints as $number => $points) {
-            if($this->options['chakraStyle'] == AbstractChakra::STYLE_NORTH){
+            if($this->options['chakraStyle'] == Chakra::STYLE_NORTH){
                 $bhava = ' bhava'.$number;
                 $rashi = ' rashi'.$data['bhava'][$number]['rashi'];
             }else{
                 $rashi = ' rashi'.$number;
-                $bhava = '';
+                $Rashi = Rashi::getInstance($number);
+                $Rashi->setEnvironment($data);
+                $bhava = ' bhava'.$Rashi->getBhava();
             }
             
             $this->options['attributes'] = [
@@ -206,7 +209,7 @@ abstract class AbstractRender {
     }
 
     public function setOptionChakraStyle($value) {
-        if (!in_array($value, AbstractChakra::$styles)) {
+        if (!in_array($value, Chakra::$styles)) {
             throw new Exception\UnexpectedValueException(
                     "Invalid chakra style provided must be 'north', 'south' or 'east'."
             );

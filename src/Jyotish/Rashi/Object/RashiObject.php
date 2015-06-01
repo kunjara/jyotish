@@ -18,7 +18,7 @@ use Jyotish\Ganita\Math;
  */
 class RashiObject extends \Jyotish\Base\Object {
     
-    use \Jyotish\Base\Traits\EnvironmentTrait;
+    use RashiEnvironment;
     
     /**
      * Options of rashi object.
