@@ -22,12 +22,10 @@ trait RashiEnvironment {
      */
     public function getBhava()
     {
-        $this->checkEnvironment();
-        
         $bhava = 0;
         do{
             $bhava++;
-            $rashi = $this->ganitaData['bhava'][$bhava]['rashi'];
+            $rashi = $this->getEnvironment()['bhava'][$bhava]['rashi'];
         }
         while($rashi <> $this->objectKey);
         

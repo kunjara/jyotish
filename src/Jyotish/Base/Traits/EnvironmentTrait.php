@@ -40,16 +40,19 @@ trait EnvironmentTrait {
         
         return $this;
     }
-
+    
     /**
-     * Check the environment.
+     * Get the environment.
      * 
-     * @throws Exception\UnderflowException
+     * @return array
+     * @throws UnderflowException
      */
-    protected function checkEnvironment()
+    public function getEnvironment()
     {
         if(empty($this->ganitaData)){
-            throw new Exception\UnderflowException("Environment for object '{$this->objectType} {$this->objectKey}' must be setted.");
+            throw new \Jyotish\Base\Exception\UnderflowException("Environment for object '{$this->objectType} {$this->objectKey}' must be setted.");
+        }else{
+            return $this->ganitaData;
         }
     }
     
@@ -61,14 +64,12 @@ trait EnvironmentTrait {
      */
     public function isAspectedByGraha($options = null)
     {
-        $this->checkEnvironment();
-        
         foreach (Graha::$graha as $key => $name){
             $Graha = Graha::getInstance($key, $options);
             $grahaDrishti = $Graha->grahaDrishti;
 
             $distanse = Math::distanceInCycle(
-                $this->ganitaData['graha'][$key]['rashi'], 
+                $this->getEnvironment()['graha'][$key]['rashi'], 
                 $this->objectRashi
             );
             
@@ -88,8 +89,6 @@ trait EnvironmentTrait {
      */
     public function isAspectedByRashi()
     {
-        $this->checkEnvironment();
-        
         foreach (Rashi::$rashi as $key => $name){
             if($key == $this->objectKey) continue;
             
@@ -103,7 +102,7 @@ trait EnvironmentTrait {
         
         $isAspected['graha'] = [];
         foreach (Graha::$graha as $key => $name){
-            $grahaRashi = $this->ganitaData['graha'][$key]['rashi'];
+            $grahaRashi = $this->getEnvironment()['graha'][$key]['rashi'];
             if(array_key_exists($grahaRashi, $isAspected['rashi'])){
                 $isAspected['graha'][$key] = 1;
             }
@@ -118,14 +117,12 @@ trait EnvironmentTrait {
      */
     public function isConjuncted()
     {
-        $this->checkEnvironment();
-
         $isConjuncted = array();
 
         foreach (Graha::$graha as $key => $name){
             if($key == $this->objectKey) continue;
 
-            if($this->ganitaData['graha'][$key]['rashi'] == $this->objectRashi){
+            if($this->getEnvironment()['graha'][$key]['rashi'] == $this->objectRashi){
                 $isConjuncted[$key] = $name;
             }
         }
@@ -139,8 +136,6 @@ trait EnvironmentTrait {
      */
     public function isHemmed()
     {
-        $this->checkEnvironment();
-
         $isHemmed = array();
         $p = 'prev';
         $n = 'next';
@@ -151,9 +146,9 @@ trait EnvironmentTrait {
         foreach (Graha::$graha as $key => $name){
             if($key == $this->objectKey) continue;
 
-            if($this->ganitaData['graha'][$key]['rashi'] == ${$n})
+            if($this->getEnvironment()['graha'][$key]['rashi'] == ${$n})
                 $isHemmed[$key] = $n;
-            elseif($this->ganitaData['graha'][$key]['rashi'] == ${$p})
+            elseif($this->getEnvironment()['graha'][$key]['rashi'] == ${$p})
                 $isHemmed[$key] = $p;
         }
 

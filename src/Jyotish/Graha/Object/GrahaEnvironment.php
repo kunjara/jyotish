@@ -31,13 +31,11 @@ trait GrahaEnvironment {
      */
     public function getBhava($which = null)
     {
-        $this->checkEnvironment();
-
         $getBhava = function($rashi){
             $bhava = 0;
             do{
                 $bhava++;
-                $bhavaRashi = $this->ganitaData['bhava'][$bhava]['rashi'];
+                $bhavaRashi = $this->getEnvironment()['bhava'][$bhava]['rashi'];
             }
             while($rashi <> $bhavaRashi);
             return $bhava;
@@ -56,7 +54,7 @@ trait GrahaEnvironment {
                 break;
             case null:
             default:
-                $grahaRashi = $this->ganitaData['graha'][$this->objectKey]['rashi'];
+                $grahaRashi = $this->getEnvironment()['graha'][$this->objectKey]['rashi'];
                 $bhava = $getBhava($grahaRashi);
         }
 
@@ -70,9 +68,7 @@ trait GrahaEnvironment {
      */
     public function getDispositor()
     {
-        $this->checkEnvironment();
-        
-        $rashi = $this->ganitaData['graha'][$this->objectKey]['rashi'];
+        $rashi = $this->getEnvironment()['graha'][$this->objectKey]['rashi'];
         $Rashi = Rashi::getInstance($rashi);
         
         return $Rashi->rashiRuler;
@@ -85,10 +81,8 @@ trait GrahaEnvironment {
      */
     public function getRashiAvastha()
     {
-        $this->checkEnvironment();
-        
-        $rashi = $this->ganitaData['graha'][$this->objectKey]['rashi'];
-        $degree = $this->ganitaData['graha'][$this->objectKey]['degree'];
+        $rashi = $this->getEnvironment()['graha'][$this->objectKey]['rashi'];
+        $degree = $this->getEnvironment()['graha'][$this->objectKey]['degree'];
         
         if($rashi == $this->grahaUcha['rashi']){
             if($this->objectKey == Graha::KEY_CH or $this->objectKey == Graha::KEY_BU){
@@ -145,10 +139,8 @@ trait GrahaEnvironment {
      */
     public function getAvasthaBaladi()
     {
-        $this->checkEnvironment();
-        
-        $grahaBhaga = $this->ganitaData['graha'][$this->objectKey]['degree'];
-        $grahaRashi = $this->ganitaData['graha'][$this->objectKey]['rashi'];
+        $grahaBhaga = $this->getEnvironment()['graha'][$this->objectKey]['degree'];
+        $grahaRashi = $this->getEnvironment()['graha'][$this->objectKey]['rashi'];
         
         $avasthaBhaga = $grahaRashi % 2 ? $grahaBhaga : 30 - $grahaBhaga;
         
@@ -302,9 +294,7 @@ trait GrahaEnvironment {
      */
     public function getLongitudeSpeed()
     {
-        $this->checkEnvironment();
-        
-        return $this->ganitaData['graha'][$this->objectKey]['speed'];
+        return $this->getEnvironment()['graha'][$this->objectKey]['speed'];
     }
     
     /**
@@ -315,12 +305,10 @@ trait GrahaEnvironment {
      */
     public function getTempRelation()
     {
-        $this->checkEnvironment();
-        
         $relation = array();
         $friendsRashi = [2, 3, 4, 10, 11, 12];
         
-        foreach($this->ganitaData['graha'] as $key => $data){
+        foreach($this->getEnvironment()['graha'] as $key => $data){
             if($this->objectKey == $key) continue;
             
             $distance = Math::distanceInCycle($this->objectRashi, $data['rashi']);
@@ -352,9 +340,7 @@ trait GrahaEnvironment {
      */
     public function isVargottama()
     {
-        $this->checkEnvironment();
-        
-        $d1Data = $this->ganitaData;
+        $d1Data = $this->getEnvironment();
         
         $Varga9 = Varga::getInstance('D9');
         $d9Data = $Varga9->getVargaData($d1Data);
@@ -373,8 +359,6 @@ trait GrahaEnvironment {
      */
     public function isYogakaraka()
     {
-        $this->checkEnvironment();
-        
         $yogaKarakas = [
             Graha::KEY_MA => [4, 5],
             Graha::KEY_SK => [10, 11],
@@ -382,7 +366,7 @@ trait GrahaEnvironment {
         ];
         
         if(array_key_exists($this->objectKey, $yogaKarakas)){
-            $lagna = $this->ganitaData['extra'][Graha::KEY_LG]['rashi'];
+            $lagna = $this->getEnvironment()['extra'][Graha::KEY_LG]['rashi'];
             $isYogakaraka = in_array($lagna, $yogaKarakas[$this->objectKey]) ? true : false;
             
             return $isYogakaraka;
@@ -398,14 +382,12 @@ trait GrahaEnvironment {
      */
     public function isAstangata()
     {
-        $this->checkEnvironment();
-        
         if(in_array($this->objectKey, [
             Graha::KEY_SY, Graha::KEY_RA, Graha::KEY_KE
         ])) return null;
         
-        $degreeSy = $this->ganitaData['graha'][Graha::KEY_SY]['longitude'];
-        $degreeGr = $this->ganitaData['graha'][$this->objectKey]['longitude'];
+        $degreeSy = $this->getEnvironment()['graha'][Graha::KEY_SY]['longitude'];
+        $degreeGr = $this->getEnvironment()['graha'][$this->objectKey]['longitude'];
         
         $distanceGraha = abs($degreeSy - $degreeGr);
         
@@ -446,12 +428,10 @@ trait GrahaEnvironment {
      */
     public function isMrityu()
     {
-        $this->checkEnvironment();
-        
-        $rashiGraha = $this->ganitaData['graha'][$this->objectKey]['rashi'];
+        $rashiGraha = $this->getEnvironment()['graha'][$this->objectKey]['rashi'];
         $degMrityu = Graha::listBhagaMrityu($this->options['bhagaMrityu'])[$this->objectKey][$rashiGraha];
         $lonMrityu = ($rashiGraha - 1) * 30 + $degMrityu;
-        $lonGraha = $this->ganitaData['graha'][$this->objectKey]['longitude'];
+        $lonGraha = $this->getEnvironment()['graha'][$this->objectKey]['longitude'];
         
         $distanceGraha = abs($lonMrityu - $lonGraha);
         
@@ -471,10 +451,8 @@ trait GrahaEnvironment {
      */
     public function isPushkara($type = Graha::PUSHKARA_NAVAMSHA)
     {
-        $this->checkEnvironment();
-        
-        $rashiGraha = $this->ganitaData['graha'][$this->objectKey]['rashi'];
-        $degGraha = $this->ganitaData['graha'][$this->objectKey]['degree'];
+        $rashiGraha = $this->getEnvironment()['graha'][$this->objectKey]['rashi'];
+        $degGraha = $this->getEnvironment()['graha'][$this->objectKey]['degree'];
         $valNavamsha = Math::dmsToDecimal(['d' => 3, 'm' => 20]);
         
         switch ($type){
@@ -521,20 +499,18 @@ trait GrahaEnvironment {
      */
     public function isYuddha()
     {
-        $this->checkEnvironment();
-        
         if(in_array($this->objectKey, [
             Graha::KEY_SY, Graha::KEY_CH, Graha::KEY_RA, Graha::KEY_KE
         ])) return null;
         
-        $lonGraha = $this->ganitaData['graha'][$this->objectKey]['longitude'];
+        $lonGraha = $this->getEnvironment()['graha'][$this->objectKey]['longitude'];
         $grahas = Graha::grahaList(Graha::LIST_PANCHA);
         $isYuddha = false;
         
         foreach ($grahas as $key => $name){
             if($key == $this->objectKey) continue;
             
-            $distance = abs($lonGraha - $this->ganitaData['graha'][$key]['longitude']);
+            $distance = abs($lonGraha - $this->getEnvironment()['graha'][$key]['longitude']);
             if($distance <= 1){
                 $isYuddha[$key] = $distance;
             }
@@ -550,8 +526,6 @@ trait GrahaEnvironment {
      */
     public function isGocharastha()
     {
-        $this->checkEnvironment();
-        
         $rashiAvastha = $this->getRashiAvastha();
         
         $avasthaGochara = [Rashi::GRAHA_UCHA, Rashi::GRAHA_MOOL, Rashi::GRAHA_SWA];
@@ -587,7 +561,7 @@ trait GrahaEnvironment {
         $benefic = 0;
         $malefic = 0;
         
-        foreach($this->ganitaData['graha'] as $key => $params){
+        foreach($this->getEnvironment()['graha'] as $key => $params){
             if($key == $this->objectKey) continue;
 
             if($params['rashi'] == $this->objectRashi){

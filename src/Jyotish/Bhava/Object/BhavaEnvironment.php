@@ -26,9 +26,7 @@ trait BhavaEnvironment {
      */
     public function getRuler()
     {
-        $this->checkEnvironment();
-
-        $rashi = $this->ganitaData['bhava'][$this->objectKey]['rashi'];
+        $rashi = $this->getEnvironment()['bhava'][$this->objectKey]['rashi'];
         $Rashi = Rashi::getInstance((int)$rashi);
         $ruler = $Rashi->rashiRuler;
 
@@ -43,8 +41,6 @@ trait BhavaEnvironment {
     */
    public function getTatkalikaMitra($withoutChaya = true)
    {
-       $this->checkEnvironment();
-
        $mitraBhava = [-4, -3, -2, 1, 2, 3];
        foreach ($mitraBhava as $distance){
            $rashi = Math::numberInCycle($this->objectRashi, $distance);
@@ -55,7 +51,7 @@ trait BhavaEnvironment {
        $grahas = Graha::grahaList($listOption);
        
        foreach ($grahas as $key => $name){
-           $rashi = $this->ganitaData['graha'][$key]['rashi'];
+           $rashi = $this->getEnvironment()['graha'][$key]['rashi'];
            if(array_key_exists($rashi, $mitraRashi)){
                $mitraGraha[$key] = $mitraRashi[$rashi];
            }
