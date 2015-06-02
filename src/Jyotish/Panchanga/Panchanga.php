@@ -74,6 +74,8 @@ class Panchanga {
      * @var array
      */
     private $tithi = null;
+    
+    private $date = null;
 
     /**
      * Constructor
@@ -348,7 +350,12 @@ class Panchanga {
         if(!is_null($userData)) $this->ganitaObject->setData($userData);
 
         $this->ganitaData['user'] = $this->ganitaObject->getData();
-        $this->ganitaData['rising'] = $this->ganitaObject->getRisings();
+        
+        if($this->date < $this->ganitaData['user']['date']){
+            $this->ganitaData['rising'] = $this->ganitaObject->getRisings();
+        }
+        $this->date = $this->ganitaData['user']['date'];
+        
         $this->ganitaData = array_merge($this->ganitaData, $this->ganitaObject->getParams());
     }
 
