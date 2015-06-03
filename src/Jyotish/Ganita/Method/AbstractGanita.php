@@ -17,6 +17,9 @@ use DateTime;
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 abstract class AbstractGanita {
+    
+    use \Jyotish\Base\Traits\OptionTrait;
+    
     /**
      * Birth data.
      * 
@@ -30,20 +33,16 @@ abstract class AbstractGanita {
         'longitude' => 0,
         'latitude'  => 0,
     );
-
+    
     /**
-     * Ayanamsha option.
+     * Options of ganita object.
      * 
-     * @var string
+     * @var array
      */
-    protected $ayanamsha = Ayanamsha::AYANAMSHA_LAHIRI;
-
-    /**
-     * Rising option.
-     * 
-     * @var string
-     */
-    protected $rising = Graha::RISING_HINDU;
+    protected $options = array(
+        'ayanamsha' => Ayanamsha::AYANAMSHA_LAHIRI,
+        'rising' => Graha::RISING_HINDU,
+    );
 
     /**
      * Date format.
@@ -60,33 +59,13 @@ abstract class AbstractGanita {
     protected $formatTime = Time::FORMAT_DATA_TIME;
 
     /**
-     * Set options.
-     * 
-     * @param array $options
-     * @throws Exception\InvalidArgumentException
-     * @return Swetest
-     */
-    public function setOptions(array $options = array()) {
-        foreach ($options as $key => $value) {
-            $method = 'set' . $key;
-
-            if (method_exists($this, $method)) {
-                $this->$method($value);
-            } else {
-                $this->$key = $value;
-            }
-        }
-        return $this;
-    }
-
-    /**
      * Set ayanamsha for calculation.
      * 
      * @param string $ayanamsha
      * @throws Exception\InvalidArgumentException
      * @return Swetest
      */
-    public function setAyanamsha($ayanamsha)
+    public function setOptionAyanamsha($ayanamsha)
     {
         if(key_exists($ayanamsha, $this->inputAyanamsha)) {
             $this->ayanamsha = $ayanamsha;
@@ -103,7 +82,7 @@ abstract class AbstractGanita {
      * $throw Exception\InvalidArgumentException
      * @return Swetest
      */
-    public function setRising($rising)
+    public function setOptionRising($rising)
     {
         if(array_search($rising, Graha::$risingType)) {
             $this->rising = $rising;
