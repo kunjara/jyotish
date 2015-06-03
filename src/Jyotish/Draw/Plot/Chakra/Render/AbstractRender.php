@@ -188,8 +188,8 @@ abstract class AbstractRender {
         
         $data = $this->dataObject->getData();
 
-        if(array_key_exists($graha, Graha::grahaList(Graha::LIST_SAPTA))){
-            $vakraCheshta = $data['graha'][$graha]['speed'] < 0 ? true : false;
+        if(array_key_exists($body, Graha::grahaList(Graha::LIST_SAPTA))){
+            $vakraCheshta = $data['graha'][$body]['speed'] < 0 ? true : false;
         }else{
             $vakraCheshta = false;
         }
