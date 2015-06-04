@@ -137,6 +137,8 @@ class Swetest extends AbstractGanita{
         $dataParams = $this->formatParams($out);
 
         $this->data = array_merge($this->data, $dataParams);
+        
+        return $this;
     }
 
     /**
@@ -193,6 +195,8 @@ class Swetest extends AbstractGanita{
         }
 
         $this->data['rising'] = $dataRisings;
+        
+        return $this;
     }
 
     private function formatParams($input)

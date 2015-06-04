@@ -74,6 +74,7 @@ abstract class AbstractGanita {
         } else {
             throw new Exception\InvalidArgumentException("The ayanamsha '$ayanamsha' is not defined.");
         }
+        
         return $this;
     }
 
@@ -91,7 +92,7 @@ abstract class AbstractGanita {
         } else {
             throw new Exception\InvalidArgumentException("The rising '$rising' is not defined.");
         }
-
+        
         return $this;
     }
 
@@ -125,7 +126,9 @@ abstract class AbstractGanita {
             
         if (empty($this->data['user']['time'])){
             $this->data['user']['time'] = $datetime->format(Time::FORMAT_DATA_TIME);
-        }  
+        }
+        
+        return $this;
     }
 
     /**
