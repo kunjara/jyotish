@@ -21,18 +21,20 @@ abstract class AbstractGanita {
     use \Jyotish\Base\Traits\OptionTrait;
     
     /**
-     * Birth data.
+     * Data array.
      * 
      * @var array
      */
-    protected $data = array(
-        'date'      => null,
-        'time'      => null,
-        'timezone'  => null,
-        'offset'    => 0,
-        'longitude' => 0,
-        'latitude'  => 0,
-    );
+    protected $data = [
+        'user' => [
+            'date'      => null,
+            'time'      => null,
+            'timezone'  => null,
+            'offset'    => 0,
+            'longitude' => 0,
+            'latitude'  => 0,
+        ]
+    ];
     
     /**
      * Options of ganita object.
@@ -96,20 +98,20 @@ abstract class AbstractGanita {
     /**
      * Set user data.
      * 
-     * @param array $data
+     * @param array $userData
      * @throws Exception\UnexpectedValueException
      */
-    public function setData(array $data)
+    public function setData(array $userData)
     {
-        if(!is_array($data)) {
+        if(!is_array($userData)) {
             throw new Exception\UnexpectedValueException("Data must be an array.");
         }
 
-        foreach ($data as $dataName => $dataValue) {
+        foreach ($userData as $dataName => $dataValue) {
             $dataName = strtolower($dataName);
 
-            if (array_key_exists($dataName, $this->data)) {
-                if(!empty($dataValue)) $this->data[$dataName] = $dataValue;
+            if (array_key_exists($dataName, $this->data['user'])) {
+                if(!empty($dataValue)) $this->data['user'][$dataName] = $dataValue;
             } else {
                 throw new Exception\UnexpectedValueException("Unknown data: $dataName = $dataValue");
             }
@@ -117,18 +119,17 @@ abstract class AbstractGanita {
         
         $datetime = new DateTime();
         
-        if (empty($this->data['date'])){
-            $this->data['date'] = $datetime->format(Time::FORMAT_DATA_DATE);
+        if (empty($this->data['user']['date'])){
+            $this->data['user']['date'] = $datetime->format(Time::FORMAT_DATA_DATE);
         }
             
-        if (empty($this->data['time'])){
-            $this->data['time'] = $datetime->format(Time::FORMAT_DATA_TIME);
-        }
-            
+        if (empty($this->data['user']['time'])){
+            $this->data['user']['time'] = $datetime->format(Time::FORMAT_DATA_TIME);
+        }  
     }
 
     /**
-     * Get user data.
+     * Get data.
      * 
      * @return array
      */
@@ -138,21 +139,21 @@ abstract class AbstractGanita {
     }
 
     /**
-     * Get coordinates and other parameters of planets and houses.
+     * Calculation of coordinates and other parameters of planets and houses.
      * 
      * @abstract
      * @param array $options
      * @return array
      */
-    abstract public function getParams(array $options);
+    abstract public function calcParams(array $options = null);
 
     /**
-     * Get the time of sunrise and sunset of planet.
+     * Calculation of rising and setting time of planet.
      * 
      * @abstract
      * @param string $graha
      * @param array $options
      * @return array
      */
-    abstract public function getRisings($graha, array $options);
+    abstract public function calcRising($graha, array $options = null);
 }

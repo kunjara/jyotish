@@ -102,21 +102,21 @@ class Swetest extends AbstractGanita{
     }
 
     /**
-     * Get coordinates and other parameters of planets and houses.
+     * Calculation of coordinates and other parameters of planets and houses.
      * 
-     * @param array $options
+     * @param null|array $options Options to set (optional)
      * @return array
      */
-    public function getParams(array $options = array())
+    public function calcParams(array $options = null)
     {
         $this->setOptions($options);
 
-        $dateTimeObject = Time::createDateTimeUtc($this->data);
+        $dateTimeObject = Time::createDateTimeUtc($this->data['user']);
 
         $dir    = $this->swe['sweph'];
         $date   = $dateTimeObject->format(Time::FORMAT_DATA_DATE);
         $time   = $dateTimeObject->format(Time::FORMAT_DATA_TIME);
-        $house  = $this->data['longitude'].','.$this->data['latitude'].',a';
+        $house  = $this->data['user']['longitude'].','.$this->data['user']['latitude'].',a';
         $sid    = $this->inputAyanamsha[$this->options['ayanamsha']];
 
         $string =
@@ -134,29 +134,29 @@ class Swetest extends AbstractGanita{
         putenv("PATH={$this->swe['swetest']}");
         exec($string, $out);
 
-        $outFormat = $this->formatParams($out);
+        $dataParams = $this->formatParams($out);
 
-        return $outFormat;
+        $this->data = array_merge($this->data, $dataParams);
     }
 
     /**
-     * Get the time of sunrise and sunset of planet.
+     * Calculation of rising and setting time of planet.
      * 
      * @param string $graha
-     * @param array $options
+     * @param null|array $options Options to set (optional)
      * @return array
      */
-    public function getRisings($graha = Graha::KEY_SY, array $options = array())
+    public function calcRising($graha = Graha::KEY_SY, array $options = null)
     {
         $this->setOptions($options);
 
-        $dateTimeObject = new DateTime($this->data['date']);
+        $dateTimeObject = new DateTime($this->data['user']['date']);
         $dateTimeObject->sub(new DateInterval('P2D'));
 
         $dir    = $this->swe['sweph'];
         $date   = $dateTimeObject->format(Time::FORMAT_DATA_DATE);
         $planet = $this->inputPlanets[$graha];
-        $geopos	= $this->data['longitude'].','.$this->data['latitude'].',0';
+        $geopos	= $this->data['user']['longitude'].','.$this->data['user']['latitude'].',0';
         $rising = $this->options['rising'];
 
         $string =
@@ -179,20 +179,20 @@ class Swetest extends AbstractGanita{
             $settingString = str_replace(' ', '', $matches[5]).' '.str_replace(' ', '', $matches[6]);
 
             $risingObject = new DateTime($risingString, new DateTimeZone('UTC'));
-            $risingObject->setTimezone(new DateTimeZone($this->data['timezone']));
+            $risingObject->setTimezone(new DateTimeZone($this->data['user']['timezone']));
             $settingObject = new DateTime($settingString, new DateTimeZone('UTC'));
-            $settingObject->setTimezone(new DateTimeZone($this->data['timezone']));
+            $settingObject->setTimezone(new DateTimeZone($this->data['user']['timezone']));
 
             $dateRising = $risingObject->format(Time::FORMAT_DATETIME);
             $dateSetting = $settingObject->format(Time::FORMAT_DATETIME);
 
-            $bodyRising[$graha][$i] = array(
+            $dataRisings[$graha][$i] = array(
                 'rising'  => $dateRising,
                 'setting' => $dateSetting,
             );
         }
 
-        return $bodyRising;
+        $this->data['rising'] = $dataRisings;
     }
 
     private function formatParams($input)
@@ -229,6 +229,8 @@ class Swetest extends AbstractGanita{
             } else {
                 $bodyParameters['extra'][$this->outputExtra[$bodyName]] = array(
                     'longitude' => (float)$parameters[1],
+                    'ascension' => (float)$parameters[2],
+                    'declination' => (float)$parameters[3],
                     'rashi'     => $units['units'],
                     'degree'    => $units['parts'],
                 );
