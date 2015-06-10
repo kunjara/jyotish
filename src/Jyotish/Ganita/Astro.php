@@ -75,4 +75,25 @@ class Astro {
 
         return $tithi;
     }
+    
+    /**
+     * Get zodiac sign in Western astrology.
+     * 
+     * @param int $day
+     * @param int $month
+     * @return int
+     */
+    static public function getSign($day, $month)
+    {
+        $signs = [10, 11, 12, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+        
+        $signStart = [
+            1 => 21, 2 => 20, 3 => 21, 
+            4 => 21, 5 => 22, 6 => 22, 
+            7 => 23, 8 => 22, 9 => 24, 
+            10 => 24, 11 => 23, 12 => 23
+        ];
+        
+        return $day < $signStart[$month] ? $signs[$month-1] : $signs[$month];
+    }
 }
