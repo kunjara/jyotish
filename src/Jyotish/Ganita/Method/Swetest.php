@@ -107,7 +107,7 @@ class Swetest extends AbstractGanita{
      * 
      * @param array $params Array of blocks (optional)
      * @param null|array $options Options to set (optional)
-     * @return array
+     * @return Swetest
      */
     public function calcParams(array $params = null, array $options = null)
     {
@@ -161,7 +161,7 @@ class Swetest extends AbstractGanita{
      * 
      * @param string $graha
      * @param null|array $options Options to set (optional)
-     * @return array
+     * @return Swetest
      */
     public function calcRising($graha = Graha::KEY_SY, array $options = null)
     {

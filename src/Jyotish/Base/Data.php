@@ -194,6 +194,7 @@ class Data {
      * Calculation of extra lagnas.
      * 
      * @param null|array $lagnaKeys Array of lagna keys
+     * @return Data
      */
     public function calcExtraLagna(array $lagnaKeys = null)
     {
@@ -203,6 +204,7 @@ class Data {
         foreach ($generateLagna as $key => $data){
             $this->ganitaData[self::BLOCK_EXTRA][$key] = $data;
         }
+        return $this;
     }
     
     /**
@@ -210,6 +212,7 @@ class Data {
      * 
      * @param null|array $arudhaKeys Array of arudha keys
      * @param null|array $options Options to set (optional)
+     * @return Data
      */
     public function calcBhavaArudha(array $arudhaKeys = null, array $options = null)
     {
@@ -219,12 +222,14 @@ class Data {
         foreach ($generateArudha as $key => $data){
             $this->ganitaData[self::BLOCK_EXTRA][$key] = $data;
         }
+        return $this;
     }
     
     /**
      * Calculation of upagrahas.
      * 
      * @param null|array $upagrahaKeys Array of upagraha keys
+     * @return Data
      */
     public function calcUpagraha(array $upagrahaKeys = null)
     {
@@ -234,6 +239,7 @@ class Data {
         foreach ($generateUpagraha as $key => $data){
             $this->ganitaData[self::BLOCK_UPAGRAHA][$key] = $data;
         }
+        return $this;
     }
 
     /**
