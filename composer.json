@@ -1,10 +1,19 @@
 {
     "name": "kunjara/jyotish",
-    "description": "Library for calculations in Vedic astrology",
-    "keywords": ["jyotish", "vedic astrology", "ganita", "jataka"],
+    "description": "PHP library for calculations in Vedic astrology",
+    "keywords": [
+        "jyotish", "vedic astrology", "ganita", "jataka", "muhurta", "panchanga"
+    ],
     "minimum-stability": "dev",
     "type": "library",
     "license": "GPL-2.0+",
+    "authors": [
+        {
+            "name": "Kunjara Lila das",
+            "email": "vladya108@gmail.com",
+            "homepage": "http://web-art.su"
+        }
+    ],
     "require": {
         "php": ">=5.5.19"
     },
@@ -12,12 +21,5 @@
         "psr-4": {
             "Jyotish\\": "src/Jyotish"
         }
-    },
-    "authors": [
-        {
-            "name": "Kunjara Lila das",
-            "email": "vladya108@gmail.com",
-            "homepage": "http://web-art.su"
-        }
-    ]
+    }
 }
