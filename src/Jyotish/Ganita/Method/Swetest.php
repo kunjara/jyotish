@@ -167,7 +167,7 @@ class Swetest extends AbstractGanita{
     {
         $this->setOptions($options);
 
-        $dateTimeObject = new DateTime($this->data['user']['date']);
+        $dateTimeObject = Time::createDateTimeUtc($this->data['user']);
         $dateTimeObject->sub(new DateInterval('P2D'));
 
         $dir    = ' -edir'.$this->swe['sweph'];
