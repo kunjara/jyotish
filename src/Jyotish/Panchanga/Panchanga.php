@@ -273,29 +273,30 @@ class Panchanga {
         $dateUser = new DateTime($this->getData()['user']['date'].' '.$this->getData()['user']['time']);
         $dateUserU = $dateUser->format('U');
         $varaNumber = $dateUser->format('w');
+        $dataRising = $this->getData()['rising'][Graha::KEY_SY];
         
-        for($i = 1; $i <= 4; $i++){
-            $dateRising[$i] = new DateTime($this->getData()['rising'][Graha::KEY_SY][$i]['rising']);
+        foreach ($dataRising as $i => $data){
+            $dateRising[$i] = new DateTime($data['rising']);
             $dateRisingU[$i] = $dateRising[$i]->format('U');
         }
         
-        if($dateUser >= $dateRising[2]){
-            $index = 1;
-        }else{
-            $index = 0;
+        if($dateUser < $dateRising[1]){
             $varaNumber = $varaNumber != 0 ? $varaNumber - 1 : 6;
+            $risingIndex = 1;
+        }else{
+            $risingIndex = 2;
         }
         
-        $duration = $dateRisingU[2 + $index] - $dateRisingU[1 + $index];
+        $duration = $dateRisingU[2] - $dateRisingU[1];
 
         $vara['anga'] = self::ANGA_VARA;
-        $vara['left'] = ($dateRisingU[2 + $index] - $dateUserU) * 100 / $duration;
+        $vara['left'] = ($dateRisingU[$risingIndex] - $dateUserU) * 100 / $duration;
         $vara['key'] = array_keys(Vara::$vara)[$varaNumber];
         $vara['name'] = array_values(Vara::$vara)[$varaNumber];
         
         if($withLimit){
-            $vara['start'] = $this->getData()['rising'][Graha::KEY_SY][1 + $index]['rising'];
-            $vara['end'] = $this->getData()['rising'][Graha::KEY_SY][2 + $index]['rising'];
+            $vara['start'] = $this->getData()['rising'][Graha::KEY_SY][$risingIndex - 1]['rising'];
+            $vara['end'] = $this->getData()['rising'][Graha::KEY_SY][$risingIndex]['rising'];
         }
         
         return $vara;

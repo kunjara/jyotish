@@ -282,15 +282,22 @@ class Swetest extends AbstractGanita{
             $settingObject = new DateTime($settingString, new DateTimeZone('UTC'));
             $settingObject->setTimezone(new DateTimeZone($this->data['user']['timezone']));
 
-            $dateRising = $risingObject->format(Time::FORMAT_DATETIME);
-            $dateSetting = $settingObject->format(Time::FORMAT_DATETIME);
+            $rising = $risingObject->format(Time::FORMAT_DATETIME);
+            $setting = $settingObject->format(Time::FORMAT_DATETIME);
 
             $dataRising[$graha][$i] = array(
-                'rising'  => $dateRising,
-                'setting' => $dateSetting,
+                'rising'  => $rising,
+                'setting' => $setting,
             );
         }
-        
-        return $dataRising;
+        $risingObject3 = new DateTime($dataRising[$graha][3]['rising']);
+        if($this->data['user']['date'] == $risingObject3->format(Time::FORMAT_DATA_DATE)){
+            array_shift($dataRising[$graha]);
+        }else{
+            array_pop($dataRising[$graha]);
+        }
+
+        $risings[$graha] = array_values($dataRising[$graha]);
+        return $risings;
     }
 }

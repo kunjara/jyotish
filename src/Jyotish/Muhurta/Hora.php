@@ -59,10 +59,10 @@ class Hora {
      */
     public function getHoraYama()
     {
-        $risingToday = new DateTime($this->ganitaData['rising'][Graha::KEY_SY][2]['rising'], $this->userTimeZone);
-        $risingTomorrow = new DateTime($this->ganitaData['rising'][Graha::KEY_SY][3]['rising'], $this->userTimeZone);
-        $settingYesterday = new DateTime($this->ganitaData['rising'][Graha::KEY_SY][1]['setting'], $this->userTimeZone);
-        $settingToday = new DateTime($this->ganitaData['rising'][Graha::KEY_SY][2]['setting'], $this->userTimeZone);
+        $risingToday = new DateTime($this->ganitaData['rising'][Graha::KEY_SY][1]['rising'], $this->userTimeZone);
+        $risingTomorrow = new DateTime($this->ganitaData['rising'][Graha::KEY_SY][2]['rising'], $this->userTimeZone);
+        $settingYesterday = new DateTime($this->ganitaData['rising'][Graha::KEY_SY][0]['setting'], $this->userTimeZone);
+        $settingToday = new DateTime($this->ganitaData['rising'][Graha::KEY_SY][1]['setting'], $this->userTimeZone);
         
         if($this->userDateTime > $risingToday and $this->userDateTime < $settingToday){
             $rising = $risingToday;
