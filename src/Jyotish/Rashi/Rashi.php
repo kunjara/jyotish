@@ -98,6 +98,21 @@ class Rashi {
     );
     
     /**
+     * States of the planet, depending on location in the rashis.
+     * 
+     * @var array
+     */
+    static public $grahaAvastha = [
+        self::GRAHA_UCHA,
+        self::GRAHA_MOOL,
+        self::GRAHA_SWA,
+        self::GRAHA_FRIEND,
+        self::GRAHA_NEUTRAL,
+        self::GRAHA_ENEMY,
+        self::GRAHA_NEECHA,
+    ];
+    
+    /**
      * Pushkara bhaga.
      * 
      * @var array
@@ -151,7 +166,7 @@ class Rashi {
         Graha::KEY_BU => 7,
         Graha::KEY_SK => 5
     );
-    
+
     /**
      * Devanagari 'rashi' in transliteration.
      * 
