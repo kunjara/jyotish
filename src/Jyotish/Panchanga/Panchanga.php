@@ -272,7 +272,7 @@ class Panchanga {
         
         $dateUser = new DateTime($this->getData()['user']['date'].' '.$this->getData()['user']['time']);
         $dateUserU = $dateUser->format('U');
-        $varaNumber = $dateUser->format('w');
+        $weekNumber = $dateUser->format('w');
         $dataRising = $this->getData()['rising'][Graha::KEY_SY];
         
         foreach ($dataRising as $i => $data){
@@ -281,9 +281,10 @@ class Panchanga {
         }
         
         if($dateUser < $dateRising[1]){
-            $varaNumber = $varaNumber != 0 ? $varaNumber - 1 : 6;
+            $varaNumber = $weekNumber != 0 ? $weekNumber - 1 : 6;
             $risingIndex = 1;
         }else{
+            $varaNumber = $weekNumber;
             $risingIndex = 2;
         }
         
@@ -292,6 +293,7 @@ class Panchanga {
         $vara['anga'] = self::ANGA_VARA;
         $vara['left'] = ($dateRisingU[$risingIndex] - $dateUserU) * 100 / $duration;
         $vara['key'] = array_keys(Vara::$vara)[$varaNumber];
+        $vara['week'] = $weekNumber;
         $vara['name'] = array_values(Vara::$vara)[$varaNumber];
         
         if($withLimit){
