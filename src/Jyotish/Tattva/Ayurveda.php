@@ -89,4 +89,32 @@ class Ayurveda {
      * Mix
      */
     const RASA_MISHRA = 'mishra';
+    
+    /**
+     * List of prakritis.
+     * 
+     * @var array
+     */
+    static public $prakriti = [
+        self::PRAKRITI_KAPHA,
+        self::PRAKRITI_PITTA,
+        self::PRAKRITI_VATA,
+        self::PRAKRITI_MISHRA,
+    ];
+    
+    /**
+     * Get list of prakritis.
+     * 
+     * @param bool $withMishra With mishra prakriti or not.
+     * @return array List of prakritis.
+     */
+    static public function listPrakriti($withMishra = false)
+    {
+        if($withMishra){
+            $list = self::$prakriti;
+        }else{
+            $list = array_slice(self::$prakriti, 0, 3);
+        }
+        return $list;
+    }
 }
