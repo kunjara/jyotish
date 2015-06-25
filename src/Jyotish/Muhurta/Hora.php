@@ -72,9 +72,11 @@ class Hora {
             $intervalTime = $this->userDateTime->format('U') - $rising->format('U');
             $isDay = true;
         }else{
-            if($this->ganitaData['user']['date'] == $risingToday->format(Time::FORMAT_DATA_DATE)){
+            // before midnight
+            if($this->userDateTime > $risingToday){
                 $rising = $risingTomorrow;
                 $setting = $settingToday;
+            // after midnight
             }else{
                 $rising = $risingToday;
                 $setting = $settingYesterday;
