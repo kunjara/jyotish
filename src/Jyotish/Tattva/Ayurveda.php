@@ -103,6 +103,22 @@ class Ayurveda {
     ];
     
     /**
+     * List of dhatus.
+     * 
+     * @var array
+     */
+    static public $dhatu = [
+        self::DHATU_RASA,
+        self::DHATU_RAKTA,
+        self::DHATU_MAMSA,
+        self::DHATU_MEDHA,
+        self::DHATU_ASTHI,
+        self::DHATU_MAJA,
+        self::DHATU_SHUKRA,
+    ];
+
+
+    /**
      * Get list of prakritis.
      * 
      * @param bool $withMishra With mishra prakriti or not.
