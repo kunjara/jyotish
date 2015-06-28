@@ -116,7 +116,21 @@ class Ayurveda {
         self::DHATU_MAJA,
         self::DHATU_SHUKRA,
     ];
-
+    
+    /**
+     * List of rasas.
+     * 
+     * @var array
+     */
+    static public $rasa = [
+        self::RASA_MADHURA,
+        self::RASA_LAVANA,
+        self::RASA_AMLA,
+        self::RASA_KASHAYA,
+        self::RASA_TIKTA,
+        self::RASA_KATU,
+        self::RASA_MISHRA,
+    ];
 
     /**
      * Get list of prakritis.
@@ -130,6 +144,22 @@ class Ayurveda {
             $list = self::$prakriti;
         }else{
             $list = array_slice(self::$prakriti, 0, 3);
+        }
+        return $list;
+    }
+    
+    /**
+     * Get list of rasas.
+     * 
+     * @param bool $withMishra With mishra rasa or not.
+     * @return array List of rasas.
+     */
+    static public function listRasa($withMishra = false)
+    {
+        if($withMishra){
+            $list = self::$rasa;
+        }else{
+            $list = array_slice(self::$rasa, 0, 6);
         }
         return $list;
     }
