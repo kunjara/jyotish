@@ -72,7 +72,7 @@ class Analysis {
             }
         );
         
-        $karakas = Karaka::karakaList($system);
+        $karakas = Karaka::listKaraka($system);
         reset($karakas);
         foreach($grahas as $key => $data){
             $grahaKaraka[$key] = current($karakas);

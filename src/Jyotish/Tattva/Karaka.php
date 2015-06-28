@@ -127,7 +127,7 @@ class Karaka {
      * @param string $system
      * @return array
      */
-    static public function karakaList($system = Biblio::BOOK_BPHS)
+    static public function listKaraka($system = Biblio::BOOK_BPHS)
     {
         $list = self::$karaka;
         array_pop($list);
