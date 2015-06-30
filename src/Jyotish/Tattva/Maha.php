@@ -113,6 +113,17 @@ class Maha {
     const COLOR_WHITE = 'white';
     const COLOR_YELLOW = 'yellow';
     
+    /**
+     * List of gunas.
+     * 
+     * @var array
+     */
+    static public $guna = [
+        self::GUNA_SATTVA,
+        self::GUNA_RAJA,
+        self::GUNA_TAMA,
+    ];
+
     static public $color = [
         self::COLOR_BLACK => '000000',
         self::COLOR_COPPER => 'b87333',
