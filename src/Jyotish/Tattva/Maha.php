@@ -123,7 +123,20 @@ class Maha {
         self::GUNA_RAJA,
         self::GUNA_TAMA,
     ];
-
+    
+    /**
+     * List of bhutas.
+     * 
+     * @var array
+     */
+    static public $bhuta = [
+        self::BHUTA_AKASH,
+        self::BHUTA_VAYU,
+        self::BHUTA_AGNI,
+        self::BHUTA_JALA,
+        self::BHUTA_PRITVI,
+    ];
+    
     static public $color = [
         self::COLOR_BLACK => '000000',
         self::COLOR_COPPER => 'b87333',
