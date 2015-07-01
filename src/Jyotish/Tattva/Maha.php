@@ -137,6 +137,40 @@ class Maha {
         self::BHUTA_PRITVI,
     ];
     
+    /**
+     * List of dishas.
+     * 
+     * @var array
+     */
+    static public $disha = [
+        self::DISHA_UTTARA,
+        self::DISHA_ISHANYA,
+        self::DISHA_PURVA,
+        self::DISHA_AGNEYA,
+        self::DISHA_DAKSHINA,
+        self::DISHA_NAIRUTYA,
+        self::DISHA_PASCHIMA,
+        self::DISHA_VAYAVYA,
+        self::DISHA_URDHWA,
+        self::DISHA_ADHARA,
+    ];
+    
+    /**
+     * List of basises.
+     * 
+     * @var array
+     */
+    static public $basis = [
+        self::BASIS_DHATU,
+        self::BASIS_MULA,
+        self::BASIS_JIVA,
+    ];
+
+    /**
+     * List of colors.
+     * 
+     * @var array
+     */
     static public $color = [
         self::COLOR_BLACK => '000000',
         self::COLOR_COPPER => 'b87333',
@@ -150,4 +184,34 @@ class Maha {
         self::COLOR_WHITE => 'ffffff',
         self::COLOR_YELLOW => 'ffff00',
     ];
+    
+    /**
+     * Get list of dishas.
+     * 
+     * @param int $number Number of dishas.
+     * @return array List of dishas.
+     */
+    static public function listDisha($number)
+    {
+        switch ($number){
+            case 2:
+                $list = array_slice(self::$disha, 8, 2);
+                break;
+            case 4:
+                $list = [
+                    self::DISHA_UTTARA,
+                    self::DISHA_PURVA,
+                    self::DISHA_DAKSHINA,
+                    self::DISHA_PASCHIMA,
+                ];
+                break;
+            case 8:
+                $list = array_slice(self::$disha, 0, 8);
+                break;
+            case 10:
+            default:
+                $list = self::$disha;
+        }
+        return $list;
+    }
 }
