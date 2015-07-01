@@ -148,7 +148,7 @@ class Hora {
      */
     static public function getLord($horaNumber, $varaKey)
     {
-        $lords = Utils::shiftArray(Graha::grahaList(Graha::LIST_CHESHTA), $varaKey);
+        $lords = Utils::shiftArray(Graha::listGraha(Graha::LIST_CHESHTA), $varaKey);
         
         $lordsKeys = array_keys($lords);
         $numLord = Math::numberInCycle(1, $horaNumber, 7) - 1;

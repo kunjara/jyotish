@@ -504,7 +504,7 @@ trait GrahaEnvironment {
         ])) return null;
         
         $lonGraha = $this->getEnvironment()['graha'][$this->objectKey]['longitude'];
-        $grahas = Graha::grahaList(Graha::LIST_PANCHA);
+        $grahas = Graha::listGraha(Graha::LIST_PANCHA);
         $isYuddha = false;
         
         foreach ($grahas as $key => $name){

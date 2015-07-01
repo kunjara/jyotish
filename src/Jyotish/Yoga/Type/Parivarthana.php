@@ -40,7 +40,7 @@ class Parivarthana extends YogaBase {
      */
     public function generateYoga()
     {
-        $saptaGraha = Graha::grahaList(Graha::LIST_SAPTA);
+        $saptaGraha = Graha::listGraha(Graha::LIST_SAPTA);
         
         foreach ($saptaGraha as $key1 => $name1){
             $grahaChecked[] = $key1;

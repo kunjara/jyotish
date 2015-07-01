@@ -56,7 +56,7 @@ class GrahaBala extends Analysis {
     public function __construct($ganitaData)
     {
         parent::__construct($ganitaData);
-        $this->balaGraha = Graha::grahaList(Graha::LIST_SAPTA);
+        $this->balaGraha = Graha::listGraha(Graha::LIST_SAPTA);
         
         $this->bala['total'] = [];
         foreach ($this->balaVarga as $varga){

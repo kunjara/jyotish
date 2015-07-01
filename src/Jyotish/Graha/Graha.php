@@ -384,7 +384,7 @@ class Graha {
      * @param string $option The option to list grahas.
      * @return array List of grahas.
      */
-    static public function grahaList($option = self::LIST_NAVA)
+    static public function listGraha($option = self::LIST_NAVA)
     {
         switch ($option){
             case self::LIST_SAPTA:

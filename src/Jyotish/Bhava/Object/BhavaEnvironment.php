@@ -48,7 +48,7 @@ trait BhavaEnvironment {
        }
        
        $listOption = $withoutChaya ? Graha::LIST_SAPTA : Graha::LIST_NAVA;
-       $grahas = Graha::grahaList($listOption);
+       $grahas = Graha::listGraha($listOption);
        
        foreach ($grahas as $key => $name){
            $rashi = $this->getEnvironment()['graha'][$key]['rashi'];
