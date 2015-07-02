@@ -41,14 +41,6 @@ class R9 extends RashiObject {
     protected $rashiUnicode = '2650';
     
     /**
-     * Main name of rashi.
-     * 
-     * @var string
-     * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 4, Verse 3.
-     */
-    protected $objectName = Rashi::NAME_9;
-    
-    /**
      * All names of the rashi.
      * 
      * @var array

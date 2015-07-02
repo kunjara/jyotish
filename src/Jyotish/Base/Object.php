@@ -59,5 +59,22 @@ class Object {
     public function __construct($options)
     {
         $this->setOptions($options);
+        $this->setName();
+    }
+    
+    /**
+     * Set main name of the object.
+     * 
+     * @return void
+     */
+    protected function setName()
+    {
+        $objectType = $this->objectType;
+        $objectName = ucfirst($objectType);
+        $className = 'Jyotish\\' . $objectName . '\\' . $objectName;
+        
+        $list = $className::$$objectType;
+        
+        $this->objectName = $list[$this->objectKey];
     }
 }
