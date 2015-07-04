@@ -12,23 +12,71 @@ namespace Jyotish\Tattva\Jiva\Nara;
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 class Manusha extends \Jyotish\Tattva\Jiva\Nara {
+    /**
+     * Priests, teachers and preachers
+     */
     const VARNA_BRAHMANA = 'brahmana';
+    /**
+     * Kings, governors, warriors and soldiers
+     */
     const VARNA_KSHATRIYA = 'kshatriya';
+    /**
+     * Cattle herders, agriculturists, businessmen, artisans and merchants
+     */
     const VARNA_VAISHYA = 'vaishya';
+    /**
+     * Labourers and service providers
+     */
     const VARNA_SHUDRA = 'shudra';
+    /**
+     * Peoples conquered by Vedic (Aryan) tribes
+     */
     const VARNA_DASYA = 'dasya';
+    /**
+     * Peoples impure in habits
+     */
     const VARNA_MLECHHA = 'mlechha';
+    /**
+     * Butchers or executioners
+     */
     const VARNA_UGRA = 'ugra';
-
-    static public $varnaChatur = array(
-        1 => self::VARNA_BRAHMANA,
-        2 => self::VARNA_KSHATRIYA,
-        3 => self::VARNA_VAISHYA,
-        4 => self::VARNA_SHUDRA
-    );
-
+    
     const PURUSHARTHA_DHARMA = 'dharma';
     const PURUSHARTHA_ARTHA = 'artha';
     const PURUSHARTHA_KAMA = 'kama';
     const PURUSHARTHA_MOKSHA = 'moksha';
+
+    /**
+     * List of varnas.
+     * 
+     * @var array
+     */
+    static public $varna = [
+        self::VARNA_BRAHMANA,
+        self::VARNA_KSHATRIYA,
+        self::VARNA_VAISHYA,
+        self::VARNA_SHUDRA,
+        self::VARNA_DASYA,
+        self::VARNA_MLECHHA,
+        self::VARNA_UGRA,
+    ];
+    
+    /**
+     * Get list of varnas.
+     * 
+     * @param string $option The option to list varnas.
+     * @return array List of varnas.
+     */
+    static public function listVarna($option = null)
+    {
+        switch ($option){
+            case 4:
+                $list = array_slice(self::$varna, 0, 4);
+                break;
+            case null:
+            default:
+                $list = self::$varna;
+        }
+        return $list;
+    }
 }
