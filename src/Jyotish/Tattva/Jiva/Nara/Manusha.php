@@ -41,9 +41,21 @@ class Manusha extends \Jyotish\Tattva\Jiva\Nara {
      */
     const VARNA_UGRA = 'ugra';
     
+    /**
+     * Righteousness
+     */
     const PURUSHARTHA_DHARMA = 'dharma';
+    /**
+     * Wealth
+     */
     const PURUSHARTHA_ARTHA = 'artha';
+    /**
+     * Desire
+     */
     const PURUSHARTHA_KAMA = 'kama';
+    /**
+     * Salvation or liberation
+     */
     const PURUSHARTHA_MOKSHA = 'moksha';
 
     /**
@@ -62,6 +74,18 @@ class Manusha extends \Jyotish\Tattva\Jiva\Nara {
     ];
     
     /**
+     * List of purusharthas.
+     * 
+     * @var array
+     */
+    static public $purushartha = [
+        self::PURUSHARTHA_DHARMA,
+        self::PURUSHARTHA_ARTHA,
+        self::PURUSHARTHA_KAMA,
+        self::PURUSHARTHA_MOKSHA,
+    ];
+
+        /**
      * Get list of varnas.
      * 
      * @param string $option The option to list varnas.
