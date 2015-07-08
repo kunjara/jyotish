@@ -19,34 +19,45 @@ class Jiva {
     /**
      * Two legged
      */
-    const TYPE_NARA     = 'nara';
+    const TYPE_NARA = 'nara';
     /**
      * Four legged
      */
-    const TYPE_PASU     = 'pasu';
+    const TYPE_PASU = 'pasu';
     /**
      * Aquatic
      */
-    const TYPE_JALA     = 'jala';
+    const TYPE_JALA = 'jala';
     /**
      * Insect
      */
-    const TYPE_KITA     = 'kita';
+    const TYPE_KITA = 'kita';
     /**
      * Wild
      */
-    const TYPE_VANA     = 'vana';
+    const TYPE_VANA = 'vana';
 
     /**
-     * Vasya jiva.
+     * Gender of jiva.
      * 
      * @var array
      */
-    static public $typeVasya = array(
+    static public $gender = [
+        'm' => self::GENDER_MALE,
+        'f' => self::GENDER_FEMALE,
+        'n' => self::GENDER_NEUTER,
+    ];
+
+    /**
+     * Type of jiva.
+     * 
+     * @var array
+     */
+    static public $type = [
         self::TYPE_PASU,
         self::TYPE_NARA,
         self::TYPE_JALA,
         self::TYPE_VANA,
         self::TYPE_KITA
-    );
+    ];
 }
