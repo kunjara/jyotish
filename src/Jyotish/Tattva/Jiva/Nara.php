@@ -37,4 +37,15 @@ class Nara extends \Jyotish\Tattva\Jiva{
     const LIMB_KNEES = 'knees';
     const LIMB_ANKLES = 'ankles';
     const LIMB_FEET = 'feet';
+    
+    /**
+     * Gana of nara.
+     * 
+     * @var array
+     */
+    static public $gana = [
+        self::GANA_DEVA,
+        self::GANA_MANUSHA,
+        self::GANA_RAKSHASA,
+    ];
 }
