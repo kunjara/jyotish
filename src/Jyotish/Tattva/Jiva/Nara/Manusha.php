@@ -42,6 +42,23 @@ class Manusha extends \Jyotish\Tattva\Jiva\Nara {
     const VARNA_UGRA = 'ugra';
     
     /**
+     * Student life
+     */
+    const ASHRAM_BRAHMACHARYA = 'brahmacharya';
+    /**
+     * Household life
+     */
+    const ASHRAM_GRIHASTHA = 'grihastha';
+    /**
+     * Retired life
+     */
+    const ASHRAM_VANAPRASTHA = 'vanaprastha';
+    /**
+     * Renounced life
+     */
+    const ASHRAM_SANNYASA = 'sannyasa';
+    
+    /**
      * Righteousness
      */
     const PURUSHARTHA_DHARMA = 'dharma';
@@ -73,6 +90,18 @@ class Manusha extends \Jyotish\Tattva\Jiva\Nara {
         self::VARNA_UGRA,
     ];
     
+    /**
+     * List of ashrams.
+     * 
+     * @var array
+     */
+    static public $ashram = [
+        self::ASHRAM_BRAHMACHARYA,
+        self::ASHRAM_GRIHASTHA,
+        self::ASHRAM_VANAPRASTHA,
+        self::ASHRAM_SANNYASA,
+    ];
+
     /**
      * List of purusharthas.
      * 
