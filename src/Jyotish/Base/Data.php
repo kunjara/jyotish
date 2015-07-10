@@ -123,11 +123,15 @@ class Data {
         if(!isset($this->ganitaData[self::BLOCK_BHAVA]) or $this->lagna != $lagna){
             if(array_key_exists($lagna, Graha::$graha)){
                 $block = self::BLOCK_GRAHA;
-                $this->lagna = $lagna;
-            }else{
+            }elseif($lagna == Graha::KEY_LG){
                 $block = self::BLOCK_EXTRA;
-                $this->lagna = Graha::KEY_LG;
+            }elseif(array_key_exists($lagna, Bhava::$bhava)){
+                $block = self::BLOCK_BHAVA;
+            }else{
+                throw new Exception\InvalidArgumentException("The value of lagna should be 'Lg', key of graha or bhava.");
             }
+            
+            $this->lagna = $lagna;
             $this->ganitaData[self::BLOCK_MORE]['lagna'] = $this->lagna;
             
             $longitude = $this->ganitaData[$block][$lagna]['longitude'];
