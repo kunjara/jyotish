@@ -6,6 +6,9 @@
 
 namespace Jyotish\Ganita;
 
+use Jyotish\Ganita\Math;
+use Jyotish\Ganita\Astro;
+use Jyotish\Tattva\Kala\Samvatsara;
 use DateTime;
 
 /**
@@ -44,28 +47,49 @@ class Ayanamsha {
     ];
     
     /**
-     * Precession of ayanamsha.
+     * Coincidence of ayanamsha.
      * 
      * @var array
      */
-    static public $precession = [
-        self::AYANAMSHA_FAGAN        => 50.25,
-        self::AYANAMSHA_KRISHNAMURTI => 50.2388475,
-        self::AYANAMSHA_LAHIRI       => 50.2719,
-        self::AYANAMSHA_RAMAN        => 50.33,
-        self::AYANAMSHA_YUKTESHWAR   => 53.9906,
-    ];
-    
-    /**
-     * Matching of ayanamsha.
-     * 
-     * @var array
-     */
-    static public $matching = [
+    static public $coincidence = [
+        self::AYANAMSHA_DELUCE       => -1,
+        self::AYANAMSHA_DJWHALKHUL   => -41,
         self::AYANAMSHA_FAGAN        => 221,
-        self::AYANAMSHA_KRISHNAMURTI => 291,
+        self::AYANAMSHA_JNBHASIN     => 364,
+        self::AYANAMSHA_KRISHNAMURTI => 292,
         self::AYANAMSHA_LAHIRI       => 285,
-        self::AYANAMSHA_RAMAN        => 397,
-        self::AYANAMSHA_YUKTESHWAR   => 499,
+        self::AYANAMSHA_RAMAN        => 389,
+        self::AYANAMSHA_SASSANIAN    => 564,
+        self::AYANAMSHA_USHASHASHI   => 559,
+        self::AYANAMSHA_YUKTESHWAR   => 292,
     ];
+
+    /**
+     * Get approximate ayanamsha value.
+     * 
+     * @param DateTime $Date
+     * @param string $ayanamsha
+     * @return array
+     */
+    static public function getAyanamsha(DateTime $Date = null, $ayanamsha = self::AYANAMSHA_LAHIRI)
+    {
+        if(is_null($Date)){
+            $Date = new DateTime('now');
+        }
+        
+        $TimeZone = $Date->getTimezone();
+        
+        $yearMatching = sprintf('%04d', abs(self::$coincidence[$ayanamsha]));
+        $eraMatching = strval(self::$coincidence[$ayanamsha])[0] == '-' ? '-' : '';
+        
+        $dateMatching = $eraMatching . $yearMatching . '-01-01';
+        $DateMatching = new DateTime($dateMatching, $TimeZone);
+        
+        $Interval = $DateMatching->diff($Date);
+        
+        $factor = $Interval->days / Samvatsara::DUR_GREGORIAN;
+        $ayanamshaValue = Math::dmsMulti(['d' => 0, 'm' => 0, 's' => Astro::getPrecessionSpeed()], $factor);
+        
+        return $ayanamshaValue;
+    }
 }

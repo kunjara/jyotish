@@ -288,7 +288,7 @@ class Math {
      * Multiplication value of arc.
      * 
      * @param array $dms
-     * @param int $factor
+     * @param int|float $factor
      * @return array
      */
     static public function dmsMulti(array $dms, $factor)

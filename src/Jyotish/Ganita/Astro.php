@@ -10,11 +10,16 @@ use DateTime;
 use Jyotish\Ganita\Math;
 
 /**
- * Formulas for various astronomical of calculations.
+ * Formulas for various astronomical calculations.
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 class Astro {
+    /**
+     * Approximate duration of precession in years
+     */
+    const DURATION_PRECESSION = 25800;
+    
     /**
      * Get sunrise time.
      * 
@@ -95,5 +100,18 @@ class Astro {
         ];
         
         return $day < $signStart[$month] ? $signs[$month-1] : $signs[$month];
+    }
+    
+    /**
+     * Get angular speed of earth precession.
+     * 
+     * @param int $duration Approximate duration of precession in years
+     * @return float
+     */
+    static public function getPrecessionSpeed($duration = self::DURATION_PRECESSION)
+    {
+        $arcsec = 360 / $duration * 3600;
+        
+        return $arcsec;
     }
 }
