@@ -113,7 +113,9 @@ class Muhurta {
             $this->dateTimeObject = clone($this->dateTimeObjectStart);
             $angaData['start'] = null;
         }else{
-            $angaData['start'] = end($this->timeStamps)['end'];
+            if($angaName != Panchanga::ANGA_VARA){
+                $angaData['start'] = end($this->timeStamps)['end'];
+            }
         }
         
         $this->timeStamps[] = $angaData;
@@ -125,7 +127,7 @@ class Muhurta {
             $this->panchangaObject->setData([
                 'date' => $this->dateTimeObject->format(Time::FORMAT_DATA_DATE),
                 'time' => $this->dateTimeObject->format(Time::FORMAT_DATA_TIME),
-            ]);
+            ], $angaName);
             
             $this->calcPanchanga($angaName);
         }
@@ -145,7 +147,7 @@ class Muhurta {
         ]);
         
         if($period > 1) 
-            $this->dateTimeObjectEnd->modify('+' . $period . ' days');
+            $this->dateTimeObjectEnd->modify('+' . $period - 1 . ' days');
     }
 
     protected function sort()
