@@ -16,9 +16,22 @@ use Jyotish\Ganita\Math;
  */
 class Astro {
     /**
-     * Approximate duration of precession in years
+     * Approximate duration of precession in years.
      */
     const DURATION_PRECESSION = 25800;
+    
+    /**
+     * Duration of the year in Gregorian calendar in days. 
+     */
+    const DURATION_YEAR_GREGORIAN	= 365.2425;
+    /**
+     * Duration of the year in Julian calendar in days. 
+     */
+    const DURATION_YEAR_JULIAN	= 365.25;
+    /**
+     * Duration of sidereal year in days.
+     */
+    const DURATION_YEAR_SIDEREAL = 365.2564;
     
     /**
      * Get sunrise time.
@@ -63,7 +76,8 @@ class Astro {
      * @param int $year
      * @return int
      */
-    static public function getTithiByHarvey($day, $month, $year) {
+    static public function getTithiByHarvey($day, $month, $year)
+    {
         if ($month <= 2) {
             $monthH	= $month + 12;
             $yearH = $year - 1;

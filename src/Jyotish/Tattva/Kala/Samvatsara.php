@@ -7,20 +7,11 @@
 namespace Jyotish\Tattva\Kala;
 
 /**
- * Samvatsara class
+ * Samvatsara class.
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 class Samvatsara {
-    /**
-     * Duration of the year in Gregorian calendar. 
-     */
-    const DUR_GREGORIAN	= 365.2425;
-    /**
-     * Duration of the year in Julian calendar. 
-     */
-    const DUR_JULIAN	= 365.25;
-    
     /**
      * Brahma vimshatika.
      */

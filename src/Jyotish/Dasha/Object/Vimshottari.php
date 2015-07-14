@@ -9,7 +9,7 @@ namespace Jyotish\Dasha\Object;
 use Jyotish\Base\Utils;
 use Jyotish\Graha\Graha;
 use Jyotish\Dasha\Dasha;
-use Jyotish\Tattva\Kala\Samvatsara;
+use Jyotish\Ganita\Astro;
 use Jyotish\Panchanga\Nakshatra\Nakshatra;
 
 /**
@@ -75,9 +75,9 @@ class Vimshottari extends AbstractDasha {
         $N = Nakshatra::getInstance($nakshatra['key']);
 
         $result['graha'] = $N->nakshatraRuler;
-        $result['total'] = $this->durationTotal * Samvatsara::DUR_GREGORIAN * 86400;
+        $result['total'] = $this->durationTotal * Astro::DURATION_YEAR_GREGORIAN * 86400;
 
-        $durationNakshatra = $this->durationGraha[$result['graha']] * Samvatsara::DUR_GREGORIAN * 86400;
+        $durationNakshatra = $this->durationGraha[$result['graha']] * Astro::DURATION_YEAR_GREGORIAN * 86400;
         $result['start']   = round($durationNakshatra * (100 - $nakshatra['left']) / 100);
 
         return $result;

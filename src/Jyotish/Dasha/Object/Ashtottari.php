@@ -9,7 +9,7 @@ namespace Jyotish\Dasha\Object;
 use Jyotish\Base\Utils;
 use Jyotish\Graha\Graha;
 use Jyotish\Dasha\Dasha;
-use Jyotish\Tattva\Kala\Samvatsara;
+use Jyotish\Ganita\Astro;
 use Jyotish\Panchanga\Nakshatra\Nakshatra;
 
 /**
@@ -90,9 +90,9 @@ class Ashtottari extends AbstractDasha {
         $num = $part - ($partSum - $indexNum);
 
         $result['graha'] = $key;
-        $result['total'] = $this->durationTotal * Samvatsara::DUR_GREGORIAN * 86400;
+        $result['total'] = $this->durationTotal * Astro::DURATION_YEAR_GREGORIAN * 86400;
 
-        $durationNakshatra = round($this->durationGraha[$key] * Samvatsara::DUR_GREGORIAN * 86400 / $part);
+        $durationNakshatra = round($this->durationGraha[$key] * Astro::DURATION_YEAR_GREGORIAN * 86400 / $part);
         $result['start']   = $durationNakshatra * ($num - 1) + round($durationNakshatra * (100 - $nakshatra['left']) / 100);
 
         return $result;

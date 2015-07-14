@@ -8,7 +8,6 @@ namespace Jyotish\Ganita;
 
 use Jyotish\Ganita\Math;
 use Jyotish\Ganita\Astro;
-use Jyotish\Tattva\Kala\Samvatsara;
 use DateTime;
 
 /**
@@ -87,7 +86,7 @@ class Ayanamsha {
         
         $Interval = $DateMatching->diff($Date);
         
-        $factor = $Interval->days / Samvatsara::DUR_GREGORIAN;
+        $factor = $Interval->days / Astro::DURATION_YEAR_GREGORIAN;
         $ayanamshaValue = Math::dmsMulti(['d' => 0, 'm' => 0, 's' => Astro::getPrecessionSpeed()], $factor);
         
         return $ayanamshaValue;
