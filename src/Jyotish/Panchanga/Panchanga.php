@@ -10,13 +10,13 @@ use DateTime;
 use DateInterval;
 use Jyotish\Ganita\Math;
 use Jyotish\Ganita\Time;
+use Jyotish\Ganita\Astro;
 use Jyotish\Panchanga\Tithi\Tithi;
 use Jyotish\Panchanga\Nakshatra\Nakshatra;
 use Jyotish\Panchanga\Yoga\Yoga;
 use Jyotish\Panchanga\Vara\Vara;
 use Jyotish\Panchanga\Karana\Karana;
 use Jyotish\Graha\Graha;
-use Jyotish\Tattva\Kala\Masa;
 use Jyotish\Ganita\Method\AbstractGanita as Ganita;
 
 /**
@@ -392,15 +392,15 @@ class Panchanga {
         }
 
         if($function == 'getTithi'){
-            $durMonth = Masa::DUR_SYNODIC * 86400;
+            $durMonth = Astro::DURATION_MONTH_SYNODIC * 86400;
             $nAnga = 30;
             $anga['ratio'] = 1;
         }elseif($function == 'getYoga'){
-            $durMonth = Masa::DUR_SYNODIC * 86400;
+            $durMonth = Astro::DURATION_MONTH_SYNODIC * 86400;
             $nAnga = 27;
             $anga['ratio'] = 1;
         }elseif($function == 'getNakshatra'){
-            $durMonth = Masa::DUR_SIDEREAL * 86400;
+            $durMonth = Astro::DURATION_MONTH_SIDEREAL * 86400;
             $nAnga = 27;
         }else{
             $anga['ratio'] = 1;

@@ -13,15 +13,6 @@ namespace Jyotish\Tattva\Kala;
  */
 class Masa {
     /**
-     * Duration of the sidereal month measured in days.
-     */
-    const DUR_SIDEREAL	= 27.3216610;
-    /**
-     * Duration of the synodic month measured in days.
-     */
-    const DUR_SYNODIC	= 29.5305882;
-
-    /**
      * List of Masa.
      * 
      * @var array

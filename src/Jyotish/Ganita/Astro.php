@@ -23,15 +23,24 @@ class Astro {
     /**
      * Duration of the year in Gregorian calendar in days. 
      */
-    const DURATION_YEAR_GREGORIAN	= 365.2425;
+    const DURATION_YEAR_GREGORIAN = 365.2425;
     /**
      * Duration of the year in Julian calendar in days. 
      */
-    const DURATION_YEAR_JULIAN	= 365.25;
+    const DURATION_YEAR_JULIAN = 365.25;
     /**
      * Duration of sidereal year in days.
      */
     const DURATION_YEAR_SIDEREAL = 365.2564;
+    
+    /**
+     * Duration of the sidereal month in days.
+     */
+    const DURATION_MONTH_SIDEREAL = 27.3216610;
+    /**
+     * Duration of the synodic month in days.
+     */
+    const DURATION_MONTH_SYNODIC = 29.5305882;
     
     /**
      * Get sunrise time.
