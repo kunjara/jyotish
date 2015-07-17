@@ -85,7 +85,7 @@ class Vara {
      * @param string $startDay
      * @return array
      */
-    static public function varaList($startDay = Graha::KEY_SY)
+    static public function listVara($startDay = Graha::KEY_SY)
     {
         $varas = self::$vara;
         
