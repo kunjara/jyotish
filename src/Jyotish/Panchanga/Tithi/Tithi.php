@@ -32,18 +32,50 @@ class Tithi {
     const NAME_PURNIMA = 'Purnima';
     const NAME_AMAVASYA = 'Amavasya';
 
+    /**
+     * Bestows happiness, enjoyment
+     */
     const TYPE_NANDA = 'nanda';
+    /**
+     * Auspicious for starting new work
+     */
     const TYPE_BHADRA = 'bhadra';
+    /**
+     * Auspicious for winning over enemies
+     */
     const TYPE_JAYA = 'jaya';
+    /**
+     * To be avoided for any important work
+     */
     const TYPE_RIKTA = 'rikta';
+    /**
+     * Auspicious to complete all jobs
+     */
     const TYPE_PURNA = 'purna';
     
+    /**
+     * Waxing moon
+     */
     const PAKSHA_SHUKLA = 'shukla';
+    /**
+     * Waning moon
+     */
     const PAKSHA_KRISHNA = 'krishna';
     
+    /**
+     * List of tithis in panchanga
+     */
     const LIST_PANCHANGA = 'panchanga';
+    /**
+     * List of tithis in masa
+     */
     const LIST_MASA = 'masa';
 
+    /**
+     * List of tithis.
+     * 
+     * @var array
+     */
     static public $tithi = array(
         1 => self::NAME_PRATIPAD,
         2 => self::NAME_DWITIYA,
@@ -76,46 +108,7 @@ class Tithi {
         29 => self::NAME_CHATURDASHI,
         30 => self::NAME_AMAVASYA,
     );
-
-    /**
-     * Returns the requested instance of tithi class.
-     * 
-     * @param int $number The number of tithi
-     * @param null|array $options Options to set (optional)
-     * * - `tithiDeva`: tithi deva iformation
-     * @return the requested instance of tithi class
-     * @throws Exception\InvalidArgumentException
-     */
-    static public function getInstance($number, array $options = null) {
-        if (!array_key_exists($number, self::$tithi)) {
-            throw new \Jyotish\Panchanga\Exception\InvalidArgumentException("Tithi with the number '$number' does not exist.");
-        }
-        
-        $tithiClass = 'Jyotish\\Panchanga\\Tithi\\Object\\T' . $number;
-        $tithiObject = new $tithiClass($options);
-
-        return $tithiObject;
-    }
     
-    /**
-     * Returns the list of tithis.
-     * 
-     * @param string $listType
-     * @return array
-     */
-    static public function tithiList($listType = self::LIST_PANCHANGA)
-    {
-        switch ($listType){
-            case self::LIST_MASA:
-                $result = array_slice(self::$tithi, 15, null, true) + array_slice(self::$tithi, 0, 15, true);
-                break;
-            case self::LIST_PANCHANGA:
-            default:
-                $result = self::$tithi;
-        }
-        return $result;
-    }
-
     /**
      * Devas of tithi.
      * 
@@ -123,7 +116,7 @@ class Tithi {
      * @see Varahamihira. Brihat Samhita. Chapter 99, Verse 1.
      * @see Bhavishya Purana. Brahma parva, Chapter 102.
      */
-    static public $tithiDeva = [
+    static public $deva = [
         Biblio::BOOK_BS => [
             1 => Deva::DEVA_BRAHMA,
             2 => Deva::DEVA_VIDHATA,
@@ -161,4 +154,43 @@ class Tithi {
             30 => Deva::DEVA_PITRU
         ]
     ];
+
+    /**
+     * Returns the requested instance of tithi class.
+     * 
+     * @param int $number The number of tithi
+     * @param null|array $options Options to set (optional)
+     * * - `tithiDeva`: tithi deva iformation
+     * @return the requested instance of tithi class
+     * @throws Exception\InvalidArgumentException
+     */
+    static public function getInstance($number, array $options = null) {
+        if (!array_key_exists($number, self::$tithi)) {
+            throw new \Jyotish\Panchanga\Exception\InvalidArgumentException("Tithi with the number '$number' does not exist.");
+        }
+        
+        $tithiClass = 'Jyotish\\Panchanga\\Tithi\\Object\\T' . $number;
+        $tithiObject = new $tithiClass($options);
+
+        return $tithiObject;
+    }
+    
+    /**
+     * Returns the list of tithis.
+     * 
+     * @param string $listType
+     * @return array
+     */
+    static public function listTithi($listType = self::LIST_PANCHANGA)
+    {
+        switch ($listType){
+            case self::LIST_MASA:
+                $result = array_slice(self::$tithi, 15, null, true) + array_slice(self::$tithi, 0, 15, true);
+                break;
+            case self::LIST_PANCHANGA:
+            default:
+                $result = self::$tithi;
+        }
+        return $result;
+    }
 }

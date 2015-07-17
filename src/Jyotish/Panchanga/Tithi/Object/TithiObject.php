@@ -80,9 +80,9 @@ class TithiObject {
         $number = ($this->tithiKey > 15 and $this->tithiKey < 30) ? $this->tithiKey - 15 : $this->tithiKey;
 
         if(!is_null($options) and in_array($options['tithiDeva'], [Biblio::BOOK_BS, Biblio::BOOK_BP])){
-            $this->tithiDeva = Tithi::$tithiDeva[$options['tithiDeva']][$number];
+            $this->tithiDeva = Tithi::$deva[$options['tithiDeva']][$number];
         }else{
-            $this->tithiDeva = Tithi::$tithiDeva[Biblio::BOOK_BS][$number];
+            $this->tithiDeva = Tithi::$deva[Biblio::BOOK_BS][$number];
         }
     }
 
