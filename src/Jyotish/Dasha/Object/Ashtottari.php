@@ -58,7 +58,7 @@ class Ashtottari extends AbstractDasha {
     {
         parent::__construct($options);
         
-        $nakshatras = Nakshatra::nakshatraList(true);
+        $nakshatras = Nakshatra::listNakshatra(true);
         $this->orderNakshatra = Utils::shiftArray($nakshatras, 6, true);
     }
 

@@ -59,7 +59,7 @@ class Vimshottari extends AbstractDasha {
     {
         parent::__construct($options);
         
-        $nakshatras = Nakshatra::nakshatraList();
+        $nakshatras = Nakshatra::listNakshatra();
         $this->orderNakshatra = Utils::shiftArray($nakshatras, 3, true);
     }
 

@@ -145,7 +145,7 @@ class Nakshatra {
      * @param bool $withAbhijit
      * @return array
      */
-    static public function nakshatraList($withAbhijit = false)
+    static public function listNakshatra($withAbhijit = false)
     {
         $nakshatras = self::$nakshatra;
 
@@ -168,12 +168,12 @@ class Nakshatra {
      * @param string $nakshatraKey Nakshatra key
      * @return array
      */
-    static public function nakshatraNavatara($nakshatraKey){
-        if (!array_key_exists($nakshatraKey, self::nakshatraList())) {
+    static public function listNakshatraNavatara($nakshatraKey){
+        if (!array_key_exists($nakshatraKey, self::listNakshatra())) {
             throw new \Jyotish\Panchanga\Exception\InvalidArgumentException("Nakshatra with the number '$nakshatraKey' does not exist.");
         }
         
-        $nakshatas = Utils::shiftArray(self::nakshatraList(), $nakshatraKey, true);
+        $nakshatas = Utils::shiftArray(self::listNakshatra(), $nakshatraKey, true);
 
         $number = 1;
         $block = 1;
