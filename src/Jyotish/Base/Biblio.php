@@ -77,6 +77,30 @@ class Biblio {
      * Varahamihira
      */
     const AUTHOR_VARAHAMIHIRA = 'varahamihira';
+    /**
+     * Kalyana Varma
+     */
+    const AUTHOR_KVARMA = 'kvarma';
+    /**
+     * Satyacharya
+     */
+    const AUTHOR_SATYACHARYA = 'satyacharya';
+    /**
+     * Kalidas
+     */
+    const AUTHOR_KALIDAS = 'kalidas';
+    /**
+     * Venkatesh Sharma
+     */
+    const AUTHOR_VSHARMA = 'vsharma';
+    /**
+     * Mantreswara
+     */
+    const AUTHOR_MANTRESWARA = 'mantreswara';
+    /**
+     * Vaidyanatha Dikshita
+     */
+    const AUTHOR_VDIKSHITA = 'vdikshita';
     
     /**
      * Common
@@ -88,7 +112,7 @@ class Biblio {
      * 
      * @var array
      */
-    static public $book = array(
+    static public $book = [
         self::BOOK_BPHS => 'Brihat Parashara Hora Shastra',
         self::BOOK_US => 'Upadesha Sutras',
         self::BOOK_BJ => 'Brihat Jataka',
@@ -102,5 +126,49 @@ class Biblio {
         self::BOOK_SB => 'Srimad-Bhagavatam',
         self::BOOK_BP => 'Bhavishya Purana',
         self::BOOK_SS => 'Surya Siddhanta',
-    );
+    ];
+    
+    /**
+     * List of authors.
+     * 
+     * @var array
+     */
+    static public $author = [
+        self::AUTHOR_PARASHARA => [
+            'name' => 'Parashara',
+            'books' => [self::BOOK_BPHS],
+        ],
+        self::AUTHOR_JAIMINI => [
+            'name' => 'Jaimini',
+            'books' => [self::BOOK_US],
+        ],
+        self::AUTHOR_VARAHAMIHIRA => [
+            'name' => 'Varahamihira',
+            'books' => [self::BOOK_BJ, self::BOOK_BS],
+        ],
+        self::AUTHOR_KVARMA => [
+            'name' => 'Kalyana Varma',
+            'books' => [self::BOOK_SA],
+        ],
+        self::AUTHOR_SATYACHARYA => [
+            'name' => 'Satyacharya',
+            'books' => [self::BOOK_SJ],
+        ],
+        self::AUTHOR_KALIDAS => [
+            'name' => 'Kalidas',
+            'books' => [self::BOOK_UK],
+        ],
+        self::AUTHOR_VSHARMA => [
+            'name' => 'Venkatesh Sharma',
+            'books' => [self::BOOK_SC],
+        ],
+        self::AUTHOR_MANTRESWARA => [
+            'name' => 'Mantreswara',
+            'books' => [self::BOOK_PH],
+        ],
+        self::AUTHOR_VDIKSHITA => [
+            'name' => 'Vaidyanatha Dikshita',
+            'books' => [self::BOOK_JP],
+        ],
+    ];
 }
