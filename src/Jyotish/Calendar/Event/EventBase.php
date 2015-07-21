@@ -4,14 +4,14 @@
  * @license   GNU General Public License version 2 or later
  */
 
-namespace Jyotish\Calendar;
+namespace Jyotish\Calendar\Event;
 
 /**
  * Extensible class events.
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class Event {
+class EventBase {
     /**
      * Columns of the table
      */

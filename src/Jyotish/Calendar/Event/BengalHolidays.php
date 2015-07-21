@@ -4,14 +4,14 @@
  * @license   GNU General Public License version 2 or later
  */
 
-namespace Jyotish\Calendar;
+namespace Jyotish\Calendar\Event;
 
 /**
  * Bengal specific Holidays.
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class BengalHolidays extends \Jyotish\Calendar\Event{
+class BengalHolidays extends EventBase{
     static public $eventsTitle = 'Bengal specific Holidays';
 
     static public $eventsList = [

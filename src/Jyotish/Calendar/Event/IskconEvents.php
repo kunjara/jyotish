@@ -4,14 +4,14 @@
  * @license   GNU General Public License version 2 or later
  */
 
-namespace Jyotish\Calendar;
+namespace Jyotish\Calendar\Event;
 
 /**
  * ISKCON's historical events.
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class IskconEvents extends \Jyotish\Calendar\Event{
+class IskconEvents extends EventBase{
     static public $eventsTitle = 'ISKCON historical events';
 
     static public $eventsList = [

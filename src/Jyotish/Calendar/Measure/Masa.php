@@ -4,10 +4,10 @@
  * @license   GNU General Public License version 2 or later
  */
 
-namespace Jyotish\Ganita\Kala;
+namespace Jyotish\Calendar\Measure;
 
 /**
- * Masa class with month names.
+ * Masa class.
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */

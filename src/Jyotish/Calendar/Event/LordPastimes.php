@@ -4,14 +4,14 @@
  * @license   GNU General Public License version 2 or later
  */
 
-namespace Jyotish\Calendar;
+namespace Jyotish\Calendar\Event;
 
 /**
  * Events in the Pastimes of the Lord and His Associates.
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class LordPastimes extends Event{
+class LordPastimes extends EventBase{
     static public $eventsTitle = 'Events in the Pastimes of the Lord and His Associates';
 
     static public $eventsList = [
