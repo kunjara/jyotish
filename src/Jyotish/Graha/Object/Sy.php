@@ -7,11 +7,11 @@
 namespace Jyotish\Graha\Object;
 
 use Jyotish\Graha\Graha;
+use Jyotish\Ganita\Kala;
 use Jyotish\Tattva\Maha;
 use Jyotish\Tattva\Jiva\Nara\Deva;
 use Jyotish\Tattva\Jiva\Nara\Manusha;
 use Jyotish\Tattva\Ayurveda;
-use Jyotish\Tattva\Kala;
 
 /**
  * Class of graha Sy.

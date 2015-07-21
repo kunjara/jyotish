@@ -4,7 +4,7 @@
  * @license   GNU General Public License version 2 or later
  */
 
-namespace Jyotish\Tattva\Kala;
+namespace Jyotish\Ganita\Kala;
 
 /**
  * Masa class with month names.
@@ -17,7 +17,7 @@ class Masa {
      * 
      * @var array
      */
-    static public $masa = array(
+    static public $masa = [
         1 => 'Chaitra',
         2 => 'Vaishakha',
         3 => 'Jyeshtha',
@@ -30,5 +30,5 @@ class Masa {
         10 => 'Pausha',
         11 => 'Magha',
         12 => 'Phalguna'
-    );
+    ];
 }

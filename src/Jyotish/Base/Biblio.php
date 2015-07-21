@@ -64,6 +64,10 @@ class Biblio {
      * Surya Siddhanta
      */
     const BOOK_SS = 'ss';
+    /**
+     * Manu-samhita
+     */
+    const BOOK_MS = 'ms';
     
     /**
      * Parashara
@@ -126,6 +130,7 @@ class Biblio {
         self::BOOK_SB => 'Srimad-Bhagavatam',
         self::BOOK_BP => 'Bhavishya Purana',
         self::BOOK_SS => 'Surya Siddhanta',
+        self::BOOK_MS => 'Manu-samhita',
     ];
     
     /**

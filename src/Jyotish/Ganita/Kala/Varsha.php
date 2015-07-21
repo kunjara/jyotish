@@ -4,14 +4,14 @@
  * @license   GNU General Public License version 2 or later
  */
 
-namespace Jyotish\Tattva\Kala;
+namespace Jyotish\Ganita\Kala;
 
 /**
- * Samvatsara class.
+ * Varsha class.
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class Samvatsara {
+class Varsha {
     /**
      * Brahma vimshatika.
      */
@@ -25,9 +25,21 @@ class Samvatsara {
      */
     const VIMSHATIKA_RUDRA	= 'Rudra-Vimshatika';
     
+    /**
+     * 57 BC.
+     */
     const SAMVAT_VIKRAM = 'Vikram';
+    /**
+     * 78 AD.
+     */
     const SAMVAT_SHAK = 'Shak';
+    /**
+     * 319 AD.
+     */
     const SAMVAT_GUPTA = 'Gupta';
+    /**
+     * 1486 AD.
+     */
     const SAMVAT_GAURABDA = 'Gaurabda';
     
     /**
@@ -35,19 +47,19 @@ class Samvatsara {
      * 
      * @var array
      */
-    static public $samvat = array(
+    static public $samvat = [
         self::SAMVAT_VIKRAM => -57,
         self::SAMVAT_SHAK => 78,
-        self::SAMVAT_GUPTA => 320,
+        self::SAMVAT_GUPTA => 319,
         self::SAMVAT_GAURABDA => 1486
-    );
+    ];
 
     /**
-     * List of Samvatsara.
+     * Samvatsara list.
      * 
      * @var array
      */
-    static public $samvatsara = array(
+    static public $samvatsara = [
         1 => 'Prabhava',
         2 => 'Vibhava',
         3 => 'Shukla',
@@ -108,5 +120,5 @@ class Samvatsara {
         58 => 'Raktakshi',
         59 => 'Krodhana',
         60 => 'Akshaya',
-    );
+    ];
 }
