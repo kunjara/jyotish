@@ -43,6 +43,36 @@ class Kala {
     const RITU_SHARAD = 'sharad';
     const RITU_HEMANTA = 'hemanta';
     const RITU_SHISHIRA = 'shishira';
+    
+    /**
+     * List of kala intervals.
+     * 
+     * @var array
+     */
+    public static $kala = [
+        self::KALA_PARAMANU,
+        self::KALA_ANU,
+        self::KALA_TRASARENU,
+        self::KALA_TRUTI,
+        self::KALA_VEDHA,
+        self::KALA_LAVA,
+        self::KALA_NIMESHA,
+        self::KALA_KSHANA,
+        self::KALA_KASHTHA,
+        self::KALA_KALA,
+        self::KALA_LAGHU,
+        self::KALA_NADIKA,
+        self::KALA_MUHURTA,
+        self::KALA_PRAHARA,
+        self::KALA_YAMA,
+        self::KALA_AHORATRA,
+        self::KALA_VARA,
+        self::KALA_PAKSHA,
+        self::KALA_MASA,
+        self::KALA_RITU,
+        self::KALA_AYANA,
+        self::KALA_VARSHA,
+    ];
 
     /**
      * The duration of time of one paramanu. Second is divided into 30375 parts.
@@ -253,11 +283,36 @@ class Kala {
      * @var array
      */
     public static $kalaAhoratra = [
-        Biblio::BOOK_SB => [
-            'name' => self::KALA_YAMA,
-            'part' => 2
-        ],
+        'name' => self::KALA_YAMA,
+        'part' => 2
     ];
+    
+    /**
+     * Get list of kalas.
+     * 
+     * @param string $book
+     * @return array
+     */
+    public static function listKala($book = Biblio::COMMON)
+    {
+        $list = self::$kala;
+        
+        if($book == Biblio::COMMON){
+            return $list;
+        }
+        
+        $result = [];
+        foreach ($list as $kala){
+            $kalaName = 'kala' . ucfirst($kala);
+            if(isset(self::${$kalaName}) and isset(self::${$kalaName}[$book])){
+                $result[] = $kala;
+            }else{
+                continue;
+            }
+        }
+        
+        return $result;
+    }
 
     /**
      * Get duration of interval.
