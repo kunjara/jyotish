@@ -1,8 +1,17 @@
-## Jyotish library!
+## Jyotish Library!
 
 [![Total Downloads](https://poser.pugx.org/kunjara/jyotish/downloads)](https://packagist.org/packages/kunjara/jyotish) 
 [![Latest Unstable Version](https://poser.pugx.org/kunjara/jyotish/v/unstable)](https://packagist.org/packages/kunjara/jyotish) 
 [![License](https://poser.pugx.org/kunjara/jyotish/license)](https://packagist.org/packages/kunjara/jyotish)
+
+You can do the following calculations:
+* calculation of natal chart and varga charts;
+* drawing of natal chart and varga charts;
+* calculation of bala: Ashtakavarga, Rashi bala, Graha bala;
+* calculation of dasha: Vimshotari, Ashtottari;
+* calculation Panchanga: Nakshatra, Yoga, Tithi, Vara, Karana;
+* calculation of Muhurta and Hora;
+* calculation of various yogas: Dhana yoga, Raja yoga, Mahapurusha yoga etc.
 
 ### System Requirements
 
@@ -39,3 +48,4 @@ They have two license options - one, the GPL, which only means that any code you
 * Srimad-Bhagavatam.
 * Bhavishya Purana.
 * Surya Siddhanta.
+* Manu-Samhita.
