@@ -259,11 +259,13 @@ class GrahaObject extends Object {
      * 
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 10.
      */
-    protected function setGrahaNames()
+    protected function setObjectNames()
     {
         if($this->objectKey != Graha::KEY_RA and $this->objectKey != Graha::KEY_KE){
             $nameDeva = 'name'.$this->objectName;
             $this->objectNames = array_merge(Deva::${$nameDeva}, $this->objectNames);
+        }else{
+            parent::setObjectNames();
         }
     }
 
@@ -366,7 +368,6 @@ class GrahaObject extends Object {
     {
         parent::__construct($options);
         
-        $this->setGrahaNames();
         $this->setGrahaRelation($this->options);
     }
 }

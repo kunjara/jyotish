@@ -59,7 +59,8 @@ class Object {
     public function __construct($options)
     {
         $this->setOptions($options);
-        $this->setName();
+        $this->setObjectName();
+        $this->setObjectNames();
     }
     
     /**
@@ -67,7 +68,7 @@ class Object {
      * 
      * @return void
      */
-    protected function setName()
+    protected function setObjectName()
     {
         $objectType = $this->objectType;
         $objectName = ucfirst($objectType);
@@ -76,5 +77,15 @@ class Object {
         $list = $className::$$objectType;
         
         $this->objectName = $list[$this->objectKey];
+    }
+    
+    /**
+     * Set names of the object.
+     * 
+     * @return void
+     */
+    protected function setObjectNames()
+    {
+        $this->objectNames = array_merge([$this->objectName], $this->objectNames);
     }
 }

@@ -51,11 +51,9 @@ class Ke extends GrahaObject {
      * Names of the graha.
      * 
      * @var array
-     * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 10.
      * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 3.
      */
     protected $objectNames = [
-        Graha::NAME_KE,
         'Sikhi',
     ];
 

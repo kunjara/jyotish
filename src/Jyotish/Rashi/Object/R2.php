@@ -41,14 +41,12 @@ class R2 extends RashiObject {
     protected $rashiUnicode = '2649';
     
     /**
-     * All names of the rashi.
+     * Names of the rashi.
      * 
      * @var array
-     * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 4, Verse 3.
      * @see Varahamihira. Brihat Jataka. Chapter 1, Verse 8.
      */
     protected $objectNames = [
-        Rashi::NAME_2,
         'Tavuri',
     ];
 
