@@ -217,8 +217,8 @@ class Panchanga {
         }
 
         if($withLimit){
-            $limits = $this->limitAnga($nakshatra, __FUNCTION__);
-            $nakshatra['end'] = $limits['end'];
+			$limit = $this->limitAnga($nakshatra, __FUNCTION__);
+            $nakshatra['end'] = $limit;
         }
 
         return $nakshatra;
@@ -251,8 +251,8 @@ class Panchanga {
         $yoga['left'] = ($unit - $yogaUnits['parts']) * 100 / $unit;
 
         if($withLimit){
-            $limits = $this->limitAnga($yoga, __FUNCTION__);
-            $yoga['end'] = $limits['end'];
+            $limit = $this->limitAnga($yoga, __FUNCTION__);
+            $yoga['end'] = $limit;
         }
 
         return $yoga;
