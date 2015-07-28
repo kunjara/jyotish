@@ -69,6 +69,8 @@ class Vara {
      */
     static public function getInstance($key, array $options = null)
     {
+        $key = ucfirst(strtolower($key));
+        
         if (!array_key_exists($key, self::$vara)) {
             throw new \Jyotish\Panchanga\Exception\InvalidArgumentException("Vara with the key '$key' does not exist.");
         }

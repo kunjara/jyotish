@@ -129,8 +129,8 @@ class Panchanga {
         $tithi['left'] = ($unit - $tithiUnits['parts']) * 100 / $unit;
 
         if($withLimit){
-            $limits = $this->limitAnga($tithi, __FUNCTION__);
-            $tithi['end'] = $limits['end'];
+            $limit = $this->limitAnga($tithi, __FUNCTION__);
+            $tithi['end'] = $limit;
         }
 
         $this->tithi = $tithi;
@@ -422,20 +422,45 @@ class Panchanga {
             ], $anga['anga']);
 
             if($function == 'getNakshatra'){
-                $angaEnd = $Panchanga->$function(false, $anga['abhijit']);
+                $angaTemp = $Panchanga->$function(false, $anga['abhijit']);
             }else{
-                $angaEnd = $Panchanga->$function();
+                $angaTemp = $Panchanga->$function();
             }
 
-            $timeLeft = round($durAnga * ($angaEnd['left'] / 100) / 2 );
-        } while($angaEnd['left'] > .2);
+            $timeLeft = round($durAnga * ($angaTemp['left'] / 100) / 2 );
+        } while($angaTemp['left'] > .2);
 
-        $result = array(
-            'end' => $timeEndObject->format(Time::FORMAT_DATETIME),
-        );
+        $result = $timeEndObject->format(Time::FORMAT_DATETIME);
 
         unset($Panchanga);
         
         return $result;
+    }
+    
+    /**
+     * Returns the requested instance of anga.
+     * 
+     * @param string $anga The requested anga
+     * @param int $key The key of anga
+     * @param null|array $options Options to set (optional)
+     * @return the requested instance of anga
+     * @throws Exception\InvalidArgumentException
+     */
+    static public function getInstance($anga, $key, array $options = null)
+    {
+        
+        if(!defined('self::ANGA_'.  strtoupper($anga))){
+            throw new \Jyotish\Panchanga\Exception\InvalidArgumentException("Anga '$anga' does not exist.");
+        }
+        
+        $angaClass = 'Jyotish\\Panchanga\\' . ucfirst($anga) . '\\' . ucfirst($anga);
+        
+        if(!method_exists($angaClass, 'getInstance')){
+            throw new \Jyotish\Panchanga\Exception\InvalidArgumentException("Instance of '$anga' can not be created.");
+        }
+        
+        $Instance = $angaClass::getInstance($key, $options);
+        
+        return $Instance;
     }
 }

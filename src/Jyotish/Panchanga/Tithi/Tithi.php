@@ -158,18 +158,18 @@ class Tithi {
     /**
      * Returns the requested instance of tithi class.
      * 
-     * @param int $number The number of tithi
+     * @param int $key The key of tithi
      * @param null|array $options Options to set (optional)
-     * * - `tithiDeva`: tithi deva iformation
+     * * - `tithiDeva`: tithi deva information
      * @return the requested instance of tithi class
      * @throws Exception\InvalidArgumentException
      */
-    static public function getInstance($number, array $options = null) {
-        if (!array_key_exists($number, self::$tithi)) {
-            throw new \Jyotish\Panchanga\Exception\InvalidArgumentException("Tithi with the number '$number' does not exist.");
+    static public function getInstance($key, array $options = null) {
+        if (!array_key_exists($key, self::$tithi)) {
+            throw new \Jyotish\Panchanga\Exception\InvalidArgumentException("Tithi with the key '$key' does not exist.");
         }
         
-        $tithiClass = 'Jyotish\\Panchanga\\Tithi\\Object\\T' . $number;
+        $tithiClass = 'Jyotish\\Panchanga\\Tithi\\Object\\T' . $key;
         $tithiObject = new $tithiClass($options);
 
         return $tithiObject;

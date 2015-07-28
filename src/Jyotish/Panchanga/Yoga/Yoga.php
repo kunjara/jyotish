@@ -45,17 +45,17 @@ class Yoga {
     /**
      * Returns the requested instance of yoga class.
      * 
-     * @param int $number The number of yoga
+     * @param int $key The key of yoga
      * @param null|array $options Options to set (optional)
      * @return the requested instance of yoga class
      * @throws Exception\InvalidArgumentException
      */
-    static public function getInstance($number, array $options = null) {
-        if (!array_key_exists($number, self::$yoga)) {
-            throw new \Jyotish\Panchanga\Exception\InvalidArgumentException("Yoga with the number '$number' does not exist.");
+    static public function getInstance($key, array $options = null) {
+        if (!array_key_exists($key, self::$yoga)) {
+            throw new \Jyotish\Panchanga\Exception\InvalidArgumentException("Yoga with the key '$key' does not exist.");
         }
         
-        $yogaClass = 'Jyotish\\Panchanga\\Yoga\\Object\\Y' . $number;
+        $yogaClass = 'Jyotish\\Panchanga\\Yoga\\Object\\Y' . $key;
         $yogaObject = new $yogaClass($options);
 
         return $yogaObject;
