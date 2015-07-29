@@ -63,8 +63,8 @@ class Muhurta {
             $this->calcPanchanga($angaName);
         }
         
-        $this->sort();
         $this->clear();
+        $this->sort();
         
         return $this->timeStamps;
     }
@@ -150,19 +150,6 @@ class Muhurta {
             $this->dateTimeObjectEnd->modify('+' . $period - 1 . ' days');
     }
 
-    protected function sort()
-    {
-        usort($this->timeStamps, 
-            function ($stamp1, $stamp2){
-                if($stamp1['end'] == $stamp2['end']) {
-                    return 0;
-                }else{
-                    return ($stamp1['end'] > $stamp2['end']) ? 1 : -1;
-                }
-            }
-        );
-    }
-    
     protected function clear()
     {
         $dateTimeEnd = Time::createDateTime($this->ganitaData['user']);
@@ -172,6 +159,19 @@ class Muhurta {
                 unset($this->timeStamps[$key]);
             }
         }
+    }
+
+    protected function sort()
+    {
+        usort($this->timeStamps, 
+            function ($stamp1, $stamp2){
+                if($stamp1['start'] == $stamp2['start']) {
+                    return 0;
+                }else{
+                    return ($stamp1['start'] > $stamp2['start']) ? 1 : -1;
+                }
+            }
+        );
     }
 
     protected function reset()
