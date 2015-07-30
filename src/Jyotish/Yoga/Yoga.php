@@ -25,13 +25,13 @@ class Yoga {
      */
     const TYPE_NABHASHA = 'nabhasha';
     /**
-     * Raja yoga (royal association)
-     */
-    const TYPE_RAJA = 'raja';
-    /**
      * Parivarthana yoga (bhava exchange)
      */
     const TYPE_PARIVARTHANA = 'parivarthana';
+    /**
+     * Raja yoga (royal association)
+     */
+    const TYPE_RAJA = 'raja';
     
     const MAHAPURUSHA_MAHA = 'maha';
     const MAHAPURUSHA_KHALA = 'khala';
@@ -40,4 +40,17 @@ class Yoga {
     const INTERPLAY_PARIVARTHANA = 'parivarthana';
     const INTERPLAY_CONJUNCT = 'conjunct';
     const INTERPLAY_ASPECT = 'aspect';
+    
+    /**
+     * List of yogas.
+     * 
+     * @var array
+     */
+    public $yoga = [
+        self::TYPE_DHANA,
+        self::TYPE_MAHAPURUSHA,
+        self::TYPE_NABHASHA,
+        self::TYPE_PARIVARTHANA,
+        self::TYPE_RAJA,
+    ];
 }
