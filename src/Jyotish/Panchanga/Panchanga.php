@@ -355,7 +355,7 @@ class Panchanga {
         $this->ganitaData->setData($userData);
         $this->ganitaData->calcParams();
 
-        if($anga == self::ANGA_VARA and $this->date < $this->getData()['user']['date']){
+        if($anga == self::ANGA_VARA or $this->date < $this->getData()['user']['date']){
             $this->ganitaData->calcRising();
         }
         $this->date = $this->getData()['user']['date'];
