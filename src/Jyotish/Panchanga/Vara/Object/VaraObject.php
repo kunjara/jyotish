@@ -11,9 +11,16 @@ namespace Jyotish\Panchanga\Vara\Object;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class VaraObject {
+class VaraObject extends \Jyotish\Panchanga\AngaObject {
     
     use \Jyotish\Base\Traits\GetTrait;
+    
+    /**
+     * Anga type.
+     * 
+     * @var string
+     */
+    protected $angaType = 'vara';
     
     /**
      * Vara key.
@@ -28,4 +35,12 @@ class VaraObject {
      * @var string
      */
     protected $varaName;
+    
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        parent::__construct();
+    }
 }

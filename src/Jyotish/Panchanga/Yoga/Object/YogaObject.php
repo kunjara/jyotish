@@ -11,16 +11,30 @@ namespace Jyotish\Panchanga\Yoga\Object;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class YogaObject {
+class YogaObject extends \Jyotish\Panchanga\AngaObject {
 
     use \Jyotish\Base\Traits\GetTrait;
 
     /**
-     * Yoga key
+     * Anga type.
+     * 
+     * @var string
+     */
+    protected $angaType = 'yoga';
+    
+    /**
+     * Yoga key.
      * 
      * @var int
      */
     protected $yogaKey;
+    
+    /**
+     * Yoga name.
+     * 
+     * @var string
+     */
+    protected $yogaName;
 
     /**
      * Deva of yoga.
@@ -31,11 +45,9 @@ class YogaObject {
 
     /**
      * Constructor
-     * 
-     * @param array $options
      */
-    public function __construct($options)
+    public function __construct()
     {
-        return $this;
+        parent::__construct();
     }
 }

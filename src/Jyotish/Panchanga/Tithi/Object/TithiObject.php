@@ -14,7 +14,7 @@ use Jyotish\Panchanga\Tithi\Tithi;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class TithiObject {
+class TithiObject extends \Jyotish\Panchanga\AngaObject {
 
     use \Jyotish\Base\Traits\GetTrait;
     use \Jyotish\Base\Traits\OptionTrait;
@@ -27,13 +27,27 @@ class TithiObject {
     protected $options = array(
         'tithiDeva' => Biblio::BOOK_BS,
     );
+    
+    /**
+     * Anga type.
+     * 
+     * @var string
+     */
+    protected $angaType = 'tithi';
 
     /**
-     * Tithi key
+     * Tithi key.
      * 
      * @var int
      */
     protected $tithiKey;
+    
+    /**
+     * Tithi name.
+     * 
+     * @var string
+     */
+    protected $tithiName;
 
     /**
      * Devanagari tithi title in transliteration.
@@ -135,6 +149,8 @@ class TithiObject {
      */
     public function __construct($options)
     {
+        parent::__construct();
+        
         $this->setOptions($options);
         
         $this->setTithiDeva($this->options);

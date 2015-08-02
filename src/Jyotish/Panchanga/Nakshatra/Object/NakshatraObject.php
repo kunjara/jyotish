@@ -13,7 +13,7 @@ use Jyotish\Ganita\Math;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class NakshatraObject {
+class NakshatraObject extends \Jyotish\Panchanga\AngaObject {
     
     use \Jyotish\Base\Traits\GetTrait;
     use \Jyotish\Base\Traits\OptionTrait;
@@ -26,6 +26,13 @@ class NakshatraObject {
     protected $options = array(
         'withAbhijit' => false,
     );
+    
+    /**
+     * Anga type.
+     * 
+     * @var string
+     */
+    protected $angaType = 'nakshatra';
 
     /**
      * Arc length of the nakshatra.
@@ -39,11 +46,18 @@ class NakshatraObject {
     );
 
     /**
-     * Nakshatra key
+     * Nakshatra key.
      * 
      * @var int
      */
     protected $nakshatraKey;
+    
+    /**
+     * Nakshatra name.
+     * 
+     * @var string
+     */
+    protected $nakshatraName;
 
     /**
      * The number of taras (stars) of the nakshatra.
@@ -221,6 +235,8 @@ class NakshatraObject {
      */
     public function __construct($options)
     {
+        parent::__construct();
+        
         $this->setOptions($options);
         
         $this->setNakshatraStartEnd($this->options);
