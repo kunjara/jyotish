@@ -7,6 +7,7 @@
 namespace Jyotish\Muhurta;
 
 use Jyotish\Panchanga\Panchanga;
+use Jyotish\Panchanga\AngaDefiner;
 use Jyotish\Ganita\Time;
 
 /**
@@ -21,7 +22,7 @@ class Muhurta {
     const PANCHAKA_CHORA  = 6;
     const PANCHAKA_ROGA   = 8;
     
-    protected $panchangaObject = null;
+    protected $AngaDefiner = null;
     
     protected $ganitaData = null;
 
@@ -36,12 +37,12 @@ class Muhurta {
     /**
      * Constructor
      * 
-     * @param \Jyotish\Panchanga\Panchanga $Panchanga
+     * @param \Jyotish\Panchanga\AngaDefiner $AngaDefiner
      */
-    public function __construct(Panchanga $Panchanga)
+    public function __construct(AngaDefiner $AngaDefiner)
     {
-        $this->panchangaObject = $Panchanga;
-        $this->ganitaData = $this->panchangaObject->getData();
+        $this->AngaDefiner = $AngaDefiner;
+        $this->ganitaData = $this->AngaDefiner->getData();
     }
     
     /**
@@ -78,7 +79,7 @@ class Muhurta {
      */
     public function getHora($type = Hora::TYPE_KALA)
     {
-        $Hora = new Hora($this->panchangaObject);
+        $Hora = new Hora($this->AngaDefiner);
         
         switch ($type){
             case Hora::TYPE_YAMA:
@@ -106,7 +107,7 @@ class Muhurta {
     protected function calcPanchanga($angaName)
     {
         $getAnga = 'get' . ucfirst($angaName);
-        $angaData = $this->panchangaObject->$getAnga(true);
+        $angaData = $this->AngaDefiner->$getAnga(true);
         $nextTime = $angaData['end'];
         
         if(!isset($this->dateTimeObject)){
@@ -124,7 +125,7 @@ class Muhurta {
         $this->dateTimeObject->modify($nextTime)->modify('+ 8 minutes');
         
         if($nextTime < $this->dateTimeObjectEnd->format(Time::FORMAT_DATETIME)){
-            $this->panchangaObject->setData([
+            $this->AngaDefiner->setData([
                 'date' => $this->dateTimeObject->format(Time::FORMAT_DATA_DATE),
                 'time' => $this->dateTimeObject->format(Time::FORMAT_DATA_TIME),
             ], $angaName);
@@ -141,7 +142,7 @@ class Muhurta {
         $this->dateTimeObjectEnd = clone($this->dateTimeObjectStart);
         $this->dateTimeObjectStart->modify('-28 hours');
         
-        $this->panchangaObject->setData([
+        $this->AngaDefiner->setData([
             'date' => $this->dateTimeObjectStart->format(Time::FORMAT_DATA_DATE),
             'time' => $this->dateTimeObjectStart->format(Time::FORMAT_DATA_TIME),
         ]);
@@ -178,7 +179,7 @@ class Muhurta {
     {
         unset($this->dateTimeObject);
         
-        $this->panchangaObject->setData([
+        $this->AngaDefiner->setData([
             'date' => $this->dateTimeObjectStart->format(Time::FORMAT_DATA_DATE),
             'time' => $this->dateTimeObjectStart->format(Time::FORMAT_DATA_TIME),
         ]);

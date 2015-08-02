@@ -10,7 +10,7 @@ use Jyotish\Graha\Graha;
 use Jyotish\Ganita\Time;
 use Jyotish\Ganita\Math;
 use Jyotish\Base\Utils;
-use Jyotish\Panchanga\Panchanga;
+use Jyotish\Panchanga\AngaDefiner;
 use Jyotish\Panchanga\Vara\Vara;
 use DateTime;
 use DateTimeZone;
@@ -30,7 +30,7 @@ class Hora {
      */
     const TYPE_KALA = 'kala';
     
-    protected $panchangaObject = null;
+    protected $AngaDefiner = null;
     
     protected $ganitaData = null;
     
@@ -41,12 +41,12 @@ class Hora {
     /**
      * Constructor
      * 
-     * @param \Jyotish\Panchanga\Panchanga $Panchanga
+     * @param \Jyotish\Panchanga\AngaDefiner $AngaDefiner
      */
-    public function __construct(Panchanga $Panchanga)
+    public function __construct(AngaDefiner $AngaDefiner)
     {
-        $this->panchangaObject = $Panchanga;
-        $this->ganitaData = $this->panchangaObject->getData();
+        $this->AngaDefiner = $AngaDefiner;
+        $this->ganitaData = $this->AngaDefiner->getData();
         
         $this->userDateTime = Time::createDateTime($this->ganitaData['user']);
         $this->userTimeZone = new DateTimeZone($this->ganitaData['user']['timezone']);
@@ -87,7 +87,7 @@ class Hora {
         }
         
         $number = (int)ceil($intervalTime / $intervalHora);
-        $vara = $this->panchangaObject->getVara();
+        $vara = $this->AngaDefiner->getVara();
         
         $horaNumber = $isDay ? $number : $number + 12;
         $riseSet = $isDay ? clone($rising) : clone($setting);

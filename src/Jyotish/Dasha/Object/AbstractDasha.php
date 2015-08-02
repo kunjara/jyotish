@@ -9,7 +9,7 @@ namespace Jyotish\Dasha\Object;
 use DateTime;
 use DateInterval;
 use Jyotish\Graha\Graha;
-use Jyotish\Panchanga\Panchanga;
+use Jyotish\Panchanga\AngaDefiner;
 use Jyotish\Base\Utils;
 use Jyotish\Ganita\Time;
 
@@ -60,7 +60,7 @@ abstract class AbstractDasha {
      */
     protected $orderNakshatra = array();
     
-    protected $panchangaObject = null;
+    protected $AngaDefiner = null;
     
     protected $ganitaData = null;
 
@@ -204,12 +204,12 @@ abstract class AbstractDasha {
     /**
      * Set panchanga.
      * 
-     * @param \Jyotish\Panchanga\Panchanga $Panchanga
+     * @param \Jyotish\Panchanga\AngaDefiner $AngaDefiner
      */
-    public function setPanchanga(Panchanga $Panchanga)
+    public function setPanchanga(AngaDefiner $AngaDefiner)
     {
-        $this->panchangaObject = $Panchanga;
-        $this->ganitaData = $this->panchangaObject->getData();
+        $this->AngaDefiner = $AngaDefiner;
+        $this->ganitaData = $this->AngaDefiner->getData();
     }
     
     /**
@@ -235,7 +235,7 @@ abstract class AbstractDasha {
      */
     protected function checkPanchanga()
     {
-        if(is_null($this->panchangaObject)){
+        if(is_null($this->AngaDefiner)){
             throw new \Jyotish\Dasha\Exception\UnderflowException("Panchanga for dasha object must be setted.");
         }
     }

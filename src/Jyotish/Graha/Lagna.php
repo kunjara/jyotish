@@ -9,7 +9,7 @@ namespace Jyotish\Graha;
 use Jyotish\Ganita\Math;
 use Jyotish\Graha\Graha;
 use Jyotish\Rashi\Rashi;
-use Jyotish\Panchanga\Panchanga;
+use Jyotish\Panchanga\AngaDefiner;
 
 /**
  * Extra lagna class.
@@ -117,8 +117,8 @@ class Lagna {
      */
     public function calcSL()
     {
-        $Panchanga = new Panchanga($this->ganitaData);
-        $nakshatra = $Panchanga->getNakshatra();
+        $AngaDefiner = new AngaDefiner($this->ganitaData);
+        $nakshatra = $AngaDefiner->getNakshatra();
         $nakshatraArc = Math::dmsToDecimal(\Jyotish\Panchanga\Nakshatra\Object\NakshatraObject::$nakshatraArc);
         
         $result1 = (1 - $nakshatra['left'] / 100) * 360;
