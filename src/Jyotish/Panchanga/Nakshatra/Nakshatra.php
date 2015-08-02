@@ -116,8 +116,14 @@ class Nakshatra {
      * @see Jyotish\Alphabet\Devanagari
      */
     static public $translit = ['na','ka','virama','ssa','ta','virama','ra'];
-
-
+    
+    /**
+     * Arc value of nakshatra.
+     * 
+     * @var array 
+     */
+    static public $arc = ['d' => 13, 'm' => 20, 's' => 0];
+    
     /**
      * Returns the requested instance of nakshatra class.
      * 

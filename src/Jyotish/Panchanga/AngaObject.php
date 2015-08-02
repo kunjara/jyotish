@@ -21,8 +21,6 @@ class AngaObject {
     
     /**
      * Constructor
-     * 
-     * @param null|array $options Options to set
      */
     public function __construct()
     {

@@ -6,6 +6,7 @@
 
 namespace Jyotish\Panchanga\Nakshatra\Object;
 
+use Jyotish\Panchanga\Nakshatra\Nakshatra;
 use Jyotish\Ganita\Math;
 
 /**
@@ -33,17 +34,6 @@ class NakshatraObject extends \Jyotish\Panchanga\AngaObject {
      * @var string
      */
     protected $angaType = 'nakshatra';
-
-    /**
-     * Arc length of the nakshatra.
-     * 
-     * @var array 
-     */
-    static public $nakshatraArc = array(
-        'd' => 13,
-        'm' => 20,
-        's' => 0
-    );
 
     /**
      * Nakshatra key.
@@ -187,7 +177,7 @@ class NakshatraObject extends \Jyotish\Panchanga\AngaObject {
         if($options['withAbhijit']){
             switch ($this->nakshatraKey){
             case 21:
-                $this->nakshatraStart = Math::dmsMulti(self::$nakshatraArc, 20);
+                $this->nakshatraStart = Math::dmsMulti(Nakshatra::$arc, 20);
                 $this->nakshatraEnd = array('d' => 276, 'm' => 40);
                 break;
             case 28:
@@ -196,19 +186,19 @@ class NakshatraObject extends \Jyotish\Panchanga\AngaObject {
                 break;
             case 22:
                 $this->nakshatraStart = array('d' => 280, 'm' => 53, 's' => 20);
-                $this->nakshatraEnd = Math::dmsMulti(self::$nakshatraArc, 22);
+                $this->nakshatraEnd = Math::dmsMulti(Nakshatra::$arc, 22);
                 break;
             default:
-                $this->nakshatraStart = Math::dmsMulti(self::$nakshatraArc, $this->nakshatraKey - 1);
-                $this->nakshatraEnd = Math::dmsSum($this->nakshatraStart, self::$nakshatraArc);
+                $this->nakshatraStart = Math::dmsMulti(Nakshatra::$arc, $this->nakshatraKey - 1);
+                $this->nakshatraEnd = Math::dmsSum($this->nakshatraStart, Nakshatra::$arc);
             }
         }else{
             if($this->nakshatraKey == 28) {
                 throw new \Jyotish\Panchanga\Exception\InvalidArgumentException("Parameters of 28 nakshatra are determined only with argument 'withAbhijit' = true.");
             }
 
-            $this->nakshatraStart = Math::dmsMulti(self::$nakshatraArc, $this->nakshatraKey - 1);
-            $this->nakshatraEnd = Math::dmsSum($this->nakshatraStart, self::$nakshatraArc);
+            $this->nakshatraStart = Math::dmsMulti(Nakshatra::$arc, $this->nakshatraKey - 1);
+            $this->nakshatraEnd = Math::dmsSum($this->nakshatraStart, Nakshatra::$arc);
         }
     }
 

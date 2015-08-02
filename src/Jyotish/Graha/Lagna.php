@@ -119,7 +119,6 @@ class Lagna {
     {
         $AngaDefiner = new AngaDefiner($this->ganitaData);
         $nakshatra = $AngaDefiner->getNakshatra();
-        $nakshatraArc = Math::dmsToDecimal(\Jyotish\Panchanga\Nakshatra\Object\NakshatraObject::$nakshatraArc);
         
         $result1 = (1 - $nakshatra['left'] / 100) * 360;
         $result2 = $result1 + $this->ganitaData['extra'][Graha::KEY_LG]['longitude'];

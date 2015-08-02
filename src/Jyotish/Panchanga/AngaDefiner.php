@@ -161,7 +161,7 @@ class AngaDefiner {
                     $unit = $nEnd - $abhijitEnd;
                     $left = $nEnd - $lngGraha;
                 }
-                $nakshatra['ratio'] = $unit / Math::dmsToDecimal(Nakshatra::$nakshatraArc);
+                $nakshatra['ratio'] = $unit / Math::dmsToDecimal(Nakshatra::$arc);
             }else{
                 $nakshatra['key'] = $nakshatraUnits['units'];
                 $nakshatra['ratio'] = 1;
