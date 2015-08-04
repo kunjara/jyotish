@@ -15,17 +15,17 @@ use Jyotish\Base\Utils;
  */
 class Nakshatra {
     /**
-     * Fixed constellation
-     */
-    const TYPE_DHRUVA = 'dhruva';
-    /**
      * Movable constellation
      */
     const TYPE_CHARANA = 'charana';
     /**
-     * Sharp & Horrible constellation
+     * Fixed constellation
      */
-    const TYPE_TIKSHNA = 'tikshna';
+    const TYPE_DHRUVA = 'dhruva';
+    /**
+     * Small constellation
+     */
+    const TYPE_KSHIPRA = 'kshipra';
     /**
      * Delicate & Friendly constellation
      */
@@ -35,13 +35,13 @@ class Nakshatra {
      */
     const TYPE_SADHARANA = 'sadharana';
     /**
+     * Sharp & Horrible constellation
+     */
+    const TYPE_TIKSHNA = 'tikshna';
+    /**
      * Cruel constellation
      */
     const TYPE_UGRA = 'ugra';
-    /**
-     * Small constellation
-     */
-    const TYPE_KSHIPRA = 'kshipra';
 
     const ENERGY_SRISHTI = 'srishti';
     const ENERGY_STHITI = 'sthiti';
@@ -107,6 +107,21 @@ class Nakshatra {
         7 => 'Naidhana',
         8 => 'Mitra',
         9 => 'Atimitra'
+    );
+    
+    /**
+     * List of nakshatra types.
+     * 
+     * @var array
+     */
+    static public $type = array(
+        self::TYPE_CHARANA,
+        self::TYPE_DHRUVA,
+        self::TYPE_KSHIPRA,
+        self::TYPE_MRIDU,
+        self::TYPE_SADHARANA,
+        self::TYPE_TIKSHNA,
+        self::TYPE_UGRA,
     );
 
     /**
