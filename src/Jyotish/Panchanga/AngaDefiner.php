@@ -6,19 +6,19 @@
 
 namespace Jyotish\Panchanga;
 
-use DateTime;
-use DateInterval;
-use Jyotish\Panchanga\Panchanga;
 use Jyotish\Ganita\Math;
 use Jyotish\Ganita\Time;
 use Jyotish\Ganita\Astro;
+use Jyotish\Ganita\Method\AbstractGanita as Ganita;
+use Jyotish\Panchanga\Panchanga;
 use Jyotish\Panchanga\Tithi\Tithi;
 use Jyotish\Panchanga\Nakshatra\Nakshatra;
 use Jyotish\Panchanga\Yoga\Yoga;
 use Jyotish\Panchanga\Vara\Vara;
 use Jyotish\Panchanga\Karana\Karana;
 use Jyotish\Graha\Graha;
-use Jyotish\Ganita\Method\AbstractGanita as Ganita;
+use DateTime;
+use DateInterval;
 
 /**
  * Class for calculating of Panchanga.
@@ -41,11 +41,18 @@ class AngaDefiner {
     private $tithi = null;
     
     /**
-     * Intermediate date
+     * Intermediate date.
      * 
      * @var string
      */
     private $date = null;
+    
+    /**
+     * Information about angas.
+     * 
+     * @var array
+     */
+    private $angaInfo = [];
 
     /**
      * Constructor
@@ -65,6 +72,9 @@ class AngaDefiner {
                 'Ganita data must be a Ganita object or a ganita array.'
             );
         }
+        
+        $this->setAngaInfo();
+        $this->AngaDefiner = clone $this;
     }
 
     /**
@@ -101,7 +111,7 @@ class AngaDefiner {
         $tithi['left'] = ($unit - $tithiUnits['parts']) * 100 / $unit;
 
         if($withLimit){
-            $limit = $this->limitAnga($tithi, __FUNCTION__);
+            $limit = $this->getAngaLimit($tithi);
             $tithi['end'] = $limit;
         }
 
@@ -189,7 +199,7 @@ class AngaDefiner {
         }
 
         if($withLimit){
-			$limit = $this->limitAnga($nakshatra, __FUNCTION__);
+			$limit = $this->getAngaLimit($nakshatra);
             $nakshatra['end'] = $limit;
         }
 
@@ -223,7 +233,7 @@ class AngaDefiner {
         $yoga['left'] = ($unit - $yogaUnits['parts']) * 100 / $unit;
 
         if($withLimit){
-            $limit = $this->limitAnga($yoga, __FUNCTION__);
+            $limit = $this->getAngaLimit($yoga);
             $yoga['end'] = $limit;
         }
 
@@ -346,16 +356,39 @@ class AngaDefiner {
             return $this->ganitaData;
         }
     }
+    
+    /**
+     * Set information about angas.
+     * 
+     * @return void
+     */
+    private function setAngaInfo()
+    {
+        $this->angaInfo = [
+            Panchanga::ANGA_TITHI => [
+                'duration' => Astro::DURATION_MONTH_SYNODIC * 86400,
+                'parts' => 30,
+            ],
+            Panchanga::ANGA_NAKSHATRA => [
+                'duration' => Astro::DURATION_MONTH_SIDEREAL * 86400,
+                'parts' => 27,
+            ],
+            Panchanga::ANGA_YOGA => [
+                'duration' => Astro::DURATION_MONTH_SYNODIC * 86400,
+                'parts' => 27,
+            ],
+        ];
+    }
 
     /**
-     * Calculate Anga limits.
+     * Calculate end time of anga.
      * 
      * @param array $anga
-     * @param string $function
+     * @param string $modify
      * @return array
      * @throws Exception\RuntimeException
      */
-    private function limitAnga($anga, $function = 'getTithi')
+    private function getAngaLimit($anga, $modify = 'add')
     {
         if(!is_object($this->ganitaData)){
             throw new Exception\RuntimeException(
@@ -363,48 +396,36 @@ class AngaDefiner {
             );
         }
 
-        if($function == 'getTithi'){
-            $durMonth = Astro::DURATION_MONTH_SYNODIC * 86400;
-            $nAnga = 30;
-            $anga['ratio'] = 1;
-        }elseif($function == 'getYoga'){
-            $durMonth = Astro::DURATION_MONTH_SYNODIC * 86400;
-            $nAnga = 27;
-            $anga['ratio'] = 1;
-        }elseif($function == 'getNakshatra'){
-            $durMonth = Astro::DURATION_MONTH_SIDEREAL * 86400;
-            $nAnga = 27;
-        }else{
-            $anga['ratio'] = 1;
-        }
-
-        $dateUser  = new DateTime($this->getData()['user']['date'].' '.$this->getData()['user']['time']);
-        $durAnga   = $durMonth * $anga['ratio'] / $nAnga;
-        $Panchanga = clone $this;
-
-        $timeLeft = round($durAnga * ($anga['left'] / 100) / 2);
+        $TimeEnd = Time::createDateTime($this->AngaDefiner->getData()['user']);
+        
+        $ratio = $anga['anga'] == Panchanga::ANGA_NAKSHATRA ? $anga['ratio'] : 1;
+        $duration  = $this->angaInfo[$anga['anga']]['duration'] * $ratio / $this->angaInfo[$anga['anga']]['parts'];
+        $left = $modify == 'add' ? $anga['left'] : 100 - $anga['left'];
+        $timeLeft = round($duration * ($left / 100) );
+        $TimeEnd->{$modify}(new DateInterval('PT'.$timeLeft.'S'));
 
         // End time
-        do {
-            $timeEndObject = $dateUser->add(new DateInterval('PT'.$timeLeft.'S'));
-
-            $Panchanga->setData([
-                'date' => $timeEndObject->format(Time::FORMAT_DATA_DATE), 
-                'time' => $timeEndObject->format(Time::FORMAT_DATA_TIME)
+        if($left > .1){
+            $this->AngaDefiner->setData([
+                'date' => $TimeEnd->format(Time::FORMAT_DATA_DATE), 
+                'time' => $TimeEnd->format(Time::FORMAT_DATA_TIME)
             ], $anga['anga']);
 
-            if($function == 'getNakshatra'){
-                $angaTemp = $Panchanga->$function(false, $anga['abhijit']);
+            $function = 'get' . ucfirst($anga['anga']);
+            if($anga['anga'] == Panchanga::ANGA_NAKSHATRA){
+                $angaTemp = $this->AngaDefiner->$function(false, $anga['abhijit']);
             }else{
-                $angaTemp = $Panchanga->$function();
+                $angaTemp = $this->AngaDefiner->$function();
+            }
+            
+            if($anga['key'] != $angaTemp['key']){
+                $modify = $modify == 'add' ? 'sub' : 'add';
             }
 
-            $timeLeft = round($durAnga * ($angaTemp['left'] / 100) / 2 );
-        } while($angaTemp['left'] > .2);
+            return $this->getAngaLimit($angaTemp, $modify);
+        }
 
-        $result = $timeEndObject->format(Time::FORMAT_DATETIME);
-
-        unset($Panchanga);
+        $result = $TimeEnd->format(Time::FORMAT_DATETIME);
         
         return $result;
     }
