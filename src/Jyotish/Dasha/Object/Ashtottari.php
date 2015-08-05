@@ -69,7 +69,7 @@ class Ashtottari extends AbstractDasha {
      */
     public function getStartPeriod()
     {
-        $nakshatra = $this->panchangaObject->getNakshatra(true, true);
+        $nakshatra = $this->AngaDefiner->getNakshatra(true, true);
         $keysNakshatra = array_keys($this->orderNakshatra);
         $indexNum      = array_search($nakshatra['key'], $keysNakshatra) + 1;
         

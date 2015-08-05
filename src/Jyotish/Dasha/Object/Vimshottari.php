@@ -71,7 +71,7 @@ class Vimshottari extends AbstractDasha {
      */
     public function getStartPeriod()
     {
-        $nakshatra = $this->panchangaObject->getNakshatra(true);
+        $nakshatra = $this->AngaDefiner->getNakshatra(true);
         $N = Nakshatra::getInstance($nakshatra['key']);
 
         $result['graha'] = $N->nakshatraRuler;
