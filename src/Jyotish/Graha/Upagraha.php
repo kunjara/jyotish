@@ -69,8 +69,8 @@ class Upagraha {
      */
     public function calcDh()
     {
-        if(!isset($this->ganitaData['upagraha'][self::KEY_DH])){
-            $result = $this->ganitaData['graha'][Graha::KEY_SY]['longitude'] + 133 + 1/3;
+        if(!isset($this->getData()['upagraha'][self::KEY_DH])){
+            $result = $this->getData()['graha'][Graha::KEY_SY]['longitude'] + 133 + 1/3;
             $lng = $result > 360 ? $result - 360 : $result;
             $unit = Math::partsToUnits($lng);
 
@@ -80,7 +80,7 @@ class Upagraha {
                 'degree' => $unit['parts']
             ];
         }
-        return $this->ganitaData['upagraha'][self::KEY_DH];
+        return $this->getData()['upagraha'][self::KEY_DH];
     }
     
     /**
@@ -91,7 +91,7 @@ class Upagraha {
      */
     public function calcVy()
     {
-        if(!isset($this->ganitaData['upagraha'][self::KEY_VY])){
+        if(!isset($this->getData()['upagraha'][self::KEY_VY])){
             $lng = 360 - $this->calcDh()['longitude'];
             $unit = Math::partsToUnits($lng);
             
@@ -101,7 +101,7 @@ class Upagraha {
                 'degree' => $unit['parts']
             ];
         }
-        return $this->ganitaData['upagraha'][self::KEY_VY];
+        return $this->getData()['upagraha'][self::KEY_VY];
     }
     
     /**
@@ -112,7 +112,7 @@ class Upagraha {
      */
     public function calcPa()
     {
-        if(!isset($this->ganitaData['upagraha'][self::KEY_PA])){
+        if(!isset($this->getData()['upagraha'][self::KEY_PA])){
             $result = $this->calcVy()['longitude'] + 180;
             $lng = $result > 360 ? $result - 360 : $result;
             $unit = Math::partsToUnits($lng);
@@ -123,7 +123,7 @@ class Upagraha {
                 'degree' => $unit['parts']
             ];
         }
-        return $this->ganitaData['upagraha'][self::KEY_PA];
+        return $this->getData()['upagraha'][self::KEY_PA];
     }
     
     /**
@@ -134,7 +134,7 @@ class Upagraha {
      */
     public function calcIn()
     {
-        if(!isset($this->ganitaData['upagraha'][self::KEY_IN])){
+        if(!isset($this->getData()['upagraha'][self::KEY_IN])){
             $lng = 360 - $this->calcPa()['longitude'];
             $unit = Math::partsToUnits($lng);
             
@@ -144,7 +144,7 @@ class Upagraha {
                 'degree' => $unit['parts']
             ];
         }
-        return $this->ganitaData['upagraha'][self::KEY_IN];
+        return $this->getData()['upagraha'][self::KEY_IN];
     }
     
     /**
@@ -155,7 +155,7 @@ class Upagraha {
      */
     public function calcUk()
     {
-        if(!isset($this->ganitaData['upagraha'][self::KEY_UK])){
+        if(!isset($this->getData()['upagraha'][self::KEY_UK])){
             $result = $this->calcIn()['longitude'] + 16 + 2/3;
             $lng = $result > 360 ? $result - 360 : $result;
             $unit = Math::partsToUnits($lng);
@@ -166,7 +166,7 @@ class Upagraha {
                 'degree' => $unit['parts']
             ];
         }
-        return $this->ganitaData['upagraha'][self::KEY_UK];
+        return $this->getData()['upagraha'][self::KEY_UK];
     }
     
     /**

@@ -222,9 +222,9 @@ class AshtakaVarga {
                     $bindu = in_array($i, $this->{$binduVarga}[$graha]) ? 1 : 0; 
 
                     if($graha != Graha::KEY_LG){
-                        $distance = Math::numberInCycle($this->ganitaData['graha'][$graha]['rashi'], $i);
+                        $distance = Math::numberInCycle($this->getData()['graha'][$graha]['rashi'], $i);
                     }else{
-                        $distance = Math::numberInCycle($this->ganitaData['extra'][$graha]['rashi'], $i);
+                        $distance = Math::numberInCycle($this->getData()['extra'][$graha]['rashi'], $i);
                     }
                     
                     if(!isset($this->bhinnAshtakavarga[$varga][$distance])) $this->bhinnAshtakavarga[$varga][$distance] = 0;

@@ -71,12 +71,12 @@ class YogaBase {
         foreach ($Graha2->grahaSwa as $key => $data) $rashi2Swa[] = $data['rashi']; 
         
         if(
-            in_array($this->ganitaData['graha'][$graha1]['rashi'], $rashi2Swa) and 
-            in_array($this->ganitaData['graha'][$graha2]['rashi'], $rashi1Swa)
+            in_array($this->getData()['graha'][$graha1]['rashi'], $rashi2Swa) and 
+            in_array($this->getData()['graha'][$graha2]['rashi'], $rashi1Swa)
         ){
             if($this->options['outputAmple']){
-                $Graha1->setEnvironment($this->ganitaData);
-                $Graha2->setEnvironment($this->ganitaData);
+                $Graha1->setEnvironment($this->getData());
+                $Graha2->setEnvironment($this->getData());
                 $graha1Bhava = $Graha1->getBhava();
                 $graha2Bhava = $Graha2->getBhava();
                 
@@ -107,7 +107,7 @@ class YogaBase {
     public function hasMahapurusha($key)
     {
         $Graha = Graha::getInstance($key);
-        $Graha->setEnvironment($this->ganitaData);
+        $Graha->setEnvironment($this->getData());
         
         $grahaBhava = $Graha->getBhava();
         $grahaAvastha = $Graha->getRashiAvastha();

@@ -49,7 +49,7 @@ class Analysis {
      */
     public function getCharaKaraka($reverse = false, $system = Biblio::AUTHOR_PARASHARA)
     {
-        $grahas = $this->ganitaData['graha'];
+        $grahas = $this->getData()['graha'];
         unset($grahas[Graha::KEY_KE]);
         switch($system){
             case Biblio::AUTHOR_JAIMINI:
@@ -122,10 +122,10 @@ class Analysis {
     {
         $v = strtoupper($varga);
         if(!isset($this->vargaData[$v])){
-            if($varga == 'D1') return $this->ganitaData;
+            if($varga == 'D1') return $this->getData();
             
             $Varga = Varga::getInstance(($v));
-            $this->vargaData[$v] = $Varga->getVargaData($this->ganitaData);
+            $this->vargaData[$v] = $Varga->getVargaData($this->getData());
         }
         return $this->vargaData[$v];
     }
@@ -139,7 +139,7 @@ class Analysis {
     public function getBhavaRulers(array $bhavas)
     {
         foreach ($bhavas as $bhava){
-            $Rashi = Rashi::getInstance($this->ganitaData['bhava'][$bhava]['rashi']);
+            $Rashi = Rashi::getInstance($this->getData()['bhava'][$bhava]['rashi']);
             $rulers[] = $Rashi->rashiRuler;
         }
         $rulers = array_unique($rulers);

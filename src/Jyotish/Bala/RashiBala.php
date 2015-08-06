@@ -66,7 +66,7 @@ class RashiBala extends Analysis {
      */
     protected function balaGraha()
     {
-        $GrahaBala = new GrahaBala($this->ganitaData);
+        $GrahaBala = new GrahaBala($this->getData());
         $grahaBala = $GrahaBala->getBala()['total'];
         
         foreach (Rashi::$rashi as $key => $name){
@@ -111,7 +111,7 @@ class RashiBala extends Analysis {
      */
     protected function balaSthira()
     {
-        foreach ($this->ganitaData['graha'] as $key => $value){
+        foreach ($this->getData()['graha'] as $key => $value){
             if($key == Graha::KEY_RA or $key == Graha::KEY_KE) continue;
             $bala[$value['rashi']] = !isset($bala[$value['rashi']]) ? 10 : $bala[$value['rashi']] + 10;
         }
@@ -128,14 +128,14 @@ class RashiBala extends Analysis {
     protected function balaDrishti()
     {
         foreach (Rashi::$rashi as $rKey => $rName){
-            $Rashi = Rashi::getInstance($rKey)->setEnvironment($this->ganitaData);
+            $Rashi = Rashi::getInstance($rKey)->setEnvironment($this->getData());
             $ruler = $Rashi->rashiRuler;
             $rashiIsAspected = $Rashi->isAspectedByRashi()['graha'];
             $bala[$rKey] = 0;
             
             foreach ([$ruler, Graha::KEY_GU, Graha::KEY_BU] as $gKey){
                 if(
-                    $this->ganitaData['graha'][$gKey]['rashi'] == $rKey or 
+                    $this->getData()['graha'][$gKey]['rashi'] == $rKey or 
                     array_key_exists($gKey, $rashiIsAspected)
                 ){
                     $bala[$rKey] += 60;

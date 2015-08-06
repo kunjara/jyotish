@@ -52,7 +52,7 @@ class Dhana extends YogaBase {
     public function __construct($data) {
         parent::__construct($data);
         
-        $Lg = Bhava::getInstance(1)->setEnvironment($this->ganitaData);
+        $Lg = Bhava::getInstance(1)->setEnvironment($this->getData());
         
         $this->lg['aspect']   = $Lg->isAspectedByGraha();
         $this->lg['conjunct'] = $Lg->isConjuncted();
@@ -68,9 +68,9 @@ class Dhana extends YogaBase {
     public function hasSkInB5MaInB11()
     {
         if(
-            ($this->ganitaData['bhava'][5]['rashi'] == 2 or $this->ganitaData['bhava'][5]['rashi'] == 7) and
-            $this->ganitaData['graha'][Graha::KEY_SK]['rashi'] == $this->ganitaData['bhava'][5]['rashi'] and
-            $this->ganitaData['graha'][Graha::KEY_MA]['rashi'] == $this->ganitaData['bhava'][11]['rashi'] 
+            ($this->getData()['bhava'][5]['rashi'] == 2 or $this->getData()['bhava'][5]['rashi'] == 7) and
+            $this->getData()['graha'][Graha::KEY_SK]['rashi'] == $this->getData()['bhava'][5]['rashi'] and
+            $this->getData()['graha'][Graha::KEY_MA]['rashi'] == $this->getData()['bhava'][11]['rashi'] 
         ){
             return true;
         }else{
@@ -88,11 +88,11 @@ class Dhana extends YogaBase {
     public function hasBuInB5ChMaGuInB11()
     {
         if(
-            ($this->ganitaData['bhava'][5]['rashi'] == 3 or $this->ganitaData['bhava'][5]['rashi'] == 6) and
-            $this->ganitaData['graha'][Graha::KEY_BU]['rashi'] == $this->ganitaData['bhava'][5]['rashi'] and
-            $this->ganitaData['graha'][Graha::KEY_CH]['rashi'] == $this->ganitaData['bhava'][11]['rashi'] and
-            $this->ganitaData['graha'][Graha::KEY_MA]['rashi'] == $this->ganitaData['bhava'][11]['rashi'] and
-            $this->ganitaData['graha'][Graha::KEY_GU]['rashi'] == $this->ganitaData['bhava'][11]['rashi']
+            ($this->getData()['bhava'][5]['rashi'] == 3 or $this->getData()['bhava'][5]['rashi'] == 6) and
+            $this->getData()['graha'][Graha::KEY_BU]['rashi'] == $this->getData()['bhava'][5]['rashi'] and
+            $this->getData()['graha'][Graha::KEY_CH]['rashi'] == $this->getData()['bhava'][11]['rashi'] and
+            $this->getData()['graha'][Graha::KEY_MA]['rashi'] == $this->getData()['bhava'][11]['rashi'] and
+            $this->getData()['graha'][Graha::KEY_GU]['rashi'] == $this->getData()['bhava'][11]['rashi']
         ){
             return true;
         }else{
@@ -110,11 +110,11 @@ class Dhana extends YogaBase {
     public function hasSyInB5ChGuSaInB11()
     {
         if(
-            $this->ganitaData['bhava'][5]['rashi'] == 5 and
-            $this->ganitaData['graha'][Graha::KEY_SY]['rashi'] == $this->ganitaData['bhava'][5]['rashi'] and
-            $this->ganitaData['graha'][Graha::KEY_CH]['rashi'] == $this->ganitaData['bhava'][11]['rashi'] and
-            $this->ganitaData['graha'][Graha::KEY_GU]['rashi'] == $this->ganitaData['bhava'][11]['rashi'] and
-            $this->ganitaData['graha'][Graha::KEY_SA]['rashi'] == $this->ganitaData['bhava'][11]['rashi']
+            $this->getData()['bhava'][5]['rashi'] == 5 and
+            $this->getData()['graha'][Graha::KEY_SY]['rashi'] == $this->getData()['bhava'][5]['rashi'] and
+            $this->getData()['graha'][Graha::KEY_CH]['rashi'] == $this->getData()['bhava'][11]['rashi'] and
+            $this->getData()['graha'][Graha::KEY_GU]['rashi'] == $this->getData()['bhava'][11]['rashi'] and
+            $this->getData()['graha'][Graha::KEY_SA]['rashi'] == $this->getData()['bhava'][11]['rashi']
         ){
             return true;
         }else{
@@ -132,10 +132,10 @@ class Dhana extends YogaBase {
     public function hasSaInB5SyChInB11()
     {
         if(
-            ($this->ganitaData['bhava'][5]['rashi'] == 10 or $this->ganitaData['bhava'][5]['rashi'] == 11) and
-            $this->ganitaData['graha'][Graha::KEY_SA]['rashi'] == $this->ganitaData['bhava'][5]['rashi'] and
-            $this->ganitaData['graha'][Graha::KEY_SY]['rashi'] == $this->ganitaData['bhava'][11]['rashi'] and
-            $this->ganitaData['graha'][Graha::KEY_CH]['rashi'] == $this->ganitaData['bhava'][11]['rashi']
+            ($this->getData()['bhava'][5]['rashi'] == 10 or $this->getData()['bhava'][5]['rashi'] == 11) and
+            $this->getData()['graha'][Graha::KEY_SA]['rashi'] == $this->getData()['bhava'][5]['rashi'] and
+            $this->getData()['graha'][Graha::KEY_SY]['rashi'] == $this->getData()['bhava'][11]['rashi'] and
+            $this->getData()['graha'][Graha::KEY_CH]['rashi'] == $this->getData()['bhava'][11]['rashi']
         ){
             return true;
         }else{
@@ -153,9 +153,9 @@ class Dhana extends YogaBase {
     public function hasGuInB5BuInB11()
     {
         if(
-            ($this->ganitaData['bhava'][5]['rashi'] == 9 or $this->ganitaData['bhava'][5]['rashi'] == 12) and
-            $this->ganitaData['graha'][Graha::KEY_GU]['rashi'] == $this->ganitaData['bhava'][5]['rashi'] and
-            $this->ganitaData['graha'][Graha::KEY_BU]['rashi'] == $this->ganitaData['bhava'][11]['rashi']
+            ($this->getData()['bhava'][5]['rashi'] == 9 or $this->getData()['bhava'][5]['rashi'] == 12) and
+            $this->getData()['graha'][Graha::KEY_GU]['rashi'] == $this->getData()['bhava'][5]['rashi'] and
+            $this->getData()['graha'][Graha::KEY_BU]['rashi'] == $this->getData()['bhava'][11]['rashi']
         ){
             return true;
         }else{
@@ -172,9 +172,9 @@ class Dhana extends YogaBase {
     public function hasMaInB5SkInB11()
     {
         if(
-            ($this->ganitaData['bhava'][5]['rashi'] == 1 or $this->ganitaData['bhava'][5]['rashi'] == 8) and
-            $this->ganitaData['graha'][Graha::KEY_MA]['rashi'] == $this->ganitaData['bhava'][5]['rashi'] and
-            $this->ganitaData['graha'][Graha::KEY_SK]['rashi'] == $this->ganitaData['bhava'][11]['rashi']
+            ($this->getData()['bhava'][5]['rashi'] == 1 or $this->getData()['bhava'][5]['rashi'] == 8) and
+            $this->getData()['graha'][Graha::KEY_MA]['rashi'] == $this->getData()['bhava'][5]['rashi'] and
+            $this->getData()['graha'][Graha::KEY_SK]['rashi'] == $this->getData()['bhava'][11]['rashi']
         ){
             return true;
         }else{
@@ -192,9 +192,9 @@ class Dhana extends YogaBase {
     public function hasChInB5SaInB11()
     {
         if(
-            $this->ganitaData['bhava'][5]['rashi'] == 4 and
-            $this->ganitaData['graha'][Graha::KEY_CH]['rashi'] == $this->ganitaData['bhava'][5]['rashi'] and
-            $this->ganitaData['graha'][Graha::KEY_SA]['rashi'] == $this->ganitaData['bhava'][11]['rashi']
+            $this->getData()['bhava'][5]['rashi'] == 4 and
+            $this->getData()['graha'][Graha::KEY_CH]['rashi'] == $this->getData()['bhava'][5]['rashi'] and
+            $this->getData()['graha'][Graha::KEY_SA]['rashi'] == $this->getData()['bhava'][11]['rashi']
         ){
             return true;
         }else{
@@ -212,8 +212,8 @@ class Dhana extends YogaBase {
     public function hasSyInLgPacMaGu()
     {
         if(
-            $this->ganitaData['bhava'][1]['rashi'] == 5 and
-            $this->ganitaData['graha'][Graha::KEY_SY]['rashi'] == 5 and
+            $this->getData()['bhava'][1]['rashi'] == 5 and
+            $this->getData()['graha'][Graha::KEY_SY]['rashi'] == 5 and
             ($this->lg['aspect'][Graha::KEY_MA] == 1 or isset($this->lg['conjunct'][Graha::KEY_MA])) and
             ($this->lg['aspect'][Graha::KEY_GU] == 1 or isset($this->lg['conjunct'][Graha::KEY_GU]))
         ){
@@ -233,8 +233,8 @@ class Dhana extends YogaBase {
     public function hasChInLgPacBuGu()
     {
         if(
-            $this->ganitaData['bhava'][1]['rashi'] == 4 and
-            $this->ganitaData['graha'][Graha::KEY_CH]['rashi'] == 4 and
+            $this->getData()['bhava'][1]['rashi'] == 4 and
+            $this->getData()['graha'][Graha::KEY_CH]['rashi'] == 4 and
             ($this->lg['aspect'][Graha::KEY_MA] == 1 or isset($this->lg['conjunct'][Graha::KEY_MA])) and
             ($this->lg['aspect'][Graha::KEY_GU] == 1 or isset($this->lg['conjunct'][Graha::KEY_GU]))
         ){
@@ -254,8 +254,8 @@ class Dhana extends YogaBase {
     public function hasMaInLgPacBuSkSa()
     {
         if(
-            ($this->ganitaData['bhava'][1]['rashi'] == 1 or $this->ganitaData['bhava'][1]['rashi'] == 8) and
-            ($this->ganitaData['graha'][Graha::KEY_MA]['rashi'] == 1 or $this->ganitaData['graha'][Graha::KEY_MA]['rashi'] == 8) and
+            ($this->getData()['bhava'][1]['rashi'] == 1 or $this->getData()['bhava'][1]['rashi'] == 8) and
+            ($this->getData()['graha'][Graha::KEY_MA]['rashi'] == 1 or $this->getData()['graha'][Graha::KEY_MA]['rashi'] == 8) and
             ($this->lg['aspect'][Graha::KEY_BU] == 1 or isset($this->lg['conjunct'][Graha::KEY_BU])) and
             ($this->lg['aspect'][Graha::KEY_SK] == 1 or isset($this->lg['conjunct'][Graha::KEY_SK])) and
             ($this->lg['aspect'][Graha::KEY_SA] == 1 or isset($this->lg['conjunct'][Graha::KEY_SA]))
@@ -276,8 +276,8 @@ class Dhana extends YogaBase {
     public function hasBuInLgPacGuSa()
     {
         if(
-            ($this->ganitaData['bhava'][1]['rashi'] == 3 or $this->ganitaData['bhava'][1]['rashi'] == 6) and
-            ($this->ganitaData['graha'][Graha::KEY_BU]['rashi'] == 3 or $this->ganitaData['graha'][Graha::KEY_BU]['rashi'] == 6) and
+            ($this->getData()['bhava'][1]['rashi'] == 3 or $this->getData()['bhava'][1]['rashi'] == 6) and
+            ($this->getData()['graha'][Graha::KEY_BU]['rashi'] == 3 or $this->getData()['graha'][Graha::KEY_BU]['rashi'] == 6) and
             ($this->lg['aspect'][Graha::KEY_GU] == 1 or isset($this->lg['conjunct'][Graha::KEY_GU])) and
             ($this->lg['aspect'][Graha::KEY_SA] == 1 or isset($this->lg['conjunct'][Graha::KEY_SA]))
         ){
@@ -297,8 +297,8 @@ class Dhana extends YogaBase {
     public function hasGuInLgPacMaBu()
     {
         if(
-            ($this->ganitaData['bhava'][1]['rashi'] == 9 or $this->ganitaData['bhava'][1]['rashi'] == 12) and
-            ($this->ganitaData['graha'][Graha::KEY_GU]['rashi'] == 9 or $this->ganitaData['graha'][Graha::KEY_GU]['rashi'] == 12) and
+            ($this->getData()['bhava'][1]['rashi'] == 9 or $this->getData()['bhava'][1]['rashi'] == 12) and
+            ($this->getData()['graha'][Graha::KEY_GU]['rashi'] == 9 or $this->getData()['graha'][Graha::KEY_GU]['rashi'] == 12) and
             ($this->lg['aspect'][Graha::KEY_MA] == 1 or isset($this->lg['conjunct'][Graha::KEY_MA])) and
             ($this->lg['aspect'][Graha::KEY_BU] == 1 or isset($this->lg['conjunct'][Graha::KEY_BU]))
         ){
@@ -318,8 +318,8 @@ class Dhana extends YogaBase {
     public function hasSkInLgPacBuSa()
     {
         if(
-            ($this->ganitaData['bhava'][1]['rashi'] == 2 or $this->ganitaData['bhava'][1]['rashi'] == 7) and
-            ($this->ganitaData['graha'][Graha::KEY_SK]['rashi'] == 2 or $this->ganitaData['graha'][Graha::KEY_SK]['rashi'] == 7) and
+            ($this->getData()['bhava'][1]['rashi'] == 2 or $this->getData()['bhava'][1]['rashi'] == 7) and
+            ($this->getData()['graha'][Graha::KEY_SK]['rashi'] == 2 or $this->getData()['graha'][Graha::KEY_SK]['rashi'] == 7) and
             ($this->lg['aspect'][Graha::KEY_BU] == 1 or isset($this->lg['conjunct'][Graha::KEY_BU])) and
             ($this->lg['aspect'][Graha::KEY_SA] == 1 or isset($this->lg['conjunct'][Graha::KEY_SA]))
         ){
@@ -339,8 +339,8 @@ class Dhana extends YogaBase {
     public function hasSaInLgPacMaGu()
     {
         if(
-            ($this->ganitaData['bhava'][1]['rashi'] == 10 or $this->ganitaData['bhava'][1]['rashi'] == 11) and
-            ($this->ganitaData['graha'][Graha::KEY_SA]['rashi'] == 10 or $this->ganitaData['graha'][Graha::KEY_SA]['rashi'] == 11) and
+            ($this->getData()['bhava'][1]['rashi'] == 10 or $this->getData()['bhava'][1]['rashi'] == 11) and
+            ($this->getData()['graha'][Graha::KEY_SA]['rashi'] == 10 or $this->getData()['graha'][Graha::KEY_SA]['rashi'] == 11) and
             ($this->lg['aspect'][Graha::KEY_MA] == 1 or isset($this->lg['conjunct'][Graha::KEY_MA])) and
             ($this->lg['aspect'][Graha::KEY_GU] == 1 or isset($this->lg['conjunct'][Graha::KEY_GU]))
         ){

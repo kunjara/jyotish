@@ -92,14 +92,14 @@ class Lagna {
             return $Rashi->rashiRuler;
         };
         
-        $ruler9FromLg = $rashiRuler($this->ganitaData['bhava'][9]['rashi']);
-        $ruler9FromCh = $rashiRuler(Math::numberInCycle($this->ganitaData['graha'][Graha::KEY_CH]['rashi'], 9));
+        $ruler9FromLg = $rashiRuler($this->getData()['bhava'][9]['rashi']);
+        $ruler9FromCh = $rashiRuler(Math::numberInCycle($this->getData()['graha'][Graha::KEY_CH]['rashi'], 9));
         
         $distance = ($kala[$ruler9FromLg] + $kala[$ruler9FromCh]) % 12;
         if($distance == 0) $distance = 12;
         
-        $rashiIL  = Math::numberInCycle($this->ganitaData['graha'][Graha::KEY_CH]['rashi'], $distance);
-        $degreeIL = $this->ganitaData['graha'][Graha::KEY_CH]['degree'];
+        $rashiIL  = Math::numberInCycle($this->getData()['graha'][Graha::KEY_CH]['rashi'], $distance);
+        $degreeIL = $this->getData()['graha'][Graha::KEY_CH]['degree'];
         $lngIL    = ($rashiIL - 1) * 30 + $degreeIL;
         
         return [
@@ -117,11 +117,11 @@ class Lagna {
      */
     public function calcSL()
     {
-        $AngaDefiner = new AngaDefiner($this->ganitaData);
+        $AngaDefiner = new AngaDefiner($this->getData());
         $nakshatra = $AngaDefiner->getNakshatra();
         
         $result1 = (1 - $nakshatra['left'] / 100) * 360;
-        $result2 = $result1 + $this->ganitaData['extra'][Graha::KEY_LG]['longitude'];
+        $result2 = $result1 + $this->getData()['extra'][Graha::KEY_LG]['longitude'];
         $lngSL   = $result2 > 360 ? $result2 - 360 : $result2;
         $unitSL  = Math::partsToUnits($lngSL);
         

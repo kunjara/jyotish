@@ -75,7 +75,7 @@ class GrahaBala extends Analysis {
     protected function balaMulatrikonadi()
     {
         foreach ($this->balaGraha as $key => $name){
-            $Graha = Graha::getInstance($key)->setEnvironment($this->ganitaData);
+            $Graha = Graha::getInstance($key)->setEnvironment($this->getData());
             $rashiAvastha = $Graha->getRashiAvastha();
             
             switch($rashiAvastha){
@@ -134,8 +134,9 @@ class GrahaBala extends Analysis {
     {
         foreach ($this->balaGraha as $key => $name){
             $distance = Math::distanceInCycle(
-                    $this->ganitaData['graha'][$this->atmaKaraka]['rashi'], 
-                    $this->ganitaData['graha'][$key]['rashi']);
+                $this->getData()['graha'][$this->atmaKaraka]['rashi'], 
+                $this->getData()['graha'][$key]['rashi']
+            );
             
             if(in_array($distance, Bhava::$bhavaKendra)){
                 $bala[$key] = 60;
