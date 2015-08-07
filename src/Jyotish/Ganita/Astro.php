@@ -18,7 +18,7 @@ class Astro {
     /**
      * Approximate duration of precession in years.
      */
-    const DURATION_PRECESSION = 25800;
+    const DURATION_PRECESSION = 25880;
     
     /**
      * Duration of the year in Gregorian calendar in days. 

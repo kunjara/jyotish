@@ -66,9 +66,9 @@ class Ayanamsha {
     /**
      * Get approximate ayanamsha value.
      * 
-     * @param DateTime $Date
-     * @param string $ayanamsha
-     * @return array
+     * @param null|DateTime $Date Date (optional)
+     * @param string $ayanamsha Ayanamsha name (optional)
+     * @return float
      */
     static public function getAyanamsha(DateTime $Date = null, $ayanamsha = self::AYANAMSHA_LAHIRI)
     {
@@ -87,7 +87,31 @@ class Ayanamsha {
         $Interval = $DateMatching->diff($Date);
         
         $factor = $Interval->days / Astro::DURATION_YEAR_GREGORIAN;
-        $ayanamshaValue = Math::dmsMulti(['d' => 0, 'm' => 0, 's' => Astro::getPrecessionSpeed()], $factor);
+        $ayanamshaValue = Math::dmsToDecimal(['d' => 0, 'm' => 0, 's' => Astro::getPrecessionSpeed()]) * $factor;
+        
+        return $ayanamshaValue;
+    }
+    
+    /**
+     * Calculate ayanamsha value.
+     * 
+     * @param null|DateTime $Date Date (optional)
+     * @return float
+     */
+    static public function calcAyanamsha(DateTime $Date = null)
+    {
+        if(is_null($Date)){
+            $Date = new DateTime('now');
+        }
+        
+        $year = $Date->format('Y');
+        $month = $Date->format('n');
+        $date = $Date->format('j');
+        
+        $A = 16.90709 * $year / 1000 - 0.757371 * $year * $year/ 1000000 - 6.92416;
+        $B = ($month - 1 + $date / 30) * 1.1574074 / 1000;
+        
+        $ayanamshaValue = $A + $B;
         
         return $ayanamshaValue;
     }
