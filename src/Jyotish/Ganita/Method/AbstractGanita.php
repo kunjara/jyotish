@@ -145,10 +145,11 @@ abstract class AbstractGanita {
      * Calculation of coordinates and other parameters of planets and houses.
      * 
      * @abstract
+     * @param array $params
      * @param array $options
      * @return array
      */
-    abstract public function calcParams(array $options = null);
+    abstract public function calcParams(array $params = null, array $options = null);
 
     /**
      * Calculation of rising and setting time of planet.
@@ -158,5 +159,5 @@ abstract class AbstractGanita {
      * @param array $options
      * @return array
      */
-    abstract public function calcRising($graha, array $options = null);
+    abstract public function calcRising($graha = Graha::KEY_SY, array $options = null);
 }
