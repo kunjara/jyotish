@@ -11,7 +11,7 @@ use DateTimeZone;
 use DateInterval;
 
 /**
- * Class for working with time and date.
+ * Class for working with date and time.
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
@@ -31,11 +31,11 @@ class Time {
     static public function createDateTime(array $data)
     {
         $dateTime = $data['date'] . ' ' . $data['time'];
-        $timeZone = isset($data['timezone']) ? new DateTimeZone($data['timezone']) : null;
+        $TimeZone = isset($data['timezone']) ? new DateTimeZone($data['timezone']) : null;
         
-        $dateTimeObject = new DateTime($dateTime, $timeZone);
+        $DateTime = new DateTime($dateTime, $TimeZone);
         
-        return $dateTimeObject;
+        return $DateTime;
     }
     
     /**
@@ -46,10 +46,10 @@ class Time {
      */
     static public function createDateTimeUtc(array $data)
     {
-        $dateTimeObject = self::createDateTime($data);
+        $DateTime = self::createDateTime($data);
 
         if ($data['timezone'] != 'UTC') {
-            $dateTimeObject->setTimezone(new DateTimeZone('UTC'));
+            $DateTime->setTimezone(new DateTimeZone('UTC'));
         }
         
         $offsetSystem = self::getTimeZoneOffset($data['timezone'], $data['date'] . ' ' . $data['time']);
@@ -59,36 +59,104 @@ class Time {
             $offsetTotal = $offsetSystem - $offsetUser;
 
             if($offsetTotal > 0) {
-                $dateTimeObject->add(new DateInterval('PT'.$offsetTotal.'S'));
+                $DateTime->add(new DateInterval('PT'.$offsetTotal.'S'));
             } elseif($offsetTotal < 0) {
-                $dateTimeObject->sub(new DateInterval('PT'.abs($offsetTotal).'S'));
+                $DateTime->sub(new DateInterval('PT'.abs($offsetTotal).'S'));
             }
         }
 
-        return $dateTimeObject;
+        return $DateTime;
     }
-
+    
     /**
-     * Convert time from 'Y-m-d H:i:s' to $format
+     * Get Julian Day Number.
      * 
-     * @param string $format
-     * @param string $dateTime
-     * @return string
+     * @param null|DateTime $Date Date (optional)
+     * @return float
      */
-    static public function convertToFormat($format, $dateTime)
+    static public function getJDN(DateTime $Date = null)
     {
-        $dateTimeObject = DateTime::createFromFormat(self::FORMAT_DATETIME, $dateTime);
-        $timeFormat = $dateTimeObject->format($format);
-
-        return $timeFormat;
+        if(is_null($Date)){
+            $Date = new DateTime('now');
+        }
+        
+        $year = $Date->format('Y');
+        $month = $Date->format('n');
+        $day = $Date->format('j');
+        
+        $a = floor((14 - $month) / 12);
+        $y = $year + 4800 - $a;
+        $m = $month + 12 * $a - 3;
+        
+        $JDN = $day + floor((153 * $m + 2) / 5) + 365 * $y + floor($y / 4) - floor($y / 100) + floor($y / 400) - 32045;
+        
+        return $JDN;
+    }
+    
+    /**
+     * Get Julian Day.
+     * 
+     * @param null|DateTime $Date Date (optional)
+     * @return float
+     */
+    static public function getJD(DateTime $Date = null)
+    {
+        if(is_null($Date)){
+            $Date = new DateTime('now');
+        }
+        
+        $hour = $Date->format('G');
+        $minute = $Date->format('i');
+        $second = $Date->format('s');
+        $JDN = self::getJDN($Date);
+        
+        $JD = $JDN + ($hour - 12) / 24 + $minute / 1440 + $second / 86400;
+        
+        return $JD;
+    }
+    
+    /**
+     * Get Reduced Julian Day.
+     * 
+     * @param null|DateTime $Date Date (optional)
+     * @return float
+     */
+    static public function getRJD(DateTime $Date = null)
+    {
+        if(is_null($Date)){
+            $Date = new DateTime('now');
+        }
+        
+        $JD = self::getJD($Date);
+        $RJD = $JD - 2400000;
+        
+        return $RJD;
+    }
+    
+    /**
+     * Get Modified Julian Day.
+     * 
+     * @param null|DateTime $Date Date (optional)
+     * @return float
+     */
+    static public function getMJD(DateTime $Date = null)
+    {
+        if(is_null($Date)){
+            $Date = new DateTime('now');
+        }
+        
+        $JD = self::getJD($Date);
+        $MJD = $JD - 2400000.5;
+        
+        return $MJD;
     }
 
     static public function getTimeZoneOffset($timeZone, $dateTime, $flagFormat = false) 
     {
-        $timeZoneObject = new DateTimeZone($timeZone);
-        $dateTimeObject = new DateTime($dateTime, $timeZoneObject);
+        $TimeZone = new DateTimeZone($timeZone);
+        $DateTime = new DateTime($dateTime, $TimeZone);
 
-        $offset = $timeZoneObject->getOffset($dateTimeObject);
+        $offset = $TimeZone->getOffset($DateTime);
         $offsetResult = $flagFormat ? self::formatOffset($offset) : $offset;
 
         return $offsetResult;
@@ -119,15 +187,15 @@ class Time {
     }
 
     static public function getTimeZoneLocation($timeZone) {
-        $timeZoneObject = new DateTimeZone($timeZone);
-        $location = $timeZoneObject->getLocation();
+        $TimeZone = new DateTimeZone($timeZone);
+        $location = $TimeZone->getLocation();
 
         return $location;
     }
 
     static public function getTimeZoneTransitions($timeZone) {
-        $timeZoneObject = new DateTimeZone($timeZone);
-        $transitions = $timeZoneObject->getTransitions();
+        $TimeZone = new DateTimeZone($timeZone);
+        $transitions = $TimeZone->getTransitions();
 
         return $transitions;
     }
