@@ -8,6 +8,7 @@ namespace Jyotish\Ganita;
 
 use DateTime;
 use Jyotish\Ganita\Math;
+use Jyotish\Ganita\Time;
 
 /**
  * Formulas for various astronomical calculations.
@@ -136,5 +137,51 @@ class Astro {
         $arcsec = 360 / $duration * 3600;
         
         return $arcsec;
+    }
+    
+    /**
+     * Get Local Sidereal Time.
+     * 
+     * @param null|DateTime $Date Date (optional)
+     * @param float $longitude Longitude of place (optional)
+     * @return float In hours
+     */
+    static public function getLST(DateTime $Date = null, $longitude = 0)
+    {
+        $hour = $Date->format('G');
+        $minute = $Date->format('i');
+        $second = $Date->format('s');
+        
+        $JD = Time::getJD($Date);
+        $T = ($JD - 2451545) / 36525;
+        $GST = 24110.54841 + 8640184.812866 * $T + 0.093104 * $T * $T - 0.0000062 * $T * $T * $T;
+        
+        $units = Math::partsToUnits($GST, 86400);
+        
+        $hourS0     = $units['parts'] / 3600;
+        $hourLng    = $longitude / 15;
+        $hourOffset = $Date->getOffset() / 3600;
+        $hourUT     = $hour + $minute / 60 + $second / 3600 - $hourOffset;
+        
+        $LST = $hourS0 + $hourLng + $hourUT * 1.002737909350795;
+        
+        $result = $LST >= 24 ? $LST -= 24 : $LST;
+        
+        return $result;
+    }
+    
+    /**
+     * Get Right Ascension of the Midheaven.
+     * 
+     * @param null|DateTime $Date Date (optional)
+     * @param float $longitude Longitude of place (optional)
+     * @return float In degree
+     */
+    static public function getRAMC(DateTime $Date = null, $longitude = 0)
+    {
+        $LST = self::getLST($Date, $longitude);
+        $RAMC = $LST * 15;
+        
+        return $RAMC;
     }
 }
