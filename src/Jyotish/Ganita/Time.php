@@ -150,6 +150,24 @@ class Time {
         
         return $MJD;
     }
+    
+    /**
+     * Get Julian Centuries.
+     * 
+     * @param null|DateTime $Date Date (optional)
+     * @return float
+     */
+    static public function getJC(DateTime $Date = null)
+    {
+        if(is_null($Date)){
+            $Date = new DateTime('now');
+        }
+        
+        $JD = self::getJD($Date);
+        $JC = ($JD - 2451545) / 36525;
+        
+        return $JC;
+    }
 
     static public function getTimeZoneOffset($timeZone, $dateTime, $flagFormat = false) 
     {

@@ -148,13 +148,16 @@ class Astro {
      */
     static public function getLST(DateTime $Date = null, $longitude = 0)
     {
+        if(is_null($Date)){
+            $Date = new DateTime('now');
+        }
+        
         $hour = $Date->format('G');
         $minute = $Date->format('i');
         $second = $Date->format('s');
         
-        $JD = Time::getJD($Date);
-        $T = ($JD - 2451545) / 36525;
-        $GST = 24110.54841 + 8640184.812866 * $T + 0.093104 * $T * $T - 0.0000062 * $T * $T * $T;
+        $JC = Time::getJC($Date);
+        $GST = 24110.54841 + 8640184.812866 * $JC + 0.093104 * $JC * $JC - 0.0000062 * $JC * $JC * $JC;
         
         $units = Math::partsToUnits($GST, 86400);
         
@@ -183,5 +186,25 @@ class Astro {
         $RAMC = $LST * 15;
         
         return $RAMC;
+    }
+    
+    /**
+     * Get obliquity of the ecliptic.
+     * 
+     * @param null|DateTime $Date Date (optional)
+     * @return float In degree
+     */
+    static public function getEclipticObliquity(DateTime $Date = null)
+    {
+        $JC = Time::getJC($Date);
+        
+        $k = Math::dmsToDecimal(['d' => 23, 'm' => 26, 's' => 21.448]);
+        $k1 = Math::dmsToDecimal(['d' => 0, 'm' => 0, 's' => 46.815]);
+        $k2 = Math::dmsToDecimal(['d' => 0, 'm' => 0, 's' => 0.00059]);
+        $k3 = Math::dmsToDecimal(['d' => 0, 'm' => 0, 's' => 0.001813]);
+        
+        $E = $k - $k1 * $JC - $k2 * $JC * $JC + $k3 * $JC * $JC * $JC;
+        
+        return $E;
     }
 }
