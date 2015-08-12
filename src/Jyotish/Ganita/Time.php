@@ -71,18 +71,18 @@ class Time {
     /**
      * Get Julian Day Number.
      * 
-     * @param null|DateTime $Date Date (optional)
+     * @param null|DateTime $DateTime Date (optional)
      * @return float
      */
-    static public function getJDN(DateTime $Date = null)
+    static public function getJDN(DateTime $DateTime = null)
     {
-        if(is_null($Date)){
-            $Date = new DateTime('now');
+        if(is_null($DateTime)){
+            $DateTime = new DateTime('now');
         }
         
-        $year = $Date->format('Y');
-        $month = $Date->format('n');
-        $day = $Date->format('j');
+        $year = $DateTime->format('Y');
+        $month = $DateTime->format('n');
+        $day = $DateTime->format('j');
         
         $a = floor((14 - $month) / 12);
         $y = $year + 4800 - $a;
@@ -96,19 +96,19 @@ class Time {
     /**
      * Get Julian Day.
      * 
-     * @param null|DateTime $Date Date (optional)
+     * @param null|DateTime $DateTime Date (optional)
      * @return float
      */
-    static public function getJD(DateTime $Date = null)
+    static public function getJD(DateTime $DateTime = null)
     {
-        if(is_null($Date)){
-            $Date = new DateTime('now');
+        if(is_null($DateTime)){
+            $DateTime = new DateTime('now');
         }
         
-        $hour = $Date->format('G');
-        $minute = $Date->format('i');
-        $second = $Date->format('s');
-        $JDN = self::getJDN($Date);
+        $hour = $DateTime->format('G');
+        $minute = $DateTime->format('i');
+        $second = $DateTime->format('s');
+        $JDN = self::getJDN($DateTime);
         
         $JD = $JDN + ($hour - 12) / 24 + $minute / 1440 + $second / 86400;
         
@@ -118,16 +118,16 @@ class Time {
     /**
      * Get Reduced Julian Day.
      * 
-     * @param null|DateTime $Date Date (optional)
+     * @param null|DateTime $DateTime Date (optional)
      * @return float
      */
-    static public function getRJD(DateTime $Date = null)
+    static public function getRJD(DateTime $DateTime = null)
     {
-        if(is_null($Date)){
-            $Date = new DateTime('now');
+        if(is_null($DateTime)){
+            $DateTime = new DateTime('now');
         }
         
-        $JD = self::getJD($Date);
+        $JD = self::getJD($DateTime);
         $RJD = $JD - 2400000;
         
         return $RJD;
@@ -136,16 +136,16 @@ class Time {
     /**
      * Get Modified Julian Day.
      * 
-     * @param null|DateTime $Date Date (optional)
+     * @param null|DateTime $DateTime Date (optional)
      * @return float
      */
-    static public function getMJD(DateTime $Date = null)
+    static public function getMJD(DateTime $DateTime = null)
     {
-        if(is_null($Date)){
-            $Date = new DateTime('now');
+        if(is_null($DateTime)){
+            $DateTime = new DateTime('now');
         }
         
-        $JD = self::getJD($Date);
+        $JD = self::getJD($DateTime);
         $MJD = $JD - 2400000.5;
         
         return $MJD;
@@ -154,16 +154,16 @@ class Time {
     /**
      * Get Julian Centuries.
      * 
-     * @param null|DateTime $Date Date (optional)
+     * @param null|DateTime $DateTime Date (optional)
      * @return float
      */
-    static public function getJC(DateTime $Date = null)
+    static public function getJC(DateTime $DateTime = null)
     {
-        if(is_null($Date)){
-            $Date = new DateTime('now');
+        if(is_null($DateTime)){
+            $DateTime = new DateTime('now');
         }
         
-        $JD = self::getJD($Date);
+        $JD = self::getJD($DateTime);
         $JC = ($JD - 2451545) / 36525;
         
         return $JC;

@@ -6,10 +6,11 @@
 
 namespace Jyotish\Ganita;
 
-use DateTime;
+use Jyotish\Base\Locality;
 use Jyotish\Ganita\Math;
 use Jyotish\Ganita\Time;
 use Jyotish\Ganita\Ayanamsha;
+use DateTime;
 
 /**
  * Formulas for various astronomical calculations.
@@ -143,28 +144,24 @@ class Astro {
     /**
      * Get Local Sidereal Time.
      * 
-     * @param null|DateTime $Date Date (optional)
-     * @param float $longitude Longitude of place (optional)
+     * @param DateTime $DateTime Date
+     * @param Locality $Locality Locality
      * @return float In hours
      */
-    static public function getLST(DateTime $Date = null, $longitude = 0)
+    static public function getLST(DateTime $DateTime, Locality $Locality)
     {
-        if(is_null($Date)){
-            $Date = new DateTime('now');
-        }
+        $hour = $DateTime->format('G');
+        $minute = $DateTime->format('i');
+        $second = $DateTime->format('s');
         
-        $hour = $Date->format('G');
-        $minute = $Date->format('i');
-        $second = $Date->format('s');
-        
-        $jc = Time::getJC($Date);
+        $jc = Time::getJC($DateTime);
         $gst = 24110.54841 + 8640184.812866 * $jc + 0.093104 * $jc * $jc - 0.0000062 * $jc * $jc * $jc;
         
         $units = Math::partsToUnits($gst, 86400);
         
         $hourS0     = $units['parts'] / 3600;
-        $hourLng    = $longitude / 15;
-        $hourOffset = $Date->getOffset() / 3600;
+        $hourLng    = $Locality->getLongitude() / 15;
+        $hourOffset = $DateTime->getOffset() / 3600;
         $hourUT     = $hour + $minute / 60 + $second / 3600 - $hourOffset;
         
         $lst = $hourS0 + $hourLng + $hourUT * 1.002737909350795;
@@ -177,13 +174,13 @@ class Astro {
     /**
      * Get Right Ascension of the Medium Coeli (Midheaven).
      * 
-     * @param null|DateTime $Date Date (optional)
-     * @param float $longitude Longitude of place (optional)
+     * @param DateTime $DateTime Date
+     * @param Locality $Locality Locality
      * @return float In degree
      */
-    static public function getRAMC(DateTime $Date = null, $longitude = 0)
+    static public function getRAMC(DateTime $DateTime, Locality $Locality)
     {
-        $lst = self::getLST($Date, $longitude);
+        $lst = self::getLST($DateTime, $Locality);
         $ramc = $lst * 15;
         
         return $ramc;
@@ -192,12 +189,12 @@ class Astro {
     /**
      * Get obliquity of the ecliptic.
      * 
-     * @param null|DateTime $Date Date (optional)
+     * @param null|DateTime $DateTime Date (optional)
      * @return float In degree
      */
-    static public function getEclipticObliquity(DateTime $Date = null)
+    static public function getEclipticObliquity(DateTime $DateTime = null)
     {
-        $jc = Time::getJC($Date);
+        $jc = Time::getJC($DateTime);
         
         $k = Math::dmsToDecimal(['d' => 23, 'm' => 26, 's' => 21.448]);
         $k1 = Math::dmsToDecimal(['d' => 0, 'm' => 0, 's' => 46.815]);
@@ -212,18 +209,17 @@ class Astro {
     /**
      * Get ascendant.
      * 
-     * @param null|DateTime $Date Date (optional)
-     * @param float $longitude
-     * @param float $latitude
+     * @param DateTime $DateTime Date
+     * @param Locality $Locality Locality
      * @return float
      */
-    static public function getAsc(DateTime $Date = null, $longitude = 0, $latitude = 0)
+    static public function getAsc(DateTime $DateTime, Locality $Locality)
     {
-        $ramc = self::getRAMC($Date, $longitude) * Math::M_RAD;
-        $e = self::getEclipticObliquity($Date) * Math::M_RAD;
-        $ayanamsha = Ayanamsha::calcAyanamsha($Date);
+        $ramc = self::getRAMC($DateTime, $Locality) * Math::M_RAD;
+        $e = self::getEclipticObliquity($DateTime) * Math::M_RAD;
+        $ayanamsha = Ayanamsha::calcAyanamsha($DateTime);
         
-        $asc = atan2(cos($ramc), ( - sin($ramc) * cos($e) - tan($latitude * Math::M_RAD) * sin($e)));
+        $asc = atan2(cos($ramc), ( - sin($ramc) * cos($e) - tan($Locality->getLatitude() * Math::M_RAD) * sin($e)));
         $ascDeg = $asc / Math::M_RAD;
         $ascDeg -= $ayanamsha;
         
