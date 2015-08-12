@@ -74,9 +74,9 @@ class Astro {
         $day = $dateObject->format('z') + 1;
 
         $B = 2 * M_PI * ($day - 81) / 365;
-        $E = 7.53 * cos($B) + 1.5 * sin($B) - 9.87 * sin(2 * $B);
+        $e = 7.53 * cos($B) + 1.5 * sin($B) - 9.87 * sin(2 * $B);
 
-        return $E;
+        return $e;
     }
     
     /**
@@ -157,25 +157,25 @@ class Astro {
         $minute = $Date->format('i');
         $second = $Date->format('s');
         
-        $JC = Time::getJC($Date);
-        $GST = 24110.54841 + 8640184.812866 * $JC + 0.093104 * $JC * $JC - 0.0000062 * $JC * $JC * $JC;
+        $jc = Time::getJC($Date);
+        $gst = 24110.54841 + 8640184.812866 * $jc + 0.093104 * $jc * $jc - 0.0000062 * $jc * $jc * $jc;
         
-        $units = Math::partsToUnits($GST, 86400);
+        $units = Math::partsToUnits($gst, 86400);
         
         $hourS0     = $units['parts'] / 3600;
         $hourLng    = $longitude / 15;
         $hourOffset = $Date->getOffset() / 3600;
         $hourUT     = $hour + $minute / 60 + $second / 3600 - $hourOffset;
         
-        $LST = $hourS0 + $hourLng + $hourUT * 1.002737909350795;
+        $lst = $hourS0 + $hourLng + $hourUT * 1.002737909350795;
         
-        $result = $LST >= 24 ? $LST -= 24 : $LST;
+        $result = $lst >= 24 ? $lst -= 24 : $lst;
         
         return $result;
     }
     
     /**
-     * Get Right Ascension of the Midheaven.
+     * Get Right Ascension of the Medium Coeli (Midheaven).
      * 
      * @param null|DateTime $Date Date (optional)
      * @param float $longitude Longitude of place (optional)
@@ -183,10 +183,10 @@ class Astro {
      */
     static public function getRAMC(DateTime $Date = null, $longitude = 0)
     {
-        $LST = self::getLST($Date, $longitude);
-        $RAMC = $LST * 15;
+        $lst = self::getLST($Date, $longitude);
+        $ramc = $lst * 15;
         
-        return $RAMC;
+        return $ramc;
     }
     
     /**
@@ -197,16 +197,16 @@ class Astro {
      */
     static public function getEclipticObliquity(DateTime $Date = null)
     {
-        $JC = Time::getJC($Date);
+        $jc = Time::getJC($Date);
         
         $k = Math::dmsToDecimal(['d' => 23, 'm' => 26, 's' => 21.448]);
         $k1 = Math::dmsToDecimal(['d' => 0, 'm' => 0, 's' => 46.815]);
         $k2 = Math::dmsToDecimal(['d' => 0, 'm' => 0, 's' => 0.00059]);
         $k3 = Math::dmsToDecimal(['d' => 0, 'm' => 0, 's' => 0.001813]);
         
-        $E = $k - $k1 * $JC - $k2 * $JC * $JC + $k3 * $JC * $JC * $JC;
+        $e = $k - $k1 * $jc - $k2 * $jc * $jc + $k3 * $jc * $jc * $jc;
         
-        return $E;
+        return $e;
     }
     
     /**
@@ -219,11 +219,11 @@ class Astro {
      */
     static public function getAsc(DateTime $Date = null, $longitude = 0, $latitude = 0)
     {
-        $RAMC = self::getRAMC($Date, $longitude) * Math::M_RAD;
-        $E = self::getEclipticObliquity($Date) * Math::M_RAD;
+        $ramc = self::getRAMC($Date, $longitude) * Math::M_RAD;
+        $e = self::getEclipticObliquity($Date) * Math::M_RAD;
         $ayanamsha = Ayanamsha::calcAyanamsha($Date);
         
-        $asc = atan2(cos($RAMC), ( - sin($RAMC) * cos($E) - tan($latitude * Math::M_RAD) * sin($E)));
+        $asc = atan2(cos($ramc), ( - sin($ramc) * cos($e) - tan($latitude * Math::M_RAD) * sin($e)));
         $ascDeg = $asc / Math::M_RAD;
         $ascDeg -= $ayanamsha;
         

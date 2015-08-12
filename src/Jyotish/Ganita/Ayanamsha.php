@@ -108,10 +108,10 @@ class Ayanamsha {
         $month = $Date->format('n');
         $date = $Date->format('j');
         
-        $A = 16.90709 * $year / 1000 - 0.757371 * $year * $year/ 1000000 - 6.92416;
-        $B = ($month - 1 + $date / 30) * 1.1574074 / 1000;
+        $a = 16.90709 * $year / 1000 - 0.757371 * $year * $year / 1000000 - 6.92416;
+        $b = ($month - 1 + $date / 30) * 1.1574074 / 1000;
         
-        $ayanamshaValue = $A + $B;
+        $ayanamshaValue = $a + $b;
         
         return $ayanamshaValue;
     }
