@@ -9,6 +9,7 @@ namespace Jyotish\Ganita;
 use DateTime;
 use Jyotish\Ganita\Math;
 use Jyotish\Ganita\Time;
+use Jyotish\Ganita\Ayanamsha;
 
 /**
  * Formulas for various astronomical calculations.
@@ -206,5 +207,28 @@ class Astro {
         $E = $k - $k1 * $JC - $k2 * $JC * $JC + $k3 * $JC * $JC * $JC;
         
         return $E;
+    }
+    
+    /**
+     * Get ascendant.
+     * 
+     * @param null|DateTime $Date Date (optional)
+     * @param float $longitude
+     * @param float $latitude
+     * @return float
+     */
+    static public function getAsc(DateTime $Date = null, $longitude = 0, $latitude = 0)
+    {
+        $RAMC = self::getRAMC($Date, $longitude) * Math::M_RAD;
+        $E = self::getEclipticObliquity($Date) * Math::M_RAD;
+        $ayanamsha = Ayanamsha::calcAyanamsha($Date);
+        
+        $asc = atan2(cos($RAMC), ( - sin($RAMC) * cos($E) - tan($latitude * Math::M_RAD) * sin($E)));
+        $ascDeg = $asc / Math::M_RAD;
+        $ascDeg -= $ayanamsha;
+        
+        $ascDeg = $ascDeg < 0 ? 360 + $ascDeg : $ascDeg;
+        
+        return $ascDeg;
     }
 }
