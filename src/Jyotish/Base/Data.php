@@ -6,12 +6,15 @@
 
 namespace Jyotish\Base;
 
+use Jyotish\Base\Locality;
 use Jyotish\Graha\Graha;
 use Jyotish\Graha\Lagna;
 use Jyotish\Graha\Upagraha;
-use Jyotish\Bhava\Bhava;
 use Jyotish\Bhava\Arudha;
-use Jyotish\Ganita\Math;
+use Jyotish\Ganita\Time;
+use Jyotish\Ganita\Method\AbstractGanita as Ganita;
+use Jyotish\Panchanga\AngaDefiner;
+use DateTime;
 
 /**
  * Data class.
@@ -20,72 +23,76 @@ use Jyotish\Ganita\Math;
  */
 class Data {
     /**
+     * Bhava block
+     */
+    const BLOCK_BHAVA = 'bhava';
+    /**
      * Graha block
      */
     const BLOCK_GRAHA = 'graha';
+    /**
+     * Extra block
+     */
+    const BLOCK_LAGNA = 'lagna';
+    /**
+     * More block
+     */
+    const BLOCK_MORE  = 'more';
+    /**
+     * Panchanga block
+     */
+    const BLOCK_PANCHANGA = 'panchanga';
+    /**
+     * Rising block
+     */
+    const BLOCK_RISING = 'rising';
     /**
      * Upagraha block
      */
     const BLOCK_UPAGRAHA = 'upagraha';
     /**
-     * Extra block
-     */
-    const BLOCK_EXTRA = 'extra';
-    /**
-     * Bhava block
-     */
-    const BLOCK_BHAVA = 'bhava';
-    /**
      * User block
      */
     const BLOCK_USER  = 'user';
-    /**
-     * More block
-     */
-    const BLOCK_MORE  = 'more';
-
-    /**
-     * Data template.
-     * 
-     * @var array
-     */
-    protected $dataTemplate = [
-        self::BLOCK_GRAHA => [
-            'element' => ['longitude', 'latitude', 'speed']
-        ],
-        self::BLOCK_UPAGRAHA => [
-            'element' => ['longitude']
-        ],
-        self::BLOCK_EXTRA => [
-            'element' => ['longitude']
-        ],
-        self::BLOCK_BHAVA => [
-            'element' => ['longitude']
-        ],
-        self::BLOCK_USER => [
-            'gender'
-        ],
-        self::BLOCK_MORE => [
-            'lagna'
-        ]
+    
+    static public $block = [
+        self::BLOCK_BHAVA,
+        self::BLOCK_GRAHA,
+        self::BLOCK_LAGNA,
+        self::BLOCK_MORE,
+        self::BLOCK_PANCHANGA,
+        self::BLOCK_RISING,
+        self::BLOCK_UPAGRAHA,
+        self::BLOCK_USER,
     ];
 
     /**
-     * Required data blocks.
+     * DateTime
      * 
-     * @var array
+     * @var DateTime
      */
-    protected $dataRequired = [
-        self::BLOCK_GRAHA, 
-        self::BLOCK_EXTRA
-    ];
+    protected $DateTime = null;
+    
+    /**
+     * Locality
+     * 
+     * @var Locality
+     */
+    protected $Locality = null;
+    
+    /**
+     * Ganita object
+     * 
+     * @var Ganita
+     */
+    protected $Ganita = null;
 
     /**
-     * Analyzed data.
-     * 
+     * Data array
+
      * @var array
      */
-    protected $ganitaData = null;
+    protected $data = null;
 
     /**
      * Array with values ​​of the rashis in the bhavas.
@@ -93,120 +100,193 @@ class Data {
      * @var array
      */
     protected $rashiInBhava = null;
-
+    
     /**
-     * A point taken as the lagna.
+     * List of blocks.
      * 
-     * @var string
+     * @param string $mode
+     * @return array
      */
-    protected $lagna = Graha::KEY_LG;
-
-    /**
-     * Constructor
-     * 
-     * @param array $ganitaData
-     * @param int $lagna
-     */
-    public function __construct(array $ganitaData, $lagna = Graha::KEY_LG) {
-        $this->checkData($ganitaData);
-
-        foreach ($this->dataRequired as $block){
-            foreach($this->ganitaData[$block] as $key => $params){
-                if(!isset($params['rashi'])){
-                    $units = Math::partsToUnits($params['longitude']);
-                    $this->ganitaData[$block][$key]['rashi'] = $units['units'];
-                    $this->ganitaData[$block][$key]['degree'] = $units['parts'];
-                }
-            }
-        }
-
-        if(!isset($this->ganitaData[self::BLOCK_BHAVA]) or $this->lagna != $lagna){
-            if(array_key_exists($lagna, Graha::$graha)){
-                $block = self::BLOCK_GRAHA;
-            }elseif($lagna == Graha::KEY_LG){
-                $block = self::BLOCK_EXTRA;
-            }elseif(array_key_exists($lagna, Bhava::$bhava)){
-                $block = self::BLOCK_BHAVA;
-            }else{
-                throw new Exception\InvalidArgumentException("The value of lagna should be 'Lg', key of graha or bhava.");
-            }
-            
-            $this->lagna = $lagna;
-            $this->ganitaData[self::BLOCK_MORE]['lagna'] = $this->lagna;
-            
-            $longitude = $this->ganitaData[$block][$lagna]['longitude'];
-            for($b = 1; $b <= 12; $b++){
-                $this->ganitaData[self::BLOCK_BHAVA][$b]['longitude'] = $longitude < 360 ? $longitude : $longitude - 360;
-                $units = Math::partsToUnits($this->ganitaData[self::BLOCK_BHAVA][$b]['longitude']);
-                $this->ganitaData[self::BLOCK_BHAVA][$b]['rashi'] = $units['units'];
-                $this->ganitaData[self::BLOCK_BHAVA][$b]['degree'] = $units['parts'];
-                $longitude += 30;
-            }
-        }
-    }
-
-    /**
-     * Check incoming data.
-     * 
-     * @param $ganitaData Data set
-     * @throws Exception\InvalidArgumentException
-     */
-    protected function checkData($ganitaData)
+    static public function listBlock($mode = 'calc')
     {
-        foreach ($this->dataRequired as $block){
-            if(!key_exists($block, $ganitaData))
-                throw new Exception\InvalidArgumentException("Block '$block' is not found in the data.");
+        $blocks = array_flip(self::$block);
+        
+        switch ($mode){
+            case 'all':
+                $list = $blocks;
+                break;
+            case 'worising':
+                unset($blocks['rising']);
+                unset($blocks['user']);
+                break;
+            case 'calc':
+            default:
+                unset($blocks['user']);
         }
-
-        $checkBlock = function($block, $value){
-            if($block == self::BLOCK_GRAHA) $elements = Graha::$graha;
-            elseif($block == self::BLOCK_BHAVA) $elements = Bhava::$bhava;
-            elseif($block == self::BLOCK_EXTRA) $elements = [Graha::KEY_LG => 'Lagna'];
-            else $elements = array();
-
-            foreach ($elements as $key => $name){
-                if(!isset($value[$key]))
-                    throw new Exception\InvalidArgumentException("Key '$key' in block '$block' is not found.");
-
-                foreach ($this->dataTemplate[$block]['element'] as $propName){
-                    if(!array_key_exists($propName, $value[$key]))
-                        throw new Exception\InvalidArgumentException("Property '$propName' in element '$key $block' is not found.");
-                }
-            }
-        };
-
-        foreach ($ganitaData as $block => $value){
-            if(defined('self::BLOCK_'.strtoupper($block))){
-                $checkBlock($block, $value);
-                $this->ganitaData[$block] = $value;
-            }else{
-                continue;
-            }
-
-        }
-    }
-
-    /**
-     * Get Ganita data.
-     */
-    public function getData()
-    {
-        return $this->ganitaData;
+        $blocks = array_flip($blocks);
+        return $blocks;
     }
     
     /**
+     * Constructor
+     * 
+     * @param DateTime $DateTime Date and time
+     * @param Locality $Locality Locality
+     * @param Ganita $Ganita Ganita method
+     */
+    public function __construct(DateTime $DateTime, Locality $Locality, Ganita $Ganita) {
+        $this->setDateTime($DateTime);
+        $this->setLocality($Locality);
+        $this->setGanita($Ganita);
+    }
+
+    /**
+     * Set date and time.
+     * 
+     * @param DateTime $DateTime Date
+     * @return \Jyotish\Base\Data
+     */
+    public function setDateTime(DateTime $DateTime)
+    {
+        if(!is_null($this->DateTime)){
+            if($DateTime->format('z') == $this->DateTime->format('z')){
+                $this->clearData(self::listBlock('worising'));
+            }else{
+                $this->clearData();
+            }
+        }
+        $this->DateTime = $DateTime;
+        
+        $this->data[self::BLOCK_USER]['datetime'] = $this->DateTime->format(Time::FORMAT_DATETIME);
+        $this->data[self::BLOCK_USER]['timezone'] = $this->DateTime->getTimezone()->getName();
+         
+        return $this;
+    }
+    
+    /**
+     * Set locality.
+     * 
+     * @param Locality $Locality Locality
+     * @return \Jyotish\Base\Data
+     */
+    public function setLocality(Locality $Locality)
+    {
+        if(!is_null($Locality)){
+            $this->clearData();
+        }
+        $this->Locality = $Locality;
+        
+        $this->data[self::BLOCK_USER]['longitude'] = $this->Locality->getLongitude();
+        $this->data[self::BLOCK_USER]['latitude'] = $this->Locality->getLatitude();
+        $this->data[self::BLOCK_USER]['altitude'] = $this->Locality->getAltitude();
+        
+        return $this;
+    }
+    
+    /**
+     * Set ganita method.
+     * 
+     * @param Ganita $Ganita Ganita method
+     * @return \Jyotish\Base\Data
+     */
+    public function setGanita(Ganita $Ganita)
+    {
+        $this->Ganita = $Ganita;
+        
+        return $this;
+    }
+
+    /**
+     * Get DateTime object
+     * 
+     * @return \DateTime
+     */
+    public function getDateTime()
+    {
+        return $this->DateTime;
+    }
+    
+    /**
+     * Get Locality object
+     * 
+     * @return Locality
+     */
+    public function getLocality()
+    {
+        return $this->Locality;
+    }
+    
+    /**
+     * Get data array.
+     * 
+     * @return array
+     */
+    public function getData()
+    {
+        return $this->data;
+    }
+
+    /**
+     * Calculation parameters of planets and houses.
+     * 
+     * @param null|array $params Array of blocks (optional)
+     * @param null|array $options Options to set (optional)
+     * @return Data
+     */
+    public function calcParams(array $params = null, array $options = null)
+    {
+        $dataParams = $this->Ganita->setData($this)->getParams($params, $options);
+        $this->data = array_merge($this->data, $dataParams);
+        
+        return $this;
+    }
+    
+    /**
+     * Calculation of rising and setting.
+     * 
+     * @param string $graha Graha key (optional)
+     * @param null|array $options Options to set (optional)
+     * @return Data
+     */
+    public function calcRising($graha = Graha::KEY_SY, array $options = null)
+    {
+        $dataRising = $this->Ganita->setData($this)->getRising($graha, $options);
+        $this->data[self::BLOCK_RISING] = $dataRising;
+        
+        return $this;
+    }
+    
+    /**
+     * Calculation of panchanga.
+     * 
+     * @param null|array $angas Array of angas (optional)
+     * @param bool $withLimit Time limit (optional)
+     * @return Data
+     */
+    public function calcPanchangna(array $angas = null, $withLimit = false)
+    {
+        $AngaDefiner = new AngaDefiner($this);
+        $generateAnga = $AngaDefiner->generateAnga($angas, $withLimit);
+        
+        foreach ($generateAnga as $anga => $data){
+            $this->data[self::BLOCK_PANCHANGA][$anga] = $data;
+        }
+        return $this;
+    }
+
+    /**
      * Calculation of extra lagnas.
      * 
-     * @param null|array $lagnaKeys Array of lagna keys
+     * @param null|array $lagnaKeys Array of lagna keys (optional)
      * @return Data
      */
     public function calcExtraLagna(array $lagnaKeys = null)
     {
-        $Lagna = new Lagna($this->ganitaData);
+        $Lagna = new Lagna($this);
         $generateLagna = $Lagna->generateLagna($lagnaKeys);
         
         foreach ($generateLagna as $key => $data){
-            $this->ganitaData[self::BLOCK_EXTRA][$key] = $data;
+            $this->data[self::BLOCK_LAGNA][$key] = $data;
         }
         return $this;
     }
@@ -214,17 +294,17 @@ class Data {
     /**
      * Calculation of arudhas.
      * 
-     * @param null|array $arudhaKeys Array of arudha keys
+     * @param null|array $arudhaKeys Array of arudha keys (optional)
      * @param null|array $options Options to set (optional)
      * @return Data
      */
     public function calcBhavaArudha(array $arudhaKeys = null, array $options = null)
     {
-        $Arudha = new Arudha($this->ganitaData, $options);
+        $Arudha = new Arudha($this, $options);
         $generateArudha = $Arudha->generateArudha($arudhaKeys);
         
         foreach ($generateArudha as $key => $data){
-            $this->ganitaData[self::BLOCK_EXTRA][$key] = $data;
+            $this->data[self::BLOCK_LAGNA][$key] = $data;
         }
         return $this;
     }
@@ -232,18 +312,34 @@ class Data {
     /**
      * Calculation of upagrahas.
      * 
-     * @param null|array $upagrahaKeys Array of upagraha keys
+     * @param null|array $upagrahaKeys Array of upagraha keys (optional)
      * @return Data
      */
     public function calcUpagraha(array $upagrahaKeys = null)
     {
-        $Upagraha = new Upagraha($this->ganitaData);
+        $Upagraha = new Upagraha($this);
         $generateUpagraha = $Upagraha->generateUpagraha($upagrahaKeys);
         
         foreach ($generateUpagraha as $key => $data){
-            $this->ganitaData[self::BLOCK_UPAGRAHA][$key] = $data;
+            $this->data[self::BLOCK_UPAGRAHA][$key] = $data;
         }
         return $this;
+    }
+    
+    
+    /**
+     * Clear data blocks.
+     * 
+     * @param null|array $blocks (optional)
+     */
+    public function clearData(array $blocks = null)
+    {
+        if(is_null($blocks)){
+            $blocks = self::listBlock();
+        }
+        foreach ($blocks as $block){
+            unset($this->data[$block]);
+        }
     }
 
     /**
@@ -267,7 +363,7 @@ class Data {
      * @return array
      */
     public function getBodyInBhava() {
-        foreach ([self::BLOCK_GRAHA, self::BLOCK_EXTRA, self::BLOCK_UPAGRAHA] as $block){
+        foreach ([self::BLOCK_GRAHA, self::BLOCK_LAGNA, self::BLOCK_UPAGRAHA] as $block){
             if(!isset($this->ganitaData[$block])) continue;
             
             foreach ($this->ganitaData[$block] as $body => $params) {
@@ -286,7 +382,7 @@ class Data {
      * @return array
      */
     public function getBodyInRashi() {
-        foreach ([self::BLOCK_GRAHA, self::BLOCK_EXTRA, self::BLOCK_UPAGRAHA] as $block){
+        foreach ([self::BLOCK_GRAHA, self::BLOCK_LAGNA, self::BLOCK_UPAGRAHA] as $block){
             if(!isset($this->ganitaData[$block])) continue;
             
             foreach ($this->ganitaData[$block] as $body => $params) {

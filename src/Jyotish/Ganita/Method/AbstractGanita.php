@@ -6,10 +6,8 @@
 
 namespace Jyotish\Ganita\Method;
 
-use Jyotish\Ganita\Time;
 use Jyotish\Ganita\Ayanamsha;
 use Jyotish\Graha\Graha;
-use DateTime;
 
 /**
  * Class for calculate the positions of the planets.
@@ -18,23 +16,8 @@ use DateTime;
  */
 abstract class AbstractGanita {
     
+    use \Jyotish\Base\Traits\DataTrait;
     use \Jyotish\Base\Traits\OptionTrait;
-    
-    /**
-     * Data array.
-     * 
-     * @var array
-     */
-    protected $data = [
-        'user' => [
-            'date'      => null,
-            'time'      => null,
-            'timezone'  => null,
-            'offset'    => 0,
-            'longitude' => 0,
-            'latitude'  => 0,
-        ]
-    ];
     
     /**
      * Options of ganita object.
@@ -47,25 +30,11 @@ abstract class AbstractGanita {
     );
 
     /**
-     * Date format.
-     * 
-     * @var string
-     */
-    protected $formatDate = Time::FORMAT_DATA_DATE;
-
-    /**
-     * Time format.
-     * 
-     * @var string
-     */
-    protected $formatTime = Time::FORMAT_DATA_TIME;
-
-    /**
      * Set ayanamsha for calculation.
      * 
      * @param string $ayanamsha
-     * @throws Exception\InvalidArgumentException
      * @return Swetest
+     * @throws Exception\InvalidArgumentException
      */
     public function setOptionAyanamsha($ayanamsha)
     {
@@ -82,8 +51,8 @@ abstract class AbstractGanita {
      * Set rising (setting) type for calculation.
      * 
      * @param string $rising
-     * $throw Exception\InvalidArgumentException
      * @return Swetest
+     * @throw Exception\InvalidArgumentException
      */
     public function setOptionRising($rising)
     {
@@ -97,51 +66,6 @@ abstract class AbstractGanita {
     }
 
     /**
-     * Set user data.
-     * 
-     * @param array $userData
-     * @throws Exception\UnexpectedValueException
-     */
-    public function setData(array $userData)
-    {
-        if(!is_array($userData)) {
-            throw new Exception\UnexpectedValueException("Data must be an array.");
-        }
-
-        foreach ($userData as $dataName => $dataValue) {
-            $dataName = strtolower($dataName);
-
-            if (array_key_exists($dataName, $this->data['user'])) {
-                if(!empty($dataValue)) $this->data['user'][$dataName] = $dataValue;
-            } else {
-                throw new Exception\UnexpectedValueException("Unknown data: $dataName = $dataValue");
-            }
-        }
-        
-        $datetime = new DateTime();
-        
-        if (empty($this->data['user']['date'])){
-            $this->data['user']['date'] = $datetime->format(Time::FORMAT_DATA_DATE);
-        }
-            
-        if (empty($this->data['user']['time'])){
-            $this->data['user']['time'] = $datetime->format(Time::FORMAT_DATA_TIME);
-        }
-        
-        return $this;
-    }
-
-    /**
-     * Get data.
-     * 
-     * @return array
-     */
-    public function getData()
-    {
-        return $this->data;
-    }
-
-    /**
      * Calculation of coordinates and other parameters of planets and houses.
      * 
      * @abstract
@@ -149,7 +73,7 @@ abstract class AbstractGanita {
      * @param array $options
      * @return array
      */
-    abstract public function calcParams(array $params = null, array $options = null);
+    abstract public function getParams(array $params = null, array $options = null);
 
     /**
      * Calculation of rising and setting time of planet.
@@ -159,5 +83,5 @@ abstract class AbstractGanita {
      * @param array $options
      * @return array
      */
-    abstract public function calcRising($graha = Graha::KEY_SY, array $options = null);
+    abstract public function getRising($graha = Graha::KEY_SY, array $options = null);
 }

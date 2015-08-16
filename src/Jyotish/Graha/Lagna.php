@@ -76,7 +76,7 @@ class Lagna {
      * @return array
      * @see Kalidas. Uttara Kalamritam. Chapter 4, Verse 27.
      */
-    public function calcIL()
+    public function getIL()
     {
         $kala = [
             Graha::KEY_SY => 30,
@@ -115,13 +115,13 @@ class Lagna {
      * @return array
      * @see Maharishi Jaimini. Jaimini Upadesha Sutras. Chapter 2, Quarter 4, Verse 27.
      */
-    public function calcSL()
+    public function getSL()
     {
-        $AngaDefiner = new AngaDefiner($this->getData());
+        $AngaDefiner = new AngaDefiner($this->Data);
         $nakshatra = $AngaDefiner->getNakshatra();
         
         $result1 = (1 - $nakshatra['left'] / 100) * 360;
-        $result2 = $result1 + $this->getData()['extra'][Graha::KEY_LG]['longitude'];
+        $result2 = $result1 + $this->getData()['lagna'][Graha::KEY_LG]['longitude'];
         $lngSL   = $result2 > 360 ? $result2 - 360 : $result2;
         $unitSL  = Math::partsToUnits($lngSL);
         
@@ -149,8 +149,8 @@ class Lagna {
                 throw new Exception\InvalidArgumentException("Lagna with the key '$key' does not exist.");
             }
             
-            $calcLagna = 'calc'.$key;
-            yield $key => $this->$calcLagna();
+            $getLagna = 'get'.$key;
+            yield $key => $this->$getLagna();
         }
     }
 }

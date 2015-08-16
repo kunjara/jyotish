@@ -117,7 +117,7 @@ class Arudha{
      * @return array
      * @throws Exception\InvalidArgumentException
      */
-    public function calcArudha($key, array $options = null)
+    public function getArudha($key, array $options = null)
     {
         if (!array_key_exists($key, self::$arudha)){
             throw new Exception\InvalidArgumentException("Arudha with the key '$key' does not exist.");
@@ -178,7 +178,7 @@ class Arudha{
         }
         
         foreach ($arudhaKeys as $key){
-            yield $key => $this->calcArudha($key);
+            yield $key => $this->getArudha($key);
         }
     }
 }

@@ -13,42 +13,39 @@ namespace Jyotish\Base\Traits;
  */
 trait DataTrait {
     /**
-     * Analyzed data.
+     * Instance of Data.
      * 
-     * @var array
+     * @var Data
      */
-    protected $ganitaData = array();
+    protected $Data = null;
     
     /**
-     * Set data.
+     * Temporary data.
      * 
-     * @param \Jyotish\Base\Data|array $data
-     * @throws Exception\InvalidArgumentException
+     * @var array;
      */
-    public function setData($data) {
-        if(
-            (is_object($data) && !($data instanceof \Jyotish\Base\Data)) ||
-            (!is_object($data) && !is_array($data))
-        ){
-            throw new \Jyotish\Base\Exception\InvalidArgumentException(
-                "Data should be an array or instance of Jyotish\\Base\\Data"
-            );
-        }
+    protected $temp = null;
 
-        if (is_object($data)) {
-            $this->ganitaData = $data->getData();
-        }else{
-            $this->ganitaData = $data;
-        }
-    }
-    
     /**
-     * Get data.
+     * Set Data
+     * 
+     * @param \Jyotish\Base\Data $Data
+     * @return type
+     */
+    public function setData(\Jyotish\Base\Data $Data)
+    {
+        $this->Data = $Data;
+        
+        return $this;
+    }
+
+    /**
+     * Get data
      * 
      * @return array
      */
     public function getData()
     {
-        return $this->ganitaData;
+        return $this->Data->getData();
     }
 }

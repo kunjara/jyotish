@@ -6,8 +6,8 @@
 
 namespace Jyotish\Graha;
 
-use Jyotish\Ganita\Math;
 use Jyotish\Graha\Graha;
+use Jyotish\Ganita\Math;
 
 /**
  * Upagraha calculation class.
@@ -55,10 +55,10 @@ class Upagraha {
     /**
      * Constructor
      * 
-     * @param \Jyotish\Base\Data|array $data
+     * @param \Jyotish\Base\Data $Data
      */
-    public function __construct($data) {
-        $this->setData($data);
+    public function __construct($Data) {
+        $this->setData($Data);
     }
     
     /**
@@ -67,20 +67,24 @@ class Upagraha {
      * @return array
      * @see Mantreswara. Phaladeepika. Chapter 25, Verse 5.
      */
-    public function calcDh()
+    public function getDh()
     {
-        if(!isset($this->getData()['upagraha'][self::KEY_DH])){
+        if(!isset($this->getData()['graha'])){
+            $this->Data->calcParams();
+        }
+            
+        if(!isset($this->temp[self::KEY_DH])){
             $result = $this->getData()['graha'][Graha::KEY_SY]['longitude'] + 133 + 1/3;
             $lng = $result > 360 ? $result - 360 : $result;
             $unit = Math::partsToUnits($lng);
 
-            $this->ganitaData['upagraha'][self::KEY_DH] = [
+            $this->temp[self::KEY_DH] = [
                 'longitude' => $lng,
                 'rashi' => $unit['units'],
                 'degree' => $unit['parts']
             ];
         }
-        return $this->getData()['upagraha'][self::KEY_DH];
+        return $this->temp[self::KEY_DH];
     }
     
     /**
@@ -89,19 +93,19 @@ class Upagraha {
      * @return array
      * @see Mantreswara. Phaladeepika. Chapter 25, Verse 5.
      */
-    public function calcVy()
+    public function getVy()
     {
-        if(!isset($this->getData()['upagraha'][self::KEY_VY])){
-            $lng = 360 - $this->calcDh()['longitude'];
+        if(!isset($this->temp[self::KEY_VY])){
+            $lng = 360 - $this->getDh()['longitude'];
             $unit = Math::partsToUnits($lng);
             
-            $this->ganitaData['upagraha'][self::KEY_VY] = [
+            $this->temp[self::KEY_VY] = [
                 'longitude' => $lng,
                 'rashi' => $unit['units'],
                 'degree' => $unit['parts']
             ];
         }
-        return $this->getData()['upagraha'][self::KEY_VY];
+        return $this->temp[self::KEY_VY];
     }
     
     /**
@@ -110,20 +114,20 @@ class Upagraha {
      * @return array
      * @see Mantreswara. Phaladeepika. Chapter 25, Verse 5.
      */
-    public function calcPa()
+    public function getPa()
     {
-        if(!isset($this->getData()['upagraha'][self::KEY_PA])){
-            $result = $this->calcVy()['longitude'] + 180;
+        if(!isset($this->temp[self::KEY_PA])){
+            $result = $this->getVy()['longitude'] + 180;
             $lng = $result > 360 ? $result - 360 : $result;
             $unit = Math::partsToUnits($lng);
             
-            $this->ganitaData['upagraha'][self::KEY_PA] = [
+            $this->temp[self::KEY_PA] = [
                 'longitude' => $lng,
                 'rashi' => $unit['units'],
                 'degree' => $unit['parts']
             ];
         }
-        return $this->getData()['upagraha'][self::KEY_PA];
+        return $this->temp[self::KEY_PA];
     }
     
     /**
@@ -132,19 +136,19 @@ class Upagraha {
      * @return array
      * @see Mantreswara. Phaladeepika. Chapter 25, Verse 5.
      */
-    public function calcIn()
+    public function getIn()
     {
-        if(!isset($this->getData()['upagraha'][self::KEY_IN])){
-            $lng = 360 - $this->calcPa()['longitude'];
+        if(!isset($this->temp[self::KEY_IN])){
+            $lng = 360 - $this->getPa()['longitude'];
             $unit = Math::partsToUnits($lng);
             
-            $this->ganitaData['upagraha'][self::KEY_IN] = [
+            $this->temp[self::KEY_IN] = [
                 'longitude' => $lng,
                 'rashi' => $unit['units'],
                 'degree' => $unit['parts']
             ];
         }
-        return $this->getData()['upagraha'][self::KEY_IN];
+        return $this->temp[self::KEY_IN];
     }
     
     /**
@@ -153,20 +157,20 @@ class Upagraha {
      * @return array
      * @see Mantreswara. Phaladeepika. Chapter 25, Verse 5.
      */
-    public function calcUk()
+    public function getUk()
     {
-        if(!isset($this->getData()['upagraha'][self::KEY_UK])){
-            $result = $this->calcIn()['longitude'] + 16 + 2/3;
+        if(!isset($this->temp[self::KEY_UK])){
+            $result = $this->getIn()['longitude'] + 16 + 2/3;
             $lng = $result > 360 ? $result - 360 : $result;
             $unit = Math::partsToUnits($lng);
 
-            $this->ganitaData['upagraha'][self::KEY_UK] = [
+            $this->temp[self::KEY_UK] = [
                 'longitude' => $lng,
                 'rashi' => $unit['units'],
                 'degree' => $unit['parts']
             ];
         }
-        return $this->getData()['upagraha'][self::KEY_UK];
+        return $this->temp[self::KEY_UK];
     }
     
     /**
@@ -186,8 +190,8 @@ class Upagraha {
                 throw new Exception\InvalidArgumentException("Upagraha with the key '$key' does not exist.");
             }
             
-            $calcUpagraha = 'calc'.$key;
-            yield $key => $this->$calcUpagraha();
+            $getUpagraha = 'get'.$key;
+            yield $key => $this->$getUpagraha();
         }
     }
 }

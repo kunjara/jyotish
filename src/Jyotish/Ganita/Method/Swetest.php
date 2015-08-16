@@ -6,15 +6,15 @@
 
 namespace Jyotish\Ganita\Method;
 
-use DateTime;
-use DateInterval;
-use DateTimeZone;
 use Jyotish\Base\Data;
 use Jyotish\Graha\Graha;
 use Jyotish\Graha\Lagna;
 use Jyotish\Ganita\Math;
 use Jyotish\Ganita\Time;
 use Jyotish\Ganita\Ayanamsha;
+use DateTime;
+use DateInterval;
+use DateTimeZone;
 
 /**
  * Class for calculate the positions of the planets using the application swetest.
@@ -22,7 +22,7 @@ use Jyotish\Ganita\Ayanamsha;
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 class Swetest extends AbstractGanita{
-
+    
     protected $swe = array(
         'swetest'   => null,
         'sweph'     => null,
@@ -76,7 +76,7 @@ class Swetest extends AbstractGanita{
         'house11'  => 11,
         'house12'  => 12,
     );
-    protected $outputExtra = array(
+    protected $outputLagna = array(
         'Ascendant' => Lagna::KEY_LG,
         'MC'        => Lagna::KEY_MLG,
         //'ARMC'      => 'ARMC',
@@ -107,20 +107,22 @@ class Swetest extends AbstractGanita{
      * 
      * @param array $params Array of blocks (optional)
      * @param null|array $options Options to set (optional)
-     * @return Swetest
+     * @return array
      */
-    public function calcParams(array $params = null, array $options = null)
+    public function getParams(array $params = null, array $options = null)
     {
         $this->setOptions($options);
 
-        $dateTimeObject = Time::createDateTimeUtc($this->data['user']);
+        $DateTime = clone($this->Data->getDateTime());
+        $DateTime->setTimezone(new DateTimeZone('UTC'));
+        $Locality = $this->Data->getLocality();
 
         $dir     = ' -edir'.$this->swe['sweph'];
-        $date    = ' -b'.$dateTimeObject->format(Time::FORMAT_DATA_DATE);
-        $time    = ' -ut'.$dateTimeObject->format(Time::FORMAT_DATA_TIME);
+        $date    = ' -b'.$DateTime->format(Time::FORMAT_DATA_DATE);
+        $time    = ' -ut'.$DateTime->format(Time::FORMAT_DATA_TIME);
         $sid     = ' -sid'.$this->inputAyanamsha[$this->options['ayanamsha']];
         
-        $stringHouses = ' -house'.$this->data['user']['longitude'].','.$this->data['user']['latitude'].',a';
+        $stringHouses = ' -house'.$Locality->getLongitude().','.$Locality->getLatitude().',a';
         $stringPlanets = implode('', $this->inputPlanets);
         
         if(is_null($params)){
@@ -150,40 +152,40 @@ class Swetest extends AbstractGanita{
         exec($string, $out);
 
         $dataParams = $this->formatParams($out, $params);
-
-        $this->data = array_merge($this->data, $dataParams);
         
-        return $this;
+        return $dataParams;
     }
 
     /**
      * Calculation of rising and setting time of planet.
      * 
-     * @param string $graha
+     * @param string $graha Graha key (optional)
      * @param null|array $options Options to set (optional)
-     * @return Swetest
+     * @return array
      */
-    public function calcRising($graha = Graha::KEY_SY, array $options = null)
+    public function getRising($graha = Graha::KEY_SY, array $options = null)
     {
         $this->setOptions($options);
-
-        $dateTimeObject = Time::createDateTimeUtc($this->data['user']);
-        $dateTimeObject->sub(new DateInterval('P2D'));
+        
+        $DateTime = clone($this->Data->getDateTime());
+        $DateTime->setTimezone(new DateTimeZone('UTC'));
+        $DateTime->sub(new DateInterval('P2D'));
+        $Locality = $this->Data->getLocality();
 
         $dir    = ' -edir'.$this->swe['sweph'];
-        $date   = ' -b'.$dateTimeObject->format(Time::FORMAT_DATA_DATE);
+        $date   = ' -b'.$DateTime->format(Time::FORMAT_DATA_DATE);
         $planet = ' -p'.$this->inputPlanets[$graha];
-        $geopos	= ' -geopos'.$this->data['user']['longitude'].','.$this->data['user']['latitude'].',0';
+        $geopos	= ' -geopos'.$Locality->getLongitude().','.$Locality->getLatitude().',0';
         $rising = ' -'.$this->options['rising'];
 
         $string = 'swetest'.$dir.$date.$planet.$geopos.$rising.' -n5 -rise';
 
         putenv("PATH={$this->swe['swetest']}");
         exec($string, $out);
-
-        $this->data['rising'] = $this->formatRising($out, $graha);
         
-        return $this;
+        $dataRising = $this->formatRising($out, $graha);
+        
+        return $dataRising;
     }
 
     /**
@@ -214,7 +216,7 @@ class Swetest extends AbstractGanita{
             $units      = Math::partsToUnits($parameters[1]);
 
             if (array_key_exists($bodyName, $this->outputPlanets)) {
-                $dataParams['graha'][$this->outputPlanets[$bodyName]] = array(
+                $dataParams[Data::BLOCK_GRAHA][$this->outputPlanets[$bodyName]] = array(
                     'longitude' => (float)$parameters[1],
                     'latitude' => (float)$parameters[2],
                     'speed' => (float)$parameters[3],
@@ -224,15 +226,15 @@ class Swetest extends AbstractGanita{
                     'degree' => $units['parts'],
                 );
             } elseif (array_key_exists($bodyName, $this->outputHouses)) {
-                $dataParams['bhava'][$this->outputHouses[$bodyName]] = array(
+                $dataParams[Data::BLOCK_BHAVA][$this->outputHouses[$bodyName]] = array(
                     'longitude' => (float)$parameters[1],
                     'ascension' => (float)$parameters[2],
                     'declination' => (float)$parameters[3],
                     'rashi' => $units['units'],
                     'degree' => $units['parts'],
                 );
-            } elseif (array_key_exists($bodyName, $this->outputExtra)) {
-                $dataParams['extra'][$this->outputExtra[$bodyName]] = array(
+            } elseif (array_key_exists($bodyName, $this->outputLagna)) {
+                $dataParams[Data::BLOCK_LAGNA][$this->outputLagna[$bodyName]] = array(
                     'longitude' => (float)$parameters[1],
                     'ascension' => (float)$parameters[2],
                     'declination' => (float)$parameters[3],
@@ -271,6 +273,8 @@ class Swetest extends AbstractGanita{
     private function formatRising($input, $graha)
     {
         $dataRising = [];
+        $DateTime = $this->Data->getDateTime();
+        
         for($i = 1; $i <= 4; $i++) {
             preg_match("#rise\s((.*\d+)\s+(\d{1,2}:.*))\sset\s((.*\d+)\s+(\d{1,2}:[\d\s\.:]+))#", $input[$i+1], $matches);
 
@@ -278,10 +282,10 @@ class Swetest extends AbstractGanita{
             $settingString = str_replace(' ', '', $matches[5]).' '.str_replace(' ', '', $matches[6]);
 
             $risingObject = new DateTime($risingString, new DateTimeZone('UTC'));
-            $risingObject->setTimezone(new DateTimeZone($this->data['user']['timezone']));
+            $risingObject->setTimezone($DateTime->getTimezone());
             $settingObject = new DateTime($settingString, new DateTimeZone('UTC'));
-            $settingObject->setTimezone(new DateTimeZone($this->data['user']['timezone']));
-
+            $settingObject->setTimezone($DateTime->getTimezone());
+            
             $rising = $risingObject->format(Time::FORMAT_DATETIME);
             $setting = $settingObject->format(Time::FORMAT_DATETIME);
 
@@ -290,8 +294,8 @@ class Swetest extends AbstractGanita{
                 'setting' => $setting,
             );
         }
-        $risingObject3 = new DateTime($dataRising[$graha][3]['rising']);
-        if($this->data['user']['date'] == $risingObject3->format(Time::FORMAT_DATA_DATE)){
+        $DateTime3 = new DateTime($dataRising[$graha][3]['rising']);
+        if($DateTime == $DateTime3){
             array_shift($dataRising[$graha]);
         }else{
             array_pop($dataRising[$graha]);

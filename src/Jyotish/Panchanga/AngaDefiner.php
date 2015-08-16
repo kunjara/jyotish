@@ -6,10 +6,10 @@
 
 namespace Jyotish\Panchanga;
 
+use Jyotish\Base\Data;
 use Jyotish\Ganita\Math;
 use Jyotish\Ganita\Time;
 use Jyotish\Ganita\Astro;
-use Jyotish\Ganita\Method\AbstractGanita as Ganita;
 use Jyotish\Panchanga\Panchanga;
 use Jyotish\Panchanga\Tithi\Tithi;
 use Jyotish\Panchanga\Nakshatra\Nakshatra;
@@ -26,26 +26,8 @@ use DateInterval;
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 class AngaDefiner {
-    /**
-     * Ganita data.
-     * 
-     * @var Ganita
-     */
-    private $ganitaData = null;
-
-    /**
-     * Calculated tithi.
-     * 
-     * @var array
-     */
-    private $tithi = null;
     
-    /**
-     * Intermediate date.
-     * 
-     * @var string
-     */
-    private $date = null;
+    use \Jyotish\Base\Traits\DataTrait;
     
     /**
      * Information about angas.
@@ -57,32 +39,21 @@ class AngaDefiner {
     /**
      * Constructor
      * 
-     * @param array|Ganita $ganitaData
-     * @throws Exception\InvalidArgumentException
+     * @param Data $Data
      */
-    public function __construct($ganitaData)
+    public function __construct(Data $Data)
     {
-        if($ganitaData instanceof Ganita){
-            $this->ganitaData = $ganitaData;
-            $this->ganitaData->calcParams();
-        }elseif(is_array($ganitaData)){
-            $this->ganitaData = $ganitaData;
-        }else{
-            throw new Exception\InvalidArgumentException(
-                'Ganita data must be a Ganita object or a ganita array.'
-            );
-        }
+        $this->setData($Data);
         
         $this->setAngaInfo();
         $this->AngaDefiner = clone $this;
     }
-
+    
     /**
-     * Clone Ganita object.
+     * Clone
      */
-    public function __clone()
-    {
-        $this->ganitaData = clone $this->ganitaData;
+    public function __clone() {
+        $this->Data = clone $this->Data;
     }
 
     /**
@@ -94,6 +65,7 @@ class AngaDefiner {
      */
     public function getTithi($withLimit = false)
     {
+        $this->checkData(__FUNCTION__);
         $unit = 12;
 
         $lngCh = $this->getData()['graha'][Graha::KEY_CH]['longitude'];
@@ -115,9 +87,9 @@ class AngaDefiner {
             $tithi['end'] = $limit;
         }
 
-        $this->tithi = $tithi;
-
-        return $this->tithi;
+        $this->temp['tithi'] = $tithi;
+        
+        return $this->temp['tithi'];
     }
 
     /**
@@ -131,6 +103,7 @@ class AngaDefiner {
      */
     public function getNakshatra($withLimit = false, $withAbhijit = false, $grahaKey = Graha::KEY_CH)
     {
+        $this->checkData(__FUNCTION__);
         $unit = 360/27;
 
         if(array_key_exists($grahaKey, Graha::$graha)){
@@ -215,6 +188,7 @@ class AngaDefiner {
      */
     public function getYoga($withLimit = false)
     {
+        $this->checkData(__FUNCTION__);
         $unit = 360/27;
 
         $lngCh  = $this->getData()['graha'][Graha::KEY_CH]['longitude'];
@@ -248,13 +222,11 @@ class AngaDefiner {
      */
     public function getVara($withLimit = false)
     {
-        if(!isset($this->getData()['rising'])){
-            $this->ganitaData->calcRising();
-        }
+        $this->checkData(__FUNCTION__);
         
-        $dateUser = new DateTime($this->getData()['user']['date'].' '.$this->getData()['user']['time']);
-        $dateUserU = $dateUser->format('U');
-        $weekNumber = $dateUser->format('w');
+        $DateTime = $this->Data->getDateTime();
+        $dateUserU = $DateTime->format('U');
+        $weekNumber = $DateTime->format('w');
         $dataRising = $this->getData()['rising'][Graha::KEY_SY];
         
         foreach ($dataRising as $i => $data){
@@ -262,7 +234,7 @@ class AngaDefiner {
             $dateRisingU[$i] = $dateRising[$i]->format('U');
         }
         
-        if($dateUser < $dateRising[1]){
+        if($DateTime < $dateRising[1]){
             $varaNumber = $weekNumber != 0 ? $weekNumber - 1 : 6;
             $risingIndex = 1;
         }else{
@@ -294,27 +266,29 @@ class AngaDefiner {
      */
     public function getKarana($withLimit = false)
     {
-        $this->getTithi(true);
+        if(!isset($this->temp['tithi'])){
+            $this->getTithi($withLimit);
+        }
         
-        if($this->tithi['left'] < 50){
+        if($this->temp['tithi']['left'] < 50){
             $number = 2;
-            $left = $this->tithi['left'];
+            $left = $this->temp['tithi']['left'];
             if($withLimit)
-                $karana['end'] = $this->tithi['end'];
+                $karana['end'] = $this->temp['tithi']['end'];
         } else {
             $number = 1;
-            $left = $this->tithi['left'] - 50;
+            $left = $this->temp['tithi']['left'] - 50;
             if($withLimit){
-                $dateUser = new DateTime($this->getData()['user']['date'].' '.$this->getData()['user']['time']);
-                $tithiEnd = new DateTime($this->tithi['end']);
-                $dateUserU = $dateUser->format('U');
-                $tithiEndU = $tithiEnd->format('U');
-                $timeHalfU = round(($tithiEndU - $dateUserU) * 50 / $this->tithi['left']);
-                $karana['end'] = $tithiEnd->sub(new DateInterval('PT'.$timeHalfU.'S'))->format(Time::FORMAT_DATETIME);
+                $DateTime = $this->Data->getDateTime();
+                $TithiEnd = new DateTime($this->temp['tithi']['end']);
+                $dateUserU = $DateTime->format('U');
+                $tithiEndU = $TithiEnd->format('U');
+                $timeHalfU = round(($tithiEndU - $dateUserU) * 50 / $this->temp['tithi']['left']);
+                $karana['end'] = $TithiEnd->sub(new DateInterval('PT'.$timeHalfU.'S'))->format(Time::FORMAT_DATETIME);
             }
         }
 
-        $tithiObject = Tithi::getInstance($this->tithi['key']);
+        $tithiObject = Tithi::getInstance($this->temp['tithi']['key']);
         $karanaArray = $tithiObject->tithiKarana;
         $karanaName = $karanaArray[$number];
         $karanaNumber = array_search($karanaName, Karana::$karana);
@@ -326,37 +300,29 @@ class AngaDefiner {
 
         return $karana;
     }
-
-    /**
-     * Set user data.
-     * 
-     * @param array $userData
-     */
-    public function setData(array $userData, $anga = null)
-    {
-        $this->ganitaData->setData($userData);
-        $this->ganitaData->calcParams();
-
-        if($anga == Panchanga::ANGA_VARA or $this->date < $this->getData()['user']['date']){
-            $this->ganitaData->calcRising();
-        }
-        $this->date = $this->getData()['user']['date'];
-    }
     
     /**
-     * Get data.
+     * Generation of angas.
      * 
-     * @return array
+     * @param null|array $angas Array of angas
+     * @throws Exception\InvalidArgumentException
      */
-    public function getData()
+    public function generateAnga(array $angas = null, $withLimit = false)
     {
-        if(is_object($this->ganitaData)){
-            return $this->ganitaData->getData();
-        }else{
-            return $this->ganitaData;
+        if(is_null($angas)){
+            $angas = Panchanga::$anga;
+        }
+        
+        foreach ($angas as $anga){
+            if (!in_array($anga, Panchanga::$anga)){
+                throw new Exception\InvalidArgumentException("Anga with the name '$anga' does not exist.");
+            }
+            
+            $getAnga = 'get'.$anga;
+            yield $anga => $this->$getAnga($withLimit);
         }
     }
-    
+
     /**
      * Set information about angas.
      * 
@@ -386,17 +352,10 @@ class AngaDefiner {
      * @param array $anga
      * @param string $modify
      * @return array
-     * @throws Exception\RuntimeException
      */
     private function getAngaLimit($anga, $modify = 'add')
     {
-        if(!is_object($this->ganitaData)){
-            throw new Exception\RuntimeException(
-                'For calculation of the end angas must be used Ganita object.'
-            );
-        }
-
-        $TimeEnd = Time::createDateTime($this->AngaDefiner->getData()['user']);
+        $TimeEnd = $this->AngaDefiner->Data->getDateTime();
         
         $ratio = $anga['anga'] == Panchanga::ANGA_NAKSHATRA ? $anga['ratio'] : 1;
         $duration  = $this->angaInfo[$anga['anga']]['duration'] * $ratio / $this->angaInfo[$anga['anga']]['parts'];
@@ -406,15 +365,13 @@ class AngaDefiner {
 
         // End time
         if($left > .1){
-            $this->AngaDefiner->setData([
-                'date' => $TimeEnd->format(Time::FORMAT_DATA_DATE), 
-                'time' => $TimeEnd->format(Time::FORMAT_DATA_TIME)
-            ], $anga['anga']);
+            $this->AngaDefiner->Data->setDateTime($TimeEnd);
 
             $function = 'get' . ucfirst($anga['anga']);
             if($anga['anga'] == Panchanga::ANGA_NAKSHATRA){
                 $angaTemp = $this->AngaDefiner->$function(false, $anga['abhijit']);
             }else{
+                $this->temp = null;
                 $angaTemp = $this->AngaDefiner->$function();
             }
             
@@ -428,5 +385,21 @@ class AngaDefiner {
         $result = $TimeEnd->format(Time::FORMAT_DATETIME);
         
         return $result;
+    }
+    
+    /**
+     * Check data.
+     * 
+     * @param string $function
+     */
+    private function checkData($function = null)
+    {
+        if(!isset($this->getData()[Data::BLOCK_GRAHA])){
+            $this->Data->calcParams();
+        }
+
+        if($function == 'getVara' and !isset($this->getData()[Data::BLOCK_RISING])){
+            $this->Data->calcRising();
+        }
     }
 }
