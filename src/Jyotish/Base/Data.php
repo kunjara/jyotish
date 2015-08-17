@@ -14,6 +14,7 @@ use Jyotish\Bhava\Arudha;
 use Jyotish\Ganita\Time;
 use Jyotish\Ganita\Method\AbstractGanita as Ganita;
 use Jyotish\Panchanga\AngaDefiner;
+use Jyotish\Varga\Varga;
 use DateTime;
 
 /**
@@ -54,6 +55,10 @@ class Data {
      * User block
      */
     const BLOCK_USER  = 'user';
+    /**
+     * Varga block
+     */
+    const BLOCK_VARGA = 'varga';
     
     static public $block = [
         self::BLOCK_BHAVA,
@@ -64,6 +69,7 @@ class Data {
         self::BLOCK_RISING,
         self::BLOCK_UPAGRAHA,
         self::BLOCK_USER,
+        self::BLOCK_VARGA,
     ];
 
     /**
@@ -118,6 +124,9 @@ class Data {
             case 'worising':
                 unset($blocks['rising']);
                 unset($blocks['user']);
+                break;
+            case 'main':
+                return [self::BLOCK_GRAHA, self::BLOCK_BHAVA, self::BLOCK_LAGNA];
                 break;
             case 'calc':
             default:
@@ -219,11 +228,19 @@ class Data {
     /**
      * Get data array.
      * 
+     * @param null|array $blocks Array of blocks (optional)
      * @return array
      */
-    public function getData()
+    public function getData(array $blocks = null)
     {
-        return $this->data;
+        if(is_null($blocks)){
+            $result = $this->data;
+        }else{
+            foreach ($blocks as $block){
+                $result[$block] = isset($this->data[$block]) ? $this->data[$block] : null;
+            }
+        }
+        return $result;
     }
 
     /**
@@ -326,7 +343,21 @@ class Data {
         return $this;
     }
     
-    
+    /**
+     * Calculation of varga datas.
+     * 
+     * @param array $vargaKeys Varga keys
+     * @return Data
+     */
+    public function calcVargaData(array $vargaKeys = [Varga::KEY_D9])
+    {
+        foreach ($vargaKeys as $vargaKey){
+            $Varga = Varga::getInstance($vargaKey)->setData($this);
+            $this->data[self::BLOCK_VARGA][$vargaKey] = $Varga->getVargaData();
+        }
+        return $this;
+    }
+
     /**
      * Clear data blocks.
      * 

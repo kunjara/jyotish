@@ -42,10 +42,11 @@ trait DataTrait {
     /**
      * Get data
      * 
+     * @param null|array $blocks Array of blocks (optional)
      * @return array
      */
-    public function getData()
+    public function getData(array $blocks = null)
     {
-        return $this->Data->getData();
+        return $this->Data->getData($blocks);
     }
 }

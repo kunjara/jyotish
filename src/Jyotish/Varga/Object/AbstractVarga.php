@@ -17,6 +17,7 @@ use Jyotish\Ganita\Math;
 abstract class AbstractVarga {
     
     use \Jyotish\Base\Traits\GetTrait;
+    use \Jyotish\Base\Traits\DataTrait;
     
     /**
      * Key of the varga.
@@ -50,44 +51,39 @@ abstract class AbstractVarga {
     /**
      * Get varga data.
      * 
-     * @param array $ganitaData
      * @return array
-     * @throws InvalidArgumentException
      */
-    public function getVargaData($ganitaData) {
-        if(is_null($ganitaData)) {
-            throw new \Jyotish\Varga\Exception\InvalidArgumentException("Ganita data must be an array of calculation positions.");
+    public function getVargaData() {
+        if(!isset($this->getData()['graha'])){
+            $this->Data->calcParams();
         }
 
         if($this->vargaKey == Varga::KEY_D1){
-            return $ganitaData;
+            return $this->getData(\Jyotish\Base\Data::listBlock('main'));
         }
 
-        $bhava1Varga = $this->getVargaRashi($ganitaData['bhava'][1]);
-
-        foreach ($ganitaData['bhava'] as $k => $v) {
-            if($k == 1) {
-                $rashi = $bhava1Varga['rashi'];
-            } else {
-                $rashi = Math::numberNext($rashi);
-            }
+        $bhava1Varga = $this->getVargaRashi($this->getData()['bhava'][1]);
+        foreach ($this->getData()['bhava'] as $k => $v) {
+            $rashi = $k == 1 ? $bhava1Varga['rashi'] : Math::numberNext($rashi);
             $vargaData['bhava'][$k] = array(
                 'rashi' => $rashi,
                 'degree' => $bhava1Varga['degree'],
                 'longitude' => 30 * ($rashi - 1) + $bhava1Varga['degree'],
             );
         }
-        foreach ($ganitaData['graha'] as $k => $v) {
+        
+        foreach ($this->getData()['graha'] as $k => $v) {
             $result = $this->getVargaRashi($v);
             $vargaData['graha'][$k] = array(
                 'rashi' => $result['rashi'],
                 'degree' => $result['degree'],
-                'speed' => $ganitaData['graha'][$k]['speed'],
+                'speed' => $this->getData()['graha'][$k]['speed'],
                 'longitude' => 30 * ($result['rashi'] - 1) + $result['degree'],
                 'latitude' => $v['latitude'],
             );
         }
-        foreach ($ganitaData['extra'] as $k => $v) {
+        
+        foreach ($this->getData()['lagna'] as $k => $v) {
             $result = $this->getVargaRashi($v);
             $vargaData['extra'][$k] = array(
                 'rashi' => $result['rashi'],
