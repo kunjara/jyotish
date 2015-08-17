@@ -6,7 +6,6 @@
 
 namespace Jyotish\Panchanga;
 
-use Jyotish\Base\Data;
 use Jyotish\Ganita\Math;
 use Jyotish\Ganita\Time;
 use Jyotish\Ganita\Astro;
@@ -39,9 +38,9 @@ class AngaDefiner {
     /**
      * Constructor
      * 
-     * @param Data $Data
+     * @param \Jyotish\Base\Data $Data
      */
-    public function __construct(Data $Data)
+    public function __construct(\Jyotish\Base\Data $Data)
     {
         $this->setData($Data);
         
@@ -394,11 +393,11 @@ class AngaDefiner {
      */
     private function checkData($function = null)
     {
-        if(!isset($this->getData()[Data::BLOCK_GRAHA])){
+        if(!isset($this->getData()['graha'])){
             $this->Data->calcParams();
         }
 
-        if($function == 'getVara' and !isset($this->getData()[Data::BLOCK_RISING])){
+        if($function == 'getVara' and !isset($this->getData()['rising'])){
             $this->Data->calcRising();
         }
     }

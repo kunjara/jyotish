@@ -215,7 +215,7 @@ class AshtakaVarga {
      * 
      * @param \Jyotish\Base\Data $Data
      */
-    public function __construct($Data)
+    public function __construct(\Jyotish\Base\Data $Data)
     {
         $this->setData($Data);
 

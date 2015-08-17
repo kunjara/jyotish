@@ -101,11 +101,11 @@ class Arudha{
     /**
      * Constructor
      * 
-     * @param \Jyotish\Base\Data|array $data
+     * @param \Jyotish\Base\Data $Data
      * @param null|array $options Options to set
      */
-    public function __construct($data, $options = null) {
-        $this->setData($data);
+    public function __construct(\Jyotish\Base\Data $Data, $options = null) {
+        $this->setData($Data);
         $this->setOptions($options);
     }
     

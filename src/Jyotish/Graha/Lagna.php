@@ -64,10 +64,10 @@ class Lagna {
     /**
      * Constructor
      * 
-     * @param \Jyotish\Base\Data|array $data
+     * @param \Jyotish\Base\Data $Data
      */
-    public function __construct($data) {
-        $this->setData($data);
+    public function __construct(\Jyotish\Base\Data $Data) {
+        $this->setData($Data);
     }
     
     /**

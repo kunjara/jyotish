@@ -53,7 +53,7 @@ class GrahaBala extends Analysis {
      * 
      * @param \Jyotish\Base\Data $Data
      */
-    public function __construct($Data)
+    public function __construct(\Jyotish\Base\Data $Data)
     {
         parent::__construct($Data);
         $this->balaGraha = Graha::listGraha(Graha::LIST_SAPTA);
