@@ -109,12 +109,12 @@ class AngaDefiner {
         if(array_key_exists($grahaKey, Graha::$graha)){
             $lngGraha = $this->getData()['graha'][$grahaKey]['longitude'];
         }else{
-            if(!isset($this->getData()['extra'][$grahaKey]['longitude'])){
+            if(!isset($this->getData()['lagna'][$grahaKey]['longitude'])){
                 throw new Exception\InvalidArgumentException(
                     "Longitude value for the key '$grahaKey' is not defined."
                 );
             }else{
-                $lngGraha = $this->getData()['extra'][$grahaKey]['longitude'];
+                $lngGraha = $this->getData()['lagna'][$grahaKey]['longitude'];
             }
         }
         

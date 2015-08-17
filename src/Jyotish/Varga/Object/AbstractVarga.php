@@ -85,7 +85,7 @@ abstract class AbstractVarga {
         
         foreach ($this->getData()['lagna'] as $k => $v) {
             $result = $this->getVargaRashi($v);
-            $vargaData['extra'][$k] = array(
+            $vargaData['lagna'][$k] = array(
                 'rashi' => $result['rashi'],
                 'degree' => $result['degree'],
                 'longitude' => 30 * ($result['rashi'] - 1) + $result['degree'],

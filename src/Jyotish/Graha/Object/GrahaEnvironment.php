@@ -366,7 +366,7 @@ trait GrahaEnvironment {
         ];
         
         if(array_key_exists($this->objectKey, $yogaKarakas)){
-            $lagna = $this->getEnvironment()['extra'][Graha::KEY_LG]['rashi'];
+            $lagna = $this->getEnvironment()['lagna'][Graha::KEY_LG]['rashi'];
             $isYogakaraka = in_array($lagna, $yogaKarakas[$this->objectKey]) ? true : false;
             
             return $isYogakaraka;

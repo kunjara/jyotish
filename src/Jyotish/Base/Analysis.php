@@ -9,7 +9,6 @@ namespace Jyotish\Base;
 use Jyotish\Base\Biblio;
 use Jyotish\Graha\Graha;
 use Jyotish\Rashi\Rashi;
-use Jyotish\Varga\Varga;
 use Jyotish\Tattva\Karaka;
 
 /**
@@ -22,20 +21,12 @@ class Analysis {
     use \Jyotish\Base\Traits\DataTrait;
 
     /**
-     * Varga data.
-     * 
-     * @var array
-     */
-    protected $vargaData = array();
-
-
-    /**
      * Constructor
      * 
-     * @param \Jyotish\Base\Data|array $data
+     * @param \Jyotish\Base\Data $Data
      */
-    public function __construct($data) {
-        $this->setData($data);
+    public function __construct($Data) {
+        $this->setData($Data);
     }
 
     /**
@@ -94,7 +85,7 @@ class Analysis {
      */
     public function getKarakamsha()
     {
-        $d9Data = $this->getVargaData();
+        $d9Data = $this->getVargaData('D9');
         $atmaKaraka = $this->getCharaKaraka(true)[Karaka::NAME_ATMA];
 
         return $d9Data['graha'][$atmaKaraka]['rashi'];
@@ -107,27 +98,24 @@ class Analysis {
      */
     public function getLagnamsha()
     {
-        $d9Data = $this->getVargaData();
+        $d9Data = $this->getVargaData('D9');
 
-        return $d9Data['extra'][Graha::KEY_LG]['rashi'];
+        return $d9Data['lagna'][Graha::KEY_LG]['rashi'];
     }
 
     /**
      * Get varga data.
      * 
-     * @param string $varga
+     * @param string $vargaKey Varga key
      * @return array
      */
-    public function getVargaData($varga = 'D9')
+    public function getVargaData($vargaKey)
     {
-        $v = strtoupper($varga);
-        if(!isset($this->vargaData[$v])){
-            if($varga == 'D1') return $this->getData();
-            
-            $Varga = Varga::getInstance(($v));
-            $this->vargaData[$v] = $Varga->getVargaData($this->getData());
+        $v = strtoupper($vargaKey);
+        if(!isset($this->getData()['varga'][$v])){
+            $this->Data->calcVargaData([$vargaKey]);
         }
-        return $this->vargaData[$v];
+        return $this->getData()['varga'][$v];
     }
     
     /**
