@@ -51,11 +51,11 @@ class GrahaBala extends Analysis {
     /**
      * Constructor
      * 
-     * @param array $ganitaData
+     * @param \Jyotish\Base\Data $Data
      */
-    public function __construct($ganitaData)
+    public function __construct($Data)
     {
-        parent::__construct($ganitaData);
+        parent::__construct($Data);
         $this->balaGraha = Graha::listGraha(Graha::LIST_SAPTA);
         
         $this->bala['total'] = [];

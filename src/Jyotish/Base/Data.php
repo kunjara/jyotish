@@ -99,13 +99,6 @@ class Data {
      * @var array
      */
     protected $data = null;
-
-    /**
-     * Array with values ​​of the rashis in the bhavas.
-     * 
-     * @var array
-     */
-    protected $rashiInBhava = null;
     
     /**
      * List of blocks.
@@ -371,57 +364,5 @@ class Data {
         foreach ($blocks as $block){
             unset($this->data[$block]);
         }
-    }
-
-    /**
-     * Get rashi in bhava.
-     * 
-     * @return array
-     */
-    public function getRashiInBhava() {
-        if(is_null($this->rashiInBhava)){
-            foreach ($this->ganitaData[self::BLOCK_BHAVA] as $bhava => $params) {
-                $rashi = $params['rashi'];
-                $this->rashiInBhava[$rashi] = $bhava;
-            }
-        }
-        return $this->rashiInBhava;
-    }
-
-    /**
-     * Get bodies in bhava.
-     * 
-     * @return array
-     */
-    public function getBodyInBhava() {
-        foreach ([self::BLOCK_GRAHA, self::BLOCK_LAGNA, self::BLOCK_UPAGRAHA] as $block){
-            if(!isset($this->ganitaData[$block])) continue;
-            
-            foreach ($this->ganitaData[$block] as $body => $params) {
-                $rashi = $params['rashi'];
-                $bhava = $this->getRashiInBhava()[$rashi];
-
-                $bodyInBhava[$body] = $bhava;
-            }
-        }
-        return $bodyInBhava;
-    }
-
-    /**
-     * Get bodies in rashi.
-     * 
-     * @return array
-     */
-    public function getBodyInRashi() {
-        foreach ([self::BLOCK_GRAHA, self::BLOCK_LAGNA, self::BLOCK_UPAGRAHA] as $block){
-            if(!isset($this->ganitaData[$block])) continue;
-            
-            foreach ($this->ganitaData[$block] as $body => $params) {
-                $rashi = $params['rashi'];
-
-                $bodyInRashi[$body] = $rashi;
-            }
-        }
-        return $bodyInRashi;
     }
 }

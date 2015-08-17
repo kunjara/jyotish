@@ -45,11 +45,11 @@ class RashiBala extends Analysis {
     /**
      * Constructor
      * 
-     * @param array $ganitaData
+     * @param \Jyotish\Base\Data $Data
      */
-    public function __construct($ganitaData)
+    public function __construct($Data)
     {
-        parent::__construct($ganitaData);
+        parent::__construct($Data);
         
         $this->bala['total'] = [];
         foreach ($this->balaVarga as $varga){
@@ -66,7 +66,7 @@ class RashiBala extends Analysis {
      */
     protected function balaGraha()
     {
-        $GrahaBala = new GrahaBala($this->getData());
+        $GrahaBala = new GrahaBala($this->Data);
         $grahaBala = $GrahaBala->getBala()['total'];
         
         foreach (Rashi::$rashi as $key => $name){

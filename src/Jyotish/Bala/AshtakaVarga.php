@@ -210,9 +210,14 @@ class AshtakaVarga {
         }
     }
 
-    public function __construct($data)
+    /**
+     * Constructor
+     * 
+     * @param \Jyotish\Base\Data $Data
+     */
+    public function __construct($Data)
     {
-        $this->setData($data);
+        $this->setData($Data);
 
         foreach($this->ashtakavarga as $varga){
             $binduVarga = 'bindu'.$varga;
@@ -224,7 +229,7 @@ class AshtakaVarga {
                     if($graha != Graha::KEY_LG){
                         $distance = Math::numberInCycle($this->getData()['graha'][$graha]['rashi'], $i);
                     }else{
-                        $distance = Math::numberInCycle($this->getData()['extra'][$graha]['rashi'], $i);
+                        $distance = Math::numberInCycle($this->getData()['lagna'][$graha]['rashi'], $i);
                     }
                     
                     if(!isset($this->bhinnAshtakavarga[$varga][$distance])) $this->bhinnAshtakavarga[$varga][$distance] = 0;

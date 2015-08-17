@@ -6,6 +6,7 @@
 
 namespace Jyotish\Base;
 
+use Jyotish\Base\Data;
 use Jyotish\Base\Biblio;
 use Jyotish\Graha\Graha;
 use Jyotish\Rashi\Rashi;
@@ -132,5 +133,57 @@ class Analysis {
         }
         $rulers = array_unique($rulers);
         return $rulers;
+    }
+    
+    /**
+     * Get rashi in bhava.
+     * 
+     * @return array
+     */
+    public function getRashiInBhava() {
+        if(is_null($this->temp['rashiInBhava'])){
+            foreach ($this->getData()['bhava'] as $bhava => $params) {
+                $rashi = $params['rashi'];
+                $this->temp['rashiInBhava'][$rashi] = $bhava;
+            }
+        }
+        return $this->temp['rashiInBhava'];
+    }
+
+    /**
+     * Get bodies in bhava.
+     * 
+     * @return array
+     */
+    public function getBodyInBhava() {
+        foreach ([Data::BLOCK_GRAHA, Data::BLOCK_LAGNA, Data::BLOCK_UPAGRAHA] as $block){
+            if(!isset($this->getData()[$block])) continue;
+            
+            foreach ($this->getData()[$block] as $body => $params) {
+                $rashi = $params['rashi'];
+                $bhava = $this->getRashiInBhava()[$rashi];
+
+                $bodyInBhava[$body] = $bhava;
+            }
+        }
+        return $bodyInBhava;
+    }
+
+    /**
+     * Get bodies in rashi.
+     * 
+     * @return array
+     */
+    public function getBodyInRashi() {
+        foreach ([Data::BLOCK_GRAHA, Data::BLOCK_LAGNA, Data::BLOCK_UPAGRAHA] as $block){
+            if(!isset($this->getData()[$block])) continue;
+            
+            foreach ($this->getData()[$block] as $body => $params) {
+                $rashi = $params['rashi'];
+
+                $bodyInRashi[$body] = $rashi;
+            }
+        }
+        return $bodyInRashi;
     }
 }
