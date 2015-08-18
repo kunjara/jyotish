@@ -47,11 +47,9 @@ class YogaBase {
     /**
      * Constructor
      * 
-     * @param \Jyotish\Base\Data|array $data
      * @param null|array $options Options to set (optional)
      */
-    public function __construct($data, array $options = null) {
-        $this->setData($data);
+    public function __construct(array $options = null) {
         $this->setOptions($options);
     }
     
@@ -75,8 +73,8 @@ class YogaBase {
             in_array($this->getData()['graha'][$graha2]['rashi'], $rashi1Swa)
         ){
             if($this->options['outputAmple']){
-                $Graha1->setEnvironment($this->getData());
-                $Graha2->setEnvironment($this->getData());
+                $Graha1->setEnvironment($this->Data);
+                $Graha2->setEnvironment($this->Data);
                 $graha1Bhava = $Graha1->getBhava();
                 $graha2Bhava = $Graha2->getBhava();
                 
@@ -107,7 +105,7 @@ class YogaBase {
     public function hasMahapurusha($key)
     {
         $Graha = Graha::getInstance($key);
-        $Graha->setEnvironment($this->getData());
+        $Graha->setEnvironment($this->Data);
         
         $grahaBhava = $Graha->getBhava();
         $grahaAvastha = $Graha->getRashiAvastha();

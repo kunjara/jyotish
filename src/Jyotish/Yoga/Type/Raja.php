@@ -27,8 +27,8 @@ class Raja extends YogaBase {
     /**
      * Constructor
      */
-    public function __construct($data) {
-        parent::__construct($data);
+    public function __construct() {
+        parent::__construct();
     }
     
     /**
@@ -39,7 +39,7 @@ class Raja extends YogaBase {
      */
     public function generateYoga()
     {
-        $Analysis = new Analysis($this->getData());
+        $Analysis = new Analysis($this->Data);
         
         $bhavaKendra = Bhava::$bhavaKendra;
         array_shift($bhavaKendra);
@@ -49,9 +49,9 @@ class Raja extends YogaBase {
         foreach ($kendraRulers as $kendraRuler){
             foreach ($trikonaRulers as $trikonaRuler){
                 $KendraRuler = Graha::getInstance($kendraRuler);
-                $KendraRuler->setEnvironment($this->getData());
+                $KendraRuler->setEnvironment($this->Data);
                 $TrikonaRuler = Graha::getInstance($trikonaRuler);
-                $TrikonaRuler->setEnvironment($this->getData());
+                $TrikonaRuler->setEnvironment($this->Data);
                 
                 // Parivarthana
                 if($this->hasParivarthana($kendraRuler, $trikonaRuler)){

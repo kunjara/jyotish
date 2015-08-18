@@ -25,11 +25,10 @@ class Parivarthana extends YogaBase {
     /**
      * Constructor
      * 
-     * @param \Jyotish\Base\Data|array $data
      * @param null|array $options Options to set (optional)
      */
-    public function __construct($data, array $options = null) {
-        parent::__construct($data, $options);
+    public function __construct(array $options = null) {
+        parent::__construct($options);
     }
     
     /**

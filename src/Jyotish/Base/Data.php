@@ -15,6 +15,7 @@ use Jyotish\Ganita\Time;
 use Jyotish\Ganita\Method\AbstractGanita as Ganita;
 use Jyotish\Panchanga\AngaDefiner;
 use Jyotish\Varga\Varga;
+use Jyotish\Yoga\Yoga;
 use DateTime;
 
 /**
@@ -36,10 +37,6 @@ class Data {
      */
     const BLOCK_LAGNA = 'lagna';
     /**
-     * More block
-     */
-    const BLOCK_MORE  = 'more';
-    /**
      * Panchanga block
      */
     const BLOCK_PANCHANGA = 'panchanga';
@@ -59,17 +56,21 @@ class Data {
      * Varga block
      */
     const BLOCK_VARGA = 'varga';
+    /**
+     * Yoga block
+     */
+    const BLOCK_YOGA = 'yoga';
     
     static public $block = [
         self::BLOCK_BHAVA,
         self::BLOCK_GRAHA,
         self::BLOCK_LAGNA,
-        self::BLOCK_MORE,
         self::BLOCK_PANCHANGA,
         self::BLOCK_RISING,
         self::BLOCK_UPAGRAHA,
         self::BLOCK_USER,
         self::BLOCK_VARGA,
+        self::BLOCK_YOGA,
     ];
 
     /**
@@ -241,7 +242,7 @@ class Data {
      * 
      * @param null|array $params Array of blocks (optional)
      * @param null|array $options Options to set (optional)
-     * @return Data
+     * @return \Jyotish\Base\Data
      */
     public function calcParams(array $params = null, array $options = null)
     {
@@ -256,7 +257,7 @@ class Data {
      * 
      * @param string $graha Graha key (optional)
      * @param null|array $options Options to set (optional)
-     * @return Data
+     * @return \Jyotish\Base\Data
      */
     public function calcRising($graha = Graha::KEY_SY, array $options = null)
     {
@@ -271,7 +272,7 @@ class Data {
      * 
      * @param null|array $angas Array of angas (optional)
      * @param bool $withLimit Time limit (optional)
-     * @return Data
+     * @return \Jyotish\Base\Data
      */
     public function calcPanchangna(array $angas = null, $withLimit = false)
     {
@@ -288,7 +289,7 @@ class Data {
      * Calculation of extra lagnas.
      * 
      * @param null|array $lagnaKeys Array of lagna keys (optional)
-     * @return Data
+     * @return \Jyotish\Base\Data
      */
     public function calcExtraLagna(array $lagnaKeys = null)
     {
@@ -306,7 +307,7 @@ class Data {
      * 
      * @param null|array $arudhaKeys Array of arudha keys (optional)
      * @param null|array $options Options to set (optional)
-     * @return Data
+     * @return \Jyotish\Base\Data
      */
     public function calcBhavaArudha(array $arudhaKeys = null, array $options = null)
     {
@@ -323,7 +324,7 @@ class Data {
      * Calculation of upagrahas.
      * 
      * @param null|array $upagrahaKeys Array of upagraha keys (optional)
-     * @return Data
+     * @return \Jyotish\Base\Data
      */
     public function calcUpagraha(array $upagrahaKeys = null)
     {
@@ -340,13 +341,30 @@ class Data {
      * Calculation of varga datas.
      * 
      * @param array $vargaKeys Varga keys
-     * @return Data
+     * @return \Jyotish\Base\Data
      */
     public function calcVargaData(array $vargaKeys = [Varga::KEY_D9])
     {
         foreach ($vargaKeys as $vargaKey){
             $Varga = Varga::getInstance($vargaKey)->setData($this);
             $this->data[self::BLOCK_VARGA][$vargaKey] = $Varga->getVargaData();
+        }
+        return $this;
+    }
+    
+    /**
+     * Calculation of yogas.
+     * 
+     * @param array $yogas
+     * @return \Jyotish\Base\Data
+     */
+    public function calcYoga(array $yogas)
+    {
+        foreach ($yogas as $type){
+            $Yoga = Yoga::getInstance($type)->setData($this);
+            foreach ($Yoga->generateYoga() as $result){
+                $this->data[self::BLOCK_YOGA][$type][] = $result;
+            }
         }
         return $this;
     }

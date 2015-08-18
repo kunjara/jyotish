@@ -46,11 +46,30 @@ class Yoga {
      * 
      * @var array
      */
-    public $yoga = [
+    static public $type = [
         self::TYPE_DHANA,
         self::TYPE_MAHAPURUSHA,
         self::TYPE_NABHASHA,
         self::TYPE_PARIVARTHANA,
         self::TYPE_RAJA,
     ];
+    
+    /**
+     * Returns the requested instance of yoga class.
+     * 
+     * @param string $type The type of yoga
+     * @param null|array $options Options to set (optional)
+     * @return the requested instance of yoga class
+     * @throws Exception\InvalidArgumentException
+     */
+    static public function getInstance($type, array $options = null) {
+        if (!in_array($type, self::$type)) {
+            throw new Exception\InvalidArgumentException("Yoga '$type' is not defined.");
+        }
+        
+        $yogaClass = 'Jyotish\Yoga\Type\\' . ucfirst($type);
+        $yogaObject = new $yogaClass($options);
+
+        return $yogaObject;
+    }
 }

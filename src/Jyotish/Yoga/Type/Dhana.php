@@ -49,13 +49,26 @@ class Dhana extends YogaBase {
     /**
      * Constructor
      */
-    public function __construct($data) {
-        parent::__construct($data);
+    public function __construct() {
+        parent::__construct(); 
+    }
+    
+    /**
+     * Set Data
+     * 
+     * @param \Jyotish\Base\Data $Data
+     * @return \Jyotish\Yoga\Type\Dhana
+     */
+    public function setData(\Jyotish\Base\Data $Data)
+    {
+        $this->Data = $Data;
         
-        $Lg = Bhava::getInstance(1)->setEnvironment($this->getData());
+        $Lg = Bhava::getInstance(1)->setEnvironment($this->Data);
         
-        $this->lg['aspect']   = $Lg->isAspectedByGraha();
-        $this->lg['conjunct'] = $Lg->isConjuncted();
+        $this->temp['lgAspect']   = $Lg->isAspectedByGraha();
+        $this->temp['lgConjunct'] = $Lg->isConjuncted();
+        
+        return $this;
     }
 
     /**
@@ -214,8 +227,8 @@ class Dhana extends YogaBase {
         if(
             $this->getData()['bhava'][1]['rashi'] == 5 and
             $this->getData()['graha'][Graha::KEY_SY]['rashi'] == 5 and
-            ($this->lg['aspect'][Graha::KEY_MA] == 1 or isset($this->lg['conjunct'][Graha::KEY_MA])) and
-            ($this->lg['aspect'][Graha::KEY_GU] == 1 or isset($this->lg['conjunct'][Graha::KEY_GU]))
+            ($this->temp['lgAspect'][Graha::KEY_MA] == 1 or isset($this->temp['lgConjunct'][Graha::KEY_MA])) and
+            ($this->temp['lgAspect'][Graha::KEY_GU] == 1 or isset($this->temp['lgConjunct'][Graha::KEY_GU]))
         ){
             return true;
         }else{
@@ -235,8 +248,8 @@ class Dhana extends YogaBase {
         if(
             $this->getData()['bhava'][1]['rashi'] == 4 and
             $this->getData()['graha'][Graha::KEY_CH]['rashi'] == 4 and
-            ($this->lg['aspect'][Graha::KEY_MA] == 1 or isset($this->lg['conjunct'][Graha::KEY_MA])) and
-            ($this->lg['aspect'][Graha::KEY_GU] == 1 or isset($this->lg['conjunct'][Graha::KEY_GU]))
+            ($this->temp['lgAspect'][Graha::KEY_MA] == 1 or isset($this->temp['lgConjunct'][Graha::KEY_MA])) and
+            ($this->temp['lgAspect'][Graha::KEY_GU] == 1 or isset($this->temp['lgConjunct'][Graha::KEY_GU]))
         ){
             return true;
         }else{
@@ -256,9 +269,9 @@ class Dhana extends YogaBase {
         if(
             ($this->getData()['bhava'][1]['rashi'] == 1 or $this->getData()['bhava'][1]['rashi'] == 8) and
             ($this->getData()['graha'][Graha::KEY_MA]['rashi'] == 1 or $this->getData()['graha'][Graha::KEY_MA]['rashi'] == 8) and
-            ($this->lg['aspect'][Graha::KEY_BU] == 1 or isset($this->lg['conjunct'][Graha::KEY_BU])) and
-            ($this->lg['aspect'][Graha::KEY_SK] == 1 or isset($this->lg['conjunct'][Graha::KEY_SK])) and
-            ($this->lg['aspect'][Graha::KEY_SA] == 1 or isset($this->lg['conjunct'][Graha::KEY_SA]))
+            ($this->temp['lgAspect'][Graha::KEY_BU] == 1 or isset($this->temp['lgConjunct'][Graha::KEY_BU])) and
+            ($this->temp['lgAspect'][Graha::KEY_SK] == 1 or isset($this->temp['lgConjunct'][Graha::KEY_SK])) and
+            ($this->temp['lgAspect'][Graha::KEY_SA] == 1 or isset($this->temp['lgConjunct'][Graha::KEY_SA]))
         ){
             return true;
         }else{
@@ -278,8 +291,8 @@ class Dhana extends YogaBase {
         if(
             ($this->getData()['bhava'][1]['rashi'] == 3 or $this->getData()['bhava'][1]['rashi'] == 6) and
             ($this->getData()['graha'][Graha::KEY_BU]['rashi'] == 3 or $this->getData()['graha'][Graha::KEY_BU]['rashi'] == 6) and
-            ($this->lg['aspect'][Graha::KEY_GU] == 1 or isset($this->lg['conjunct'][Graha::KEY_GU])) and
-            ($this->lg['aspect'][Graha::KEY_SA] == 1 or isset($this->lg['conjunct'][Graha::KEY_SA]))
+            ($this->temp['lgAspect'][Graha::KEY_GU] == 1 or isset($this->temp['lgConjunct'][Graha::KEY_GU])) and
+            ($this->temp['lgAspect'][Graha::KEY_SA] == 1 or isset($this->temp['lgConjunct'][Graha::KEY_SA]))
         ){
             return true;
         }else{
@@ -299,8 +312,8 @@ class Dhana extends YogaBase {
         if(
             ($this->getData()['bhava'][1]['rashi'] == 9 or $this->getData()['bhava'][1]['rashi'] == 12) and
             ($this->getData()['graha'][Graha::KEY_GU]['rashi'] == 9 or $this->getData()['graha'][Graha::KEY_GU]['rashi'] == 12) and
-            ($this->lg['aspect'][Graha::KEY_MA] == 1 or isset($this->lg['conjunct'][Graha::KEY_MA])) and
-            ($this->lg['aspect'][Graha::KEY_BU] == 1 or isset($this->lg['conjunct'][Graha::KEY_BU]))
+            ($this->temp['lgAspect'][Graha::KEY_MA] == 1 or isset($this->temp['lgConjunct'][Graha::KEY_MA])) and
+            ($this->temp['lgAspect'][Graha::KEY_BU] == 1 or isset($this->temp['lgConjunct'][Graha::KEY_BU]))
         ){
             return true;
         }else{
@@ -320,8 +333,8 @@ class Dhana extends YogaBase {
         if(
             ($this->getData()['bhava'][1]['rashi'] == 2 or $this->getData()['bhava'][1]['rashi'] == 7) and
             ($this->getData()['graha'][Graha::KEY_SK]['rashi'] == 2 or $this->getData()['graha'][Graha::KEY_SK]['rashi'] == 7) and
-            ($this->lg['aspect'][Graha::KEY_BU] == 1 or isset($this->lg['conjunct'][Graha::KEY_BU])) and
-            ($this->lg['aspect'][Graha::KEY_SA] == 1 or isset($this->lg['conjunct'][Graha::KEY_SA]))
+            ($this->temp['lgAspect'][Graha::KEY_BU] == 1 or isset($this->temp['lgConjunct'][Graha::KEY_BU])) and
+            ($this->temp['lgAspect'][Graha::KEY_SA] == 1 or isset($this->temp['lgConjunct'][Graha::KEY_SA]))
         ){
             return true;
         }else{
@@ -341,8 +354,8 @@ class Dhana extends YogaBase {
         if(
             ($this->getData()['bhava'][1]['rashi'] == 10 or $this->getData()['bhava'][1]['rashi'] == 11) and
             ($this->getData()['graha'][Graha::KEY_SA]['rashi'] == 10 or $this->getData()['graha'][Graha::KEY_SA]['rashi'] == 11) and
-            ($this->lg['aspect'][Graha::KEY_MA] == 1 or isset($this->lg['conjunct'][Graha::KEY_MA])) and
-            ($this->lg['aspect'][Graha::KEY_GU] == 1 or isset($this->lg['conjunct'][Graha::KEY_GU]))
+            ($this->temp['lgAspect'][Graha::KEY_MA] == 1 or isset($this->temp['lgConjunct'][Graha::KEY_MA])) and
+            ($this->temp['lgAspect'][Graha::KEY_GU] == 1 or isset($this->temp['lgConjunct'][Graha::KEY_GU]))
         ){
             return true;
         }else{
