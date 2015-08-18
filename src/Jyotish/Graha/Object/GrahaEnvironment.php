@@ -343,7 +343,7 @@ trait GrahaEnvironment {
         $d1Data = $this->getEnvironment();
         
         $Varga9 = Varga::getInstance('D9');
-        $d9Data = $Varga9->getVargaData($d1Data);
+        $d9Data = $Varga9->setData($this->Data)->getVargaData();
         
         if($d1Data['graha'][$this->objectKey]['rashi'] == $d9Data['graha'][$this->objectKey]['rashi'])
             return true;
@@ -566,7 +566,7 @@ trait GrahaEnvironment {
 
             if($params['rashi'] == $this->objectRashi){
                 $G = Graha::getInstance($key);
-                $G->setEnvironment($this->ganitaData);
+                $G->setEnvironment($this->Data);
 
                 if($G->grahaCharacter == Graha::CHARACTER_SHUBHA)
                     $benefic = $benefic + 1;

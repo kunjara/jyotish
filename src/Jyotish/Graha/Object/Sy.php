@@ -245,7 +245,7 @@ class Sy extends GrahaObject {
      * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 13.
      */
     protected $grahaDrishti = [
-        1 => false,
+        1 => 0,
         2 => 0,
         3 => 0.25,
         4 => 0.75,

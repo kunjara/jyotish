@@ -30,7 +30,7 @@ trait DataTrait {
      * Set Data
      * 
      * @param \Jyotish\Base\Data $Data
-     * @return type
+     * @return mixed
      */
     public function setData(\Jyotish\Base\Data $Data)
     {

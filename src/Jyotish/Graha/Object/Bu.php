@@ -256,7 +256,7 @@ class Bu extends GrahaObject {
      * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 13.
      */
     protected $grahaDrishti = [
-        1 => false,
+        1 => 0,
         2 => 0,
         3 => 0.25,
         4 => 0.75,
@@ -297,11 +297,11 @@ class Bu extends GrahaObject {
     /**
      * Set environment.
      * 
-     * @param array $ganitaData
+     * @param \Jyotish\Base\Data $Data
      */
-    public function setEnvironment(array $ganitaData)
+    public function setEnvironment(\Jyotish\Base\Data $Data)
     {
-        parent::setEnvironment($ganitaData);
+        parent::setEnvironment($Data);
 
         $this->setGrahaCharacter();
         

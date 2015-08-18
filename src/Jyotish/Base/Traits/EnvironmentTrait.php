@@ -17,43 +17,43 @@ use Jyotish\Ganita\Math;
  */
 trait EnvironmentTrait {
     /**
-     * Environment - position of the planets in the format of the ganita output data.
+     * Instance of Data.
      * 
-     * @var array
+     * @var Data
      */
-    protected $ganitaData = array();
+    protected $Data = null;
 
     /**
      * Set environment.
      * 
-     * @param array $ganitaData
+     * @param \Jyotish\Base\Data $Data
+     * @return mixed
      */
-    public function setEnvironment(array $ganitaData)
+    public function setEnvironment(\Jyotish\Base\Data $Data)
     {
-        $this->ganitaData = $ganitaData;
+        $this->Data = $Data;
+        
+        if(!isset($this->Data->getData()['graha'])){
+            $this->Data->calcParams();
+        }
 
         if($this->objectType == 'rashi'){
             $this->objectRashi = $this->objectKey;
         }else{
-            $this->objectRashi = $this->ganitaData[$this->objectType][$this->objectKey]['rashi'];
+            $this->objectRashi = $this->Data->getData()[$this->objectType][$this->objectKey]['rashi'];
         }
         
         return $this;
     }
     
     /**
-     * Get the environment.
+     * Get environment.
      * 
      * @return array
-     * @throws UnderflowException
      */
     public function getEnvironment()
     {
-        if(empty($this->ganitaData)){
-            throw new \Jyotish\Base\Exception\UnderflowException("Environment for object '{$this->objectType} {$this->objectKey}' must be setted.");
-        }else{
-            return $this->ganitaData;
-        }
+        return $this->Data->getData();
     }
     
     /**
