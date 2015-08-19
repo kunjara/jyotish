@@ -11,23 +11,36 @@ namespace Jyotish\Draw\Renderer;
  * 
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-abstract class AbstractRender {
+abstract class AbstractRenderer {
     
     use \Jyotish\Base\Traits\OptionTrait;
+    use \Jyotish\Base\Traits\GetTrait;
 
     /**
-     * Drawing resource.
+     * Renderer name.
      * 
-     * @var img|svg 
+     * @var string
      */
-    protected $resource = null;
+    protected $rendererName;
 
+    /**
+     * Drawing Resource.
+     * 
+     * @var mixed 
+     */
+    protected $Resource = null;
+
+    /**
+     * Options of drawing.
+     * 
+     * @var array
+     */
     protected $options = [
         'topOffset' => 0,
         'leftOffset' => 0,
         
         'fontSize' => 10,
-        'fontName' => '',
+        'fontName' => null,
         'fontColor' => '000',
         
         'textAlign' => 'left',

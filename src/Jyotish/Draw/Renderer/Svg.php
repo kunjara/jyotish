@@ -15,7 +15,14 @@ use DOMText;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class Svg extends AbstractRender implements \Jyotish\Draw\Renderer\SvgInterface {
+class Svg extends AbstractRenderer {
+    /**
+     * Renderer name.
+     * 
+     * @var string
+     */
+    protected $rendererName = \Jyotish\Draw\Draw::RENDERER_SVG;
+    
     /**
      * Constructor
      * 
@@ -25,10 +32,10 @@ class Svg extends AbstractRender implements \Jyotish\Draw\Renderer\SvgInterface 
     public function __construct($width, $height) {
         $this->options['attributes'] = [];
         
-        $this->resource = new DOMDocument('1.0', 'utf-8');
-        $this->resource->formatOutput = true;
+        $this->Resource = new DOMDocument('1.0', 'utf-8');
+        $this->Resource->formatOutput = true;
         
-        $this->svg = $this->resource->createElement('svg');
+        $this->svg = $this->Resource->createElement('svg');
         $this->svg->setAttribute('xmlns', "http://www.w3.org/2000/svg");
         $this->svg->setAttribute('version', '1.1');
         $this->svg->setAttribute('width', $width);
@@ -36,7 +43,7 @@ class Svg extends AbstractRender implements \Jyotish\Draw\Renderer\SvgInterface 
         $this->svg->setAttribute('class', 'chakra');
         $this->svg->setAttribute('viewBox', "0 0 {$width} {$height}");
 
-        $this->resource->appendChild($this->svg);
+        $this->Resource->appendChild($this->svg);
 
         $this->appendRootElement('style', array('type' => 'text/css'), '
             polygon:hover {fill: #eee;}
@@ -130,7 +137,7 @@ class Svg extends AbstractRender implements \Jyotish\Draw\Renderer\SvgInterface 
     }
 
     protected function createElement($tagName, $attributes = array(), $textContent = null) {
-        $element = $this->resource->createElement($tagName);
+        $element = $this->Resource->createElement($tagName);
         foreach ($attributes as $k => $v) {
             $element->setAttribute($k, $v);
         }
@@ -142,6 +149,6 @@ class Svg extends AbstractRender implements \Jyotish\Draw\Renderer\SvgInterface 
 
     public function render() {
         header("Content-Type: image/svg+xml");
-        echo $this->resource->saveXML();
+        echo $this->Resource->saveXML();
     }
 }

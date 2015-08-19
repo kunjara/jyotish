@@ -13,15 +13,27 @@ use Jyotish\Base\Utils;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class Image extends AbstractRender implements \Jyotish\Draw\Renderer\ImageInterface {
-
+class Image extends AbstractRenderer {
+    /**
+     * Renderer name.
+     * 
+     * @var string
+     */
+    protected $rendererName = \Jyotish\Draw\Draw::RENDERER_IMAGE;
+    
+    /**
+     * Constructor
+     * 
+     * @param int $width Width of drawing
+     * @param int $height Height of drawing
+     */
     public function __construct($width, $height) {
-        $this->resource = imagecreatetruecolor($width, $height);
+        $this->Resource = imagecreatetruecolor($width, $height);
 
-        $color = $this->allocateColor($this->resource, 255, 255, 255);
+        $color = $this->allocateColor($this->Resource, 255, 255, 255);
 
         imagefill(
-                $this->resource, 0, 0, $color
+                $this->Resource, 0, 0, $color
         );
     }
 
@@ -31,14 +43,14 @@ class Image extends AbstractRender implements \Jyotish\Draw\Renderer\ImageInterf
         }
         
         $colorRgb = Utils::htmlToRgb($this->options['strokeColor']);
-        $color = $this->allocateColor($this->resource, $colorRgb['r'], $colorRgb['g'], $colorRgb['b']);
+        $color = $this->allocateColor($this->Resource, $colorRgb['r'], $colorRgb['g'], $colorRgb['b']);
 
-        imagesetthickness($this->resource, $this->options['strokeWidth']);
+        imagesetthickness($this->Resource, $this->options['strokeWidth']);
 
         $numPoints = count($points) / 2;
 
         imagepolygon(
-                $this->resource, $points, $numPoints, $color
+                $this->Resource, $points, $numPoints, $color
         );
     }
 
@@ -48,7 +60,7 @@ class Image extends AbstractRender implements \Jyotish\Draw\Renderer\ImageInterf
         }
         
         $colorRgb = Utils::htmlToRgb($this->options['fontColor']);
-        $color = $this->allocateColor($this->resource, $colorRgb['r'], $colorRgb['g'], $colorRgb['b']);
+        $color = $this->allocateColor($this->Resource, $colorRgb['r'], $colorRgb['g'], $colorRgb['b']);
 
         if ($this->options['fontName'] == null) {
             $this->options['fontName'] = 3;
@@ -87,7 +99,14 @@ class Image extends AbstractRender implements \Jyotish\Draw\Renderer\ImageInterf
                     break;
             }
 
-            imagestring($this->resource, $this->options['fontName'], $positionX, $positionY, $text, $this->options['fontColor']);
+            imagestring(
+                    $this->Resource, 
+                    $this->options['fontName'], 
+                    $positionX, 
+                    $positionY, 
+                    $text, 
+                    $color
+            );
         } else {
             if (!function_exists('imagettfbbox')) {
                 throw new Exception\RuntimeException(
@@ -123,7 +142,7 @@ class Image extends AbstractRender implements \Jyotish\Draw\Renderer\ImageInterf
             }
 
             imagettftext(
-                    $this->resource, 
+                    $this->Resource, 
                     $this->options['fontSize'], 
                     $this->options['textOrientation'], 
                     $x - ($width * cos(pi() * $this->options['textOrientation'] / 180)) + ($height * sin(pi() * $this->options['textOrientation'] / 180)), 
@@ -136,15 +155,15 @@ class Image extends AbstractRender implements \Jyotish\Draw\Renderer\ImageInterf
     }
 
     public function setOptionFontName($value) {
-        if (empty($value)) {
-            throw new Exception\InvalidArgumentException("Options 'fontName' is required and must be name of font.");
+        if(!is_null($value) and !is_int($value) and !is_string($value)){
+            throw new Exception\InvalidArgumentException("Options 'fontName' must be null, integer or name of font.");
+        }else{
+            if(is_string($value) and !file_exists($value)){
+                throw new Exception\InvalidArgumentException("The font '$value' does not exist.");
+            }
         }
-
-        if (!file_exists($value)) {
-            throw new Exception\InvalidArgumentException("The font '{$value}' does not exist.");
-        }
-
         $this->options['fontName'] = $value;
+        
     }
 
     public function allocateColor($image, $r, $g, $b, $alpha = 100) {
@@ -154,8 +173,8 @@ class Image extends AbstractRender implements \Jyotish\Draw\Renderer\ImageInterf
 
     public function render() {
         header('Content-type: image/png');
-        imagepng($this->resource);
-        imagedestroy($this->resource);
+        imagepng($this->Resource);
+        imagedestroy($this->Resource);
     }
 
     private function _convertAlpha($alphaValue) {

@@ -6,7 +6,7 @@
 
 namespace Jyotish\Draw\Plot\Chakra\Style;
 
-use Jyotish\Base\Data;
+use Jyotish\Base\Analysis;
 
 /**
  * Class for generate Chakra.
@@ -14,6 +14,9 @@ use Jyotish\Base\Data;
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 abstract class AbstractChakra {
+    
+    use \Jyotish\Base\Traits\DataTrait;
+    
     /**
      * North Indian style
      */
@@ -27,24 +30,72 @@ abstract class AbstractChakra {
      */
     const STYLE_EAST = 'east';
 
-    static public $styles = array(
+    /**
+     * List of styles.
+     * 
+     * @var array
+     */
+    static public $style = array(
         self::STYLE_NORTH,
         self::STYLE_SOUTH,
         self::STYLE_EAST,
     );
     
-    protected $bhavaPoints = array();
+    /**
+     * Analysis object.
+     * 
+     * @var \Jyotish\Base\Analysis
+     */
+    protected $Analysis = null;
     
-    protected $divider = null;
+    /**
+     * Chakra graha.
+     * 
+     * @var string
+     */
+    protected $chakraGraha;
+    
+    /**
+     * Chakra divider.
+     * 
+     * @var int
+     */
+    protected $chakraDivider;
+    
+    /**
+     * Coordinates of chakra bhavas.
+     * 
+     * @var array
+     */
+    protected $bhavaPoints = [];
+    
+    /**
+     * Constructor
+     * 
+     * @param \Jyotish\Base\Data $Data
+     */
+    public function __construct(\Jyotish\Base\Data $Data) {
+        $this->setData($Data);
+        
+        $this->Analysis = new Analysis($Data);
+    }
 
+    /**
+     * Get bhava points.
+     * 
+     * @param int $size Size of chakra
+     * @param int $leftOffset Left offset
+     * @param int $topOffset Top offset
+     * @return array
+     */
     public function getBhavaPoints($size, $leftOffset = 0, $topOffset = 0) {
         foreach ($this->bhavaPoints as $bhavaKey => $bhavaPoints) {
             foreach ($bhavaPoints as $point => $value) {
                 if ($value != 0) {
                     if($point % 2){
-                        $myPoints[$bhavaKey][] = $value * round($size / $this->divider) + $topOffset;
+                        $myPoints[$bhavaKey][] = $value * round($size / $this->chakraDivider) + $topOffset;
                     }else{
-                        $myPoints[$bhavaKey][] = $value * round($size / $this->divider) + $leftOffset;
+                        $myPoints[$bhavaKey][] = $value * round($size / $this->chakraDivider) + $leftOffset;
                     }
                 } else {
                     $myPoints[$bhavaKey][] = $point % 2 ? $topOffset : $leftOffset;
@@ -55,7 +106,7 @@ abstract class AbstractChakra {
         return $myPoints;
     }
 
-    abstract public function getRashiLabelPoints(Data $drawData, array $options);
+    abstract public function getRashiLabelPoints(array $options);
 
-    abstract public function getBodyLabelPoints(Data $drawData, array $options);
+    abstract public function getBodyLabelPoints(array $options);
 }

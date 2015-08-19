@@ -6,49 +6,45 @@
 
 namespace Jyotish\Draw;
 
-use Jyotish\Base\Data;
-
 /**
  * Class for drawing.
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 class Draw {
-    const ADAPTER_IMAGE = 'image';
-    const ADAPTER_SVG = 'svg';
-    
     /**
-     * Adapter name.
-     * 
-     * @var string
+     * Image renderer
      */
-    protected $adapterName = null;
+    const RENDERER_IMAGE = 'image';
+    /**
+     * Svg renderer
+     */
+    const RENDERER_SVG = 'svg';
     
     /**
-     * Adapter object.
+     * Renderer object.
      * 
      * @var Image|Svg
      */
-    protected $adapterObject = null;
+    protected $Renderer = null;
 
     /**
      * Constructor
      * 
      * @param int $width Width of drawing
      * @param int $height Height of drawing
-     * @param string $adapter Adapter name
+     * @param string $renderer Renderer name (optional)
      * @throws Exception\UnexpectedValueException
      */
-    public function __construct($width, $height, $adapter = self::ADAPTER_IMAGE) {
-        if (!in_array(strtolower($adapter), [self::ADAPTER_IMAGE, self::ADAPTER_SVG])) {
+    public function __construct($width, $height, $renderer = self::RENDERER_IMAGE) {
+        if (!in_array(strtolower($renderer), [self::RENDERER_IMAGE, self::RENDERER_SVG])) {
             throw new Exception\UnexpectedValueException(
                 "Invalid renderer provided must be 'image' or 'svg'."
             );
         }
 
-        $this->adapterName = ucwords(strtolower($adapter));
-        $adapterClass = 'Jyotish\Draw\Renderer\\' . $this->adapterName;
-        $this->adapterObject = new $adapterClass($width, $height);
+        $rendererClass = 'Jyotish\Draw\Renderer\\' . ucfirst($renderer);
+        $this->Renderer = new $rendererClass($width, $height);
     }
 
     /**
@@ -57,7 +53,7 @@ class Draw {
      * @param array $options Options to set
      */
     public function setOptions($options) {
-        $this->adapterObject->setOptions($options);
+        $this->Renderer->setOptions($options);
     }
 
     /**
@@ -69,23 +65,22 @@ class Draw {
      * @param null|array $options Options to set (optional)
      */
     public function drawText($text, $x, $y, array $options = null) {
-        $this->adapterObject->drawText($text, $x, $y, $options);
+        $this->Renderer->drawText($text, $x, $y, $options);
     }
 
     /**
      * Draw chakra.
      * 
-     * @param Data $Data
+     * @param \Jyotish\Base\Data $Data
      * @param int $x
      * @param int $y
      * @param null|array $options Options to set (optional)
      */
-    public function drawChakra(Data $Data, $x, $y, array $options = null) {
+    public function drawChakra(\Jyotish\Base\Data $Data, $x, $y, array $options = null) {
         $this->setOptions($options);
         
-        $chakraAdapterClass = 'Jyotish\Draw\Plot\Chakra\Render\\' . $this->adapterName;
-        $chakraAdapterObject = new $chakraAdapterClass($this->adapterObject);
-        $chakraAdapterObject->drawChakra($Data, $x, $y, $options);
+        $ChakraRenderer = new \Jyotish\Draw\Plot\Chakra\Renderer($this->Renderer);
+        $ChakraRenderer->drawChakra($Data, $x, $y, $options);
     }
 
     /**
@@ -94,6 +89,6 @@ class Draw {
      * @return mixed
      */
     public function render() {
-        $this->adapterObject->render();
+        $this->Renderer->render();
     }
 }

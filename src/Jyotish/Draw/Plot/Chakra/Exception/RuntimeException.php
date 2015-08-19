@@ -4,13 +4,11 @@
  * @license   GNU General Public License version 2 or later
  */
 
-namespace Jyotish\Draw\Renderer;
+namespace Jyotish\Draw\Plot\Chakra\Exception;
 
 /**
- * Base class for Image renderer.
- *
- * @author Kunjara Lila das <vladya108@gmail.com>
+ * Jyotish\Draw\Plot\Chakra RuntimeException.
  */
-interface ImageInterface {
+class RuntimeException extends \RuntimeException implements ExceptionInterface {
     
 }

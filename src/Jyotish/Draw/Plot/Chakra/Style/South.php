@@ -7,7 +7,6 @@
 namespace Jyotish\Draw\Plot\Chakra\Style;
 
 use Jyotish\Graha\Graha;
-use Jyotish\Base\Data;
 
 /**
  * Class for generate South chakra.
@@ -15,9 +14,25 @@ use Jyotish\Base\Data;
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 final class South extends AbstractChakra {
-
-    protected $graha = Graha::KEY_GU;
+    /**
+     * Chakra graha.
+     * 
+     * @var string
+     */
+    protected $chakraGraha = Graha::KEY_GU;
     
+    /**
+     * Chakra divider.
+     * 
+     * @var int
+     */
+    protected $chakraDivider = 4;
+    
+    /**
+     * Coordinates of chakra bhavas.
+     * 
+     * @var array
+     */
     protected $bhavaPoints = array(
         1  => [2, 1,   1, 1,   1, 0,   2, 0],
         2  => [2, 1,   2, 0,   3, 0,   3, 1],
@@ -33,11 +48,18 @@ final class South extends AbstractChakra {
         12 => [1, 1,   0, 1,   0, 0,   1, 0],
     );
     
-    protected $divider = 4;
+    /**
+     * Constructor
+     * 
+     * @param \Jyotish\Base\Data $Data
+     */
+    public function __construct(\Jyotish\Base\Data $Data) {
+        parent::__construct($Data);
+    }
 
-    public function getRashiLabelPoints(Data $Data, array $options) {
+    public function getRashiLabelPoints(array $options) {
         $ratio = round($options['chakraSize'] / 4);
-        $rashis = $Data->getRashiInBhava();
+        $rashis = $this->Analysis->getRashiInBhava();
 
         foreach ($rashis as $rashi) {
             $bhava = $rashi;
@@ -67,11 +89,11 @@ final class South extends AbstractChakra {
         return $myPoints;
     }
 
-    public function getBodyLabelPoints(Data $Data, array $options) {
+    public function getBodyLabelPoints(array $options) {
         $ratio = round($options['chakraSize'] / 4);
         $offsetBorder = $options['offsetBorder'];
         $offsetSum = array();
-        $bodies = $Data->getBodyInRashi();
+        $bodies = $this->Analysis->getBodyInRashi();
 
         foreach ($bodies as $graha => $bhava) {
             if(!isset($offsetSum[$bhava])) $offsetSum[$bhava] = 0;

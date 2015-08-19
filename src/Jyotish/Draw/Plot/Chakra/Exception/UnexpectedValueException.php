@@ -4,10 +4,10 @@
  * @license   GNU General Public License version 2 or later
  */
 
-namespace Jyotish\Draw\Plot\Chakra\Render\Exception;
+namespace Jyotish\Draw\Plot\Chakra\Exception;
 
 /**
- * Jyotish\Draw\Plot\Chakra\Render UnexpectedValueException.
+ * Jyotish\Draw\Plot\Chakra UnexpectedValueException.
  */
 class UnexpectedValueException extends \UnexpectedValueException implements ExceptionInterface {
     

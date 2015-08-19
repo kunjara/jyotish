@@ -7,7 +7,6 @@
 namespace Jyotish\Draw\Plot\Chakra\Style;
 
 use Jyotish\Graha\Graha;
-use Jyotish\Base\Data;
 
 /**
  * Class for generate North chakra.
@@ -15,9 +14,25 @@ use Jyotish\Base\Data;
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 final class North extends AbstractChakra {
-
-    protected $graha = Graha::KEY_SK;
+    /**
+     * Chakra graha.
+     * 
+     * @var string
+     */
+    protected $chakraGraha = Graha::KEY_SK;
     
+    /**
+     * Chakra divider.
+     * 
+     * @var int
+     */
+    protected $chakraDivider = 4;
+    
+    /**
+     * Coordinates of chakra bhavas.
+     * 
+     * @var array
+     */
     protected $bhavaPoints = array(
         1  => [2, 2,   1, 1,   2, 0,   3, 1],
         2  => [1, 1,   0, 0,   2, 0],
@@ -33,11 +48,18 @@ final class North extends AbstractChakra {
         12 => [3, 1,   2, 0,   4, 0,]
     );
     
-    protected $divider = 4;
+    /**
+     * Constructor
+     * 
+     * @param \Jyotish\Base\Data $Data
+     */
+    public function __construct(\Jyotish\Base\Data $Data) {
+        parent::__construct($Data);
+    }
 
-    public function getRashiLabelPoints(Data $Data, array $options) {
+    public function getRashiLabelPoints(array $options) {
         $ratio = round($options['chakraSize'] / 4);
-        $rashis = $Data->getRashiInBhava();
+        $rashis = $this->Analysis->getRashiInBhava();
         $offsetCorner = sqrt(2 * $options['offsetBorder'] * $options['offsetBorder']);
 
         foreach ($rashis as $rashi => $bhava) {
@@ -66,12 +88,12 @@ final class North extends AbstractChakra {
         return $myPoints;
     }
 
-    public function getBodyLabelPoints(Data $Data, array $options) {
+    public function getBodyLabelPoints(array $options) {
         $ratio = round($options['chakraSize'] / 4);
         $offsetBorder = $options['offsetBorder'];
         $offsetCorner = $offsetBorder * 5;
         $offsetSum = array();
-        $bodies = $Data->getBodyInBhava();
+        $bodies = $this->Analysis->getBodyInBhava();
 
         foreach ($bodies as $graha => $bhava) {
             $myPoints[$graha]['bhava'] = $bhava;

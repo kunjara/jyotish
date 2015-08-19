@@ -7,7 +7,6 @@
 namespace Jyotish\Draw\Plot\Chakra\Style;
 
 use Jyotish\Graha\Graha;
-use Jyotish\Base\Data;
 
 /**
  * Class for generate East chakra.
@@ -15,9 +14,25 @@ use Jyotish\Base\Data;
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
 final class East extends AbstractChakra {
-
-    protected $graha = Graha::KEY_SY;
+    /**
+     * Chakra graha.
+     * 
+     * @var string
+     */
+    protected $chakraGraha = Graha::KEY_SY;
     
+    /**
+     * Chakra divider.
+     * 
+     * @var int
+     */
+    protected $chakraDivider = 3;
+    
+    /**
+     * Coordinates of chakra bhavas.
+     * 
+     * @var array
+     */
     protected $bhavaPoints = array(
         1  => [1, 0,   2, 0,   2, 1,   1, 1],
         2  => [0, 0,   1, 0,   1, 1],
@@ -33,14 +48,21 @@ final class East extends AbstractChakra {
         12 => [2, 0,   3, 0,   2, 1],
     );
     
-    protected $divider = 3;
+    /**
+     * Constructor
+     * 
+     * @param \Jyotish\Base\Data $Data
+     */
+    public function __construct(\Jyotish\Base\Data $Data) {
+        parent::__construct($Data);
+    }
 
-    public function getRashiLabelPoints(Data $Data, array $options) {
+    public function getRashiLabelPoints(array $options) {
         $ratio = round($options['chakraSize'] / 3);
         $offsetBorder = $options['offsetBorder'];
         $offsetCorner3 = $offsetBorder * 3;
         $offsetCorner4 = $offsetBorder * 4;
-        $rashis = $Data->getRashiInBhava();
+        $rashis = $this->Analysis->getRashiInBhava();
 
         foreach ($rashis as $rashi => $bhava) {
             $bhava = $rashi;
@@ -110,12 +132,12 @@ final class East extends AbstractChakra {
         return $myPoints;
     }
 
-    public function getBodyLabelPoints(Data $Data, array $options) {
+    public function getBodyLabelPoints(array $options) {
         $ratio = round($options['chakraSize'] / 3);
         $offsetBorder = $options['offsetBorder'];
         $offsetCorner = $offsetBorder * 4;
         $offsetSum = array();
-        $bodies = $Data->getBodyInRashi();
+        $bodies = $this->Analysis->getBodyInRashi();
 
         foreach ($bodies as $graha => $bhava) {
             if(!isset($offsetSum[$bhava])) $offsetSum[$bhava] = 0;

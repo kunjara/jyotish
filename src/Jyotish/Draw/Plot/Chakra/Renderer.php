@@ -4,43 +4,36 @@
  * @license   GNU General Public License version 2 or later
  */
 
-namespace Jyotish\Draw\Plot\Chakra\Render;
+namespace Jyotish\Draw\Plot\Chakra;
 
 use Jyotish\Graha\Graha;
 use Jyotish\Rashi\Rashi;
-use Jyotish\Base\Data;
 use Jyotish\Base\Utils;
 use Jyotish\Draw\Plot\Chakra\Style\AbstractChakra as Chakra;
 
 /**
- * Abstract class for rendering Chakra.
+ * Class for rendering Chakra.
  * 
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-abstract class AbstractRender {
+class Renderer {
     
+    use \Jyotish\Base\Traits\DataTrait;
     use \Jyotish\Base\Traits\OptionTrait;
     
     /**
-     * Adapter object.
+     * Renderer object.
      * 
      * @var Image|Svg
      */
-    protected $adapterObject = null;
+    protected $Renderer = null;
     
     /**
      * Chakra object.
      * 
      * @var North|South|East
      */
-    protected $chakraObject = null;
-    
-    /**
-     * Data object.
-     * 
-     * @var Data
-     */
-    protected $dataObject = null;
+    protected $Chakra = null;
 
     /**
      * Options to set.
@@ -66,41 +59,37 @@ abstract class AbstractRender {
     /**
      * Constructor
      * 
-     * @param Image|Svg $adapterObject
+     * @param Image|Svg $Renderer
      */
-    public function __construct($adapterObject) {
-        $this->adapterObject = $adapterObject;
+    public function __construct($Renderer) {
+        $this->Renderer = $Renderer;
     }
     
     /**
      * Draw chakra.
      * 
-     * @param Data $Data
+     * @param \Jyotish\Base\Data $Data
      * @param int $x
      * @param int $y
      * @param null|array $options Options to set (optional)
      */
-    public function drawChakra(Data $Data, $x, $y, array $options = null) {
-        if(isset($options)){
-            $this->setOptions($options);
-        }
-        
-        $this->dataObject = $Data;
-        $data = $this->dataObject->getData();
+    public function drawChakra(\Jyotish\Base\Data $Data, $x, $y, array $options = null) {
+        $this->setData($Data);
+        $this->setOptions($options);
         
         $chakraStyle = 'Jyotish\Draw\Plot\Chakra\Style\\' . ucfirst($this->options['chakraStyle']);
-        $this->chakraObject = new $chakraStyle();
+        $this->Chakra = new $chakraStyle($Data);
 
-        $bhavaPoints = $this->chakraObject->getBhavaPoints($this->options['chakraSize'], $x, $y);
+        $bhavaPoints = $this->Chakra->getBhavaPoints($this->options['chakraSize'], $x, $y);
         
         foreach ($bhavaPoints as $number => $points) {
             if($this->options['chakraStyle'] == Chakra::STYLE_NORTH){
                 $bhava = ' bhava'.$number;
-                $rashi = ' rashi'.$data['bhava'][$number]['rashi'];
+                $rashi = ' rashi'.$Data->getData()['bhava'][$number]['rashi'];
             }else{
                 $rashi = ' rashi'.$number;
                 $Rashi = Rashi::getInstance($number);
-                $Rashi->setEnvironment($data);
+                $Rashi->setEnvironment($Data);
                 $bhava = ' bhava'.$Rashi->getBhava();
             }
             
@@ -108,7 +97,7 @@ abstract class AbstractRender {
                 'class' => 'bhava'.$bhava.$rashi,
             ];
             
-            $this->adapterObject->drawPolygon($points, $this->options);
+            $this->Renderer->drawPolygon($points, $this->options);
         }
         
         $this->drawRashiLabel($x, $y, $this->options);
@@ -118,12 +107,12 @@ abstract class AbstractRender {
     
     protected function drawRashiLabel($x, $y, $options){
         if(isset($options['labelRashiFont'])){
-            $this->adapterObject->setOptions($options['labelRashiFont']);
+            $this->Renderer->setOptions($options['labelRashiFont']);
         }
         
-        $rashiLabelPoints = $this->chakraObject->getRashiLabelPoints($this->dataObject, $this->options);
+        $rashiLabelPoints = $this->Chakra->getRashiLabelPoints($this->options);
         foreach ($rashiLabelPoints as $rashi => $point) {
-            $this->adapterObject->drawText(
+            $this->Renderer->drawText(
                 $rashi, 
                 $point['x'] + $x, 
                 $point['y'] + $y, 
@@ -134,14 +123,14 @@ abstract class AbstractRender {
     
     protected function drawBodyLabel($x, $y, $options){
         if(isset($options['labelGrahaFont'])){
-            $this->adapterObject->setOptions($options['labelGrahaFont']);
+            $this->Renderer->setOptions($options['labelGrahaFont']);
         }
         
-        $bodyLabelPoints = $this->chakraObject->getBodyLabelPoints($this->dataObject, $this->options);
+        $bodyLabelPoints = $this->Chakra->getBodyLabelPoints($this->options);
         
         foreach ($bodyLabelPoints as $body => $point) {
             if(!array_key_exists($body, Graha::$graha) and isset($options['labelExtraFont'])){
-                $this->adapterObject->setOptions($options['labelExtraFont']);
+                $this->Renderer->setOptions($options['labelExtraFont']);
             }
             
             $bodyLabel = $this->getBodyLabel($body, [
@@ -149,7 +138,7 @@ abstract class AbstractRender {
                 'labelGrahaCallback' => $this->options['labelGrahaCallback']
             ]);
 
-            $this->adapterObject->drawText(
+            $this->Renderer->drawText(
                 $bodyLabel,
                 $point['x'] + $x,
                 $point['y'] + $y,
@@ -186,7 +175,7 @@ abstract class AbstractRender {
                 break;
         }
         
-        $data = $this->dataObject->getData();
+        $data = $this->Data->getData();
 
         if(array_key_exists($body, Graha::listGraha(Graha::LIST_SAPTA))){
             $vakraCheshta = $data['graha'][$body]['speed'] < 0 ? true : false;
@@ -209,7 +198,7 @@ abstract class AbstractRender {
     }
 
     public function setOptionChakraStyle($value) {
-        if (!in_array($value, Chakra::$styles)) {
+        if (!in_array($value, Chakra::$style)) {
             throw new Exception\UnexpectedValueException(
                     "Invalid chakra style provided must be 'north', 'south' or 'east'."
             );
