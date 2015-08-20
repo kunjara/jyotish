@@ -6,12 +6,11 @@
 
 namespace Jyotish\Dasha\Object;
 
-use DateTime;
-use DateInterval;
 use Jyotish\Graha\Graha;
-use Jyotish\Panchanga\AngaDefiner;
 use Jyotish\Base\Utils;
 use Jyotish\Ganita\Time;
+use DateTime;
+use DateInterval;
 
 /**
  * Dasha object class.
@@ -20,6 +19,7 @@ use Jyotish\Ganita\Time;
  */
 abstract class AbstractDasha {
     
+    use \Jyotish\Base\Traits\DataTrait;
     use \Jyotish\Base\Traits\GetTrait;
     use \Jyotish\Base\Traits\OptionTrait;
     
@@ -51,18 +51,14 @@ abstract class AbstractDasha {
      * 
      * @var array
      */
-    protected $durationGraha = array();
+    protected $durationGraha = [];
 
     /**
      * Nakshatra order.
      * 
      * @var array
      */
-    protected $orderNakshatra = array();
-    
-    protected $AngaDefiner = null;
-    
-    protected $ganitaData = null;
+    protected $orderNakshatra = [];
 
     /**
      * Get start period.
@@ -98,23 +94,23 @@ abstract class AbstractDasha {
     /**
      * Get all periods and subperiods.
      * 
-     * @param string $periodKey Key of period
+     * @param null|string $periodKey Key of period (optional)
      * @return array
      */
     public function getPeriods($periodKey = null)
     {
         $this->checkPanchanga();
         
-        $timeZone = isset($this->ganitaData['timezone']) ? new DateTimeZone($this->ganitaData['timezone']) : null;
-        $periodStart = $this->getStartPeriod();
+        $DateTime = $this->Data->getDateTime();
+        $TimeZone = $DateTime->getTimezone();
         
-        $this->dateTimeObjectNow = new DateTime('now', $timeZone);
-        $this->dateTimeObject = Time::createDateTime($this->ganitaData['user']);
+        $this->temp['DateTimeNow'] = new DateTime('now', $TimeZone);
+        $periodStart = $this->getStartPeriod();
 
-        $this->dateTimeObject->sub(new DateInterval('PT'.$periodStart['start'].'S'));
-        $periodStartString = $this->dateTimeObject->format(Time::FORMAT_DATETIME);
-        $this->dateTimeObject->add(new DateInterval('PT'.$periodStart['total'].'S'));
-        $periodEndString = $this->dateTimeObject->format(Time::FORMAT_DATETIME);
+        $DateTime->sub(new DateInterval('PT'.$periodStart['start'].'S'));
+        $periodStartString = $DateTime->format(Time::FORMAT_DATETIME);
+        $DateTime->add(new DateInterval('PT'.$periodStart['total'].'S'));
+        $periodEndString = $DateTime->format(Time::FORMAT_DATETIME);
 
         $periodData = array(
             'nesting'  => 0,
@@ -126,12 +122,28 @@ abstract class AbstractDasha {
             'order'    => $this->getOrderGraha($periodStart['graha']),
         );
 
-        $calcPeriods = $this->calcPeriods($periodData, $periodKey);
-        unset($calcPeriods['order']);
+        $subPeriods = $this->getSubPeriods($periodData, $periodKey);
+        unset($subPeriods['order']);
         
-        return $calcPeriods;
+        return $subPeriods;
     }
-
+    
+    /**
+     * Set nesting of periods.
+     * 
+     * @param int $nesting
+     * @throws \Jyotish\Dasha\Exception\InvalidArgumentException
+     */
+    public function setOptionNesting($nesting)
+    {
+        if(!is_numeric($nesting) or intval($nesting) > 6){
+            throw new \Jyotish\Dasha\Exception\InvalidArgumentException(
+                "Maximum nesting must be less than or equals 6."
+            );
+        }
+        $this->options['nesting'] = $nesting;
+    }
+    
     /**
      * Recursive calculation of periods.
      * 
@@ -139,40 +151,32 @@ abstract class AbstractDasha {
      * @param string $periodKey
      * @return array
      */
-    private function calcPeriods($periodData, $periodKey)
+    private function getSubPeriods($periodData, $periodKey)
     {
         $i = 0;
-        
         foreach($periodData['order'] as $graha => $info){
             $i++;
-
+            if($i == 1){
+                $this->temp['DateTime'] = new DateTime($periodData['start']);
+            }
+            
             $nesting = $periodData['nesting'] + 1;
+            $duration = round($periodData['duration'] * $this->durationGraha[$graha] / $this->durationTotal);
+            
             $periodData['periods'][$graha]['nesting'] = $nesting;
             $periodData['periods'][$graha]['type'] = constant('Jyotish\Dasha\Dasha::NESTING_'.$nesting);
             $periodData['periods'][$graha]['key'] = $periodData['key'].$graha;
-
-            $duration = round($periodData['duration'] * $this->durationGraha[$graha] / $this->durationTotal);
             $periodData['periods'][$graha]['duration'] = (int)$duration;
-
-            if($i == 1){
-                $this->dateTimeObject = new DateTime($periodData['start']);
-                $periodData['periods'][$graha]['start'] = $this->dateTimeObject->format(Time::FORMAT_DATETIME);
-            }else{
-                $periodData['periods'][$graha]['start'] = $this->dateTimeObject->format(Time::FORMAT_DATETIME);
-            }
-            $dateTimeObjectStart = clone($this->dateTimeObject);
-
-            //if($i == count($periodData['order'])){
-            //	$periodData['periods'][$graha]['end'] = $periodData['end'];
-            //}else{
-                $this->dateTimeObject->add(new DateInterval('PT'.$duration.'S'));
-                $periodData['periods'][$graha]['end'] = $this->dateTimeObject->format(Time::FORMAT_DATETIME);
-            //}
-            $dateTimeObjectEnd = clone($this->dateTimeObject);
+            $periodData['periods'][$graha]['start'] = $this->temp['DateTime']->format(Time::FORMAT_DATETIME);
+            
+            $DateTimeStart = clone($this->temp['DateTime']);
+            $this->temp['DateTime']->add(new DateInterval('PT'.$duration.'S'));
+            $periodData['periods'][$graha]['end'] = $this->temp['DateTime']->format(Time::FORMAT_DATETIME);
+            $DateTimeEnd = clone($this->temp['DateTime']);
             
             // Choose period with the specified key
             if($periodKey == 'now'){
-                if(!($dateTimeObjectStart < $this->dateTimeObjectNow and $dateTimeObjectEnd > $this->dateTimeObjectNow)){
+                if(!($DateTimeStart < $this->temp['DateTimeNow'] and $DateTimeEnd > $this->temp['DateTimeNow'])){
                     $subperiodKey = 'now';
                     continue;
                 }
@@ -189,43 +193,18 @@ abstract class AbstractDasha {
                 if($graha != $gr){
                     continue;
                 }
+            }else{
+                $subperiodKey = null;
             }
 
             // Define subperiods
             if($nesting < $this->options['nesting']){
                 $periodData['periods'][$graha]['order'] = $this->getOrderGraha($graha);
-                $periodData['periods'][$graha] = $this->calcPeriods($periodData['periods'][$graha], $subperiodKey);
+                $periodData['periods'][$graha] = $this->getSubPeriods($periodData['periods'][$graha], $subperiodKey);
                 unset($periodData['periods'][$graha]['order']);
             } 
         }
         return $periodData;
-    }
-    
-    /**
-     * Set panchanga.
-     * 
-     * @param \Jyotish\Panchanga\AngaDefiner $AngaDefiner
-     */
-    public function setPanchanga(AngaDefiner $AngaDefiner)
-    {
-        $this->AngaDefiner = $AngaDefiner;
-        $this->ganitaData = $this->AngaDefiner->getData();
-    }
-    
-    /**
-     * Set nesting of periods.
-     * 
-     * @param int $nesting
-     * @throws \Jyotish\Dasha\Exception\InvalidArgumentException
-     */
-    public function setOptionNesting($nesting)
-    {
-        if(!is_numeric($nesting) || intval($nesting) > 6){
-            throw new \Jyotish\Dasha\Exception\InvalidArgumentException(
-                "Maximum nesting must be less than or equals 6."
-            );
-        }
-        $this->options['nesting'] = $nesting;
     }
 
     /**
@@ -233,10 +212,10 @@ abstract class AbstractDasha {
      * 
      * @throws \Jyotish\Dasha\Exception\UnderflowException
      */
-    protected function checkPanchanga()
+    private function checkPanchanga()
     {
-        if(is_null($this->AngaDefiner)){
-            throw new \Jyotish\Dasha\Exception\UnderflowException("Panchanga for dasha object must be setted.");
+        if(!isset($this->getData()['panchanga']['nakshatra'])){
+            $this->Data->calcPanchanga(['nakshatra'], true);
         }
     }
 }

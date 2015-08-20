@@ -15,6 +15,7 @@ use Jyotish\Ganita\Time;
 use Jyotish\Ganita\Method\AbstractGanita as Ganita;
 use Jyotish\Panchanga\AngaDefiner;
 use Jyotish\Varga\Varga;
+use Jyotish\Dasha\Dasha;
 use Jyotish\Yoga\Yoga;
 use DateTime;
 
@@ -28,6 +29,10 @@ class Data {
      * Bhava block
      */
     const BLOCK_BHAVA = 'bhava';
+    /**
+     * Dasha block
+     */
+    const BLOCK_DASHA = 'dasha';
     /**
      * Graha block
      */
@@ -274,7 +279,7 @@ class Data {
      * @param bool $withLimit Time limit (optional)
      * @return \Jyotish\Base\Data
      */
-    public function calcPanchangna(array $angas = null, $withLimit = false)
+    public function calcPanchanga(array $angas = null, $withLimit = false)
     {
         $AngaDefiner = new AngaDefiner($this);
         $generateAnga = $AngaDefiner->generateAnga($angas, $withLimit);
@@ -352,6 +357,22 @@ class Data {
         return $this;
     }
     
+    /**
+     * Calculation of dasha.
+     * 
+     * @param string $type Dasha type (optional)
+     * @param null|string $periodKey Key of period (optional)
+     * @param null|array $options Options to set (optional)
+     * @return \Jyotish\Base\Data
+     */
+    public function calcDasha($type = Dasha::TYPE_VIMSHOTTARI, $periodKey = 'now', array $options = null)
+    {
+        $Dasha = Dasha::getInstance($type, $options)->setData($this);
+        $this->data[self::BLOCK_DASHA][$type] = $Dasha->getPeriods($periodKey);
+        
+        return $this;
+    }
+
     /**
      * Calculation of yogas.
      * 

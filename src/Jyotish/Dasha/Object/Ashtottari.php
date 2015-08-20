@@ -52,7 +52,7 @@ class Ashtottari extends AbstractDasha {
     /**
      * Constructor
      * 
-     * @param null|array $options Options to set
+     * @param null|array $options Options to set (optional)
      */
     public function __construct($options = null)
     {
@@ -69,31 +69,25 @@ class Ashtottari extends AbstractDasha {
      */
     public function getStartPeriod()
     {
-        $nakshatra = $this->AngaDefiner->getNakshatra(true, true);
+        $nakshatra = $this->getData()['panchanga']['nakshatra'];
         $keysNakshatra = array_keys($this->orderNakshatra);
-        $indexNum      = array_search($nakshatra['key'], $keysNakshatra) + 1;
+        $indexNum = array_search($nakshatra['key'], $keysNakshatra) + 1;
         
         $partSum = 0;
         foreach ($this->durationGraha as $key => $value){
             $G = Graha::getInstance($key);
-            if($G->grahaCharacter == Graha::CHARACTER_PAPA){
-                $part = 4;
-            }else{
-                $part = 3;
-            }
+            $part = $G->grahaCharacter == Graha::CHARACTER_PAPA ? 4 : 3;
 
             $partSum += $part;
-            if($partSum >= $indexNum)
-                break;
+            if($partSum >= $indexNum) break;
         }
-
         $num = $part - ($partSum - $indexNum);
 
         $result['graha'] = $key;
         $result['total'] = $this->durationTotal * Astro::DURATION_YEAR_GREGORIAN * 86400;
 
-        $durationNakshatra = round($this->durationGraha[$key] * Astro::DURATION_YEAR_GREGORIAN * 86400 / $part);
-        $result['start']   = $durationNakshatra * ($num - 1) + round($durationNakshatra * (100 - $nakshatra['left']) / 100);
+        $duration = round($this->durationGraha[$key] * Astro::DURATION_YEAR_GREGORIAN * 86400 / $part);
+        $result['start']   = $duration * ($num - 1) + round($duration * (100 - $nakshatra['left']) / 100);
 
         return $result;
     }

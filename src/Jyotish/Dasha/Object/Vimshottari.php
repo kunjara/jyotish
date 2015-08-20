@@ -53,7 +53,7 @@ class Vimshottari extends AbstractDasha {
     /**
      * Constructor
      * 
-     * @param null|array $options Options to set
+     * @param null|array $options Options to set (optional)
      */
     public function __construct($options = null)
     {
@@ -71,14 +71,14 @@ class Vimshottari extends AbstractDasha {
      */
     public function getStartPeriod()
     {
-        $nakshatra = $this->AngaDefiner->getNakshatra(true);
+        $nakshatra = $this->getData()['panchanga']['nakshatra'];
         $N = Nakshatra::getInstance($nakshatra['key']);
 
         $result['graha'] = $N->nakshatraRuler;
         $result['total'] = $this->durationTotal * Astro::DURATION_YEAR_GREGORIAN * 86400;
-
-        $durationNakshatra = $this->durationGraha[$result['graha']] * Astro::DURATION_YEAR_GREGORIAN * 86400;
-        $result['start']   = round($durationNakshatra * (100 - $nakshatra['left']) / 100);
+        
+        $duration = $this->durationGraha[$result['graha']] * Astro::DURATION_YEAR_GREGORIAN * 86400;
+        $result['start'] = round($duration * (100 - $nakshatra['left']) / 100);
 
         return $result;
     }
