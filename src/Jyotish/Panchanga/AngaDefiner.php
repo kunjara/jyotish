@@ -224,16 +224,18 @@ class AngaDefiner {
         $this->checkData(__FUNCTION__);
         
         $DateTime = $this->Data->getDateTime();
-        $dateUserU = $DateTime->format('U');
+        $TimeZone = $DateTime->getTimezone();
+        
+        $dateTimeU = $DateTime->format('U');
         $weekNumber = $DateTime->format('w');
         $dataRising = $this->getData()['rising'][Graha::KEY_SY];
         
         foreach ($dataRising as $i => $data){
-            $dateRising[$i] = new DateTime($data['rising']);
-            $dateRisingU[$i] = $dateRising[$i]->format('U');
+            $DateRising[$i] = new DateTime($data['rising'], $TimeZone);
+            $dateRisingU[$i] = $DateRising[$i]->format('U');
         }
         
-        if($DateTime < $dateRising[1]){
+        if($DateTime < $DateRising[1]){
             $varaNumber = $weekNumber != 0 ? $weekNumber - 1 : 6;
             $risingIndex = 1;
         }else{
@@ -244,7 +246,7 @@ class AngaDefiner {
         $duration = $dateRisingU[2] - $dateRisingU[1];
 
         $vara['anga'] = Panchanga::ANGA_VARA;
-        $vara['left'] = ($dateRisingU[$risingIndex] - $dateUserU) * 100 / $duration;
+        $vara['left'] = ($dateRisingU[$risingIndex] - $dateTimeU) * 100 / $duration;
         $vara['key'] = array_keys(Vara::$vara)[$varaNumber];
         $vara['week'] = $weekNumber;
         $vara['name'] = array_values(Vara::$vara)[$varaNumber];
