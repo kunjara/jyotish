@@ -17,6 +17,7 @@ use Jyotish\Panchanga\AngaDefiner;
 use Jyotish\Varga\Varga;
 use Jyotish\Dasha\Dasha;
 use Jyotish\Yoga\Yoga;
+use Jyotish\Muhurta\Hora;
 use DateTime;
 
 /**
@@ -37,6 +38,10 @@ class Data {
      * Graha block
      */
     const BLOCK_GRAHA = 'graha';
+    /**
+     * Kala block
+     */
+    const BLOCK_KALA = 'kala';
     /**
      * Extra block
      */
@@ -69,6 +74,7 @@ class Data {
     static public $block = [
         self::BLOCK_BHAVA,
         self::BLOCK_GRAHA,
+        self::BLOCK_KALA,
         self::BLOCK_LAGNA,
         self::BLOCK_PANCHANGA,
         self::BLOCK_RISING,
@@ -387,6 +393,20 @@ class Data {
                 $this->data[self::BLOCK_YOGA][$type][] = $result;
             }
         }
+        return $this;
+    }
+    
+    /**
+     * Calculation of hora.
+     * 
+     * @param type $type Hora type
+     * @return \Jyotish\Base\Data
+     */
+    public function calcHora($type = Hora::TYPE_KALA)
+    {
+        $Hora = new Hora($this);
+        $this->data[self::BLOCK_KALA]['hora'] = $Hora->getHora($type);
+        
         return $this;
     }
 

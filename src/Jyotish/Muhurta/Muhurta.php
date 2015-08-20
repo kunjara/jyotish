@@ -71,34 +71,6 @@ class Muhurta {
     }
     
     /**
-     * Get hora. The Vedic system of time division divides each day (from one 
-     * sunrise to another) into 24 horas.
-     * 
-     * @param string $type Type of hora
-     * @return array
-     */
-    public function getHora($type = Hora::TYPE_KALA)
-    {
-        $Hora = new Hora($this->AngaDefiner);
-        
-        switch ($type){
-            case Hora::TYPE_YAMA:
-                // For Polar circle
-                if(abs($this->ganitaData['user']['latitude']) >= 65){
-                    $hora = $Hora->getHoraKala();
-                    break;
-                }
-                $hora = $Hora->getHoraYama();
-                break;
-            case Hora::TYPE_KALA:
-            default:
-                $hora = $Hora->getHoraKala();
-        }
-        
-        return $hora;
-    }
-    
-    /**
      * Calculate timestamps of panchanga.
      * 
      * @param string $angaName
