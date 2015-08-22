@@ -211,20 +211,51 @@ class Astro {
      * 
      * @param DateTime $DateTime Date
      * @param Locality $Locality Locality
+     * @param bool $ayanamsha Take into account the ayanamsha (optional)
      * @return float
      */
-    static public function getAsc(DateTime $DateTime, Locality $Locality)
+    static public function getAsc(DateTime $DateTime, Locality $Locality, $ayanamsha = false)
     {
-        $ramc = self::getRAMC($DateTime, $Locality) * Math::M_RAD;
         $e = self::getEclipticObliquity($DateTime) * Math::M_RAD;
-        $ayanamsha = Ayanamsha::calcAyanamsha($DateTime);
+        $ayanamshaValue = $ayanamsha ? Ayanamsha::calcAyanamsha($DateTime) : 0;
         
+        $ramc = self::getRAMC($DateTime, $Locality) * Math::M_RAD;
+                
         $asc = atan2(cos($ramc), ( - sin($ramc) * cos($e) - tan($Locality->getLatitude() * Math::M_RAD) * sin($e)));
         $ascDeg = $asc / Math::M_RAD;
-        $ascDeg -= $ayanamsha;
+        $ascDeg -= $ayanamshaValue;
         
-        $ascDeg = $ascDeg < 0 ? 360 + $ascDeg : $ascDeg;
+        return $ascDeg < 0 ? 360 + $ascDeg : $ascDeg;
+    }
+    
+    /**
+     * Get Medium Coeli (Midheaven).
+     * 
+     * @param DateTime $DateTime Date
+     * @param Locality $Locality Locality
+     * @param bool $ayanamsha Take into account the ayanamsha (optional)
+     * @return float In degree
+     */
+    static public function getMC(DateTime $DateTime, Locality $Locality, $ayanamsha = false)
+    {
+        $e = self::getEclipticObliquity($DateTime) * Math::M_RAD;
+        $ayanamshaValue = $ayanamsha ? Ayanamsha::calcAyanamsha($DateTime) : 0;
         
-        return $ascDeg;
+        $ramcDeg = self::getRAMC($DateTime, $Locality);
+        $ramc = $ramcDeg * Math::M_RAD;
+        
+        $mc = atan2(tan($ramc), cos($e));
+        $mcDeg = $mc / Math::M_RAD;
+        
+        if($ramcDeg >= 0 and $ramcDeg < 90){
+            $mcDeg = $mcDeg;
+        }elseif($ramcDeg > 90 and $ramcDeg < 270){
+            $mcDeg += 180;
+        }else{
+            $mcDeg += 360;
+        }
+        $mcDeg -= $ayanamshaValue;
+        
+        return $mcDeg < 0 ? $mcDeg + 360 : $mcDeg;
     }
 }
