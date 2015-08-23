@@ -9,6 +9,7 @@ namespace Jyotish\Varga\Exception;
 /**
  * Exception for Jyotish\Varga component.
  */
-class InvalidArgumentException extends \InvalidArgumentException implements ExceptionInterface {
+class InvalidArgumentException extends \InvalidArgumentException implements ExceptionInterface
+{
     
 }

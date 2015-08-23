@@ -9,6 +9,7 @@ namespace Jyotish\Draw\Plot\Chakra\Exception;
 /**
  * Jyotish\Draw\Plot\Chakra RuntimeException.
  */
-class RuntimeException extends \RuntimeException implements ExceptionInterface {
+class RuntimeException extends \RuntimeException implements ExceptionInterface
+{
     
 }

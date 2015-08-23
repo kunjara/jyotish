@@ -11,8 +11,8 @@ namespace Jyotish\Rashi\Object;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-trait RashiEnvironment {
-    
+trait RashiEnvironment
+{
     use \Jyotish\Base\Traits\EnvironmentTrait;
     
     /**
@@ -23,11 +23,10 @@ trait RashiEnvironment {
     public function getBhava()
     {
         $bhava = 0;
-        do{
+        do {
             $bhava++;
             $rashi = $this->getEnvironment()['bhava'][$bhava]['rashi'];
-        }
-        while($rashi <> $this->objectKey);
+        } while ($rashi <> $this->objectKey);
         
         return $bhava;
     }

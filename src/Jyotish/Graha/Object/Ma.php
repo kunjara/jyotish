@@ -18,7 +18,8 @@ use Jyotish\Tattva\Ayurveda;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class Ma extends GrahaObject {
+class Ma extends GrahaObject
+{
     /**
      * Abbreviation of the graha
      * 

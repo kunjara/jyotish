@@ -15,7 +15,8 @@ use Jyotish\Tattva\Jiva\Nara\Deva;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class Graha {
+class Graha
+{
     /**
      * Key of Sun
      */
@@ -180,7 +181,7 @@ class Graha {
      * @var array
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 10.
      */
-    static public $graha = array(
+    public static $graha = array(
         self::KEY_SY => Deva::DEVA_SURYA,
         self::KEY_CH => Deva::DEVA_CHANDRA,
         self::KEY_MA => Deva::DEVA_MANGAL,
@@ -198,7 +199,7 @@ class Graha {
      * @var array
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 27, Verse 21-23.
      */
-    static public $balaCheshta = array(
+    public static $balaCheshta = array(
         self::CHESHTA_VAKRA => 60,
         self::CHESHTA_ANUVAKRA => 30,
         self::CHESHTA_VIKALA => 15,
@@ -216,7 +217,7 @@ class Graha {
      * @see Surya Siddhanta. Chapter 9, Verse 6-9.
      * @see Varahamihira. Brihat Jataka. Chapter 7, Verse 2. Notes.
      */
-    static public $bhagaAstangata = array(
+    public static $bhagaAstangata = array(
         Biblio::BOOK_SS => [
             self::KEY_CH => null,
         ],
@@ -240,7 +241,7 @@ class Graha {
      * @see Venkatesh Sharma. Sarvarth Chintamani. Chapter 10, Verse 47-50.
      * @see Mantreswara. Phaladeepika. Chapter 13, Verse 10.
      */
-    static public $bhagaMrityu = array(
+    public static $bhagaMrityu = array(
         Biblio::BOOK_JP => [
             self::KEY_CH => [
                 1 => 8, 2 => 25, 3 => 22, 4 => 22, 5 => 21, 6 => 1, 7 => 4, 8 => 23, 9 => 18, 10 => 20, 11 => 20, 12 => 10
@@ -289,7 +290,7 @@ class Graha {
      * 
      * @var array
      */
-    static public $risingType = array(
+    public static $risingType = array(
         self::RISING_NOREFRAC,
         self::RISING_DISCCENTER,
         self::RISING_HINDU,
@@ -301,7 +302,7 @@ class Graha {
      * @var array
      * @see Jyotish\Alphabet\Devanagari
      */
-    static public $translit = ['ga','virama','ra','ha'];
+    public static $translit = ['ga','virama','ra','ha'];
 
     /**
      * Returns the requested instance of graha class.
@@ -317,7 +318,7 @@ class Graha {
      * @return the requested instance of graha class
      * @throws Exception\InvalidArgumentException
      */
-    static public function getInstance($key, array $options = null) {
+    public static function getInstance($key, array $options = null) {
         if (!array_key_exists($key, self::$graha)) {
             throw new Exception\InvalidArgumentException("Graha with the key '$key' does not exist.");
         }
@@ -335,20 +336,20 @@ class Graha {
      * @param string $value Value of feature
      * @return array
      */
-    static public function getGrahaByFeature($feature, $value)
+    public static function getGrahaByFeature($feature, $value)
     {
         $result = array();
 
-        foreach (Graha::$graha as $key => $name){
+        foreach (Graha::$graha as $key => $name) {
             $Graha = self::getInstance($key);
             
             $grahaFeature = 'graha' . ucfirst(strtolower($feature));
             
-            if(!property_exists($Graha, $grahaFeature)){
+            if (!property_exists($Graha, $grahaFeature)) {
                 throw new Exception\UnexpectedValueException("Graha feature '$grahaFeature' does not exist.");
             }
 
-            if($Graha->$grahaFeature == $value)
+            if ($Graha->$grahaFeature == $value)
                 $result[$key] = $name;
             else
                 continue;
@@ -363,9 +364,9 @@ class Graha {
      * @param string $graha2 Graha key
      * @return int
      */
-    static public function getMutualRelation($graha1, $graha2)
+    public static function getMutualRelation($graha1, $graha2)
     {
-        $relation = function($graha1, $graha2)
+        $relation = function ($graha1, $graha2)
         {
             $Graha = self::getInstance($graha1, array('relationSame' => true));
             return $Graha->grahaRelation[$graha2];
@@ -384,9 +385,9 @@ class Graha {
      * @param string $option The option to list grahas.
      * @return array List of grahas.
      */
-    static public function listGraha($option = self::LIST_NAVA)
+    public static function listGraha($option = self::LIST_NAVA)
     {
-        switch ($option){
+        switch ($option) {
             case self::LIST_SAPTA:
                 $list = array_slice(self::$graha, 0, 7);
                 break;
@@ -398,7 +399,7 @@ class Graha {
                 break;
             case self::LIST_CHESHTA:
                 $order = [self::KEY_SA, self::KEY_GU, self::KEY_MA, self::KEY_SY, self::KEY_SK, self::KEY_BU, self::KEY_CH];
-                foreach ($order as $key){
+                foreach ($order as $key) {
                     $list[$key] = self::$graha[$key];
                 }
                 break;
@@ -415,11 +416,11 @@ class Graha {
      * @param string $book
      * @return array
      */
-    static public function listBhagaAstangata($book = Biblio::BOOK_SS)
+    public static function listBhagaAstangata($book = Biblio::BOOK_SS)
     {
-        if(in_array($book, [Biblio::BOOK_SS, Biblio::BOOK_BJ])){
+        if (in_array($book, [Biblio::BOOK_SS, Biblio::BOOK_BJ])) {
             $bhaga[self::KEY_CH] = self::$bhagaAstangata[$book][self::KEY_CH];
-        }else{
+        } else {
             $bhaga[self::KEY_CH] = self::$bhagaAstangata[Biblio::BOOK_SS][self::KEY_CH];
         }
         
@@ -434,11 +435,11 @@ class Graha {
      * @param string $book
      * @return array
      */
-    static public function listBhagaMrityu($book = Biblio::BOOK_JP)
+    public static function listBhagaMrityu($book = Biblio::BOOK_JP)
     {
-        if(in_array($book, [Biblio::BOOK_JP, Biblio::BOOK_SC, Biblio::BOOK_PH])){
+        if (in_array($book, [Biblio::BOOK_JP, Biblio::BOOK_SC, Biblio::BOOK_PH])) {
             $bhaga[self::KEY_CH] = self::$bhagaMrityu[$book][self::KEY_CH];
-        }else{
+        } else {
             $bhaga[self::KEY_CH] = self::$bhagaMrityu[Biblio::BOOK_JP][self::KEY_CH];
         }
         

@@ -9,6 +9,7 @@ namespace Jyotish\Draw\Plot\Chakra\Exception;
 /**
  * Jyotish\Draw\Plot\Chakra Exceptions.
  */
-interface ExceptionInterface {
+interface ExceptionInterface
+{
     
 }

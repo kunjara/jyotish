@@ -16,8 +16,8 @@ use Jyotish\Panchanga\AngaDefiner;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class Lagna {
-    
+class Lagna
+{
     use \Jyotish\Base\Traits\DataTrait;
     
     /**
@@ -56,7 +56,7 @@ class Lagna {
      * 
      * @var array
      */
-    static public $lagna = array(
+    public static $lagna = array(
         self::KEY_IL => 'Indu Lagna',
         self::KEY_SL => 'Shree Lagna',
     );
@@ -87,7 +87,7 @@ class Lagna {
             Graha::KEY_SK => 12,
             Graha::KEY_SA => 1
         ];
-        $rashiRuler = function($rashi){
+        $rashiRuler = function ($rashi) {
             $Rashi = Rashi::getInstance($rashi);
             return $Rashi->rashiRuler;
         };
@@ -96,7 +96,7 @@ class Lagna {
         $ruler9FromCh = $rashiRuler(Math::numberInCycle($this->getData()['graha'][Graha::KEY_CH]['rashi'], 9));
         
         $distance = ($kala[$ruler9FromLg] + $kala[$ruler9FromCh]) % 12;
-        if($distance == 0) $distance = 12;
+        if ($distance == 0) $distance = 12;
         
         $rashiIL  = Math::numberInCycle($this->getData()['graha'][Graha::KEY_CH]['rashi'], $distance);
         $degreeIL = $this->getData()['graha'][Graha::KEY_CH]['degree'];
@@ -140,12 +140,12 @@ class Lagna {
      */
     public function generateLagna(array $lagnaKeys = null)
     {
-        if(is_null($lagnaKeys)){
+        if (is_null($lagnaKeys)) {
             $lagnaKeys = array_keys(self::$lagna);
         }
         
-        foreach ($lagnaKeys as $key){
-            if (!array_key_exists($key, self::$lagna)){
+        foreach ($lagnaKeys as $key) {
+            if (!array_key_exists($key, self::$lagna)) {
                 throw new Exception\InvalidArgumentException("Lagna with the key '$key' does not exist.");
             }
             

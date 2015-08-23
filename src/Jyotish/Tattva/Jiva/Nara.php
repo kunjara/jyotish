@@ -11,7 +11,8 @@ namespace Jyotish\Tattva\Jiva;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class Nara extends \Jyotish\Tattva\Jiva{
+class Nara extends \Jyotish\Tattva\Jiva
+{
     /**
      * Devine
      */
@@ -43,7 +44,7 @@ class Nara extends \Jyotish\Tattva\Jiva{
      * 
      * @var array
      */
-    static public $gana = [
+    public static $gana = [
         self::GANA_DEVA,
         self::GANA_MANUSHA,
         self::GANA_RAKSHASA,

@@ -13,7 +13,8 @@ use Jyotish\Ganita\Math;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class D3 extends AbstractVarga {
+class D3 extends AbstractVarga
+{
     /**
      * Key of the varga.
      * 
@@ -49,9 +50,9 @@ class D3 extends AbstractVarga {
         $result = Math::partsToUnits($ganitaRashi['degree'], $amshaSize, 'floor');
         $vargaRashi['degree'] = $result['parts'] * 30 / $amshaSize;
 
-        if($ganitaRashi['degree'] < 10) {
+        if ($ganitaRashi['degree'] < 10) {
             $vargaRashi['rashi'] = Math::numberInCycle($ganitaRashi['rashi']);
-        } elseif($ganitaRashi['degree'] >= 10 and $ganitaRashi['degree'] < 20) {
+        } elseif ($ganitaRashi['degree'] >= 10 and $ganitaRashi['degree'] < 20) {
             $vargaRashi['rashi'] = Math::numberInCycle($ganitaRashi['rashi'], 5);
         } else {
             $vargaRashi['rashi'] = Math::numberInCycle($ganitaRashi['rashi'], 9);

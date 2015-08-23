@@ -14,7 +14,8 @@ use Jyotish\Graha\Graha;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class D30 extends AbstractVarga {
+class D30 extends AbstractVarga
+{
     /**
      * Key of the varga.
      * 
@@ -50,37 +51,37 @@ class D30 extends AbstractVarga {
         $result = Math::partsToUnits($ganitaRashi['degree'], $amshaSize, 'floor');
         $vargaRashi['degree'] = $result['parts'] * 30 / $amshaSize;
 
-        if($ganitaRashi['degree'] < 5) {
-            if($ganitaRashi['rashi'] % 2) {
+        if ($ganitaRashi['degree'] < 5) {
+            if ($ganitaRashi['rashi'] % 2) {
                 $lord = Graha::KEY_MA;
             } else {
                 $lord = Graha::KEY_SK;
             }
-        } elseif($ganitaRashi['degree'] >= 5 and $ganitaRashi['degree'] < 10) {
-            if($ganitaRashi['rashi'] % 2) {
+        } elseif ($ganitaRashi['degree'] >= 5 and $ganitaRashi['degree'] < 10) {
+            if ($ganitaRashi['rashi'] % 2) {
                 $lord = Graha::KEY_SA;
             } else {
                 $lord = Graha::KEY_BU;
             }
-        } elseif($ganitaRashi['degree'] >= 10 and $ganitaRashi['degree'] < 18) {
+        } elseif ($ganitaRashi['degree'] >= 10 and $ganitaRashi['degree'] < 18) {
 
             $lord = Graha::KEY_GU;
 
-        } elseif($ganitaRashi['degree'] >= 18 and $ganitaRashi['degree'] < 25){
-            if($ganitaRashi['rashi'] % 2) {
+        } elseif ($ganitaRashi['degree'] >= 18 and $ganitaRashi['degree'] < 25) {
+            if ($ganitaRashi['rashi'] % 2) {
                 $lord = Graha::KEY_BU;
             } else {
                 $lord = Graha::KEY_SA;
             }
         } else {
-            if($ganitaRashi['rashi'] % 2) {
+            if ($ganitaRashi['rashi'] % 2) {
                 $lord = Graha::KEY_SK;
             } else {
                 $lord = Graha::KEY_MA;
             }
         }
 
-        if($ganitaRashi['rashi'] % 2)
+        if ($ganitaRashi['rashi'] % 2)
             $trait = 'positive';
         else
             $trait = 'negative';

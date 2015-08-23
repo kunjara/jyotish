@@ -15,7 +15,8 @@ use Jyotish\Ganita\Math;
  * 
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-trait EnvironmentTrait {
+trait EnvironmentTrait
+{
     /**
      * Instance of Data.
      * 
@@ -33,13 +34,13 @@ trait EnvironmentTrait {
     {
         $this->Data = $Data;
         
-        if(!isset($this->Data->getData()['graha'])){
+        if (!isset($this->Data->getData()['graha'])) {
             $this->Data->calcParams();
         }
 
-        if($this->objectType == 'rashi'){
+        if ($this->objectType == 'rashi') {
             $this->objectRashi = $this->objectKey;
-        }else{
+        } else {
             $this->objectRashi = $this->Data->getData()[$this->objectType][$this->objectKey]['rashi'];
         }
         
@@ -64,7 +65,7 @@ trait EnvironmentTrait {
      */
     public function isAspectedByGraha($options = null)
     {
-        foreach (Graha::$graha as $key => $name){
+        foreach (Graha::$graha as $key => $name) {
             $Graha = Graha::getInstance($key, $options);
             $grahaDrishti = $Graha->grahaDrishti;
 
@@ -73,9 +74,9 @@ trait EnvironmentTrait {
                 $this->objectRashi
             );
             
-            if($key == $this->objectKey or !isset($grahaDrishti[$distanse])) {
+            if ($key == $this->objectKey or !isset($grahaDrishti[$distanse])) {
                 $isAspected[$key] = null;
-            }else{
+            } else {
                 $isAspected[$key] =  $grahaDrishti[$distanse];
             }
         }
@@ -89,21 +90,21 @@ trait EnvironmentTrait {
      */
     public function isAspectedByRashi()
     {
-        foreach (Rashi::$rashi as $key => $name){
-            if($key == $this->objectKey) continue;
+        foreach (Rashi::$rashi as $key => $name) {
+            if ($key == $this->objectKey) continue;
             
             $Rashi = Rashi::getInstance($key);
             $rashiDrishti = $Rashi->rashiDrishti;
             
-            if(isset($rashiDrishti[$this->objectRashi])){
+            if (isset($rashiDrishti[$this->objectRashi])) {
                 $isAspected['rashi'][$key] = $rashiDrishti[$this->objectRashi];
             }
         }
         
         $isAspected['graha'] = [];
-        foreach (Graha::$graha as $key => $name){
+        foreach (Graha::$graha as $key => $name) {
             $grahaRashi = $this->getEnvironment()['graha'][$key]['rashi'];
-            if(array_key_exists($grahaRashi, $isAspected['rashi'])){
+            if (array_key_exists($grahaRashi, $isAspected['rashi'])) {
                 $isAspected['graha'][$key] = 1;
             }
         }
@@ -119,10 +120,10 @@ trait EnvironmentTrait {
     {
         $isConjuncted = array();
 
-        foreach (Graha::$graha as $key => $name){
-            if($key == $this->objectKey) continue;
+        foreach (Graha::$graha as $key => $name) {
+            if ($key == $this->objectKey) continue;
 
-            if($this->getEnvironment()['graha'][$key]['rashi'] == $this->objectRashi){
+            if ($this->getEnvironment()['graha'][$key]['rashi'] == $this->objectRashi) {
                 $isConjuncted[$key] = $name;
             }
         }
@@ -143,16 +144,16 @@ trait EnvironmentTrait {
         $$p = Math::numberPrev($this->objectRashi);
         $$n = Math::numberNext($this->objectRashi);
 
-        foreach (Graha::$graha as $key => $name){
-            if($key == $this->objectKey) continue;
+        foreach (Graha::$graha as $key => $name) {
+            if ($key == $this->objectKey) continue;
 
-            if($this->getEnvironment()['graha'][$key]['rashi'] == ${$n})
+            if ($this->getEnvironment()['graha'][$key]['rashi'] == ${$n})
                 $isHemmed[$key] = $n;
-            elseif($this->getEnvironment()['graha'][$key]['rashi'] == ${$p})
+            elseif ($this->getEnvironment()['graha'][$key]['rashi'] == ${$p})
                 $isHemmed[$key] = $p;
         }
 
-        if(!(array_search($p, $isHemmed) and array_search($n, $isHemmed)))
+        if (!(array_search($p, $isHemmed) and array_search($n, $isHemmed)))
             $isHemmed = array();
 
         return $isHemmed;
@@ -167,41 +168,41 @@ trait EnvironmentTrait {
      */
     public function isAffected($feature = null, $value = null)
     {
-        if(is_null($feature)){
+        if (is_null($feature)) {
             $grahas = Graha::$graha;
-        }else{
+        } else {
             $grahas = Graha::getGrahaByFeature($feature, $value);
         }
         
         $grahaAspected = array_intersect_key($this->isAspectedByGraha(), $grahas);
         $grahaAspected1 = array_intersect($grahaAspected, [1]);
-        if(count($grahaAspected1)){
+        if (count($grahaAspected1)) {
             $isAspected = $grahaAspected1;
-        }else{
+        } else {
             $isAspected = false;
         }
         
         $grahaConjuncted = array_intersect_key($this->isConjuncted(), $grahas);
-        if(count($grahaConjuncted)){
+        if (count($grahaConjuncted)) {
             $isConjuncted = $grahaConjuncted;
-        }else{
+        } else {
             $isConjuncted = false;
         }
         
         $grahaHemmed = array_intersect_key($this->isHemmed(), $grahas);
-        if(array_search('prev', $grahaHemmed) and array_search('next', $grahaHemmed)){
+        if (array_search('prev', $grahaHemmed) and array_search('next', $grahaHemmed)) {
             $isHemmed = $grahaHemmed;
-        }else{
+        } else {
             $isHemmed = false;
         }
 
-        if($isHemmed or $isAspected or $isConjuncted){
+        if ($isHemmed or $isAspected or $isConjuncted) {
             return [
                 'aspect' => $isAspected,
                 'conjunct' => $isConjuncted,
                 'hem' => $isHemmed,
             ];
-        }else{
+        } else {
             return false;
         }
     }

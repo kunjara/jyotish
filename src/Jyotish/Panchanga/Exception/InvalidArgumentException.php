@@ -9,6 +9,7 @@ namespace Jyotish\Panchanga\Exception;
 /**
  * Exception for Jyotish\Panchanga component.
  */
-class InvalidArgumentException extends \InvalidArgumentException implements ExceptionInterface {
+class InvalidArgumentException extends \InvalidArgumentException implements ExceptionInterface
+{
     
 }

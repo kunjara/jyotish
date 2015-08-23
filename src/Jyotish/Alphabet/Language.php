@@ -13,28 +13,29 @@ use Jyotish\Base\Utils;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class Language {
+class Language
+{
     /**
      * Convert translit to html code.
      * 
      * @param array|string $translit
      * @return string
      */
-    static public function translitToHtml($translit)
+    public static function translitToHtml($translit)
     {
         $html = '';
-        if(is_array($translit)){
-            foreach ($translit as $tr){
+        if (is_array($translit)) {
+            foreach ($translit as $tr) {
                 $html .= self::trToHtml($tr);
             }
-        }else{
+        } else {
             $html = self::trToHtml($tr);
         }
 
         return $html;
     }
 
-    static protected function trToHtml($tr)
+    protected static function trToHtml($tr)
     {
         switch ($tr) {
             case null:
@@ -45,9 +46,9 @@ class Language {
                 break;
         }
 
-        if(defined('static::'.$tr)){
+        if (defined('static::'.$tr)) {
             return Utils::unicodeToHtml(constant('static::'.$tr));
-        }else{
+        } else {
             throw new Exception\InvalidArgumentException("Transliteration '$tr' is not defined.");
         }
     }

@@ -11,13 +11,14 @@ namespace Jyotish\Muhurta;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class Samskara {
+class Samskara
+{
     /**
      * Samskaras list.
      * 
      * @var array
      */
-    static public $samskara = [
+    public static $samskara = [
         1 => 'Garbhadhana',
         2 => 'Pumsavana',
         3 => 'Simantonnayana',

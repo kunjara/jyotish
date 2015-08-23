@@ -11,7 +11,8 @@ namespace Jyotish\Calendar\Event;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class EventBase {
+class EventBase
+{
     /**
      * Columns of the table
      */

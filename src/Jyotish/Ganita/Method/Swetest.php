@@ -21,8 +21,8 @@ use DateTimeZone;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class Swetest extends AbstractGanita{
-    
+class Swetest extends AbstractGanita
+{
     protected $swe = array(
         'swetest'   => null,
         'sweph'     => null,
@@ -125,15 +125,15 @@ class Swetest extends AbstractGanita{
         $stringHouses = ' -house'.$Locality->getLongitude().','.$Locality->getLatitude().',a';
         $stringPlanets = implode('', $this->inputPlanets);
         
-        if(is_null($params)){
+        if (is_null($params)) {
             $planets = ' -p'.$stringPlanets;
             $houses  = $stringHouses;
-        }else{
+        } else {
             $planets = ' -p';
             $houses = '';
             
-            foreach($params as $block){
-                switch ($block){
+            foreach ($params as $block) {
+                switch ($block) {
                     case Data::BLOCK_GRAHA:
                         $planets = ' -p'.$stringPlanets;
                         break;
@@ -198,17 +198,17 @@ class Swetest extends AbstractGanita{
     private function formatParams($input, $params)
     {
         $dataParams = [];
-        if(is_null($params) or (in_array(Data::BLOCK_GRAHA, $params) and in_array(Data::BLOCK_BHAVA, $params))){
+        if (is_null($params) or (in_array(Data::BLOCK_GRAHA, $params) and in_array(Data::BLOCK_BHAVA, $params))) {
             $count = 22;
-        }elseif(in_array(Data::BLOCK_GRAHA, $params)){
+        } elseif (in_array(Data::BLOCK_GRAHA, $params)) {
             $count = 8;
-        }elseif(in_array(Data::BLOCK_BHAVA, $params)){
+        } elseif (in_array(Data::BLOCK_BHAVA, $params)) {
             $count = 14;
         }
 
         foreach ($input as $k => $v) {
             // Break if swetest warning
-            if($k == $count) break;
+            if ($k == $count) break;
 
             $parametersString = str_replace(' ', '', $v);
             $parameters = explode(',', $parametersString);
@@ -217,34 +217,34 @@ class Swetest extends AbstractGanita{
 
             if (array_key_exists($bodyName, $this->outputPlanets)) {
                 $dataParams[Data::BLOCK_GRAHA][$this->outputPlanets[$bodyName]] = array(
-                    'longitude' => (float)$parameters[1],
-                    'latitude' => (float)$parameters[2],
-                    'speed' => (float)$parameters[3],
-                    'ascension' => (float)$parameters[4],
-                    'declination' => (float)$parameters[5],
+                    'longitude' => (float) $parameters[1],
+                    'latitude' => (float) $parameters[2],
+                    'speed' => (float) $parameters[3],
+                    'ascension' => (float) $parameters[4],
+                    'declination' => (float) $parameters[5],
                     'rashi' => $units['units'],
                     'degree' => $units['parts'],
                 );
             } elseif (array_key_exists($bodyName, $this->outputHouses)) {
                 $dataParams[Data::BLOCK_BHAVA][$this->outputHouses[$bodyName]] = array(
-                    'longitude' => (float)$parameters[1],
-                    'ascension' => (float)$parameters[2],
-                    'declination' => (float)$parameters[3],
+                    'longitude' => (float) $parameters[1],
+                    'ascension' => (float) $parameters[2],
+                    'declination' => (float) $parameters[3],
                     'rashi' => $units['units'],
                     'degree' => $units['parts'],
                 );
             } elseif (array_key_exists($bodyName, $this->outputLagna)) {
                 $dataParams[Data::BLOCK_LAGNA][$this->outputLagna[$bodyName]] = array(
-                    'longitude' => (float)$parameters[1],
-                    'ascension' => (float)$parameters[2],
-                    'declination' => (float)$parameters[3],
+                    'longitude' => (float) $parameters[1],
+                    'ascension' => (float) $parameters[2],
+                    'declination' => (float) $parameters[3],
                     'rashi'     => $units['units'],
                     'degree'    => $units['parts'],
                 );
             }
         }
 
-        if(is_null($params) or in_array(Data::BLOCK_GRAHA, $params)){
+        if (is_null($params) or in_array(Data::BLOCK_GRAHA, $params)) {
             $longitudeKe = Math::oppositeValue($dataParams['graha'][Graha::KEY_RA]['longitude'], 360);
             $ascensionKe = Math::oppositeValue($dataParams['graha'][Graha::KEY_RA]['ascension'], 360);
             $units = Math::partsToUnits($longitudeKe);
@@ -275,7 +275,7 @@ class Swetest extends AbstractGanita{
         $dataRising = [];
         $DateTime = $this->Data->getDateTime();
         
-        for($i = 1; $i <= 4; $i++) {
+        for ($i = 1; $i <= 4; $i++) {
             preg_match("#rise\s((.*\d+)\s+(\d{1,2}:.*))\sset\s((.*\d+)\s+(\d{1,2}:[\d\s\.:]+))#", $input[$i+1], $matches);
 
             $risingString  = str_replace(' ', '', $matches[2]).' '.str_replace(' ', '', $matches[3]);
@@ -295,9 +295,9 @@ class Swetest extends AbstractGanita{
             );
         }
         $DateTime3 = new DateTime($dataRising[$graha][3]['rising']);
-        if($DateTime == $DateTime3){
+        if ($DateTime == $DateTime3) {
             array_shift($dataRising[$graha]);
-        }else{
+        } else {
             array_pop($dataRising[$graha]);
         }
 

@@ -11,7 +11,8 @@ namespace Jyotish\Tattva;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class Jiva {
+class Jiva
+{
     const GENDER_MALE   = 'male';
     const GENDER_FEMALE = 'female';
     const GENDER_NEUTER = 'neuter';
@@ -42,7 +43,7 @@ class Jiva {
      * 
      * @var array
      */
-    static public $gender = [
+    public static $gender = [
         'm' => self::GENDER_MALE,
         'f' => self::GENDER_FEMALE,
         'n' => self::GENDER_NEUTER,
@@ -53,7 +54,7 @@ class Jiva {
      * 
      * @var array
      */
-    static public $type = [
+    public static $type = [
         self::TYPE_PASU,
         self::TYPE_NARA,
         self::TYPE_JALA,

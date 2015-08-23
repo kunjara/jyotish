@@ -11,7 +11,8 @@ namespace Jyotish\Bhava;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class Bhava {
+class Bhava
+{
     const NAME_1 = 'Tanu';
     const NAME_2 = 'Dhana';
     const NAME_3 = 'Sahaja';
@@ -31,7 +32,7 @@ class Bhava {
      * @var array 
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 7, Verse 37-38.
      */
-    static public $bhava = array(
+    public static $bhava = array(
         1 => self::NAME_1,
         2 => self::NAME_2,
         3 => self::NAME_3,
@@ -53,7 +54,7 @@ class Bhava {
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 7, Verse 33-36.
      * @see Varahamihira. Brihat Jataka. Chapter 1, Verse 17.
      */
-    static public $bhavaKendra = array(1, 4, 7, 10);
+    public static $bhavaKendra = array(1, 4, 7, 10);
     
     /**
      * Panaphara bhavas (succedents).
@@ -62,7 +63,7 @@ class Bhava {
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 7, Verse 33-36.
      * @see Varahamihira. Brihat Jataka. Chapter 1, Verse 18.
      */
-    static public $bhavaPanaphara = array(2, 5, 8, 11);
+    public static $bhavaPanaphara = array(2, 5, 8, 11);
     
     /**
      * Apoklima bhavas (cedents).
@@ -71,7 +72,7 @@ class Bhava {
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 7, Verse 33-36.
      * @see Varahamihira. Brihat Jataka. Chapter 1, Verse 18.
      */
-    static public $bhavaApoklima = array(3, 6, 9, 12);
+    public static $bhavaApoklima = array(3, 6, 9, 12);
 
     /**
      * Trikona bhavas.
@@ -79,7 +80,7 @@ class Bhava {
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 7, Verse 33-36.
      * @var array
      */
-    static public $bhavaTrikona = array(1, 5, 9);
+    public static $bhavaTrikona = array(1, 5, 9);
     
     /**
      * Dusthana bhavas.
@@ -87,7 +88,7 @@ class Bhava {
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 7, Verse 33-36.
      * @var array
      */
-    static public $bhavaDusthana = array(6, 8, 12);
+    public static $bhavaDusthana = array(6, 8, 12);
     
     /**
      * Chaturashra bhavas.
@@ -96,7 +97,7 @@ class Bhava {
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 7, Verse 33-36.
      * @see Varahamihira. Brihat Jataka. Chapter 1, Verse 16.
      */
-    static public $bhavaChaturashra = array(4, 8);
+    public static $bhavaChaturashra = array(4, 8);
 
     /**
      * Upachaya bhavas.
@@ -105,7 +106,7 @@ class Bhava {
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 7, Verse 33-36.
      * @see Varahamihira. Brihat Jataka. Chapter 1, Verse 15.
      */
-    static public $bhavaUpachaya = array(3, 6, 10, 11);
+    public static $bhavaUpachaya = array(3, 6, 10, 11);
     
     /**
      * Trishadaya bhavas.
@@ -113,7 +114,7 @@ class Bhava {
      * @var array
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 34, Verse 2-7.
      */
-    static public $bhavaTrishadaya = array(3, 6, 11);
+    public static $bhavaTrishadaya = array(3, 6, 11);
     
     /**
      * Parashraya bhavas.
@@ -121,7 +122,7 @@ class Bhava {
      * @var array
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 34, Verse 2-7.
      */
-    static public $bhavaParashraya = array(2, 8, 12);
+    public static $bhavaParashraya = array(2, 8, 12);
 
     /**
      * Devanagari 'bhava' in transliteration.
@@ -129,7 +130,7 @@ class Bhava {
      * @var array
      * @see Jyotish\Alphabet\Devanagari
      */
-    static public $translit = ['bha','aa','va'];
+    public static $translit = ['bha','aa','va'];
 
     /**
      * Returns the requested instance of bhava class.
@@ -139,7 +140,7 @@ class Bhava {
      * @return the requested instance of bhava class
      * @throws Exception\InvalidArgumentException
      */
-    static public function getInstance($number, array $options = null) {
+    public static function getInstance($number, array $options = null) {
         if (!array_key_exists($number, self::$bhava)) {
             throw new Exception\InvalidArgumentException("Bhava with the number '$number' does not exist.");
         }

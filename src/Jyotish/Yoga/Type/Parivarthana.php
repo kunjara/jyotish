@@ -14,7 +14,8 @@ use Jyotish\Graha\Graha;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class Parivarthana extends YogaBase {
+class Parivarthana extends YogaBase
+{
     /**
      * Type of yogas.
      * 
@@ -41,21 +42,21 @@ class Parivarthana extends YogaBase {
     {
         $saptaGraha = Graha::listGraha(Graha::LIST_SAPTA);
         
-        foreach ($saptaGraha as $key1 => $name1){
+        foreach ($saptaGraha as $key1 => $name1) {
             $grahaChecked[] = $key1;
             
-            foreach ($saptaGraha as $key2 => $name2){
-                if(in_array($key2, $grahaChecked)){
+            foreach ($saptaGraha as $key2 => $name2) {
+                if (in_array($key2, $grahaChecked)) {
                     continue;
                 }
                 
-                if($subtype = $this->hasParivarthana($key1, $key2)){
+                if ($subtype = $this->hasParivarthana($key1, $key2)) {
                     $result = [
                         'graha1' => $key1,
                         'graha2' => $key2,
                     ];
                     
-                    if($this->options['outputAmple']){
+                    if ($this->options['outputAmple']) {
                         $result = array_merge($result, ['subtype' => $subtype,]);
                     }
                     

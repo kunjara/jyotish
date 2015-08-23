@@ -11,7 +11,8 @@ namespace Jyotish\Tattva;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class Ayurveda {
+class Ayurveda
+{
     /**
      * Energy that controls growth in the body. It supplies water to all body parts, 
      * moisturizes the skin, and maintains the immune system. 
@@ -95,7 +96,7 @@ class Ayurveda {
      * 
      * @var array
      */
-    static public $prakriti = [
+    public static $prakriti = [
         self::PRAKRITI_KAPHA,
         self::PRAKRITI_PITTA,
         self::PRAKRITI_VATA,
@@ -107,7 +108,7 @@ class Ayurveda {
      * 
      * @var array
      */
-    static public $dhatu = [
+    public static $dhatu = [
         self::DHATU_RASA,
         self::DHATU_RAKTA,
         self::DHATU_MAMSA,
@@ -122,7 +123,7 @@ class Ayurveda {
      * 
      * @var array
      */
-    static public $rasa = [
+    public static $rasa = [
         self::RASA_MADHURA,
         self::RASA_LAVANA,
         self::RASA_AMLA,
@@ -138,11 +139,11 @@ class Ayurveda {
      * @param bool $withMishra With mishra prakriti or not.
      * @return array List of prakritis.
      */
-    static public function listPrakriti($withMishra = false)
+    public static function listPrakriti($withMishra = false)
     {
-        if($withMishra){
+        if ($withMishra) {
             $list = self::$prakriti;
-        }else{
+        } else {
             $list = array_slice(self::$prakriti, 0, 3);
         }
         return $list;
@@ -154,11 +155,11 @@ class Ayurveda {
      * @param bool $withMishra With mishra rasa or not.
      * @return array List of rasas.
      */
-    static public function listRasa($withMishra = false)
+    public static function listRasa($withMishra = false)
     {
-        if($withMishra){
+        if ($withMishra) {
             $list = self::$rasa;
-        }else{
+        } else {
             $list = array_slice(self::$rasa, 0, 6);
         }
         return $list;

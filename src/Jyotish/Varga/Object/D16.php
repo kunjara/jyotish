@@ -14,7 +14,8 @@ use Jyotish\Rashi\Rashi;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class D16 extends AbstractVarga {
+class D16 extends AbstractVarga
+{
     /**
      * Key of the varga.
      * 
@@ -51,7 +52,7 @@ class D16 extends AbstractVarga {
         $result = Math::partsToUnits($ganitaRashi['degree'], $amshaSize, 'floor');
         $vargaRashi['degree'] = $result['parts'] * 30 / $amshaSize;
 
-        $rashiObject = Rashi::getInstance((int)$ganitaRashi['rashi']);
+        $rashiObject = Rashi::getInstance((int) $ganitaRashi['rashi']);
         $rashiBhava = $rashiObject->rashiBhava;
 
         switch ($rashiBhava) {

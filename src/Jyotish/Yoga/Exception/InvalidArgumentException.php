@@ -9,6 +9,7 @@ namespace Jyotish\Yoga\Exception;
 /**
  * Exception for Jyotish\Yoga component.
  */
-class InvalidArgumentException extends \InvalidArgumentException implements ExceptionInterface {
+class InvalidArgumentException extends \InvalidArgumentException implements ExceptionInterface
+{
     
 }

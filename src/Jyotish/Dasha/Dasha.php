@@ -11,7 +11,8 @@ namespace Jyotish\Dasha;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class Dasha {
+class Dasha
+{
     /**
      * Vimshottari dasha
      */
@@ -51,7 +52,7 @@ class Dasha {
      * 
      * @var array
      */
-    static public $dasha = array(
+    public static $dasha = array(
         self::TYPE_VIMSHOTTARI,
         self::TYPE_ASHTOTTARI,
     );
@@ -65,7 +66,7 @@ class Dasha {
      * @return the requested instance of dasha class
      * @throws Exception\InvalidArgumentException
      */
-    static public function getInstance($type, array $options = null) {
+    public static function getInstance($type, array $options = null) {
         if (!in_array($type, self::$dasha)) {
             throw new Exception\InvalidArgumentException("Dasha '$type' does not exist.");
         }

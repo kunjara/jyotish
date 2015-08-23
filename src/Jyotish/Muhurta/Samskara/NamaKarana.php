@@ -11,13 +11,14 @@ namespace Jyotish\Muhurta\Samskara;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class NamaKarana {
+class NamaKarana
+{
     /**
      * List of the sounds appropriate to rashis.
      * 
      * @var array
      */
-    static public $namaRashi = [
+    public static $namaRashi = [
         1 => [
             'a'    => ['_a'],
             'la'   => ['la','aa'],
@@ -82,7 +83,7 @@ class NamaKarana {
      * 
      * @var array
      */
-    static public $namaPada = [
+    public static $namaPada = [
         1 => [
             'chu'  => ['ca','u'],
             'che'  => ['ca','e'],

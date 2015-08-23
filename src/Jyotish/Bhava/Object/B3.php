@@ -6,7 +6,6 @@
 
 namespace Jyotish\Bhava\Object;
 
-use Jyotish\Bhava\Bhava;
 use Jyotish\Tattva\Jiva\Nara\Manusha;
 
 /**
@@ -14,7 +13,8 @@ use Jyotish\Tattva\Jiva\Nara\Manusha;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class B3 extends BhavaObject {
+class B3 extends BhavaObject
+{
     /**
      * Bhava key
      * 

@@ -18,7 +18,8 @@ use Jyotish\Panchanga\Nakshatra\Nakshatra;
  * @author Kunjara Lila das <vladya108@gmail.com>
  * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 46, Verse 12-16.
  */
-class Vimshottari extends AbstractDasha {
+class Vimshottari extends AbstractDasha
+{
     /**
      * Dasha key
      * 

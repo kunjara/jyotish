@@ -17,7 +17,8 @@ use Jyotish\Tattva\Karaka;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class Analysis {
+class Analysis
+{
     
     use \Jyotish\Base\Traits\DataTrait;
 
@@ -43,7 +44,7 @@ class Analysis {
     {
         $grahas = $this->getData()['graha'];
         unset($grahas[Graha::KEY_KE]);
-        switch($system){
+        switch ($system) {
             case Biblio::AUTHOR_JAIMINI:
             case Biblio::BOOK_US:
                 unset($grahas[Graha::KEY_RA]);
@@ -55,10 +56,10 @@ class Analysis {
         }
 
         uasort($grahas, 
-            function ($d1, $d2){
-                if($d1['degree'] == $d2['degree']) {
+            function ($d1, $d2) {
+                if ($d1['degree'] == $d2['degree']) {
                     return 0;
-                }else{
+                } else {
                     return ($d1['degree'] < $d2['degree']) ? 1 : -1;
                 }
             }
@@ -66,14 +67,14 @@ class Analysis {
         
         $karakas = Karaka::listKaraka($system);
         reset($karakas);
-        foreach($grahas as $key => $data){
+        foreach ($grahas as $key => $data) {
             $grahaKaraka[$key] = current($karakas);
             next($karakas);
         }
 
-        if($reverse){
+        if ($reverse) {
             return array_flip($grahaKaraka);
-        }else{
+        } else {
             return $grahaKaraka;
         }
     }
@@ -113,7 +114,7 @@ class Analysis {
     public function getVargaData($vargaKey)
     {
         $v = strtoupper($vargaKey);
-        if(!isset($this->getData()['varga'][$v])){
+        if (!isset($this->getData()['varga'][$v])) {
             $this->Data->calcVargaData([$vargaKey]);
         }
         return $this->getData()['varga'][$v];
@@ -127,7 +128,7 @@ class Analysis {
      */
     public function getBhavaRulers(array $bhavas)
     {
-        foreach ($bhavas as $bhava){
+        foreach ($bhavas as $bhava) {
             $Rashi = Rashi::getInstance($this->getData()['bhava'][$bhava]['rashi']);
             $rulers[] = $Rashi->rashiRuler;
         }
@@ -141,7 +142,7 @@ class Analysis {
      * @return array
      */
     public function getRashiInBhava() {
-        if(is_null($this->temp['rashiInBhava'])){
+        if (is_null($this->temp['rashiInBhava'])) {
             foreach ($this->getData()['bhava'] as $bhava => $params) {
                 $rashi = $params['rashi'];
                 $this->temp['rashiInBhava'][$rashi] = $bhava;
@@ -156,8 +157,8 @@ class Analysis {
      * @return array
      */
     public function getBodyInBhava() {
-        foreach ([Data::BLOCK_GRAHA, Data::BLOCK_LAGNA, Data::BLOCK_UPAGRAHA] as $block){
-            if(!isset($this->getData()[$block])) continue;
+        foreach ([Data::BLOCK_GRAHA, Data::BLOCK_LAGNA, Data::BLOCK_UPAGRAHA] as $block) {
+            if (!isset($this->getData()[$block])) continue;
             
             foreach ($this->getData()[$block] as $body => $params) {
                 $rashi = $params['rashi'];
@@ -175,8 +176,8 @@ class Analysis {
      * @return array
      */
     public function getBodyInRashi() {
-        foreach ([Data::BLOCK_GRAHA, Data::BLOCK_LAGNA, Data::BLOCK_UPAGRAHA] as $block){
-            if(!isset($this->getData()[$block])) continue;
+        foreach ([Data::BLOCK_GRAHA, Data::BLOCK_LAGNA, Data::BLOCK_UPAGRAHA] as $block) {
+            if (!isset($this->getData()[$block])) continue;
             
             foreach ($this->getData()[$block] as $body => $params) {
                 $rashi = $params['rashi'];

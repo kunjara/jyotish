@@ -13,7 +13,8 @@ use Jyotish\Graha\Graha;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-final class North extends AbstractChakra {
+final class North extends AbstractChakra
+{
     /**
      * Chakra graha.
      * 
@@ -97,7 +98,7 @@ final class North extends AbstractChakra {
 
         foreach ($bodies as $graha => $bhava) {
             $myPoints[$graha]['bhava'] = $bhava;
-            if(!isset($offsetSum[$bhava])) $offsetSum[$bhava] = 0;
+            if (!isset($offsetSum[$bhava])) $offsetSum[$bhava] = 0;
                 
             if ($bhava == 1) {
                 $myPoints[$graha]['x'] = $this->bhavaPoints[$bhava][0] * $ratio;

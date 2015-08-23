@@ -11,10 +11,11 @@ namespace Jyotish\Calendar\Event;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class RecentAcharyas extends EventBase{
-    static public $eventsTitle = 'Appearance and disappearance days of recent acharyas';
+class RecentAcharyas extends EventBase
+{
+    public static $eventsTitle = 'Appearance and disappearance days of recent acharyas';
     
-    static public $eventsList = [
+    public static $eventsList = [
         [
             self::COL_NAME => 'Shrila Bhaktivinoda Thakura (Disappearance)',
             self::COL_MASA => 4,

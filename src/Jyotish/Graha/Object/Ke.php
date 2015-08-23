@@ -16,7 +16,8 @@ use Jyotish\Tattva\Jiva\Nara\Manusha;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class Ke extends GrahaObject {
+class Ke extends GrahaObject
+{
     /**
      * Abbreviation of the graha
      * 
@@ -184,7 +185,7 @@ class Ke extends GrahaObject {
      */
     protected function setGrahaSpecificRashiByViewpoint($options)
     {
-        switch ($options['specificRashi']){
+        switch ($options['specificRashi']) {
             case Biblio::BOOK_SC:
                 $this->setGrahaSpecificRashi(['ucha' => 8, 'mool' => 5, 'swa' => null, 'neecha' => 2]);
                 break;
@@ -201,15 +202,15 @@ class Ke extends GrahaObject {
      */
     protected function setGrahaRelation($options)
     {
-        if($options['relationChaya'] == 'friends'){
-            foreach (Graha::$graha as $key => $name){
-                if($key != Graha::KEY_RA){
+        if ($options['relationChaya'] == 'friends') {
+            foreach (Graha::$graha as $key => $name) {
+                if ($key != Graha::KEY_RA) {
                     $this->grahaRelation[$key] = -1;
-                }else{
+                } else {
                     $this->grahaRelation[$key] = 1;
                 }
             }
-        }else{
+        } else {
             $this->grahaRelation = [
                 Graha::KEY_SY => -1,
                 Graha::KEY_CH => -1,

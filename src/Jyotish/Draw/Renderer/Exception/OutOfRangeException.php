@@ -9,6 +9,7 @@ namespace Jyotish\Draw\Renderer\Exception;
 /**
  * Jyotish\Draw\Renderer OutOfRangeException.
  */
-class OutOfRangeException extends \OutOfRangeException implements ExceptionInterface {
+class OutOfRangeException extends \OutOfRangeException implements ExceptionInterface
+{
     
 }

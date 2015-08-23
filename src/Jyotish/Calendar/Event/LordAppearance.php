@@ -11,10 +11,11 @@ namespace Jyotish\Calendar\Event;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class LordAppearance extends EventBase{
-    static public $eventsTitle = 'Appearance days of the Lord and His Incarnations';
+class LordAppearance extends EventBase
+{
+    public static $eventsTitle = 'Appearance days of the Lord and His Incarnations';
     
-    static public $eventsList = [
+    public static $eventsList = [
         [
             self::COL_NAME => 'Rama Navami',
             self::COL_MASA => 1,

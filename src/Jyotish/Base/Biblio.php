@@ -11,7 +11,8 @@ namespace Jyotish\Base;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class Biblio {
+class Biblio
+{
     /**
      * Brihat Parashara Hora Shastra
      */
@@ -116,7 +117,7 @@ class Biblio {
      * 
      * @var array
      */
-    static public $book = [
+    public static $book = [
         self::BOOK_BPHS => 'Brihat Parashara Hora Shastra',
         self::BOOK_US => 'Upadesha Sutras',
         self::BOOK_BJ => 'Brihat Jataka',
@@ -138,7 +139,7 @@ class Biblio {
      * 
      * @var array
      */
-    static public $author = [
+    public static $author = [
         self::AUTHOR_PARASHARA => [
             'name' => 'Parashara',
             'books' => [self::BOOK_BPHS],

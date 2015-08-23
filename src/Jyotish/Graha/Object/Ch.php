@@ -19,7 +19,8 @@ use Jyotish\Tattva\Ayurveda;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class Ch extends GrahaObject {
+class Ch extends GrahaObject
+{
     /**
      * Abbreviation of the graha
      * 
@@ -308,13 +309,13 @@ class Ch extends GrahaObject {
         $lonCh = $this->getEnvironment()['graha'][Graha::KEY_CH]['longitude'];
         $lonSy = $this->getEnvironment()['graha'][Graha::KEY_SY]['longitude'];		
 
-        if($lonCh < $lonSy) $lonCh = $lonCh + 360;
+        if ($lonCh < $lonSy) $lonCh = $lonCh + 360;
 
         $tithiUnits = Math::partsToUnits(($lonCh - $lonSy), 12);
 
-        if($tithiUnits['units'] >= 8 and $tithiUnits['units'] < 23){
+        if ($tithiUnits['units'] >= 8 and $tithiUnits['units'] < 23) {
             $this->grahaCharacter = Graha::CHARACTER_SHUBHA;
-        }else{
+        } else {
             $this->grahaCharacter = Graha::CHARACTER_PAPA;
         }
     }

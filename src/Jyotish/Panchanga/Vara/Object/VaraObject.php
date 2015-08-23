@@ -11,8 +11,8 @@ namespace Jyotish\Panchanga\Vara\Object;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class VaraObject extends \Jyotish\Panchanga\AngaObject {
-    
+class VaraObject extends \Jyotish\Panchanga\AngaObject
+{
     use \Jyotish\Base\Traits\GetTrait;
     
     /**

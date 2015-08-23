@@ -18,8 +18,8 @@ use DateTime;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class Hora {
-    
+class Hora
+{
     use \Jyotish\Base\Traits\DataTrait;
     
     /**
@@ -52,10 +52,10 @@ class Hora {
      */
     public function getHora($type = self::TYPE_KALA)
     {        
-        switch ($type){
+        switch ($type) {
             case self::TYPE_YAMA:
                 // For Polar circle
-                if(abs($this->Data->getLocality()->getLatitude() >= 65)){
+                if (abs($this->Data->getLocality()->getLatitude() >= 65)) {
                     $hora = $this->getHoraKala();
                     break;
                 }
@@ -83,20 +83,20 @@ class Hora {
         $SettingYesterday = new DateTime($this->getData()['rising'][Graha::KEY_SY][0]['setting'], $TimeZone);
         $SettingToday = new DateTime($this->getData()['rising'][Graha::KEY_SY][1]['setting'], $TimeZone);
         
-        if($DateTime > $RisingToday and $DateTime < $SettingToday){
+        if ($DateTime > $RisingToday and $DateTime < $SettingToday) {
             $Rising = $RisingToday;
             $Setting = $SettingToday;
             
             $intervalHora = ($Setting->format('U') - $Rising->format('U')) / 12;
             $intervalTime = $DateTime->format('U') - $Rising->format('U');
             $isDay = true;
-        }else{
+        } else {
             // before midnight
-            if($DateTime > $RisingToday){
+            if ($DateTime > $RisingToday) {
                 $Rising = $RisingTomorrow;
                 $Setting = $SettingToday;
             // after midnight
-            }else{
+            } else {
                 $Rising = $RisingToday;
                 $Setting = $SettingYesterday;
             }
@@ -105,7 +105,7 @@ class Hora {
             $isDay = false;
         }
         
-        $number = (int)ceil($intervalTime / $intervalHora);
+        $number = (int) ceil($intervalTime / $intervalHora);
         $vara = $this->getData()['panchanga']['vara'];
         
         $horaNumber = $isDay ? $number : $number + 12;
@@ -133,17 +133,17 @@ class Hora {
     public function getHoraKala()
     {
         $DateTime = $this->Data->getDateTime();
-        $hours = (int)$DateTime->format('G');
+        $hours = (int) $DateTime->format('G');
         $horaNumber = Math::distanceInCycle(6, $hours, 24);
         $weekNumber = $DateTime->format('w');
         
         $intervalHora = 3600;
-        $intervalStart = (int)$DateTime->format('i') * 60 + (int)$DateTime->format('s');
+        $intervalStart = (int) $DateTime->format('i') * 60 + (int) $DateTime->format('s');
         $intervalEnd = $intervalHora - $intervalStart;
         
-        if($hours >= 6){
+        if ($hours >= 6) {
             $varaNumber = $weekNumber;
-        }else{
+        } else {
             $varaNumber = $weekNumber != 0 ? $weekNumber - 1 : 6;
         }
         
@@ -168,7 +168,7 @@ class Hora {
      * @param int $varaKey Key of vara
      * @return string
      */
-    static public function getLord($horaNumber, $varaKey)
+    public static function getLord($horaNumber, $varaKey)
     {
         $lords = Utils::shiftArray(Graha::listGraha(Graha::LIST_CHESHTA), $varaKey);
         
@@ -183,7 +183,7 @@ class Hora {
      */
     private function checkData()
     {
-        if(!isset($this->getData()['panchanga']['vara'])){
+        if (!isset($this->getData()['panchanga']['vara'])) {
             $this->Data->calcPanchanga(['vara']);
         }
     }

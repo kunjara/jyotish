@@ -13,7 +13,8 @@ use Jyotish\Tattva\Jiva\Nara\Deva;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class Y7 extends YogaObject {
+class Y7 extends YogaObject
+{
     /**
      * Yoga key
      * 

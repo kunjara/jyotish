@@ -13,7 +13,8 @@ use Jyotish\Graha\Graha;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-final class East extends AbstractChakra {
+final class East extends AbstractChakra
+{
     /**
      * Chakra graha.
      * 
@@ -140,7 +141,7 @@ final class East extends AbstractChakra {
         $bodies = $this->Analysis->getBodyInRashi();
 
         foreach ($bodies as $graha => $bhava) {
-            if(!isset($offsetSum[$bhava])) $offsetSum[$bhava] = 0;
+            if (!isset($offsetSum[$bhava])) $offsetSum[$bhava] = 0;
 
             if ($bhava == 1 or $bhava == 4 or $bhava == 7 or $bhava == 10) {
                 $myPoints[$graha]['x'] = $this->bhavaPoints[$bhava][6] * $ratio + $offsetBorder + $offsetSum[$bhava];

@@ -25,7 +25,8 @@ use DateTime;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class Data {
+class Data
+{
     /**
      * Bhava block
      */
@@ -71,7 +72,12 @@ class Data {
      */
     const BLOCK_YOGA = 'yoga';
     
-    static public $block = [
+    /**
+     * All blocks.
+     * 
+     * @var array
+     */
+    public static $block = [
         self::BLOCK_BHAVA,
         self::BLOCK_GRAHA,
         self::BLOCK_KALA,
@@ -118,11 +124,11 @@ class Data {
      * @param string $mode
      * @return array
      */
-    static public function listBlock($mode = 'calc')
+    public static function listBlock($mode = 'calc')
     {
         $blocks = array_flip(self::$block);
         
-        switch ($mode){
+        switch ($mode) {
             case 'all':
                 $list = $blocks;
                 break;
@@ -162,10 +168,10 @@ class Data {
      */
     public function setDateTime(DateTime $DateTime)
     {
-        if(!is_null($this->DateTime)){
-            if($DateTime->format('z') == $this->DateTime->format('z')){
+        if (!is_null($this->DateTime)) {
+            if ($DateTime->format('z') == $this->DateTime->format('z')) {
                 $this->clearData(self::listBlock('worising'));
-            }else{
+            } else {
                 $this->clearData();
             }
         }
@@ -185,7 +191,7 @@ class Data {
      */
     public function setLocality(Locality $Locality)
     {
-        if(!is_null($Locality)){
+        if (!is_null($Locality)) {
             $this->clearData();
         }
         $this->Locality = $Locality;
@@ -238,10 +244,10 @@ class Data {
      */
     public function getData(array $blocks = null)
     {
-        if(is_null($blocks)){
+        if (is_null($blocks)) {
             $result = $this->data;
-        }else{
-            foreach ($blocks as $block){
+        } else {
+            foreach ($blocks as $block) {
                 $result[$block] = isset($this->data[$block]) ? $this->data[$block] : null;
             }
         }
@@ -290,7 +296,7 @@ class Data {
         $AngaDefiner = new AngaDefiner($this);
         $generateAnga = $AngaDefiner->generateAnga($angas, $withLimit);
         
-        foreach ($generateAnga as $anga => $data){
+        foreach ($generateAnga as $anga => $data) {
             $this->data[self::BLOCK_PANCHANGA][$anga] = $data;
         }
         return $this;
@@ -307,7 +313,7 @@ class Data {
         $Lagna = new Lagna($this);
         $generateLagna = $Lagna->generateLagna($lagnaKeys);
         
-        foreach ($generateLagna as $key => $data){
+        foreach ($generateLagna as $key => $data) {
             $this->data[self::BLOCK_LAGNA][$key] = $data;
         }
         return $this;
@@ -325,7 +331,7 @@ class Data {
         $Arudha = new Arudha($this, $options);
         $generateArudha = $Arudha->generateArudha($arudhaKeys);
         
-        foreach ($generateArudha as $key => $data){
+        foreach ($generateArudha as $key => $data) {
             $this->data[self::BLOCK_LAGNA][$key] = $data;
         }
         return $this;
@@ -342,7 +348,7 @@ class Data {
         $Upagraha = new Upagraha($this);
         $generateUpagraha = $Upagraha->generateUpagraha($upagrahaKeys);
         
-        foreach ($generateUpagraha as $key => $data){
+        foreach ($generateUpagraha as $key => $data) {
             $this->data[self::BLOCK_UPAGRAHA][$key] = $data;
         }
         return $this;
@@ -356,7 +362,7 @@ class Data {
      */
     public function calcVargaData(array $vargaKeys = [Varga::KEY_D9])
     {
-        foreach ($vargaKeys as $vargaKey){
+        foreach ($vargaKeys as $vargaKey) {
             $Varga = Varga::getInstance($vargaKey)->setData($this);
             $this->data[self::BLOCK_VARGA][$vargaKey] = $Varga->getVargaData();
         }
@@ -387,9 +393,9 @@ class Data {
      */
     public function calcYoga(array $yogas)
     {
-        foreach ($yogas as $type){
+        foreach ($yogas as $type) {
             $Yoga = Yoga::getInstance($type)->setData($this);
-            foreach ($Yoga->generateYoga() as $result){
+            foreach ($Yoga->generateYoga() as $result) {
                 $this->data[self::BLOCK_YOGA][$type][] = $result;
             }
         }
@@ -417,10 +423,10 @@ class Data {
      */
     public function clearData(array $blocks = null)
     {
-        if(is_null($blocks)){
+        if (is_null($blocks)) {
             $blocks = self::listBlock();
         }
-        foreach ($blocks as $block){
+        foreach ($blocks as $block) {
             unset($this->data[$block]);
         }
     }

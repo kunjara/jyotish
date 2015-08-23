@@ -13,7 +13,8 @@ use Jyotish\Graha\Graha;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class Bu extends VaraObject {
+class Bu extends VaraObject
+{
     /**
      * Vara key.
      * 

@@ -80,7 +80,7 @@ class Manusha extends \Jyotish\Tattva\Jiva\Nara {
      * 
      * @var array
      */
-    static public $varna = [
+    public static $varna = [
         self::VARNA_BRAHMANA,
         self::VARNA_KSHATRIYA,
         self::VARNA_VAISHYA,
@@ -95,7 +95,7 @@ class Manusha extends \Jyotish\Tattva\Jiva\Nara {
      * 
      * @var array
      */
-    static public $ashram = [
+    public static $ashram = [
         self::ASHRAM_BRAHMACHARYA,
         self::ASHRAM_GRIHASTHA,
         self::ASHRAM_VANAPRASTHA,
@@ -107,7 +107,7 @@ class Manusha extends \Jyotish\Tattva\Jiva\Nara {
      * 
      * @var array
      */
-    static public $purushartha = [
+    public static $purushartha = [
         self::PURUSHARTHA_DHARMA,
         self::PURUSHARTHA_ARTHA,
         self::PURUSHARTHA_KAMA,
@@ -120,9 +120,9 @@ class Manusha extends \Jyotish\Tattva\Jiva\Nara {
      * @param string $option The option to list varnas.
      * @return array List of varnas.
      */
-    static public function listVarna($option = null)
+    public static function listVarna($option = null)
     {
-        switch ($option){
+        switch ($option) {
             case 4:
                 $list = array_slice(self::$varna, 0, 4);
                 break;

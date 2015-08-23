@@ -11,7 +11,8 @@ namespace Jyotish\Base\Traits;
  * 
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-trait GetTrait {
+trait GetTrait
+{
     /**
      * Get object property.
      * 
@@ -21,9 +22,9 @@ trait GetTrait {
      */
     public function __get($property)
     {
-        if(property_exists($this, $property)){
+        if (property_exists($this, $property)) {
             return($this->$property);
-        }else{
+        } else {
             throw new \Jyotish\Base\Exception\InvalidArgumentException("Property '$property' does not exist.");
         }
     }

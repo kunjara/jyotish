@@ -9,6 +9,7 @@ namespace Jyotish\Draw\Renderer\Exception;
 /**
  * Jyotish\Draw\Renderer RuntimeException.
  */
-class RuntimeException extends \RuntimeException implements ExceptionInterface {
+class RuntimeException extends \RuntimeException implements ExceptionInterface
+{
     
 }

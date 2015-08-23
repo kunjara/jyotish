@@ -9,6 +9,7 @@ namespace Jyotish\Dasha\Exception;
 /**
  * Exception for Jyotish\Dasha component.
  */
-class RuntimeException extends \RuntimeException implements ExceptionInterface {
+class RuntimeException extends \RuntimeException implements ExceptionInterface
+{
     
 }

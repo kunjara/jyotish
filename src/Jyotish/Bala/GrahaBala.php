@@ -18,7 +18,8 @@ use Jyotish\Ganita\Math;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class GrahaBala extends Analysis {
+class GrahaBala extends Analysis
+{
     const VARGA_MULATRIKONADI = 'mulatrikonadi';
     const VARGA_AMSHA = 'amsha';
     const VARGA_KENDRADI = 'kendradi';
@@ -59,7 +60,7 @@ class GrahaBala extends Analysis {
         $this->balaGraha = Graha::listGraha(Graha::LIST_SAPTA);
         
         $this->bala['total'] = [];
-        foreach ($this->balaVarga as $varga){
+        foreach ($this->balaVarga as $varga) {
             $balaVarga = 'bala'.ucfirst($varga);
             $this->bala[$varga] = $this->$balaVarga();
             $this->bala['total'] = Math::arraySum($this->bala[$varga], $this->bala['total']);
@@ -74,11 +75,11 @@ class GrahaBala extends Analysis {
      */
     protected function balaMulatrikonadi()
     {
-        foreach ($this->balaGraha as $key => $name){
+        foreach ($this->balaGraha as $key => $name) {
             $Graha = Graha::getInstance($key)->setEnvironment($this->getData());
             $rashiAvastha = $Graha->getRashiAvastha();
             
-            switch($rashiAvastha){
+            switch ($rashiAvastha) {
                 case Rashi::GRAHA_UCHA:
                     $bala[$key] = 70;
                     break;
@@ -116,7 +117,7 @@ class GrahaBala extends Analysis {
         $this->atmaKaraka = array_search(\Jyotish\Tattva\Karaka::NAME_ATMA, $charaKaraka);
         $value = 70;
         
-        foreach ($charaKaraka as $key => $karaka){
+        foreach ($charaKaraka as $key => $karaka) {
             $bala[$key] = $value;
             $value -= 10;
         }
@@ -132,17 +133,17 @@ class GrahaBala extends Analysis {
      */
     protected function balaKendradi()
     {
-        foreach ($this->balaGraha as $key => $name){
+        foreach ($this->balaGraha as $key => $name) {
             $distance = Math::distanceInCycle(
                 $this->getData()['graha'][$this->atmaKaraka]['rashi'], 
                 $this->getData()['graha'][$key]['rashi']
             );
             
-            if(in_array($distance, Bhava::$bhavaKendra)){
+            if (in_array($distance, Bhava::$bhavaKendra)) {
                 $bala[$key] = 60;
-            }elseif(in_array($distance, Bhava::$bhavaPanaphara)){
+            } elseif (in_array($distance, Bhava::$bhavaPanaphara)) {
                 $bala[$key] = 40;
-            }else{
+            } else {
                 $bala[$key] = 20;
             }
         }

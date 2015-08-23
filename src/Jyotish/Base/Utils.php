@@ -11,13 +11,13 @@ namespace Jyotish\Base;
  * 
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class Utils {
-
+class Utils
+{
     const LABEL_TRADITIONAL = 0;
     const LABEL_UNICODE = 1;
     const LABEL_USER = 2;
 
-    static public $labelTypes = array(
+    public static $labelTypes = array(
         self::LABEL_TRADITIONAL,
         self::LABEL_UNICODE,
         self::LABEL_USER,
@@ -29,12 +29,12 @@ class Utils {
      * @param array|string $unicode
      * @return string
      */
-    static public function unicodeToHtml($unicode) {
-        if(is_array($unicode)){
-            foreach ($unicode as $code){
+    public static function unicodeToHtml($unicode) {
+        if (is_array($unicode)) {
+            foreach ($unicode as $code) {
                 $html .= '&#x' . $code . ';';
             }
-        }else{
+        } else {
             $html = '&#x' . $unicode . ';';
         }
 
@@ -47,7 +47,7 @@ class Utils {
      * @param string $color
      * @return array
      */
-    static public function htmlToRgb($color) {
+    public static function htmlToRgb($color) {
         if ($color[0] == '#')
             $color = substr($color, 1);
 
@@ -79,15 +79,15 @@ class Utils {
      * @param bool $preserveKeys
      * @return array
      */ 
-    static public function shiftArray($array, $startKey, $preserveKeys = false){
+    public static function shiftArray($array, $startKey, $preserveKeys = false) {
         reset($array);
         $tab = 0;
 
-        while(key($array) != $startKey){
+        while (key($array) != $startKey) {
             $tab++;
             next($array);
 
-            if($tab > count($array)) {
+            if ($tab > count($array)) {
                 return $array;
             }
         }
@@ -107,7 +107,7 @@ class Utils {
      * </pre>
      * @return string
      */	
-    static function dmsToStirng(array $dms)
+    public static function dmsToStirng(array $dms)
     {
         $d = $dms['d'].'&deg;';
         $m = !empty($dms['m']) ? $dms['m'].'\'' : '';

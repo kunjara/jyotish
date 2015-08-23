@@ -9,6 +9,7 @@ namespace Jyotish\Dasha\Exception;
 /**
  * Exception for Jyotish\Dasha.
  */
-class UnderflowException extends \UnderflowException implements ExceptionInterface {
+class UnderflowException extends \UnderflowException implements ExceptionInterface
+{
     
 }

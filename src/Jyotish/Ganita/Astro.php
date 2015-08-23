@@ -17,7 +17,8 @@ use DateTime;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class Astro {
+class Astro
+{
     /**
      * Approximate duration of precession in years.
      */
@@ -52,7 +53,7 @@ class Astro {
      * @param array $sunData
      * @return type
      */
-    static public function getSunRise($userData, $sunData)
+    public static function getSunRise($userData, $sunData)
     {
         $hourAngle = acos((cos(Math::dmsToDecimal(array('d' => 90, 'm' => 51))) - sin($userData['latitude']) * sin($sunData['declination'])) / cos($userData['latitude']) * cos($sunData['declination']));
         $eot = self::getEot($userData['date']);
@@ -69,7 +70,7 @@ class Astro {
      * @return float Number of minutes
      * @link https://en.wikipedia.org/wiki/Equation_of_time Equation of time
      */
-    static public function getEot($date)
+    public static function getEot($date)
     {
         $dateObject = new DateTime($date);
         $day = $dateObject->format('z') + 1;
@@ -88,7 +89,7 @@ class Astro {
      * @param int $year
      * @return int
      */
-    static public function getTithiByHarvey($day, $month, $year)
+    public static function getTithiByHarvey($day, $month, $year)
     {
         if ($month <= 2) {
             $monthH	= $month + 12;
@@ -114,7 +115,7 @@ class Astro {
      * @param int $month
      * @return int
      */
-    static public function getSign($day, $month)
+    public static function getSign($day, $month)
     {
         $signs = [10, 11, 12, 1, 2, 3, 4, 5, 6, 7, 8, 9];
         
@@ -134,7 +135,7 @@ class Astro {
      * @param int $duration Approximate duration of precession in years
      * @return float
      */
-    static public function getPrecessionSpeed($duration = self::DURATION_PRECESSION)
+    public static function getPrecessionSpeed($duration = self::DURATION_PRECESSION)
     {
         $arcsec = 360 / $duration * 3600;
         
@@ -148,7 +149,7 @@ class Astro {
      * @param Locality $Locality Locality
      * @return float In hours
      */
-    static public function getLST(DateTime $DateTime, Locality $Locality)
+    public static function getLST(DateTime $DateTime, Locality $Locality)
     {
         $hour = $DateTime->format('G');
         $minute = $DateTime->format('i');
@@ -178,7 +179,7 @@ class Astro {
      * @param Locality $Locality Locality
      * @return float In degree
      */
-    static public function getRAMC(DateTime $DateTime, Locality $Locality)
+    public static function getRAMC(DateTime $DateTime, Locality $Locality)
     {
         $lst = self::getLST($DateTime, $Locality);
         $ramc = $lst * 15;
@@ -192,7 +193,7 @@ class Astro {
      * @param null|DateTime $DateTime Date (optional)
      * @return float In degree
      */
-    static public function getEclipticObliquity(DateTime $DateTime = null)
+    public static function getEclipticObliquity(DateTime $DateTime = null)
     {
         $jc = Time::getJC($DateTime);
         
@@ -214,14 +215,14 @@ class Astro {
      * @param bool $ayanamsha Take into account the ayanamsha (optional)
      * @return float
      */
-    static public function getAsc(DateTime $DateTime, Locality $Locality, $ayanamsha = false)
+    public static function getAsc(DateTime $DateTime, Locality $Locality, $ayanamsha = false)
     {
         $e = self::getEclipticObliquity($DateTime) * Math::M_RAD;
         $ayanamshaValue = $ayanamsha ? Ayanamsha::calcAyanamsha($DateTime) : 0;
         
         $ramc = self::getRAMC($DateTime, $Locality) * Math::M_RAD;
                 
-        $asc = atan2(cos($ramc), ( - sin($ramc) * cos($e) - tan($Locality->getLatitude() * Math::M_RAD) * sin($e)));
+        $asc = atan2(cos($ramc), (-sin($ramc) * cos($e) - tan($Locality->getLatitude() * Math::M_RAD) * sin($e)));
         $ascDeg = $asc / Math::M_RAD;
         $ascDeg -= $ayanamshaValue;
         
@@ -236,7 +237,7 @@ class Astro {
      * @param bool $ayanamsha Take into account the ayanamsha (optional)
      * @return float In degree
      */
-    static public function getMC(DateTime $DateTime, Locality $Locality, $ayanamsha = false)
+    public static function getMC(DateTime $DateTime, Locality $Locality, $ayanamsha = false)
     {
         $e = self::getEclipticObliquity($DateTime) * Math::M_RAD;
         $ayanamshaValue = $ayanamsha ? Ayanamsha::calcAyanamsha($DateTime) : 0;
@@ -247,11 +248,11 @@ class Astro {
         $mc = atan2(tan($ramc), cos($e));
         $mcDeg = $mc / Math::M_RAD;
         
-        if($ramcDeg >= 0 and $ramcDeg < 90){
+        if ($ramcDeg >= 0 and $ramcDeg < 90) {
             $mcDeg = $mcDeg;
-        }elseif($ramcDeg > 90 and $ramcDeg < 270){
+        } elseif ($ramcDeg > 90 and $ramcDeg < 270) {
             $mcDeg += 180;
-        }else{
+        } else {
             $mcDeg += 360;
         }
         $mcDeg -= $ayanamshaValue;

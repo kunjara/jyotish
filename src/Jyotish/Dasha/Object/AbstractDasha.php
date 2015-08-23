@@ -17,8 +17,8 @@ use DateInterval;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-abstract class AbstractDasha {
-    
+abstract class AbstractDasha
+{
     use \Jyotish\Base\Traits\DataTrait;
     use \Jyotish\Base\Traits\GetTrait;
     use \Jyotish\Base\Traits\OptionTrait;
@@ -136,7 +136,7 @@ abstract class AbstractDasha {
      */
     public function setOptionNesting($nesting)
     {
-        if(!is_numeric($nesting) or intval($nesting) > 6){
+        if (!is_numeric($nesting) or intval($nesting) > 6) {
             throw new \Jyotish\Dasha\Exception\InvalidArgumentException(
                 "Maximum nesting must be less than or equals 6."
             );
@@ -154,9 +154,9 @@ abstract class AbstractDasha {
     private function getSubPeriods($periodData, $periodKey)
     {
         $i = 0;
-        foreach($periodData['order'] as $graha => $info){
+        foreach ($periodData['order'] as $graha => $info) {
             $i++;
-            if($i == 1){
+            if ($i == 1) {
                 $this->temp['DateTime'] = new DateTime($periodData['start']);
             }
             
@@ -166,7 +166,7 @@ abstract class AbstractDasha {
             $periodData['periods'][$graha]['nesting'] = $nesting;
             $periodData['periods'][$graha]['type'] = constant('Jyotish\Dasha\Dasha::NESTING_'.$nesting);
             $periodData['periods'][$graha]['key'] = $periodData['key'].$graha;
-            $periodData['periods'][$graha]['duration'] = (int)$duration;
+            $periodData['periods'][$graha]['duration'] = (int) $duration;
             $periodData['periods'][$graha]['start'] = $this->temp['DateTime']->format(Time::FORMAT_DATETIME);
             
             $DateTimeStart = clone($this->temp['DateTime']);
@@ -175,30 +175,30 @@ abstract class AbstractDasha {
             $DateTimeEnd = clone($this->temp['DateTime']);
             
             // Choose period with the specified key
-            if($periodKey == 'now'){
-                if(!($DateTimeStart < $this->temp['DateTimeNow'] and $DateTimeEnd > $this->temp['DateTimeNow'])){
+            if ($periodKey == 'now') {
+                if (!($DateTimeStart < $this->temp['DateTimeNow'] and $DateTimeEnd > $this->temp['DateTimeNow'])) {
                     $subperiodKey = 'now';
                     continue;
                 }
-            }elseif(!is_null($periodKey)){
+            } elseif (!is_null($periodKey)) {
                 $periodArray = str_split($periodKey, 2);
                 $gr = array_shift($periodArray);
-                if(!empty($gr) and !array_key_exists($gr, Graha::$graha)){
+                if (!empty($gr) and !array_key_exists($gr, Graha::$graha)) {
                     throw new \Jyotish\Dasha\Exception\RuntimeException(
                         "Period key '$gr' does not exist."
                     );
                 }
                 $subperiodKey = implode('', $periodArray);
 
-                if($graha != $gr){
+                if ($graha != $gr) {
                     continue;
                 }
-            }else{
+            } else {
                 $subperiodKey = null;
             }
 
             // Define subperiods
-            if($nesting < $this->options['nesting']){
+            if ($nesting < $this->options['nesting']) {
                 $periodData['periods'][$graha]['order'] = $this->getOrderGraha($graha);
                 $periodData['periods'][$graha] = $this->getSubPeriods($periodData['periods'][$graha], $subperiodKey);
                 unset($periodData['periods'][$graha]['order']);
@@ -214,7 +214,7 @@ abstract class AbstractDasha {
      */
     private function checkPanchanga()
     {
-        if(!isset($this->getData()['panchanga']['nakshatra'])){
+        if (!isset($this->getData()['panchanga']['nakshatra'])) {
             $this->Data->calcPanchanga(['nakshatra'], true);
         }
     }

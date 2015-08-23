@@ -18,8 +18,8 @@ use Jyotish\Tattva\Jiva\Nara\Deva;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class GrahaObject extends Object {
-    
+class GrahaObject extends Object
+{
     use GrahaEnvironment;
     
     /**
@@ -261,10 +261,10 @@ class GrahaObject extends Object {
      */
     protected function setObjectNames()
     {
-        if($this->objectKey != Graha::KEY_RA and $this->objectKey != Graha::KEY_KE){
+        if ($this->objectKey != Graha::KEY_RA and $this->objectKey != Graha::KEY_KE) {
             $nameDeva = 'name'.$this->objectName;
             $this->objectNames = array_merge(Deva::${$nameDeva}, $this->objectNames);
-        }else{
+        } else {
             parent::setObjectNames();
         }
     }
@@ -287,15 +287,15 @@ class GrahaObject extends Object {
         $friends = array();
         $R = Rashi::getInstance($rashiUcha);
         $gFriend = $R->rashiRuler;
-        if($this->objectKey != $gFriend) $friends[] = $gFriend;
+        if ($this->objectKey != $gFriend) $friends[] = $gFriend;
 
-        $getRelation = function($distance) use($rashiMool){
-            foreach($distance as $step){
+        $getRelation = function ($distance) use ($rashiMool) {
+            foreach ($distance as $step) {
                 $r = Math::numberInCycle($rashiMool, $step);
-                $R = Rashi::getInstance((int)$r);
+                $R = Rashi::getInstance((int) $r);
                 $gRuler = $R->rashiRuler;
 
-                if($this->objectKey == $gRuler) continue;
+                if ($this->objectKey == $gRuler) continue;
                 $grahas[] = $gRuler;
             }
             return $grahas;
@@ -304,16 +304,16 @@ class GrahaObject extends Object {
         $friends = array_unique(array_merge($friends, $getRelation($friendsFromMt)));
         $enemies = array_unique($getRelation($enemiesFromMt));
 
-        foreach (Graha::$graha as $key => $name){
-            if($this->objectKey == $key) continue;
+        foreach (Graha::$graha as $key => $name) {
+            if ($this->objectKey == $key) continue;
 
-            if(in_array($key, $friends) and in_array($key, $enemies)){
+            if (in_array($key, $friends) and in_array($key, $enemies)) {
                 $relation[$key] = 0;
-            }elseif(in_array($key, $friends)){
+            } elseif (in_array($key, $friends)) {
                 $relation[$key] = 1;
-            }elseif(in_array($key, $enemies)){
+            } elseif (in_array($key, $enemies)) {
                 $relation[$key] = -1;
-            }else{
+            } else {
                 $G = Graha::getInstance($key, $options);
                 $relation[$key] = $G->grahaRelation[$this->objectKey];
             }
@@ -340,11 +340,11 @@ class GrahaObject extends Object {
             'end'   => 30
         ];
         
-        if(is_null($specificRashi['swa'])){
+        if (is_null($specificRashi['swa'])) {
             $this->grahaSwa = [
                 ['rashi' => null]
             ];
-        }else{
+        } else {
             $this->grahaSwa = [
                 [
                     'rashi' => $specificRashi['swa'],

@@ -17,7 +17,8 @@ use Jyotish\Ganita\Math;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class RashiBala extends Analysis {
+class RashiBala extends Analysis
+{
     const VARGA_GRAHA = 'graha';
     const VARGA_CHARA = 'chara';
     const VARGA_STHIRA = 'sthira';
@@ -52,7 +53,7 @@ class RashiBala extends Analysis {
         parent::__construct($Data);
         
         $this->bala['total'] = [];
-        foreach ($this->balaVarga as $varga){
+        foreach ($this->balaVarga as $varga) {
             $balaVarga = 'bala'.ucfirst($varga);
             $this->bala[$varga] = $this->$balaVarga();
             $this->bala['total'] = Math::arraySum($this->bala[$varga], $this->bala['total']);
@@ -69,7 +70,7 @@ class RashiBala extends Analysis {
         $GrahaBala = new GrahaBala($this->Data);
         $grahaBala = $GrahaBala->getBala()['total'];
         
-        foreach (Rashi::$rashi as $key => $name){
+        foreach (Rashi::$rashi as $key => $name) {
             $Rashi = Rashi::getInstance($key);
             $ruler = $Rashi->rashiRuler;
             $bala[$key] = $grahaBala[$ruler];
@@ -85,10 +86,10 @@ class RashiBala extends Analysis {
      */
     protected function balaChara()
     {
-        foreach (Rashi::$rashi as $key => $name){
+        foreach (Rashi::$rashi as $key => $name) {
             $Rashi = Rashi::getInstance($key);
             $bhava = $Rashi->rashiBhava;
-            switch ($bhava){
+            switch ($bhava) {
                 case Rashi::BHAVA_CHARA:
                     $bala[$key] = 20;
                     break;
@@ -111,8 +112,8 @@ class RashiBala extends Analysis {
      */
     protected function balaSthira()
     {
-        foreach ($this->getData()['graha'] as $key => $value){
-            if($key == Graha::KEY_RA or $key == Graha::KEY_KE) continue;
+        foreach ($this->getData()['graha'] as $key => $value) {
+            if ($key == Graha::KEY_RA or $key == Graha::KEY_KE) continue;
             $bala[$value['rashi']] = !isset($bala[$value['rashi']]) ? 10 : $bala[$value['rashi']] + 10;
         }
         return $bala;
@@ -127,17 +128,17 @@ class RashiBala extends Analysis {
      */
     protected function balaDrishti()
     {
-        foreach (Rashi::$rashi as $rKey => $rName){
+        foreach (Rashi::$rashi as $rKey => $rName) {
             $Rashi = Rashi::getInstance($rKey)->setEnvironment($this->getData());
             $ruler = $Rashi->rashiRuler;
             $rashiIsAspected = $Rashi->isAspectedByRashi()['graha'];
             $bala[$rKey] = 0;
             
-            foreach ([$ruler, Graha::KEY_GU, Graha::KEY_BU] as $gKey){
-                if(
+            foreach ([$ruler, Graha::KEY_GU, Graha::KEY_BU] as $gKey) {
+                if (
                     $this->getData()['graha'][$gKey]['rashi'] == $rKey or 
                     array_key_exists($gKey, $rashiIsAspected)
-                ){
+                ) {
                     $bala[$rKey] += 60;
                 }
             }

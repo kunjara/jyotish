@@ -11,10 +11,11 @@ namespace Jyotish\Calendar\Event;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class LordPastimes extends EventBase{
-    static public $eventsTitle = 'Events in the Pastimes of the Lord and His Associates';
+class LordPastimes extends EventBase
+{
+    public static $eventsTitle = 'Events in the Pastimes of the Lord and His Associates';
 
-    static public $eventsList = [
+    public static $eventsList = [
         [
             self::COL_NAME => 'Festival of Jagannatha Mishra',
             self::COL_MASA => 1,

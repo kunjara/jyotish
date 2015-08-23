@@ -15,7 +15,8 @@ use DateInterval;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class Time {
+class Time
+{
     const FORMAT_DATE           = 'Y-m-d';
     const FORMAT_DATETIME       = 'Y-m-d H:i:s';
     const FORMAT_DATA_DATE      = 'd.m.Y';
@@ -28,7 +29,7 @@ class Time {
      * @param array $data User data
      * @return DateTime
      */
-    static public function createDateTime(array $data)
+    public static function createDateTime(array $data)
     {
         $dateTime = $data['date'] . ' ' . $data['time'];
         $TimeZone = isset($data['timezone']) ? new DateTimeZone($data['timezone']) : null;
@@ -44,7 +45,7 @@ class Time {
      * @param array $data User data
      * @return DateTime
      */
-    static public function createDateTimeUtc(array $data)
+    public static function createDateTimeUtc(array $data)
     {
         $DateTime = self::createDateTime($data);
 
@@ -55,12 +56,12 @@ class Time {
         $offsetSystem = self::getTimeZoneOffset($data['timezone'], $data['date'] . ' ' . $data['time']);
         $offsetUser = $data['offset'] != $offsetSystem ? $data['offset'] : false;
         
-        if($offsetUser) {
+        if ($offsetUser) {
             $offsetTotal = $offsetSystem - $offsetUser;
 
-            if($offsetTotal > 0) {
+            if ($offsetTotal > 0) {
                 $DateTime->add(new DateInterval('PT'.$offsetTotal.'S'));
-            } elseif($offsetTotal < 0) {
+            } elseif ($offsetTotal < 0) {
                 $DateTime->sub(new DateInterval('PT'.abs($offsetTotal).'S'));
             }
         }
@@ -74,9 +75,9 @@ class Time {
      * @param null|DateTime $DateTime Date (optional)
      * @return float
      */
-    static public function getJDN(DateTime $DateTime = null)
+    public static function getJDN(DateTime $DateTime = null)
     {
-        if(is_null($DateTime)){
+        if (is_null($DateTime)) {
             $DateTime = new DateTime('now');
         }
         
@@ -99,9 +100,9 @@ class Time {
      * @param null|DateTime $DateTime Date (optional)
      * @return float
      */
-    static public function getJD(DateTime $DateTime = null)
+    public static function getJD(DateTime $DateTime = null)
     {
-        if(is_null($DateTime)){
+        if (is_null($DateTime)) {
             $DateTime = new DateTime('now');
         }
         
@@ -121,9 +122,9 @@ class Time {
      * @param null|DateTime $DateTime Date (optional)
      * @return float
      */
-    static public function getRJD(DateTime $DateTime = null)
+    public static function getRJD(DateTime $DateTime = null)
     {
-        if(is_null($DateTime)){
+        if (is_null($DateTime)) {
             $DateTime = new DateTime('now');
         }
         
@@ -139,9 +140,9 @@ class Time {
      * @param null|DateTime $DateTime Date (optional)
      * @return float
      */
-    static public function getMJD(DateTime $DateTime = null)
+    public static function getMJD(DateTime $DateTime = null)
     {
-        if(is_null($DateTime)){
+        if (is_null($DateTime)) {
             $DateTime = new DateTime('now');
         }
         
@@ -157,9 +158,9 @@ class Time {
      * @param null|DateTime $DateTime Date (optional)
      * @return float
      */
-    static public function getJC(DateTime $DateTime = null)
+    public static function getJC(DateTime $DateTime = null)
     {
-        if(is_null($DateTime)){
+        if (is_null($DateTime)) {
             $DateTime = new DateTime('now');
         }
         
@@ -169,7 +170,7 @@ class Time {
         return $JC;
     }
 
-    static public function getTimeZoneOffset($timeZone, $dateTime, $flagFormat = false) 
+    public static function getTimeZoneOffset($timeZone, $dateTime, $flagFormat = false) 
     {
         $TimeZone = new DateTimeZone($timeZone);
         $DateTime = new DateTime($dateTime, $TimeZone);
@@ -180,7 +181,7 @@ class Time {
         return $offsetResult;
     }
 
-    static public function formatOffset($offset, $format = self::FORMAT_OFFSET_TIME) 
+    public static function formatOffset($offset, $format = self::FORMAT_OFFSET_TIME) 
     {
         $offsetInterval = new DateInterval('PT'.abs($offset).'S');
 
@@ -197,21 +198,21 @@ class Time {
         return $offsetResult;
     }
 
-    static public function disFormatOffset($offset, $delimiter = ':')
+    public static function disFormatOffset($offset, $delimiter = ':')
     {
         $offsetArray = explode($delimiter, $offset);
         $result = $offsetArray[0] * 3600 + $offsetArray[1] * 60;
         return $result;
     }
 
-    static public function getTimeZoneLocation($timeZone) {
+    public static function getTimeZoneLocation($timeZone) {
         $TimeZone = new DateTimeZone($timeZone);
         $location = $TimeZone->getLocation();
 
         return $location;
     }
 
-    static public function getTimeZoneTransitions($timeZone) {
+    public static function getTimeZoneTransitions($timeZone) {
         $TimeZone = new DateTimeZone($timeZone);
         $transitions = $TimeZone->getTransitions();
 

@@ -9,6 +9,7 @@ namespace Jyotish\Panchanga\Exception;
 /**
  * Exception for Jyotish\Panchanga component.
  */
-class RuntimeException extends \RuntimeException implements ExceptionInterface {
+class RuntimeException extends \RuntimeException implements ExceptionInterface
+{
     
 }

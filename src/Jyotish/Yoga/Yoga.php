@@ -11,7 +11,8 @@ namespace Jyotish\Yoga;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class Yoga {
+class Yoga
+{
     /**
      * Dhana yoga (wealth)
      */
@@ -46,7 +47,7 @@ class Yoga {
      * 
      * @var array
      */
-    static public $type = [
+    public static $type = [
         self::TYPE_DHANA,
         self::TYPE_MAHAPURUSHA,
         self::TYPE_NABHASHA,
@@ -62,7 +63,7 @@ class Yoga {
      * @return the requested instance of yoga class
      * @throws Exception\InvalidArgumentException
      */
-    static public function getInstance($type, array $options = null) {
+    public static function getInstance($type, array $options = null) {
         if (!in_array($type, self::$type)) {
             throw new Exception\InvalidArgumentException("Yoga '$type' is not defined.");
         }

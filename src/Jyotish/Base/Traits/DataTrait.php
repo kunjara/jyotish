@@ -11,7 +11,8 @@ namespace Jyotish\Base\Traits;
  * 
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-trait DataTrait {
+trait DataTrait
+{
     /**
      * Instance of Data.
      * 

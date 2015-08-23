@@ -11,7 +11,8 @@ namespace Jyotish\Base\Traits;
  * 
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-Trait OptionTrait {
+Trait OptionTrait
+{
     /**
      * Set options for jyotish calculations.
      * 
@@ -20,18 +21,18 @@ Trait OptionTrait {
      */
     public function setOptions($options)
     {
-        if (is_array($options)){
+        if (is_array($options)) {
             foreach ($options as $optionName => $optionValue) {
                 if (isset($this->options[$optionName])) {
                     $setOption = 'setOption'.ucfirst($optionName);
-                    if(method_exists($this, $setOption)){
+                    if (method_exists($this, $setOption)) {
                         $this->$setOption($optionValue);
-                    }else{
+                    } else {
                         $this->options[$optionName] = $optionValue;
                     }
                 }
             }
-        }elseif(!is_null($options)){
+        } elseif (!is_null($options)) {
             throw new \Jyotish\Base\Exception\InvalidArgumentException("Options must be an array.");
         }
         

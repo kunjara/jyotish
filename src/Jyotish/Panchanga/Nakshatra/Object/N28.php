@@ -15,7 +15,8 @@ use Jyotish\Tattva\Jiva\Nara\Manusha;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class N28 extends NakshatraObject {
+class N28 extends NakshatraObject
+{
     /**
      * Nakshatra key
      * 

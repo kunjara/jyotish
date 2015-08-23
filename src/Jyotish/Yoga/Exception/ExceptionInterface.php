@@ -9,6 +9,7 @@ namespace Jyotish\Yoga\Exception;
 /**
  * Base exception interface for Yoga objects.
  */
-interface ExceptionInterface {
+interface ExceptionInterface
+{
     
 }

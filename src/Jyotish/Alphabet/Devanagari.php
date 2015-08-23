@@ -11,7 +11,8 @@ namespace Jyotish\Alphabet;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class Devanagari extends \Jyotish\Alphabet\Language {	
+class Devanagari extends \Jyotish\Alphabet\Language
+{	
     /**
      * consonants unicode
      */

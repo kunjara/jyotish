@@ -16,8 +16,8 @@ use Jyotish\Bhava\Bhava;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class YogaBase {
-    
+class YogaBase
+{
     use \Jyotish\Base\Traits\DataTrait;
     use \Jyotish\Base\Traits\OptionTrait;
     
@@ -68,28 +68,28 @@ class YogaBase {
         foreach ($Graha1->grahaSwa as $key => $data) $rashi1Swa[] = $data['rashi']; 
         foreach ($Graha2->grahaSwa as $key => $data) $rashi2Swa[] = $data['rashi']; 
         
-        if(
+        if (
             in_array($this->getData()['graha'][$graha1]['rashi'], $rashi2Swa) and 
             in_array($this->getData()['graha'][$graha2]['rashi'], $rashi1Swa)
-        ){
-            if($this->options['outputAmple']){
+        ) {
+            if ($this->options['outputAmple']) {
                 $Graha1->setEnvironment($this->Data);
                 $Graha2->setEnvironment($this->Data);
                 $graha1Bhava = $Graha1->getBhava();
                 $graha2Bhava = $Graha2->getBhava();
                 
-                if(in_array($graha1Bhava, Bhava::$bhavaDusthana) or in_array($graha2Bhava, Bhava::$bhavaDusthana)){
+                if (in_array($graha1Bhava, Bhava::$bhavaDusthana) or in_array($graha2Bhava, Bhava::$bhavaDusthana)) {
                     $subtype = Yoga::MAHAPURUSHA_DAINYA;
-                }elseif($graha1Bhava == 3 or $graha2Bhava == 3){
+                } elseif ($graha1Bhava == 3 or $graha2Bhava == 3) {
                     $subtype = Yoga::MAHAPURUSHA_KHALA;
-                }else{
+                } else {
                     $subtype = Yoga::MAHAPURUSHA_MAHA;
                 }
                 return $subtype;
-            }else{
+            } else {
                 return true;
             }
-        }else{
+        } else {
             return false;
         }
     }
@@ -110,12 +110,12 @@ class YogaBase {
         $grahaBhava = $Graha->getBhava();
         $grahaAvastha = $Graha->getRashiAvastha();
         
-        if(
+        if (
             in_array($grahaBhava, Bhava::$bhavaKendra) and 
             in_array($grahaAvastha, [Rashi::GRAHA_UCHA, Rashi::GRAHA_MOOL, Rashi::GRAHA_SWA])
-        ){
+        ) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
@@ -127,10 +127,10 @@ class YogaBase {
      */
     public function generateYoga()
     {
-        foreach ($this->yogas as $yoga){
+        foreach ($this->yogas as $yoga) {
             $hasYoga = 'has'.$yoga;
             
-            if($this->$hasYoga()){
+            if ($this->$hasYoga()) {
                 yield $yoga;
             }
         }

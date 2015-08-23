@@ -13,7 +13,8 @@ use Jyotish\Graha\Graha;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class Rashi {
+class Rashi
+{
     /**
      * Movable
      */
@@ -82,7 +83,7 @@ class Rashi {
      * @var array 
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 4, Verse 3.
      */
-    static public $rashi = array(
+    public static $rashi = array(
         1 => self::NAME_1,
         2 => self::NAME_2,
         3 => self::NAME_3,
@@ -102,7 +103,7 @@ class Rashi {
      * 
      * @var array
      */
-    static public $grahaAvastha = [
+    public static $grahaAvastha = [
         self::GRAHA_UCHA,
         self::GRAHA_MOOL,
         self::GRAHA_SWA,
@@ -118,7 +119,7 @@ class Rashi {
      * @var array
      * @see Vaidyanatha Dikshita. Jataka Parijata. Chapter 1, Verse 58.
      */
-    static public $pushkaraBhaga = array(
+    public static $pushkaraBhaga = array(
         1 => 21,
         2 => 14,
         3 => 18,
@@ -138,7 +139,7 @@ class Rashi {
      * 
      * @var array
      */
-    static public $pushkaraNavamsha = array(
+    public static $pushkaraNavamsha = array(
         1 => [7, 9],
         2 => [3, 5],
         3 => [6, 8],
@@ -159,7 +160,7 @@ class Rashi {
      * 
      * @var array
      */
-    static private $trimshamshaRuler = array(
+    private static $trimshamshaRuler = array(
         Graha::KEY_MA => 5,
         Graha::KEY_SA => 5,
         Graha::KEY_GU => 8,
@@ -173,7 +174,7 @@ class Rashi {
      * @var array
      * @see Jyotish\Alphabet\Devanagari
      */
-    static public $translit = ['ra','aa','sha','i'];
+    public static $translit = ['ra','aa','sha','i'];
 
     /**
      * Returns the requested instance of rashi class.
@@ -184,7 +185,7 @@ class Rashi {
      * @return the requested instance of rashi class
      * @throws Exception\InvalidArgumentException
      */
-    static public function getInstance($key, array $options = null) {
+    public static function getInstance($key, array $options = null) {
         if (!array_key_exists($key, self::$rashi)) {
             throw new Exception\InvalidArgumentException("Rashi with the key '$key' does not exist.");
         }
@@ -202,7 +203,7 @@ class Rashi {
      * @return array Trimshamsha rulers
      * @see Varahamihira. Brihat Jataka. Chapter 1, Verse 7.
      */
-    static public function trimshamshaRulerList($key)
+    public static function trimshamshaRulerList($key)
     {
         $rulers = $key % 2 ? self::$trimshamshaRuler : array_reverse(self::$trimshamshaRuler);
         

@@ -14,7 +14,8 @@ use Jyotish\Base\Utils;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class Vara {
+class Vara
+{
     /**
      * Sunday
      */
@@ -49,7 +50,7 @@ class Vara {
      * 
      * @var array 
      */
-    static public $vara = array(
+    public static $vara = array(
         Graha::KEY_SY => self::NAME_SY,
         Graha::KEY_CH => self::NAME_CH,
         Graha::KEY_MA => self::NAME_MA,
@@ -67,7 +68,7 @@ class Vara {
      * @return the requested instance of nakshatra class
      * @throws Exception\InvalidArgumentException
      */
-    static public function getInstance($key, array $options = null)
+    public static function getInstance($key, array $options = null)
     {
         $key = ucfirst(strtolower($key));
         
@@ -87,13 +88,13 @@ class Vara {
      * @param string $startDay
      * @return array
      */
-    static public function listVara($startDay = Graha::KEY_SY)
+    public static function listVara($startDay = Graha::KEY_SY)
     {
         $varas = self::$vara;
         
-        if($startDay != Graha::KEY_SY){
+        if ($startDay != Graha::KEY_SY) {
             $list = Utils::shiftArray($varas, $startDay);
-        }else{
+        } else {
             $list = $varas;
         }
         

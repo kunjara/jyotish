@@ -11,7 +11,8 @@ namespace Jyotish\Panchanga;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class Panchanga {
+class Panchanga
+{
     /**
      * Tithi anga
      */
@@ -38,7 +39,7 @@ class Panchanga {
      * 
      * @var array
      */
-    static public $anga = [
+    public static $anga = [
         self::ANGA_TITHI,
         self::ANGA_NAKSHATRA,
         self::ANGA_YOGA,
@@ -55,15 +56,15 @@ class Panchanga {
      * @return the requested instance of anga
      * @throws Exception\InvalidArgumentException
      */
-    static public function getInstance($anga, $key, array $options = null)
+    public static function getInstance($anga, $key, array $options = null)
     {
-        if(!defined('self::ANGA_'.  strtoupper($anga))){
+        if (!defined('self::ANGA_'.  strtoupper($anga))) {
             throw new \Jyotish\Panchanga\Exception\InvalidArgumentException("Anga '$anga' does not exist.");
         }
         
         $angaClass = 'Jyotish\\Panchanga\\' . ucfirst($anga) . '\\' . ucfirst($anga);
         
-        if(!method_exists($angaClass, 'getInstance')){
+        if (!method_exists($angaClass, 'getInstance')) {
             throw new \Jyotish\Panchanga\Exception\InvalidArgumentException("Instance of '$anga' can not be created.");
         }
         

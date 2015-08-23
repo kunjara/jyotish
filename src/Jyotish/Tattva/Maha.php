@@ -11,7 +11,8 @@ namespace Jyotish\Tattva;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class Maha {
+class Maha
+{
     /**
      * Mode of goodness
      */
@@ -118,7 +119,7 @@ class Maha {
      * 
      * @var array
      */
-    static public $guna = [
+    public static $guna = [
         self::GUNA_SATTVA,
         self::GUNA_RAJA,
         self::GUNA_TAMA,
@@ -129,7 +130,7 @@ class Maha {
      * 
      * @var array
      */
-    static public $bhuta = [
+    public static $bhuta = [
         self::BHUTA_AKASH,
         self::BHUTA_VAYU,
         self::BHUTA_AGNI,
@@ -142,7 +143,7 @@ class Maha {
      * 
      * @var array
      */
-    static public $disha = [
+    public static $disha = [
         self::DISHA_UTTARA,
         self::DISHA_ISHANYA,
         self::DISHA_PURVA,
@@ -160,7 +161,7 @@ class Maha {
      * 
      * @var array
      */
-    static public $basis = [
+    public static $basis = [
         self::BASIS_DHATU,
         self::BASIS_MULA,
         self::BASIS_JIVA,
@@ -171,7 +172,7 @@ class Maha {
      * 
      * @var array
      */
-    static public $color = [
+    public static $color = [
         self::COLOR_BLACK => '000000',
         self::COLOR_COPPER => 'b87333',
         self::COLOR_FAWN => 'e5aa70',
@@ -191,9 +192,9 @@ class Maha {
      * @param int $number Number of dishas.
      * @return array List of dishas.
      */
-    static public function listDisha($number)
+    public static function listDisha($number)
     {
-        switch ($number){
+        switch ($number) {
             case 2:
                 $list = array_slice(self::$disha, 8, 2);
                 break;

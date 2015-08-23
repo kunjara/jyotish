@@ -11,8 +11,8 @@ namespace Jyotish\Panchanga\Yoga\Object;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class YogaObject extends \Jyotish\Panchanga\AngaObject {
-
+class YogaObject extends \Jyotish\Panchanga\AngaObject
+{
     use \Jyotish\Base\Traits\GetTrait;
 
     /**

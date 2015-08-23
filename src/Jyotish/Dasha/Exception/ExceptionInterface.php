@@ -9,6 +9,7 @@ namespace Jyotish\Dasha\Exception;
 /**
  * Base exception interface for Dasha objects.
  */
-interface ExceptionInterface {
+interface ExceptionInterface
+{
     
 }

@@ -14,8 +14,8 @@ use Jyotish\Ganita\Math;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class NakshatraObject extends \Jyotish\Panchanga\AngaObject {
-    
+class NakshatraObject extends \Jyotish\Panchanga\AngaObject
+{
     use \Jyotish\Base\Traits\GetTrait;
     use \Jyotish\Base\Traits\OptionTrait;
     
@@ -174,8 +174,8 @@ class NakshatraObject extends \Jyotish\Panchanga\AngaObject {
      */
     protected function setNakshatraStartEnd($options)
     {
-        if($options['withAbhijit']){
-            switch ($this->nakshatraKey){
+        if ($options['withAbhijit']) {
+            switch ($this->nakshatraKey) {
             case 21:
                 $this->nakshatraStart = Math::dmsMulti(Nakshatra::$arc, 20);
                 $this->nakshatraEnd = array('d' => 276, 'm' => 40);
@@ -192,8 +192,8 @@ class NakshatraObject extends \Jyotish\Panchanga\AngaObject {
                 $this->nakshatraStart = Math::dmsMulti(Nakshatra::$arc, $this->nakshatraKey - 1);
                 $this->nakshatraEnd = Math::dmsSum($this->nakshatraStart, Nakshatra::$arc);
             }
-        }else{
-            if($this->nakshatraKey == 28) {
+        } else {
+            if ($this->nakshatraKey == 28) {
                 throw new \Jyotish\Panchanga\Exception\InvalidArgumentException("Parameters of 28 nakshatra are determined only with argument 'withAbhijit' = true.");
             }
 
@@ -209,9 +209,9 @@ class NakshatraObject extends \Jyotish\Panchanga\AngaObject {
      */
     protected function setNakshatraNavatara()
     {
-        if($this->nakshatraKey == 28){
+        if ($this->nakshatraKey == 28) {
             $result = null;
-        }else{
+        } else {
             $result = Math::numberInCycle($this->nakshatraKey, 1, 9);
         }
 

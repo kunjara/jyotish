@@ -13,8 +13,8 @@ use Jyotish\Base\Analysis;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-abstract class AbstractChakra {
-    
+abstract class AbstractChakra
+{
     use \Jyotish\Base\Traits\DataTrait;
     
     /**
@@ -35,7 +35,7 @@ abstract class AbstractChakra {
      * 
      * @var array
      */
-    static public $style = array(
+    public static $style = array(
         self::STYLE_NORTH,
         self::STYLE_SOUTH,
         self::STYLE_EAST,
@@ -92,9 +92,9 @@ abstract class AbstractChakra {
         foreach ($this->bhavaPoints as $bhavaKey => $bhavaPoints) {
             foreach ($bhavaPoints as $point => $value) {
                 if ($value != 0) {
-                    if($point % 2){
+                    if ($point % 2) {
                         $myPoints[$bhavaKey][] = $value * round($size / $this->chakraDivider) + $topOffset;
-                    }else{
+                    } else {
                         $myPoints[$bhavaKey][] = $value * round($size / $this->chakraDivider) + $leftOffset;
                     }
                 } else {

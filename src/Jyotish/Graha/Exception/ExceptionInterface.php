@@ -9,6 +9,7 @@ namespace Jyotish\Graha\Exception;
 /**
  * Base exception interface for Graha objects.
  */
-interface ExceptionInterface {
+interface ExceptionInterface
+{
     
 }

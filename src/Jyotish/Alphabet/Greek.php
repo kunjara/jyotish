@@ -11,7 +11,8 @@ namespace Jyotish\Alphabet;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class Greek extends \Jyotish\Alphabet\Language {
+class Greek extends \Jyotish\Alphabet\Language
+{
     /**
      * Uppercase letters unicode
      */

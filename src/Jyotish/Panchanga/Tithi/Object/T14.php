@@ -13,7 +13,8 @@ use Jyotish\Panchanga\Karana\Karana;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class T14 extends TithiObject {
+class T14 extends TithiObject
+{
     /**
      * Tithi key
      * 

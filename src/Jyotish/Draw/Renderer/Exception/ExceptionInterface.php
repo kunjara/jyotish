@@ -9,6 +9,7 @@ namespace Jyotish\Draw\Renderer\Exception;
 /**
  * Jyotish\Draw\Renderer Exceptions.
  */
-interface ExceptionInterface {
+interface ExceptionInterface
+{
     
 }

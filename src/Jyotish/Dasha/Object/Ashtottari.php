@@ -18,7 +18,8 @@ use Jyotish\Panchanga\Nakshatra\Nakshatra;
  * @author Kunjara Lila das <vladya108@gmail.com>
  * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 46, Verse 17-23.
  */
-class Ashtottari extends AbstractDasha {
+class Ashtottari extends AbstractDasha
+{
     /**
      * Dasha key
      * 
@@ -74,12 +75,12 @@ class Ashtottari extends AbstractDasha {
         $indexNum = array_search($nakshatra['key'], $keysNakshatra) + 1;
         
         $partSum = 0;
-        foreach ($this->durationGraha as $key => $value){
+        foreach ($this->durationGraha as $key => $value) {
             $G = Graha::getInstance($key);
             $part = $G->grahaCharacter == Graha::CHARACTER_PAPA ? 4 : 3;
 
             $partSum += $part;
-            if($partSum >= $indexNum) break;
+            if ($partSum >= $indexNum) break;
         }
         $num = $part - ($partSum - $indexNum);
 

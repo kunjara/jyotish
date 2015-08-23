@@ -19,7 +19,8 @@ use Jyotish\Tattva\Ayurveda;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class N4 extends NakshatraObject {
+class N4 extends NakshatraObject
+{
     /**
      * Nakshatra key
      * 

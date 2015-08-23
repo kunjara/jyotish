@@ -15,7 +15,8 @@ use DOMText;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class Svg extends AbstractRenderer {
+class Svg extends AbstractRenderer
+{
     /**
      * Renderer name.
      * 
@@ -53,7 +54,7 @@ class Svg extends AbstractRenderer {
     }
 
     public function drawPolygon($points, array $options = null) {
-        if(isset($options)){
+        if (isset($options)) {
             $this->setOptions($options);
         }
         
@@ -71,8 +72,8 @@ class Svg extends AbstractRenderer {
         $attributes['stroke-width'] = $this->options['strokeWidth'];
         $attributes['stroke-linejoin'] = 'round';
         
-        if(isset($this->options['attributes']) and is_array($this->options['attributes'])){
-            foreach($this->options['attributes'] as $name => $value){
+        if (isset($this->options['attributes']) and is_array($this->options['attributes'])) {
+            foreach ($this->options['attributes'] as $name => $value) {
                 $attributes[$name] = $value;
             }
         }
@@ -81,7 +82,7 @@ class Svg extends AbstractRenderer {
     }
 
     public function drawText($text, $x = 0, $y = 0, array $options = null) {
-        if(isset($options)){
+        if (isset($options)) {
             $this->setOptions($options);
         }
         

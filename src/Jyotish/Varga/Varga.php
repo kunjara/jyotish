@@ -11,8 +11,8 @@ namespace Jyotish\Varga;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class Varga {
-
+class Varga
+{
     const KEY_D1  = 'D1';
     const KEY_D2  = 'D2';
     const KEY_D3  = 'D3';
@@ -36,7 +36,7 @@ class Varga {
      * @var array 
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 7, Verse 2-4.
      */
-    static public $varga = array(
+    public static $varga = array(
         self::KEY_D1  => 'Rashi',
         self::KEY_D2  => 'Hora',
         self::KEY_D3  => 'Drekkana',
@@ -61,7 +61,7 @@ class Varga {
      * @var array
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 7, Verse 17-19.
      */
-    static public $balaShadVarga = array(
+    public static $balaShadVarga = array(
         self::KEY_D1  => 6,
         self::KEY_D2  => 2,
         self::KEY_D3  => 4,
@@ -76,7 +76,7 @@ class Varga {
      * @var array
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 7, Verse 17-19.
      */
-    static public $balaSaptaVarga = array(
+    public static $balaSaptaVarga = array(
         self::KEY_D1  => 5,
         self::KEY_D2  => 2,
         self::KEY_D3  => 3,
@@ -92,7 +92,7 @@ class Varga {
      * @var array
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 7, Verse 20.
      */
-    static public $balaDashaVarga = array(
+    public static $balaDashaVarga = array(
         self::KEY_D1  => 3,
         self::KEY_D2  => 1.5,
         self::KEY_D3  => 1.5,
@@ -111,7 +111,7 @@ class Varga {
      * @var array
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 7, Verse 21-25.
      */
-    static public $balaShodashaVarga = array(
+    public static $balaShodashaVarga = array(
         self::KEY_D1  => 3.5,
         self::KEY_D2  => 1,
         self::KEY_D3  => 1,
@@ -138,7 +138,7 @@ class Varga {
      * @return the requested instance of varga class
      * @throws Exception\InvalidArgumentException
      */
-    static public function getInstance($key, $options = null) {
+    public static function getInstance($key, $options = null) {
         if (!array_key_exists($key, self::$varga)) {
             throw new Exception\InvalidArgumentException("Varga '$key' is not defined.");
         }

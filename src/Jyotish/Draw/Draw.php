@@ -11,7 +11,8 @@ namespace Jyotish\Draw;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class Draw {
+class Draw
+{
     /**
      * Image renderer
      */

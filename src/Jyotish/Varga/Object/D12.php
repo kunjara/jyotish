@@ -13,7 +13,8 @@ use Jyotish\Ganita\Math;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class D12 extends AbstractVarga {
+class D12 extends AbstractVarga
+{
     /**
      * Key of the varga.
      * 

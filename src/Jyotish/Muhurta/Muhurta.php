@@ -15,7 +15,8 @@ use Jyotish\Ganita\Time;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class Muhurta {
+class Muhurta
+{
     const PANCHAKA_MRITYU = 1;
     const PANCHAKA_AGNI   = 2;
     const PANCHAKA_RAJA   = 4;
@@ -56,11 +57,11 @@ class Muhurta {
     {
         $this->init($period);
         
-        if(is_null($angas)){
+        if (is_null($angas)) {
             $angas = Panchanga::$anga;
         }
         
-        foreach ($angas as $angaName){
+        foreach ($angas as $angaName) {
             $this->calcPanchanga($angaName);
         }
         
@@ -82,11 +83,11 @@ class Muhurta {
         $angaData = $this->AngaDefiner->$getAnga(true);
         $nextTime = $angaData['end'];
         
-        if(!isset($this->dateTimeObject)){
+        if (!isset($this->dateTimeObject)) {
             $this->dateTimeObject = clone($this->dateTimeObjectStart);
             $angaData['start'] = null;
-        }else{
-            if($angaName != Panchanga::ANGA_VARA){
+        } else {
+            if ($angaName != Panchanga::ANGA_VARA) {
                 $angaData['start'] = end($this->timeStamps)['end'];
             }
         }
@@ -96,7 +97,7 @@ class Muhurta {
         // Eliminate the error of end calculation
         $this->dateTimeObject->modify($nextTime)->modify('+ 8 minutes');
         
-        if($nextTime < $this->dateTimeObjectEnd->format(Time::FORMAT_DATETIME)){
+        if ($nextTime < $this->dateTimeObjectEnd->format(Time::FORMAT_DATETIME)) {
             $this->AngaDefiner->setData([
                 'date' => $this->dateTimeObject->format(Time::FORMAT_DATA_DATE),
                 'time' => $this->dateTimeObject->format(Time::FORMAT_DATA_TIME),
@@ -119,7 +120,7 @@ class Muhurta {
             'time' => $this->dateTimeObjectStart->format(Time::FORMAT_DATA_TIME),
         ]);
         
-        if($period > 1) 
+        if ($period > 1) 
             $this->dateTimeObjectEnd->modify('+' . $period - 1 . ' days');
     }
 
@@ -127,8 +128,8 @@ class Muhurta {
     {
         $dateTimeEnd = Time::createDateTime($this->ganitaData['user']);
         
-        foreach ($this->timeStamps as $key => $timeStamp){
-            if(is_null($timeStamp['start']) or $timeStamp['end'] < $dateTimeEnd->format(Time::FORMAT_DATETIME)){
+        foreach ($this->timeStamps as $key => $timeStamp) {
+            if (is_null($timeStamp['start']) or $timeStamp['end'] < $dateTimeEnd->format(Time::FORMAT_DATETIME)) {
                 unset($this->timeStamps[$key]);
             }
         }
@@ -137,10 +138,10 @@ class Muhurta {
     protected function sort()
     {
         usort($this->timeStamps, 
-            function ($stamp1, $stamp2){
-                if($stamp1['start'] == $stamp2['start']) {
+            function ($stamp1, $stamp2) {
+                if ($stamp1['start'] == $stamp2['start']) {
                     return 0;
-                }else{
+                } else {
                     return ($stamp1['start'] > $stamp2['start']) ? 1 : -1;
                 }
             }

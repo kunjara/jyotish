@@ -11,8 +11,8 @@ namespace Jyotish\Draw\Renderer;
  * 
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-abstract class AbstractRenderer {
-    
+abstract class AbstractRenderer
+{
     use \Jyotish\Base\Traits\OptionTrait;
     use \Jyotish\Base\Traits\GetTrait;
 

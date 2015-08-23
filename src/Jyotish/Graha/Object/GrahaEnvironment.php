@@ -19,8 +19,8 @@ use Jyotish\Varga\Varga;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-trait GrahaEnvironment {
-    
+trait GrahaEnvironment
+{
     use \Jyotish\Base\Traits\EnvironmentTrait;
     
     /**
@@ -31,24 +31,23 @@ trait GrahaEnvironment {
      */
     public function getBhava($which = null)
     {
-        $getBhava = function($rashi){
+        $getBhava = function ($rashi) {
             $bhava = 0;
-            do{
+            do {
                 $bhava++;
                 $bhavaRashi = $this->getEnvironment()['bhava'][$bhava]['rashi'];
-            }
-            while($rashi <> $bhavaRashi);
+            } while ($rashi <> $bhavaRashi);
             return $bhava;
         };
         
-        switch($which){
+        switch ($which) {
             case Rashi::GRAHA_SWA:
                 $swa = $this->grahaSwa;
                 
-                if(isset($swa['positive'])){
+                if (isset($swa['positive'])) {
                     $bhava[] = $getBhava($swa['positive']['rashi']);
                     $bhava[] = $getBhava($swa['negative']['rashi']);
-                }else{
+                } else {
                     $bhava = is_null($swa[0]['rashi']) ? null : $getBhava($swa[0]['rashi']);
                 }
                 break;
@@ -84,28 +83,28 @@ trait GrahaEnvironment {
         $rashi = $this->getEnvironment()['graha'][$this->objectKey]['rashi'];
         $degree = $this->getEnvironment()['graha'][$this->objectKey]['degree'];
         
-        if($rashi == $this->grahaUcha['rashi']){
-            if($this->objectKey == Graha::KEY_CH or $this->objectKey == Graha::KEY_BU){
-                if($degree >= 0 and $degree < $this->grahaUcha['degree']) return Rashi::GRAHA_UCHA;
-            }else{
+        if ($rashi == $this->grahaUcha['rashi']) {
+            if ($this->objectKey == Graha::KEY_CH or $this->objectKey == Graha::KEY_BU) {
+                if ($degree >= 0 and $degree < $this->grahaUcha['degree']) return Rashi::GRAHA_UCHA;
+            } else {
                 return Rashi::GRAHA_UCHA;
             }
         }
         
-        if($rashi == $this->grahaNeecha['rashi'])
+        if ($rashi == $this->grahaNeecha['rashi'])
             return Rashi::GRAHA_NEECHA;
         
-        if($rashi == $this->grahaMool['rashi'] and $degree >= $this->grahaMool['start'] and $degree < $this->grahaMool['end'])
+        if ($rashi == $this->grahaMool['rashi'] and $degree >= $this->grahaMool['start'] and $degree < $this->grahaMool['end'])
             return Rashi::GRAHA_MOOL;
         
-        foreach ($this->grahaSwa as $key => $value){
-            if($rashi == $value['rashi'] and $degree >= $value['start'] and $degree < $value['end'])
+        foreach ($this->grahaSwa as $key => $value) {
+            if ($rashi == $value['rashi'] and $degree >= $value['start'] and $degree < $value['end'])
                 return Rashi::GRAHA_SWA;
         }
         
         $relation = $this->grahaRelation;
         $dispositor = $this->getDispositor();
-        switch ($relation[$dispositor]){
+        switch ($relation[$dispositor]) {
             case 1:
                 return Rashi::GRAHA_FRIEND;
                 break;
@@ -144,7 +143,7 @@ trait GrahaEnvironment {
         
         $avasthaBhaga = $grahaRashi % 2 ? $grahaBhaga : 30 - $grahaBhaga;
         
-        switch($avasthaBhaga){
+        switch ($avasthaBhaga) {
             case ($avasthaBhaga >= 0 and $avasthaBhaga < 6):
                 $avastha = Avastha::NAME_BALA;
                 break;
@@ -173,7 +172,7 @@ trait GrahaEnvironment {
     {
         $rashiAvastha = $this->getRashiAvastha();
         
-        switch ($rashiAvastha){
+        switch ($rashiAvastha) {
             case Rashi::GRAHA_UCHA:
             case Rashi::GRAHA_MOOL:
             case Rashi::GRAHA_SWA:
@@ -200,7 +199,7 @@ trait GrahaEnvironment {
     {
         $rashiAvastha = $this->getRashiAvastha();
         
-        switch ($rashiAvastha){
+        switch ($rashiAvastha) {
             case Rashi::GRAHA_UCHA:
             case Rashi::GRAHA_MOOL:
                 $avastha[] = Avastha::NAME_DEEPTA;
@@ -210,9 +209,9 @@ trait GrahaEnvironment {
                 break;
             case Rashi::GRAHA_FRIEND:
                 $relation = $this->getRelation()[$this->getDispositor()];
-                if($relation == 2){
+                if ($relation == 2) {
                     $avastha[] = Avastha::NAME_PRAMUDITA;
-                }else{
+                } else {
                     $avastha[] = Avastha::NAME_SHANTA;
                 }
                 break;
@@ -222,19 +221,19 @@ trait GrahaEnvironment {
                 break;
             case Rashi::GRAHA_ENEMY:
                 $relation = $this->getRelation()[$this->getDispositor()];
-                if($relation == -2){
+                if ($relation == -2) {
                     $avastha[] = Avastha::NAME_KHALA;
-                }else{
+                } else {
                     $avastha[] = Avastha::NAME_DUKHITA;
                 }   
         }
         $maleficsAll = Graha::getGrahaByFeature('character', Graha::CHARACTER_PAPA);
         $maleficsConjuncted = array_intersect_key($this->isConjuncted(), $maleficsAll);
-        if(count($maleficsConjuncted)){
+        if (count($maleficsConjuncted)) {
             $avastha[] = Avastha::NAME_VIKALA;
         }
         
-        if($this->isAstangata()){
+        if ($this->isAstangata()) {
             $avastha[] = Avastha::NAME_KOPA;
         }
         
@@ -253,33 +252,33 @@ trait GrahaEnvironment {
         $bhavaKendra = Bhava::$bhavaKendra;
         array_shift($bhavaKendra);
         
-        if(is_int($bhava)){
-            if(in_array($bhava, Bhava::$bhavaTrikona)){
+        if (is_int($bhava)) {
+            if (in_array($bhava, Bhava::$bhavaTrikona)) {
                 $character = Graha::CHARACTER_SHUBHA;
-            }elseif(in_array($bhava, Bhava::$bhavaTrishadaya) or $bhava == 8){
+            } elseif (in_array($bhava, Bhava::$bhavaTrishadaya) or $bhava == 8) {
                 $character = Graha::CHARACTER_PAPA;
-            }elseif(in_array($bhava, $bhavaKendra)){
+            } elseif (in_array($bhava, $bhavaKendra)) {
                 $character = Graha::CHARACTER_MISHRA;
-            }else{
+            } else {
                 $character = $this->getConjunctCharacter();
             }
-        }else{
-            if($this->isYogakaraka()){
+        } else {
+            if ($this->isYogakaraka()) {
                 $character = Graha::CHARACTER_YOGAKARAKA;
-            }elseif(Math::arrayInArray($bhava, $bhavaKendra, true)){
+            } elseif (Math::arrayInArray($bhava, $bhavaKendra, true)) {
                 $character = Graha::CHARACTER_KENDRADHI;
-            }elseif(
+            } elseif (
                     (in_array(1, $bhava)) or
                     (Math::arrayInArray($bhava, Bhava::$bhavaParashraya) and Math::arrayInArray($bhava, Bhava::$bhavaTrikona)) or
                     (Math::arrayInArray($bhava, Bhava::$bhavaTrishadaya) and Math::arrayInArray($bhava, Bhava::$bhavaTrikona))
-            ){
+            ) {
                 $character = Graha::CHARACTER_SHUBHA;
-            }elseif(
+            } elseif (
                     Math::arrayInArray($bhava, Bhava::$bhavaParashraya) or
                     Math::arrayInArray($bhava, Bhava::$bhavaTrishadaya)
-            ){
+            ) {
                 $character = Graha::CHARACTER_PAPA;
-            }else{
+            } else {
                 $character = Graha::CHARACTER_MISHRA;
             }
         }
@@ -308,8 +307,8 @@ trait GrahaEnvironment {
         $relation = array();
         $friendsRashi = [2, 3, 4, 10, 11, 12];
         
-        foreach($this->getEnvironment()['graha'] as $key => $data){
-            if($this->objectKey == $key) continue;
+        foreach ($this->getEnvironment()['graha'] as $key => $data) {
+            if ($this->objectKey == $key) continue;
             
             $distance = Math::distanceInCycle($this->objectRashi, $data['rashi']);
             
@@ -345,7 +344,7 @@ trait GrahaEnvironment {
         $Varga9 = Varga::getInstance('D9');
         $d9Data = $Varga9->setData($this->Data)->getVargaData();
         
-        if($d1Data['graha'][$this->objectKey]['rashi'] == $d9Data['graha'][$this->objectKey]['rashi'])
+        if ($d1Data['graha'][$this->objectKey]['rashi'] == $d9Data['graha'][$this->objectKey]['rashi'])
             return true;
         else
             return false;
@@ -365,12 +364,12 @@ trait GrahaEnvironment {
             Graha::KEY_SA => [2, 7]
         ];
         
-        if(array_key_exists($this->objectKey, $yogaKarakas)){
+        if (array_key_exists($this->objectKey, $yogaKarakas)) {
             $lagna = $this->getEnvironment()['lagna'][Graha::KEY_LG]['rashi'];
             $isYogakaraka = in_array($lagna, $yogaKarakas[$this->objectKey]) ? true : false;
             
             return $isYogakaraka;
-        }else{
+        } else {
             return false;
         }
     }
@@ -382,7 +381,7 @@ trait GrahaEnvironment {
      */
     public function isAstangata()
     {
-        if(in_array($this->objectKey, [
+        if (in_array($this->objectKey, [
             Graha::KEY_SY, Graha::KEY_RA, Graha::KEY_KE
         ])) return null;
         
@@ -391,22 +390,22 @@ trait GrahaEnvironment {
         
         $distanceGraha = abs($degreeSy - $degreeGr);
         
-        if(in_array($this->options['bhagaAstangata'], [Biblio::BOOK_SS, Biblio::BOOK_BJ])){
+        if (in_array($this->options['bhagaAstangata'], [Biblio::BOOK_SS, Biblio::BOOK_BJ])) {
             $bhagas = Graha::listBhagaAstangata($this->options['bhagaAstangata']);
             
-            if(is_array($bhagas[$this->objectKey])){
+            if (is_array($bhagas[$this->objectKey])) {
                 $cheshta = $this->getLongitudeSpeed() >= 0 ? Graha::CHESHTA_SAMA : Graha::CHESHTA_VAKRA;
                 $distanceCombustion = $bhagas[$this->objectKey][$cheshta];
-            }elseif(is_int($bhagas[$this->objectKey])){
+            } elseif (is_int($bhagas[$this->objectKey])) {
                 $distanceCombustion = $bhagas[$this->objectKey];
-            }else{
+            } else {
                 return null;
             }
-        }else{
+        } else {
             $distanceCombustion = $this->options['bhagaAstangata'];
         }
         
-        if($distanceGraha <= $distanceCombustion){
+        if ($distanceGraha <= $distanceCombustion) {
             $percent = ($distanceCombustion - $distanceGraha) * 100 / $distanceCombustion;
             
             return [
@@ -414,7 +413,7 @@ trait GrahaEnvironment {
                 'combustion' => $distanceCombustion,
                 'percent' => $percent,
             ];
-        }else{
+        } else {
             return false;
         }
     }
@@ -435,9 +434,9 @@ trait GrahaEnvironment {
         
         $distanceGraha = abs($lonMrityu - $lonGraha);
         
-        if($distanceGraha > 2){
+        if ($distanceGraha > 2) {
             return false;
-        }else{
+        } else {
             return $distanceGraha;
         }
     }
@@ -455,35 +454,35 @@ trait GrahaEnvironment {
         $degGraha = $this->getEnvironment()['graha'][$this->objectKey]['degree'];
         $valNavamsha = Math::dmsToDecimal(['d' => 3, 'm' => 20]);
         
-        switch ($type){
+        switch ($type) {
             case Graha::PUSHKARA_BHAGA:
                 $degPushkara = Rashi::$pushkaraBhaga[$rashiGraha];
                 $distanceGraha = abs($degGraha - $degPushkara);
                 
-                if($distanceGraha < 1){
+                if ($distanceGraha < 1) {
                     return $distanceGraha;
-                }else{
+                } else {
                     return false;
                 }
                 break;
             case Graha::PUSHKARA_NAVAMSHA:
             default:
                 $numNavamsha = null;
-                for($i = 0; $i <= 1; $i++){
+                for ($i = 0; $i <= 1; $i++) {
                     $degNavamsha['start'] = (Rashi::$pushkaraNavamsha[$rashiGraha][$i] - 1) * $valNavamsha;
                     $degNavamsha['end'] = $degNavamsha['start'] + $valNavamsha;
                     
-                    if($degGraha >= $degNavamsha['start'] and $degGraha < $degNavamsha['end']){
+                    if ($degGraha >= $degNavamsha['start'] and $degGraha < $degNavamsha['end']) {
                         $numNavamsha = Rashi::$pushkaraNavamsha[$rashiGraha][$i];
                         break;
                     }
                 }
                 
-                if(!is_null($numNavamsha)){
+                if (!is_null($numNavamsha)) {
                     $number = ($rashiGraha - 1) * 9 + $numNavamsha;
                     $navamsha = Math::numberInCycle(1, $number);
                     return $navamsha;
-                }else{
+                } else {
                     return false;
                 }
         }
@@ -499,7 +498,7 @@ trait GrahaEnvironment {
      */
     public function isYuddha()
     {
-        if(in_array($this->objectKey, [
+        if (in_array($this->objectKey, [
             Graha::KEY_SY, Graha::KEY_CH, Graha::KEY_RA, Graha::KEY_KE
         ])) return null;
         
@@ -507,11 +506,11 @@ trait GrahaEnvironment {
         $grahas = Graha::listGraha(Graha::LIST_PANCHA);
         $isYuddha = false;
         
-        foreach ($grahas as $key => $name){
-            if($key == $this->objectKey) continue;
+        foreach ($grahas as $key => $name) {
+            if ($key == $this->objectKey) continue;
             
             $distance = abs($lonGraha - $this->getEnvironment()['graha'][$key]['longitude']);
-            if($distance <= 1){
+            if ($distance <= 1) {
                 $isYuddha[$key] = $distance;
             }
         }
@@ -538,12 +537,12 @@ trait GrahaEnvironment {
         
         $grahaInNeecha = $rashiAvastha == Rashi::GRAHA_NEECHA ? true : false;
         
-        if($grahaInGochara)
-            if(!$grahaIsAstangata and !$grahaInDusthana) 
+        if ($grahaInGochara)
+            if (!$grahaIsAstangata and !$grahaInDusthana) 
                 $result = 1;
             else
                 $result = 0;
-        elseif($grahaIsAstangata or $grahaInDusthana or $grahaInNeecha)
+        elseif ($grahaIsAstangata or $grahaInDusthana or $grahaInNeecha)
             $result = -1;
         else
             $result = 0;
@@ -561,23 +560,23 @@ trait GrahaEnvironment {
         $benefic = 0;
         $malefic = 0;
         
-        foreach($this->getEnvironment()['graha'] as $key => $params){
-            if($key == $this->objectKey) continue;
+        foreach ($this->getEnvironment()['graha'] as $key => $params) {
+            if ($key == $this->objectKey) continue;
 
-            if($params['rashi'] == $this->objectRashi){
+            if ($params['rashi'] == $this->objectRashi) {
                 $G = Graha::getInstance($key);
                 $G->setEnvironment($this->Data);
 
-                if($G->grahaCharacter == Graha::CHARACTER_SHUBHA)
+                if ($G->grahaCharacter == Graha::CHARACTER_SHUBHA)
                     $benefic = $benefic + 1;
                 else
                     $malefic = $malefic + 1;
             }
         }
         
-        if(($benefic > 0 and $malefic > 0) or ($benefic == 0 and $malefic == 0))
+        if (($benefic > 0 and $malefic > 0) or ($benefic == 0 and $malefic == 0))
             $character = Graha::CHARACTER_MISHRA;
-        elseif($malefic > 0)
+        elseif ($malefic > 0)
             $character = Graha::CHARACTER_PAPA;
         else
             $character = Graha::CHARACTER_SHUBHA;

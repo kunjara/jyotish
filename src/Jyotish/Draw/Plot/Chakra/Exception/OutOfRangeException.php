@@ -9,6 +9,7 @@ namespace Jyotish\Draw\Plot\Chakra\Exception;
 /**
  * Jyotish\Draw\Plot\Chakra OutOfRangeException.
  */
-class OutOfRangeException extends \OutOfRangeException implements ExceptionInterface {
+class OutOfRangeException extends \OutOfRangeException implements ExceptionInterface
+{
     
 }

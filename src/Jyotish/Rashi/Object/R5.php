@@ -17,7 +17,8 @@ use Jyotish\Tattva\Ayurveda;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class R5 extends RashiObject {
+class R5 extends RashiObject
+{
     /**
      * Rashi key
      * 
@@ -125,7 +126,7 @@ class R5 extends RashiObject {
      */
     protected function setRashiType($options)
     {
-        if($options['rashi5Vana']){
+        if ($options['rashi5Vana']) {
             $this->rashiType = Manusha::TYPE_VANA;
         }
     }

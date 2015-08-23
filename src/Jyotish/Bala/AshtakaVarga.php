@@ -16,8 +16,8 @@ use Jyotish\Ganita\Math;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class AshtakaVarga {
-    
+class AshtakaVarga
+{
     use \Jyotish\Base\Traits\DataTrait;
 
     /**
@@ -203,9 +203,9 @@ class AshtakaVarga {
      */
     public function getSarvAshtakavarga($withLagna = false)
     {
-        if($withLagna){
+        if ($withLagna) {
             return Math::arraySum($this->sarvAshtakavarga, $this->bhinnAshtakavarga[Graha::KEY_LG]);
-        }else{
+        } else {
             return $this->sarvAshtakavarga;
         }
     }
@@ -219,26 +219,26 @@ class AshtakaVarga {
     {
         $this->setData($Data);
 
-        foreach($this->ashtakavarga as $varga){
+        foreach ($this->ashtakavarga as $varga) {
             $binduVarga = 'bindu'.$varga;
 
-            foreach($this->ashtakavarga as $graha){
-                for($i = 1; $i <= 12; $i++){
+            foreach ($this->ashtakavarga as $graha) {
+                for ($i = 1; $i <= 12; $i++) {
                     $bindu = in_array($i, $this->{$binduVarga}[$graha]) ? 1 : 0; 
 
-                    if($graha != Graha::KEY_LG){
+                    if ($graha != Graha::KEY_LG) {
                         $distance = Math::numberInCycle($this->getData()['graha'][$graha]['rashi'], $i);
-                    }else{
+                    } else {
                         $distance = Math::numberInCycle($this->getData()['lagna'][$graha]['rashi'], $i);
                     }
                     
-                    if(!isset($this->bhinnAshtakavarga[$varga][$distance])) $this->bhinnAshtakavarga[$varga][$distance] = 0;
+                    if (!isset($this->bhinnAshtakavarga[$varga][$distance])) $this->bhinnAshtakavarga[$varga][$distance] = 0;
                     $this->bhinnAshtakavarga[$varga][$distance] += $bindu;
                 }
             }
             ksort($this->bhinnAshtakavarga[$varga]);
 
-            if($varga != Graha::KEY_LG)
+            if ($varga != Graha::KEY_LG)
                 $this->sarvAshtakavarga = Math::arraySum($this->bhinnAshtakavarga[$varga], $this->sarvAshtakavarga);
         }
     }

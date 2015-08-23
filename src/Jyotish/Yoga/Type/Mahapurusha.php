@@ -14,7 +14,8 @@ use Jyotish\Graha\Graha;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class Mahapurusha extends YogaBase {
+class Mahapurusha extends YogaBase
+{
     /**
      * Type of yogas.
      * 

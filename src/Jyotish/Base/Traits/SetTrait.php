@@ -11,7 +11,8 @@ namespace Jyotish\Base\Traits;
  * 
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-trait SetTrait {
+trait SetTrait
+{
     /**
      * Set object property.
      * 
@@ -23,13 +24,13 @@ trait SetTrait {
     {
         $pos = strpos($property, $this->objectType);
         
-        if(!property_exists($this, $property)){
+        if (!property_exists($this, $property)) {
             throw new \Jyotish\Base\Exception\InvalidArgumentException("Property '$property' does not exist.");
         }
         
-        if($pos === false){
+        if ($pos === false) {
             $this->$property = $value;
-        }else{
+        } else {
             throw new \Jyotish\Base\Exception\InvalidArgumentException("Property '$property' can not be set.");
         }
     }

@@ -11,7 +11,8 @@ namespace Jyotish\Varga\Object;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class D1 extends AbstractVarga {
+class D1 extends AbstractVarga
+{
     /**
      * Key of the varga.
      * 

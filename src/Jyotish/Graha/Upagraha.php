@@ -14,8 +14,8 @@ use Jyotish\Ganita\Math;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class Upagraha {
-    
+class Upagraha
+{
     use \Jyotish\Base\Traits\DataTrait;
     
     /**
@@ -44,7 +44,7 @@ class Upagraha {
      * 
      * @var array
      */
-    static public $upagraha = array(
+    public static $upagraha = array(
         self::KEY_DH => 'Dhooma',
         self::KEY_VY => 'Vyatipata',
         self::KEY_PA => 'Parivesha',
@@ -69,11 +69,11 @@ class Upagraha {
      */
     public function getDh()
     {
-        if(!isset($this->getData()['graha'])){
+        if (!isset($this->getData()['graha'])) {
             $this->Data->calcParams();
         }
             
-        if(!isset($this->temp[self::KEY_DH])){
+        if (!isset($this->temp[self::KEY_DH])) {
             $result = $this->getData()['graha'][Graha::KEY_SY]['longitude'] + 133 + 1/3;
             $lng = $result > 360 ? $result - 360 : $result;
             $unit = Math::partsToUnits($lng);
@@ -95,7 +95,7 @@ class Upagraha {
      */
     public function getVy()
     {
-        if(!isset($this->temp[self::KEY_VY])){
+        if (!isset($this->temp[self::KEY_VY])) {
             $lng = 360 - $this->getDh()['longitude'];
             $unit = Math::partsToUnits($lng);
             
@@ -116,7 +116,7 @@ class Upagraha {
      */
     public function getPa()
     {
-        if(!isset($this->temp[self::KEY_PA])){
+        if (!isset($this->temp[self::KEY_PA])) {
             $result = $this->getVy()['longitude'] + 180;
             $lng = $result > 360 ? $result - 360 : $result;
             $unit = Math::partsToUnits($lng);
@@ -138,7 +138,7 @@ class Upagraha {
      */
     public function getIn()
     {
-        if(!isset($this->temp[self::KEY_IN])){
+        if (!isset($this->temp[self::KEY_IN])) {
             $lng = 360 - $this->getPa()['longitude'];
             $unit = Math::partsToUnits($lng);
             
@@ -159,7 +159,7 @@ class Upagraha {
      */
     public function getUk()
     {
-        if(!isset($this->temp[self::KEY_UK])){
+        if (!isset($this->temp[self::KEY_UK])) {
             $result = $this->getIn()['longitude'] + 16 + 2/3;
             $lng = $result > 360 ? $result - 360 : $result;
             $unit = Math::partsToUnits($lng);
@@ -181,12 +181,12 @@ class Upagraha {
      */
     public function generateUpagraha(array $upagrahaKeys = null)
     {
-        if(is_null($upagrahaKeys)){
+        if (is_null($upagrahaKeys)) {
             $upagrahaKeys = array_keys(self::$upagraha);
         }
         
-        foreach ($upagrahaKeys as $key){
-            if (!array_key_exists($key, self::$upagraha)){
+        foreach ($upagrahaKeys as $key) {
+            if (!array_key_exists($key, self::$upagraha)) {
                 throw new Exception\InvalidArgumentException("Upagraha with the key '$key' does not exist.");
             }
             

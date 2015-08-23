@@ -15,7 +15,8 @@ use DateTime;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class Ayanamsha {
+class Ayanamsha
+{
     const AYANAMSHA_DELUCE       = 'Deluce';
     const AYANAMSHA_DJWHALKHUL   = 'Djwhalkhul';
     const AYANAMSHA_FAGAN        = 'Fagan';
@@ -32,7 +33,7 @@ class Ayanamsha {
      * 
      * @var array
      */
-    static public $ayanamsha = [
+    public static $ayanamsha = [
         self::AYANAMSHA_DELUCE,
         self::AYANAMSHA_DJWHALKHUL,
         self::AYANAMSHA_FAGAN,
@@ -50,7 +51,7 @@ class Ayanamsha {
      * 
      * @var array
      */
-    static public $coincidence = [
+    public static $coincidence = [
         self::AYANAMSHA_DELUCE       => -1,
         self::AYANAMSHA_DJWHALKHUL   => -41,
         self::AYANAMSHA_FAGAN        => 221,
@@ -70,9 +71,9 @@ class Ayanamsha {
      * @param string $ayanamsha Ayanamsha name (optional)
      * @return float
      */
-    static public function getAyanamsha(DateTime $Date = null, $ayanamsha = self::AYANAMSHA_LAHIRI)
+    public static function getAyanamsha(DateTime $Date = null, $ayanamsha = self::AYANAMSHA_LAHIRI)
     {
-        if(is_null($Date)){
+        if (is_null($Date)) {
             $Date = new DateTime('now');
         }
         
@@ -98,9 +99,9 @@ class Ayanamsha {
      * @param null|DateTime $Date Date (optional)
      * @return float
      */
-    static public function calcAyanamsha(DateTime $Date = null)
+    public static function calcAyanamsha(DateTime $Date = null)
     {
-        if(is_null($Date)){
+        if (is_null($Date)) {
             $Date = new DateTime('now');
         }
         

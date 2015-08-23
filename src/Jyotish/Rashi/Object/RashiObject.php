@@ -16,8 +16,8 @@ use Jyotish\Ganita\Math;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class RashiObject extends \Jyotish\Base\Object {
-    
+class RashiObject extends \Jyotish\Base\Object
+{
     use RashiEnvironment;
     
     /**
@@ -171,7 +171,7 @@ class RashiObject extends \Jyotish\Base\Object {
      */
     protected function setRashiBhava()
     {
-        switch($this->objectKey){
+        switch ($this->objectKey) {
             case 1: case 4: case 7: case 10:
                 $this->rashiBhava = Rashi::BHAVA_CHARA;
                 break;
@@ -190,7 +190,7 @@ class RashiObject extends \Jyotish\Base\Object {
      */
     protected function setRashiDrishtiBadhaksthana()
     {
-        switch($this->rashiBhava){
+        switch ($this->rashiBhava) {
             case Rashi::BHAVA_CHARA:
                 $rashis = array_diff([2, 5, 8, 11], [$this->objectKey + 1]);
                 $badhak = 11;
@@ -204,7 +204,7 @@ class RashiObject extends \Jyotish\Base\Object {
                 $badhak = 7;
         }
         
-        foreach ($rashis as $rashi){
+        foreach ($rashis as $rashi) {
            $drishti[$rashi] = 1;
         }
         $badhaksthana = Math::numberInCycle($this->objectKey, $badhak);
@@ -232,7 +232,7 @@ class RashiObject extends \Jyotish\Base\Object {
      */
     protected function setRashiDisha()
     {
-        switch($this->objectKey){
+        switch ($this->objectKey) {
             case 1:	case 5:	case 9:
                 $this->rashiDisha = Maha::DISHA_PURVA;
                 break;

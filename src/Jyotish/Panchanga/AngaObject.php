@@ -11,7 +11,8 @@ namespace Jyotish\Panchanga;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class AngaObject {
+class AngaObject
+{
     /**
      * Anga type.
      * 

@@ -13,7 +13,8 @@ use Jyotish\Base\Utils;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class Nakshatra {
+class Nakshatra
+{
     /**
      * Movable constellation
      */
@@ -61,7 +62,7 @@ class Nakshatra {
      * 
      * @var array 
      */
-    static public $nakshatra = array(
+    public static $nakshatra = array(
         1 => 'Ashwini',
         2 => 'Bharani',
         3 => 'Krittika',
@@ -97,7 +98,7 @@ class Nakshatra {
      * 
      * @var array 
      */
-    static public $navatara = array(
+    public static $navatara = array(
         1 => 'Janma',
         2 => 'Sampat',
         3 => 'Vipat',
@@ -114,7 +115,7 @@ class Nakshatra {
      * 
      * @var array
      */
-    static public $type = array(
+    public static $type = array(
         self::TYPE_CHARANA,
         self::TYPE_DHRUVA,
         self::TYPE_KSHIPRA,
@@ -130,14 +131,14 @@ class Nakshatra {
      * @var array
      * @see Jyotish\Alphabet\Devanagari
      */
-    static public $translit = ['na','ka','virama','ssa','ta','virama','ra'];
+    public static $translit = ['na','ka','virama','ssa','ta','virama','ra'];
     
     /**
      * Arc value of nakshatra.
      * 
      * @var array 
      */
-    static public $arc = ['d' => 13, 'm' => 20, 's' => 0];
+    public static $arc = ['d' => 13, 'm' => 20, 's' => 0];
     
     /**
      * Returns the requested instance of nakshatra class.
@@ -148,7 +149,7 @@ class Nakshatra {
      * @return the requested instance of nakshatra class
      * @throws Exception\InvalidArgumentException
      */
-    static public function getInstance($key, array $options = null)
+    public static function getInstance($key, array $options = null)
     {
         if (!array_key_exists($key, self::$nakshatra)) {
             throw new \Jyotish\Panchanga\Exception\InvalidArgumentException("Nakshatra with the key '$key' does not exist.");
@@ -166,16 +167,16 @@ class Nakshatra {
      * @param bool $withAbhijit
      * @return array
      */
-    static public function listNakshatra($withAbhijit = false)
+    public static function listNakshatra($withAbhijit = false)
     {
         $nakshatras = self::$nakshatra;
 
-        if($withAbhijit){
+        if ($withAbhijit) {
             $result = 
                 array_slice($nakshatras, 0, 21, true) +
                 array_slice($nakshatras, -1, 1, true) + 
                 array_slice($nakshatras, 21, 6, true); 
-        }else{
+        } else {
             unset($nakshatras[28]);
             $result = $nakshatras;
         }
@@ -189,7 +190,7 @@ class Nakshatra {
      * @param string $nakshatraKey Nakshatra key
      * @return array
      */
-    static public function listNakshatraNavatara($nakshatraKey){
+    public static function listNakshatraNavatara($nakshatraKey) {
         if (!array_key_exists($nakshatraKey, self::listNakshatra())) {
             throw new \Jyotish\Panchanga\Exception\InvalidArgumentException("Nakshatra with the number '$nakshatraKey' does not exist.");
         }
@@ -199,7 +200,7 @@ class Nakshatra {
         $number = 1;
         $block = 1;
         
-        foreach ($nakshatas as $key => $name){
+        foreach ($nakshatas as $key => $name) {
             $navataras[$key] = [
                 'block' => $block,
                 'number' => $number,
@@ -207,7 +208,7 @@ class Nakshatra {
             ];
             
             $number++;
-            if($number > 9){
+            if ($number > 9) {
                 $block += 1;
                 $number = 1;
             }

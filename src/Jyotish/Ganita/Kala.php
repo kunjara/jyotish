@@ -13,7 +13,8 @@ use Jyotish\Base\Biblio;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class Kala {
+class Kala
+{
     const KALA_PARAMANU = 'paramanu';
     const KALA_ANU = 'anu';
     const KALA_TRASARENU = 'trasarenu';
@@ -297,16 +298,16 @@ class Kala {
     {
         $list = self::$kala;
         
-        if($book == Biblio::COMMON){
+        if ($book == Biblio::COMMON) {
             return $list;
         }
         
         $result = [];
-        foreach ($list as $kala){
+        foreach ($list as $kala) {
             $kalaName = 'kala' . ucfirst($kala);
-            if(isset(self::${$kalaName}) and isset(self::${$kalaName}[$book])){
+            if (isset(self::${$kalaName}) and isset(self::${$kalaName}[$book])) {
                 $result[] = $kala;
-            }else{
+            } else {
                 continue;
             }
         }
@@ -324,11 +325,11 @@ class Kala {
      */
     public static function getKalaDuration($kala, $book = Biblio::BOOK_SB, $number = 1)
     {
-        if(!defined('Jyotish\Base\Biblio::BOOK_'.strtoupper($book))){
+        if (!defined('Jyotish\Base\Biblio::BOOK_'.strtoupper($book))) {
             throw new Exception\InvalidArgumentException("Book '$book' is not defined.");
         }
         
-        switch ($book){
+        switch ($book) {
             case Biblio::BOOK_MS:
                 $result = self::getKalaParts($kala, $book) * self::$kalaNimesha[Biblio::BOOK_MS] * $number;
                 break;
@@ -349,22 +350,22 @@ class Kala {
      */
     private static function getKalaParts($kala, $book)
     {
-        if(!defined('self::KALA_'.strtoupper($kala))){
+        if (!defined('self::KALA_'.strtoupper($kala))) {
             throw new Exception\InvalidArgumentException("Time interval '$kala' is not defined.");
         }
         
-        if(
+        if (
             ($book == Biblio::BOOK_SB and $kala == self::KALA_PARAMANU) or
             ($book == Biblio::BOOK_MS and $kala == self::KALA_NIMESHA)
-        ){
+        ) {
             return 1;
-        }else{
+        } else {
             $kalaName = 'kala' . ucfirst($kala);
             
-            if(isset(self::${$kalaName}[$book])){
+            if (isset(self::${$kalaName}[$book])) {
                 $kn = self::${$kalaName}[$book]['name'];
                 $kp = self::${$kalaName}[$book]['part'];
-            }else{
+            } else {
                 $bookName = Biblio::$book[$book];
                 throw new Exception\InvalidArgumentException("Time interval '$kala' is not defined in '$bookName'.");
             }

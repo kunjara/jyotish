@@ -9,6 +9,7 @@ namespace Jyotish\Tattva\Exception;
 /**
  * Jyotish\Tattva InvalidArgumentException.
  */
-class InvalidArgumentException extends \InvalidArgumentException implements ExceptionInterface {
+class InvalidArgumentException extends \InvalidArgumentException implements ExceptionInterface
+{
     
 }

@@ -11,7 +11,8 @@ namespace Jyotish\Tattva\Jiva;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class Pasu {
+class Pasu extends \Jyotish\Tattva\Jiva
+{
     const ANIMAL_HORSE = 'horse';
     const ANIMAL_ELEPHANT = 'elephant';
     const ANIMAL_SHEEP = 'sheep';
@@ -34,7 +35,7 @@ class Pasu {
      * @param string $animal2
      * @return string
      */
-    static public function animalRelation($animal1, $animal2)
+    public static function animalRelation($animal1, $animal2)
     {
         $hostile = array(
             self::ANIMAL_COW => self::ANIMAL_TIGER,
@@ -46,13 +47,13 @@ class Pasu {
             self::ANIMAL_CAT => self::ANIMAL_RAT,
         );
 
-        if($animal1 == $animal2){
+        if ($animal1 == $animal2) {
             return 'same';
-        }elseif(
+        } elseif (
                 (isset($hostile[$animal1]) and $hostile[$animal1] == $animal2) or 
-                (isset($hostile[$animal2]) and $hostile[$animal2] == $animal1)){
+                (isset($hostile[$animal2]) and $hostile[$animal2] == $animal1)) {
             return 'hostile';
-        }else{
+        } else {
             return 'friendly';
         }
     }

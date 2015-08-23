@@ -9,6 +9,7 @@ namespace Jyotish\Graha\Exception;
 /**
  * Exception for Jyotish\Graha component.
  */
-class UnexpectedValueException extends \UnexpectedValueException implements ExceptionInterface {
+class UnexpectedValueException extends \UnexpectedValueException implements ExceptionInterface
+{
     
 }

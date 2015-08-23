@@ -11,8 +11,8 @@ namespace Jyotish\Panchanga\Karana;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class Karana {
-
+class Karana
+{
     const NAME_BAVA = 'Bava';
     const NAME_BALAVA = 'Balava';
     const NAME_KAULAVA = 'Kaulava';
@@ -30,7 +30,7 @@ class Karana {
      * 
      * @var array 
      */
-    static public $karana = array(
+    public static $karana = array(
         1 => self::NAME_BAVA,
         2 => self::NAME_BALAVA,
         3 => self::NAME_KAULAVA,

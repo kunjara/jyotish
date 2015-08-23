@@ -14,8 +14,8 @@ use Jyotish\Ganita\Math;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class Arudha{
-    
+class Arudha
+{
     use \Jyotish\Base\Traits\DataTrait;
     use \Jyotish\Base\Traits\OptionTrait;
     
@@ -73,7 +73,7 @@ class Arudha{
      * 
      * @var array
      */
-    static public $arudha = array(
+    public static $arudha = array(
         self::KEY_AL => 'Arudha Lagna',
         self::KEY_A2 => 'Dhanapada',
         self::KEY_A3 => 'Vikramapada',
@@ -119,15 +119,15 @@ class Arudha{
      */
     public function getArudha($key, array $options = null)
     {
-        if (!array_key_exists($key, self::$arudha)){
+        if (!array_key_exists($key, self::$arudha)) {
             throw new Exception\InvalidArgumentException("Arudha with the key '$key' does not exist.");
         }
 
-        if($key == self::KEY_AL){
+        if ($key == self::KEY_AL) {
             $bhavaKey = 1;
-        }elseif($key == self::KEY_UL){
+        } elseif ($key == self::KEY_UL) {
             $bhavaKey = 12;
-        }else{
+        } else {
             $bhavaKey = substr($key, 1);
         }
 
@@ -140,20 +140,20 @@ class Arudha{
         $lngDiff = $lngRuler - $lngBhava;
         $lngArudha = $lngRuler + $lngDiff;
         
-        if($lngArudha >= 360){
+        if ($lngArudha >= 360) {
             $lngArudha = $lngArudha - 360;
-        }elseif($lngArudha < 0){
+        } elseif ($lngArudha < 0) {
             $lngArudha = 360 + $lngArudha;
         }
 
         $unitArudha = Math::partsToUnits($lngArudha);
         $rashiArudha = $unitArudha['units'];
         
-        if($this->options['useException']){
-            if(
+        if ($this->options['useException']) {
+            if (
                 Math::inRange($lngDiff, 0 - $this->options['exceptionRang'], $this->options['exceptionRang']) or
                 Math::inRange(abs($lngDiff), 90 - $this->options['exceptionRang'], 90 + $this->options['exceptionRang'])
-            ){
+            ) {
                 $rashiArudha = Math::numberInCycle($unitArudha['units'], 10);
                 $lngArudha = ($rashiArudha - 1) * 30 + $unitArudha['parts'];
             }
@@ -173,11 +173,11 @@ class Arudha{
      */
     public function generateArudha(array $arudhaKeys = null)
     {
-        if(is_null($arudhaKeys)){
+        if (is_null($arudhaKeys)) {
             $arudhaKeys = array_keys(self::$arudha);
         }
         
-        foreach ($arudhaKeys as $key){
+        foreach ($arudhaKeys as $key) {
             yield $key => $this->getArudha($key);
         }
     }

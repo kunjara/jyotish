@@ -14,7 +14,8 @@ use Jyotish\Tattva\Jiva\Nara\Deva;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class Tithi {
+class Tithi
+{
     const NAME_PRATIPAD = 'Pratipad';
     const NAME_DWITIYA = 'Dwitiya';
     const NAME_TRITIYA = 'Tritiya';
@@ -76,7 +77,7 @@ class Tithi {
      * 
      * @var array
      */
-    static public $tithi = array(
+    public static $tithi = array(
         1 => self::NAME_PRATIPAD,
         2 => self::NAME_DWITIYA,
         3 => self::NAME_TRITIYA,
@@ -116,7 +117,7 @@ class Tithi {
      * @see Varahamihira. Brihat Samhita. Chapter 99, Verse 1.
      * @see Bhavishya Purana. Brahma parva, Chapter 102.
      */
-    static public $deva = [
+    public static $deva = [
         Biblio::BOOK_BS => [
             1 => Deva::DEVA_BRAHMA,
             2 => Deva::DEVA_VIDHATA,
@@ -164,7 +165,7 @@ class Tithi {
      * @return the requested instance of tithi class
      * @throws Exception\InvalidArgumentException
      */
-    static public function getInstance($key, array $options = null) {
+    public static function getInstance($key, array $options = null) {
         if (!array_key_exists($key, self::$tithi)) {
             throw new \Jyotish\Panchanga\Exception\InvalidArgumentException("Tithi with the key '$key' does not exist.");
         }
@@ -181,9 +182,9 @@ class Tithi {
      * @param string $listType
      * @return array
      */
-    static public function listTithi($listType = self::LIST_PANCHANGA)
+    public static function listTithi($listType = self::LIST_PANCHANGA)
     {
-        switch ($listType){
+        switch ($listType) {
             case self::LIST_MASA:
                 $result = array_slice(self::$tithi, 15, null, true) + array_slice(self::$tithi, 0, 15, true);
                 break;

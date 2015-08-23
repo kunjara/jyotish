@@ -11,7 +11,8 @@ namespace Jyotish\Calendar\Measure;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class Masa {
+class Masa
+{
     /**
      * March-April
      */
@@ -74,7 +75,7 @@ class Masa {
      * 
      * @var array
      */
-    static public $masa = [
+    public static $masa = [
         1 => self::NAME_1,
         2 => self::NAME_2,
         3 => self::NAME_3,
@@ -94,7 +95,7 @@ class Masa {
      * 
      * @var array
      */
-    static public $masaVaishnava = [
+    public static $masaVaishnava = [
         self::NAME_1 => 'Vishnu',
         self::NAME_2 => 'Madhusudana',
         self::NAME_3 => 'Trivikrama',

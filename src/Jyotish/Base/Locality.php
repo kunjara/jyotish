@@ -11,8 +11,8 @@ namespace Jyotish\Base;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class Locality {
-    
+class Locality
+{
     protected $longitude = null;
     protected $latitude = null;
     protected $altitude = 0;
@@ -23,13 +23,13 @@ class Locality {
      * @param array $locality Locality to set
      */
     public function __construct(array $locality) {
-        if(isset($locality['longitude'])){
+        if (isset($locality['longitude'])) {
             $this->setLongitude($locality['longitude']);
         }
-        if(isset($locality['latitude'])){
+        if (isset($locality['latitude'])) {
             $this->setLatitude($locality['latitude']);
         }
-        if(isset($locality['altitude'])){
+        if (isset($locality['altitude'])) {
             $this->setAltitude($locality['altitude']);
         }
     }
@@ -43,7 +43,7 @@ class Locality {
      */
     public function setLongitude($longitude)
     {
-        if(!is_numeric($longitude) or abs($longitude) >= 180){
+        if (!is_numeric($longitude) or abs($longitude) >= 180) {
             throw new Exception\InvalidArgumentException("Longitude should be numeric and less than 180.");
         }
         
@@ -61,7 +61,7 @@ class Locality {
      */
     public function setLatitude($latitude)
     {
-        if(!is_numeric($latitude) or abs($latitude) >= 90){
+        if (!is_numeric($latitude) or abs($latitude) >= 90) {
             throw new Exception\InvalidArgumentException("Latitude should be numeric and less than 90.");
         }
         
@@ -79,7 +79,7 @@ class Locality {
      */
     public function setAltitude($altitude)
     {
-        if(!is_numeric($altitude)){
+        if (!is_numeric($altitude)) {
             throw new Exception\InvalidArgumentException("Altitude should be numeric.");
         }
         
@@ -95,7 +95,7 @@ class Locality {
      */
     public function getLongitude()
     {
-        if(is_null($this->longitude)){
+        if (is_null($this->longitude)) {
             throw new Exception\UnderflowException("Longitude is not setted.");
         }
         
@@ -109,7 +109,7 @@ class Locality {
      */
     public function getLatitude()
     {
-        if(is_null($this->latitude)){
+        if (is_null($this->latitude)) {
             throw new Exception\UnderflowException("Latitude is not setted.");
         }
         

@@ -14,8 +14,8 @@ use Jyotish\Graha\Graha;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-abstract class AbstractGanita {
-    
+abstract class AbstractGanita
+{
     use \Jyotish\Base\Traits\DataTrait;
     use \Jyotish\Base\Traits\OptionTrait;
     
@@ -38,7 +38,7 @@ abstract class AbstractGanita {
      */
     public function setOptionAyanamsha($ayanamsha)
     {
-        if(key_exists($ayanamsha, $this->inputAyanamsha)) {
+        if (key_exists($ayanamsha, $this->inputAyanamsha)) {
             $this->ayanamsha = $ayanamsha;
         } else {
             throw new Exception\InvalidArgumentException("The ayanamsha '$ayanamsha' is not defined.");
@@ -56,7 +56,7 @@ abstract class AbstractGanita {
      */
     public function setOptionRising($rising)
     {
-        if(array_search($rising, Graha::$risingType)) {
+        if (array_search($rising, Graha::$risingType)) {
             $this->rising = $rising;
         } else {
             throw new Exception\InvalidArgumentException("The rising '$rising' is not defined.");

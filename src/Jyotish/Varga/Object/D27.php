@@ -15,7 +15,8 @@ use Jyotish\Tattva\Maha;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class D27 extends AbstractVarga {
+class D27 extends AbstractVarga
+{
     /**
      * Key of the varga.
      * 
@@ -53,7 +54,7 @@ class D27 extends AbstractVarga {
         $result = Math::partsToUnits($ganitaRashi['degree'], $amshaSize, 'floor');
         $vargaRashi['degree'] = $result['parts'] * 30 / $amshaSize;
 
-        $rashiObject = Rashi::getInstance((int)$ganitaRashi['rashi']);
+        $rashiObject = Rashi::getInstance((int) $ganitaRashi['rashi']);
         $rashiBhuta = $rashiObject->rashiBhuta;
 
         switch ($rashiBhuta) {

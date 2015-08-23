@@ -11,7 +11,8 @@ namespace Jyotish\Graha;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class Avastha {
+class Avastha
+{
     const TYPE_BALADI = 'baladi';
     const TYPE_JAGRADI = 'jagradi';
     const TYPE_DEEPTADI = 'deeptadi';

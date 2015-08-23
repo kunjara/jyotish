@@ -9,6 +9,7 @@ namespace Jyotish\Draw\Plot\Chakra\Exception;
 /**
  * Jyotish\Draw\Plot\Chakra UnexpectedValueException.
  */
-class UnexpectedValueException extends \UnexpectedValueException implements ExceptionInterface {
+class UnexpectedValueException extends \UnexpectedValueException implements ExceptionInterface
+{
     
 }

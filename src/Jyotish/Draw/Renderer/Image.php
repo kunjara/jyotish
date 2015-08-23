@@ -13,7 +13,8 @@ use Jyotish\Base\Utils;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class Image extends AbstractRenderer {
+class Image extends AbstractRenderer
+{
     /**
      * Renderer name.
      * 
@@ -38,7 +39,7 @@ class Image extends AbstractRenderer {
     }
 
     public function drawPolygon($points, array $options = null) {
-        if(isset($options)){
+        if (isset($options)) {
             $this->setOptions($options);
         }
         
@@ -55,7 +56,7 @@ class Image extends AbstractRenderer {
     }
 
     public function drawText($text, $x = 0, $y = 0, array $options = null) {
-        if(isset($options)){
+        if (isset($options)) {
             $this->setOptions($options);
         }
         
@@ -155,10 +156,10 @@ class Image extends AbstractRenderer {
     }
 
     public function setOptionFontName($value) {
-        if(!is_null($value) and !is_int($value) and !is_string($value)){
+        if (!is_null($value) and !is_int($value) and !is_string($value)) {
             throw new Exception\InvalidArgumentException("Options 'fontName' must be null, integer or name of font.");
-        }else{
-            if(is_string($value) and !file_exists($value)){
+        } else {
+            if (is_string($value) and !file_exists($value)) {
                 throw new Exception\InvalidArgumentException("The font '$value' does not exist.");
             }
         }

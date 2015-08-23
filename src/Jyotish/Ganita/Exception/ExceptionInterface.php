@@ -9,6 +9,7 @@ namespace Jyotish\Ganita\Exception;
 /**
  * Jyotish\Ganita Exceptions.
  */
-interface ExceptionInterface {
+interface ExceptionInterface
+{
     
 }

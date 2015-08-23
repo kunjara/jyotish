@@ -14,7 +14,8 @@ use Jyotish\Graha\Graha;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class Karaka {
+class Karaka
+{
     /**
      * Atmakaraka key
      */
@@ -94,7 +95,7 @@ class Karaka {
      * 
      * @var array
      */
-    static public $karaka = array(
+    public static $karaka = array(
         self::KEY_ATMA => self::NAME_ATMA,
         self::KEY_AMATYA => self::NAME_AMATYA,
         self::KEY_BHRATRU => self::NAME_BHRATRU,
@@ -111,7 +112,7 @@ class Karaka {
      * 
      * @var array
      */
-    static public $karakaSthira = array(
+    public static $karakaSthira = array(
         Graha::KEY_SY => self::NAME_PUTRA,
         Graha::KEY_CH => self::NAME_MATRU,
         Graha::KEY_MA => self::NAME_BHRATRU,
@@ -127,12 +128,12 @@ class Karaka {
      * @param string $system
      * @return array
      */
-    static public function listKaraka($system = Biblio::BOOK_BPHS)
+    public static function listKaraka($system = Biblio::BOOK_BPHS)
     {
         $list = self::$karaka;
         array_pop($list);
         
-        switch ($system){
+        switch ($system) {
             case Biblio::AUTHOR_JAIMINI:
             case Biblio::BOOK_US:
                 unset($list[self::KEY_PITRU]);

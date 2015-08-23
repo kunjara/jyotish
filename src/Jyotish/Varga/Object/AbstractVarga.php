@@ -14,8 +14,8 @@ use Jyotish\Ganita\Math;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-abstract class AbstractVarga {
-    
+abstract class AbstractVarga
+{
     use \Jyotish\Base\Traits\GetTrait;
     use \Jyotish\Base\Traits\DataTrait;
     
@@ -54,11 +54,11 @@ abstract class AbstractVarga {
      * @return array
      */
     public function getVargaData() {
-        if(!isset($this->getData()['graha'])){
+        if (!isset($this->getData()['graha'])) {
             $this->Data->calcParams();
         }
 
-        if($this->vargaKey == Varga::KEY_D1){
+        if ($this->vargaKey == Varga::KEY_D1) {
             return $this->getData(\Jyotish\Base\Data::listBlock('main'));
         }
 

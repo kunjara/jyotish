@@ -16,7 +16,8 @@ use Jyotish\Base\Analysis;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class Raja extends YogaBase {
+class Raja extends YogaBase
+{
     /**
      * Type of yogas.
      * 
@@ -46,15 +47,15 @@ class Raja extends YogaBase {
         $kendraRulers = $Analysis->getBhavaRulers($bhavaKendra);
         $trikonaRulers = $Analysis->getBhavaRulers(Bhava::$bhavaTrikona);
         
-        foreach ($kendraRulers as $kendraRuler){
-            foreach ($trikonaRulers as $trikonaRuler){
+        foreach ($kendraRulers as $kendraRuler) {
+            foreach ($trikonaRulers as $trikonaRuler) {
                 $KendraRuler = Graha::getInstance($kendraRuler);
                 $KendraRuler->setEnvironment($this->Data);
                 $TrikonaRuler = Graha::getInstance($trikonaRuler);
                 $TrikonaRuler->setEnvironment($this->Data);
                 
                 // Parivarthana
-                if($this->hasParivarthana($kendraRuler, $trikonaRuler)){
+                if ($this->hasParivarthana($kendraRuler, $trikonaRuler)) {
                     yield [
                         'kendra' => $kendraRuler,
                         'trikona' => $trikonaRuler,
@@ -64,7 +65,7 @@ class Raja extends YogaBase {
                 
                 // Conjunct
                 $kendraRulerIsConjuncted = $KendraRuler->isConjuncted();
-                if(isset($kendraRulerIsConjuncted[$trikonaRuler])){
+                if (isset($kendraRulerIsConjuncted[$trikonaRuler])) {
                     yield [
                         'kendra' => $kendraRuler,
                         'trikona' => $trikonaRuler,
@@ -75,10 +76,10 @@ class Raja extends YogaBase {
                 // Aspect
                 $kendraRulerIsAspected = $KendraRuler->isAspectedByGraha();
                 $trikonaRulerIsAspected = $TrikonaRuler->isAspectedByGraha();
-                if(
+                if (
                     $kendraRulerIsAspected[$trikonaRuler] == 1 and
                     $trikonaRulerIsAspected[$kendraRuler] == 1
-                ){
+                ) {
                     yield [
                         'kendra' => $kendraRuler,
                         'trikona' => $trikonaRuler,

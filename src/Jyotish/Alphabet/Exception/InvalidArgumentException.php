@@ -9,6 +9,7 @@ namespace Jyotish\Alphabet\Exception;
 /**
  * Jyotish\Alphabet InvalidArgumentException.
  */
-class InvalidArgumentException extends \InvalidArgumentException implements ExceptionInterface {
+class InvalidArgumentException extends \InvalidArgumentException implements ExceptionInterface
+{
     
 }

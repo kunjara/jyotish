@@ -11,7 +11,8 @@ use Jyotish\Ganita\Math;
 /**
  * @group Ganita
  */
-class MathTest extends \PHPUnit_Framework_TestCase{
+class MathTest extends \PHPUnit_Framework_TestCase
+{
     /**
      * @dataProvider providerDmsToDecimal
      */

@@ -16,8 +16,8 @@ use Jyotish\Draw\Plot\Chakra\Style\AbstractChakra as Chakra;
  * 
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class Renderer {
-    
+class Renderer
+{
     use \Jyotish\Base\Traits\DataTrait;
     use \Jyotish\Base\Traits\OptionTrait;
     
@@ -83,10 +83,10 @@ class Renderer {
         $bhavaPoints = $this->Chakra->getBhavaPoints($this->options['chakraSize'], $x, $y);
         
         foreach ($bhavaPoints as $number => $points) {
-            if($this->options['chakraStyle'] == Chakra::STYLE_NORTH){
+            if ($this->options['chakraStyle'] == Chakra::STYLE_NORTH) {
                 $bhava = ' bhava'.$number;
                 $rashi = ' rashi'.$Data->getData()['bhava'][$number]['rashi'];
-            }else{
+            } else {
                 $rashi = ' rashi'.$number;
                 $Rashi = Rashi::getInstance($number);
                 $Rashi->setEnvironment($Data);
@@ -105,8 +105,8 @@ class Renderer {
         $this->drawBodyLabel($x, $y, $this->options);
     }
     
-    protected function drawRashiLabel($x, $y, $options){
-        if(isset($options['labelRashiFont'])){
+    protected function drawRashiLabel($x, $y, $options) {
+        if (isset($options['labelRashiFont'])) {
             $this->Renderer->setOptions($options['labelRashiFont']);
         }
         
@@ -121,15 +121,15 @@ class Renderer {
         }
     }
     
-    protected function drawBodyLabel($x, $y, $options){
-        if(isset($options['labelGrahaFont'])){
+    protected function drawBodyLabel($x, $y, $options) {
+        if (isset($options['labelGrahaFont'])) {
             $this->Renderer->setOptions($options['labelGrahaFont']);
         }
         
         $bodyLabelPoints = $this->Chakra->getBodyLabelPoints($this->options);
         
         foreach ($bodyLabelPoints as $body => $point) {
-            if(!array_key_exists($body, Graha::$graha) and isset($options['labelExtraFont'])){
+            if (!array_key_exists($body, Graha::$graha) and isset($options['labelExtraFont'])) {
                 $this->Renderer->setOptions($options['labelExtraFont']);
             }
             
@@ -177,9 +177,9 @@ class Renderer {
         
         $data = $this->Data->getData();
 
-        if(array_key_exists($body, Graha::listGraha(Graha::LIST_SAPTA))){
+        if (array_key_exists($body, Graha::listGraha(Graha::LIST_SAPTA))) {
             $vakraCheshta = $data['graha'][$body]['speed'] < 0 ? true : false;
-        }else{
+        } else {
             $vakraCheshta = false;
         }
         

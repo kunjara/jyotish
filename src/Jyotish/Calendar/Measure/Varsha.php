@@ -11,7 +11,8 @@ namespace Jyotish\Calendar\Measure;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class Varsha {
+class Varsha
+{
     /**
      * Brahma vimshatika.
      */
@@ -47,7 +48,7 @@ class Varsha {
      * 
      * @var array
      */
-    static public $samvat = [
+    public static $samvat = [
         self::SAMVAT_VIKRAM => -57,
         self::SAMVAT_SHAK => 78,
         self::SAMVAT_GUPTA => 319,
@@ -59,7 +60,7 @@ class Varsha {
      * 
      * @var array
      */
-    static public $samvatsara = [
+    public static $samvatsara = [
         1 => 'Prabhava',
         2 => 'Vibhava',
         3 => 'Shukla',

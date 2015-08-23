@@ -24,8 +24,8 @@ use DateInterval;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class AngaDefiner {
-    
+class AngaDefiner
+{
     use \Jyotish\Base\Traits\DataTrait;
     
     /**
@@ -70,7 +70,7 @@ class AngaDefiner {
         $lngCh = $this->getData()['graha'][Graha::KEY_CH]['longitude'];
         $lngSy = $this->getData()['graha'][Graha::KEY_SY]['longitude'];		
 
-        if($lngCh < $lngSy) $lngCh = $lngCh + 360;
+        if ($lngCh < $lngSy) $lngCh = $lngCh + 360;
 
         $tithiUnits = Math::partsToUnits(($lngCh - $lngSy), $unit);
         $tithiObject = Tithi::getInstance($tithiUnits['units']);
@@ -81,7 +81,7 @@ class AngaDefiner {
         $tithi['paksha'] = $tithiObject->tithiPaksha;
         $tithi['left'] = ($unit - $tithiUnits['parts']) * 100 / $unit;
 
-        if($withLimit){
+        if ($withLimit) {
             $limit = $this->getAngaLimit($tithi);
             $tithi['end'] = $limit;
         }
@@ -105,14 +105,14 @@ class AngaDefiner {
         $this->checkData(__FUNCTION__);
         $unit = 360/27;
 
-        if(array_key_exists($grahaKey, Graha::$graha)){
+        if (array_key_exists($grahaKey, Graha::$graha)) {
             $lngGraha = $this->getData()['graha'][$grahaKey]['longitude'];
-        }else{
-            if(!isset($this->getData()['lagna'][$grahaKey]['longitude'])){
+        } else {
+            if (!isset($this->getData()['lagna'][$grahaKey]['longitude'])) {
                 throw new Exception\InvalidArgumentException(
                     "Longitude value for the key '$grahaKey' is not defined."
                 );
-            }else{
+            } else {
                 $lngGraha = $this->getData()['lagna'][$grahaKey]['longitude'];
             }
         }
@@ -120,23 +120,23 @@ class AngaDefiner {
         $nakshatraUnits = Math::partsToUnits($lngGraha, $unit);
 
         $nakshatra['anga'] = Panchanga::ANGA_NAKSHATRA;
-        if($withAbhijit){
-            if($nakshatraUnits['units'] == 21 or $nakshatraUnits['units'] == 22){
+        if ($withAbhijit) {
+            if ($nakshatraUnits['units'] == 21 or $nakshatraUnits['units'] == 22) {
                 $Abhijit = Nakshatra::getInstance(28);
                 $abhijitStart = Math::dmsToDecimal($Abhijit->nakshatraStart);
                 $abhijitEnd   = Math::dmsToDecimal($Abhijit->nakshatraEnd);
 
-                if($lngGraha < $abhijitStart){
+                if ($lngGraha < $abhijitStart) {
                     $nakshatra['key'] = 21;
                     $N = Nakshatra::getInstance($nakshatra['key']);
                     $nStart = Math::dmsToDecimal($N->nakshatraStart);
                     $unit = $abhijitStart - $nStart;
                     $left = $abhijitStart - $lngGraha;
-                }elseif($lngGraha >= $abhijitStart and $lngGraha < $abhijitEnd){
+                } elseif ($lngGraha >= $abhijitStart and $lngGraha < $abhijitEnd) {
                     $nakshatra['key'] = 28;
                     $unit = $abhijitEnd - $abhijitStart;
                     $left = $abhijitEnd - $lngGraha;
-                }else{
+                } else {
                     $nakshatra['key'] = 22;
                     $N = Nakshatra::getInstance($nakshatra['key']);
                     $nEnd = Math::dmsToDecimal($N->nakshatraEnd);
@@ -144,13 +144,13 @@ class AngaDefiner {
                     $left = $nEnd - $lngGraha;
                 }
                 $nakshatra['ratio'] = $unit / Math::dmsToDecimal(Nakshatra::$arc);
-            }else{
+            } else {
                 $nakshatra['key'] = $nakshatraUnits['units'];
                 $nakshatra['ratio'] = 1;
                 $left = $unit - $nakshatraUnits['parts'];
             }
             $nakshatra['abhijit'] = true;
-        }else{
+        } else {
             $nakshatra['key'] = $nakshatraUnits['units'];
             $nakshatra['ratio'] = 1;
             $nakshatra['abhijit'] = false;
@@ -160,17 +160,17 @@ class AngaDefiner {
         $nakshatra['left'] = $left * 100 / $unit;
         $nakshatra['name'] = Nakshatra::$nakshatra[$nakshatra['key']];
         
-        if($nakshatra['left'] < 100 and $nakshatra['left'] >= 75){
+        if ($nakshatra['left'] < 100 and $nakshatra['left'] >= 75) {
             $nakshatra['pada'] = 1;
-        }elseif($nakshatra['left'] < 75 and $nakshatra['left'] >= 50){
+        } elseif ($nakshatra['left'] < 75 and $nakshatra['left'] >= 50) {
             $nakshatra['pada'] = 2;
-        }elseif($nakshatra['left'] < 50 and $nakshatra['left'] >= 25){
+        } elseif ($nakshatra['left'] < 50 and $nakshatra['left'] >= 25) {
             $nakshatra['pada'] = 3;
-        }else{
+        } else {
             $nakshatra['pada'] = 4;
         }
 
-        if($withLimit){
+        if ($withLimit) {
 			$limit = $this->getAngaLimit($nakshatra);
             $nakshatra['end'] = $limit;
         }
@@ -194,7 +194,7 @@ class AngaDefiner {
         $lngSy  = $this->getData()['graha'][Graha::KEY_SY]['longitude'];
         $lngSum = $lngCh + $lngSy;
 
-        if($lngSum > 360) {
+        if ($lngSum > 360) {
             $lngSum = $lngSum - 360;
         }
 
@@ -205,7 +205,7 @@ class AngaDefiner {
         $yoga['name'] = Yoga::$yoga[$yoga['key']];
         $yoga['left'] = ($unit - $yogaUnits['parts']) * 100 / $unit;
 
-        if($withLimit){
+        if ($withLimit) {
             $limit = $this->getAngaLimit($yoga);
             $yoga['end'] = $limit;
         }
@@ -230,15 +230,15 @@ class AngaDefiner {
         $weekNumber = $DateTime->format('w');
         $dataRising = $this->getData()['rising'][Graha::KEY_SY];
         
-        foreach ($dataRising as $i => $data){
+        foreach ($dataRising as $i => $data) {
             $DateRising[$i] = new DateTime($data['rising'], $TimeZone);
             $dateRisingU[$i] = $DateRising[$i]->format('U');
         }
         
-        if($DateTime < $DateRising[1]){
+        if ($DateTime < $DateRising[1]) {
             $varaNumber = $weekNumber != 0 ? $weekNumber - 1 : 6;
             $risingIndex = 1;
-        }else{
+        } else {
             $varaNumber = $weekNumber;
             $risingIndex = 2;
         }
@@ -251,7 +251,7 @@ class AngaDefiner {
         $vara['week'] = $weekNumber;
         $vara['name'] = array_values(Vara::$vara)[$varaNumber];
         
-        if($withLimit){
+        if ($withLimit) {
             $vara['start'] = $this->getData()['rising'][Graha::KEY_SY][$risingIndex - 1]['rising'];
             $vara['end'] = $this->getData()['rising'][Graha::KEY_SY][$risingIndex]['rising'];
         }
@@ -267,19 +267,19 @@ class AngaDefiner {
      */
     public function getKarana($withLimit = false)
     {
-        if(!isset($this->temp['tithi'])){
+        if (!isset($this->temp['tithi'])) {
             $this->getTithi($withLimit);
         }
         
-        if($this->temp['tithi']['left'] < 50){
+        if ($this->temp['tithi']['left'] < 50) {
             $number = 2;
             $left = $this->temp['tithi']['left'];
-            if($withLimit)
+            if ($withLimit)
                 $karana['end'] = $this->temp['tithi']['end'];
         } else {
             $number = 1;
             $left = $this->temp['tithi']['left'] - 50;
-            if($withLimit){
+            if ($withLimit) {
                 $DateTime = $this->Data->getDateTime();
                 $TithiEnd = new DateTime($this->temp['tithi']['end']);
                 $dateUserU = $DateTime->format('U');
@@ -310,12 +310,12 @@ class AngaDefiner {
      */
     public function generateAnga(array $angas = null, $withLimit = false)
     {
-        if(is_null($angas)){
+        if (is_null($angas)) {
             $angas = Panchanga::$anga;
         }
         
-        foreach ($angas as $anga){
-            if (!in_array($anga, Panchanga::$anga)){
+        foreach ($angas as $anga) {
+            if (!in_array($anga, Panchanga::$anga)) {
                 throw new Exception\InvalidArgumentException("Anga with the name '$anga' does not exist.");
             }
             
@@ -361,22 +361,22 @@ class AngaDefiner {
         $ratio = $anga['anga'] == Panchanga::ANGA_NAKSHATRA ? $anga['ratio'] : 1;
         $duration  = $this->angaInfo[$anga['anga']]['duration'] * $ratio / $this->angaInfo[$anga['anga']]['parts'];
         $left = $modify == 'add' ? $anga['left'] : 100 - $anga['left'];
-        $timeLeft = round($duration * ($left / 100) );
+        $timeLeft = round($duration * ($left / 100));
         $TimeEnd->{$modify}(new DateInterval('PT'.$timeLeft.'S'));
 
         // End time
-        if($left > .1){
+        if ($left > .1) {
             $this->AngaDefiner->Data->setDateTime($TimeEnd);
 
             $function = 'get' . ucfirst($anga['anga']);
-            if($anga['anga'] == Panchanga::ANGA_NAKSHATRA){
+            if ($anga['anga'] == Panchanga::ANGA_NAKSHATRA) {
                 $angaTemp = $this->AngaDefiner->$function(false, $anga['abhijit']);
-            }else{
+            } else {
                 $this->temp = null;
                 $angaTemp = $this->AngaDefiner->$function();
             }
             
-            if($anga['key'] != $angaTemp['key']){
+            if ($anga['key'] != $angaTemp['key']) {
                 $modify = $modify == 'add' ? 'sub' : 'add';
             }
 
@@ -395,11 +395,11 @@ class AngaDefiner {
      */
     private function checkData($function = null)
     {
-        if(!isset($this->getData()['graha'])){
+        if (!isset($this->getData()['graha'])) {
             $this->Data->calcParams();
         }
 
-        if($function == 'getVara' and !isset($this->getData()['rising'])){
+        if ($function == 'getVara' and !isset($this->getData()['rising'])) {
             $this->Data->calcRising();
         }
     }

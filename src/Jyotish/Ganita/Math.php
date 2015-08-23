@@ -11,7 +11,8 @@ namespace Jyotish\Ganita;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class Math {
+class Math
+{
     const M_RAD = 0.01745329251994329577;
 
     /**
@@ -25,14 +26,14 @@ class Math {
      * </pre>
      * @return float
      */
-    static public function dmsToDecimal(array $dms)
+    public static function dmsToDecimal(array $dms)
     {
-        if ( ($dms['d'] < 0) || ($dms['m'] < 0) || (isset($dms['s']) and $dms['s'] < 0) ) 
+        if (($dms['d'] < 0) || ($dms['m'] < 0) || (isset($dms['s']) and $dms['s'] < 0)) 
             $sign = -1;
         else
             $sign = 1;
 
-        return  $sign * ( abs($dms['d']) + abs($dms['m'])/60 + abs(isset($dms['s']) ? $dms['s']/3600 : 0 ));
+        return  $sign * (abs($dms['d']) + abs($dms['m'])/60 + abs(isset($dms['s']) ? $dms['s']/3600 : 0));
     }
 
     /**
@@ -41,18 +42,18 @@ class Math {
      * @param float $decimal Decimal value of the arc in degrees
      * @return array
      */
-    static public function decimalToDms($decimal)
+    public static function decimalToDms($decimal)
     {
         $x = abs($decimal);
-        $result['d'] = (int)floor($x);
+        $result['d'] = (int) floor($x);
         
         $x = ($x - $result['d']) * 60; 
-        $result['m'] = (int)floor($x);
+        $result['m'] = (int) floor($x);
         
         $result['s'] = round(($x - $result['m']) * 60, 10);
-        if($result['s'] == 0){
+        if ($result['s'] == 0) {
             unset($result['s']);
-        }elseif($result['s'] == 60){
+        } elseif ($result['s'] == 60) {
             $result['m'] += 1;
             unset($result['s']);
         }
@@ -75,19 +76,19 @@ class Math {
      * @return array
      * @throws Exception\InvalidArgumentException
      */
-    static public function partsToUnits($totalParts, $partsInUnit = 30, $flagRound = 'ceil')
+    public static function partsToUnits($totalParts, $partsInUnit = 30, $flagRound = 'ceil')
     {
-        if($partsInUnit <= 0){
+        if ($partsInUnit <= 0) {
             throw new Exception\InvalidArgumentException("Parts in unit must be greater than zero.");
         }
 
         switch ($flagRound) {
             case 'floor':
-                $totalUnits	= (int)floor($totalParts / $partsInUnit);
+                $totalUnits	= (int) floor($totalParts / $partsInUnit);
                 break;
             case 'ceil':
             default:
-                $totalUnits	= (int)ceil($totalParts / $partsInUnit);
+                $totalUnits	= (int) ceil($totalParts / $partsInUnit);
                 break;
         }
 
@@ -105,14 +106,14 @@ class Math {
      * @return int
      * @throws Exception\InvalidArgumentException
      */
-    static public function distanceInCycle($n1, $n2, $cycle = 12)
+    public static function distanceInCycle($n1, $n2, $cycle = 12)
     {
-        if($n1 > $cycle or $n2 > $cycle){
+        if ($n1 > $cycle or $n2 > $cycle) {
             throw new Exception\InvalidArgumentException("Number in cycle should not be greater than size of the cycle $cycle.");
         }
-        if($n1 <= $n2){
+        if ($n1 <= $n2) {
             $distance = $n2 - $n1 + 1;
-        }else{
+        } else {
             $distance = $cycle - ($n1 - $n2) + 1;
         }
         return $distance;
@@ -127,34 +128,34 @@ class Math {
      * @return int
      * @throws Exception\InvalidArgumentException
      */
-    static public function numberInCycle($n, $distance = 1, $cycle = 12)
+    public static function numberInCycle($n, $distance = 1, $cycle = 12)
     {
-        if($distance == 0){
+        if ($distance == 0) {
             throw new Exception\InvalidArgumentException("Distance should not be zero.");
         }
         
-        if($distance > 0){
+        if ($distance > 0) {
             $distanceCycle = $distance - 1;
-        }else{
+        } else {
             $distanceCycle = $distance + 1;
         }
         
         $number = $n + $distanceCycle;
         
-        if($number > 0){
-            if($number < $cycle) {
+        if ($number > 0) {
+            if ($number < $cycle) {
                 $numberCycle = $number;
             } else {
-                $numberCycle = (int)fmod($number, $cycle);
-                if($numberCycle == 0) {
+                $numberCycle = (int) fmod($number, $cycle);
+                if ($numberCycle == 0) {
                     $numberCycle = $cycle;
                 }
             }
-        }else{
-            if(abs($number) < $cycle){
+        } else {
+            if (abs($number) < $cycle) {
                 $numberCycle = $cycle - abs($number);
-            }else{
-                $numberCycle = $cycle - (int)fmod(abs($number), $cycle);
+            } else {
+                $numberCycle = $cycle - (int) fmod(abs($number), $cycle);
             }
         }
 
@@ -168,7 +169,7 @@ class Math {
      * @param int $cycle Size of cycle
      * @return int
      */
-    static public function numberNext($n, $cycle = 12)
+    public static function numberNext($n, $cycle = 12)
     {
         $nNext    = $n + 1;
         $nInCycle = self::numberInCycle($nNext, 1, $cycle);
@@ -183,7 +184,7 @@ class Math {
      * @param int $cycle Size of cycle
      * @return int
      */
-    static public function numberPrev($n, $cycle = 12)
+    public static function numberPrev($n, $cycle = 12)
     {
         $nPrev    = $n - 1;
         $nInCycle = self::numberInCycle($nPrev, 1, $cycle);
@@ -197,7 +198,7 @@ class Math {
      * @param mixed $number Test number
      * @return int
      */
-    static public function sign($number)
+    public static function sign($number)
     { 
         return $number > 0 ? 1 : ($number < 0 ? -1 : 0); 
     } 
@@ -208,7 +209,7 @@ class Math {
      * @return array
      * @throws Exception\InvalidArgumentException
      */
-    static public function arraySum()
+    public static function arraySum()
     {
         $arrNum  = func_num_args();
         $arrList = func_get_args();
@@ -217,16 +218,16 @@ class Math {
 
         for ($i = 0; $i < $arrNum; $i++) {
             $arr = $arrList[$i];
-            if(!is_array($arr)){
+            if (!is_array($arr)) {
                 throw new Exception\InvalidArgumentException("Argument of function should be an array.");
             }
 
-            foreach($arr as $key => $value) {
-                if(array_key_exists($key, $array)) {
+            foreach ($arr as $key => $value) {
+                if (array_key_exists($key, $array)) {
                     $sum = $arr[$key] + $array[$key];
 
                     $array[$key] = $sum;
-                }else{
+                } else {
                     $array[$key] = $arr[$key];
                 }
             }
@@ -242,20 +243,20 @@ class Math {
      * @param bool $strict
      * @return bool
      */
-    static public function arrayInArray(array $array1, array $array2, $strict = false){
-        foreach ($array1 as $value){
-            if(in_array($value, $array2)){
+    public static function arrayInArray(array $array1, array $array2, $strict = false) {
+        foreach ($array1 as $value) {
+            if (in_array($value, $array2)) {
                 $return = true;
-                if($strict){
+                if ($strict) {
                     continue;
-                }else{
+                } else {
                     break;
                 }
-            }else{
+            } else {
                 $return = false;
-                if($strict){
+                if ($strict) {
                     break;
-                }else{
+                } else {
                     continue;
                 }
             }
@@ -270,7 +271,7 @@ class Math {
      * @param array $dms2
      * @return array
      */
-    static public function dmsSum(array $dms1, array $dms2)
+    public static function dmsSum(array $dms1, array $dms2)
     {
         $result = array('d' => 0, 'm' => 0, 's' => 0);
 
@@ -291,7 +292,7 @@ class Math {
      * @param int|float $factor
      * @return array
      */
-    static public function dmsMulti(array $dms, $factor)
+    public static function dmsMulti(array $dms, $factor)
     {
         $result = array('d' => 0, 'm' => 0, 's' => 0);
 
@@ -314,9 +315,9 @@ class Math {
      * @return boolean
      * @throws Exception\InvalidArgumentException
      */
-    static public function inRange($value, $min, $max)
+    public static function inRange($value, $min, $max)
     {
-        if($max <= $min){
+        if ($max <= $min) {
             throw new Exception\InvalidArgumentException("The maximum value must be greater than the minimum.");
         }
         
@@ -330,7 +331,7 @@ class Math {
      * @param int $cycle Size of cycle
      * @return float
      */
-    static public function oppositeValue($value, $cycle = 12)
+    public static function oppositeValue($value, $cycle = 12)
     {
         $oppositeValue = $value + $cycle / 2;
         $result = $oppositeValue >= $cycle ? $oppositeValue - $cycle : $oppositeValue;
@@ -344,15 +345,15 @@ class Math {
      * @param int $number
      * @return int
      */
-    static public function simplifyNumber($number)
+    public static function simplifyNumber($number)
     {
         $i = 0;
         
-        if($number <= 9) {
+        if ($number <= 9) {
             return $number;
-        }else{
+        } else {
             $numString = strval($number);
-            while($numString[$i] != ''){
+            while ($numString[$i] != '') {
                 $num += $numString[$i];
                 $i += 1;
             }
