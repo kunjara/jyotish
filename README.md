@@ -15,7 +15,7 @@ You can do the following calculations:
 
 ### System Requirements
 
-Jyotish library requires PHP 5.5.19 or later.
+Jyotish library requires PHP 5.6 or later.
 
 ### License
 

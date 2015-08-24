@@ -156,7 +156,7 @@ class Astro
         $second = $DateTime->format('s');
         
         $jc = Time::getJC($DateTime);
-        $gst = 24110.54841 + 8640184.812866 * $jc + 0.093104 * $jc * $jc - 0.0000062 * $jc * $jc * $jc;
+        $gst = 24110.54841 + 8640184.812866 * $jc + 0.093104 * $jc ** 2 - 0.0000062 * $jc ** 3;
         
         $units = Math::partsToUnits($gst, 86400);
         
@@ -202,7 +202,7 @@ class Astro
         $k2 = Math::dmsToDecimal(['d' => 0, 'm' => 0, 's' => 0.00059]);
         $k3 = Math::dmsToDecimal(['d' => 0, 'm' => 0, 's' => 0.001813]);
         
-        $e = $k - $k1 * $jc - $k2 * $jc * $jc + $k3 * $jc * $jc * $jc;
+        $e = $k - $k1 * $jc - $k2 * $jc ** 2 + $k3 * $jc ** 3;
         
         return $e;
     }

@@ -13,7 +13,7 @@ namespace Jyotish\Ganita;
  */
 class Math
 {
-    const M_RAD = 0.01745329251994329577;
+    const M_RAD = M_PI / 180;
 
     /**
      * Conversion of angular degrees (hours), minutes and seconds of arc to 
@@ -206,27 +206,17 @@ class Math
     /**
      * Sum of arrays.
      * 
+     * @param array List of arrays
      * @return array
      * @throws Exception\InvalidArgumentException
      */
-    public static function arraySum()
+    public static function arraySum(array ...$arrays)
     {
-        $arrNum  = func_num_args();
-        $arrList = func_get_args();
-
         $array = [];
-
-        for ($i = 0; $i < $arrNum; $i++) {
-            $arr = $arrList[$i];
-            if (!is_array($arr)) {
-                throw new Exception\InvalidArgumentException("Argument of function should be an array.");
-            }
-
+        foreach ($arrays as $arr) {
             foreach ($arr as $key => $value) {
                 if (array_key_exists($key, $array)) {
-                    $sum = $arr[$key] + $array[$key];
-
-                    $array[$key] = $sum;
+                    $array[$key] += $arr[$key];
                 } else {
                     $array[$key] = $arr[$key];
                 }
