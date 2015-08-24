@@ -181,7 +181,7 @@ class Graha
      * @var array
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 10.
      */
-    public static $graha = array(
+    public static $graha = [
         self::KEY_SY => Deva::DEVA_SURYA,
         self::KEY_CH => Deva::DEVA_CHANDRA,
         self::KEY_MA => Deva::DEVA_MANGAL,
@@ -191,7 +191,7 @@ class Graha
         self::KEY_SA => Deva::DEVA_SHANI,
         self::KEY_RA => self::NAME_RA,
         self::KEY_KE => self::NAME_KE,
-    );
+    ];
     
     /**
      * Planetary motions and the strengths allotted to them.
@@ -199,7 +199,7 @@ class Graha
      * @var array
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 27, Verse 21-23.
      */
-    public static $balaCheshta = array(
+    public static $balaCheshta = [
         self::CHESHTA_VAKRA => 60,
         self::CHESHTA_ANUVAKRA => 30,
         self::CHESHTA_VIKALA => 15,
@@ -208,7 +208,7 @@ class Graha
         self::CHESHTA_SAMA => 30,
         self::CHESHTA_CHARA => 45,
         self::CHESHTA_ATICHARA => 30,
-    );
+    ];
     
     /**
      * Combustion orbs.
@@ -217,7 +217,7 @@ class Graha
      * @see Surya Siddhanta. Chapter 9, Verse 6-9.
      * @see Varahamihira. Brihat Jataka. Chapter 7, Verse 2. Notes.
      */
-    public static $bhagaAstangata = array(
+    public static $bhagaAstangata = [
         Biblio::BOOK_SS => [
             self::KEY_CH => null,
         ],
@@ -231,7 +231,7 @@ class Graha
             self::KEY_SK => [self::CHESHTA_SAMA => 10, self::CHESHTA_VAKRA => 8],
             self::KEY_SA => 15,
         ]
-    );
+    ];
     
     /**
      * Mrityu bhaga.
@@ -241,7 +241,7 @@ class Graha
      * @see Venkatesh Sharma. Sarvarth Chintamani. Chapter 10, Verse 47-50.
      * @see Mantreswara. Phaladeepika. Chapter 13, Verse 10.
      */
-    public static $bhagaMrityu = array(
+    public static $bhagaMrityu = [
         Biblio::BOOK_JP => [
             self::KEY_CH => [
                 1 => 8, 2 => 25, 3 => 22, 4 => 22, 5 => 21, 6 => 1, 7 => 4, 8 => 23, 9 => 18, 10 => 20, 11 => 20, 12 => 10
@@ -283,18 +283,18 @@ class Graha
                 1 => 8, 2 => 18, 3 => 20, 4 => 10, 5 => 21, 6 => 22, 7 => 23, 8 => 24, 9 => 11, 10 => 12, 11 => 13, 12 => 14
             ]
         ],
-    );
+    ];
 
     /**
      * Specifications for risings and settings.
      * 
      * @var array
      */
-    public static $risingType = array(
+    public static $risingType = [
         self::RISING_NOREFRAC,
         self::RISING_DISCCENTER,
         self::RISING_HINDU,
-    );
+    ];
 
     /**
      * Devanagari 'graha' in transliteration.
@@ -338,7 +338,7 @@ class Graha
      */
     public static function getGrahaByFeature($feature, $value)
     {
-        $result = array();
+        $result = [];
 
         foreach (Graha::$graha as $key => $name) {
             $Graha = self::getInstance($key);
@@ -368,7 +368,7 @@ class Graha
     {
         $relation = function ($graha1, $graha2)
         {
-            $Graha = self::getInstance($graha1, array('relationSame' => true));
+            $Graha = self::getInstance($graha1, ['relationSame' => true]);
             return $Graha->grahaRelation[$graha2];
         };
         $relation1 = $relation($graha1, $graha2);

@@ -23,12 +23,12 @@ use DateTimeZone;
  */
 class Swetest extends AbstractGanita
 {
-    protected $swe = array(
+    protected $swe = [
         'swetest'   => null,
         'sweph'     => null,
-    );
+    ];
 
-    protected $inputAyanamsha = array(
+    protected $inputAyanamsha = [
         Ayanamsha::AYANAMSHA_FAGAN => '0',
         Ayanamsha::AYANAMSHA_LAHIRI => '1',
         Ayanamsha::AYANAMSHA_DELUCE => '2',
@@ -39,9 +39,9 @@ class Swetest extends AbstractGanita
         Ayanamsha::AYANAMSHA_YUKTESHWAR => '7',
         Ayanamsha::AYANAMSHA_JNBHASIN => '8',
         Ayanamsha::AYANAMSHA_SASSANIAN => '16',
-    );
+    ];
 
-    protected $inputPlanets = array(
+    protected $inputPlanets = [
         Graha::KEY_SY => '0',
         Graha::KEY_CH => '1',
         Graha::KEY_MA => '4',
@@ -50,9 +50,9 @@ class Swetest extends AbstractGanita
         Graha::KEY_SK => '3',
         Graha::KEY_SA => '6',
         Graha::KEY_RA => 'm',
-    );
+    ];
 
-    protected $outputPlanets = array(
+    protected $outputPlanets = [
         'Sun'      => Graha::KEY_SY,
         'Moon'     => Graha::KEY_CH,
         'Mars'     => Graha::KEY_MA,
@@ -61,8 +61,9 @@ class Swetest extends AbstractGanita
         'Venus'    => Graha::KEY_SK,
         'Saturn'   => Graha::KEY_SA,
         'meanNode' => Graha::KEY_RA,
-    );
-    protected $outputHouses = array(
+    ];
+    
+    protected $outputHouses = [
         'house1'   => 1,
         'house2'   => 2,
         'house3'   => 3,
@@ -75,13 +76,14 @@ class Swetest extends AbstractGanita
         'house10'  => 10,
         'house11'  => 11,
         'house12'  => 12,
-    );
-    protected $outputLagna = array(
+    ];
+    
+    protected $outputLagna = [
         'Ascendant' => Lagna::KEY_LG,
         'MC'        => Lagna::KEY_MLG,
         //'ARMC'      => 'ARMC',
         //'Vertex'    => 'Vertex',
-    );
+    ];
 
     public function __construct($swe)
     {
@@ -216,7 +218,7 @@ class Swetest extends AbstractGanita
             $units      = Math::partsToUnits($parameters[1]);
 
             if (array_key_exists($bodyName, $this->outputPlanets)) {
-                $dataParams[Data::BLOCK_GRAHA][$this->outputPlanets[$bodyName]] = array(
+                $dataParams[Data::BLOCK_GRAHA][$this->outputPlanets[$bodyName]] = [
                     'longitude' => (float) $parameters[1],
                     'latitude' => (float) $parameters[2],
                     'speed' => (float) $parameters[3],
@@ -224,23 +226,23 @@ class Swetest extends AbstractGanita
                     'declination' => (float) $parameters[5],
                     'rashi' => $units['units'],
                     'degree' => $units['parts'],
-                );
+                ];
             } elseif (array_key_exists($bodyName, $this->outputHouses)) {
-                $dataParams[Data::BLOCK_BHAVA][$this->outputHouses[$bodyName]] = array(
+                $dataParams[Data::BLOCK_BHAVA][$this->outputHouses[$bodyName]] = [
                     'longitude' => (float) $parameters[1],
                     'ascension' => (float) $parameters[2],
                     'declination' => (float) $parameters[3],
                     'rashi' => $units['units'],
                     'degree' => $units['parts'],
-                );
+                ];
             } elseif (array_key_exists($bodyName, $this->outputLagna)) {
-                $dataParams[Data::BLOCK_LAGNA][$this->outputLagna[$bodyName]] = array(
+                $dataParams[Data::BLOCK_LAGNA][$this->outputLagna[$bodyName]] = [
                     'longitude' => (float) $parameters[1],
                     'ascension' => (float) $parameters[2],
                     'declination' => (float) $parameters[3],
                     'rashi'     => $units['units'],
                     'degree'    => $units['parts'],
-                );
+                ];
             }
         }
 
@@ -249,7 +251,7 @@ class Swetest extends AbstractGanita
             $ascensionKe = Math::oppositeValue($dataParams['graha'][Graha::KEY_RA]['ascension'], 360);
             $units = Math::partsToUnits($longitudeKe);
 
-            $dataParams['graha'][Graha::KEY_KE] = array(
+            $dataParams['graha'][Graha::KEY_KE] = [
                 'longitude'   => $longitudeKe,
                 'latitude'    => $dataParams['graha'][Graha::KEY_RA]['latitude'],
                 'speed'       => $dataParams['graha'][Graha::KEY_RA]['speed'],
@@ -257,7 +259,7 @@ class Swetest extends AbstractGanita
                 'degree'      => $units['parts'],
                 'ascension'   => $ascensionKe,
                 'declination' => $dataParams['graha'][Graha::KEY_RA]['declination']
-            );
+            ];
         }
 
         return $dataParams;
@@ -289,10 +291,10 @@ class Swetest extends AbstractGanita
             $rising = $risingObject->format(Time::FORMAT_DATETIME);
             $setting = $settingObject->format(Time::FORMAT_DATETIME);
 
-            $dataRising[$graha][$i] = array(
+            $dataRising[$graha][$i] = [
                 'rising'  => $rising,
                 'setting' => $setting,
-            );
+            ];
         }
         $DateTime3 = new DateTime($dataRising[$graha][3]['rising']);
         if ($DateTime == $DateTime3) {

@@ -50,10 +50,10 @@ class N16 extends NakshatraObject
      * @var string
      * @see Varahamihira. Brihat Samhita. Chapter 98, Verse 4-5.
      */
-    protected $nakshatraDeva = array(
+    protected $nakshatraDeva = [
         Deva::DEVA_INDRA,
         Deva::DEVA_AGNI,
-    );
+    ];
 
     /**
      * Type of nakshatra.
@@ -78,14 +78,14 @@ class N16 extends NakshatraObject
     protected $nakshatraPurushartha = Manusha::PURUSHARTHA_DHARMA;
     protected $nakshatraVarna = Manusha::VARNA_MLECHHA;
     protected $nakshatraPrakriti = Ayurveda::PRAKRITI_KAPHA;
-    protected $nakshatraYoni = array(
+    protected $nakshatraYoni = [
         'animal' => Pasu::ANIMAL_TIGER,
         'gender' => Manusha::GENDER_MALE,
-    );
-    protected $nakshatraRajju = array(
+    ];
+    protected $nakshatraRajju = [
         'lift' => Nakshatra::LIFT_AVAROHA,
         'limb' => Nakshatra::LIMB_NABHI,
-    );
+    ];
 
     public function __construct($options = null) {
         parent::__construct($options);

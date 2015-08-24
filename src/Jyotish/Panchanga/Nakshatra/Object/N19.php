@@ -75,14 +75,14 @@ class N19 extends NakshatraObject
     protected $nakshatraPurushartha = Manusha::PURUSHARTHA_KAMA;
     protected $nakshatraVarna = Manusha::VARNA_UGRA;
     protected $nakshatraPrakriti = Ayurveda::PRAKRITI_VATA;
-    protected $nakshatraYoni = array(
+    protected $nakshatraYoni = [
         'animal' => Pasu::ANIMAL_DOG,
         'gender' => Manusha::GENDER_MALE,
-    );
-    protected $nakshatraRajju = array(
+    ];
+    protected $nakshatraRajju = [
         'lift' => Nakshatra::LIFT_AROHA,
         'limb' => Nakshatra::LIMB_PADA,
-    );
+    ];
 
     public function __construct($options = null) {
         parent::__construct($options);

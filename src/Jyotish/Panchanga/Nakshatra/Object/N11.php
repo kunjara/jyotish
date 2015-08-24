@@ -75,14 +75,14 @@ class N11 extends NakshatraObject
     protected $nakshatraPurushartha = Manusha::PURUSHARTHA_KAMA;
     protected $nakshatraVarna = Manusha::VARNA_BRAHMANA;
     protected $nakshatraPrakriti = Ayurveda::PRAKRITI_PITTA;
-    protected $nakshatraYoni = array(
+    protected $nakshatraYoni = [
         'animal' => Pasu::ANIMAL_RAT,
         'gender' => Manusha::GENDER_FEMALE,
-    );
-    protected $nakshatraRajju = array(
+    ];
+    protected $nakshatraRajju = [
         'lift' => Nakshatra::LIFT_AROHA,
         'limb' => Nakshatra::LIMB_KATI,
-    );
+    ];
 
     public function __construct($options = null) {
         parent::__construct($options);

@@ -50,7 +50,7 @@ class Vara
      * 
      * @var array 
      */
-    public static $vara = array(
+    public static $vara = [
         Graha::KEY_SY => self::NAME_SY,
         Graha::KEY_CH => self::NAME_CH,
         Graha::KEY_MA => self::NAME_MA,
@@ -58,7 +58,7 @@ class Vara
         Graha::KEY_GU => self::NAME_GU,
         Graha::KEY_SK => self::NAME_SK,
         Graha::KEY_SA => self::NAME_SA
-    );
+    ];
     
     /**
      * Returns the requested instance of vara class.

@@ -38,13 +38,13 @@ class B8 extends BhavaObject
      * @var array
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 11, Verse 9.
      */
-    protected $bhavaKarakatva = array(
+    protected $bhavaKarakatva = [
         'longevity',
         'battle',
         'enemies',
         'forts',
         'succession',
-    );
+    ];
 
     /**
      * Purushartha of bhava.

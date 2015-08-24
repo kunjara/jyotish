@@ -27,14 +27,14 @@ class GrahaObject extends Object
      * 
      * @var array
      */
-    protected $options = array(
+    protected $options = [
         'relationSame' => false,
         'relationChaya' => '',
         'bhagaAstangata' => 6,
         'bhagaMrityu' => Biblio::BOOK_JP,
         'specificRashi' => Biblio::BOOK_BPHS,
         'drishtiRahu' => '',
-    );
+    ];
     
     /**
      * Object type
@@ -92,7 +92,7 @@ class GrahaObject extends Object
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 16-17.
      * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 4-5.
      */
-    protected $grahaColor = array();
+    protected $grahaColor = [];
 
     /**
      * Deva of the Graha.
@@ -188,7 +188,7 @@ class GrahaObject extends Object
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 49-50.
      * @see Varahamihira. Brihat Jataka. Chapter 1, Verse 13.
      */
-    protected $grahaUcha = array();
+    protected $grahaUcha = [];
 
     /**
      * Graha debilitation.
@@ -197,7 +197,7 @@ class GrahaObject extends Object
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 49-50.
      * @see Varahamihira. Brihat Jataka. Chapter 1, Verse 13.
      */
-    protected $grahaNeecha = array();
+    protected $grahaNeecha = [];
 
     /**
      * Graha mooltrikon.
@@ -206,7 +206,7 @@ class GrahaObject extends Object
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 51-54.
      * @see Varahamihira. Brihat Jataka. Chapter 1, Verse 14.
      */
-    protected $grahaMool = array();
+    protected $grahaMool = [];
 
     /**
      * Own sign of the graha.
@@ -214,7 +214,7 @@ class GrahaObject extends Object
      * @var array
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 51-54.
      */
-    protected $grahaSwa = array();
+    protected $grahaSwa = [];
 
     /**
      * Natural relationships.
@@ -222,7 +222,7 @@ class GrahaObject extends Object
      * @var array
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 55.
      */
-    protected $grahaRelation = array();
+    protected $grahaRelation = [];
 
     /**
      * Graha disha
@@ -239,7 +239,7 @@ class GrahaObject extends Object
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 26, Verse 2-5.
      * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 13.
      */
-    protected $grahaDrishti = array();
+    protected $grahaDrishti = [];
 
     /**
      * Prakriti of graha
@@ -248,11 +248,11 @@ class GrahaObject extends Object
      */
     protected $grahaPrakriti;
     protected $grahaAgeMaturity;
-    protected $grahaAgePeriod = array(
+    protected $grahaAgePeriod = [
         'start',
         'end'
-    );
-    protected $grahaLongitudeSpeedAvg = array();
+    ];
+    protected $grahaLongitudeSpeedAvg = [];
 
     /**
      * Set graha names.
@@ -277,14 +277,14 @@ class GrahaObject extends Object
      */
     protected function setGrahaRelation($options)
     {
-        $relation = array();
+        $relation = [];
         $friendsFromMt = [2, 4, 5, 8, 9, 12];
         $enemiesFromMt = [3, 6, 7, 10, 11];
 
         $rashiMool = $this->grahaMool['rashi'];
         $rashiUcha = $this->grahaUcha['rashi'];
 
-        $friends = array();
+        $friends = [];
         $R = Rashi::getInstance($rashiUcha);
         $gFriend = $R->rashiRuler;
         if ($this->objectKey != $gFriend) $friends[] = $gFriend;

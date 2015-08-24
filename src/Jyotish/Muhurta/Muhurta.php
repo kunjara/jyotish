@@ -33,7 +33,7 @@ class Muhurta
     
     protected $dateTimeObjectEnd = null;
     
-    protected $timeStamps = array();
+    protected $timeStamps = [];
 
     /**
      * Constructor

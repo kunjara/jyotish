@@ -52,10 +52,10 @@ class Dasha
      * 
      * @var array
      */
-    public static $dasha = array(
+    public static $dasha = [
         self::TYPE_VIMSHOTTARI,
         self::TYPE_ASHTOTTARI,
-    );
+    ];
 
     /**
      * Returns the requested instance of dasha class.

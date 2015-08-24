@@ -77,7 +77,7 @@ class Tithi
      * 
      * @var array
      */
-    public static $tithi = array(
+    public static $tithi = [
         1 => self::NAME_PRATIPAD,
         2 => self::NAME_DWITIYA,
         3 => self::NAME_TRITIYA,
@@ -108,7 +108,7 @@ class Tithi
         28 => self::NAME_TRAYODASHI,
         29 => self::NAME_CHATURDASHI,
         30 => self::NAME_AMAVASYA,
-    );
+    ];
     
     /**
      * Devas of tithi.

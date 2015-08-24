@@ -304,7 +304,7 @@ trait GrahaEnvironment
      */
     public function getTempRelation()
     {
-        $relation = array();
+        $relation = [];
         $friendsRashi = [2, 3, 4, 10, 11, 12];
         
         foreach ($this->getEnvironment()['graha'] as $key => $data) {

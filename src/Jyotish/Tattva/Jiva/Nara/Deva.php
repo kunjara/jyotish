@@ -81,86 +81,86 @@ class Deva extends \Jyotish\Tattva\Jiva\Nara {
     const DEVA_YAMA = 'Yama';
     const DEVA_YAMA_DHARMA = 'Dharmaraja';
     
-    public static $triMurti = array(
+    public static $triMurti = [
         self::DEVA_BRAHMA,
         self::DEVA_VISHNU,
         self::DEVA_SHIVA
-    );
+    ];
 
-    public static $nameVishnu = array(
+    public static $nameVishnu = [
         self::DEVA_VISHNU,
         self::DEVA_VISHNU_ISHVARA,
         self::DEVA_VISHNU_HARI,
         self::DEVA_VISHNU_KESHAVA,
         self::DEVA_VISHNU_MAHA,
         self::DEVA_VISHNU_YAJNESHVARA,
-    );
+    ];
 
-    public static $nameShiva = array(
+    public static $nameShiva = [
         self::DEVA_SHIVA,
         self::DEVA_SHIVA_RUDRA,
-    );	
+    ];	
 
-    public static $nameBrahma = array(
+    public static $nameBrahma = [
         self::DEVA_BRAHMA,
         self::DEVA_BRAHMA_PRAJAPATI,
-    );
+    ];
 
-    public static $nameSurya = array(
+    public static $nameSurya = [
         self::DEVA_SURYA,
         self::DEVA_SURYA_MITRA,
         self::DEVA_SURYA_RAVI,
         self::DEVA_SURYA_SAVITRI,
         self::DEVA_SURYA_VIVASVAN,
-    );
+    ];
 
-    public static $nameChandra = array(
+    public static $nameChandra = [
         self::DEVA_CHANDRA,
         self::DEVA_CHANDRA_SOMA,
-    );
+    ];
 
-    public static $nameGuru = array(
+    public static $nameGuru = [
         self::DEVA_GURU,
         self::DEVA_GURU_BRIHASPATI,
-    );
+    ];
 
-    public static $nameMangal = array(
+    public static $nameMangal = [
         self::DEVA_MANGAL,
         self::DEVA_MANGAL_KUJA,
-    );
+    ];
 
-    public static $nameBudha = array(
+    public static $nameBudha = [
         self::DEVA_BUDHA,
         self::DEVA_BUDHA_KUMAR,
-    );
+    ];
 
-    public static $nameShukra = array(
+    public static $nameShukra = [
         self::DEVA_SHUKRA,
         self::DEVA_SHUKRA_USHANAS,
-    );
+    ];
 
-    public static $nameShani = array(
+    public static $nameShani = [
         self::DEVA_SHANI,
         self::DEVA_SHANI_SHANAISHCHARA,
-    );
+    ];
 
-    public static $nameKarttikeya = array(
+    public static $nameKarttikeya = [
         self::DEVA_KARTTIKEYA,
         self::DEVA_KARTTIKEYA_MURUGAN,
         self::DEVA_KARTTIKEYA_SENAPATI,
         self::DEVA_KARTTIKEYA_SKANDA,
         self::DEVA_KARTTIKEYA_SUBRAMANYA,
-    );
+    ];
 
-    public static $nameParvati = array(
+    public static $nameParvati = [
         self::DEVA_PARVATI,
         self::DEVA_PARVATI_DUGRA,
         self::DEVA_PARVATI_GAURI,
         self::DEVA_PARVATI_KALI,
-    );
+    ];
 
-    public static $nameYama = array(
+    public static $nameYama = [
         self::DEVA_YAMA,
         self::DEVA_YAMA_DHARMA,
-    );
+    ];
 }

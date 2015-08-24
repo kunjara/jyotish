@@ -25,9 +25,9 @@ class RashiObject extends \Jyotish\Base\Object
      * 
      * @var array
      */
-    protected $options = array(
+    protected $options = [
         'rashi5Vana' => false,
-    );
+    ];
     
     /**
      * Object type

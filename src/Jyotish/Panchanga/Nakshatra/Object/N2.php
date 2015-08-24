@@ -75,14 +75,14 @@ class N2 extends NakshatraObject
     protected $nakshatraPurushartha = Manusha::PURUSHARTHA_ARTHA;
     protected $nakshatraVarna = Manusha::VARNA_MLECHHA;
     protected $nakshatraPrakriti = Ayurveda::PRAKRITI_PITTA;
-    protected $nakshatraYoni = array(
+    protected $nakshatraYoni = [
         'animal' => Pasu::ANIMAL_ELEPHANT,
         'gender' => Manusha::GENDER_MALE,
-    );
-    protected $nakshatraRajju = array(
+    ];
+    protected $nakshatraRajju = [
         'lift' => Nakshatra::LIFT_AROHA,
         'limb' => Nakshatra::LIMB_KATI,
-    );
+    ];
 
     public function __construct($options = null) {
         parent::__construct($options);

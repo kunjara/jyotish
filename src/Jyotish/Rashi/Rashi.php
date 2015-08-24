@@ -83,7 +83,7 @@ class Rashi
      * @var array 
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 4, Verse 3.
      */
-    public static $rashi = array(
+    public static $rashi = [
         1 => self::NAME_1,
         2 => self::NAME_2,
         3 => self::NAME_3,
@@ -96,7 +96,7 @@ class Rashi
         10 => self::NAME_10,
         11 => self::NAME_11,
         12 => self::NAME_12,
-    );
+    ];
     
     /**
      * States of the planet, depending on location in the rashis.
@@ -119,7 +119,7 @@ class Rashi
      * @var array
      * @see Vaidyanatha Dikshita. Jataka Parijata. Chapter 1, Verse 58.
      */
-    public static $pushkaraBhaga = array(
+    public static $pushkaraBhaga = [
         1 => 21,
         2 => 14,
         3 => 18,
@@ -132,14 +132,14 @@ class Rashi
         10 => 14,
         11 => 19,
         12 => 9
-    );
+    ];
     
     /**
      * Pushkara navamsha.
      * 
      * @var array
      */
-    public static $pushkaraNavamsha = array(
+    public static $pushkaraNavamsha = [
         1 => [7, 9],
         2 => [3, 5],
         3 => [6, 8],
@@ -152,7 +152,7 @@ class Rashi
         10 => [3, 5],
         11 => [6, 8],
         12 => [1, 3]
-    );
+    ];
 
     /**
      * Trimsamsa is division of each sign into thirty equal parts, each part 
@@ -160,13 +160,13 @@ class Rashi
      * 
      * @var array
      */
-    private static $trimshamshaRuler = array(
+    private static $trimshamshaRuler = [
         Graha::KEY_MA => 5,
         Graha::KEY_SA => 5,
         Graha::KEY_GU => 8,
         Graha::KEY_BU => 7,
         Graha::KEY_SK => 5
-    );
+    ];
 
     /**
      * Devanagari 'rashi' in transliteration.

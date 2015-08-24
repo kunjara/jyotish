@@ -24,10 +24,10 @@ abstract class AbstractGanita
      * 
      * @var array
      */
-    protected $options = array(
+    protected $options = [
         'ayanamsha' => Ayanamsha::AYANAMSHA_LAHIRI,
         'rising' => Graha::RISING_HINDU,
-    );
+    ];
 
     /**
      * Set ayanamsha for calculation.

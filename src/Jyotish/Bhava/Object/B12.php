@@ -38,11 +38,11 @@ class B12 extends BhavaObject
      * @var array
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 11, Verse 13.
      */
-    protected $bhavaKarakatva = array(
+    protected $bhavaKarakatva = [
         'expenses',
         'history of enemies',
         'own death',
-    );
+    ];
 
     /**
      * Purushartha of bhava.

@@ -33,16 +33,16 @@ class YogaBase
      * 
      * @var array
      */
-    protected $yogas = array();
+    protected $yogas = [];
     
     /**
      * Options of Yoga calculation.
      * 
      * @var array
      */
-    protected $options = array(
+    protected $options = [
         'outputAmple' => false,
-    );
+    ];
     
     /**
      * Constructor

@@ -35,11 +35,11 @@ abstract class AbstractChakra
      * 
      * @var array
      */
-    public static $style = array(
+    public static $style = [
         self::STYLE_NORTH,
         self::STYLE_SOUTH,
         self::STYLE_EAST,
-    );
+    ];
     
     /**
      * Analysis object.

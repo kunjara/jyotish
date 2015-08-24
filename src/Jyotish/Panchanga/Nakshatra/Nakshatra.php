@@ -62,7 +62,7 @@ class Nakshatra
      * 
      * @var array 
      */
-    public static $nakshatra = array(
+    public static $nakshatra = [
         1 => 'Ashwini',
         2 => 'Bharani',
         3 => 'Krittika',
@@ -91,14 +91,14 @@ class Nakshatra
         26 => 'Uttara Bhadrapada',
         27 => 'Revati',
         28 => 'Abhijit'
-    );
+    ];
 
     /**
      * Array of navatara (nine stars).
      * 
      * @var array 
      */
-    public static $navatara = array(
+    public static $navatara = [
         1 => 'Janma',
         2 => 'Sampat',
         3 => 'Vipat',
@@ -108,14 +108,14 @@ class Nakshatra
         7 => 'Naidhana',
         8 => 'Mitra',
         9 => 'Atimitra'
-    );
+    ];
     
     /**
      * List of nakshatra types.
      * 
      * @var array
      */
-    public static $type = array(
+    public static $type = [
         self::TYPE_CHARANA,
         self::TYPE_DHRUVA,
         self::TYPE_KSHIPRA,
@@ -123,7 +123,7 @@ class Nakshatra
         self::TYPE_SADHARANA,
         self::TYPE_TIKSHNA,
         self::TYPE_UGRA,
-    );
+    ];
 
     /**
      * Devanagari title 'nakshatra' in transliteration.

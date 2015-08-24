@@ -34,7 +34,7 @@ final class North extends AbstractChakra
      * 
      * @var array
      */
-    protected $bhavaPoints = array(
+    protected $bhavaPoints = [
         1  => [2, 2,   1, 1,   2, 0,   3, 1],
         2  => [1, 1,   0, 0,   2, 0],
         3  => [1, 1,   0, 2,   0, 0],
@@ -47,7 +47,7 @@ final class North extends AbstractChakra
         10 => [2, 2,   3, 1,   4, 2,   3, 3],
         11 => [3, 1,   4, 0,   4, 2],
         12 => [3, 1,   2, 0,   4, 0,]
-    );
+    ];
     
     /**
      * Constructor
@@ -93,7 +93,7 @@ final class North extends AbstractChakra
         $ratio = round($options['chakraSize'] / 4);
         $offsetBorder = $options['offsetBorder'];
         $offsetCorner = $offsetBorder * 5;
-        $offsetSum = array();
+        $offsetSum = [];
         $bodies = $this->Analysis->getBodyInBhava();
 
         foreach ($bodies as $graha => $bhava) {

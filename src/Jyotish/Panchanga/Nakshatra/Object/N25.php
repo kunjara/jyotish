@@ -75,14 +75,14 @@ class N25 extends NakshatraObject
     protected $nakshatraPurushartha = Manusha::PURUSHARTHA_ARTHA;
     protected $nakshatraVarna = Manusha::VARNA_BRAHMANA;
     protected $nakshatraPrakriti = Ayurveda::PRAKRITI_VATA;
-    protected $nakshatraYoni = array(
+    protected $nakshatraYoni = [
         'animal' => Pasu::ANIMAL_LION,
         'gender' => Manusha::GENDER_MALE,
-    );
-    protected $nakshatraRajju = array(
+    ];
+    protected $nakshatraRajju = [
         'lift' => Nakshatra::LIFT_AVAROHA,
         'limb' => Nakshatra::LIMB_NABHI,
-    );
+    ];
 
     public function __construct($options = null) {
         parent::__construct($options);

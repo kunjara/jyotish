@@ -35,10 +35,10 @@ class T6 extends TithiObject
      * 
      * @var string
      */
-    protected $tithiKarana = array(
+    protected $tithiKarana = [
         1 => Karana::NAME_KAULAVA,
         2 => Karana::NAME_TAITILA
-    );
+    ];
 
     public function __construct($options = null) {
         parent::__construct($options);

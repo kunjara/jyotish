@@ -35,10 +35,10 @@ class T17 extends TithiObject
      * 
      * @var string
      */
-    protected $tithiKarana = array(
+    protected $tithiKarana = [
         1 => Karana::NAME_TAITILA,
         2 => Karana::NAME_GARA
-    );
+    ];
 
     public function __construct($options = null) {
         parent::__construct($options);

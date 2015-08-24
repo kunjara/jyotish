@@ -75,14 +75,14 @@ class N26 extends NakshatraObject
     protected $nakshatraPurushartha = Manusha::PURUSHARTHA_ARTHA;
     protected $nakshatraVarna = Manusha::VARNA_KSHATRIYA;
     protected $nakshatraPrakriti = Ayurveda::PRAKRITI_PITTA;
-    protected $nakshatraYoni = array(
+    protected $nakshatraYoni = [
         'animal' => Pasu::ANIMAL_COW,
         'gender' => Manusha::GENDER_FEMALE,
-    );
-    protected $nakshatraRajju = array(
+    ];
+    protected $nakshatraRajju = [
         'lift' => Nakshatra::LIFT_AVAROHA,
         'limb' => Nakshatra::LIMB_KATI,
-    );
+    ];
 
     public function __construct($options = null) {
         parent::__construct($options);

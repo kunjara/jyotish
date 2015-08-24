@@ -24,9 +24,9 @@ class NakshatraObject extends \Jyotish\Panchanga\AngaObject
      * 
      * @var array
      */
-    protected $options = array(
+    protected $options = [
         'withAbhijit' => false,
-    );
+    ];
     
     /**
      * Anga type.
@@ -87,21 +87,21 @@ class NakshatraObject extends \Jyotish\Panchanga\AngaObject
      * @var array
      * @see Jyotish\Alphabet\Devanagari
      */
-    protected $nakshatraTranslit = array();
+    protected $nakshatraTranslit = [];
 
     /**
      * Nakshatra start.
      * 
      * @var array
      */
-    protected $nakshatraStart = array();
+    protected $nakshatraStart = [];
 
     /**
      * Nakshatra end.
      * 
      * @var array
      */
-    protected $nakshatraEnd = array();
+    protected $nakshatraEnd = [];
 
     /**
      * Energy of nakshatra.
@@ -157,14 +157,14 @@ class NakshatraObject extends \Jyotish\Panchanga\AngaObject
      * 
      * @var array
      */
-    protected $nakshatraYoni = array();
+    protected $nakshatraYoni = [];
 
     /**
      * Rajju of nakshatra.
      * 
      * @var array
      */
-    protected $nakshatraRajju = array();
+    protected $nakshatraRajju = [];
 
     /**
      * Set nakshatra start and end.
@@ -178,14 +178,14 @@ class NakshatraObject extends \Jyotish\Panchanga\AngaObject
             switch ($this->nakshatraKey) {
             case 21:
                 $this->nakshatraStart = Math::dmsMulti(Nakshatra::$arc, 20);
-                $this->nakshatraEnd = array('d' => 276, 'm' => 40);
+                $this->nakshatraEnd = ['d' => 276, 'm' => 40];
                 break;
             case 28:
-                $this->nakshatraStart = array('d' => 276, 'm' => 40);
-                $this->nakshatraEnd = array('d' => 280, 'm' => 53, 's' => 20);
+                $this->nakshatraStart = ['d' => 276, 'm' => 40];
+                $this->nakshatraEnd = ['d' => 280, 'm' => 53, 's' => 20];
                 break;
             case 22:
-                $this->nakshatraStart = array('d' => 280, 'm' => 53, 's' => 20);
+                $this->nakshatraStart = ['d' => 280, 'm' => 53, 's' => 20];
                 $this->nakshatraEnd = Math::dmsMulti(Nakshatra::$arc, 22);
                 break;
             default:

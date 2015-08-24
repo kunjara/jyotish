@@ -30,7 +30,7 @@ class Karana
      * 
      * @var array 
      */
-    public static $karana = array(
+    public static $karana = [
         1 => self::NAME_BAVA,
         2 => self::NAME_BALAVA,
         3 => self::NAME_KAULAVA,
@@ -42,5 +42,5 @@ class Karana
         9 => self::NAME_CHATUSHPADA,
         10 => self::NAME_NAGA,
         11 => self::NAME_KINSTUGNA
-    );
+    ];
 }

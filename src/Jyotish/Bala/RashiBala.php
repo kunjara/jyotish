@@ -29,19 +29,19 @@ class RashiBala extends Analysis
      * 
      * @var array
      */
-    protected $bala = array();
+    protected $bala = [];
     
     /**
      * Bala components.
      * 
      * @var array
      */
-    protected $balaVarga = array(
+    protected $balaVarga = [
         self::VARGA_GRAHA,
         self::VARGA_CHARA,
         self::VARGA_STHIRA,
         self::VARGA_DRISHTI
-    );
+    ];
     
     /**
      * Constructor

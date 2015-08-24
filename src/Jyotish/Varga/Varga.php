@@ -36,7 +36,7 @@ class Varga
      * @var array 
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 7, Verse 2-4.
      */
-    public static $varga = array(
+    public static $varga = [
         self::KEY_D1  => 'Rashi',
         self::KEY_D2  => 'Hora',
         self::KEY_D3  => 'Drekkana',
@@ -53,7 +53,7 @@ class Varga
         self::KEY_D40 => 'Khavedamsha',
         self::KEY_D45 => 'Akshavedamsha',
         self::KEY_D60 => 'Shashtiamsha',
-    );
+    ];
 
     /**
      * The full Bal for each of the divisions consisting Shad Varga.
@@ -61,14 +61,14 @@ class Varga
      * @var array
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 7, Verse 17-19.
      */
-    public static $balaShadVarga = array(
+    public static $balaShadVarga = [
         self::KEY_D1  => 6,
         self::KEY_D2  => 2,
         self::KEY_D3  => 4,
         self::KEY_D9  => 5,
         self::KEY_D12 => 2,
         self::KEY_D30 => 1
-    );
+    ];
 
     /**
      * The full Bal for each of the divisions consisting Sapta Varga.
@@ -76,7 +76,7 @@ class Varga
      * @var array
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 7, Verse 17-19.
      */
-    public static $balaSaptaVarga = array(
+    public static $balaSaptaVarga = [
         self::KEY_D1  => 5,
         self::KEY_D2  => 2,
         self::KEY_D3  => 3,
@@ -84,7 +84,7 @@ class Varga
         self::KEY_D12 => 4.5,
         self::KEY_D30 => 2,
         self::KEY_D7  => 1
-    );
+    ];
 
     /**
      * The full Bal for each of the divisions consisting Dasha Varga.
@@ -92,7 +92,7 @@ class Varga
      * @var array
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 7, Verse 20.
      */
-    public static $balaDashaVarga = array(
+    public static $balaDashaVarga = [
         self::KEY_D1  => 3,
         self::KEY_D2  => 1.5,
         self::KEY_D3  => 1.5,
@@ -103,7 +103,7 @@ class Varga
         self::KEY_D10 => 1.5,
         self::KEY_D16 => 1.5,
         self::KEY_D60 => 5
-    );
+    ];
 
     /**
      * The full Bal for each of the divisions consisting Shodasha Varga.
@@ -111,7 +111,7 @@ class Varga
      * @var array
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 7, Verse 21-25.
      */
-    public static $balaShodashaVarga = array(
+    public static $balaShodashaVarga = [
         self::KEY_D1  => 3.5,
         self::KEY_D2  => 1,
         self::KEY_D3  => 1,
@@ -128,7 +128,7 @@ class Varga
         self::KEY_D4  => 0.5,
         self::KEY_D40 => 0.5,
         self::KEY_D45 => 0.5
-    );
+    ];
 
     /**
      * Returns the requested instance of varga class.

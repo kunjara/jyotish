@@ -35,10 +35,10 @@ class T12 extends TithiObject
      * 
      * @var string
      */
-    protected $tithiKarana = array(
+    protected $tithiKarana = [
         1 => Karana::NAME_BAVA,
         2 => Karana::NAME_BALAVA
-    );
+    ];
 
     public function __construct($options = null) {
         parent::__construct($options);

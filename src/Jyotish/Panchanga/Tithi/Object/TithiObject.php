@@ -24,9 +24,9 @@ class TithiObject extends \Jyotish\Panchanga\AngaObject
      * 
      * @var array
      */
-    protected $options = array(
+    protected $options = [
         'tithiDeva' => Biblio::BOOK_BS,
-    );
+    ];
     
     /**
      * Anga type.
@@ -55,7 +55,7 @@ class TithiObject extends \Jyotish\Panchanga\AngaObject
      * @var array
      * @see Jyotish\Alphabet\Devanagari
      */
-    protected $tithiTranslit = array();
+    protected $tithiTranslit = [];
 
     /**
      * Deva of tithi.
@@ -84,7 +84,7 @@ class TithiObject extends \Jyotish\Panchanga\AngaObject
      * 
      * @var string
      */
-    protected $tithiKarana = array();
+    protected $tithiKarana = [];
 
     /**
      * Set tithi Deva.

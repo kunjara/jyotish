@@ -75,14 +75,14 @@ class N27 extends NakshatraObject
     protected $nakshatraPurushartha = Manusha::PURUSHARTHA_MOKSHA;
     protected $nakshatraVarna = Manusha::VARNA_SHUDRA;
     protected $nakshatraPrakriti = Ayurveda::PRAKRITI_KAPHA;
-    protected $nakshatraYoni = array(
+    protected $nakshatraYoni = [
         'animal' => Pasu::ANIMAL_ELEPHANT,
         'gender' => Manusha::GENDER_FEMALE,
-    );
-    protected $nakshatraRajju = array(
+    ];
+    protected $nakshatraRajju = [
         'lift' => Nakshatra::LIFT_AVAROHA,
         'limb' => Nakshatra::LIMB_PADA,
-    );
+    ];
 
     public function __construct($options = null) {
         parent::__construct($options);

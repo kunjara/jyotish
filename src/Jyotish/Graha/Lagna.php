@@ -56,10 +56,10 @@ class Lagna
      * 
      * @var array
      */
-    public static $lagna = array(
+    public static $lagna = [
         self::KEY_IL => 'Indu Lagna',
         self::KEY_SL => 'Shree Lagna',
-    );
+    ];
     
     /**
      * Constructor

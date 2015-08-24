@@ -44,13 +44,13 @@ class Upagraha
      * 
      * @var array
      */
-    public static $upagraha = array(
+    public static $upagraha = [
         self::KEY_DH => 'Dhooma',
         self::KEY_VY => 'Vyatipata',
         self::KEY_PA => 'Parivesha',
         self::KEY_IN => 'Indrachapa',
         self::KEY_UK => 'Upaketu',
-    );
+    ];
     
     /**
      * Constructor

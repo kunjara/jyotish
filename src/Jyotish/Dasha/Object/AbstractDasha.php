@@ -28,9 +28,9 @@ abstract class AbstractDasha
      * 
      * @var array
      */
-    protected $options = array(
+    protected $options = [
         'nesting' => 3,
-    );
+    ];
     
     /**
      * Dasha key
@@ -112,7 +112,7 @@ abstract class AbstractDasha
         $DateTime->add(new DateInterval('PT'.$periodStart['total'].'S'));
         $periodEndString = $DateTime->format(Time::FORMAT_DATETIME);
 
-        $periodData = array(
+        $periodData = [
             'nesting'  => 0,
             'type'     => $this->dashaType,
             'key'      => '',
@@ -120,7 +120,7 @@ abstract class AbstractDasha
             'start'    => $periodStartString,
             'end'      => $periodEndString,
             'order'    => $this->getOrderGraha($periodStart['graha']),
-        );
+        ];
 
         $subPeriods = $this->getSubPeriods($periodData, $periodKey);
         unset($subPeriods['order']);

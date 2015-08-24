@@ -13,7 +13,7 @@ namespace Jyotish\Panchanga\Yoga;
  */
 class Yoga
 {
-    public static $yoga = array(
+    public static $yoga = [
         1 => 'Vishkambha',
         2 => 'Preeti',
         3 => 'Ayushman',
@@ -41,7 +41,7 @@ class Yoga
         25 => 'Brahma',
         26 => 'Indra',
         27 => 'Vaidhriti',
-    );
+    ];
 
     /**
      * Returns the requested instance of yoga class.

@@ -75,14 +75,14 @@ class N24 extends NakshatraObject
     protected $nakshatraPurushartha = Manusha::PURUSHARTHA_DHARMA;
     protected $nakshatraVarna = Manusha::VARNA_UGRA;
     protected $nakshatraPrakriti = Ayurveda::PRAKRITI_VATA;
-    protected $nakshatraYoni = array(
+    protected $nakshatraYoni = [
         'animal' => Pasu::ANIMAL_HORSE,
         'gender' => Manusha::GENDER_FEMALE,
-    );
-    protected $nakshatraRajju = array(
+    ];
+    protected $nakshatraRajju = [
         'lift' => Nakshatra::LIFT_AVAROHA,
         'limb' => Nakshatra::LIMB_KANTHA,
-    );
+    ];
 
     public function __construct($options = null) {
         parent::__construct($options);

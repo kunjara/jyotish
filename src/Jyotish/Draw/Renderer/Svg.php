@@ -46,11 +46,11 @@ class Svg extends AbstractRenderer
 
         $this->Resource->appendChild($this->svg);
 
-        $this->appendRootElement('style', array('type' => 'text/css'), '
+        $this->appendRootElement('style', ['type' => 'text/css'], '
             polygon:hover {fill: #eee;}
             text {font-family: Arial;}
         ');
-        $this->appendRootElement('rect', array('width' => $width, 'height' => $height, 'fill' => 'white'));
+        $this->appendRootElement('rect', ['width' => $width, 'height' => $height, 'fill' => 'white']);
     }
 
     public function drawPolygon($points, array $options = null) {
@@ -132,12 +132,12 @@ class Svg extends AbstractRenderer
         $this->appendRootElement('text', $attributes, html_entity_decode($text, ENT_COMPAT | ENT_HTML5, 'UTF-8'));
     }
 
-    protected function appendRootElement($tagName, $attributes = array(), $textContent = null) {
+    protected function appendRootElement($tagName, $attributes = [], $textContent = null) {
         $newElement = $this->createElement($tagName, $attributes, $textContent);
         $this->svg->appendChild($newElement);
     }
 
-    protected function createElement($tagName, $attributes = array(), $textContent = null) {
+    protected function createElement($tagName, $attributes = [], $textContent = null) {
         $element = $this->Resource->createElement($tagName);
         foreach ($attributes as $k => $v) {
             $element->setAttribute($k, $v);

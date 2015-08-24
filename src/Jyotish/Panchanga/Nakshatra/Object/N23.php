@@ -74,14 +74,14 @@ class N23 extends NakshatraObject
     protected $nakshatraPurushartha = Manusha::PURUSHARTHA_DHARMA;
     protected $nakshatraVarna = Manusha::VARNA_DASYA;
     protected $nakshatraPrakriti = Ayurveda::PRAKRITI_PITTA;
-    protected $nakshatraYoni = array(
+    protected $nakshatraYoni = [
         'animal' => Pasu::ANIMAL_LION,
         'gender' => Manusha::GENDER_FEMALE,
-    );
-    protected $nakshatraRajju = array(
+    ];
+    protected $nakshatraRajju = [
         'lift' => Nakshatra::LIFT_AROHA,
         'limb' => Nakshatra::LIMB_SHIRO,
-    );
+    ];
 
     public function __construct($options = null) {
         parent::__construct($options);

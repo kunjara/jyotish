@@ -214,7 +214,7 @@ class Math
         $arrNum  = func_num_args();
         $arrList = func_get_args();
 
-        $array = array();
+        $array = [];
 
         for ($i = 0; $i < $arrNum; $i++) {
             $arr = $arrList[$i];
@@ -273,7 +273,7 @@ class Math
      */
     public static function dmsSum(array $dms1, array $dms2)
     {
-        $result = array('d' => 0, 'm' => 0, 's' => 0);
+        $result = ['d' => 0, 'm' => 0, 's' => 0];
 
         $ssUnits = self::partsToUnits($dms1['s'] + $dms2['s'], 60, 'floor');
         $result['s'] = $ssUnits['parts'];
@@ -294,7 +294,7 @@ class Math
      */
     public static function dmsMulti(array $dms, $factor)
     {
-        $result = array('d' => 0, 'm' => 0, 's' => 0);
+        $result = ['d' => 0, 'm' => 0, 's' => 0];
 
         $ssUnits = self::partsToUnits($dms['s'] * $factor, 60, 'floor');
         $result['s'] = $ssUnits['parts'];

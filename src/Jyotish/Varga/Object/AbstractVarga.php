@@ -31,7 +31,7 @@ abstract class AbstractVarga
      * 
      * @var array
      */
-    protected $vargaNames = array();
+    protected $vargaNames = [];
 
     /**
      * The number of parts.
@@ -65,31 +65,31 @@ abstract class AbstractVarga
         $bhava1Varga = $this->getVargaRashi($this->getData()['bhava'][1]);
         foreach ($this->getData()['bhava'] as $k => $v) {
             $rashi = $k == 1 ? $bhava1Varga['rashi'] : Math::numberNext($rashi);
-            $vargaData['bhava'][$k] = array(
+            $vargaData['bhava'][$k] = [
                 'rashi' => $rashi,
                 'degree' => $bhava1Varga['degree'],
                 'longitude' => 30 * ($rashi - 1) + $bhava1Varga['degree'],
-            );
+            ];
         }
         
         foreach ($this->getData()['graha'] as $k => $v) {
             $result = $this->getVargaRashi($v);
-            $vargaData['graha'][$k] = array(
+            $vargaData['graha'][$k] = [
                 'rashi' => $result['rashi'],
                 'degree' => $result['degree'],
                 'speed' => $this->getData()['graha'][$k]['speed'],
                 'longitude' => 30 * ($result['rashi'] - 1) + $result['degree'],
                 'latitude' => $v['latitude'],
-            );
+            ];
         }
         
         foreach ($this->getData()['lagna'] as $k => $v) {
             $result = $this->getVargaRashi($v);
-            $vargaData['lagna'][$k] = array(
+            $vargaData['lagna'][$k] = [
                 'rashi' => $result['rashi'],
                 'degree' => $result['degree'],
                 'longitude' => 30 * ($result['rashi'] - 1) + $result['degree'],
-            );
+            ];
         }
         return $vargaData;
     }

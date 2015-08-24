@@ -160,7 +160,7 @@ class Ke extends GrahaObject
      * 
      * @var array
      */
-    protected $grahaDrishti = array();
+    protected $grahaDrishti = [];
 
     /**
      * Prakriti of graha

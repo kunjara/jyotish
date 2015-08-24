@@ -73,7 +73,7 @@ class Arudha
      * 
      * @var array
      */
-    public static $arudha = array(
+    public static $arudha = [
         self::KEY_AL => 'Arudha Lagna',
         self::KEY_A2 => 'Dhanapada',
         self::KEY_A3 => 'Vikramapada',
@@ -86,17 +86,17 @@ class Arudha
         self::KEY_A10 => 'Karmapada',
         self::KEY_A11 => 'Labhapada',
         self::KEY_UL => 'Upapada Lagna'
-    );
+    ];
     
     /**
      * Options of Arudha calculation.
      * 
      * @var array
      */
-    protected $options = array(
+    protected $options = [
         'useException' => true,
         'exceptionRang' => 7.5,
-    );
+    ];
     
     /**
      * Constructor

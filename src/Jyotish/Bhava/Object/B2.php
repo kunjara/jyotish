@@ -39,7 +39,7 @@ class B2 extends BhavaObject
      * @var array
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 11, Verse 3.
      */
-    protected $bhavaKarakatva = array(
+    protected $bhavaKarakatva = [
         'wealth',
         'food',
         'family',
@@ -47,7 +47,7 @@ class B2 extends BhavaObject
         'enemies',
         'metals',
         'precious stones',
-    );
+    ];
 
     /**
      * Purushartha of bhava.

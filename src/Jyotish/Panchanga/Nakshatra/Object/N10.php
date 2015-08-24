@@ -75,14 +75,14 @@ class N10 extends NakshatraObject
     protected $nakshatraPurushartha = Manusha::PURUSHARTHA_ARTHA;
     protected $nakshatraVarna = Manusha::VARNA_SHUDRA;
     protected $nakshatraPrakriti = Ayurveda::PRAKRITI_KAPHA;
-    protected $nakshatraYoni = array(
+    protected $nakshatraYoni = [
         'animal' => Pasu::ANIMAL_RAT,
         'gender' => Manusha::GENDER_MALE,
-    );
-    protected $nakshatraRajju = array(
+    ];
+    protected $nakshatraRajju = [
         'lift' => Nakshatra::LIFT_AROHA,
         'limb' => Nakshatra::LIMB_PADA,
-    );
+    ];
 
     public function __construct($options = null) {
         parent::__construct($options);

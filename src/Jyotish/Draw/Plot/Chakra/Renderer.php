@@ -234,7 +234,7 @@ class Renderer
     }
 
     public function setOptionLabelGrahaType($value) {
-        if (!in_array($value, array(0, 1, 2))) {
+        if (!in_array($value, [0, 1, 2])) {
             throw new Exception\UnexpectedValueException(
                     "Invalid label type provided must be 0, 1 or 2."
             );

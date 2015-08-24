@@ -37,7 +37,7 @@ class Pasu extends \Jyotish\Tattva\Jiva
      */
     public static function animalRelation($animal1, $animal2)
     {
-        $hostile = array(
+        $hostile = [
             self::ANIMAL_COW => self::ANIMAL_TIGER,
             self::ANIMAL_ELEPHANT => self::ANIMAL_LION,
             self::ANIMAL_HORSE => self::ANIMAL_BUFFALO,
@@ -45,13 +45,14 @@ class Pasu extends \Jyotish\Tattva\Jiva
             self::ANIMAL_SERPENT => self::ANIMAL_MONGOOSE,
             self::ANIMAL_MONKEY => self::ANIMAL_SHEEP,
             self::ANIMAL_CAT => self::ANIMAL_RAT,
-        );
+        ];
 
         if ($animal1 == $animal2) {
             return 'same';
         } elseif (
-                (isset($hostile[$animal1]) and $hostile[$animal1] == $animal2) or 
-                (isset($hostile[$animal2]) and $hostile[$animal2] == $animal1)) {
+            (isset($hostile[$animal1]) and $hostile[$animal1] == $animal2) or 
+            (isset($hostile[$animal2]) and $hostile[$animal2] == $animal1)
+        ) {
             return 'hostile';
         } else {
             return 'friendly';

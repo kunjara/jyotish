@@ -118,7 +118,7 @@ trait EnvironmentTrait
      */
     public function isConjuncted()
     {
-        $isConjuncted = array();
+        $isConjuncted = [];
 
         foreach (Graha::$graha as $key => $name) {
             if ($key == $this->objectKey) continue;
@@ -137,7 +137,7 @@ trait EnvironmentTrait
      */
     public function isHemmed()
     {
-        $isHemmed = array();
+        $isHemmed = [];
         $p = 'prev';
         $n = 'next';
 
@@ -154,7 +154,7 @@ trait EnvironmentTrait
         }
 
         if (!(array_search($p, $isHemmed) and array_search($n, $isHemmed)))
-            $isHemmed = array();
+            $isHemmed = [];
 
         return $isHemmed;
     }

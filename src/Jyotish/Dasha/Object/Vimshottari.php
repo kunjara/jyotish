@@ -39,7 +39,7 @@ class Vimshottari extends AbstractDasha
      * 
      * @var array
      */
-    protected $durationGraha = array(
+    protected $durationGraha = [
         Graha::KEY_SY => 6,
         Graha::KEY_CH => 10,
         Graha::KEY_MA => 7,
@@ -49,7 +49,7 @@ class Vimshottari extends AbstractDasha
         Graha::KEY_BU => 17,
         Graha::KEY_KE => 7,
         Graha::KEY_SK => 20,
-    );
+    ];
 
     /**
      * Constructor

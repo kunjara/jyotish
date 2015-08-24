@@ -29,25 +29,25 @@ class GrahaBala extends Analysis
      * 
      * @var array
      */
-    protected $bala = array();
+    protected $bala = [];
     
     /**
      * Graha list.
      * 
      * @var array
      */
-    protected $balaGraha = array();
+    protected $balaGraha = [];
 
     /**
      * Bala components.
      * 
      * @var array
      */
-    protected $balaVarga = array(
+    protected $balaVarga = [
         self::VARGA_MULATRIKONADI,
         self::VARGA_AMSHA,
         self::VARGA_KENDRADI,
-    );
+    ];
     
     /**
      * Constructor

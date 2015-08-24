@@ -38,7 +38,7 @@ class B1 extends BhavaObject
      * @var array
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 11, Verse 2.
      */
-    protected $bhavaKarakatva = array(
+    protected $bhavaKarakatva = [
         'physique',
         'appearance',
         'intellect',
@@ -47,7 +47,7 @@ class B1 extends BhavaObject
         'happiness',
         'grief',
         'innate nature',
-    );
+    ];
 
     /**
      * Purushartha of bhava.

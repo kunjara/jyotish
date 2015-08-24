@@ -35,10 +35,10 @@ class T15 extends TithiObject
      * 
      * @var string
      */
-    protected $tithiKarana = array(
+    protected $tithiKarana = [
         1 => Karana::NAME_VISHTI,
         2 => Karana::NAME_BAVA
-    );
+    ];
 
 
     public function __construct($options = null) {

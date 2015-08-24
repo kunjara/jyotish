@@ -95,7 +95,7 @@ class Karaka
      * 
      * @var array
      */
-    public static $karaka = array(
+    public static $karaka = [
         self::KEY_ATMA => self::NAME_ATMA,
         self::KEY_AMATYA => self::NAME_AMATYA,
         self::KEY_BHRATRU => self::NAME_BHRATRU,
@@ -105,14 +105,14 @@ class Karaka
         self::KEY_GNATI => self::NAME_GNATI,
         self::KEY_DARA => self::NAME_DARA,
         self::KEY_AYUSH => self::NAME_AYUSH,
-    );
+    ];
     
     /**
      * List of sthira karakas.
      * 
      * @var array
      */
-    public static $karakaSthira = array(
+    public static $karakaSthira = [
         Graha::KEY_SY => self::NAME_PUTRA,
         Graha::KEY_CH => self::NAME_MATRU,
         Graha::KEY_MA => self::NAME_BHRATRU,
@@ -120,7 +120,7 @@ class Karaka
         Graha::KEY_GU => self::NAME_PUTRA,
         Graha::KEY_SK => self::NAME_DARA,
         Graha::KEY_SA => self::NAME_AYUSH
-    );
+    ];
 
     /**
      * Get list of karakas depending on the system.

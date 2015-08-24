@@ -35,10 +35,10 @@ class T11 extends TithiObject
      * 
      * @var string
      */
-    protected $tithiKarana = array(
+    protected $tithiKarana = [
         1 => Karana::NAME_VANIJA,
         2 => Karana::NAME_VISHTI
-    );
+    ];
 
     public function __construct($options = null) {
         parent::__construct($options);

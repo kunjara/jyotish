@@ -55,7 +55,7 @@ class Astro
      */
     public static function getSunRise($userData, $sunData)
     {
-        $hourAngle = acos((cos(Math::dmsToDecimal(array('d' => 90, 'm' => 51))) - sin($userData['latitude']) * sin($sunData['declination'])) / cos($userData['latitude']) * cos($sunData['declination']));
+        $hourAngle = acos((cos(Math::dmsToDecimal(['d' => 90, 'm' => 51])) - sin($userData['latitude']) * sin($sunData['declination'])) / cos($userData['latitude']) * cos($sunData['declination']));
         $eot = self::getEot($userData['date']);
 
         $time = 12 - $hourAngle + $eot;

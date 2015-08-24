@@ -25,21 +25,21 @@ class AshtakaVarga
      * 
      * @var array
      */
-    protected $bhinnAshtakavarga = array();
+    protected $bhinnAshtakavarga = [];
 
     /**
      * Sarvashtakavarga (Samudayashtakavarga).
      * 
      * @var array
      */
-    protected $sarvAshtakavarga = array();
+    protected $sarvAshtakavarga = [];
 
     /**
      * Eight vargas.
      * 
      * @var type 
      */
-    protected $ashtakavarga = array(
+    protected $ashtakavarga = [
         Graha::KEY_SY,
         Graha::KEY_CH,
         Graha::KEY_MA,
@@ -48,7 +48,7 @@ class AshtakaVarga
         Graha::KEY_SK,
         Graha::KEY_SA,
         Graha::KEY_LG
-    );
+    ];
 
     /**
      * Bindu in Surya Ashtakavarga.
