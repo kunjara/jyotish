@@ -76,7 +76,7 @@ class GrahaBala extends Analysis
     protected function balaMulatrikonadi()
     {
         foreach ($this->balaGraha as $key => $name) {
-            $Graha = Graha::getInstance($key)->setEnvironment($this->getData());
+            $Graha = Graha::getInstance($key)->setEnvironment($this->Data);
             $rashiAvastha = $Graha->getRashiAvastha();
             
             switch ($rashiAvastha) {

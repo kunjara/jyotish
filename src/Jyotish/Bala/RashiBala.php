@@ -129,7 +129,7 @@ class RashiBala extends Analysis
     protected function balaDrishti()
     {
         foreach (Rashi::$rashi as $rKey => $rName) {
-            $Rashi = Rashi::getInstance($rKey)->setEnvironment($this->getData());
+            $Rashi = Rashi::getInstance($rKey)->setEnvironment($this->Data);
             $ruler = $Rashi->rashiRuler;
             $rashiIsAspected = $Rashi->isAspectedByRashi()['graha'];
             $bala[$rKey] = 0;
