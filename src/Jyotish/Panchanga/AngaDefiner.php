@@ -391,7 +391,8 @@ class AngaDefiner
     /**
      * Check data.
      * 
-     * @param string $function
+     * @param null|string $function Function name
+     * @return void
      */
     private function checkData($function = null)
     {

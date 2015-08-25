@@ -28,7 +28,7 @@ trait DataTrait
     protected $temp = null;
 
     /**
-     * Set Data
+     * Set Data.
      * 
      * @param \Jyotish\Base\Data $Data
      * @return mixed
@@ -41,7 +41,7 @@ trait DataTrait
     }
 
     /**
-     * Get data
+     * Get data.
      * 
      * @param null|array $blocks Array of blocks (optional)
      * @return array
@@ -49,5 +49,18 @@ trait DataTrait
     public function getData(array $blocks = null)
     {
         return $this->Data->getData($blocks);
+    }
+    
+    /**
+     * Check data.
+     * 
+     * @param null|string $function Function name
+     * @return void
+     */
+    private function checkData($function = null)
+    {
+        if (!isset($this->getData()['graha'])) {
+            $this->Data->calcParams();
+        }
     }
 }

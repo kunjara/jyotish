@@ -99,7 +99,7 @@ abstract class AbstractDasha
      */
     public function getPeriods($periodKey = null)
     {
-        $this->checkPanchanga();
+        $this->checkData();
         
         $DateTime = $this->Data->getDateTime();
         $TimeZone = $DateTime->getTimezone();
@@ -206,14 +206,19 @@ abstract class AbstractDasha
         }
         return $periodData;
     }
-
+    
     /**
-     * Check panchanga.
+     * Check data.
      * 
-     * @throws \Jyotish\Dasha\Exception\UnderflowException
+     * @param null|string $function Function name
+     * @return void
      */
-    private function checkPanchanga()
+    private function checkData($function = null)
     {
+        if (!isset($this->getData()['graha'])) {
+            $this->Data->calcParams();
+        }
+
         if (!isset($this->getData()['panchanga']['nakshatra'])) {
             $this->Data->calcPanchanga(['nakshatra'], true);
         }

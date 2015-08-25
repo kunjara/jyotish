@@ -39,8 +39,6 @@ class Hora
     public function __construct(\Jyotish\Base\Data $Data)
     {
         $this->setData($Data);
-        
-        $this->checkData();
     }
     
     /**
@@ -75,6 +73,8 @@ class Hora
      */
     public function getHoraYama()
     {
+        $this->checkData(__FUNCTION__);
+        
         $DateTime = $this->Data->getDateTime();
         $TimeZone = $DateTime->getTimezone();
         
@@ -180,10 +180,13 @@ class Hora
     
     /**
      * Check data.
+     * 
+     * @param null|string $function Function name
+     * @return void
      */
-    private function checkData()
+    private function checkData($function = null)
     {
-        if (!isset($this->getData()['panchanga']['vara'])) {
+        if ($function == 'getHoraYama' and !isset($this->getData()['panchanga']['vara'])) {
             $this->Data->calcPanchanga(['vara']);
         }
     }

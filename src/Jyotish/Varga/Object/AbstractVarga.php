@@ -54,9 +54,7 @@ abstract class AbstractVarga
      * @return array
      */
     public function getVargaData() {
-        if (!isset($this->getData()['graha'])) {
-            $this->Data->calcParams();
-        }
+        $this->checkData();
 
         if ($this->vargaKey == Varga::KEY_D1) {
             return $this->getData(\Jyotish\Base\Data::listBlock('main'));

@@ -119,6 +119,8 @@ class Arudha
      */
     public function getArudha($key, array $options = null)
     {
+        $this->checkData();
+        
         if (!array_key_exists($key, self::$arudha)) {
             throw new Exception\InvalidArgumentException("Arudha with the key '$key' does not exist.");
         }
@@ -131,7 +133,7 @@ class Arudha
             $bhavaKey = substr($key, 1);
         }
 
-        $Bhava = Bhava::getInstance($bhavaKey)->setEnvironment($this->getData());
+        $Bhava = Bhava::getInstance($bhavaKey)->setEnvironment($this->Data);
         $bhavaRuler = $Bhava->getRuler();
 
         $lngRuler = $this->getData()['graha'][$bhavaRuler]['longitude'];

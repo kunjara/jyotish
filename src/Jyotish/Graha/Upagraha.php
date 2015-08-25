@@ -69,9 +69,7 @@ class Upagraha
      */
     public function getDh()
     {
-        if (!isset($this->getData()['graha'])) {
-            $this->Data->calcParams();
-        }
+        $this->checkData();
             
         if (!isset($this->temp[self::KEY_DH])) {
             $result = $this->getData()['graha'][Graha::KEY_SY]['longitude'] + 133 + 1/3;

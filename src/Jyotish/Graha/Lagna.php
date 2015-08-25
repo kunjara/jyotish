@@ -9,7 +9,6 @@ namespace Jyotish\Graha;
 use Jyotish\Ganita\Math;
 use Jyotish\Graha\Graha;
 use Jyotish\Rashi\Rashi;
-use Jyotish\Panchanga\AngaDefiner;
 
 /**
  * Extra lagna class.
@@ -78,6 +77,8 @@ class Lagna
      */
     public function getIL()
     {
+        $this->checkData(__FUNCTION__);
+        
         $kala = [
             Graha::KEY_SY => 30,
             Graha::KEY_CH => 16,
@@ -117,8 +118,9 @@ class Lagna
      */
     public function getSL()
     {
-        $AngaDefiner = new AngaDefiner($this->Data);
-        $nakshatra = $AngaDefiner->getNakshatra();
+        $this->checkData(__FUNCTION__);
+        
+        $nakshatra = $this->getData()['panchanga']['nakshatra'];
         
         $result1 = (1 - $nakshatra['left'] / 100) * 360;
         $result2 = $result1 + $this->getData()['lagna'][Graha::KEY_LG]['longitude'];
@@ -151,6 +153,23 @@ class Lagna
             
             $getLagna = 'get'.$key;
             yield $key => $this->$getLagna();
+        }
+    }
+    
+    /**
+     * Check data.
+     * 
+     * @param null|string $function Function name
+     * @return void
+     */
+    private function checkData($function = null)
+    {
+        if (!isset($this->getData()['graha'])) {
+            $this->Data->calcParams();
+        }
+
+        if ($function == 'getSL' and !isset($this->getData()['panchanga']['nakshatra'])) {
+            $this->Data->calcPanchanga(['nakshatra']);
         }
     }
 }
