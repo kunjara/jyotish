@@ -7,6 +7,7 @@
 namespace JyotishTest\Ganita;
 
 use Jyotish\Ganita\Math;
+use Jyotish\Bhava\Bhava;
 
 /**
  * @group Ganita
@@ -19,16 +20,16 @@ class MathTest extends \PHPUnit_Framework_TestCase
     public function testDmsToDecimal($dms, $decimalActual)
     {
         $decimalExpected = Math::dmsToDecimal($dms);
-        $this->assertEquals($decimalExpected, $decimalActual);
+        $this->assertEquals($decimalExpected, $decimalActual, '', .001);
     }
     
     public function providerDmsToDecimal()
     {
         return [
-            [['d' => 13, 'm' => 20], 13.333333333333],
-            [['d' => -13, 'm' => 20], -13.333333333333],
-            [['d' => 26, 'm' => -80], -27.333333333333],
-            [['d' => 26, 'm' => 0, 's' => 60], 26.016666666667],
+            [['d' => 13, 'm' => 20], 13.33333],
+            [['d' => -13, 'm' => 20], -13.33333],
+            [['d' => 26, 'm' => -80], -27.33333],
+            [['d' => 26, 'm' => 0, 's' => 60], 26.01667],
             [['d' => -13, 'm' => -20, 's' => -60], -13.35],
         ];
     }
@@ -52,7 +53,15 @@ class MathTest extends \PHPUnit_Framework_TestCase
         ];
     }
     
-    /**
+    public function testPartsToUnits()
+    {
+        $value = 32.4;
+        $this->assertEquals(['units' => 2, 'parts' => 2.4], Math::partsToUnits($value));
+        $this->assertEquals(['units' => 1, 'parts' => 2.4], Math::partsToUnits($value, 30, 'floor'));
+        $this->assertEquals(['units' => 4, 'parts' => 2.4], Math::partsToUnits($value, 10));
+    }
+
+        /**
      * @dataProvider providerDistanceInCycle
      */
     public function testDistanceInCycle($n1, $n2, $distanceActual)
@@ -114,6 +123,45 @@ class MathTest extends \PHPUnit_Framework_TestCase
         ];
         $this->assertEquals($numbersExpected, $numbersActual);
     }
+    
+    public function testSign()
+    {
+        $value = -32.2;
+        $this->assertEquals(Math::sign($value), -1);
+        
+        $value = .0;
+        $this->assertEquals(Math::sign($value), 0);
+        
+        $value = 722;
+        $this->assertEquals(Math::sign($value), 1);
+    }
+    
+    public function testArraySum()
+    {
+        $array1 = [
+            'first' => -2,
+            'second' => 23.6,
+        ];
+        $array2 = [
+            8.9,
+            'second' => 4,
+            'first' => 3.3,
+        ];
+        $this->assertEquals(Math::arraySum($array1, $array2), [8.9, 'first' => 1.3, 'second' => 27.6]);
+    }
+    
+    public function testArrayInArray()
+    {
+        $array1 = [3, 7];
+        $array2 = Bhava::$bhavaTrishadaya;
+        $this->assertTrue(Math::arrayInArray($array1, $array2));
+        $this->assertNotTrue(Math::arrayInArray($array1, $array2, true));
+        
+        $array1 = [1, 3, 5];
+        $array2 = Bhava::$bhavaDusthana;
+        $this->assertNotTrue(Math::arrayInArray($array1, $array2));
+        $this->assertNotTrue(Math::arrayInArray($array1, $array2, true));
+    }
 
     /**
      * @dataProvider providerInRange
@@ -132,6 +180,15 @@ class MathTest extends \PHPUnit_Framework_TestCase
         ];
     }
     
+    public function testOppositeValue()
+    {
+        $value = 11;
+        $this->assertEquals(Math::oppositeValue($value), 5);
+        
+        $value = 340.23;
+        $this->assertEquals(Math::oppositeValue($value, 360), 160.23);
+    }
+
     /**
      * @dataProvider providerSimplifyNumber
      */

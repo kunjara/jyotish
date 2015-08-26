@@ -233,25 +233,15 @@ class Math
      * @param bool $strict
      * @return bool
      */
-    public static function arrayInArray(array $array1, array $array2, $strict = false) {
-        foreach ($array1 as $value) {
-            if (in_array($value, $array2)) {
-                $return = true;
-                if ($strict) {
-                    continue;
-                } else {
-                    break;
-                }
-            } else {
-                $return = false;
-                if ($strict) {
-                    break;
-                } else {
-                    continue;
-                }
-            }
-        }
-        return $return;     
+    public static function arrayInArray(array $array1, array $array2, $strict = false)
+    {
+        $result = array_intersect($array1, $array2);
+        
+        if ($strict) {
+            return count($result) == count($array1);
+        } else {
+            return count($result) >= 1 ? true : false;
+        }    
     }
 
     /**
