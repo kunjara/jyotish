@@ -171,7 +171,7 @@ trait EnvironmentTrait
         if (is_null($feature)) {
             $grahas = Graha::$graha;
         } else {
-            $grahas = Graha::getGrahaByFeature($feature, $value);
+            $grahas = Graha::listGrahaByFeature($feature, $value);
         }
         
         $grahaAspected = array_intersect_key($this->isAspectedByGraha(), $grahas);

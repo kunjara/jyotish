@@ -330,34 +330,6 @@ class Graha
     }
 
     /**
-     * Get grahas by feature.
-     * 
-     * @param string $feature Feature of graha
-     * @param string $value Value of feature
-     * @return array
-     */
-    public static function getGrahaByFeature($feature, $value)
-    {
-        $result = [];
-
-        foreach (Graha::$graha as $key => $name) {
-            $Graha = self::getInstance($key);
-            
-            $grahaFeature = 'graha' . ucfirst(strtolower($feature));
-            
-            if (!property_exists($Graha, $grahaFeature)) {
-                throw new Exception\UnexpectedValueException("Graha feature '$grahaFeature' does not exist.");
-            }
-
-            if ($Graha->$grahaFeature == $value)
-                $result[$key] = $name;
-            else
-                continue;
-        }
-        return $result;
-    }
-
-    /**
      * Get mutual relationship between grahas in points.
      * 
      * @param string $graha1 Graha key
@@ -408,6 +380,31 @@ class Graha
                 $list = self::$graha;
         }
         return $list;
+    }
+    
+    /**
+     * Get list of grahas by feature.
+     * 
+     * @param string $feature Feature of graha
+     * @param string $value Value of feature
+     * @return array
+     */
+    public static function listGrahaByFeature($feature, $value)
+    {
+        $result = [];
+
+        foreach (Graha::$graha as $key => $name) {
+            $Graha = self::getInstance($key);
+            
+            $grahaFeature = 'graha' . ucfirst(strtolower($feature));
+            
+            if (!property_exists($Graha, $grahaFeature)) {
+                throw new Exception\UnexpectedValueException("Graha feature '$grahaFeature' does not exist.");
+            }
+            
+            $Graha->$grahaFeature == $value ? $result[$key] = $name : null;
+        }
+        return $result;
     }
     
     /**

@@ -227,7 +227,7 @@ trait GrahaEnvironment
                     $avastha[] = Avastha::NAME_DUKHITA;
                 }   
         }
-        $maleficsAll = Graha::getGrahaByFeature('character', Graha::CHARACTER_PAPA);
+        $maleficsAll = Graha::listGrahaByFeature('character', Graha::CHARACTER_PAPA);
         $maleficsConjuncted = array_intersect_key($this->isConjuncted(), $maleficsAll);
         if (count($maleficsConjuncted)) {
             $avastha[] = Avastha::NAME_VIKALA;
