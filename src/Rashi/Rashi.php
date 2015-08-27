@@ -131,7 +131,7 @@ class Rashi
         9 => 23,
         10 => 14,
         11 => 19,
-        12 => 9
+        12 => 9,
     ];
     
     /**
@@ -151,7 +151,7 @@ class Rashi
         9 => [7, 9],
         10 => [3, 5],
         11 => [6, 8],
-        12 => [1, 3]
+        12 => [1, 3],
     ];
 
     /**
@@ -165,7 +165,7 @@ class Rashi
         Graha::KEY_SA => 5,
         Graha::KEY_GU => 8,
         Graha::KEY_BU => 7,
-        Graha::KEY_SK => 5
+        Graha::KEY_SK => 5,
     ];
 
     /**
@@ -201,9 +201,10 @@ class Rashi
      * 
      * @param int $key Rashi key
      * @return array Trimshamsha rulers
+     * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 6, Verse 27-28.
      * @see Varahamihira. Brihat Jataka. Chapter 1, Verse 7.
      */
-    public static function trimshamshaRulerList($key)
+    public static function listTrimshamshaRuler($key)
     {
         $rulers = $key % 2 ? self::$trimshamshaRuler : array_reverse(self::$trimshamshaRuler);
         
