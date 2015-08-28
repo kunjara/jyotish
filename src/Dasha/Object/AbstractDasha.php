@@ -136,7 +136,7 @@ abstract class AbstractDasha
      */
     public function setOptionNesting($nesting)
     {
-        if (!is_numeric($nesting) or intval($nesting) > 6) {
+        if (!is_numeric($nesting) || intval($nesting) > 6) {
             throw new \Jyotish\Dasha\Exception\InvalidArgumentException(
                 "Maximum nesting must be less than or equals 6."
             );
@@ -176,14 +176,14 @@ abstract class AbstractDasha
             
             // Choose period with the specified key
             if ($periodKey == 'now') {
-                if (!($DateTimeStart < $this->temp['DateTimeNow'] and $DateTimeEnd > $this->temp['DateTimeNow'])) {
+                if (!($DateTimeStart < $this->temp['DateTimeNow'] && $DateTimeEnd > $this->temp['DateTimeNow'])) {
                     $subperiodKey = 'now';
                     continue;
                 }
             } elseif (!is_null($periodKey)) {
                 $periodArray = str_split($periodKey, 2);
                 $gr = array_shift($periodArray);
-                if (!empty($gr) and !array_key_exists($gr, Graha::$graha)) {
+                if (!empty($gr) && !array_key_exists($gr, Graha::$graha)) {
                     throw new \Jyotish\Dasha\Exception\RuntimeException(
                         "Period key '$gr' does not exist."
                     );

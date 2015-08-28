@@ -129,7 +129,7 @@ class Renderer
         $bodyLabelPoints = $this->Chakra->getBodyLabelPoints($this->options);
         
         foreach ($bodyLabelPoints as $body => $point) {
-            if (!array_key_exists($body, Graha::$graha) and isset($options['labelExtraFont'])) {
+            if (!array_key_exists($body, Graha::$graha) && isset($options['labelExtraFont'])) {
                 $this->Renderer->setOptions($options['labelExtraFont']);
             }
             

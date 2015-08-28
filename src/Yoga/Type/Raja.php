@@ -77,7 +77,7 @@ class Raja extends YogaBase
                 $kendraRulerIsAspected = $KendraRuler->isAspectedByGraha();
                 $trikonaRulerIsAspected = $TrikonaRuler->isAspectedByGraha();
                 if (
-                    $kendraRulerIsAspected[$trikonaRuler] == 1 and
+                    $kendraRulerIsAspected[$trikonaRuler] == 1 &&
                     $trikonaRulerIsAspected[$kendraRuler] == 1
                 ) {
                     yield [

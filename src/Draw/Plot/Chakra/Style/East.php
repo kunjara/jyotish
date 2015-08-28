@@ -143,7 +143,7 @@ final class East extends AbstractChakra
         foreach ($bodies as $graha => $bhava) {
             if (!isset($offsetSum[$bhava])) $offsetSum[$bhava] = 0;
 
-            if ($bhava == 1 or $bhava == 4 or $bhava == 7 or $bhava == 10) {
+            if ($bhava == 1 || $bhava == 4 || $bhava == 7 || $bhava == 10) {
                 $myPoints[$graha]['x'] = $this->bhavaPoints[$bhava][6] * $ratio + $offsetBorder + $offsetSum[$bhava];
                 $myPoints[$graha]['y'] = $this->bhavaPoints[$bhava][7] * $ratio - $ratio / 2;
                 $myPoints[$graha]['textAlign'] = 'left';

@@ -83,7 +83,7 @@ class Hora
         $SettingYesterday = new DateTime($this->getData()['rising'][Graha::KEY_SY][0]['setting'], $TimeZone);
         $SettingToday = new DateTime($this->getData()['rising'][Graha::KEY_SY][1]['setting'], $TimeZone);
         
-        if ($DateTime > $RisingToday and $DateTime < $SettingToday) {
+        if ($DateTime > $RisingToday && $DateTime < $SettingToday) {
             $Rising = $RisingToday;
             $Setting = $SettingToday;
             
@@ -186,7 +186,7 @@ class Hora
      */
     private function checkData($function = null)
     {
-        if ($function == 'getHoraYama' and !isset($this->getData()['panchanga']['vara'])) {
+        if ($function == 'getHoraYama' && !isset($this->getData()['panchanga']['vara'])) {
             $this->Data->calcPanchanga(['vara']);
         }
     }

@@ -168,7 +168,7 @@ class Lagna
             $this->Data->calcParams();
         }
 
-        if ($function == 'getSL' and !isset($this->getData()['panchanga']['nakshatra'])) {
+        if ($function == 'getSL' && !isset($this->getData()['panchanga']['nakshatra'])) {
             $this->Data->calcPanchanga(['nakshatra']);
         }
     }

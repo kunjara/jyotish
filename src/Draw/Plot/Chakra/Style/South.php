@@ -65,17 +65,17 @@ final class South extends AbstractChakra
         foreach ($rashis as $rashi) {
             $bhava = $rashi;
 
-            if ($bhava == 1 or $bhava == 11 or $bhava == 12) {
+            if ($bhava == 1 || $bhava == 11 || $bhava == 12) {
                 $myPoints[$rashi]['x'] = $this->bhavaPoints[$bhava][0] * $ratio - $options['offsetBorder'];
                 $myPoints[$rashi]['y'] = $this->bhavaPoints[$bhava][1] * $ratio - $options['offsetBorder'];
                 $myPoints[$rashi]['textAlign'] = 'right';
                 $myPoints[$rashi]['textValign'] = 'bottom';
-            } elseif ($bhava == 2 or $bhava == 3 or $bhava == 4) {
+            } elseif ($bhava == 2 || $bhava == 3 || $bhava == 4) {
                 $myPoints[$rashi]['x'] = $this->bhavaPoints[$bhava][0] * $ratio + $options['offsetBorder'];
                 $myPoints[$rashi]['y'] = $this->bhavaPoints[$bhava][1] * $ratio - $options['offsetBorder'];
                 $myPoints[$rashi]['textAlign'] = 'left';
                 $myPoints[$rashi]['textValign'] = 'bottom';
-            } elseif ($bhava == 5 or $bhava == 6 or $bhava == 7) {
+            } elseif ($bhava == 5 || $bhava == 6 || $bhava == 7) {
                 $myPoints[$rashi]['x'] = $this->bhavaPoints[$bhava][0] * $ratio + $options['offsetBorder'];
                 $myPoints[$rashi]['y'] = $this->bhavaPoints[$bhava][1] * $ratio + $options['offsetBorder'];
                 $myPoints[$rashi]['textAlign'] = 'left';
@@ -99,19 +99,19 @@ final class South extends AbstractChakra
         foreach ($bodies as $graha => $bhava) {
             if (!isset($offsetSum[$bhava])) $offsetSum[$bhava] = 0;
 
-            if ($bhava == 1 or $bhava == 11 or $bhava == 12) {
+            if ($bhava == 1 || $bhava == 11 || $bhava == 12) {
                 $myPoints[$graha]['x'] = $this->bhavaPoints[$bhava][2] * $ratio + $offsetBorder + $offsetSum[$bhava];
                 $myPoints[$graha]['y'] = $this->bhavaPoints[$bhava][3] * $ratio - $ratio / 2;
                 $myPoints[$graha]['textAlign'] = 'left';
                 $myPoints[$graha]['textValign'] = 'middle';
                 $offsetSum[$bhava] += $options['widthOffsetLabel'];
-            } elseif ($bhava == 2 or $bhava == 3 or $bhava == 4) {
+            } elseif ($bhava == 2 || $bhava == 3 || $bhava == 4) {
                 $myPoints[$graha]['x'] = $this->bhavaPoints[$bhava][0] * $ratio + $offsetBorder + $offsetSum[$bhava];
                 $myPoints[$graha]['y'] = $this->bhavaPoints[$bhava][1] * $ratio - $ratio / 2;
                 $myPoints[$graha]['textAlign'] = 'left';
                 $myPoints[$graha]['textValign'] = 'middle';
                 $offsetSum[$bhava] += $options['widthOffsetLabel'];
-            } elseif ($bhava == 5 or $bhava == 6 or $bhava == 7) {
+            } elseif ($bhava == 5 || $bhava == 6 || $bhava == 7) {
                 $myPoints[$graha]['x'] = $this->bhavaPoints[$bhava][0] * $ratio + $offsetBorder + $offsetSum[$bhava];
                 $myPoints[$graha]['y'] = $this->bhavaPoints[$bhava][1] * $ratio + $ratio / 2;
                 $myPoints[$graha]['textAlign'] = 'left';

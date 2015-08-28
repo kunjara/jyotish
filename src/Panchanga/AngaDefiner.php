@@ -121,7 +121,7 @@ class AngaDefiner
 
         $nakshatra['anga'] = Panchanga::ANGA_NAKSHATRA;
         if ($withAbhijit) {
-            if ($nakshatraUnits['units'] == 21 or $nakshatraUnits['units'] == 22) {
+            if ($nakshatraUnits['units'] == 21 || $nakshatraUnits['units'] == 22) {
                 $Abhijit = Nakshatra::getInstance(28);
                 $abhijitStart = Math::dmsToDecimal($Abhijit->nakshatraStart);
                 $abhijitEnd   = Math::dmsToDecimal($Abhijit->nakshatraEnd);
@@ -132,7 +132,7 @@ class AngaDefiner
                     $nStart = Math::dmsToDecimal($N->nakshatraStart);
                     $unit = $abhijitStart - $nStart;
                     $left = $abhijitStart - $lngGraha;
-                } elseif ($lngGraha >= $abhijitStart and $lngGraha < $abhijitEnd) {
+                } elseif ($lngGraha >= $abhijitStart && $lngGraha < $abhijitEnd) {
                     $nakshatra['key'] = 28;
                     $unit = $abhijitEnd - $abhijitStart;
                     $left = $abhijitEnd - $lngGraha;
@@ -160,11 +160,11 @@ class AngaDefiner
         $nakshatra['left'] = $left * 100 / $unit;
         $nakshatra['name'] = Nakshatra::$nakshatra[$nakshatra['key']];
         
-        if ($nakshatra['left'] < 100 and $nakshatra['left'] >= 75) {
+        if ($nakshatra['left'] < 100 && $nakshatra['left'] >= 75) {
             $nakshatra['pada'] = 1;
-        } elseif ($nakshatra['left'] < 75 and $nakshatra['left'] >= 50) {
+        } elseif ($nakshatra['left'] < 75 && $nakshatra['left'] >= 50) {
             $nakshatra['pada'] = 2;
-        } elseif ($nakshatra['left'] < 50 and $nakshatra['left'] >= 25) {
+        } elseif ($nakshatra['left'] < 50 && $nakshatra['left'] >= 25) {
             $nakshatra['pada'] = 3;
         } else {
             $nakshatra['pada'] = 4;
@@ -400,7 +400,7 @@ class AngaDefiner
             $this->Data->calcParams();
         }
 
-        if ($function == 'getVara' and !isset($this->getData()['rising'])) {
+        if ($function == 'getVara' && !isset($this->getData()['rising'])) {
             $this->Data->calcRising();
         }
     }

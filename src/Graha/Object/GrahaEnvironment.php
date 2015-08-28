@@ -84,8 +84,8 @@ trait GrahaEnvironment
         $degree = $this->getEnvironment()['graha'][$this->objectKey]['degree'];
         
         if ($rashi == $this->grahaUcha['rashi']) {
-            if ($this->objectKey == Graha::KEY_CH or $this->objectKey == Graha::KEY_BU) {
-                if ($degree >= 0 and $degree < $this->grahaUcha['degree']) return Rashi::GRAHA_UCHA;
+            if ($this->objectKey == Graha::KEY_CH || $this->objectKey == Graha::KEY_BU) {
+                if ($degree >= 0 && $degree < $this->grahaUcha['degree']) return Rashi::GRAHA_UCHA;
             } else {
                 return Rashi::GRAHA_UCHA;
             }
@@ -94,11 +94,11 @@ trait GrahaEnvironment
         if ($rashi == $this->grahaNeecha['rashi'])
             return Rashi::GRAHA_NEECHA;
         
-        if ($rashi == $this->grahaMool['rashi'] and $degree >= $this->grahaMool['start'] and $degree < $this->grahaMool['end'])
+        if ($rashi == $this->grahaMool['rashi'] && $degree >= $this->grahaMool['start'] && $degree < $this->grahaMool['end'])
             return Rashi::GRAHA_MOOL;
         
         foreach ($this->grahaSwa as $key => $value) {
-            if ($rashi == $value['rashi'] and $degree >= $value['start'] and $degree < $value['end'])
+            if ($rashi == $value['rashi'] && $degree >= $value['start'] && $degree < $value['end'])
                 return Rashi::GRAHA_SWA;
         }
         
@@ -144,19 +144,19 @@ trait GrahaEnvironment
         $avasthaBhaga = $grahaRashi % 2 ? $grahaBhaga : 30 - $grahaBhaga;
         
         switch ($avasthaBhaga) {
-            case ($avasthaBhaga >= 0 and $avasthaBhaga < 6):
+            case ($avasthaBhaga >= 0 && $avasthaBhaga < 6):
                 $avastha = Avastha::NAME_BALA;
                 break;
-            case ($avasthaBhaga >= 6 and $avasthaBhaga < 12):
+            case ($avasthaBhaga >= 6 && $avasthaBhaga < 12):
                 $avastha = Avastha::NAME_KUMARA;
                 break;
-            case ($avasthaBhaga >= 12 and $avasthaBhaga < 18):
+            case ($avasthaBhaga >= 12 && $avasthaBhaga < 18):
                 $avastha = Avastha::NAME_YUVA;
                 break;
-            case ($avasthaBhaga >= 18 and $avasthaBhaga < 24):
+            case ($avasthaBhaga >= 18 && $avasthaBhaga < 24):
                 $avastha = Avastha::NAME_VRIDHA;
                 break;
-            case ($avasthaBhaga >= 24 and $avasthaBhaga < 30):
+            case ($avasthaBhaga >= 24 && $avasthaBhaga < 30):
                 $avastha = Avastha::NAME_MRITA;
         }
         return $avastha;
@@ -255,7 +255,7 @@ trait GrahaEnvironment
         if (is_int($bhava)) {
             if (in_array($bhava, Bhava::$bhavaTrikona)) {
                 $character = Graha::CHARACTER_SHUBHA;
-            } elseif (in_array($bhava, Bhava::$bhavaTrishadaya) or $bhava == 8) {
+            } elseif (in_array($bhava, Bhava::$bhavaTrishadaya) || $bhava == 8) {
                 $character = Graha::CHARACTER_PAPA;
             } elseif (in_array($bhava, $bhavaKendra)) {
                 $character = Graha::CHARACTER_MISHRA;
@@ -268,13 +268,13 @@ trait GrahaEnvironment
             } elseif (Math::arrayInArray($bhava, $bhavaKendra, true)) {
                 $character = Graha::CHARACTER_KENDRADHI;
             } elseif (
-                    (in_array(1, $bhava)) or
-                    (Math::arrayInArray($bhava, Bhava::$bhavaParashraya) and Math::arrayInArray($bhava, Bhava::$bhavaTrikona)) or
-                    (Math::arrayInArray($bhava, Bhava::$bhavaTrishadaya) and Math::arrayInArray($bhava, Bhava::$bhavaTrikona))
+                    (in_array(1, $bhava)) ||
+                    (Math::arrayInArray($bhava, Bhava::$bhavaParashraya) && Math::arrayInArray($bhava, Bhava::$bhavaTrikona)) ||
+                    (Math::arrayInArray($bhava, Bhava::$bhavaTrishadaya) && Math::arrayInArray($bhava, Bhava::$bhavaTrikona))
             ) {
                 $character = Graha::CHARACTER_SHUBHA;
             } elseif (
-                    Math::arrayInArray($bhava, Bhava::$bhavaParashraya) or
+                    Math::arrayInArray($bhava, Bhava::$bhavaParashraya) ||
                     Math::arrayInArray($bhava, Bhava::$bhavaTrishadaya)
             ) {
                 $character = Graha::CHARACTER_PAPA;
@@ -472,7 +472,7 @@ trait GrahaEnvironment
                     $degNavamsha['start'] = (Rashi::$pushkaraNavamsha[$rashiGraha][$i] - 1) * $valNavamsha;
                     $degNavamsha['end'] = $degNavamsha['start'] + $valNavamsha;
                     
-                    if ($degGraha >= $degNavamsha['start'] and $degGraha < $degNavamsha['end']) {
+                    if ($degGraha >= $degNavamsha['start'] && $degGraha < $degNavamsha['end']) {
                         $numNavamsha = Rashi::$pushkaraNavamsha[$rashiGraha][$i];
                         break;
                     }
@@ -538,11 +538,11 @@ trait GrahaEnvironment
         $grahaInNeecha = $rashiAvastha == Rashi::GRAHA_NEECHA ? true : false;
         
         if ($grahaInGochara)
-            if (!$grahaIsAstangata and !$grahaInDusthana) 
+            if (!$grahaIsAstangata && !$grahaInDusthana) 
                 $result = 1;
             else
                 $result = 0;
-        elseif ($grahaIsAstangata or $grahaInDusthana or $grahaInNeecha)
+        elseif ($grahaIsAstangata || $grahaInDusthana || $grahaInNeecha)
             $result = -1;
         else
             $result = 0;
@@ -574,7 +574,7 @@ trait GrahaEnvironment
             }
         }
         
-        if (($benefic > 0 and $malefic > 0) or ($benefic == 0 and $malefic == 0))
+        if (($benefic > 0 && $malefic > 0) || ($benefic == 0 && $malefic == 0))
             $character = Graha::CHARACTER_MISHRA;
         elseif ($malefic > 0)
             $character = Graha::CHARACTER_PAPA;

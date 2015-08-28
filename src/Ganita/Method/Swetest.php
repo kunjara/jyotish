@@ -200,7 +200,7 @@ class Swetest extends AbstractGanita
     private function formatParams($input, $params)
     {
         $dataParams = [];
-        if (is_null($params) or (in_array(Data::BLOCK_GRAHA, $params) and in_array(Data::BLOCK_BHAVA, $params))) {
+        if (is_null($params) || (in_array(Data::BLOCK_GRAHA, $params) && in_array(Data::BLOCK_BHAVA, $params))) {
             $count = 22;
         } elseif (in_array(Data::BLOCK_GRAHA, $params)) {
             $count = 8;
@@ -246,7 +246,7 @@ class Swetest extends AbstractGanita
             }
         }
 
-        if (is_null($params) or in_array(Data::BLOCK_GRAHA, $params)) {
+        if (is_null($params) || in_array(Data::BLOCK_GRAHA, $params)) {
             $longitudeKe = Math::oppositeValue($dataParams['graha'][Graha::KEY_RA]['longitude'], 360);
             $ascensionKe = Math::oppositeValue($dataParams['graha'][Graha::KEY_RA]['ascension'], 360);
             $units = Math::partsToUnits($longitudeKe);

@@ -261,7 +261,7 @@ class GrahaObject extends Object
      */
     protected function setObjectNames()
     {
-        if ($this->objectKey != Graha::KEY_RA and $this->objectKey != Graha::KEY_KE) {
+        if ($this->objectKey != Graha::KEY_RA && $this->objectKey != Graha::KEY_KE) {
             $nameDeva = 'name'.$this->objectName;
             $this->objectNames = array_merge(Deva::${$nameDeva}, $this->objectNames);
         } else {
@@ -307,7 +307,7 @@ class GrahaObject extends Object
         foreach (Graha::$graha as $key => $name) {
             if ($this->objectKey == $key) continue;
 
-            if (in_array($key, $friends) and in_array($key, $enemies)) {
+            if (in_array($key, $friends) && in_array($key, $enemies)) {
                 $relation[$key] = 0;
             } elseif (in_array($key, $friends)) {
                 $relation[$key] = 1;

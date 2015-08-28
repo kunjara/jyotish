@@ -346,7 +346,7 @@ class Graha
         $relation1 = $relation($graha1, $graha2);
         $relation2 = $relation($graha2, $graha1);
 
-        $add = ($relation1 < 0 or $relation2 < 0) ? 2 : 3;
+        $add = ($relation1 < 0 || $relation2 < 0) ? 2 : 3;
 
         return $relation1 + $relation2 + $add;
     }

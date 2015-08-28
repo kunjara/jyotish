@@ -113,7 +113,7 @@ class RashiBala extends Analysis
     protected function balaSthira()
     {
         foreach ($this->getData()['graha'] as $key => $value) {
-            if ($key == Graha::KEY_RA or $key == Graha::KEY_KE) continue;
+            if ($key == Graha::KEY_RA || $key == Graha::KEY_KE) continue;
             $bala[$value['rashi']] = !isset($bala[$value['rashi']]) ? 10 : $bala[$value['rashi']] + 10;
         }
         return $bala;
@@ -136,7 +136,7 @@ class RashiBala extends Analysis
             
             foreach ([$ruler, Graha::KEY_GU, Graha::KEY_BU] as $gKey) {
                 if (
-                    $this->getData()['graha'][$gKey]['rashi'] == $rKey or 
+                    $this->getData()['graha'][$gKey]['rashi'] == $rKey || 
                     array_key_exists($gKey, $rashiIsAspected)
                 ) {
                     $bala[$rKey] += 60;

@@ -57,17 +57,17 @@ class D30 extends AbstractVarga
             } else {
                 $lord = Graha::KEY_SK;
             }
-        } elseif ($ganitaRashi['degree'] >= 5 and $ganitaRashi['degree'] < 10) {
+        } elseif ($ganitaRashi['degree'] >= 5 && $ganitaRashi['degree'] < 10) {
             if ($ganitaRashi['rashi'] % 2) {
                 $lord = Graha::KEY_SA;
             } else {
                 $lord = Graha::KEY_BU;
             }
-        } elseif ($ganitaRashi['degree'] >= 10 and $ganitaRashi['degree'] < 18) {
+        } elseif ($ganitaRashi['degree'] >= 10 && $ganitaRashi['degree'] < 18) {
 
             $lord = Graha::KEY_GU;
 
-        } elseif ($ganitaRashi['degree'] >= 18 and $ganitaRashi['degree'] < 25) {
+        } elseif ($ganitaRashi['degree'] >= 18 && $ganitaRashi['degree'] < 25) {
             if ($ganitaRashi['rashi'] % 2) {
                 $lord = Graha::KEY_BU;
             } else {

@@ -74,7 +74,7 @@ trait EnvironmentTrait
                 $this->objectRashi
             );
             
-            if ($key == $this->objectKey or !isset($grahaDrishti[$distanse])) {
+            if ($key == $this->objectKey || !isset($grahaDrishti[$distanse])) {
                 $isAspected[$key] = null;
             } else {
                 $isAspected[$key] =  $grahaDrishti[$distanse];
@@ -153,7 +153,7 @@ trait EnvironmentTrait
                 $isHemmed[$key] = $p;
         }
 
-        if (!(array_search($p, $isHemmed) and array_search($n, $isHemmed)))
+        if (!(array_search($p, $isHemmed) && array_search($n, $isHemmed)))
             $isHemmed = [];
 
         return $isHemmed;
@@ -190,13 +190,13 @@ trait EnvironmentTrait
         }
         
         $grahaHemmed = array_intersect_key($this->isHemmed(), $grahas);
-        if (array_search('prev', $grahaHemmed) and array_search('next', $grahaHemmed)) {
+        if (array_search('prev', $grahaHemmed) && array_search('next', $grahaHemmed)) {
             $isHemmed = $grahaHemmed;
         } else {
             $isHemmed = false;
         }
 
-        if ($isHemmed or $isAspected or $isConjuncted) {
+        if ($isHemmed || $isAspected || $isConjuncted) {
             return [
                 'aspect' => $isAspected,
                 'conjunct' => $isConjuncted,

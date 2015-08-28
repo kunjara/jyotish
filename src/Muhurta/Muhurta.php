@@ -129,7 +129,7 @@ class Muhurta
         $dateTimeEnd = Time::createDateTime($this->ganitaData['user']);
         
         foreach ($this->timeStamps as $key => $timeStamp) {
-            if (is_null($timeStamp['start']) or $timeStamp['end'] < $dateTimeEnd->format(Time::FORMAT_DATETIME)) {
+            if (is_null($timeStamp['start']) || $timeStamp['end'] < $dateTimeEnd->format(Time::FORMAT_DATETIME)) {
                 unset($this->timeStamps[$key]);
             }
         }

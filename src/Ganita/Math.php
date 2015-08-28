@@ -28,7 +28,7 @@ class Math
      */
     public static function dmsToDecimal(array $dms)
     {
-        if (($dms['d'] < 0) || ($dms['m'] < 0) || (isset($dms['s']) and $dms['s'] < 0)) 
+        if (($dms['d'] < 0) || ($dms['m'] < 0) || (isset($dms['s']) && $dms['s'] < 0)) 
             $sign = -1;
         else
             $sign = 1;
@@ -108,7 +108,7 @@ class Math
      */
     public static function distanceInCycle($n1, $n2, $cycle = 12)
     {
-        if ($n1 > $cycle or $n2 > $cycle) {
+        if ($n1 > $cycle || $n2 > $cycle) {
             throw new Exception\InvalidArgumentException("Number in cycle should not be greater than size of the cycle $cycle.");
         }
         if ($n1 <= $n2) {
@@ -301,7 +301,7 @@ class Math
             throw new Exception\InvalidArgumentException("The maximum value must be greater than the minimum.");
         }
         
-        return ($value >= $min and $value < $max) ? true : false;
+        return ($value >= $min && $value < $max) ? true : false;
     }
     
     /**

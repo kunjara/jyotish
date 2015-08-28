@@ -305,7 +305,7 @@ class Kala
         $result = [];
         foreach ($list as $kala) {
             $kalaName = 'kala' . ucfirst($kala);
-            if (isset(self::${$kalaName}) and isset(self::${$kalaName}[$book])) {
+            if (isset(self::${$kalaName}) && isset(self::${$kalaName}[$book])) {
                 $result[] = $kala;
             } else {
                 continue;
@@ -355,8 +355,8 @@ class Kala
         }
         
         if (
-            ($book == Biblio::BOOK_SB and $kala == self::KALA_PARAMANU) or
-            ($book == Biblio::BOOK_MS and $kala == self::KALA_NIMESHA)
+            ($book == Biblio::BOOK_SB && $kala == self::KALA_PARAMANU) ||
+            ($book == Biblio::BOOK_MS && $kala == self::KALA_NIMESHA)
         ) {
             return 1;
         } else {

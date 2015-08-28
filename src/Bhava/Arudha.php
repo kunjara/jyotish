@@ -153,7 +153,7 @@ class Arudha
         
         if ($this->options['useException']) {
             if (
-                Math::inRange($lngDiff, 0 - $this->options['exceptionRang'], $this->options['exceptionRang']) or
+                Math::inRange($lngDiff, 0 - $this->options['exceptionRang'], $this->options['exceptionRang']) || 
                 Math::inRange(abs($lngDiff), 90 - $this->options['exceptionRang'], 90 + $this->options['exceptionRang'])
             ) {
                 $rashiArudha = Math::numberInCycle($unitArudha['units'], 10);

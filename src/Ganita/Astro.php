@@ -248,9 +248,9 @@ class Astro
         $mc = atan2(tan($ramc), cos($e));
         $mcDeg = $mc / Math::M_RAD;
         
-        if ($ramcDeg >= 0 and $ramcDeg < 90) {
+        if ($ramcDeg >= 0 && $ramcDeg < 90) {
             $mcDeg = $mcDeg;
-        } elseif ($ramcDeg > 90 and $ramcDeg < 270) {
+        } elseif ($ramcDeg > 90 && $ramcDeg < 270) {
             $mcDeg += 180;
         } else {
             $mcDeg += 360;

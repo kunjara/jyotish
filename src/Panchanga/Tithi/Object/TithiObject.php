@@ -91,9 +91,9 @@ class TithiObject extends \Jyotish\Panchanga\AngaObject
      */
     protected function setTithiDeva($options)
     {
-        $number = ($this->tithiKey > 15 and $this->tithiKey < 30) ? $this->tithiKey - 15 : $this->tithiKey;
+        $number = ($this->tithiKey > 15 && $this->tithiKey < 30) ? $this->tithiKey - 15 : $this->tithiKey;
 
-        if (!is_null($options) and in_array($options['tithiDeva'], [Biblio::BOOK_BS, Biblio::BOOK_BP])) {
+        if (!is_null($options) && in_array($options['tithiDeva'], [Biblio::BOOK_BS, Biblio::BOOK_BP])) {
             $this->tithiDeva = Tithi::$deva[$options['tithiDeva']][$number];
         } else {
             $this->tithiDeva = Tithi::$deva[Biblio::BOOK_BS][$number];
@@ -107,7 +107,7 @@ class TithiObject extends \Jyotish\Panchanga\AngaObject
     {
         if ($this->tithiKey < 15) {
             $this->tithiPaksha = Tithi::PAKSHA_SHUKLA;
-        } elseif ($this->tithiKey > 15 and $this->tithiKey < 30) {
+        } elseif ($this->tithiKey > 15 && $this->tithiKey < 30) {
             $this->tithiPaksha = Tithi::PAKSHA_KRISHNA;
         } else {
             $this->tithiPaksha = null;

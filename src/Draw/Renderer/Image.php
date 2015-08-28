@@ -156,10 +156,10 @@ class Image extends AbstractRenderer
     }
 
     public function setOptionFontName($value) {
-        if (!is_null($value) and !is_int($value) and !is_string($value)) {
+        if (!is_null($value) && !is_int($value) && !is_string($value)) {
             throw new Exception\InvalidArgumentException("Options 'fontName' must be null, integer or name of font.");
         } else {
-            if (is_string($value) and !file_exists($value)) {
+            if (is_string($value) && !file_exists($value)) {
                 throw new Exception\InvalidArgumentException("The font '$value' does not exist.");
             }
         }

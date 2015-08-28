@@ -72,7 +72,7 @@ class Svg extends AbstractRenderer
         $attributes['stroke-width'] = $this->options['strokeWidth'];
         $attributes['stroke-linejoin'] = 'round';
         
-        if (isset($this->options['attributes']) and is_array($this->options['attributes'])) {
+        if (isset($this->options['attributes']) && is_array($this->options['attributes'])) {
             foreach ($this->options['attributes'] as $name => $value) {
                 $attributes[$name] = $value;
             }

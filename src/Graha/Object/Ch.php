@@ -313,7 +313,7 @@ class Ch extends GrahaObject
 
         $tithiUnits = Math::partsToUnits(($lonCh - $lonSy), 12);
 
-        if ($tithiUnits['units'] >= 8 and $tithiUnits['units'] < 23) {
+        if ($tithiUnits['units'] >= 8 && $tithiUnits['units'] < 23) {
             $this->grahaCharacter = Graha::CHARACTER_SHUBHA;
         } else {
             $this->grahaCharacter = Graha::CHARACTER_PAPA;

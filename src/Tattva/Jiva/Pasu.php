@@ -50,8 +50,8 @@ class Pasu extends \Jyotish\Tattva\Jiva
         if ($animal1 == $animal2) {
             return 'same';
         } elseif (
-            (isset($hostile[$animal1]) and $hostile[$animal1] == $animal2) or 
-            (isset($hostile[$animal2]) and $hostile[$animal2] == $animal1)
+            (isset($hostile[$animal1]) && $hostile[$animal1] == $animal2) || 
+            (isset($hostile[$animal2]) && $hostile[$animal2] == $animal1)
         ) {
             return 'hostile';
         } else {

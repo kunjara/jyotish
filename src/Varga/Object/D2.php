@@ -50,7 +50,7 @@ class D2 extends AbstractVarga
         $result = Math::partsToUnits($ganitaRashi['degree'], $amshaSize, 'floor');
         $vargaRashi['degree'] = $result['parts'] * 30 / $amshaSize;
 
-        if (($ganitaRashi['degree'] < 15 and $ganitaRashi['rashi'] % 2) or ($ganitaRashi['degree'] >= 15 and !($ganitaRashi['rashi'] % 2))) {
+        if (($ganitaRashi['degree'] < 15 && $ganitaRashi['rashi'] % 2) || ($ganitaRashi['degree'] >= 15 && !($ganitaRashi['rashi'] % 2))) {
             $vargaRashi['rashi'] = 5;
         } else {
             $vargaRashi['rashi'] = 4;
