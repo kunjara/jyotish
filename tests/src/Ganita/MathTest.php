@@ -15,6 +15,7 @@ use Jyotish\Bhava\Bhava;
 class MathTest extends \PHPUnit_Framework_TestCase
 {
     /**
+     * @covers Jyotish\Ganita\Math::dmsToDecimal
      * @dataProvider providerDmsToDecimal
      */
     public function testDmsToDecimal($dms, $decimalActual)
@@ -35,6 +36,7 @@ class MathTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
+     * @covers Jyotish\Ganita\Math::decimalToDms
      * @dataProvider providerDecimalToDms
      */
     public function testDecimalToDms($decimal, $dmsActual)
@@ -53,6 +55,9 @@ class MathTest extends \PHPUnit_Framework_TestCase
         ];
     }
     
+    /**
+     * @covers Jyotish\Ganita\Math::partsToUnits
+     */
     public function testPartsToUnits()
     {
         $value = 32.4;
@@ -61,7 +66,8 @@ class MathTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(['units' => 4, 'parts' => 2.4], Math::partsToUnits($value, 10));
     }
 
-        /**
+    /**
+     * @covers Jyotish\Ganita\Math::distanceInCycle
      * @dataProvider providerDistanceInCycle
      */
     public function testDistanceInCycle($n1, $n2, $distanceActual)
@@ -80,6 +86,7 @@ class MathTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
+     * @covers Jyotish\Ganita\Math::numberInCycle
      * @expectedException InvalidArgumentException 
      */
     public function testNumberInCycle()
@@ -97,6 +104,7 @@ class MathTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
+     * @covers Jyotish\Ganita\Math::numberNext
      * @depends testNumberInCycle
      */
     public function testNumberNext()
@@ -111,6 +119,7 @@ class MathTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
+     * @covers Jyotish\Ganita\Math::numberPrev
      * @depends testNumberInCycle
      */
     public function testNumberPrev()
@@ -124,6 +133,9 @@ class MathTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($numbersExpected, $numbersActual);
     }
     
+    /**
+     * @covers Jyotish\Ganita\Math::sign
+     */
     public function testSign()
     {
         $value = -32.2;
@@ -136,6 +148,9 @@ class MathTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(Math::sign($value), 1);
     }
     
+    /**
+     * @covers Jyotish\Ganita\Math::arraySum
+     */
     public function testArraySum()
     {
         $array1 = [
@@ -150,6 +165,9 @@ class MathTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(Math::arraySum($array1, $array2), [8.9, 'first' => 1.3, 'second' => 27.6]);
     }
     
+    /**
+     * @covers Jyotish\Ganita\Math::arrayInArray
+     */
     public function testArrayInArray()
     {
         $array1 = [3, 7];
@@ -164,6 +182,7 @@ class MathTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @covers Jyotish\Ganita\Math::inRange
      * @dataProvider providerInRange
      */
     public function testInRange($value, $min, $max)
@@ -180,6 +199,9 @@ class MathTest extends \PHPUnit_Framework_TestCase
         ];
     }
     
+    /**
+     * @covers Jyotish\Ganita\Math::oppositeValue
+     */
     public function testOppositeValue()
     {
         $value = 11;
@@ -190,6 +212,7 @@ class MathTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @covers Jyotish\Ganita\Math::simplifyNumber
      * @dataProvider providerSimplifyNumber
      */
     public function testSimplifyNumber($number, $numActual)

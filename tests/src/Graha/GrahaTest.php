@@ -15,6 +15,7 @@ use Jyotish\Tattva\Jiva\Nara\Deva;
 class GrahaTest extends \PHPUnit_Framework_TestCase
 {
     /**
+     * @covers Jyotish\Graha\Graha::getInstance
      * @expectedException InvalidArgumentException
      */
     public function testGetInstance()
@@ -29,6 +30,9 @@ class GrahaTest extends \PHPUnit_Framework_TestCase
         $Graha = Graha::getInstance('Ka');
     }
 
+    /**
+     * @covers Jyotish\Graha\Graha::listGraha
+     */
     public function testListGraha()
     {
         $data = [
@@ -48,6 +52,7 @@ class GrahaTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
+     * @covers Jyotish\Graha\Graha::listGrahaByFeature
      * @expectedException UnexpectedValueException
      */
     public function testListGrahaByFeature()

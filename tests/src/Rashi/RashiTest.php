@@ -15,6 +15,7 @@ use Jyotish\Graha\Graha;
 class RashiTest extends \PHPUnit_Framework_TestCase
 {
     /**
+     * @covers Jyotish\Rashi\Rashi::getInstance
      * @expectedException InvalidArgumentException
      */
     public function testGetInstance()
@@ -29,6 +30,9 @@ class RashiTest extends \PHPUnit_Framework_TestCase
         $Rashi = Rashi::getInstance('14');
     }
 
+    /**
+     * @covers Jyotish\Rashi\Rashi::listTrimshamshaRuler
+     */
     public function testListTrimshamshaRuler()
     {
         $data = [
