@@ -29,12 +29,19 @@ class Language
                 $html .= self::trToHtml($tr);
             }
         } else {
-            $html = self::trToHtml($tr);
+            $html = self::trToHtml($translit);
         }
 
         return $html;
     }
 
+    /**
+     * Convert translit symbol to html code.
+     * 
+     * @param string $tr
+     * @return string
+     * @throws Exception\InvalidArgumentException
+     */
     protected static function trToHtml($tr)
     {
         switch ($tr) {
