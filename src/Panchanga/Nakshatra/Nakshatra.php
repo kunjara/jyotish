@@ -6,7 +6,7 @@
 
 namespace Jyotish\Panchanga\Nakshatra;
 
-use Jyotish\Base\Utils;
+use Jyotish\Ganita\Math;
 
 /**
  * Class with Nakshatra names and attributes.
@@ -195,7 +195,7 @@ class Nakshatra
             throw new \Jyotish\Panchanga\Exception\InvalidArgumentException("Nakshatra with the number '$nakshatraKey' does not exist.");
         }
         
-        $nakshatas = Utils::shiftArray(self::listNakshatra(), $nakshatraKey, true);
+        $nakshatas = Math::shiftArray(self::listNakshatra(), $nakshatraKey, true);
 
         $number = 1;
         $block = 1;

@@ -7,7 +7,7 @@
 namespace Jyotish\Panchanga\Vara;
 
 use Jyotish\Graha\Graha;
-use Jyotish\Base\Utils;
+use Jyotish\Ganita\Math;
 
 /**
  * Data Vara class.
@@ -93,7 +93,7 @@ class Vara
         $varas = self::$vara;
         
         if ($startDay != Graha::KEY_SY) {
-            $list = Utils::shiftArray($varas, $startDay);
+            $list = Math::shiftArray($varas, $startDay);
         } else {
             $list = $varas;
         }

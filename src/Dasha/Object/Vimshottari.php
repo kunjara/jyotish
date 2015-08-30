@@ -6,7 +6,7 @@
 
 namespace Jyotish\Dasha\Object;
 
-use Jyotish\Base\Utils;
+use Jyotish\Ganita\Math;
 use Jyotish\Graha\Graha;
 use Jyotish\Dasha\Dasha;
 use Jyotish\Ganita\Astro;
@@ -61,7 +61,7 @@ class Vimshottari extends AbstractDasha
         parent::__construct($options);
         
         $nakshatras = Nakshatra::listNakshatra();
-        $this->orderNakshatra = Utils::shiftArray($nakshatras, 3, true);
+        $this->orderNakshatra = Math::shiftArray($nakshatras, 3, true);
     }
 
     /**

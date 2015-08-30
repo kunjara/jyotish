@@ -7,7 +7,7 @@
 namespace Jyotish\Dasha\Object;
 
 use Jyotish\Graha\Graha;
-use Jyotish\Base\Utils;
+use Jyotish\Ganita\Math;
 use Jyotish\Ganita\Time;
 use DateTime;
 use DateInterval;
@@ -86,7 +86,7 @@ abstract class AbstractDasha
      */
     public function getOrderGraha($graha)
     {
-        $result = Utils::shiftArray($this->durationGraha, $graha);
+        $result = Math::shiftArray($this->durationGraha, $graha);
 
         return $result;
     }

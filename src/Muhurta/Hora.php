@@ -9,7 +9,6 @@ namespace Jyotish\Muhurta;
 use Jyotish\Graha\Graha;
 use Jyotish\Ganita\Time;
 use Jyotish\Ganita\Math;
-use Jyotish\Base\Utils;
 use Jyotish\Panchanga\Vara\Vara;
 use DateTime;
 
@@ -170,7 +169,7 @@ class Hora
      */
     public static function getLord($horaNumber, $varaKey)
     {
-        $lords = Utils::shiftArray(Graha::listGraha(Graha::LIST_CHESHTA), $varaKey);
+        $lords = Math::shiftArray(Graha::listGraha(Graha::LIST_CHESHTA), $varaKey);
         
         $lordsKeys = array_keys($lords);
         $numLord = Math::numberInCycle(1, $horaNumber, 7) - 1;

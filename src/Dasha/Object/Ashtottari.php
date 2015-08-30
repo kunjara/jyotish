@@ -6,7 +6,7 @@
 
 namespace Jyotish\Dasha\Object;
 
-use Jyotish\Base\Utils;
+use Jyotish\Ganita\Math;
 use Jyotish\Graha\Graha;
 use Jyotish\Dasha\Dasha;
 use Jyotish\Ganita\Astro;
@@ -60,7 +60,7 @@ class Ashtottari extends AbstractDasha
         parent::__construct($options);
         
         $nakshatras = Nakshatra::listNakshatra(true);
-        $this->orderNakshatra = Utils::shiftArray($nakshatras, 6, true);
+        $this->orderNakshatra = Math::shiftArray($nakshatras, 6, true);
     }
 
     /**

@@ -31,6 +31,7 @@ class Utils
      */
     public static function unicodeToHtml($unicode) {
         if (is_array($unicode)) {
+            $html = '';
             foreach ($unicode as $code) {
                 $html .= '&#x' . $code . ';';
             }
@@ -71,32 +72,6 @@ class Utils
         $b = hexdec($b);
 
         return ['r' => $r, 'g' => $g, 'b' => $b];
-    }
-
-    /**
-     * Shift to the right array key
-     * 
-     * @param array $array
-     * @param string $startKey
-     * @param bool $preserveKeys
-     * @return array
-     */ 
-    public static function shiftArray($array, $startKey, $preserveKeys = false) {
-        reset($array);
-        $tab = 0;
-
-        while (key($array) != $startKey) {
-            $tab++;
-            next($array);
-
-            if ($tab > count($array)) {
-                return $array;
-            }
-        }
-
-        $result = array_slice($array, $tab, null, $preserveKeys) + array_slice($array, 0, $tab, $preserveKeys);
-
-        return $result;
     }
 
     /**

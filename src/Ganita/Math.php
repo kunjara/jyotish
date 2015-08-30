@@ -243,6 +243,32 @@ class Math
             return count($result) >= 1 ? true : false;
         }    
     }
+    
+    /**
+     * Shift to the right array key
+     * 
+     * @param array $array
+     * @param string|int $startKey
+     * @param bool $preserveKeys (optional)
+     * @return array
+     */ 
+    public static function shiftArray(array $array, $startKey, $preserveKeys = false) {
+        reset($array);
+        $tab = 0;
+
+        while (key($array) != $startKey) {
+            $tab++;
+            next($array);
+
+            if ($tab > count($array)) {
+                return $array;
+            }
+        }
+
+        $result = array_slice($array, $tab, null, $preserveKeys) + array_slice($array, 0, $tab, $preserveKeys);
+
+        return $result;
+    }
 
     /**
      * Sum of two values of arc angular degrees (hours), minutes and seconds.
