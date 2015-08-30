@@ -6,7 +6,7 @@
 
 namespace Jyotish\Draw\Renderer;
 
-use Jyotish\Base\Utils;
+use Jyotish\Base\Utility;
 
 /**
  * Class for rendering basic elements as image.
@@ -43,7 +43,7 @@ class Image extends AbstractRenderer
             $this->setOptions($options);
         }
         
-        $colorRgb = Utils::htmlToRgb($this->options['strokeColor']);
+        $colorRgb = Utility::htmlToRgb($this->options['strokeColor']);
         $color = $this->allocateColor($this->Resource, $colorRgb['r'], $colorRgb['g'], $colorRgb['b']);
 
         imagesetthickness($this->Resource, $this->options['strokeWidth']);
@@ -60,7 +60,7 @@ class Image extends AbstractRenderer
             $this->setOptions($options);
         }
         
-        $colorRgb = Utils::htmlToRgb($this->options['fontColor']);
+        $colorRgb = Utility::htmlToRgb($this->options['fontColor']);
         $color = $this->allocateColor($this->Resource, $colorRgb['r'], $colorRgb['g'], $colorRgb['b']);
 
         if ($this->options['fontName'] == null) {

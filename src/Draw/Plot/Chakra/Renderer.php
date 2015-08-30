@@ -8,7 +8,7 @@ namespace Jyotish\Draw\Plot\Chakra;
 
 use Jyotish\Graha\Graha;
 use Jyotish\Rashi\Rashi;
-use Jyotish\Base\Utils;
+use Jyotish\Base\Utility;
 use Jyotish\Draw\Plot\Chakra\Style\AbstractChakra as Chakra;
 
 /**
@@ -162,7 +162,7 @@ class Renderer
             case 1:
                 if (array_key_exists($body, Graha::$graha)) {
                     $grahaObject = Graha::getInstance($body);
-                    $label = Utils::unicodeToHtml($grahaObject->grahaUnicode);
+                    $label = Utility::unicodeToHtml($grahaObject->grahaUnicode);
                 } else {
                     $label = $body;
                 }

@@ -6,7 +6,7 @@
 
 namespace Jyotish\Draw\Renderer;
 
-use Jyotish\Base\Utils;
+use Jyotish\Base\Utility;
 use DOMDocument;
 use DOMText;
 
@@ -58,10 +58,10 @@ class Svg extends AbstractRenderer
             $this->setOptions($options);
         }
         
-        $colorSrokeRgb = Utils::htmlToRgb($this->options['strokeColor']);
+        $colorSrokeRgb = Utility::htmlToRgb($this->options['strokeColor']);
         $colorStrokeString = 'rgb(' . implode(', ', $colorSrokeRgb) . ')';
 
-        $colorFillRgb = Utils::htmlToRgb($this->options['fillColor']);
+        $colorFillRgb = Utility::htmlToRgb($this->options['fillColor']);
         $colorFillString = 'rgb(' . implode(', ', $colorFillRgb) . ')';
 
         $pointsString = implode(' ', $points);
@@ -86,7 +86,7 @@ class Svg extends AbstractRenderer
             $this->setOptions($options);
         }
         
-        $colorRgb = Utils::htmlToRgb($this->options['fontColor']);
+        $colorRgb = Utility::htmlToRgb($this->options['fontColor']);
         $color = 'rgb(' . implode(', ', $colorRgb) . ')';
 
         $attributes['x'] = $x;

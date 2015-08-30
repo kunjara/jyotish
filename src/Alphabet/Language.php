@@ -6,7 +6,7 @@
 
 namespace Jyotish\Alphabet;
 
-use Jyotish\Base\Utils;
+use Jyotish\Base\Utility;
 
 /**
  * Language class
@@ -54,7 +54,7 @@ class Language
         }
 
         if (defined('static::'.$tr)) {
-            return Utils::unicodeToHtml(constant('static::'.$tr));
+            return Utility::unicodeToHtml(constant('static::'.$tr));
         } else {
             throw new Exception\InvalidArgumentException("Transliteration '$tr' is not defined.");
         }
