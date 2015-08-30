@@ -35,7 +35,7 @@ class Raja extends YogaBase
     /**
      * Generate list of Raja yogas.
      * 
-     * @return array
+     * @return \Iterator
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 41, Verse 28.
      */
     public function generateYoga()

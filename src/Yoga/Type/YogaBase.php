@@ -123,7 +123,7 @@ class YogaBase
     /**
      * Gnerate list of present yogas.
      * 
-     * @return string
+     * @return \Iterator
      */
     public function generateYoga()
     {

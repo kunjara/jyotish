@@ -67,7 +67,6 @@ class Vimshottari extends AbstractDasha
     /**
      * Get start period.
      * 
-     * @param array $nakshatra
      * @return array
      */
     public function getStartPeriod()

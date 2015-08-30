@@ -491,7 +491,7 @@ trait GrahaEnvironment
     /**
      * Determine if the graha is in planetary war.
      * 
-     * @return bool|array
+     * @return null|bool|array
      * @see Surya Siddhanta. Chapter 7, Verse 18-23.
      * @see Varahamihira. Brihat Samhita. Chapter 17.
      * @todo Determine who the winner and loser

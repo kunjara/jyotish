@@ -35,7 +35,7 @@ class Parivarthana extends YogaBase
     /**
      * Generate list of Parivarthana yogas.
      * 
-     * @return array
+     * @return \Iterator
      * @see Mantreswara. Phaladeepika. Chapter 6, Verse 32.
      */
     public function generateYoga()

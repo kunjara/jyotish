@@ -28,7 +28,7 @@ trait EnvironmentTrait
      * Set environment.
      * 
      * @param \Jyotish\Base\Data $Data
-     * @return mixed
+     * @return EnvironmentTrait
      */
     public function setEnvironment(\Jyotish\Base\Data $Data)
     {

@@ -51,7 +51,7 @@ class Astro
      * 
      * @param array $userData
      * @param array $sunData
-     * @return type
+     * @return float
      */
     public static function getSunRise($userData, $sunData)
     {
