@@ -42,9 +42,9 @@ class RashiTest extends \PHPUnit_Framework_TestCase
             Graha::KEY_SA => 5,
             Graha::KEY_MA => 5,
         ];
-        $this->assertSame(Rashi::listTrimshamshaRuler(2), $data);
+        $this->assertSame($data, Rashi::listTrimshamshaRuler(2));
         
-        $this->assertEquals(Rashi::listTrimshamshaRuler(1), $data);
-        $this->assertNotSame(Rashi::listTrimshamshaRuler(1), $data);
+        $this->assertEquals($data, Rashi::listTrimshamshaRuler(1));
+        $this->assertNotSame($data, Rashi::listTrimshamshaRuler(1));
     }
 }

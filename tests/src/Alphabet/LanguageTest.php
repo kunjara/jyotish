@@ -19,8 +19,8 @@ class LanguageTest extends \PHPUnit_Framework_TestCase
     {
         $class = 'Jyotish\Alphabet\\'.$language;
         
-        $htmlExpected = $class::translitToHtml($translit);
-        $this->assertEquals($htmlExpected, $html);
+        $htmlActual = $class::translitToHtml($translit);
+        $this->assertEquals($html, $htmlActual);
     }
     
     public function providerTranslitToHtml()

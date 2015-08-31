@@ -19,8 +19,8 @@ class UtilityTest extends \PHPUnit_Framework_TestCase
      */
     public function testHtmlToRgb($color, $rgb)
     {
-        $rgbExpected = Utility::htmlToRgb($color);
-        $this->assertEquals($rgbExpected, $rgb);
+        $rgbActual = Utility::htmlToRgb($color);
+        $this->assertEquals($rgb, $rgbActual);
     }
     
     public function providerHtmlToRgb()
@@ -39,15 +39,15 @@ class UtilityTest extends \PHPUnit_Framework_TestCase
     public function testDmsToStirng()
     {
         $dms = ['d' => 30, 'm' => 20, 's' => 33];
-        $this->assertEquals(Utility::dmsToStirng($dms), '30&deg;20\'33"');
+        $this->assertEquals('30&deg;20\'33"', Utility::dmsToStirng($dms));
         
         $dms = ['d' => 30, 'm' => 20, 's' => 0];
-        $this->assertEquals(Utility::dmsToStirng($dms), '30&deg;20\'');
+        $this->assertEquals('30&deg;20\'', Utility::dmsToStirng($dms));
         
         $dms = ['d' => 30, 'm' => 0, 's' => 0];
-        $this->assertEquals(Utility::dmsToStirng($dms), '30&deg;');
+        $this->assertEquals('30&deg;', Utility::dmsToStirng($dms));
         
         $dms = ['d' => 30];
-        $this->assertEquals(Utility::dmsToStirng($dms), '30&deg;');
+        $this->assertEquals('30&deg;', Utility::dmsToStirng($dms));
     }
 }

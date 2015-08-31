@@ -42,13 +42,13 @@ class GrahaTest extends \PHPUnit_Framework_TestCase
             Graha::KEY_SK => Deva::DEVA_SHUKRA,
             Graha::KEY_SA => Deva::DEVA_SHANI,
         ];
-        $this->assertEquals(Graha::listGraha(Graha::LIST_PANCHA), $data);
+        $this->assertEquals($data, Graha::listGraha(Graha::LIST_PANCHA));
         
         $data = [
             Graha::KEY_KE => Graha::NAME_KE,
             Graha::KEY_RA => Graha::NAME_RA,
         ];
-        $this->assertEquals(Graha::listGraha(Graha::LIST_CHAYA), $data);
+        $this->assertEquals($data, Graha::listGraha(Graha::LIST_CHAYA));
     }
     
     /**
@@ -63,11 +63,11 @@ class GrahaTest extends \PHPUnit_Framework_TestCase
             Graha::KEY_MA => Deva::DEVA_MANGAL,
             Graha::KEY_GU => Deva::DEVA_GURU,
         ];
-        $this->assertEquals(Graha::listGrahaByFeature($feature, 'male'), $data);
+        $this->assertEquals($data, Graha::listGrahaByFeature($feature, 'male'));
         
         // testing exception
         $feature = 'home';
         $data = [];
-        $this->assertEquals(Graha::listGrahaByFeature($feature, 'male'), $data);
+        $this->assertEquals($data, Graha::listGrahaByFeature($feature, 'male'));
     }
 }

@@ -18,10 +18,10 @@ class MathTest extends \PHPUnit_Framework_TestCase
      * @covers Jyotish\Ganita\Math::dmsToDecimal
      * @dataProvider providerDmsToDecimal
      */
-    public function testDmsToDecimal($dms, $decimalActual)
+    public function testDmsToDecimal($dms, $decimal)
     {
-        $decimalExpected = Math::dmsToDecimal($dms);
-        $this->assertEquals($decimalExpected, $decimalActual, '', .001);
+        $decimalActual = Math::dmsToDecimal($dms);
+        $this->assertEquals($decimal, $decimalActual, '', .001);
     }
     
     public function providerDmsToDecimal()
@@ -39,10 +39,10 @@ class MathTest extends \PHPUnit_Framework_TestCase
      * @covers Jyotish\Ganita\Math::decimalToDms
      * @dataProvider providerDecimalToDms
      */
-    public function testDecimalToDms($decimal, $dmsActual)
+    public function testDecimalToDms($decimal, $dms)
     {
-        $dmsExpected = Math::decimalToDms($decimal);
-        $this->assertEquals($dmsExpected, $dmsActual);
+        $dmsActual = Math::decimalToDms($decimal);
+        $this->assertEquals($dms, $dmsActual);
     }
     
     public function providerDecimalToDms()
@@ -70,10 +70,10 @@ class MathTest extends \PHPUnit_Framework_TestCase
      * @covers Jyotish\Ganita\Math::distanceInCycle
      * @dataProvider providerDistanceInCycle
      */
-    public function testDistanceInCycle($n1, $n2, $distanceActual)
+    public function testDistanceInCycle($n1, $n2, $distance)
     {
-        $distanceExpected = Math::distanceInCycle($n1, $n2, 12);
-        $this->assertEquals($distanceExpected, $distanceActual);
+        $distanceActual = Math::distanceInCycle($n1, $n2, 12);
+        $this->assertEquals($distance, $distanceActual);
     }
     
     public function providerDistanceInCycle()
@@ -92,9 +92,9 @@ class MathTest extends \PHPUnit_Framework_TestCase
     public function testNumberInCycle()
     {
         for ($i = -13; $i <= 13; $i++){
-            $numbersExpected[] = Math::numberInCycle(1, $i);
+            $numbersActual[] = Math::numberInCycle(1, $i);
         }
-        $numbersActual = [
+        $numbersExpected = [
             1, 
             2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 1, 
             1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12,
@@ -110,9 +110,9 @@ class MathTest extends \PHPUnit_Framework_TestCase
     public function testNumberNext()
     {
         for($i = 1; $i <= 14; $i++){
-            $numbersExpected[] = Math::numberNext($i);
+            $numbersActual[] = Math::numberNext($i);
         }
-        $numbersActual = [
+        $numbersExpected = [
             2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 1, 2, 3
         ];
         $this->assertEquals($numbersExpected, $numbersActual);
@@ -125,9 +125,9 @@ class MathTest extends \PHPUnit_Framework_TestCase
     public function testNumberPrev()
     {
         for($i = 1; $i <= 14; $i++){
-            $numbersExpected[] = Math::numberPrev($i);
+            $numbersActual[] = Math::numberPrev($i);
         }
-        $numbersActual = [
+        $numbersExpected = [
             12, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 1
         ];
         $this->assertEquals($numbersExpected, $numbersActual);
@@ -139,13 +139,13 @@ class MathTest extends \PHPUnit_Framework_TestCase
     public function testSign()
     {
         $value = -32.2;
-        $this->assertEquals(Math::sign($value), -1);
+        $this->assertEquals(-1, Math::sign($value));
         
         $value = .0;
-        $this->assertEquals(Math::sign($value), 0);
+        $this->assertEquals(0, Math::sign($value));
         
         $value = 722;
-        $this->assertEquals(Math::sign($value), 1);
+        $this->assertEquals(1, Math::sign($value));
     }
     
     /**
@@ -162,7 +162,7 @@ class MathTest extends \PHPUnit_Framework_TestCase
             'second' => 4,
             'first' => 3.3,
         ];
-        $this->assertEquals(Math::arraySum($array1, $array2), [8.9, 'first' => 1.3, 'second' => 27.6]);
+        $this->assertEquals([8.9, 'first' => 1.3, 'second' => 27.6], Math::arraySum($array1, $array2));
     }
     
     /**
@@ -205,20 +205,20 @@ class MathTest extends \PHPUnit_Framework_TestCase
     public function testOppositeValue()
     {
         $value = 11;
-        $this->assertEquals(Math::oppositeValue($value), 5);
+        $this->assertEquals(5, Math::oppositeValue($value));
         
         $value = 340.23;
-        $this->assertEquals(Math::oppositeValue($value, 360), 160.23);
+        $this->assertEquals(160.23, Math::oppositeValue($value, 360));
     }
 
     /**
      * @covers Jyotish\Ganita\Math::simplifyNumber
      * @dataProvider providerSimplifyNumber
      */
-    public function testSimplifyNumber($number, $numActual)
+    public function testSimplifyNumber($number, $num)
     {
-        $numExpected = Math::simplifyNumber($number);
-        $this->assertEquals($numExpected, $numActual);
+        $numActual = Math::simplifyNumber($number);
+        $this->assertEquals($num, $numActual);
     }
     
     public function providerSimplifyNumber()
