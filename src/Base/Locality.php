@@ -15,7 +15,7 @@ class Locality
 {
     protected $longitude = null;
     protected $latitude = null;
-    protected $altitude = 0;
+    protected $altitude = 0.0;
     
     /**
      * Constructor
@@ -47,7 +47,7 @@ class Locality
             throw new Exception\InvalidArgumentException("Longitude should be numeric and less than 180.");
         }
         
-        $this->longitude = $longitude;
+        $this->longitude = (float)$longitude;
         
         return $this;
     }
@@ -65,7 +65,7 @@ class Locality
             throw new Exception\InvalidArgumentException("Latitude should be numeric and less than 90.");
         }
         
-        $this->latitude = $latitude;
+        $this->latitude = (float)$latitude;
         
         return $this;
     }
@@ -83,7 +83,7 @@ class Locality
             throw new Exception\InvalidArgumentException("Altitude should be numeric.");
         }
         
-        $this->altitude = $altitude;
+        $this->altitude = (float)$altitude;
         
         return $this;
     }
