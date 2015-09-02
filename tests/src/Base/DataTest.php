@@ -48,13 +48,18 @@ class DataTest extends \PHPUnit_Framework_TestCase
         $blocksActual = array_values(Data::listBlock('calc'));
         $this->assertEquals($blocks, $blocksActual);
     }
-    
+
     /**
      * @covers Jyotish\Base\Data::getDateTime
+     * @covers Jyotish\Base\Data::setDateTime
      */
-    public function testGetDateTime()
+    public function testDateTime()
 	{
 		$this->assertInstanceOf('DateTime', $this->Data->getDateTime());
+        
+        $DateTime = new DateTime('2015-01-01 20:00:50');
+        $this->Data->setDateTime($DateTime);
+        $this->assertEquals($DateTime, $this->Data->getDateTime());
 	}
     
     /**
