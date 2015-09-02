@@ -22,7 +22,7 @@ class LocalityTest extends \PHPUnit_Framework_TestCase
     {
         $this->Locality = null;
     }
-    
+
     /**
      * @covers Jyotish\Base\Locality::setLongitude
      * @covers Jyotish\Base\Locality::getLongitude
@@ -84,5 +84,20 @@ class LocalityTest extends \PHPUnit_Framework_TestCase
         // test exception
         $this->Locality->setAltitude('95a');
         $this->assertEquals(95, $this->Locality->getAltitude());
+    }
+    
+    /**
+     * @covers Jyotish\Base\Locality::__construct
+     * @depends testLongitude
+     * @depends testLatitude
+     * @depends testAltitude
+     */
+    public function testConstruct()
+    {
+        $data = ['longitude' => 50, 'latitude' => 30, 'altitude' => 10];
+        $Locality = new Locality($data);
+        $this->assertEquals(50, $Locality->getLongitude());
+        $this->assertEquals(30, $Locality->getLatitude());
+        $this->assertEquals(10, $Locality->getAltitude());
     }
 }

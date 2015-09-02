@@ -44,7 +44,7 @@ class Locality
     public function setLongitude($longitude)
     {
         if (!is_numeric($longitude) || abs($longitude) >= 180) {
-            throw new Exception\InvalidArgumentException("Longitude should be numeric and less than 180.");
+            throw new Exception\InvalidArgumentException("Longitude should be numeric and module less than 180.");
         }
         
         $this->longitude = (float)$longitude;
@@ -62,7 +62,7 @@ class Locality
     public function setLatitude($latitude)
     {
         if (!is_numeric($latitude) || abs($latitude) >= 90) {
-            throw new Exception\InvalidArgumentException("Latitude should be numeric and less than 90.");
+            throw new Exception\InvalidArgumentException("Latitude should be numeric and module less than 90.");
         }
         
         $this->latitude = (float)$latitude;
