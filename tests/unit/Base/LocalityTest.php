@@ -9,7 +9,7 @@ namespace JyotishTest\Base;
 use Jyotish\Base\Locality;
 
 /**
- * @group Base
+ * @group base
  */
 class LocalityTest extends \PHPUnit_Framework_TestCase
 {

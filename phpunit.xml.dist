@@ -5,4 +5,9 @@
             <directory>./tests/src</directory>
         </testsuite>
     </testsuites>
+    <groups>
+        <include>
+          <group>base</group>
+        </include>
+    </groups>
 </phpunit>

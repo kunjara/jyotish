@@ -9,6 +9,9 @@ nbproject
 .project
 .settings
 
+# composer vendor dir
+vendor
+
 # compiling files
 bin/swetest/src/*.a
 bin/swetest/src/*.o

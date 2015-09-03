@@ -10,7 +10,7 @@ use Jyotish\Ganita\Math;
 use Jyotish\Bhava\Bhava;
 
 /**
- * @group Ganita
+ * @group ganita
  */
 class MathTest extends \PHPUnit_Framework_TestCase
 {

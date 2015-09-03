@@ -10,7 +10,7 @@ use Jyotish\Rashi\Rashi;
 use Jyotish\Graha\Graha;
 
 /**
- * @group Rashi
+ * @group rashi
  */
 class RashiTest extends \PHPUnit_Framework_TestCase
 {

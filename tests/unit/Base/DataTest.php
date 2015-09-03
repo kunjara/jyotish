@@ -11,7 +11,7 @@ use Mockery;
 use DateTime;
 
 /**
- * @group Base
+ * @group base
  */
 class DataTest extends \PHPUnit_Framework_TestCase
 {

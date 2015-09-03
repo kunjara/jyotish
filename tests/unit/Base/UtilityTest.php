@@ -9,7 +9,7 @@ namespace JyotishTest\Base;
 use Jyotish\Base\Utility;
 
 /**
- * @group Base
+ * @group base
  */
 class UtilityTest extends \PHPUnit_Framework_TestCase
 {

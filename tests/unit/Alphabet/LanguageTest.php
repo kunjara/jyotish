@@ -7,7 +7,7 @@
 namespace JyotishTest\Alphabet;
 
 /**
- * @group Alphabet
+ * @group alphabet
  */
 class LanguageTest extends \PHPUnit_Framework_TestCase
 {

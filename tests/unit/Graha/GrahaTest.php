@@ -10,7 +10,7 @@ use Jyotish\Graha\Graha;
 use Jyotish\Tattva\Jiva\Nara\Deva;
 
 /**
- * @group Graha
+ * @group graha
  */
 class GrahaTest extends \PHPUnit_Framework_TestCase
 {
