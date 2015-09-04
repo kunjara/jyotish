@@ -170,20 +170,33 @@ class Time
         return $JC;
     }
 
-    public static function getTimeZoneOffset($timeZone, $dateTime, $flagFormat = false) 
+    /**
+     * Get timezone offset.
+     * 
+     * @param DateTime $DateTime
+     * @param bool $flagFormat
+     * @return int|string
+     */
+    public static function getTimeZoneOffset(DateTime $DateTime, $flagFormat = false) 
     {
-        $TimeZone = new DateTimeZone($timeZone);
-        $DateTime = new DateTime($dateTime, $TimeZone);
+        $TimeZone = $DateTime->getTimezone();
 
         $offset = $TimeZone->getOffset($DateTime);
-        $offsetResult = $flagFormat ? self::formatOffset($offset) : $offset;
+        $result = $flagFormat ? self::formatOffset($offset) : $offset;
 
-        return $offsetResult;
+        return $result;
     }
 
-    public static function formatOffset($offset, $format = self::FORMAT_OFFSET_TIME) 
+    /**
+     * Format offset.
+     * 
+     * @param int $offsetSecond Offset in seconds
+     * @param string $format Offset format
+     * @return string
+     */
+    public static function formatOffset($offsetSecond, $format = self::FORMAT_OFFSET_TIME) 
     {
-        $offsetInterval = new DateInterval('PT'.abs($offset).'S');
+        $offsetInterval = new DateInterval('PT'.abs($offsetSecond).'S');
 
         $seconds = $offsetInterval->s;
         $offsetInterval->h = floor($seconds/60/60);
@@ -193,29 +206,23 @@ class Time
         $offsetInterval->s = $seconds;
 
         $offsetFormat = $offsetInterval->format($format);
-        $offsetResult = $offset < 0 ? '-' . $offsetFormat : $offsetFormat;
+        $result = $offsetSecond < 0 ? '-' . $offsetFormat : $offsetFormat;
 
-        return $offsetResult;
-    }
-
-    public static function disFormatOffset($offset, $delimiter = ':')
-    {
-        $offsetArray = explode($delimiter, $offset);
-        $result = $offsetArray[0] * 3600 + $offsetArray[1] * 60;
         return $result;
     }
 
-    public static function getTimeZoneLocation($timeZone) {
-        $TimeZone = new DateTimeZone($timeZone);
-        $location = $TimeZone->getLocation();
-
-        return $location;
-    }
-
-    public static function getTimeZoneTransitions($timeZone) {
-        $TimeZone = new DateTimeZone($timeZone);
-        $transitions = $TimeZone->getTransitions();
-
-        return $transitions;
+    /**
+     * Format string representation of the offset to seconds.
+     * 
+     * @param string $offsetString String offset
+     * @param string $delimiter Delimiter 
+     * @return int
+     */
+    public static function disformatOffset($offsetString, $delimiter = ':')
+    {
+        $offsetArray = explode($delimiter, $offsetString);
+        $result = $offsetArray[0] * 3600 + $offsetArray[1] * 60;
+        
+        return (int)$result;
     }
 }
