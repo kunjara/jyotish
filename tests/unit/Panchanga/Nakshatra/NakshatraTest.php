@@ -17,7 +17,7 @@ class NakshatraTest extends \PHPUnit_Framework_TestCase
      * @covers Jyotish\Panchanga\Nakshatra\Nakshatra::getInstance
      * @expectedException InvalidArgumentException
      */
-    public function testTithiGetInstance()
+    public function testNakshatraGetInstance()
     {
         $Nakshatra = Nakshatra::getInstance(3);
         $this->assertInstanceOf('\Jyotish\Panchanga\Nakshatra\Object\N3', $Nakshatra);
