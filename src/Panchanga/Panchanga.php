@@ -51,7 +51,7 @@ class Panchanga
      * Returns the requested instance of anga.
      * 
      * @param string $anga The requested anga
-     * @param int $key The key of anga
+     * @param int|string $key The key of anga
      * @param null|array $options Options to set (optional)
      * @return the requested instance of anga
      * @throws Exception\InvalidArgumentException
