@@ -90,7 +90,7 @@ class Nakshatra
         25 => 'Purva Bhadrapada',
         26 => 'Uttara Bhadrapada',
         27 => 'Revati',
-        28 => 'Abhijit'
+        28 => 'Abhijit',
     ];
 
     /**
@@ -192,7 +192,7 @@ class Nakshatra
      */
     public static function listNakshatraNavatara($nakshatraKey) {
         if (!array_key_exists($nakshatraKey, self::listNakshatra())) {
-            throw new \Jyotish\Panchanga\Exception\InvalidArgumentException("Nakshatra with the number '$nakshatraKey' does not exist.");
+            throw new \Jyotish\Panchanga\Exception\InvalidArgumentException("Nakshatra with the key '$nakshatraKey' does not exist.");
         }
         
         $nakshatas = Math::shiftArray(self::listNakshatra(), $nakshatraKey, true);
