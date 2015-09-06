@@ -56,7 +56,7 @@ class Yoga
             throw new \Jyotish\Panchanga\Exception\InvalidArgumentException("Yoga with the key '$key' does not exist.");
         }
         
-        $yogaClass = 'Jyotish\\Panchanga\\Yoga\\Object\\Y' . $key;
+        $yogaClass = 'Jyotish\Panchanga\Yoga\Object\Y' . $key;
         $yogaObject = new $yogaClass($options);
 
         return $yogaObject;
