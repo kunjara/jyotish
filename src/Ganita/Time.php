@@ -153,7 +153,7 @@ class Time
     }
     
     /**
-     * Get Julian Centuries.
+     * Get Julian Centuries elapsed from J2000.
      * 
      * @param null|DateTime $DateTime Date (optional)
      * @return float
@@ -168,6 +168,24 @@ class Time
         $JC = ($JD - 2451545) / 36525;
         
         return $JC;
+    }
+    
+    /**
+     * Get Julian Millenia elapsed from J2000.
+     * 
+     * @param null|DateTime $DateTime Date (optional)
+     * @return float
+     */
+    public static function getJM(DateTime $DateTime = null)
+    {
+        if (is_null($DateTime)) {
+            $DateTime = new DateTime('now');
+        }
+        
+        $JD = self::getJD($DateTime);
+        $JM = ($JD - 2451545) / 365250;
+        
+        return $JM;
     }
 
     /**
