@@ -11,6 +11,7 @@ nbproject
 
 # composer vendor dir
 vendor
+composer.lock
 
 # compiling files
 bin/swetest/src/*.a
