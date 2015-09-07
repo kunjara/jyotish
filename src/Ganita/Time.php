@@ -73,7 +73,7 @@ class Time
      * Get Julian Day Number.
      * 
      * @param null|DateTime $DateTime Date (optional)
-     * @return float
+     * @return int
      */
     public static function getJDN(DateTime $DateTime = null)
     {
@@ -85,13 +85,9 @@ class Time
         $month = $DateTime->format('n');
         $day = $DateTime->format('j');
         
-        $a = floor((14 - $month) / 12);
-        $y = $year + 4800 - $a;
-        $m = $month + 12 * $a - 3;
+        $JDN = gregoriantojd($month, $day, $year);
         
-        $JDN = $day + floor((153 * $m + 2) / 5) + 365 * $y + floor($y / 4) - floor($y / 100) + floor($y / 400) - 32045;
-        
-        return $JDN;
+        return (int)$JDN;
     }
     
     /**
@@ -106,10 +102,10 @@ class Time
             $DateTime = new DateTime('now');
         }
         
+        $JDN = self::getJDN($DateTime);
         $hour = $DateTime->format('G');
         $minute = $DateTime->format('i');
         $second = $DateTime->format('s');
-        $JDN = self::getJDN($DateTime);
         
         $JD = $JDN + ($hour - 12) / 24 + $minute / 1440 + $second / 86400;
         

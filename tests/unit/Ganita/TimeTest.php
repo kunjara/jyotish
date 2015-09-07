@@ -16,6 +16,45 @@ use DateTimeZone;
 class TimeTest extends \PHPUnit_Framework_TestCase
 {
     /**
+     * @covers Jyotish\Ganita\Time::getJDN
+     * @dataProvider providerGetJDN
+     */
+    public function testGetJDN($DateTime, $JDN)
+    {        
+        $JDNActual = Time::getJDN($DateTime);
+        $this->assertEquals($JDN, $JDNActual);
+    }
+    
+    public function providerGetJDN()
+    {
+        return [
+            [new DateTime('1982-07-11'), 2445162],
+            [new DateTime('2015-09-02 21:15', new DateTimeZone('Asia/Krasnoyarsk')), 2457268],
+            [new DateTime('2215-09-07'), 2530321],
+        ];
+    }
+    
+    /**
+     * @covers Jyotish\Ganita\Time::getJD
+     * @depends testGetJDN
+     * @dataProvider providerGetJD
+     */
+    public function testGetJD($DateTime, $JD)
+    {        
+        $JDActual = Time::getJD($DateTime);
+        $this->assertEquals($JD, $JDActual, '', .001);
+    }
+    
+    public function providerGetJD()
+    {
+        return [
+            [new DateTime('1982-07-11'), 2445161.5],
+            [new DateTime('2015-09-02 21:15'), 2457268.3854167],
+            [new DateTime('2215-09-07 18:00'), 2530321.25],
+        ];
+    }
+
+    /**
      * @covers Jyotish\Ganita\Time::formatOffset
      */
     public function testFormatOffset()
