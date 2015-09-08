@@ -22,7 +22,9 @@ class DataTest extends \PHPUnit_Framework_TestCase
         $DateTime = new DateTime;
         
         $Locality = Mockery::mock('Jyotish\Base\Locality');
-        $Locality->shouldReceive('getLongitude', 'getLatitude', 'getAltitude');
+        $Locality->shouldReceive('getLongitude')->andReturn('Lon 1');
+        $Locality->shouldReceive('getLatitude')->andReturn('Lat 1');
+        $Locality->shouldReceive('getAltitude')->andReturn('Alt 1');
         
         $Ganita = Mockery::mock('Jyotish\Ganita\Method\AbstractGanita');
         
@@ -64,10 +66,20 @@ class DataTest extends \PHPUnit_Framework_TestCase
     
     /**
      * @covers Jyotish\Base\Data::getLocality
+     * @covers Jyotish\Base\Data::setLocality
      */
-    public function testGetLocality()
+    public function testLocality()
 	{
 		$this->assertInstanceOf('Jyotish\Base\Locality', $this->Data->getLocality());
+        $this->assertEquals('Lon 1', $this->Data->getLocality()->getLongitude());
+        
+        $Locality = Mockery::mock('Jyotish\Base\Locality');
+        $Locality->shouldReceive('getLongitude')->andReturn('Lon 2');
+        $Locality->shouldReceive('getLatitude')->andReturn('Lat 2');
+        $Locality->shouldReceive('getAltitude')->andReturn('Alt 2');
+        $this->Data->setLocality($Locality);
+        $this->assertInstanceOf('Jyotish\Base\Locality', $this->Data->getLocality());
+        $this->assertEquals('Lon 2', $this->Data->getLocality()->getLongitude());
 	}
     
     /**
@@ -76,5 +88,8 @@ class DataTest extends \PHPUnit_Framework_TestCase
     public function testGetData()
 	{
 		$this->assertArrayHasKey('user', $this->Data->getData());
+        foreach (['datetime', 'timezone', 'longitude', 'latitude', 'altitude'] as $value) {
+            $this->assertArrayHasKey($value, $this->Data->getData()['user']);
+        }
 	}
 }
