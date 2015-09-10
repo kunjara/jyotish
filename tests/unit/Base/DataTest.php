@@ -56,21 +56,21 @@ class DataTest extends \PHPUnit_Framework_TestCase
      * @covers Jyotish\Base\Data::setDateTime
      */
     public function testDateTime()
-	{
-		$this->assertInstanceOf('DateTime', $this->Data->getDateTime());
+    {
+        $this->assertInstanceOf('DateTime', $this->Data->getDateTime());
         
         $DateTime = new DateTime('2015-01-01 20:00:50');
         $this->Data->setDateTime($DateTime);
         $this->assertEquals($DateTime, $this->Data->getDateTime());
-	}
+    }
     
     /**
      * @covers Jyotish\Base\Data::getLocality
      * @covers Jyotish\Base\Data::setLocality
      */
     public function testLocality()
-	{
-		$this->assertInstanceOf('Jyotish\Base\Locality', $this->Data->getLocality());
+    {
+        $this->assertInstanceOf('Jyotish\Base\Locality', $this->Data->getLocality());
         $this->assertEquals('Lon 1', $this->Data->getLocality()->getLongitude());
         
         $Locality = Mockery::mock('Jyotish\Base\Locality');
@@ -80,14 +80,15 @@ class DataTest extends \PHPUnit_Framework_TestCase
         $this->Data->setLocality($Locality);
         $this->assertInstanceOf('Jyotish\Base\Locality', $this->Data->getLocality());
         $this->assertEquals('Lon 2', $this->Data->getLocality()->getLongitude());
-	}
+    }
     
     /**
      * @covers Jyotish\Base\Data::getData
      */
     public function testGetData()
-	{
-		$this->assertArrayHasKey('user', $this->Data->getData());
+    {
+        $this->assertArrayHasKey('user', $this->Data->getData());
+        
         foreach (['datetime', 'timezone', 'longitude', 'latitude', 'altitude'] as $value) {
             $this->assertArrayHasKey($value, $this->Data->getData()['user']);
         }
