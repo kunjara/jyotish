@@ -67,11 +67,13 @@ class Dasha
      * @throws Exception\InvalidArgumentException
      */
     public static function getInstance($type, array $options = null) {
-        if (!in_array($type, self::$dasha)) {
-            throw new Exception\InvalidArgumentException("Dasha '$type' does not exist.");
+        $typeLower = strtolower($type);
+        
+        if (!in_array($typeLower, self::$dasha)) {
+            throw new Exception\InvalidArgumentException("Dasha '$typeLower' does not exist.");
         }
 
-        $dashaClass = 'Jyotish\Dasha\Object\\' . ucfirst($type);
+        $dashaClass = 'Jyotish\Dasha\Object\\' . ucfirst($typeLower);
         $dashaObject = new $dashaClass($options);
 
         return $dashaObject;
