@@ -139,11 +139,13 @@ class Varga
      * @throws Exception\InvalidArgumentException
      */
     public static function getInstance($key, $options = null) {
-        if (!array_key_exists($key, self::$varga)) {
+        $keyUcfirst = ucfirst($key);
+        
+        if (!array_key_exists($keyUcfirst, self::$varga)) {
             throw new Exception\InvalidArgumentException("Varga '$key' is not defined.");
         }
         
-        $vargaClass = 'Jyotish\\Varga\\Object\\' . $key;
+        $vargaClass = 'Jyotish\\Varga\\Object\\' . ucfirst($keyUcfirst);
         $vargaObject = new $vargaClass($options);
 
         return $vargaObject;
