@@ -133,7 +133,9 @@ class Karaka
         $list = self::$karaka;
         array_pop($list);
         
-        switch ($system) {
+        $systemPrepare = strtolower($system);
+        
+        switch ($systemPrepare) {
             case Biblio::AUTHOR_JAIMINI:
             case Biblio::BOOK_US:
                 unset($list[self::KEY_PITRU]);

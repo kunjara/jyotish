@@ -8,6 +8,9 @@
     <groups>
         <include>
           <group>base</group>
+		  <group>ganita</group>
+		  <group>panchanga</group>
+		  <group>tattva</group>
         </include>
     </groups>
 </phpunit>
