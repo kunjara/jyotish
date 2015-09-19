@@ -180,6 +180,20 @@ class MathTest extends \PHPUnit_Framework_TestCase
         $this->assertNotTrue(Math::arrayInArray($array1, $array2));
         $this->assertNotTrue(Math::arrayInArray($array1, $array2, true));
     }
+    
+    /**
+     * @covers Jyotish\Ganita\Math::shiftArray
+     */
+    public function testShiftArray()
+    {
+        $arrayOriginal = ['a' => 11, 'b' => 22, 'c' => 33, 'd' => 44];
+        $arrayExpected = ['c' => 33, 'd' => 44, 'a' => 11, 'b' => 22];
+        $this->assertEquals($arrayExpected, Math::shiftArray($arrayOriginal, 'c'));
+        
+        $arrayOriginal = [1 => 'a', 2 => 'b', 3 => 'c', 4 => 'd'];
+        $arrayExpected = [3 => 'c', 4 => 'd', 1 => 'a', 2 => 'b'];
+        $this->assertEquals($arrayExpected, Math::shiftArray($arrayOriginal, 3));
+    }
 
     /**
      * @covers Jyotish\Ganita\Math::inRange

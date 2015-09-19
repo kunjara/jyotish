@@ -249,10 +249,9 @@ class Math
      * 
      * @param array $array
      * @param string|int $startKey
-     * @param bool $preserveKeys (optional)
      * @return array
      */ 
-    public static function shiftArray(array $array, $startKey, $preserveKeys = false) {
+    public static function shiftArray(array $array, $startKey) {
         reset($array);
         $tab = 0;
 
@@ -265,7 +264,7 @@ class Math
             }
         }
 
-        $result = array_slice($array, $tab, null, $preserveKeys) + array_slice($array, 0, $tab, $preserveKeys);
+        $result = array_slice($array, $tab, null, true) + array_slice($array, 0, $tab, true);
 
         return $result;
     }
