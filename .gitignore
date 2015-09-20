@@ -20,3 +20,6 @@ bin/swetest/src/swetest
 
 # local phpunit config
 phpunit.xml
+
+# log files
+tests/logs

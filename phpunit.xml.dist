@@ -2,15 +2,27 @@
 <phpunit colors="true">
     <testsuites>
         <testsuite name="Jyotish Test Suite">
-            <directory>./tests/src</directory>
+            <directory>./tests/unit</directory>
         </testsuite>
     </testsuites>
-    <groups>
-        <include>
-          <group>base</group>
-		  <group>ganita</group>
-		  <group>panchanga</group>
-		  <group>tattva</group>
-        </include>
-    </groups>
+	
+	<filter>
+        <blacklist>
+            <directory suffix=".php">./bin</directory>
+            <directory suffix=".php">./tests</directory>
+        </blacklist>
+        <whitelist>
+            <directory suffix=".php">./src</directory>
+        </whitelist>
+    </filter>
+	
+	<logging>
+        <log type="coverage-html" 
+			 target="./tests/logs/coverage" 
+			 charset="UTF-8"
+             yui="true" 
+			 highlight="true"
+             lowUpperBound="50" 
+			 highLowerBound="80"/>
+    </logging>
 </phpunit>
