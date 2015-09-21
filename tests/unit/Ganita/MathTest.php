@@ -87,11 +87,11 @@ class MathTest extends \PHPUnit_Framework_TestCase
     
     /**
      * @covers Jyotish\Ganita\Math::numberInCycle
-     * @expectedException InvalidArgumentException 
      */
     public function testNumberInCycle()
     {
         for ($i = -13; $i <= 13; $i++){
+            if ($i == 0) continue;
             $numbersActual[] = Math::numberInCycle(1, $i);
         }
         $numbersExpected = [
@@ -193,6 +193,38 @@ class MathTest extends \PHPUnit_Framework_TestCase
         $arrayOriginal = [1 => 'a', 2 => 'b', 3 => 'c', 4 => 'd'];
         $arrayExpected = [3 => 'c', 4 => 'd', 1 => 'a', 2 => 'b'];
         $this->assertEquals($arrayExpected, Math::shiftArray($arrayOriginal, 3));
+    }
+    
+    /**
+     * @covers Jyotish\Ganita\Math::dmsSum
+     */
+    public function testDmsSum()
+    {
+        $array1 = ['d' => 10, 'm' => 15, 's' => 20];
+        $array2 = ['d' => 20, 'm' => 25, 's' => 30];
+        $arrayExpected = ['d' => 30, 'm' => 40, 's' => 50];
+        $this->assertEquals($arrayExpected, Math::dmsSum($array1, $array2));
+        
+        $array1 = ['d' => 40, 'm' => 45, 's' => 50];
+        $array2 = ['d' => 20, 'm' => 25, 's' => 30];
+        $arrayExpected = ['d' => 61, 'm' => 11, 's' => 20];
+        $this->assertEquals($arrayExpected, Math::dmsSum($array1, $array2));
+    }
+    
+    /**
+     * @covers Jyotish\Ganita\Math::dmsMulti
+     */
+    public function testDmsMulti()
+    {
+        $array = ['d' => 10, 'm' => 15, 's' => 20];
+        $factor = 2;
+        $arrayExpected = ['d' => 20, 'm' => 30, 's' => 40];
+        $this->assertEquals($arrayExpected, Math::dmsMulti($array, $factor));
+        
+        $array = ['d' => 40, 'm' => 45, 's' => 50];
+        $factor = 4;
+        $arrayExpected = ['d' => 163, 'm' => 3, 's' => 20];
+        $this->assertEquals($arrayExpected, Math::dmsMulti($array, $factor));
     }
 
     /**

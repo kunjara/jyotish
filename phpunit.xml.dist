@@ -5,8 +5,8 @@
             <directory>./tests/unit</directory>
         </testsuite>
     </testsuites>
-	
-	<filter>
+    
+    <filter>
         <blacklist>
             <directory suffix=".php">./bin</directory>
             <directory suffix=".php">./tests</directory>
@@ -15,14 +15,14 @@
             <directory suffix=".php">./src</directory>
         </whitelist>
     </filter>
-	
-	<logging>
+    
+    <logging>
         <log type="coverage-html" 
-			 target="./tests/logs/coverage" 
-			 charset="UTF-8"
-             yui="true" 
-			 highlight="true"
-             lowUpperBound="50" 
-			 highLowerBound="80"/>
+            target="./tests/logs/coverage" 
+            charset="UTF-8"
+            yui="true" 
+            highlight="true"
+            lowUpperBound="50" 
+            highLowerBound="80"/>
     </logging>
 </phpunit>
