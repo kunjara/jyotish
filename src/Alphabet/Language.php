@@ -15,6 +15,10 @@ use Jyotish\Base\Utility;
  */
 class Language
 {
+    private static $notTranslit = [
+        '', ' ', '-'
+    ];
+
     /**
      * Convert translit to html code.
      * 
@@ -44,13 +48,8 @@ class Language
      */
     protected static function trToHtml($tr)
     {
-        switch ($tr) {
-            case null:
-                return;
-            case ' ':
-                return $tr;
-            default:
-                break;
+        if (in_array($tr, self::$notTranslit)) {
+            return $tr;
         }
 
         if (defined('static::'.$tr)) {

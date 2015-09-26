@@ -87,6 +87,7 @@ class MathTest extends \PHPUnit_Framework_TestCase
     
     /**
      * @covers Jyotish\Ganita\Math::numberInCycle
+     * @expectedException InvalidArgumentException
      */
     public function testNumberInCycle()
     {
@@ -101,6 +102,9 @@ class MathTest extends \PHPUnit_Framework_TestCase
             1
         ];
         $this->assertEquals($numbersExpected, $numbersActual);
+        
+        // testing exception
+        Math::numberInCycle(2, 0);
     }
     
     /**
@@ -242,6 +246,24 @@ class MathTest extends \PHPUnit_Framework_TestCase
             [2, 2, 3],
             [1, 0, 2],
             [1, -2, 2],
+        ];
+    }
+    
+    /**
+     * @covers Jyotish\Ganita\Math::inRange
+     * @dataProvider providerInRangeException
+     * @expectedException InvalidArgumentException
+     */
+    public function testInRangeException($value, $min, $max)
+    {
+        $this->assertTrue(Math::inRange($value, $min, $max));
+    }
+    
+    public function providerInRangeException()
+    {
+        return [
+            [3, 3, 3],
+            [3, 5, 2],
         ];
     }
     

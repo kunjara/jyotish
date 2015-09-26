@@ -6,13 +6,41 @@
 
 namespace JyotishTest\Alphabet;
 
+use ReflectionMethod;
+
 /**
  * @group alphabet
  */
 class LanguageTest extends \PHPUnit_Framework_TestCase
 {
     /**
+     * @covers Jyotish\Alphabet\Language::trToHtml
+     * @dataProvider providerTrToHtml
+     */
+    public function testTrToHtml($language, $translit, $html)
+    {
+        $class = 'Jyotish\Alphabet\\'.$language;
+        $reflectionMethod = new ReflectionMethod($class, 'trToHtml');
+        $reflectionMethod->setAccessible(true);
+        
+        $htmlActual = $reflectionMethod->invokeArgs(null, [$translit]);
+        $this->assertEquals($html, $htmlActual);
+    }
+    
+    public function providerTrToHtml()
+    {
+        return [
+            ['Greek', 'alpha', '&#x03B1;'],
+            ['Greek', ' ', ' '],
+            ['Greek', '-', '-'],
+            ['Greek', '', ''],
+            ['Devanagari', 'ra', '&#x0930;'],
+        ];
+    }
+    
+    /**
      * @covers Jyotish\Alphabet\Language::translitToHtml
+     * @depends testTrToHtml
      * @dataProvider providerTranslitToHtml
      */
     public function testTranslitToHtml($language, $translit, $html)
