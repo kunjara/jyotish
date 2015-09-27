@@ -118,9 +118,4 @@ class R8 extends RashiObject
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 4, Verse 15-16 1/2.
      */
     protected $rashiVarna = Manusha::VARNA_BRAHMANA;
-
-    public function __construct($options = null)
-    {
-        parent::__construct($options);
-    }
 }

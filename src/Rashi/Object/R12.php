@@ -118,9 +118,4 @@ class R12 extends RashiObject
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 4, Verse 22-24.
      */
     protected $rashiVarna = Manusha::VARNA_BRAHMANA;
-
-    public function __construct($options = null)
-    {
-        parent::__construct($options);
-    }
 }

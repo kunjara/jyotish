@@ -118,9 +118,4 @@ class R1 extends RashiObject
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 4, Verse 6-7.
      */
     protected $rashiVarna = Manusha::VARNA_KSHATRIYA;
-
-    public function __construct($options = null)
-    {
-        parent::__construct($options);
-    }
 }

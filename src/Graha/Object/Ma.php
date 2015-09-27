@@ -287,8 +287,4 @@ class Ma extends GrahaObject
         'end' => 56
     );
     protected $grahaLongitudeSpeedAvg = ['d' => 0, 'm' => 31, 's' => 26.5];
-
-    public function __construct($options = null) {
-        parent::__construct($options);
-    }
 }

@@ -52,8 +52,4 @@ class B6 extends BhavaObject
      * @var string
      */
     protected $bhavaPurushartha = Manusha::PURUSHARTHA_ARTHA;
-
-    public function __construct($options = null) {
-        parent::__construct($options);
-    }
 }

@@ -279,11 +279,6 @@ class Ch extends GrahaObject
     );
     protected $grahaLongitudeSpeedAvg = ['d' => 13, 'm' => 10, 's' => 35];
 
-    public function __construct($options = null)
-    {
-        parent::__construct($options);
-    }
-
     /**
      * Set environment.
      * 

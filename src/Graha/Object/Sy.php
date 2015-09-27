@@ -276,8 +276,4 @@ class Sy extends GrahaObject
         'end' => 41
     );
     protected $grahaLongitudeSpeedAvg = ['d' => 0, 'm' => 59, 's' => 8.2];
-
-    public function __construct($options = null) {
-        parent::__construct($options);
-    }
 }
