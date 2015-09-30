@@ -83,8 +83,4 @@ class N22 extends NakshatraObject
         'lift' => Nakshatra::LIFT_AROHA,
         'limb' => Nakshatra::LIMB_KANTHA,
     ];
-
-    public function __construct($options = null) {
-        parent::__construct($options);
-    }
 }

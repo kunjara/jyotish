@@ -63,8 +63,4 @@ class N28 extends NakshatraObject
     protected $nakshatraPrakriti = null;
     protected $nakshatraYoni = null;
     protected $nakshatraRajju = null;
-
-    public function __construct($options = null) {
-        parent::__construct($options);
-    }
 }

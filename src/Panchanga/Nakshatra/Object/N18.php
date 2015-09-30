@@ -83,8 +83,4 @@ class N18 extends NakshatraObject
         'lift' => Nakshatra::LIFT_AVAROHA,
         'limb' => Nakshatra::LIMB_PADA,
     ];
-
-    public function __construct($options = null) {
-        parent::__construct($options);
-    }
 }

@@ -83,8 +83,4 @@ class N12 extends NakshatraObject
         'lift' => Nakshatra::LIFT_AROHA,
         'limb' => Nakshatra::LIMB_NABHI,
     ];
-
-    public function __construct($options = null) {
-        parent::__construct($options);
-    }
 }

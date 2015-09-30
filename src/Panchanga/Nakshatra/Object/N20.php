@@ -83,8 +83,4 @@ class N20 extends NakshatraObject
         'lift' => Nakshatra::LIFT_AROHA,
         'limb' => Nakshatra::LIMB_KATI,
     ];
-
-    public function __construct($options = null) {
-        parent::__construct($options);
-    }
 }
