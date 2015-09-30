@@ -39,8 +39,4 @@ class T13 extends TithiObject
         1 => Karana::NAME_KAULAVA,
         2 => Karana::NAME_TAITILA
     ];
-
-    public function __construct($options = null) {
-        parent::__construct($options);
-    }
 }

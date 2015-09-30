@@ -39,8 +39,4 @@ class T29 extends TithiObject
         1 => Karana::NAME_VISHTI,
         2 => Karana::NAME_SHAKUNI
     ];
-
-    public function __construct($options = null) {
-        parent::__construct($options);
-    }
 }

@@ -39,8 +39,4 @@ class T22 extends TithiObject
         1 => Karana::NAME_VISHTI,
         2 => Karana::NAME_BAVA
     ];
-
-    public function __construct($options = null) {
-        parent::__construct($options);
-    }
 }

@@ -39,8 +39,4 @@ class T21 extends TithiObject
         1 => Karana::NAME_GARA,
         2 => Karana::NAME_VANIJA
     ];
-
-    public function __construct($options = null) {
-        parent::__construct($options);
-    }
 }

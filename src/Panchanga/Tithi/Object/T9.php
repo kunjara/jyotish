@@ -39,8 +39,4 @@ class T9 extends TithiObject
         1 => Karana::NAME_BALAVA,
         2 => Karana::NAME_KAULAVA
     ];
-
-    public function __construct($options = null) {
-        parent::__construct($options);
-    }
 }

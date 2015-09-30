@@ -39,8 +39,4 @@ class T30 extends TithiObject
         1 => Karana::NAME_CHATUSHPADA,
         2 => Karana::NAME_NAGA
     ];
-
-    public function __construct($options = null) {
-        parent::__construct($options);
-    }
 }
