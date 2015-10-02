@@ -22,9 +22,10 @@ class Y4 extends YogaObject
      */
     protected $yogaKey = 4;
 
+    /**
+     * Deva of yoga.
+     * 
+     * @var string
+     */
     protected $yogaDeva = Deva::DEVA_PARVATI_DUGRA;
-
-    public function __construct($options = null) {
-        parent::__construct($options);
-    }
 }

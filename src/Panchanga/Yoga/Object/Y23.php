@@ -22,9 +22,10 @@ class Y23 extends YogaObject
      */
     protected $yogaKey = 23;
 
+    /**
+     * Deva of yoga.
+     * 
+     * @var string
+     */
     protected $yogaDeva = Deva::DEVA_PAVAMANA;
-
-    public function __construct($options = null) {
-        parent::__construct($options);
-    }
 }

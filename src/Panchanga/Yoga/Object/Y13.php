@@ -22,9 +22,10 @@ class Y13 extends YogaObject
      */
     protected $yogaKey = 13;
 
+    /**
+     * Deva of yoga.
+     * 
+     * @var string
+     */
     protected $yogaDeva = Deva::DEVA_VISHNU_HARI;
-
-    public function __construct($options = null) {
-        parent::__construct($options);
-    }
 }

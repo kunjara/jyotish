@@ -22,9 +22,10 @@ class Y17 extends YogaObject
      */
     protected $yogaKey = 17;
 
+    /**
+     * Deva of yoga.
+     * 
+     * @var string
+     */
     protected $yogaDeva = Deva::DEVA_AGNI;
-
-    public function __construct($options = null) {
-        parent::__construct($options);
-    }
 }

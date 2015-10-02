@@ -22,9 +22,10 @@ class Y8 extends YogaObject
      */
     protected $yogaKey = 8;
 
+    /**
+     * Deva of yoga.
+     * 
+     * @var string
+     */
     protected $yogaDeva = Deva::DEVA_RATRI;
-
-    public function __construct($options = null) {
-        parent::__construct($options);
-    }
 }
