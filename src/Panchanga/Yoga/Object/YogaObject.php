@@ -42,12 +42,4 @@ class YogaObject extends \Jyotish\Panchanga\AngaObject
      * @var string
      */
     protected $yogaDeva;
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
 }

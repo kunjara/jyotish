@@ -59,8 +59,4 @@ class D10 extends AbstractVarga
 
         return $vargaRashi;
     }
-
-    public function __construct($options) {
-        parent::__construct($options);
-    }
 }

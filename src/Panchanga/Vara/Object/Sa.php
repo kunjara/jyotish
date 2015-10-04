@@ -21,11 +21,4 @@ class Sa extends VaraObject
      * @var string
      */
     protected $varaKey = Graha::KEY_SA;
-
-    /**
-     * Constructor
-     */
-    public function __construct() {
-        parent::__construct();
-    }
 }

@@ -45,8 +45,4 @@ class D1 extends AbstractVarga
     protected function getVargaRashi(array $ganitaRashi) {
         return $ganitaRashi;
     }
-
-    public function __construct($options) {
-        parent::__construct($options);
-    }
 }

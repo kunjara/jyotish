@@ -35,12 +35,4 @@ class VaraObject extends \Jyotish\Panchanga\AngaObject
      * @var string
      */
     protected $varaName;
-    
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
 }

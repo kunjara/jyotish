@@ -91,8 +91,4 @@ abstract class AbstractVarga
         }
         return $vargaData;
     }
-
-    public function __construct($options) {
-        return $this;
-    }
 }

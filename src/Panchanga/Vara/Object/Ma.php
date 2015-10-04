@@ -21,11 +21,4 @@ class Ma extends VaraObject
      * @var string
      */
     protected $varaKey = Graha::KEY_MA;
-
-    /**
-     * Constructor
-     */
-    public function __construct() {
-        parent::__construct();
-    }
 }
