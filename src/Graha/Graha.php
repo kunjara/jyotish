@@ -318,7 +318,8 @@ class Graha
      * @return the requested instance of graha class
      * @throws Exception\InvalidArgumentException
      */
-    public static function getInstance($key, array $options = null) {
+    public static function getInstance($key, array $options = null)
+    {
         if (!array_key_exists($key, self::$graha)) {
             throw new Exception\InvalidArgumentException("Graha with the key '$key' does not exist.");
         }

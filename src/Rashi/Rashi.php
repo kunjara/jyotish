@@ -185,7 +185,8 @@ class Rashi
      * @return the requested instance of rashi class
      * @throws Exception\InvalidArgumentException
      */
-    public static function getInstance($key, array $options = null) {
+    public static function getInstance($key, array $options = null)
+    {
         if (!array_key_exists($key, self::$rashi)) {
             throw new Exception\InvalidArgumentException("Rashi with the key '$key' does not exist.");
         }

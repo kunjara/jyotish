@@ -29,7 +29,8 @@ class Utility
      * @param array|string $unicode
      * @return string
      */
-    public static function unicodeToHtml($unicode) {
+    public static function unicodeToHtml($unicode)
+    {
         if (is_array($unicode)) {
             $html = '';
             foreach ($unicode as $code) {
@@ -48,7 +49,8 @@ class Utility
      * @param string $color
      * @return bool|array
      */
-    public static function htmlToRgb($color) {
+    public static function htmlToRgb($color)
+    {
         if ($color[0] == '#') {
             $color = substr($color, 1);
         }

@@ -30,7 +30,8 @@ class Svg extends AbstractRenderer
      * @param int $width Width of drawing
      * @param int $height Height of drawing
      */
-    public function __construct($width, $height) {
+    public function __construct($width, $height)
+    {
         $this->options['attributes'] = [];
         
         $this->Resource = new DOMDocument('1.0', 'utf-8');
@@ -53,7 +54,8 @@ class Svg extends AbstractRenderer
         $this->appendRootElement('rect', ['width' => $width, 'height' => $height, 'fill' => 'white']);
     }
 
-    public function drawPolygon($points, array $options = null) {
+    public function drawPolygon($points, array $options = null)
+    {
         if (isset($options)) {
             $this->setOptions($options);
         }
@@ -81,7 +83,8 @@ class Svg extends AbstractRenderer
         $this->appendRootElement('polygon', $attributes);
     }
 
-    public function drawText($text, $x = 0, $y = 0, array $options = null) {
+    public function drawText($text, $x = 0, $y = 0, array $options = null)
+    {
         if (isset($options)) {
             $this->setOptions($options);
         }
@@ -132,12 +135,14 @@ class Svg extends AbstractRenderer
         $this->appendRootElement('text', $attributes, html_entity_decode($text, ENT_COMPAT | ENT_HTML5, 'UTF-8'));
     }
 
-    protected function appendRootElement($tagName, $attributes = [], $textContent = null) {
+    protected function appendRootElement($tagName, $attributes = [], $textContent = null)
+    {
         $newElement = $this->createElement($tagName, $attributes, $textContent);
         $this->svg->appendChild($newElement);
     }
 
-    protected function createElement($tagName, $attributes = [], $textContent = null) {
+    protected function createElement($tagName, $attributes = [], $textContent = null)
+    {
         $element = $this->Resource->createElement($tagName);
         foreach ($attributes as $k => $v) {
             $element->setAttribute($k, $v);
@@ -148,7 +153,8 @@ class Svg extends AbstractRenderer
         return $element;
     }
 
-    public function render() {
+    public function render()
+    {
         header("Content-Type: image/svg+xml");
         echo $this->Resource->saveXML();
     }

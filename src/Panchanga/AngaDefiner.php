@@ -51,7 +51,8 @@ class AngaDefiner
     /**
      * Clone
      */
-    public function __clone() {
+    public function __clone()
+    {
         $this->Data = clone $this->Data;
     }
 

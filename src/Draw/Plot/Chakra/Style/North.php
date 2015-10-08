@@ -54,11 +54,13 @@ final class North extends AbstractChakra
      * 
      * @param \Jyotish\Base\Data $Data
      */
-    public function __construct(\Jyotish\Base\Data $Data) {
+    public function __construct(\Jyotish\Base\Data $Data)
+    {
         parent::__construct($Data);
     }
 
-    public function getRashiLabelPoints(array $options) {
+    public function getRashiLabelPoints(array $options)
+    {
         $ratio = round($options['chakraSize'] / 4);
         $rashis = $this->Analysis->getRashiInBhava();
         $offsetCorner = sqrt(2 * $options['offsetBorder'] * $options['offsetBorder']);
@@ -89,7 +91,8 @@ final class North extends AbstractChakra
         return $myPoints;
     }
 
-    public function getBodyLabelPoints(array $options) {
+    public function getBodyLabelPoints(array $options)
+    {
         $ratio = round($options['chakraSize'] / 4);
         $offsetBorder = $options['offsetBorder'];
         $offsetCorner = $offsetBorder * 5;

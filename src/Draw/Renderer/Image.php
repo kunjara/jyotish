@@ -28,17 +28,17 @@ class Image extends AbstractRenderer
      * @param int $width Width of drawing
      * @param int $height Height of drawing
      */
-    public function __construct($width, $height) {
+    public function __construct($width, $height)
+    {
         $this->Resource = imagecreatetruecolor($width, $height);
 
         $color = $this->allocateColor($this->Resource, 255, 255, 255);
 
-        imagefill(
-                $this->Resource, 0, 0, $color
-        );
+        imagefill($this->Resource, 0, 0, $color);
     }
 
-    public function drawPolygon($points, array $options = null) {
+    public function drawPolygon($points, array $options = null)
+    {
         if (isset($options)) {
             $this->setOptions($options);
         }
@@ -55,7 +55,8 @@ class Image extends AbstractRenderer
         );
     }
 
-    public function drawText($text, $x = 0, $y = 0, array $options = null) {
+    public function drawText($text, $x = 0, $y = 0, array $options = null)
+    {
         if (isset($options)) {
             $this->setOptions($options);
         }
@@ -155,7 +156,8 @@ class Image extends AbstractRenderer
         }
     }
 
-    public function setOptionFontName($value) {
+    public function setOptionFontName($value)
+    {
         if (!is_null($value) && !is_int($value) && !is_string($value)) {
             throw new Exception\InvalidArgumentException("Options 'fontName' must be null, integer or name of font.");
         } else {
@@ -167,18 +169,21 @@ class Image extends AbstractRenderer
         
     }
 
-    public function allocateColor($image, $r, $g, $b, $alpha = 100) {
+    public function allocateColor($image, $r, $g, $b, $alpha = 100)
+    {
         $alpha = $this->_convertAlpha($alpha);
         return(imagecolorallocatealpha($image, $r, $g, $b, $alpha));
     }
 
-    public function render() {
+    public function render()
+    {
         header('Content-type: image/png');
         imagepng($this->Resource);
         imagedestroy($this->Resource);
     }
 
-    private function _convertAlpha($alphaValue) {
+    private function _convertAlpha($alphaValue)
+    {
         return((127 / 100) * (100 - $alphaValue));
     }
 }

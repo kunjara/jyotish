@@ -27,7 +27,8 @@ class Analysis
      * 
      * @param \Jyotish\Base\Data $Data
      */
-    public function __construct(\Jyotish\Base\Data $Data) {
+    public function __construct(\Jyotish\Base\Data $Data)
+    {
         $this->setData($Data);
     }
 
@@ -141,7 +142,8 @@ class Analysis
      * 
      * @return array
      */
-    public function getRashiInBhava() {
+    public function getRashiInBhava()
+    {
         if (is_null($this->temp['rashiInBhava'])) {
             foreach ($this->getData()['bhava'] as $bhava => $params) {
                 $rashi = $params['rashi'];
@@ -156,7 +158,8 @@ class Analysis
      * 
      * @return array
      */
-    public function getBodyInBhava() {
+    public function getBodyInBhava()
+    {
         foreach ([Data::BLOCK_GRAHA, Data::BLOCK_LAGNA, Data::BLOCK_UPAGRAHA] as $block) {
             if (!isset($this->getData()[$block])) continue;
             
@@ -175,7 +178,8 @@ class Analysis
      * 
      * @return array
      */
-    public function getBodyInRashi() {
+    public function getBodyInRashi()
+    {
         foreach ([Data::BLOCK_GRAHA, Data::BLOCK_LAGNA, Data::BLOCK_UPAGRAHA] as $block) {
             if (!isset($this->getData()[$block])) continue;
             

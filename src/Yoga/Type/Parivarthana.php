@@ -28,7 +28,8 @@ class Parivarthana extends YogaBase
      * 
      * @param null|array $options Options to set (optional)
      */
-    public function __construct(array $options = null) {
+    public function __construct(array $options = null)
+    {
         parent::__construct($options);
     }
     

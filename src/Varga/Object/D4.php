@@ -46,9 +46,12 @@ class D4 extends AbstractVarga
      * @return array
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 6, Verse 9.
      */
-    public function getVargaRashi(array $ganitaRashi) {
+    public function getVargaRashi(array $ganitaRashi)
+    {
         $amshaSize = 30 / $this->vargaAmsha;
         $result = Math::partsToUnits($ganitaRashi['degree'], $amshaSize, 'floor');
+        
+        $vargaRashi = [];
         $vargaRashi['degree'] = $result['parts'] * 30 / $amshaSize;
 
         if ($ganitaRashi['degree'] < 7.5) {

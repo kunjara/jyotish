@@ -42,7 +42,8 @@ class D1 extends AbstractVarga
      * @param array $ganitaRashi
      * @return array
      */
-    protected function getVargaRashi(array $ganitaRashi) {
+    protected function getVargaRashi(array $ganitaRashi)
+    {
         return $ganitaRashi;
     }
 }

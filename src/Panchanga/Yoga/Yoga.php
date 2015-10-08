@@ -51,7 +51,8 @@ class Yoga
      * @return the requested instance of yoga class
      * @throws Exception\InvalidArgumentException
      */
-    public static function getInstance($key, array $options = null) {
+    public static function getInstance($key, array $options = null)
+    {
         if (!array_key_exists($key, self::$yoga)) {
             throw new \Jyotish\Panchanga\Exception\InvalidArgumentException("Yoga with the key '$key' does not exist.");
         }

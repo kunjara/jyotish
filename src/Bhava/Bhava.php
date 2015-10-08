@@ -140,7 +140,8 @@ class Bhava
      * @return the requested instance of bhava class
      * @throws Exception\InvalidArgumentException
      */
-    public static function getInstance($number, array $options = null) {
+    public static function getInstance($number, array $options = null)
+    {
         if (!array_key_exists($number, self::$bhava)) {
             throw new Exception\InvalidArgumentException("Bhava with the number '$number' does not exist.");
         }

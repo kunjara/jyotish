@@ -104,7 +104,8 @@ class Arudha
      * @param \Jyotish\Base\Data $Data
      * @param null|array $options Options to set
      */
-    public function __construct(\Jyotish\Base\Data $Data, $options = null) {
+    public function __construct(\Jyotish\Base\Data $Data, $options = null)
+    {
         $this->setData($Data);
         $this->setOptions($options);
     }

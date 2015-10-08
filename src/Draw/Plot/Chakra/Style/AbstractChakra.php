@@ -74,7 +74,8 @@ abstract class AbstractChakra
      * 
      * @param \Jyotish\Base\Data $Data
      */
-    public function __construct(\Jyotish\Base\Data $Data) {
+    public function __construct(\Jyotish\Base\Data $Data)
+    {
         $this->setData($Data);
         
         $this->Analysis = new Analysis($Data);
@@ -88,7 +89,8 @@ abstract class AbstractChakra
      * @param int $topOffset Top offset
      * @return array
      */
-    public function getBhavaPoints($size, $leftOffset = 0, $topOffset = 0) {
+    public function getBhavaPoints($size, $leftOffset = 0, $topOffset = 0)
+    {
         foreach ($this->bhavaPoints as $bhavaKey => $bhavaPoints) {
             foreach ($bhavaPoints as $point => $value) {
                 if ($value != 0) {

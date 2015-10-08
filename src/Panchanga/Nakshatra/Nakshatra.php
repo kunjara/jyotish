@@ -190,7 +190,8 @@ class Nakshatra
      * @param string $nakshatraKey Nakshatra key
      * @return array
      */
-    public static function listNakshatraNavatara($nakshatraKey) {
+    public static function listNakshatraNavatara($nakshatraKey)
+    {
         if (!array_key_exists($nakshatraKey, self::listNakshatra())) {
             throw new \Jyotish\Panchanga\Exception\InvalidArgumentException("Nakshatra with the key '$nakshatraKey' does not exist.");
         }

@@ -154,7 +154,8 @@ class Data
      * @param Locality $Locality Locality
      * @param Ganita $Ganita Ganita method
      */
-    public function __construct(DateTime $DateTime, Locality $Locality, Ganita $Ganita) {
+    public function __construct(DateTime $DateTime, Locality $Locality, Ganita $Ganita)
+    {
         $this->setDateTime($DateTime);
         $this->setLocality($Locality);
         $this->setGanita($Ganita);

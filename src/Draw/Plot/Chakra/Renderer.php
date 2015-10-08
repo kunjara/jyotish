@@ -61,7 +61,8 @@ class Renderer
      * 
      * @param Image|Svg $Renderer
      */
-    public function __construct($Renderer) {
+    public function __construct($Renderer)
+    {
         $this->Renderer = $Renderer;
     }
     
@@ -73,7 +74,8 @@ class Renderer
      * @param int $y
      * @param null|array $options Options to set (optional)
      */
-    public function drawChakra(\Jyotish\Base\Data $Data, $x, $y, array $options = null) {
+    public function drawChakra(\Jyotish\Base\Data $Data, $x, $y, array $options = null)
+    {
         $this->setData($Data);
         $this->setOptions($options);
         
@@ -105,7 +107,8 @@ class Renderer
         $this->drawBodyLabel($x, $y, $this->options);
     }
     
-    protected function drawRashiLabel($x, $y, $options) {
+    protected function drawRashiLabel($x, $y, $options)
+    {
         if (isset($options['labelRashiFont'])) {
             $this->Renderer->setOptions($options['labelRashiFont']);
         }
@@ -121,7 +124,8 @@ class Renderer
         }
     }
     
-    protected function drawBodyLabel($x, $y, $options) {
+    protected function drawBodyLabel($x, $y, $options)
+    {
         if (isset($options['labelGrahaFont'])) {
             $this->Renderer->setOptions($options['labelGrahaFont']);
         }
@@ -154,7 +158,8 @@ class Renderer
      * @param array $options
      * @return string
      */
-    protected function getBodyLabel($body, array $options) {
+    protected function getBodyLabel($body, array $options)
+    {
         switch ($options['labelGrahaType']) {
             case 0:
                 $label = $body;
@@ -188,7 +193,8 @@ class Renderer
         return $grahaLabel;
     }
 
-    public function setOptionChakraSize($value) {
+    public function setOptionChakraSize($value)
+    {
         if (!is_numeric($value) || intval($value) < 100) {
             throw new Exception\OutOfRangeException(
                     'Chakra size must be greater than 100.'
@@ -197,7 +203,8 @@ class Renderer
         $this->options['chakraSize'] = intval($value);
     }
 
-    public function setOptionChakraStyle($value) {
+    public function setOptionChakraStyle($value)
+    {
         if (!in_array($value, Chakra::$style)) {
             throw new Exception\UnexpectedValueException(
                     "Invalid chakra style provided must be 'north', 'south' or 'east'."
@@ -206,7 +213,8 @@ class Renderer
         $this->options['chakraStyle'] = strtolower($value);
     }
 
-    public function setOptionOffsetBorder($value) {
+    public function setOptionOffsetBorder($value)
+    {
         if (!is_numeric($value) || intval($value) < 0) {
             throw new Exception\OutOfRangeException(
                     'Border offset must be greater than or equals 0.'
@@ -215,7 +223,8 @@ class Renderer
         $this->options['offsetBorder'] = intval($value);
     }
 
-    public function setOptionWidthOffsetLabel($value) {
+    public function setOptionWidthOffsetLabel($value)
+    {
         if (!is_numeric($value) || intval($value) < 0) {
             throw new Exception\OutOfRangeException(
                     'Label offset must be greater than or equals 0.'
@@ -224,7 +233,8 @@ class Renderer
         $this->options['widthOffsetLabel'] = intval($value);
     }
     
-    public function setOptionHeightOffsetLabel($value) {
+    public function setOptionHeightOffsetLabel($value)
+    {
         if (!is_numeric($value) || intval($value) < 0) {
             throw new Exception\OutOfRangeException(
                     'Label offset must be greater than or equals 0.'
@@ -233,7 +243,8 @@ class Renderer
         $this->options['heightOffsetLabel'] = intval($value);
     }
 
-    public function setOptionLabelGrahaType($value) {
+    public function setOptionLabelGrahaType($value)
+    {
         if (!in_array($value, [0, 1, 2])) {
             throw new Exception\UnexpectedValueException(
                     "Invalid label type provided must be 0, 1 or 2."
@@ -242,7 +253,8 @@ class Renderer
         $this->options['labelGrahaType'] = $value;
     }
 
-    public function setOptionLabelGrahaCallback($value) {
+    public function setOptionLabelGrahaCallback($value)
+    {
         if (!is_callable($value)) {
             throw new Exception\RuntimeException("Function $value not supported.");
         }

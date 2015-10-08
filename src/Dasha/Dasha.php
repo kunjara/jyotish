@@ -66,7 +66,8 @@ class Dasha
      * @return the requested instance of dasha class
      * @throws Exception\InvalidArgumentException
      */
-    public static function getInstance($type, array $options = null) {
+    public static function getInstance($type, array $options = null)
+    {
         $typeLower = strtolower($type);
         
         if (!in_array($typeLower, self::$dasha)) {

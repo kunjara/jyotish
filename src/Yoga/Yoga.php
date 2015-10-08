@@ -63,7 +63,8 @@ class Yoga
      * @return the requested instance of yoga class
      * @throws Exception\InvalidArgumentException
      */
-    public static function getInstance($type, array $options = null) {
+    public static function getInstance($type, array $options = null)
+    {
         if (!in_array($type, self::$type)) {
             throw new Exception\InvalidArgumentException("Yoga '$type' is not defined.");
         }

@@ -53,7 +53,8 @@ abstract class AbstractRenderer
         'fillColor' => 'fff',
     ];
 
-    public function setOptionTopOffset($value) {
+    public function setOptionTopOffset($value)
+    {
         if (!is_numeric($value) || intval($value) < 0) {
             throw new Exception\OutOfRangeException(
                     'Vertical position must be greater than or equals 0.'
@@ -62,7 +63,8 @@ abstract class AbstractRenderer
         $this->options['topOffset'] = intval($value);
     }
 
-    public function setOptionLeftOffset($value) {
+    public function setOptionLeftOffset($value)
+    {
         if (!is_numeric($value) || intval($value) < 0) {
             throw new Exception\OutOfRangeException(
                     'Horizontal position must be greater than or equals 0.'
@@ -71,7 +73,8 @@ abstract class AbstractRenderer
         $this->options['leftOffset'] = intval($value);
     }
 
-    public function setOptionFontSize($value) {
+    public function setOptionFontSize($value)
+    {
         if (!is_numeric($value) || intval($value) < 8) {
             throw new Exception\OutOfRangeException(
                     'Font size must be greater than or equals 8.'
@@ -80,11 +83,13 @@ abstract class AbstractRenderer
         $this->options['fontSize'] = intval($value);
     }
 
-    public function setOptionFontColor($value) {
+    public function setOptionFontColor($value)
+    {
         $this->options['fontColor'] = $value;
     }
 
-    public function setOptionStrokeWidth($value) {
+    public function setOptionStrokeWidth($value)
+    {
         if (!is_numeric($value) || floatval($value) < 0) {
             throw new Exception\OutOfRangeException(
                     'Stroke width must be greater than or equals 0.'

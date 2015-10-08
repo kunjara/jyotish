@@ -22,7 +22,8 @@ class Locality
      * 
      * @param array $locality Locality to set
      */
-    public function __construct(array $locality) {
+    public function __construct(array $locality)
+    {
         if (isset($locality['longitude'])) {
             $this->setLongitude($locality['longitude']);
         }
