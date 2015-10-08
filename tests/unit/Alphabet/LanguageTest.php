@@ -39,6 +39,20 @@ class LanguageTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
+     * @covers Jyotish\Alphabet\Language::trToHtml
+     * @expectedException InvalidArgumentException
+     */
+    public function testTrToHtmlException()
+    {
+        $classGreek = 'Jyotish\Alphabet\Greek';
+        $reflectionMethod = new ReflectionMethod($classGreek, 'trToHtml');
+        $reflectionMethod->setAccessible(true);
+        
+        $htmlActual = $reflectionMethod->invokeArgs(null, ['alph']);
+        $this->assertEquals('&#x03B1;', $htmlActual);
+    }
+    
+    /**
      * @covers Jyotish\Alphabet\Language::translitToHtml
      * @depends testTrToHtml
      * @dataProvider providerTranslitToHtml
