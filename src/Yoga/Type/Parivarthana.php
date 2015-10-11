@@ -24,16 +24,6 @@ class Parivarthana extends YogaBase
     protected $yogaType = Yoga::TYPE_PARIVARTHANA;
     
     /**
-     * Constructor
-     * 
-     * @param null|array $options Options to set (optional)
-     */
-    public function __construct(array $options = null)
-    {
-        parent::__construct($options);
-    }
-    
-    /**
      * Generate list of Parivarthana yogas.
      * 
      * @return \Iterator

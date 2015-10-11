@@ -48,16 +48,6 @@ final class East extends AbstractChakra
         11 => [3, 0,   3, 1,   2, 1],
         12 => [2, 0,   3, 0,   2, 1],
     ];
-    
-    /**
-     * Constructor
-     * 
-     * @param \Jyotish\Base\Data $Data
-     */
-    public function __construct(\Jyotish\Base\Data $Data)
-    {
-        parent::__construct($Data);
-    }
 
     public function getRashiLabelPoints(array $options)
     {

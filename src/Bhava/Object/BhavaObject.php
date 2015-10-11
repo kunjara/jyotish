@@ -46,14 +46,4 @@ class BhavaObject extends Object {
      * @var string
      */
     protected $bhavaPurushartha;
-
-    /**
-     * Constructor
-     * 
-     * @param null|array $options Options to set
-     */
-    public function __construct($options)
-    {
-        parent::__construct($options);
-    }
 }

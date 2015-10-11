@@ -48,14 +48,6 @@ class Dhana extends YogaBase
     ];
     
     /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        parent::__construct(); 
-    }
-    
-    /**
      * Set Data
      * 
      * @param \Jyotish\Base\Data $Data

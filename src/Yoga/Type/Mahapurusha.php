@@ -37,14 +37,6 @@ class Mahapurusha extends YogaBase
     ];
     
     /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-    
-    /**
      * One of the Mahapurusha Yogas, it happens when Mangal is exalted or in own 
      * sign, identical with a quadrant (Kendra).
      * 

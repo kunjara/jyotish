@@ -48,16 +48,6 @@ final class South extends AbstractChakra
         11 => [1, 2,   0, 2,   0, 1,   1, 1],
         12 => [1, 1,   0, 1,   0, 0,   1, 0],
     ];
-    
-    /**
-     * Constructor
-     * 
-     * @param \Jyotish\Base\Data $Data
-     */
-    public function __construct(\Jyotish\Base\Data $Data)
-    {
-        parent::__construct($Data);
-    }
 
     public function getRashiLabelPoints(array $options)
     {

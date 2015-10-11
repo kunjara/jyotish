@@ -26,14 +26,6 @@ class Raja extends YogaBase
     protected $yogaType = Yoga::TYPE_RAJA;
     
     /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-    
-    /**
      * Generate list of Raja yogas.
      * 
      * @return \Iterator
