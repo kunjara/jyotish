@@ -19,7 +19,6 @@ use Jyotish\Tattva\Karaka;
  */
 class Analysis
 {
-    
     use \Jyotish\Base\Traits\DataTrait;
 
     /**

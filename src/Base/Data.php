@@ -241,20 +241,37 @@ class Data
      * Get data array.
      * 
      * @param null|array $blocks Array of blocks (optional)
-     * @return array
+     * @param string $vargaKey Varga key (optional)
+     * @return array Array block data
+     * @throws Exception\InvalidArgumentException
      */
-    public function getData(array $blocks = null)
+    public function getData(array $blocks = null, $vargaKey = Varga::KEY_D1)
     {
+        $vargaUc = ucfirst($vargaKey);
+        if (!array_key_exists($vargaUc, Varga::$varga)) {
+            throw new Exception\InvalidArgumentException("Varga '$vargaUc' is not defined.");
+        }
+        
+        if ($vargaUc == Varga::KEY_D1) {
+            $dataVarga = $this->data;
+        } else {
+            $dataVarga = $this->data[self::BLOCK_VARGA][$vargaUc];
+        }
+        
         if (is_null($blocks)) {
-            $result = $this->data;
+            $result = $dataVarga;
         } else {
             foreach ($blocks as $block) {
-                $result[$block] = isset($this->data[$block]) ? $this->data[$block] : null;
+                if (!in_array($block, self::$block)) {
+                    throw new Exception\InvalidArgumentException("Block '$block' is not defined.");
+                }
+                $result[$block] = isset($dataVarga[$block]) ? $dataVarga[$block] : null;
             }
         }
+        
         return $result;
     }
-
+    
     /**
      * Calculation parameters of planets and houses.
      * 
@@ -361,7 +378,7 @@ class Data
      * @param array $vargaKeys Varga keys
      * @return \Jyotish\Base\Data
      */
-    public function calcVargaData(array $vargaKeys = [Varga::KEY_D9])
+    public function calcVargaData(array $vargaKeys)
     {
         foreach ($vargaKeys as $vargaKey) {
             $Varga = Varga::getInstance($vargaKey)->setData($this);
