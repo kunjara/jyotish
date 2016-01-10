@@ -79,6 +79,7 @@ class Data
      */
     public static $block = [
         self::BLOCK_BHAVA,
+        self::BLOCK_DASHA,
         self::BLOCK_GRAHA,
         self::BLOCK_KALA,
         self::BLOCK_LAGNA,
