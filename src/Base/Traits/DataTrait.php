@@ -6,6 +6,8 @@
 
 namespace Jyotish\Base\Traits;
 
+use Jyotish\Varga\Varga;
+
 /**
  * DataTrait provides a data operations.
  * 
@@ -44,11 +46,12 @@ trait DataTrait
      * Get data.
      * 
      * @param null|array $blocks Array of blocks (optional)
+     * @param string $vargaKey Varga key (optional)
      * @return array
      */
-    public function getData(array $blocks = null)
+    public function getData(array $blocks = null, $vargaKey = Varga::KEY_D1)
     {
-        return $this->Data->getData($blocks);
+        return $this->Data->getData($blocks, $vargaKey);
     }
     
     /**

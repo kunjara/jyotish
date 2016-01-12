@@ -248,15 +248,15 @@ class Data
      */
     public function getData(array $blocks = null, $vargaKey = Varga::KEY_D1)
     {
-        $vargaUc = ucfirst($vargaKey);
-        if (!array_key_exists($vargaUc, Varga::$varga)) {
-            throw new Exception\InvalidArgumentException("Varga '$vargaUc' is not defined.");
+        $vargaKeyUcf = ucfirst($vargaKey);
+        if (!array_key_exists($vargaKeyUcf, Varga::$varga)) {
+            throw new Exception\InvalidArgumentException("Varga '$vargaKeyUcf' is not defined.");
         }
         
-        if ($vargaUc == Varga::KEY_D1) {
+        if ($vargaKeyUcf == Varga::KEY_D1) {
             $dataVarga = $this->data;
         } else {
-            $dataVarga = $this->data[self::BLOCK_VARGA][$vargaUc];
+            $dataVarga = $this->data[self::BLOCK_VARGA][$vargaKeyUcf];
         }
         
         if (is_null($blocks)) {

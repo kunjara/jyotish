@@ -10,6 +10,7 @@ use Jyotish\Base\Data;
 use Jyotish\Base\Biblio;
 use Jyotish\Graha\Graha;
 use Jyotish\Rashi\Rashi;
+use Jyotish\Varga\Varga;
 use Jyotish\Tattva\Karaka;
 
 /**
@@ -113,23 +114,27 @@ class Analysis
      */
     public function getVargaData($vargaKey)
     {
-        $v = strtoupper($vargaKey);
-        if (!isset($this->getData()['varga'][$v])) {
+        $vargaKeyUcf = ucfirst($vargaKey);
+        if (!isset($this->getData()['varga'][$vargaKeyUcf])) {
             $this->Data->calcVargaData([$vargaKey]);
         }
-        return $this->getData()['varga'][$v];
+        return $this->getData()['varga'][$vargaKeyUcf];
     }
     
     /**
      * Get rulers of bhavas.
      * 
      * @param array $bhavas
+     * @param string $vargaKey Varga key (optional)
      * @return array
      */
-    public function getBhavaRulers(array $bhavas)
+    public function getBhavaRulers(array $bhavas, $vargaKey = Varga::KEY_D1)
     {
+        $vargaKeyUcf = ucfirst($vargaKey);
+        $data = $this->getVargaData($vargaKeyUcf);
+        
         foreach ($bhavas as $bhava) {
-            $Rashi = Rashi::getInstance($this->getData()['bhava'][$bhava]['rashi']);
+            $Rashi = Rashi::getInstance($data['bhava'][$bhava]['rashi']);
             $rulers[] = $Rashi->rashiRuler;
         }
         $rulers = array_unique($rulers);
@@ -139,32 +144,40 @@ class Analysis
     /**
      * Get rashi in bhava.
      * 
+     * @param string $vargaKey Varga key (optional)
      * @return array
      */
-    public function getRashiInBhava()
+    public function getRashiInBhava($vargaKey = Varga::KEY_D1)
     {
-        if (is_null($this->temp['rashiInBhava'])) {
-            foreach ($this->getData()['bhava'] as $bhava => $params) {
+        $vargaKeyUcf = ucfirst($vargaKey);
+        $data = $this->getVargaData($vargaKeyUcf);
+            
+        if (is_null($this->temp['rashiInBhava'][$vargaKeyUcf])) {
+            foreach ($data['bhava'] as $bhava => $params) {
                 $rashi = $params['rashi'];
-                $this->temp['rashiInBhava'][$rashi] = $bhava;
+                $this->temp['rashiInBhava'][$vargaKeyUcf][$rashi] = $bhava;
             }
         }
-        return $this->temp['rashiInBhava'];
+        return $this->temp['rashiInBhava'][$vargaKeyUcf];
     }
 
     /**
      * Get bodies in bhava.
      * 
+     * @param string $vargaKey Varga key (optional)
      * @return array
      */
-    public function getBodyInBhava()
+    public function getBodyInBhava($vargaKey = Varga::KEY_D1)
     {
-        foreach ([Data::BLOCK_GRAHA, Data::BLOCK_LAGNA, Data::BLOCK_UPAGRAHA] as $block) {
-            if (!isset($this->getData()[$block])) continue;
+        $vargaKeyUcf = ucfirst($vargaKey);
+        $data = $this->getVargaData($vargaKeyUcf);
             
-            foreach ($this->getData()[$block] as $body => $params) {
+        foreach ([Data::BLOCK_GRAHA, Data::BLOCK_LAGNA, Data::BLOCK_UPAGRAHA] as $block) {
+            if (!isset($data[$block])) continue;
+            
+            foreach ($data[$block] as $body => $params) {
                 $rashi = $params['rashi'];
-                $bhava = $this->getRashiInBhava()[$rashi];
+                $bhava = $this->getRashiInBhava($vargaKey)[$rashi];
 
                 $bodyInBhava[$body] = $bhava;
             }
@@ -175,14 +188,18 @@ class Analysis
     /**
      * Get bodies in rashi.
      * 
+     * @param string $vargaKey Varga key (optional)
      * @return array
      */
-    public function getBodyInRashi()
+    public function getBodyInRashi($vargaKey = Varga::KEY_D1)
     {
+        $vargaKeyUcf = ucfirst($vargaKey);
+        $data = $this->getVargaData($vargaKeyUcf);
+        
         foreach ([Data::BLOCK_GRAHA, Data::BLOCK_LAGNA, Data::BLOCK_UPAGRAHA] as $block) {
-            if (!isset($this->getData()[$block])) continue;
+            if (!isset($data[$block])) continue;
             
-            foreach ($this->getData()[$block] as $body => $params) {
+            foreach ($data[$block] as $body => $params) {
                 $rashi = $params['rashi'];
 
                 $bodyInRashi[$body] = $rashi;
