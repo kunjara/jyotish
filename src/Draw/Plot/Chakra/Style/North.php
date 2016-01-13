@@ -52,7 +52,7 @@ final class North extends AbstractChakra
     public function getRashiLabelPoints(array $options)
     {
         $ratio = round($options['chakraSize'] / 4);
-        $rashis = $this->Analysis->getRashiInBhava();
+        $rashis = $this->Analysis->getRashiInBhava($options['chakraVarga']);
         $offsetCorner = sqrt(2 * $options['offsetBorder'] * $options['offsetBorder']);
 
         foreach ($rashis as $rashi => $bhava) {
@@ -87,7 +87,7 @@ final class North extends AbstractChakra
         $offsetBorder = $options['offsetBorder'];
         $offsetCorner = $offsetBorder * 5;
         $offsetSum = [];
-        $bodies = $this->Analysis->getBodyInBhava();
+        $bodies = $this->Analysis->getBodyInBhava($options['chakraVarga']);
 
         foreach ($bodies as $graha => $bhava) {
             $myPoints[$graha]['bhava'] = $bhava;

@@ -8,6 +8,7 @@ namespace Jyotish\Draw\Plot\Chakra;
 
 use Jyotish\Graha\Graha;
 use Jyotish\Rashi\Rashi;
+use Jyotish\Varga\Varga;
 use Jyotish\Base\Utility;
 use Jyotish\Draw\Plot\Chakra\Style\AbstractChakra as Chakra;
 
@@ -43,6 +44,7 @@ class Renderer
     protected $options = [
         'chakraSize' => 200,
         'chakraStyle' => Chakra::STYLE_NORTH,
+        'chakraVarga' => Varga::KEY_D1,
         
         'offsetBorder' => 4,
         'widthOffsetLabel' => 20,
@@ -191,6 +193,17 @@ class Renderer
         $grahaLabel = $vakraCheshta ? '(' . $label . ')' : $label;
         
         return $grahaLabel;
+    }
+    
+    public function setOptionChakraVarga($value)
+    {
+        $valueUcf = ucfirst($value);
+        if (!array_key_exists($valueUcf, Varga::$varga)) {
+            throw new Exception\UnexpectedValueException(
+                    'Varga key is wrong.'
+            );
+        }
+        $this->options['chakraVarga'] = $valueUcf;
     }
 
     public function setOptionChakraSize($value)
