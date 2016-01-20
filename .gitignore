@@ -13,11 +13,6 @@ nbproject
 vendor
 composer.lock
 
-# compiling files
-bin/swetest/src/*.a
-bin/swetest/src/*.o
-bin/swetest/src/swetest
-
 # local phpunit config
 phpunit.xml
 
