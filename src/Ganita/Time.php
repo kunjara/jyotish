@@ -53,7 +53,7 @@ class Time
             $DateTime->setTimezone(new DateTimeZone('UTC'));
         }
         
-        $offsetSystem = self::getTimeZoneOffset($data['timezone'], $data['date'] . ' ' . $data['time']);
+        $offsetSystem = self::getTimeZoneOffset($DateTime);
         $offsetUser = $data['offset'] != $offsetSystem ? $data['offset'] : false;
         
         if ($offsetUser) {
