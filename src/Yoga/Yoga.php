@@ -33,6 +33,10 @@ class Yoga
      * Raja yoga (royal association)
      */
     const TYPE_RAJA = 'raja';
+    /**
+     * Sannyasa yoga (combinations for ascetic)
+     */
+    const TYPE_SANNYASA = 'sannyasa';
     
     const MAHAPURUSHA_MAHA = 'maha';
     const MAHAPURUSHA_KHALA = 'khala';
@@ -53,6 +57,7 @@ class Yoga
         self::TYPE_NABHASHA,
         self::TYPE_PARIVARTHANA,
         self::TYPE_RAJA,
+        self::TYPE_SANNYASA,
     ];
     
     /**
