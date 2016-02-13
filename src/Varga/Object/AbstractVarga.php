@@ -77,7 +77,6 @@ abstract class AbstractVarga
                 'degree' => $result['degree'],
                 'speed' => $this->getData()['graha'][$k]['speed'],
                 'longitude' => 30 * ($result['rashi'] - 1) + $result['degree'],
-                'latitude' => $v['latitude'],
             ];
         }
         

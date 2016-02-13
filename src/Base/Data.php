@@ -18,7 +18,9 @@ use Jyotish\Varga\Varga;
 use Jyotish\Dasha\Dasha;
 use Jyotish\Yoga\Yoga;
 use Jyotish\Muhurta\Hora;
+use Jyotish\Base\Import\ImportInterface;
 use DateTime;
+use DateTimeZone;
 
 /**
  * Data class.
@@ -96,28 +98,28 @@ class Data
      * 
      * @var DateTime
      */
-    protected $DateTime = null;
+    private $DateTime = null;
     
     /**
      * Locality
      * 
      * @var Locality
      */
-    protected $Locality = null;
+    private $Locality = null;
     
     /**
      * Ganita object
      * 
      * @var Ganita
      */
-    protected $Ganita = null;
+    private $Ganita = null;
 
     /**
      * Data array
-
+     * 
      * @var array
      */
-    protected $data = null;
+    private $data = null;
     
     /**
      * List of blocks.
@@ -149,24 +151,63 @@ class Data
     }
     
     /**
+     * Returns new Data object from import data.
+     * 
+     * @param ImportInterface $Source
+     * @return Data
+     */
+    public static function createFromImport(ImportInterface $Source)
+    {
+        $importData = $Source->getImportData();
+        $Data = new Data();
+        
+        foreach ($importData as $block => $importElements) {
+            $Data->setDataBlock($block, $importData[$block]);
+            
+            if ($block == self::BLOCK_USER) {
+                if (isset($importData[$block]['datetime'])) {
+                    $TimeZone = isset($importData[$block]['timezone']) ? new DateTimeZone($importData[$block]['timezone']) : null;
+                    $DateTime = new DateTime($importData[$block]['datetime'], $TimeZone);
+                    $Data->setDateTime($DateTime);
+                }
+                if (isset($importData[$block]['longitude']) && isset($importData[$block]['latitude'])) {
+                    $Locality = new Locality([
+                        'longitude' => $importData[$block]['longitude'],
+                        'latitude' => $importData[$block]['latitude'],
+                        'altitude' => isset($importData[$block]['altitude']) ? $importData[$block]['altitude'] : 0,
+                    ]);
+                    $Data->setLocality($Locality);
+                }
+            }
+        }
+        return $Data;
+    }
+
+    /**
      * Constructor
      * 
-     * @param DateTime $DateTime Date and time
-     * @param Locality $Locality Locality
-     * @param Ganita $Ganita Ganita method
+     * @param DateTime|null $DateTime Date and time
+     * @param Locality|null $Locality Locality
+     * @param Ganita|null $Ganita Ganita method
      */
-    public function __construct(DateTime $DateTime, Locality $Locality, Ganita $Ganita)
+    public function __construct(DateTime $DateTime = null, Locality $Locality = null, Ganita $Ganita = null)
     {
-        $this->setDateTime($DateTime);
-        $this->setLocality($Locality);
-        $this->setGanita($Ganita);
+        if (!is_null($DateTime)) {
+            $this->setDateTime($DateTime);
+        }
+        if (!is_null($Locality)) {
+            $this->setLocality($Locality);
+        }
+        if (!is_null($Ganita)) {
+            $this->setGanita($Ganita);
+        }
     }
 
     /**
      * Set date and time.
      * 
      * @param DateTime $DateTime Date
-     * @return \Jyotish\Base\Data
+     * @return Data
      */
     public function setDateTime(DateTime $DateTime)
     {
@@ -189,11 +230,11 @@ class Data
      * Set locality.
      * 
      * @param Locality $Locality Locality
-     * @return \Jyotish\Base\Data
+     * @return Data
      */
     public function setLocality(Locality $Locality)
     {
-        if (!is_null($Locality)) {
+        if (!is_null($this->Locality)) {
             $this->clearData();
         }
         $this->Locality = $Locality;
@@ -209,7 +250,7 @@ class Data
      * Set ganita method.
      * 
      * @param Ganita $Ganita Ganita method
-     * @return \Jyotish\Base\Data
+     * @return Data
      */
     public function setGanita(Ganita $Ganita)
     {
@@ -217,11 +258,25 @@ class Data
         
         return $this;
     }
+    
+    /**
+     * Set data block.
+     * 
+     * @param string $blockName
+     * @param array $blockData
+     * @return Data
+     */
+    private function setDataBlock($blockName, array $blockData)
+    {
+        $this->data[$blockName] = $blockData;
+        
+        return $this;
+    }
 
     /**
      * Get DateTime object
      * 
-     * @return \DateTime
+     * @return DateTime
      */
     public function getDateTime()
     {
@@ -278,10 +333,14 @@ class Data
      * 
      * @param null|array $params Array of blocks (optional)
      * @param null|array $options Options to set (optional)
-     * @return \Jyotish\Base\Data
+     * @return Data
+     * @throws Exception\UnderflowException
      */
     public function calcParams(array $params = null, array $options = null)
     {
+        if (is_null($this->Ganita)) {
+            throw new Exception\UnderflowException("Ganita is not setted.");
+        }
         $dataParams = $this->Ganita->setData($this)->getParams($params, $options);
         $this->data = array_merge($this->data, $dataParams);
         
@@ -293,10 +352,14 @@ class Data
      * 
      * @param string $graha Graha key (optional)
      * @param null|array $options Options to set (optional)
-     * @return \Jyotish\Base\Data
+     * @return Data
+     * @throws Exception\UnderflowException
      */
     public function calcRising($graha = Graha::KEY_SY, array $options = null)
     {
+        if (is_null($this->Ganita)) {
+            throw new Exception\UnderflowException("Ganita is not setted.");
+        }
         $dataRising = $this->Ganita->setData($this)->getRising($graha, $options);
         $this->data[self::BLOCK_RISING] = $dataRising;
         
@@ -308,7 +371,7 @@ class Data
      * 
      * @param null|array $angas Array of angas (optional)
      * @param bool $withLimit Time limit (optional)
-     * @return \Jyotish\Base\Data
+     * @return Data
      */
     public function calcPanchanga(array $angas = null, $withLimit = false)
     {
@@ -325,7 +388,7 @@ class Data
      * Calculation of extra lagnas.
      * 
      * @param null|array $lagnaKeys Array of lagna keys (optional)
-     * @return \Jyotish\Base\Data
+     * @return Data
      */
     public function calcExtraLagna(array $lagnaKeys = null)
     {
@@ -343,7 +406,7 @@ class Data
      * 
      * @param null|array $arudhaKeys Array of arudha keys (optional)
      * @param null|array $options Options to set (optional)
-     * @return \Jyotish\Base\Data
+     * @return Data
      */
     public function calcBhavaArudha(array $arudhaKeys = null, array $options = null)
     {
@@ -360,7 +423,7 @@ class Data
      * Calculation of upagrahas.
      * 
      * @param null|array $upagrahaKeys Array of upagraha keys (optional)
-     * @return \Jyotish\Base\Data
+     * @return Data
      */
     public function calcUpagraha(array $upagrahaKeys = null)
     {
@@ -377,7 +440,7 @@ class Data
      * Calculation of varga datas.
      * 
      * @param array $vargaKeys Varga keys
-     * @return \Jyotish\Base\Data
+     * @return Data
      */
     public function calcVargaData(array $vargaKeys)
     {
@@ -394,10 +457,14 @@ class Data
      * @param string $type Dasha type (optional)
      * @param null|string $periodKey Key of period (optional)
      * @param null|array $options Options to set (optional)
-     * @return \Jyotish\Base\Data
+     * @return Data
+     * @throws Exception\UnderflowException
      */
     public function calcDasha($type = Dasha::TYPE_VIMSHOTTARI, $periodKey = 'now', array $options = null)
     {
+        if (is_null($this->DateTime)) {
+            throw new Exception\UnderflowException("DateTime is not setted.");
+        }
         $Dasha = Dasha::getInstance($type, $options)->setData($this);
         $this->data[self::BLOCK_DASHA][$type] = $Dasha->getPeriods($periodKey);
         
@@ -408,7 +475,7 @@ class Data
      * Calculation of yogas.
      * 
      * @param array $yogas
-     * @return \Jyotish\Base\Data
+     * @return Data
      */
     public function calcYoga(array $yogas)
     {
@@ -425,10 +492,14 @@ class Data
      * Calculation of hora.
      * 
      * @param type $type Hora type
-     * @return \Jyotish\Base\Data
+     * @return Data
+     * @throws Exception\UnderflowException
      */
     public function calcHora($type = Hora::TYPE_KALA)
     {
+        if (is_null($this->DateTime)) {
+            throw new Exception\UnderflowException("DateTime is not setted.");
+        }
         $Hora = new Hora($this);
         $this->data[self::BLOCK_KALA]['hora'] = $Hora->getHora($type);
         
