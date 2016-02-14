@@ -42,11 +42,15 @@ class DataTest extends \PHPUnit_Framework_TestCase
      */
     public function testListBlock()
     {
-        $blocks = ['bhava', 'graha', 'kala', 'lagna', 'panchanga', 'upagraha', 'varga', 'yoga'];
+        $blocks = ['bhava', 'graha', 'lagna'];
+        $blocksActual = array_values(Data::listBlock('main'));
+        $this->assertEquals($blocks, $blocksActual);
+        
+        $blocks = ['bhava', 'dasha', 'graha', 'kala', 'lagna', 'panchanga', 'upagraha', 'varga', 'yoga'];
         $blocksActual = array_values(Data::listBlock('worising'));
         $this->assertEquals($blocks, $blocksActual);
         
-        $blocks = ['bhava', 'graha', 'kala', 'lagna', 'panchanga', 'rising', 'upagraha', 'varga', 'yoga'];
+        $blocks = ['bhava', 'dasha', 'graha', 'kala', 'lagna', 'panchanga', 'rising', 'upagraha', 'varga', 'yoga'];
         $blocksActual = array_values(Data::listBlock('calc'));
         $this->assertEquals($blocks, $blocksActual);
     }

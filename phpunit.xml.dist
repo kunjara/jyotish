@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<phpunit colors="true">
+<phpunit colors="true" bootstrap="tests/bootstrap.php">
     <testsuites>
         <testsuite name="Jyotish Test Suite">
             <directory>./tests/unit</directory>
@@ -8,7 +8,6 @@
     
     <filter>
         <blacklist>
-            <directory suffix=".php">./bin</directory>
             <directory suffix=".php">./tests</directory>
         </blacklist>
         <whitelist>

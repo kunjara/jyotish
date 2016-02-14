@@ -19,8 +19,8 @@
         "kunjara/swetest": "1.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "4.8.*",
-        "mockery/mockery": "dev-master@dev"
+        "phpunit/phpunit": "5.2.*",
+        "mockery/mockery": "0.9.*"
     },
     "autoload": {
         "psr-4": {

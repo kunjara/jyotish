@@ -136,15 +136,15 @@ class Data
                 $list = $blocks;
                 break;
             case 'worising':
-                unset($blocks['rising']);
-                unset($blocks['user']);
+                unset($blocks[self::BLOCK_RISING]);
+                unset($blocks[self::BLOCK_USER]);
                 break;
             case 'main':
-                return [self::BLOCK_GRAHA, self::BLOCK_BHAVA, self::BLOCK_LAGNA];
+                return [self::BLOCK_BHAVA, self::BLOCK_GRAHA, self::BLOCK_LAGNA];
                 break;
             case 'calc':
             default:
-                unset($blocks['user']);
+                unset($blocks[self::BLOCK_USER]);
         }
         $blocks = array_flip($blocks);
         return $blocks;
