@@ -153,7 +153,7 @@ class Sannyasa extends YogaBase
             $this->temp['chIsAspected'][Graha::KEY_MA] == 1 &&
             $this->temp['chIsAspected'][Graha::KEY_SA] == 1
         ) {
-            $this->Data->calcVargaData('D3');
+            $this->Data->calcVargaData(['D3']);
             $vargaDataD3 = $this->getData()[Data::BLOCK_VARGA]['D3'];
             $chRashiD3 = $vargaDataD3[Data::BLOCK_GRAHA][Graha::KEY_CH]['rashi'];
             if ($chRashiD3 == 10 || $chRashiD3 == 11) {
