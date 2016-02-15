@@ -15,7 +15,7 @@ use Jyotish\Ganita\Math;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class ArraySorce extends AbstractImport {
+class ArraySource extends SourceBase {
     /**
      * Data template.
      * 

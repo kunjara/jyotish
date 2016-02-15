@@ -11,7 +11,7 @@ namespace Jyotish\Base\Import;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class AbstractImport implements ImportInterface {
+class SourceBase implements ImportInterface {
     /**
      * Import array block data.
      * 

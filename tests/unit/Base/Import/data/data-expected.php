@@ -1,0 +1,130 @@
+<?php
+
+return [
+    'JobsSteve' => [
+        'user' => [
+            'datetime' => '1955-02-24 06:00:00',
+            'timezone' => '-08:00',
+            'longitude' => -122.42,
+            'latitude' => 37.77,
+        ],
+        'graha' => [
+            'Sy' => ['longitude' => 311.956968, 'speed' => 1.0063896, 'rashi' => 11, 'degree' => 11.956968],
+            'Ch' => ['longitude' => 336.7057373, 'speed' => 14.0983489, 'rashi' => 12, 'degree' => 6.7057373],
+            'Ma' => ['longitude' => 5.4673084, 'speed' => 0.7021034, 'rashi' => 1, 'degree' => 5.4673084],
+            'Bu' => ['longitude' => 291.1617028, 'speed' => -0.0963315, 'rashi' => 10, 'degree' => 21.1617028],
+            'Gu' => ['longitude' => 87.3075743, 'speed' => -0.0647127, 'rashi' => 3, 'degree' => 27.3075743],
+            'Sk' => ['longitude' => 267.3090162, 'speed' => 1.135481, 'rashi' => 9, 'degree' => 27.3090162],
+            'Sa' => ['longitude' => 207.9228468, 'speed' => 0.008052, 'rashi' => 7, 'degree' => 27.9228468],
+            'Ra' => ['longitude' => 249.2985488, 'speed' => -0.0529538, 'rashi' => 9, 'degree' => 9.2985488],
+            'Ke' => ['longitude' => 69.2985488, 'speed' => -0.0529538, 'rashi' => 3, 'degree' => 9.2985488],
+        ],
+        'lagna' => [
+            'Lg' => ['longitude' => 292.6509462, 'rashi' => 10, 'degree' => 22.6509462],
+        ],
+        'bhava' => [
+            1 => ['longitude' => 292.6509462, 'rashi' => 10, 'degree' => 22.6509462],
+            2 => ['longitude' => 322.6509462, 'rashi' => 11, 'degree' => 22.6509462],
+            3 => ['longitude' => 352.6509462, 'rashi' => 12, 'degree' => 22.6509462],
+            4 => ['longitude' => 22.6509462, 'rashi' => 1, 'degree' => 22.6509462],
+            5 => ['longitude' => 52.6509462, 'rashi' => 2, 'degree' => 22.6509462],
+            6 => ['longitude' => 82.6509462, 'rashi' => 3, 'degree' => 22.6509462],
+            7 => ['longitude' => 112.6509462, 'rashi' => 4, 'degree' => 22.6509462],
+            8 => ['longitude' => 142.6509462, 'rashi' => 5, 'degree' => 22.6509462],
+            9 => ['longitude' => 172.6509462, 'rashi' => 6, 'degree' => 22.6509462],
+            10 => ['longitude' => 202.6509462, 'rashi' => 7, 'degree' => 22.6509462],
+            11 => ['longitude' => 232.6509462, 'rashi' => 8, 'degree' => 22.6509462],
+            12 => ['longitude' => 262.6509462, 'rashi' => 9, 'degree' => 22.6509462],
+        ]
+    ],
+    'Nativ1' => [
+        'graha' => [
+            'Sy' => ['longitude' => 134.2001017, 'speed' => 0.9673295, 'rashi' => 5, 'degree' => 14.2001017],
+            'Ch' => ['longitude' => 48.5045054, 'speed' => 13.4849972, 'rashi' => 2, 'degree' => 18.5045054],
+            'Ma' => ['longitude' => 108.0026592, 'speed' => 0.6371623, 'rashi' => 4, 'degree' => 18.0026592],
+            'Bu' => ['longitude' => 157.0214251, 'speed' => 0.1388012, 'rashi' => 6, 'degree' => 7.0214251],
+            'Gu' => ['longitude' => 219.1053755, 'speed' => 0.0959748, 'rashi' => 8, 'degree' => 9.1053755],
+            'Sk' => ['longitude' => 123.8541249, 'speed' => -0.5400045, 'rashi' => 5, 'degree' => 3.8541249],
+            'Sa' => ['longitude' => 186.9898080, 'speed' => 0.0878796, 'rashi' => 7, 'degree' => 6.9898080],
+            'Ra' => ['longitude' => 57.3739203, 'speed' => -0.0529538, 'rashi' => 2, 'degree' => 27.3739203],
+            'Ke' => ['longitude' => 237.3739203, 'speed' => -0.0529538, 'rashi' => 8, 'degree' => 27.3739203],
+        ],
+        'lagna' => [
+            'Lg' => ['longitude' => 58.64, 'rashi' => 2, 'degree' => 28.64],
+        ],
+        'bhava' => [
+            1 => ['longitude' => 58.64, 'rashi' => 2, 'degree' => 28.64],
+            2 => ['longitude' => 88.64, 'rashi' => 3, 'degree' => 28.64],
+            3 => ['longitude' => 118.64, 'rashi' => 4, 'degree' => 28.64],
+            4 => ['longitude' => 148.64, 'rashi' => 5, 'degree' => 28.64],
+            5 => ['longitude' => 178.64, 'rashi' => 6, 'degree' => 28.64],
+            6 => ['longitude' => 208.64, 'rashi' => 7, 'degree' => 28.64],
+            7 => ['longitude' => 238.64, 'rashi' => 8, 'degree' => 28.64],
+            8 => ['longitude' => 268.64, 'rashi' => 9, 'degree' => 28.64],
+            9 => ['longitude' => 298.64, 'rashi' => 10, 'degree' => 28.64],
+            10 => ['longitude' => 328.64, 'rashi' => 11, 'degree' => 28.64],
+            11 => ['longitude' => 358.64, 'rashi' => 12, 'degree' => 28.64],
+            12 => ['longitude' => 28.64, 'rashi' => 1, 'degree' => 28.64],
+        ]
+    ],
+    'Nativ1-Ch' => [
+        'graha' => [
+            'Sy' => ['longitude' => 134.2001017, 'speed' => 0.9673295, 'rashi' => 5, 'degree' => 14.2001017],
+            'Ch' => ['longitude' => 48.5045054, 'speed' => 13.4849972, 'rashi' => 2, 'degree' => 18.5045054],
+            'Ma' => ['longitude' => 108.0026592, 'speed' => 0.6371623, 'rashi' => 4, 'degree' => 18.0026592],
+            'Bu' => ['longitude' => 157.0214251, 'speed' => 0.1388012, 'rashi' => 6, 'degree' => 7.0214251],
+            'Gu' => ['longitude' => 219.1053755, 'speed' => 0.0959748, 'rashi' => 8, 'degree' => 9.1053755],
+            'Sk' => ['longitude' => 123.8541249, 'speed' => -0.5400045, 'rashi' => 5, 'degree' => 3.8541249],
+            'Sa' => ['longitude' => 186.9898080, 'speed' => 0.0878796, 'rashi' => 7, 'degree' => 6.9898080],
+            'Ra' => ['longitude' => 57.3739203, 'speed' => -0.0529538, 'rashi' => 2, 'degree' => 27.3739203],
+            'Ke' => ['longitude' => 237.3739203, 'speed' => -0.0529538, 'rashi' => 8, 'degree' => 27.3739203],
+        ],
+        'lagna' => [
+            'Lg' => ['longitude' => 58.64, 'rashi' => 2, 'degree' => 28.64],
+        ],
+        'bhava' => [
+            1 => ['longitude' => 48.5045054, 'rashi' => 2, 'degree' => 18.5045054],
+            2 => ['longitude' => 78.5045054, 'rashi' => 3, 'degree' => 18.5045054],
+            3 => ['longitude' => 108.5045054, 'rashi' => 4, 'degree' => 18.5045054],
+            4 => ['longitude' => 138.5045054, 'rashi' => 5, 'degree' => 18.5045054],
+            5 => ['longitude' => 168.5045054, 'rashi' => 6, 'degree' => 18.5045054],
+            6 => ['longitude' => 198.5045054, 'rashi' => 7, 'degree' => 18.5045054],
+            7 => ['longitude' => 228.5045054, 'rashi' => 8, 'degree' => 18.5045054],
+            8 => ['longitude' => 258.5045054, 'rashi' => 9, 'degree' => 18.5045054],
+            9 => ['longitude' => 288.5045054, 'rashi' => 10, 'degree' => 18.5045054],
+            10 => ['longitude' => 318.5045054, 'rashi' => 11, 'degree' => 18.5045054],
+            11 => ['longitude' => 348.5045054, 'rashi' => 12, 'degree' => 18.5045054],
+            12 => ['longitude' => 18.5045054, 'rashi' => 1, 'degree' => 18.5045054],
+        ]
+    ],
+    'Nativ1-Sy' => [
+        'graha' => [
+            'Sy' => ['longitude' => 134.2001017, 'speed' => 0.9673295, 'rashi' => 5, 'degree' => 14.2001017],
+            'Ch' => ['longitude' => 48.5045054, 'speed' => 13.4849972, 'rashi' => 2, 'degree' => 18.5045054],
+            'Ma' => ['longitude' => 108.0026592, 'speed' => 0.6371623, 'rashi' => 4, 'degree' => 18.0026592],
+            'Bu' => ['longitude' => 157.0214251, 'speed' => 0.1388012, 'rashi' => 6, 'degree' => 7.0214251],
+            'Gu' => ['longitude' => 219.1053755, 'speed' => 0.0959748, 'rashi' => 8, 'degree' => 9.1053755],
+            'Sk' => ['longitude' => 123.8541249, 'speed' => -0.5400045, 'rashi' => 5, 'degree' => 3.8541249],
+            'Sa' => ['longitude' => 186.9898080, 'speed' => 0.0878796, 'rashi' => 7, 'degree' => 6.9898080],
+            'Ra' => ['longitude' => 57.3739203, 'speed' => -0.0529538, 'rashi' => 2, 'degree' => 27.3739203],
+            'Ke' => ['longitude' => 237.3739203, 'speed' => -0.0529538, 'rashi' => 8, 'degree' => 27.3739203],
+        ],
+        'lagna' => [
+            'Lg' => ['longitude' => 58.64, 'rashi' => 2, 'degree' => 28.64],
+        ],
+        'bhava' => [
+            1 => ['longitude' => 134.2001017, 'rashi' => 5, 'degree' => 14.2001017],
+            2 => ['longitude' => 164.2001017, 'rashi' => 6, 'degree' => 14.2001017],
+            3 => ['longitude' => 194.2001017, 'rashi' => 7, 'degree' => 14.2001017],
+            4 => ['longitude' => 224.2001017, 'rashi' => 8, 'degree' => 14.2001017],
+            5 => ['longitude' => 254.2001017, 'rashi' => 9, 'degree' => 14.2001017],
+            6 => ['longitude' => 284.2001017, 'rashi' => 10, 'degree' => 14.2001017],
+            7 => ['longitude' => 314.2001017, 'rashi' => 11, 'degree' => 14.2001017],
+            8 => ['longitude' => 344.2001017, 'rashi' => 12, 'degree' => 14.2001017],
+            9 => ['longitude' => 14.2001017, 'rashi' => 1, 'degree' => 14.2001017],
+            10 => ['longitude' => 44.2001017, 'rashi' => 2, 'degree' => 14.2001017],
+            11 => ['longitude' => 74.2001017, 'rashi' => 3, 'degree' => 14.2001017],
+            12 => ['longitude' => 104.2001017, 'rashi' => 4, 'degree' => 14.2001017],
+        ]
+    ],
+];
