@@ -184,5 +184,5 @@ class DataTest extends \PHPUnit_Framework_TestCase
         foreach (['datetime', 'timezone', 'longitude', 'latitude', 'altitude'] as $value) {
             $this->assertArrayHasKey($value, $this->Data->getData()['user']);
         }
-	}
+    }
 }

@@ -100,11 +100,17 @@ class YogaBase
      * 
      * @param string $key Key of graha.
      * @return bool
+     * @throws Exception\InvalidArgumentException
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 75, Verse 1-2.
      * @see Mantreswara. Phaladeepika. Chapter 6, Verse 1.
      */
     public function hasMahapurusha($key)
     {
+        $panchaGraha = Graha::listGraha(Graha::LIST_PANCHA);
+        if (!array_key_exists($key, $panchaGraha)) {
+            throw new \Jyotish\Yoga\Exception\InvalidArgumentException("For {$key} Mahapurusha yoga is not available.");
+        }
+        
         $Graha = Graha::getInstance($key);
         $Graha->setEnvironment($this->Data);
         

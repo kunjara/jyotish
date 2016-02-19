@@ -70,11 +70,13 @@ class Yoga
      */
     public static function getInstance($type, array $options = null)
     {
-        if (!in_array($type, self::$type)) {
-            throw new Exception\InvalidArgumentException("Yoga '$type' is not defined.");
+        $typeLower = strtolower($type);
+        
+        if (!in_array($typeLower, self::$type)) {
+            throw new Exception\InvalidArgumentException("Yoga '$typeLower' is not defined.");
         }
         
-        $yogaClass = 'Jyotish\Yoga\Type\\' . ucfirst($type);
+        $yogaClass = 'Jyotish\Yoga\Type\\' . ucfirst($typeLower);
         $yogaObject = new $yogaClass($options);
 
         return $yogaObject;
