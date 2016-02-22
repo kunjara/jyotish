@@ -47,10 +47,10 @@ class Sannyasa extends YogaBase
     /**
      * Set Data
      * 
-     * @param \Jyotish\Base\Data $Data
-     * @return \Jyotish\Yoga\Type\Dhana
+     * @param Data $Data
+     * @return Sannyasa
      */
-    public function setData(\Jyotish\Base\Data $Data)
+    public function setData(Data $Data)
     {
         $this->Data = $Data;
         

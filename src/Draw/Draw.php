@@ -52,9 +52,12 @@ class Draw
      * Set options.
      * 
      * @param array $options Options to set
+     * @return Draw
      */
     public function setOptions($options) {
         $this->Renderer->setOptions($options);
+        
+        return $this;
     }
 
     /**

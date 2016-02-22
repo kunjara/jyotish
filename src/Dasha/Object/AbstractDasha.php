@@ -130,6 +130,7 @@ abstract class AbstractDasha
      * Set nesting of periods.
      * 
      * @param int $nesting
+     * @return AbstractDasha
      * @throws \Jyotish\Dasha\Exception\InvalidArgumentException
      */
     public function setOptionNesting($nesting)

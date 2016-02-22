@@ -17,6 +17,7 @@ Trait OptionTrait
      * Set options for jyotish calculations.
      * 
      * @param null|array $options Options to set(optional)
+     * @return OptionTrait
      * @throws Exception\InvalidArgumentException
      */
     public function setOptions($options)
@@ -43,7 +44,7 @@ Trait OptionTrait
     /**
      * Get options are set for jyotish calculations.
      * 
-     * @return array
+     * @return mixed
      */
     public function getOptions($optionName = null)
     {

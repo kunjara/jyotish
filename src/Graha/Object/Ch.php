@@ -10,6 +10,7 @@ use Jyotish\Graha\Graha;
 use Jyotish\Ganita\Math;
 use Jyotish\Ganita\Kala;
 use Jyotish\Tattva\Maha;
+use Jyotish\Base\Data;
 use Jyotish\Tattva\Jiva\Nara\Deva;
 use Jyotish\Tattva\Jiva\Nara\Manusha;
 use Jyotish\Tattva\Ayurveda;
@@ -282,9 +283,10 @@ class Ch extends GrahaObject
     /**
      * Set environment.
      * 
-     * @param \Jyotish\Base\Data $Data
+     * @param Data $Data
+     * @return Ch
      */
-    public function setEnvironment(\Jyotish\Base\Data $Data)
+    public function setEnvironment(Data $Data)
     {
         parent::setEnvironment($Data);
 

@@ -36,7 +36,7 @@ abstract class AbstractGanita
      * Set ayanamsha for calculation.
      * 
      * @param string $ayanamsha
-     * @return Swetest
+     * @return AbstractGanita
      * @throws Exception\InvalidArgumentException
      */
     public function setOptionAyanamsha($ayanamsha)
@@ -54,7 +54,7 @@ abstract class AbstractGanita
      * Set rising (setting) type for calculation.
      * 
      * @param string $rising
-     * @return Swetest
+     * @return AbstractGanita
      * @throw Exception\InvalidArgumentException
      */
     public function setOptionRising($rising)

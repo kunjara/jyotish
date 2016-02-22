@@ -88,12 +88,14 @@ class TithiObject extends \Jyotish\Panchanga\AngaObject
      * Set source of tithi Deva.
      * 
      * @param string $value
+     * @return TithiObject
      */
     public function setOptionDevaSource($value)
     {
         if (in_array($value, [Biblio::BOOK_BS, Biblio::BOOK_BP])) {
             $this->optionDevaSource = $value;
         }
+        return $this;
     }
 
     /**

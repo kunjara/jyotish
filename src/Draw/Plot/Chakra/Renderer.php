@@ -198,6 +198,7 @@ class Renderer
             );
         }
         $this->optionChakraVarga = $valueUcf;
+        return $this;
     }
 
     public function setOptionChakraSize($value)
@@ -208,6 +209,7 @@ class Renderer
             );
         }
         $this->optionChakraSize = intval($value);
+        return $this;
     }
 
     public function setOptionChakraStyle($value)
@@ -218,6 +220,7 @@ class Renderer
             );
         }
         $this->optionChakraStyle = strtolower($value);
+        return $this;
     }
 
     public function setOptionOffsetBorder($value)
@@ -228,6 +231,7 @@ class Renderer
             );
         }
         $this->optionOffsetBorder = intval($value);
+        return $this;
     }
 
     public function setOptionWidthOffsetLabel($value)
@@ -238,6 +242,7 @@ class Renderer
             );
         }
         $this->optionWidthOffsetLabel = intval($value);
+        return $this;
     }
     
     public function setOptionHeightOffsetLabel($value)
@@ -248,6 +253,7 @@ class Renderer
             );
         }
         $this->optionHeightOffsetLabel = intval($value);
+        return $this;
     }
 
     public function setOptionLabelGrahaType($value)
@@ -258,6 +264,7 @@ class Renderer
             );
         }
         $this->optionLabelGrahaType = $value;
+        return $this;
     }
 
     public function setOptionLabelGrahaCallback($value)
@@ -266,5 +273,6 @@ class Renderer
             throw new Exception\RuntimeException("Function $value not supported.");
         }
         $this->optionLabelGrahaCallback = $value;
+        return $this;
     }
 }

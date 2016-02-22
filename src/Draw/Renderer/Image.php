@@ -164,6 +164,7 @@ class Image extends AbstractRenderer
             }
         }
         $this->optionFontName = $value;
+        return $this;
         
     }
 

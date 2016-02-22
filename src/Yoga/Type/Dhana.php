@@ -9,6 +9,7 @@ namespace Jyotish\Yoga\Type;
 use Jyotish\Yoga\Yoga;
 use Jyotish\Graha\Graha;
 use Jyotish\Bhava\Bhava;
+use Jyotish\Base\Data;
 
 /**
  * Dhana yoga class.
@@ -50,10 +51,10 @@ class Dhana extends YogaBase
     /**
      * Set Data
      * 
-     * @param \Jyotish\Base\Data $Data
-     * @return \Jyotish\Yoga\Type\Dhana
+     * @param Data $Data
+     * @return Dhana
      */
-    public function setData(\Jyotish\Base\Data $Data)
+    public function setData(Data $Data)
     {
         $this->Data = $Data;
         

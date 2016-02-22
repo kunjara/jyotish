@@ -39,7 +39,7 @@ class Locality
      * Set longitude.
      * 
      * @param float $longitude
-     * @return \Jyotish\Base\Locality
+     * @return Locality
      * @throws Exception\InvalidArgumentException
      */
     public function setLongitude($longitude)
@@ -57,7 +57,7 @@ class Locality
      * Set latitude.
      * 
      * @param float $latitude
-     * @return \Jyotish\Base\Locality
+     * @return Locality
      * @throws Exception\InvalidArgumentException
      */
     public function setLatitude($latitude)
@@ -75,7 +75,7 @@ class Locality
      * Set altitude.
      * 
      * @param float $altitude
-     * @return \Jyotish\Base\Locality
+     * @return Locality
      * @throws Exception\InvalidArgumentException
      */
     public function setAltitude($altitude)

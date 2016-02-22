@@ -54,6 +54,7 @@ abstract class AbstractRenderer
             );
         }
         $this->optionTopOffset = intval($value);
+        return $this;
     }
 
     public function setOptionLeftOffset($value)
@@ -64,6 +65,7 @@ abstract class AbstractRenderer
             );
         }
         $this->optionLeftOffset = intval($value);
+        return $this;
     }
 
     public function setOptionFontSize($value)
@@ -74,11 +76,13 @@ abstract class AbstractRenderer
             );
         }
         $this->optionFontSize = intval($value);
+        return $this;
     }
 
     public function setOptionFontColor($value)
     {
         $this->optionFontColor = $value;
+        return $this;
     }
 
     public function setOptionStrokeWidth($value)
@@ -89,6 +93,7 @@ abstract class AbstractRenderer
             );
         }
         $this->optionStrokeWidth = $value;
+        return $this;
     }
 
     abstract public function drawPolygon($points, array $options = null);
