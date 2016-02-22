@@ -36,14 +36,12 @@ class YogaBase
     protected $yogas = [];
     
     /**
-     * Options of Yoga calculation.
+     * Format of the output data.
      * 
-     * @var array
+     * @var bool
      */
-    protected $options = [
-        'outputAmple' => false,
-    ];
-    
+    protected $optionOutputAmple = false;
+
     /**
      * Constructor
      * 
@@ -73,7 +71,7 @@ class YogaBase
             in_array($this->getData()['graha'][$graha1]['rashi'], $rashi2Swa) && 
             in_array($this->getData()['graha'][$graha2]['rashi'], $rashi1Swa)
         ) {
-            if ($this->options['outputAmple']) {
+            if ($this->optionOutputAmple) {
                 $Graha1->setEnvironment($this->Data);
                 $Graha2->setEnvironment($this->Data);
                 $graha1Bhava = $Graha1->getBhava();

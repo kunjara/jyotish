@@ -20,14 +20,17 @@ abstract class AbstractGanita
     use \Jyotish\Base\Traits\OptionTrait;
     
     /**
-     * Options of ganita object.
+     * The Ayanamsha used in the calculation.
      * 
-     * @var array
+     * @var string
      */
-    protected $options = [
-        'ayanamsha' => Ayanamsha::AYANAMSHA_LAHIRI,
-        'rising' => Graha::RISING_HINDU,
-    ];
+    protected $optionAyanamsha = Ayanamsha::AYANAMSHA_LAHIRI;
+    /**
+     * The type of Rising used in the calculation.
+     * 
+     * @var string
+     */
+    protected $optionRising = Graha::RISING_HINDU;
 
     /**
      * Set ayanamsha for calculation.
@@ -39,7 +42,7 @@ abstract class AbstractGanita
     public function setOptionAyanamsha($ayanamsha)
     {
         if (key_exists($ayanamsha, $this->inputAyanamsha)) {
-            $this->ayanamsha = $ayanamsha;
+            $this->optionAyanamsha = $ayanamsha;
         } else {
             throw new Exception\InvalidArgumentException("The ayanamsha '$ayanamsha' is not defined.");
         }
@@ -57,7 +60,7 @@ abstract class AbstractGanita
     public function setOptionRising($rising)
     {
         if (array_search($rising, Graha::$risingType)) {
-            $this->rising = $rising;
+            $this->optionRising = $rising;
         } else {
             throw new Exception\InvalidArgumentException("The rising '$rising' is not defined.");
         }

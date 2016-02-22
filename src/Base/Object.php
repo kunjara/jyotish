@@ -59,6 +59,7 @@ class Object
     public function __construct($options)
     {
         $this->setOptions($options);
+        
         $this->setObjectName();
         $this->setObjectNames();
     }

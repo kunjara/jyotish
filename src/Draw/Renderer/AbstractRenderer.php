@@ -29,29 +29,22 @@ abstract class AbstractRenderer
      * @var mixed 
      */
     protected $Resource = null;
-
-    /**
-     * Options of drawing.
-     * 
-     * @var array
-     */
-    protected $options = [
-        'topOffset' => 0,
-        'leftOffset' => 0,
-        
-        'fontSize' => 10,
-        'fontName' => null,
-        'fontColor' => '000',
-        
-        'textAlign' => 'left',
-        'textValign' => 'bottom',
-        'textOrientation' => 0,
-        
-        'strokeWidth' => 1,
-        'strokeColor' => '000',
-        
-        'fillColor' => 'fff',
-    ];
+    
+    protected $optionTopOffset = 0;
+    protected $optionLeftOffset = 0;
+    
+    protected $optionFontSize = 10;
+    protected $optionFontName = null;
+    protected $optionFontColor = '000';
+    
+    protected $optionTextAlign = 'left';
+    protected $optionTextValign = 'bottom';
+    protected $optionTextOrientation = 0;
+    
+    protected $optionStrokeWidth = 1;
+    protected $optionStrokeColor = '000';
+    
+    protected $optionFillColor = 'fff';
 
     public function setOptionTopOffset($value)
     {
@@ -60,7 +53,7 @@ abstract class AbstractRenderer
                     'Vertical position must be greater than or equals 0.'
             );
         }
-        $this->options['topOffset'] = intval($value);
+        $this->optionTopOffset = intval($value);
     }
 
     public function setOptionLeftOffset($value)
@@ -70,7 +63,7 @@ abstract class AbstractRenderer
                     'Horizontal position must be greater than or equals 0.'
             );
         }
-        $this->options['leftOffset'] = intval($value);
+        $this->optionLeftOffset = intval($value);
     }
 
     public function setOptionFontSize($value)
@@ -80,12 +73,12 @@ abstract class AbstractRenderer
                     'Font size must be greater than or equals 8.'
             );
         }
-        $this->options['fontSize'] = intval($value);
+        $this->optionFontSize = intval($value);
     }
 
     public function setOptionFontColor($value)
     {
-        $this->options['fontColor'] = $value;
+        $this->optionFontColor = $value;
     }
 
     public function setOptionStrokeWidth($value)
@@ -95,7 +88,7 @@ abstract class AbstractRenderer
                     'Stroke width must be greater than or equals 0.'
             );
         }
-        $this->options['strokeWidth'] = $value;
+        $this->optionStrokeWidth = $value;
     }
 
     abstract public function drawPolygon($points, array $options = null);

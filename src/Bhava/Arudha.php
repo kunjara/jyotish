@@ -89,15 +89,18 @@ class Arudha
     ];
     
     /**
-     * Options of Arudha calculation.
+     * Use exceptions in bhava arudha padas.
      * 
-     * @var array
+     * @var bool
      */
-    protected $options = [
-        'useException' => true,
-        'exceptionRang' => 7.5,
-    ];
-    
+    protected $optionUseException = true;
+    /**
+     * The deviation for exception in degrees.
+     * 
+     * @var float
+     */
+    protected $optionExceptionRang = 7.5;
+
     /**
      * Constructor
      * 
@@ -152,10 +155,10 @@ class Arudha
         $unitArudha = Math::partsToUnits($lngArudha);
         $rashiArudha = $unitArudha['units'];
         
-        if ($this->options['useException']) {
+        if ($this->optionUseException) {
             if (
-                Math::inRange($lngDiff, 0 - $this->options['exceptionRang'], $this->options['exceptionRang']) || 
-                Math::inRange(abs($lngDiff), 90 - $this->options['exceptionRang'], 90 + $this->options['exceptionRang'])
+                Math::inRange($lngDiff, 0 - $this->optionExceptionRang, $this->optionExceptionRang) || 
+                Math::inRange(abs($lngDiff), 90 - $this->optionExceptionRang, 90 + $this->optionExceptionRang)
             ) {
                 $rashiArudha = Math::numberInCycle($unitArudha['units'], 10);
                 $lngArudha = ($rashiArudha - 1) * 30 + $unitArudha['parts'];

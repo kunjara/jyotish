@@ -25,6 +25,13 @@ class R5 extends RashiObject
      * @var int
      */
     protected $objectKey = 5;
+    
+    /**
+     * Set type of jiva for 5th rashi as vana (wild).
+     * 
+     * @var bool
+     */
+    protected $optionRashi5IsVana = false;
 
     /**
      * Devanagari title 'simha' in transliteration.
@@ -124,10 +131,12 @@ class R5 extends RashiObject
      * 
      * @param null|array $options Options to set
      */
-    protected function setRashiType($options)
+    protected function setRashiType()
     {
-        if ($options['rashi5Vana']) {
+        if ($this->optionRashi5IsVana) {
             $this->rashiType = Manusha::TYPE_VANA;
+        } else {
+            $this->rashiType = Manusha::TYPE_PASU;
         }
     }
 
@@ -135,6 +144,6 @@ class R5 extends RashiObject
     {
         parent::__construct($options);
         
-        $this->setRashiType($this->options);
+        $this->setRashiType();
     }
 }

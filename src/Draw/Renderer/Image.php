@@ -43,16 +43,14 @@ class Image extends AbstractRenderer
             $this->setOptions($options);
         }
         
-        $colorRgb = Utility::htmlToRgb($this->options['strokeColor']);
+        $colorRgb = Utility::htmlToRgb($this->optionStrokeColor);
         $color = $this->allocateColor($this->Resource, $colorRgb['r'], $colorRgb['g'], $colorRgb['b']);
 
-        imagesetthickness($this->Resource, $this->options['strokeWidth']);
+        imagesetthickness($this->Resource, $this->optionStrokeWidth);
 
         $numPoints = count($points) / 2;
 
-        imagepolygon(
-                $this->Resource, $points, $numPoints, $color
-        );
+        imagepolygon($this->Resource, $points, $numPoints, $color);
     }
 
     public function drawText($text, $x = 0, $y = 0, array $options = null)
@@ -61,23 +59,23 @@ class Image extends AbstractRenderer
             $this->setOptions($options);
         }
         
-        $colorRgb = Utility::htmlToRgb($this->options['fontColor']);
+        $colorRgb = Utility::htmlToRgb($this->optionFontColor);
         $color = $this->allocateColor($this->Resource, $colorRgb['r'], $colorRgb['g'], $colorRgb['b']);
 
-        if ($this->options['fontName'] == null) {
-            $this->options['fontName'] = 3;
+        if ($this->optionFontName == null) {
+            $this->optionFontName = 3;
         }
 
-        if (is_numeric($this->options['fontName'])) {
-            if ($this->options['textOrientation']) {
+        if (is_numeric($this->optionFontName)) {
+            if ($this->optionTextOrientation) {
                 throw new Exception\RuntimeException(
                         'No orientation possible with GD internal font.'
                 );
             }
-            $fontWidth = imagefontwidth($this->options['fontName']);
-            $fontHeight = imagefontheight($this->options['fontName']);
+            $fontWidth = imagefontwidth($this->optionFontName);
+            $fontHeight = imagefontheight($this->optionFontName);
 
-            switch ($this->options['textAlign']) {
+            switch ($this->optionTextAlign) {
                 case 'left':
                     $positionX = $x;
                     break;
@@ -89,7 +87,7 @@ class Image extends AbstractRenderer
                     break;
             }
 
-            switch ($this->options['textValign']) {
+            switch ($this->optionTextValign) {
                 case 'top':
                     $positionY = $y;
                     break;
@@ -103,7 +101,7 @@ class Image extends AbstractRenderer
 
             imagestring(
                     $this->Resource, 
-                    $this->options['fontName'], 
+                    $this->optionFontName, 
                     $positionX, 
                     $positionY, 
                     $text, 
@@ -115,9 +113,9 @@ class Image extends AbstractRenderer
                         'A font was provided, but this instance of PHP does not have TTF (FreeType) support');
             }
 
-            $box = imagettfbbox($this->options['fontSize'], 0, $this->options['fontName'], $text);
+            $box = imagettfbbox($this->optionFontSize, 0, $this->optionFontName, $text);
 
-            switch ($this->options['textAlign']) {
+            switch ($this->optionTextAlign) {
                 case 'center':
                     $width = ($box[2] - $box[0]) / 2;
                     break;
@@ -130,7 +128,7 @@ class Image extends AbstractRenderer
                     break;
             }
 
-            switch ($this->options['textValign']) {
+            switch ($this->optionTextValign) {
                 case 'top':
                     $height = ($box[1] - $box[7]);
                     break;
@@ -145,12 +143,12 @@ class Image extends AbstractRenderer
 
             imagettftext(
                     $this->Resource, 
-                    $this->options['fontSize'], 
-                    $this->options['textOrientation'], 
-                    $x - ($width * cos(pi() * $this->options['textOrientation'] / 180)) + ($height * sin(pi() * $this->options['textOrientation'] / 180)), 
-                    $y + ($height * cos(pi() * $this->options['textOrientation'] / 180)) + ($width * sin(pi() * $this->options['textOrientation'] / 180)), 
+                    $this->optionFontSize, 
+                    $this->optionTextOrientation, 
+                    $x - ($width * cos(pi() * $this->optionTextOrientation / 180)) + ($height * sin(pi() * $this->optionTextOrientation / 180)), 
+                    $y + ($height * cos(pi() * $this->optionTextOrientation / 180)) + ($width * sin(pi() * $this->optionTextOrientation / 180)), 
                     $color, 
-                    $this->options['fontName'], 
+                    $this->optionFontName, 
                     $text
             );
         }
@@ -165,7 +163,7 @@ class Image extends AbstractRenderer
                 throw new Exception\InvalidArgumentException("The font '$value' does not exist.");
             }
         }
-        $this->options['fontName'] = $value;
+        $this->optionFontName = $value;
         
     }
 

@@ -24,6 +24,19 @@ trait GrahaEnvironment
     use \Jyotish\Base\Traits\EnvironmentTrait;
     
     /**
+     * Degree of combustion or data source.
+     * 
+     * @var int|string
+     */
+    protected $optionBhagaAstangata = 6;
+    /**
+     * Data source of mrityu bhaga.
+     * 
+     * @var string
+     */
+    protected $optionBhagaMrityu = Biblio::BOOK_JP;
+    
+    /**
      * Get bhava, where graha is positioned or owned.
      * 
      * @param null|string $which Which bhava to get (optional)
@@ -390,8 +403,8 @@ trait GrahaEnvironment
         
         $distanceGraha = abs($degreeSy - $degreeGr);
         
-        if (in_array($this->options['bhagaAstangata'], [Biblio::BOOK_SS, Biblio::BOOK_BJ])) {
-            $bhagas = Graha::listBhagaAstangata($this->options['bhagaAstangata']);
+        if (in_array($this->optionBhagaAstangata, [Biblio::BOOK_SS, Biblio::BOOK_BJ])) {
+            $bhagas = Graha::listBhagaAstangata($this->optionBhagaAstangata);
             
             if (is_array($bhagas[$this->objectKey])) {
                 $cheshta = $this->getLongitudeSpeed() >= 0 ? Graha::CHESHTA_SAMA : Graha::CHESHTA_VAKRA;
@@ -402,7 +415,7 @@ trait GrahaEnvironment
                 return null;
             }
         } else {
-            $distanceCombustion = $this->options['bhagaAstangata'];
+            $distanceCombustion = $this->optionBhagaAstangata;
         }
         
         if ($distanceGraha <= $distanceCombustion) {
@@ -428,7 +441,7 @@ trait GrahaEnvironment
     public function isMrityu()
     {
         $rashiGraha = $this->getEnvironment()['graha'][$this->objectKey]['rashi'];
-        $degMrityu = Graha::listBhagaMrityu($this->options['bhagaMrityu'])[$this->objectKey][$rashiGraha];
+        $degMrityu = Graha::listBhagaMrityu($this->optionBhagaMrityu)[$this->objectKey][$rashiGraha];
         $lonMrityu = ($rashiGraha - 1) * 30 + $degMrityu;
         $lonGraha = $this->getEnvironment()['graha'][$this->objectKey]['longitude'];
         

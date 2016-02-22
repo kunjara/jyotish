@@ -181,7 +181,7 @@ class Rashi
      * 
      * @param int $key The number of rashi
      * @param null|array $options Options to set (optional)
-     * - `rashi5Vana`: set type of jiva for 5th rashi as vana (wild)
+     * - `rashi5IsVana`: set type of jiva for 5th rashi as vana (wild)
      * @return the requested instance of rashi class
      * @throws Exception\InvalidArgumentException
      */

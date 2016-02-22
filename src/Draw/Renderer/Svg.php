@@ -24,6 +24,8 @@ class Svg extends AbstractRenderer
      */
     protected $rendererName = \Jyotish\Draw\Draw::RENDERER_SVG;
     
+    protected $optionAttributes = [];
+    
     /**
      * Constructor
      * 
@@ -32,8 +34,6 @@ class Svg extends AbstractRenderer
      */
     public function __construct($width, $height)
     {
-        $this->options['attributes'] = [];
-        
         $this->Resource = new DOMDocument('1.0', 'utf-8');
         $this->Resource->formatOutput = true;
         
@@ -60,10 +60,10 @@ class Svg extends AbstractRenderer
             $this->setOptions($options);
         }
         
-        $colorSrokeRgb = Utility::htmlToRgb($this->options['strokeColor']);
+        $colorSrokeRgb = Utility::htmlToRgb($this->optionStrokeColor);
         $colorStrokeString = 'rgb(' . implode(', ', $colorSrokeRgb) . ')';
 
-        $colorFillRgb = Utility::htmlToRgb($this->options['fillColor']);
+        $colorFillRgb = Utility::htmlToRgb($this->optionFillColor);
         $colorFillString = 'rgb(' . implode(', ', $colorFillRgb) . ')';
 
         $pointsString = implode(' ', $points);
@@ -71,11 +71,11 @@ class Svg extends AbstractRenderer
         $attributes['points'] = $pointsString;
         $attributes['fill'] = $colorFillString;
         $attributes['stroke'] = $colorStrokeString;
-        $attributes['stroke-width'] = $this->options['strokeWidth'];
+        $attributes['stroke-width'] = $this->optionStrokeWidth;
         $attributes['stroke-linejoin'] = 'round';
         
-        if (isset($this->options['attributes']) && is_array($this->options['attributes'])) {
-            foreach ($this->options['attributes'] as $name => $value) {
+        if (isset($this->optionAttributes) && is_array($this->optionAttributes)) {
+            foreach ($this->optionAttributes as $name => $value) {
                 $attributes[$name] = $value;
             }
         }
@@ -89,15 +89,15 @@ class Svg extends AbstractRenderer
             $this->setOptions($options);
         }
         
-        $colorRgb = Utility::htmlToRgb($this->options['fontColor']);
+        $colorRgb = Utility::htmlToRgb($this->optionFontColor);
         $color = 'rgb(' . implode(', ', $colorRgb) . ')';
 
         $attributes['x'] = $x;
         $attributes['y'] = $y;
         $attributes['fill'] = $color;
-        $attributes['font-size'] = $this->options['fontSize'] * 1.2;
+        $attributes['font-size'] = $this->optionFontSize * 1.2;
         
-        switch ($this->options['textAlign']) {
+        switch ($this->optionTextAlign) {
             case 'center':
                 $textAnchor = 'middle';
                 break;
@@ -110,12 +110,12 @@ class Svg extends AbstractRenderer
                 break;
         }
 
-        switch ($this->options['textValign']) {
+        switch ($this->optionTextValign) {
             case 'top':
-                $attributes['y'] += $this->options['fontSize'];
+                $attributes['y'] += $this->optionFontSize;
                 break;
             case 'middle':
-                $attributes['y'] += $this->options['fontSize'] / 2;
+                $attributes['y'] += $this->optionFontSize / 2;
                 break;
             case 'bottom':
             default:
@@ -126,7 +126,7 @@ class Svg extends AbstractRenderer
         $attributes['style'] = 'text-anchor: ' . $textAnchor;
 
         $attributes['transform'] = 'rotate('
-                . (- $this->options['textOrientation'])
+                . (- $this->optionTextOrientation)
                 . ', '
                 . ($x)
                 . ', ' . ($y)

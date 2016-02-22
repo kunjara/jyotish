@@ -20,14 +20,12 @@ class TithiObject extends \Jyotish\Panchanga\AngaObject
     use \Jyotish\Base\Traits\OptionTrait;
     
     /**
-     * Options of tithi object.
+     * Source of tithi deva information.
      * 
-     * @var array
+     * @var string
      */
-    protected $options = [
-        'tithiDeva' => Biblio::BOOK_BS,
-    ];
-    
+    protected $optionDevaSource = Biblio::BOOK_BS;
+
     /**
      * Anga type.
      * 
@@ -85,19 +83,27 @@ class TithiObject extends \Jyotish\Panchanga\AngaObject
      * @var string
      */
     protected $tithiKarana = [];
+    
+    /**
+     * Set source of tithi Deva.
+     * 
+     * @param string $value
+     */
+    public function setOptionDevaSource($value)
+    {
+        if (in_array($value, [Biblio::BOOK_BS, Biblio::BOOK_BP])) {
+            $this->optionDevaSource = $value;
+        }
+    }
 
     /**
      * Set tithi Deva.
      */
-    protected function setTithiDeva($options)
+    protected function setTithiDeva()
     {
         $number = ($this->tithiKey > 15 && $this->tithiKey < 30) ? $this->tithiKey - 15 : $this->tithiKey;
 
-        if (!is_null($options) && in_array($options['tithiDeva'], [Biblio::BOOK_BS, Biblio::BOOK_BP])) {
-            $this->tithiDeva = Tithi::$deva[$options['tithiDeva']][$number];
-        } else {
-            $this->tithiDeva = Tithi::$deva[Biblio::BOOK_BS][$number];
-        }
+        $this->tithiDeva = Tithi::$deva[$this->optionDevaSource][$number];
     }
 
     /**
@@ -153,7 +159,7 @@ class TithiObject extends \Jyotish\Panchanga\AngaObject
         
         $this->setOptions($options);
         
-        $this->setTithiDeva($this->options);
+        $this->setTithiDeva();
         $this->setTithiPaksha();
         $this->setTithiType();
     }

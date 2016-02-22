@@ -23,12 +23,13 @@ Trait OptionTrait
     {
         if (is_array($options)) {
             foreach ($options as $optionName => $optionValue) {
-                if (isset($this->options[$optionName])) {
-                    $setOption = 'setOption'.ucfirst($optionName);
+                $option = 'option' . ucfirst($optionName);
+                if (isset($this->$option)) {
+                    $setOption = 'setOption' . ucfirst($optionName);
                     if (method_exists($this, $setOption)) {
                         $this->$setOption($optionValue);
                     } else {
-                        $this->options[$optionName] = $optionValue;
+                        $this->$option = $optionValue;
                     }
                 }
             }
@@ -37,5 +38,32 @@ Trait OptionTrait
         }
         
         return $this;
+    }
+    
+    /**
+     * Get options are set for jyotish calculations.
+     * 
+     * @return array
+     */
+    public function getOptions($optionName = null)
+    {
+        if (is_string($optionName)) {
+            $option = 'option' . ucfirst($optionName);
+            if (isset($this->$option)) {
+                return $this->$option;
+            }
+        } elseif(is_null($optionName)) {
+            $properties = get_object_vars($this);
+            $options = [];
+            foreach ($properties as $propertyName => $propertyValue) {
+                $pos = strpos($propertyName, 'option');
+                if ($pos === 0) {
+                    $optionName = lcfirst(substr($propertyName, 6));
+                    $options[$optionName] = $propertyValue;
+                }
+            }
+            return $options;
+        }
+        return null;
     }
 }

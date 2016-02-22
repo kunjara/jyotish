@@ -38,14 +38,12 @@ class Sannyasa extends YogaBase
     ];
     
     /**
-     * Options of Yoga calculation.
+     * How many degrees is considered to be the end of the lagna.
      * 
-     * @var array
+     * @var int
      */
-    protected $options = [
-        'lagnaEnd' => 25,
-    ];
-    
+    protected $optionLagnaEnd = 25;
+
     /**
      * Set Data
      * 
@@ -111,7 +109,7 @@ class Sannyasa extends YogaBase
         $lagnaDegree = $this->getData()[Data::BLOCK_LAGNA]['Lg']['degree'];
         $lagnaRashi  = $this->getData()[Data::BLOCK_LAGNA]['Lg']['rashi'];
         
-        if($lagnaDegree < $this->options['lagnaEnd']) {
+        if($lagnaDegree < $this->optionLagnaEnd) {
             return false;
         }
         

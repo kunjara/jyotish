@@ -47,7 +47,7 @@ class Parivarthana extends YogaBase
                         'graha2' => $key2,
                     ];
                     
-                    if ($this->options['outputAmple']) {
+                    if ($this->optionOutputAmple) {
                         $result = array_merge($result, ['subtype' => $subtype,]);
                     }
                     

@@ -23,25 +23,36 @@ class GrahaObject extends Object
     use GrahaEnvironment;
     
     /**
-     * Options of graha object.
-     * 
-     * @var array
-     */
-    protected $options = [
-        'relationSame' => false,
-        'relationChaya' => '',
-        'bhagaAstangata' => 6,
-        'bhagaMrityu' => Biblio::BOOK_JP,
-        'specificRashi' => Biblio::BOOK_BPHS,
-        'drishtiRahu' => '',
-    ];
-    
-    /**
      * Object type
      * 
      * @var string
      */
     protected $objectType = 'graha';
+    
+    /**
+     * Relationship between the same grahas.
+     * 
+     * @var bool
+     */
+    protected $optionRelationSame = false;
+    /**
+     * Relationship between the chaya grahas.
+     * 
+     * @var 
+     */
+    protected $optionRelationChaya = '';
+    /**
+     * Data source of specific rashi for chaya grahas.
+     * 
+     * @var string
+     */
+    protected $optionSpecificRashi = Biblio::BOOK_BPHS;
+    /**
+     * Drishti for Rahu.
+     * 
+     * @var 
+     */
+    protected $optionDrishtiRahu = '';
 
     /**
      * Unicode of the Graha.
@@ -272,10 +283,9 @@ class GrahaObject extends Object
     /**
      * Set naisargika (natural) relations.
      * 
-     * @param array $options Options to set
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 55.
      */
-    protected function setGrahaRelation($options)
+    protected function setGrahaRelation()
     {
         $relation = [];
         $friendsFromMt = [2, 4, 5, 8, 9, 12];
@@ -314,11 +324,11 @@ class GrahaObject extends Object
             } elseif (in_array($key, $enemies)) {
                 $relation[$key] = -1;
             } else {
-                $G = Graha::getInstance($key, $options);
+                $G = Graha::getInstance($key, $this->getOptions());
                 $relation[$key] = $G->grahaRelation[$this->objectKey];
             }
         }
-        $relation[$this->objectKey] = $options['relationSame'] ? 1 : null;
+        $relation[$this->objectKey] = $this->optionRelationSame ? 1 : null;
 
         $this->grahaRelation = $relation;
     }
@@ -368,6 +378,6 @@ class GrahaObject extends Object
     {
         parent::__construct($options);
         
-        $this->setGrahaRelation($this->options);
+        $this->setGrahaRelation();
     }
 }

@@ -122,7 +122,7 @@ class Swetest extends AbstractGanita
         $dir     = ' -edir'.$this->swe['sweph'];
         $date    = ' -b'.$DateTime->format(Time::FORMAT_DATA_DATE);
         $time    = ' -ut'.$DateTime->format(Time::FORMAT_DATA_TIME);
-        $sid     = ' -sid'.$this->inputAyanamsha[$this->options['ayanamsha']];
+        $sid     = ' -sid'.$this->inputAyanamsha[$this->optionAyanamsha];
         
         $stringHouses = ' -house'.$Locality->getLongitude().','.$Locality->getLatitude().',a';
         $stringPlanets = implode('', $this->inputPlanets);
@@ -178,7 +178,7 @@ class Swetest extends AbstractGanita
         $date   = ' -b'.$DateTime->format(Time::FORMAT_DATA_DATE);
         $planet = ' -p'.$this->inputPlanets[$graha];
         $geopos	= ' -geopos'.$Locality->getLongitude().','.$Locality->getLatitude().',0';
-        $rising = ' -'.$this->options['rising'];
+        $rising = ' -'.$this->optionRising;
 
         $string = 'swetest'.$dir.$date.$planet.$geopos.$rising.' -n5 -rise';
 

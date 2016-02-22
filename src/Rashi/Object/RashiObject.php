@@ -19,16 +19,7 @@ use Jyotish\Ganita\Math;
 class RashiObject extends \Jyotish\Base\Object
 {
     use RashiEnvironment;
-    
-    /**
-     * Options of rashi object.
-     * 
-     * @var array
-     */
-    protected $options = [
-        'rashi5Vana' => false,
-    ];
-    
+
     /**
      * Object type
      * 

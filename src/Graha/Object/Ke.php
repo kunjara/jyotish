@@ -179,13 +179,12 @@ class Ke extends GrahaObject
     /**
      * Set exaltation, sebilitation, mooltrikon and own.
      * 
-     * @param null|array $options Options to set
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 47, Verse 34-39.
      * @see Venkatesh Sharma. Sarvarth Chintamani. Chapter 16, Verse 1-2.
      */
-    protected function setGrahaSpecificRashiByViewpoint($options)
+    protected function setGrahaSpecificRashiByViewpoint()
     {
-        switch ($options['specificRashi']) {
+        switch ($this->optionSpecificRashi) {
             case Biblio::BOOK_SC:
                 $this->setGrahaSpecificRashi(['ucha' => 8, 'mool' => 5, 'swa' => null, 'neecha' => 2]);
                 break;
@@ -197,12 +196,10 @@ class Ke extends GrahaObject
 
     /**
      * Set natural relationships.
-     * 
-     * @param null|array $options Options to set
      */
-    protected function setGrahaRelation($options)
+    protected function setGrahaRelation()
     {
-        if ($options['relationChaya'] == 'friends') {
+        if ($this->optionRelationChaya == 'friends') {
             foreach (Graha::$graha as $key => $name) {
                 if ($key != Graha::KEY_RA) {
                     $this->grahaRelation[$key] = -1;
@@ -222,13 +219,13 @@ class Ke extends GrahaObject
                 Graha::KEY_RA => -1,
             ];
         }
-        $this->grahaRelation[$this->objectKey] = $options['relationSame'] ? 1 : null;
+        $this->grahaRelation[$this->objectKey] = $this->optionRelationSame ? 1 : null;
     }
 
     public function __construct($options = null)
     {
         parent::__construct($options);
         
-        $this->setGrahaSpecificRashiByViewpoint($this->options);
+        $this->setGrahaSpecificRashiByViewpoint();
     }
 }

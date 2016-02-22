@@ -36,27 +36,20 @@ class Renderer
      */
     protected $Chakra = null;
 
-    /**
-     * Options to set.
-     * 
-     * @var array
-     */
-    protected $options = [
-        'chakraSize' => 200,
-        'chakraStyle' => Chakra::STYLE_NORTH,
-        'chakraVarga' => Varga::KEY_D1,
-        
-        'offsetBorder' => 4,
-        'widthOffsetLabel' => 20,
-        'heightOffsetLabel' => 14,
-        
-        'labelGrahaType' => 0,
-        'labelGrahaCallback' => '',
-        
-        'labelRashiFont' => [],
-        'labelGrahaFont' => [],
-        'labelExtraFont' => [],
-    ];
+    protected $optionChakraSize = 200;
+    protected $optionChakraStyle = Chakra::STYLE_NORTH;
+    protected $optionChakraVarga = Varga::KEY_D1;
+    
+    protected $optionOffsetBorder = 4;
+    protected $optionWidthOffsetLabel = 20;
+    protected $optionHeightOffsetLabel = 14;
+    
+    protected $optionLabelGrahaType = 0;
+    protected $optionLabelGrahaCallback = '';
+    
+    protected $optionLabelRashiFont = '';
+    protected $optionLabelGrahaFont = '';
+    protected $optionLabelExtraFont = '';
 
     /**
      * Constructor
@@ -81,13 +74,13 @@ class Renderer
         $this->setData($Data);
         $this->setOptions($options);
         
-        $chakraStyle = 'Jyotish\Draw\Plot\Chakra\Style\\' . ucfirst($this->options['chakraStyle']);
+        $chakraStyle = 'Jyotish\Draw\Plot\Chakra\Style\\' . ucfirst($this->optionChakraStyle);
         $this->Chakra = new $chakraStyle($Data);
 
-        $bhavaPoints = $this->Chakra->getBhavaPoints($this->options['chakraSize'], $x, $y);
+        $bhavaPoints = $this->Chakra->getBhavaPoints($this->optionChakraSize, $x, $y);
         
         foreach ($bhavaPoints as $number => $points) {
-            if ($this->options['chakraStyle'] == Chakra::STYLE_NORTH) {
+            if ($this->optionChakraStyle == Chakra::STYLE_NORTH) {
                 $bhava = ' bhava'.$number;
                 $rashi = ' rashi'.$Data->getData()['bhava'][$number]['rashi'];
             } else {
@@ -97,16 +90,17 @@ class Renderer
                 $bhava = ' bhava'.$Rashi->getBhava();
             }
             
-            $this->options['attributes'] = [
+            $attributes = [
                 'class' => 'bhava'.$bhava.$rashi,
             ];
             
-            $this->Renderer->drawPolygon($points, $this->options);
+            $options = array_merge($this->getOptions(), ['attributes' => $attributes]);
+            $this->Renderer->drawPolygon($points, $options);
         }
         
-        $this->drawRashiLabel($x, $y, $this->options);
+        $this->drawRashiLabel($x, $y, $this->getOptions());
         
-        $this->drawBodyLabel($x, $y, $this->options);
+        $this->drawBodyLabel($x, $y, $this->getOptions());
     }
     
     protected function drawRashiLabel($x, $y, $options)
@@ -115,7 +109,7 @@ class Renderer
             $this->Renderer->setOptions($options['labelRashiFont']);
         }
         
-        $rashiLabelPoints = $this->Chakra->getRashiLabelPoints($this->options);
+        $rashiLabelPoints = $this->Chakra->getRashiLabelPoints($this->getOptions());
         foreach ($rashiLabelPoints as $rashi => $point) {
             $this->Renderer->drawText(
                 $rashi, 
@@ -132,7 +126,7 @@ class Renderer
             $this->Renderer->setOptions($options['labelGrahaFont']);
         }
         
-        $bodyLabelPoints = $this->Chakra->getBodyLabelPoints($this->options);
+        $bodyLabelPoints = $this->Chakra->getBodyLabelPoints($this->getOptions());
         
         foreach ($bodyLabelPoints as $body => $point) {
             if (!array_key_exists($body, Graha::$graha) && isset($options['labelExtraFont'])) {
@@ -140,8 +134,8 @@ class Renderer
             }
             
             $bodyLabel = $this->getBodyLabel($body, [
-                'labelGrahaType' => $this->options['labelGrahaType'], 
-                'labelGrahaCallback' => $this->options['labelGrahaCallback']
+                'labelGrahaType' => $this->optionLabelGrahaType, 
+                'labelGrahaCallback' => $this->optionLabelGrahaCallback
             ]);
 
             $this->Renderer->drawText(
@@ -203,7 +197,7 @@ class Renderer
                     'Varga key is wrong.'
             );
         }
-        $this->options['chakraVarga'] = $valueUcf;
+        $this->optionChakraVarga = $valueUcf;
     }
 
     public function setOptionChakraSize($value)
@@ -213,7 +207,7 @@ class Renderer
                     'Chakra size must be greater than 100.'
             );
         }
-        $this->options['chakraSize'] = intval($value);
+        $this->optionChakraSize = intval($value);
     }
 
     public function setOptionChakraStyle($value)
@@ -223,7 +217,7 @@ class Renderer
                     "Invalid chakra style provided must be 'north', 'south' or 'east'."
             );
         }
-        $this->options['chakraStyle'] = strtolower($value);
+        $this->optionChakraStyle = strtolower($value);
     }
 
     public function setOptionOffsetBorder($value)
@@ -233,7 +227,7 @@ class Renderer
                     'Border offset must be greater than or equals 0.'
             );
         }
-        $this->options['offsetBorder'] = intval($value);
+        $this->optionOffsetBorder = intval($value);
     }
 
     public function setOptionWidthOffsetLabel($value)
@@ -243,7 +237,7 @@ class Renderer
                     'Label offset must be greater than or equals 0.'
             );
         }
-        $this->options['widthOffsetLabel'] = intval($value);
+        $this->optionWidthOffsetLabel = intval($value);
     }
     
     public function setOptionHeightOffsetLabel($value)
@@ -253,7 +247,7 @@ class Renderer
                     'Label offset must be greater than or equals 0.'
             );
         }
-        $this->options['heightOffsetLabel'] = intval($value);
+        $this->optionHeightOffsetLabel = intval($value);
     }
 
     public function setOptionLabelGrahaType($value)
@@ -263,7 +257,7 @@ class Renderer
                     "Invalid label type provided must be 0, 1 or 2."
             );
         }
-        $this->options['labelGrahaType'] = $value;
+        $this->optionLabelGrahaType = $value;
     }
 
     public function setOptionLabelGrahaCallback($value)
@@ -271,6 +265,6 @@ class Renderer
         if (!is_callable($value)) {
             throw new Exception\RuntimeException("Function $value not supported.");
         }
-        $this->options['labelGrahaCallback'] = $value;
+        $this->optionLabelGrahaCallback = $value;
     }
 }

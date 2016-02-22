@@ -20,14 +20,13 @@ class NakshatraObject extends \Jyotish\Panchanga\AngaObject
     use \Jyotish\Base\Traits\OptionTrait;
     
     /**
-     * Options of nakshatra object.
-     * 
-     * @var array
+     * Calculation with Abhijit nakshatra.
+     *  
+     * @var bool
      */
-    protected $options = [
-        'withAbhijit' => false,
-    ];
-    
+    protected $optionWithAbhijit = false;
+
+
     /**
      * Anga type.
      * 
@@ -169,12 +168,11 @@ class NakshatraObject extends \Jyotish\Panchanga\AngaObject
     /**
      * Set nakshatra start and end.
      * 
-     * @param array $options Options to set
      * @return void
      */
-    protected function setNakshatraStartEnd($options)
+    protected function setNakshatraStartEnd()
     {
-        if ($options['withAbhijit']) {
+        if ($this->optionWithAbhijit) {
             switch ($this->nakshatraKey) {
             case 21:
                 $this->nakshatraStart = Math::dmsMulti(Nakshatra::$arc, 20);
@@ -194,7 +192,7 @@ class NakshatraObject extends \Jyotish\Panchanga\AngaObject
             }
         } else {
             if ($this->nakshatraKey == 28) {
-                throw new \Jyotish\Panchanga\Exception\InvalidArgumentException("Parameters of 28 nakshatra are determined only with argument 'withAbhijit' = true.");
+                throw new \Jyotish\Panchanga\Exception\InvalidArgumentException("Parameters of 28 nakshatra are determined only with option 'withAbhijit' = true.");
             }
 
             $this->nakshatraStart = Math::dmsMulti(Nakshatra::$arc, $this->nakshatraKey - 1);
@@ -229,7 +227,7 @@ class NakshatraObject extends \Jyotish\Panchanga\AngaObject
         
         $this->setOptions($options);
         
-        $this->setNakshatraStartEnd($this->options);
+        $this->setNakshatraStartEnd();
         $this->setNakshatraNavatara();
     }
 }

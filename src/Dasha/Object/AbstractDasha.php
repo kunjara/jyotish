@@ -24,14 +24,12 @@ abstract class AbstractDasha
     use \Jyotish\Base\Traits\OptionTrait;
     
     /**
-     * Options of dasha object.
+     * Nesting of periods.
      * 
-     * @var array
+     * @var int
      */
-    protected $options = [
-        'nesting' => 3,
-    ];
-    
+    protected $optionNesting = 3;
+
     /**
      * Dasha key
      * 
@@ -141,7 +139,7 @@ abstract class AbstractDasha
                 "Maximum nesting must be less than or equals 6."
             );
         }
-        $this->options['nesting'] = $nesting;
+        $this->optionNesting = $nesting;
     }
     
     /**
@@ -198,7 +196,7 @@ abstract class AbstractDasha
             }
 
             // Define subperiods
-            if ($nesting < $this->options['nesting']) {
+            if ($nesting < $this->optionNesting) {
                 $periodData['periods'][$graha]['order'] = $this->getOrderGraha($graha);
                 $periodData['periods'][$graha] = $this->getSubPeriods($periodData['periods'][$graha], $subperiodKey);
                 unset($periodData['periods'][$graha]['order']);
