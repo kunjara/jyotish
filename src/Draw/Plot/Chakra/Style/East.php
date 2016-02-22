@@ -57,6 +57,7 @@ final class East extends AbstractChakra
         $offsetCorner4 = $offsetBorder * 4;
         $rashis = $this->Analysis->getRashiInBhava($options['chakraVarga']);
 
+        $myPoints = [];
         foreach ($rashis as $rashi => $bhava) {
             $bhava = $rashi;
 
@@ -133,6 +134,7 @@ final class East extends AbstractChakra
         $offsetSum = [];
         $bodies = $this->Analysis->getBodyInRashi($options['chakraVarga']);
 
+        $myPoints = [];
         foreach ($bodies as $graha => $bhava) {
             if (!isset($offsetSum[$bhava])) $offsetSum[$bhava] = 0;
 

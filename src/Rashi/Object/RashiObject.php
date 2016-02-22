@@ -181,6 +181,7 @@ class RashiObject extends \Jyotish\Base\Object
      */
     protected function setRashiDrishtiBadhaksthana()
     {
+        $rashis = [];
         switch ($this->rashiBhava) {
             case Rashi::BHAVA_CHARA:
                 $rashis = array_diff([2, 5, 8, 11], [$this->objectKey + 1]);
@@ -195,6 +196,7 @@ class RashiObject extends \Jyotish\Base\Object
                 $badhak = 7;
         }
         
+        $drishti = [];
         foreach ($rashis as $rashi) {
            $drishti[$rashi] = 1;
         }

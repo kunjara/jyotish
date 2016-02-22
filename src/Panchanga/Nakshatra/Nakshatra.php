@@ -201,6 +201,7 @@ class Nakshatra
         $number = 1;
         $block = 1;
         
+        $navataras = [];
         foreach ($nakshatas as $key => $name) {
             $navataras[$key] = [
                 'block' => $block,

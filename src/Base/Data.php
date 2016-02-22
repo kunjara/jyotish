@@ -317,6 +317,7 @@ class Data
         if (is_null($blocks)) {
             $result = $dataVarga;
         } else {
+            $result = [];
             foreach ($blocks as $block) {
                 if (!in_array($block, self::$block)) {
                     throw new Exception\InvalidArgumentException("Block '$block' is not defined.");

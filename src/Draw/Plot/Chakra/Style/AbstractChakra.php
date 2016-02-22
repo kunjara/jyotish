@@ -91,6 +91,7 @@ abstract class AbstractChakra
      */
     public function getBhavaPoints($size, $leftOffset = 0, $topOffset = 0)
     {
+        $myPoints = [];
         foreach ($this->bhavaPoints as $bhavaKey => $bhavaPoints) {
             foreach ($bhavaPoints as $point => $value) {
                 if ($value != 0) {

@@ -68,6 +68,8 @@ class Analysis
         
         $karakas = Karaka::listKaraka($system);
         reset($karakas);
+        
+        $grahaKaraka = [];
         foreach ($grahas as $key => $data) {
             $grahaKaraka[$key] = current($karakas);
             next($karakas);
@@ -133,6 +135,7 @@ class Analysis
         $vargaKeyUcf = ucfirst($vargaKey);
         $data = $this->getVargaData($vargaKeyUcf);
         
+        $rulers = [];
         foreach ($bhavas as $bhava) {
             $Rashi = Rashi::getInstance($data['bhava'][$bhava]['rashi']);
             $rulers[] = $Rashi->rashiRuler;
@@ -171,7 +174,8 @@ class Analysis
     {
         $vargaKeyUcf = ucfirst($vargaKey);
         $data = $this->getVargaData($vargaKeyUcf);
-            
+        
+        $bodyInBhava = [];
         foreach ([Data::BLOCK_GRAHA, Data::BLOCK_LAGNA, Data::BLOCK_UPAGRAHA] as $block) {
             if (!isset($data[$block])) continue;
             
@@ -196,6 +200,7 @@ class Analysis
         $vargaKeyUcf = ucfirst($vargaKey);
         $data = $this->getVargaData($vargaKeyUcf);
         
+        $bodyInRashi = [];
         foreach ([Data::BLOCK_GRAHA, Data::BLOCK_LAGNA, Data::BLOCK_UPAGRAHA] as $block) {
             if (!isset($data[$block])) continue;
             

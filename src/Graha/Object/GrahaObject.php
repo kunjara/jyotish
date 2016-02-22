@@ -300,6 +300,7 @@ class GrahaObject extends Object
         if ($this->objectKey != $gFriend) $friends[] = $gFriend;
 
         $getRelation = function ($distance) use ($rashiMool) {
+            $grahas = [];
             foreach ($distance as $step) {
                 $r = Math::numberInCycle($rashiMool, $step);
                 $R = Rashi::getInstance((int) $r);

@@ -42,14 +42,16 @@ trait BhavaEnvironment {
    public function getTatkalikaMitra($withoutChaya = true)
    {
        $mitraBhava = [-4, -3, -2, 1, 2, 3];
+       $listOption = $withoutChaya ? Graha::LIST_SAPTA : Graha::LIST_NAVA;
+       $grahas = Graha::listGraha($listOption);
+       
+       $mitraRashi = [];
        foreach ($mitraBhava as $distance) {
            $rashi = Math::numberInCycle($this->objectRashi, $distance);
            $mitraRashi[$rashi] = $distance;
        }
        
-       $listOption = $withoutChaya ? Graha::LIST_SAPTA : Graha::LIST_NAVA;
-       $grahas = Graha::listGraha($listOption);
-       
+       $mitraGraha = [];
        foreach ($grahas as $key => $name) {
            $rashi = $this->getEnvironment()['graha'][$key]['rashi'];
            if (array_key_exists($rashi, $mitraRashi)) {

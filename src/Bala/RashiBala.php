@@ -70,6 +70,7 @@ class RashiBala extends Analysis
         $GrahaBala = new GrahaBala($this->Data);
         $grahaBala = $GrahaBala->getBala()['total'];
         
+        $bala = [];
         foreach (Rashi::$rashi as $key => $name) {
             $Rashi = Rashi::getInstance($key);
             $ruler = $Rashi->rashiRuler;
@@ -86,6 +87,7 @@ class RashiBala extends Analysis
      */
     protected function balaChara()
     {
+        $bala = [];
         foreach (Rashi::$rashi as $key => $name) {
             $Rashi = Rashi::getInstance($key);
             $bhava = $Rashi->rashiBhava;
@@ -112,6 +114,7 @@ class RashiBala extends Analysis
      */
     protected function balaSthira()
     {
+        $bala = [];
         foreach ($this->getData()['graha'] as $key => $value) {
             if ($key == Graha::KEY_RA || $key == Graha::KEY_KE) continue;
             $bala[$value['rashi']] = !isset($bala[$value['rashi']]) ? 10 : $bala[$value['rashi']] + 10;
@@ -128,6 +131,7 @@ class RashiBala extends Analysis
      */
     protected function balaDrishti()
     {
+        $bala = [];
         foreach (Rashi::$rashi as $rKey => $rName) {
             $Rashi = Rashi::getInstance($rKey)->setEnvironment($this->Data);
             $ruler = $Rashi->rashiRuler;

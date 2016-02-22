@@ -65,6 +65,7 @@ trait EnvironmentTrait
      */
     public function isAspectedByGraha($options = null)
     {
+        $isAspected = [];
         foreach (Graha::$graha as $key => $name) {
             $Graha = Graha::getInstance($key, $options);
             $grahaDrishti = $Graha->grahaDrishti;
@@ -90,6 +91,9 @@ trait EnvironmentTrait
      */
     public function isAspectedByRashi()
     {
+        $isAspected = [];
+        
+        $isAspected['rashi'] = [];
         foreach (Rashi::$rashi as $key => $name) {
             if ($key == $this->objectKey) continue;
             

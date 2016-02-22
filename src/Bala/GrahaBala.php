@@ -75,6 +75,7 @@ class GrahaBala extends Analysis
      */
     protected function balaMulatrikonadi()
     {
+        $bala = [];
         foreach ($this->balaGraha as $key => $name) {
             $Graha = Graha::getInstance($key)->setEnvironment($this->Data);
             $rashiAvastha = $Graha->getRashiAvastha();
@@ -114,9 +115,10 @@ class GrahaBala extends Analysis
     protected function balaAmsha()
     {
         $charaKaraka = $this->getCharaKaraka(false, Biblio::AUTHOR_JAIMINI);
-        $this->atmaKaraka = array_search(\Jyotish\Tattva\Karaka::NAME_ATMA, $charaKaraka);
+        $this->temp['atmaKaraka'] = array_search(\Jyotish\Tattva\Karaka::NAME_ATMA, $charaKaraka);
         $value = 70;
         
+        $bala = [];
         foreach ($charaKaraka as $key => $karaka) {
             $bala[$key] = $value;
             $value -= 10;
@@ -133,9 +135,10 @@ class GrahaBala extends Analysis
      */
     protected function balaKendradi()
     {
+        $bala = [];
         foreach ($this->balaGraha as $key => $name) {
             $distance = Math::distanceInCycle(
-                $this->getData()['graha'][$this->atmaKaraka]['rashi'], 
+                $this->getData()['graha'][$this->temp['atmaKaraka']]['rashi'], 
                 $this->getData()['graha'][$key]['rashi']
             );
             

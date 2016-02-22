@@ -156,6 +156,7 @@ trait GrahaEnvironment
         
         $avasthaBhaga = $grahaRashi % 2 ? $grahaBhaga : 30 - $grahaBhaga;
         
+        $avastha = [];
         switch ($avasthaBhaga) {
             case ($avasthaBhaga >= 0 && $avasthaBhaga < 6):
                 $avastha = Avastha::NAME_BALA;
@@ -185,6 +186,7 @@ trait GrahaEnvironment
     {
         $rashiAvastha = $this->getRashiAvastha();
         
+        $avastha = [];
         switch ($rashiAvastha) {
             case Rashi::GRAHA_UCHA:
             case Rashi::GRAHA_MOOL:
@@ -212,6 +214,7 @@ trait GrahaEnvironment
     {
         $rashiAvastha = $this->getRashiAvastha();
         
+        $avastha = [];
         switch ($rashiAvastha) {
             case Rashi::GRAHA_UCHA:
             case Rashi::GRAHA_MOOL:

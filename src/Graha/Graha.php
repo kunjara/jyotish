@@ -360,6 +360,7 @@ class Graha
      */
     public static function listGraha($option = self::LIST_NAVA)
     {
+        $list = [];
         switch ($option) {
             case self::LIST_SAPTA:
                 $list = array_slice(self::$graha, 0, 7);

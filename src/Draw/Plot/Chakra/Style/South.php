@@ -54,6 +54,7 @@ final class South extends AbstractChakra
         $ratio = round($options['chakraSize'] / 4);
         $rashis = $this->Analysis->getRashiInBhava($options['chakraVarga']);
 
+        $myPoints = [];
         foreach ($rashis as $rashi) {
             $bhava = $rashi;
 
@@ -89,6 +90,7 @@ final class South extends AbstractChakra
         $offsetSum = [];
         $bodies = $this->Analysis->getBodyInRashi($options['chakraVarga']);
 
+        $myPoints = [];
         foreach ($bodies as $graha => $bhava) {
             if (!isset($offsetSum[$bhava])) $offsetSum[$bhava] = 0;
 

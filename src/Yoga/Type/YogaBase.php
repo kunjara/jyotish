@@ -64,8 +64,12 @@ class YogaBase
     {
         $Graha1 = Graha::getInstance($graha1);
         $Graha2 = Graha::getInstance($graha2);
-        foreach ($Graha1->grahaSwa as $key => $data) $rashi1Swa[] = $data['rashi']; 
-        foreach ($Graha2->grahaSwa as $key => $data) $rashi2Swa[] = $data['rashi']; 
+        foreach ($Graha1->grahaSwa as $key => $data) {
+            $rashi1Swa[] = $data['rashi'];
+        }
+        foreach ($Graha2->grahaSwa as $key => $data) {
+            $rashi2Swa[] = $data['rashi'];
+        }
         
         if (
             in_array($this->getData()['graha'][$graha1]['rashi'], $rashi2Swa) && 
