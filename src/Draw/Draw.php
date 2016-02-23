@@ -71,6 +71,17 @@ class Draw
     public function drawText($text, $x, $y, array $options = null) {
         $this->Renderer->drawText($text, $x, $y, $options);
     }
+    
+    /**
+     * Draw polygon.
+     * 
+     * @param array $points An array containing the polygon's vertices.
+     * @param null|array $options
+     */
+    public function drawPolygon(array $points, array $options = null)
+    {
+        $this->Renderer->drawPolygon($points, $options);
+    }
 
     /**
      * Draw chakra.
