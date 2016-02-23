@@ -49,6 +49,12 @@ final class South extends AbstractChakra
         12 => [1, 1,   0, 1,   0, 0,   1, 0],
     ];
 
+    /**
+     * Get rashi label points.
+     * 
+     * @param array $options
+     * @return array
+     */
     public function getRashiLabelPoints(array $options)
     {
         $ratio = round($options['chakraSize'] / 4);
@@ -83,6 +89,12 @@ final class South extends AbstractChakra
         return $myPoints;
     }
 
+    /**
+     * Get body label points.
+     * 
+     * @param array $options
+     * @return array
+     */
     public function getBodyLabelPoints(array $options)
     {
         $ratio = round($options['chakraSize'] / 4);

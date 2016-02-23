@@ -109,7 +109,13 @@ abstract class AbstractChakra
         return $myPoints;
     }
 
+    /**
+     * Get rashi label points.
+     */
     abstract public function getRashiLabelPoints(array $options);
 
+    /**
+     * Get body label points.
+     */
     abstract public function getBodyLabelPoints(array $options);
 }

@@ -54,11 +54,15 @@ class Svg extends AbstractRenderer
         $this->appendRootElement('rect', ['width' => $width, 'height' => $height, 'fill' => 'white']);
     }
 
-    public function drawPolygon($points, array $options = null)
+    /**
+     * Draw polygon.
+     * 
+     * @param array $points An array containing the polygon's vertices.
+     * @param null|array $options
+     */
+    public function drawPolygon(array $points, array $options = null)
     {
-        if (isset($options)) {
-            $this->setOptions($options);
-        }
+        $this->setOptions($options);
         
         $colorSrokeRgb = Utility::htmlToRgb($this->optionStrokeColor);
         $colorStrokeString = 'rgb(' . implode(', ', $colorSrokeRgb) . ')';
@@ -83,11 +87,17 @@ class Svg extends AbstractRenderer
         $this->appendRootElement('polygon', $attributes);
     }
 
+    /**
+     * Draw text string.
+     * 
+     * @param string $text Text for drawing
+     * @param int $x x-coordinate
+     * @param int $y y-coordinate
+     * @param null|array $options
+     */
     public function drawText($text, $x = 0, $y = 0, array $options = null)
     {
-        if (isset($options)) {
-            $this->setOptions($options);
-        }
+        $this->setOptions($options);
         
         $colorRgb = Utility::htmlToRgb($this->optionFontColor);
         $color = 'rgb(' . implode(', ', $colorRgb) . ')';
@@ -134,14 +144,23 @@ class Svg extends AbstractRenderer
 
         $this->appendRootElement('text', $attributes, html_entity_decode($text, ENT_COMPAT | ENT_HTML5, 'UTF-8'));
     }
+    
+    /**
+     * Render the drawing.
+     */
+    public function render()
+    {
+        header("Content-Type: image/svg+xml");
+        echo $this->Resource->saveXML();
+    }
 
-    protected function appendRootElement($tagName, $attributes = [], $textContent = null)
+    private function appendRootElement($tagName, array $attributes = [], $textContent = null)
     {
         $newElement = $this->createElement($tagName, $attributes, $textContent);
         $this->svg->appendChild($newElement);
     }
 
-    protected function createElement($tagName, $attributes = [], $textContent = null)
+    private function createElement($tagName, array $attributes = [], $textContent = null)
     {
         $element = $this->Resource->createElement($tagName);
         foreach ($attributes as $k => $v) {
@@ -151,11 +170,5 @@ class Svg extends AbstractRenderer
             $element->appendChild(new DOMText((string) $textContent));
         }
         return $element;
-    }
-
-    public function render()
-    {
-        header("Content-Type: image/svg+xml");
-        echo $this->Resource->saveXML();
     }
 }

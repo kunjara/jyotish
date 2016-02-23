@@ -16,7 +16,7 @@ Trait OptionTrait
     /**
      * Set options for jyotish calculations.
      * 
-     * @param null|array $options Options to set(optional)
+     * @param null|array $options Options to set (optional)
      * @return OptionTrait
      * @throws Exception\InvalidArgumentException
      */

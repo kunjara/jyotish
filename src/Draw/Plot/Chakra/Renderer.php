@@ -103,7 +103,14 @@ class Renderer
         $this->drawBodyLabel($x, $y, $this->getOptions());
     }
     
-    protected function drawRashiLabel($x, $y, $options)
+    /**
+     * Draw rashi labels.
+     * 
+     * @param int $x
+     * @param int $y
+     * @param null|array $options
+     */
+    private function drawRashiLabel($x, $y, array $options = null)
     {
         if (isset($options['labelRashiFont'])) {
             $this->Renderer->setOptions($options['labelRashiFont']);
@@ -120,7 +127,14 @@ class Renderer
         }
     }
     
-    protected function drawBodyLabel($x, $y, $options)
+    /**
+     * Draw body labels.
+     * 
+     * @param int $x
+     * @param int $y
+     * @param null|array $options
+     */
+    private function drawBodyLabel($x, $y, array $options = null)
     {
         if (isset($options['labelGrahaFont'])) {
             $this->Renderer->setOptions($options['labelGrahaFont']);
@@ -154,7 +168,7 @@ class Renderer
      * @param array $options
      * @return string
      */
-    protected function getBodyLabel($body, array $options)
+    private function getBodyLabel($body, array $options)
     {
         switch ($options['labelGrahaType']) {
             case 0:
@@ -189,6 +203,13 @@ class Renderer
         return $grahaLabel;
     }
     
+    /**
+     * Set chakra varga.
+     * 
+     * @param string $value
+     * @return \Jyotish\Draw\Plot\Chakra\Renderer
+     * @throws Exception\UnexpectedValueException
+     */
     public function setOptionChakraVarga($value)
     {
         $valueUcf = ucfirst($value);
@@ -201,72 +222,121 @@ class Renderer
         return $this;
     }
 
+    /**
+     * Set chakra size. Chakra size should be greater than or equals 100.
+     * 
+     * @param int $value
+     * @return \Jyotish\Draw\Plot\Chakra\Renderer
+     * @throws Exception\OutOfRangeException
+     */
     public function setOptionChakraSize($value)
     {
         if (!is_numeric($value) || intval($value) < 100) {
             throw new Exception\OutOfRangeException(
-                    'Chakra size must be greater than 100.'
+                    'Chakra size should be greater than or equals 100.'
             );
         }
         $this->optionChakraSize = intval($value);
         return $this;
     }
 
+    /**
+     * Set chakra style. Chakra style provided should be 'north', 'south' or 'east'.
+     * 
+     * @param string $value
+     * @return \Jyotish\Draw\Plot\Chakra\Renderer
+     * @throws Exception\UnexpectedValueException
+     */
     public function setOptionChakraStyle($value)
     {
         if (!in_array($value, Chakra::$style)) {
             throw new Exception\UnexpectedValueException(
-                    "Invalid chakra style provided must be 'north', 'south' or 'east'."
+                    "Invalid chakra style provided should be 'north', 'south' or 'east'."
             );
         }
         $this->optionChakraStyle = strtolower($value);
         return $this;
     }
 
+    /**
+     * Set border offset. Border offset should be greater than or equals 0.
+     * 
+     * @param int $value
+     * @return \Jyotish\Draw\Plot\Chakra\Renderer
+     * @throws Exception\OutOfRangeException
+     */
     public function setOptionOffsetBorder($value)
     {
         if (!is_numeric($value) || intval($value) < 0) {
             throw new Exception\OutOfRangeException(
-                    'Border offset must be greater than or equals 0.'
+                    'Border offset should be greater than or equals 0.'
             );
         }
         $this->optionOffsetBorder = intval($value);
         return $this;
     }
 
+    /**
+     * Set width offset. Width offset should be greater than or equals 0.
+     * 
+     * @param int $value
+     * @return \Jyotish\Draw\Plot\Chakra\Renderer
+     * @throws Exception\OutOfRangeException
+     */
     public function setOptionWidthOffsetLabel($value)
     {
         if (!is_numeric($value) || intval($value) < 0) {
             throw new Exception\OutOfRangeException(
-                    'Label offset must be greater than or equals 0.'
+                    'Width offset should be greater than or equals 0.'
             );
         }
         $this->optionWidthOffsetLabel = intval($value);
         return $this;
     }
     
+    /**
+     * Set height offset. Height offset should be greater than or equals 0.
+     * 
+     * @param int $value
+     * @return \Jyotish\Draw\Plot\Chakra\Renderer
+     * @throws Exception\OutOfRangeException
+     */
     public function setOptionHeightOffsetLabel($value)
     {
         if (!is_numeric($value) || intval($value) < 0) {
             throw new Exception\OutOfRangeException(
-                    'Label offset must be greater than or equals 0.'
+                    'Height offset should be greater than or equals 0.'
             );
         }
         $this->optionHeightOffsetLabel = intval($value);
         return $this;
     }
 
+    /**
+     * Set graha label type. Label type provided should be 0, 1 or 2.
+     * 
+     * @param int $value
+     * @return \Jyotish\Draw\Plot\Chakra\Renderer
+     * @throws Exception\UnexpectedValueException
+     */
     public function setOptionLabelGrahaType($value)
     {
         if (!in_array($value, [0, 1, 2])) {
             throw new Exception\UnexpectedValueException(
-                    "Invalid label type provided must be 0, 1 or 2."
+                    "Invalid label type provided should be 0, 1 or 2."
             );
         }
         $this->optionLabelGrahaType = $value;
         return $this;
     }
 
+    /**
+     * Set callable function.
+     * 
+     * @param callable $value
+     * @return \Jyotish\Draw\Plot\Chakra\Renderer
+     * @throws Exception\RuntimeException
+     */
     public function setOptionLabelGrahaCallback($value)
     {
         if (!is_callable($value)) {

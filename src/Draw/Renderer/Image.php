@@ -37,11 +37,15 @@ class Image extends AbstractRenderer
         imagefill($this->Resource, 0, 0, $color);
     }
 
-    public function drawPolygon($points, array $options = null)
+    /**
+     * Draw polygon.
+     * 
+     * @param array $points An array containing the polygon's vertices.
+     * @param null|array $options
+     */
+    public function drawPolygon(array $points, array $options = null)
     {
-        if (isset($options)) {
-            $this->setOptions($options);
-        }
+        $this->setOptions($options);
         
         $colorRgb = Utility::htmlToRgb($this->optionStrokeColor);
         $color = $this->allocateColor($this->Resource, $colorRgb['r'], $colorRgb['g'], $colorRgb['b']);
@@ -53,11 +57,18 @@ class Image extends AbstractRenderer
         imagepolygon($this->Resource, $points, $numPoints, $color);
     }
 
+    /**
+     * Draw text string.
+     * 
+     * @param string $text Text for drawing
+     * @param int $x x-coordinate
+     * @param int $y y-coordinate
+     * @param array $options
+     * @throws Exception\RuntimeException
+     */
     public function drawText($text, $x = 0, $y = 0, array $options = null)
     {
-        if (isset($options)) {
-            $this->setOptions($options);
-        }
+        $this->setOptions($options);
         
         $colorRgb = Utility::htmlToRgb($this->optionFontColor);
         $color = $this->allocateColor($this->Resource, $colorRgb['r'], $colorRgb['g'], $colorRgb['b']);
@@ -94,7 +105,7 @@ class Image extends AbstractRenderer
                 case 'middle':
                     $positionY = $y - $fontHeight / 2;
                     break;
-                case 'bottom' :
+                case 'bottom':
                     $positionY = $y - $fontHeight + 1;
                     break;
             }
@@ -154,10 +165,17 @@ class Image extends AbstractRenderer
         }
     }
 
+    /**
+     * Set font name.
+     * 
+     * @param null|int|string $value
+     * @return \Jyotish\Draw\Renderer\Image
+     * @throws Exception\InvalidArgumentException
+     */
     public function setOptionFontName($value)
     {
         if (!is_null($value) && !is_int($value) && !is_string($value)) {
-            throw new Exception\InvalidArgumentException("Options 'fontName' must be null, integer or name of font.");
+            throw new Exception\InvalidArgumentException("Options 'fontName' should be null, integer or name of font.");
         } else {
             if (is_string($value) && !file_exists($value)) {
                 throw new Exception\InvalidArgumentException("The font '$value' does not exist.");
@@ -165,15 +183,11 @@ class Image extends AbstractRenderer
         }
         $this->optionFontName = $value;
         return $this;
-        
     }
-
-    public function allocateColor($image, $r, $g, $b, $alpha = 100)
-    {
-        $alpha = $this->_convertAlpha($alpha);
-        return(imagecolorallocatealpha($image, $r, $g, $b, $alpha));
-    }
-
+    
+    /**
+     * Render the drawing.
+     */
     public function render()
     {
         header('Content-type: image/png');
@@ -181,8 +195,9 @@ class Image extends AbstractRenderer
         imagedestroy($this->Resource);
     }
 
-    private function _convertAlpha($alphaValue)
+    private function allocateColor($image, $r, $g, $b, $alpha = 100)
     {
-        return((127 / 100) * (100 - $alphaValue));
+        $alphaValue = (127 / 100) * (100 - $alpha);
+        return(imagecolorallocatealpha($image, $r, $g, $b, $alphaValue));
     }
 }

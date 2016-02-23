@@ -46,59 +46,102 @@ abstract class AbstractRenderer
     
     protected $optionFillColor = 'fff';
 
+    /**
+     * Set top offset. Top offset should be greater than or equals 0.
+     * 
+     * @param int $value
+     * @return \Jyotish\Draw\Renderer\AbstractRenderer
+     * @throws Exception\OutOfRangeException
+     */
     public function setOptionTopOffset($value)
     {
         if (!is_numeric($value) || intval($value) < 0) {
             throw new Exception\OutOfRangeException(
-                    'Vertical position must be greater than or equals 0.'
+                    'Top offset should be greater than or equals 0.'
             );
         }
         $this->optionTopOffset = intval($value);
         return $this;
     }
 
+    /**
+     * Set left offset. Left offset should be greater than or equals 0.
+     * 
+     * @param int $value
+     * @return \Jyotish\Draw\Renderer\AbstractRenderer
+     * @throws Exception\OutOfRangeException
+     */
     public function setOptionLeftOffset($value)
     {
         if (!is_numeric($value) || intval($value) < 0) {
             throw new Exception\OutOfRangeException(
-                    'Horizontal position must be greater than or equals 0.'
+                    'Left offset should be greater than or equals 0.'
             );
         }
         $this->optionLeftOffset = intval($value);
         return $this;
     }
 
+    /**
+     * Set font size. Font size should be greater than or equals 8.
+     * 
+     * @param int $value
+     * @return \Jyotish\Draw\Renderer\AbstractRenderer
+     * @throws Exception\OutOfRangeException
+     */
     public function setOptionFontSize($value)
     {
         if (!is_numeric($value) || intval($value) < 8) {
             throw new Exception\OutOfRangeException(
-                    'Font size must be greater than or equals 8.'
+                    'Font size should be greater than or equals 8.'
             );
         }
         $this->optionFontSize = intval($value);
         return $this;
     }
 
+    /**
+     * Set font color.
+     * 
+     * @param string $value
+     * @return \Jyotish\Draw\Renderer\AbstractRenderer
+     */
     public function setOptionFontColor($value)
     {
         $this->optionFontColor = $value;
         return $this;
     }
 
+    /**
+     * Set stroke width. Stroke width should be greater than or equals 0.
+     * 
+     * @param int $value
+     * @return \Jyotish\Draw\Renderer\AbstractRenderer
+     * @throws Exception\OutOfRangeException
+     */
     public function setOptionStrokeWidth($value)
     {
         if (!is_numeric($value) || floatval($value) < 0) {
             throw new Exception\OutOfRangeException(
-                    'Stroke width must be greater than or equals 0.'
+                    'Stroke width should be greater than or equals 0.'
             );
         }
         $this->optionStrokeWidth = $value;
         return $this;
     }
 
-    abstract public function drawPolygon($points, array $options = null);
+    /**
+     * Draw polygon.
+     */
+    abstract public function drawPolygon(array $points, array $options = null);
 
+    /**
+     * Draw text string.
+     */
     abstract public function drawText($text, $x, $y, array $options = null);
 
+    /**
+     * Render the drawing.
+     */
     abstract public function render();
 }
