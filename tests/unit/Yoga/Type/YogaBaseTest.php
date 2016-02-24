@@ -7,7 +7,6 @@
 namespace JyotishTest\Yoga\Type;
 
 use Jyotish\Yoga\Type\YogaBase;
-use Jyotish\Graha\Graha;
 use Jyotish\Base\Data;
 use Jyotish\Base\Import\ArraySource;
 
@@ -22,7 +21,52 @@ class YogaBaseTest extends \PHPUnit_Framework_TestCase
     {
         parent::setUp();
         
-        $this->dataSource = require_once 'data/array-source.php';
+        require 'data/array-source.php';
+        $this->dataSource = $dataSource;
+    }
+    
+    /**
+     * @covers Jyotish\Yoga\Type\YogaBase::__construct
+     */
+    public function testConstructor()
+    {
+        $YogaBase = new YogaBase([
+            'outputAmple' => true,
+            'optionOutputAmple' => false,
+            'someOption' => 'someValue',
+        ]);
+        $this->assertEquals(['outputAmple' => true], $YogaBase->getOptions());
+    }
+
+    /**
+     * @covers Jyotish\Yoga\Type\YogaBase::hasParivarthana
+     * @expectedException InvalidArgumentException
+     */
+    public function testHasParivarthana()
+    {
+        $Source = new ArraySource($this->dataSource->NativParivarthana1);
+        $Data = Data::createFromImport($Source);
+        
+        $YogaBase = new YogaBase();
+        $YogaBase->setData($Data);
+        $this->assertTrue($YogaBase->hasParivarthana('Sy', 'Ch'));
+        $this->assertTrue($YogaBase->hasParivarthana('Gu', 'Ma'));
+        $this->assertTrue($YogaBase->hasParivarthana('Bu', 'Sk'));
+        $this->assertFalse($YogaBase->hasParivarthana('Gu', 'Sy'));
+        $this->assertFalse($YogaBase->hasParivarthana('Gu', 'Sa'));
+        
+        $YogaBase = new YogaBase([
+            'outputAmple' => true,
+        ]);
+        $YogaBase->setData($Data);
+        $this->assertEquals('maha', $YogaBase->hasParivarthana('Sy', 'Ch'));
+        $this->assertEquals('dainya', $YogaBase->hasParivarthana('Gu', 'Ma'));
+        $this->assertEquals('khala', $YogaBase->hasParivarthana('Bu', 'Sk'));
+        $this->assertFalse($YogaBase->hasParivarthana('Sy', 'Ma'));
+        $this->assertFalse($YogaBase->hasParivarthana('Gu', 'Bu'));
+        
+        // testing exception
+        $this->assertFalse($YogaBase->hasParivarthana('Gu', 'Gu'));
     }
     
     /**
@@ -33,7 +77,7 @@ class YogaBaseTest extends \PHPUnit_Framework_TestCase
     {
         $YogaBase = new YogaBase();
         
-        $Source = new ArraySource($this->dataSource['NativMahapurusha1']);
+        $Source = new ArraySource($this->dataSource->NativMahapurusha1);
         $Data = Data::createFromImport($Source);
         $YogaBase->setData($Data);
         $this->assertFalse($YogaBase->hasMahapurusha('Ma'));
@@ -42,7 +86,7 @@ class YogaBaseTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($YogaBase->hasMahapurusha('Bu'));
         $this->assertFalse($YogaBase->hasMahapurusha('Sa'));
         
-        $Source = new ArraySource($this->dataSource['NativMahapurusha2']);
+        $Source = new ArraySource($this->dataSource->NativMahapurusha2);
         $Data = Data::createFromImport($Source);
         $YogaBase->setData($Data);
         $this->assertTrue($YogaBase->hasMahapurusha('Ma'));

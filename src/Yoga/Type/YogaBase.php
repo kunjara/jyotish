@@ -58,10 +58,14 @@ class YogaBase
      * @param string $graha1 Key of graha
      * @param string $graha2 Key of graha
      * @return bool
+     * @throws Exception\InvalidArgumentException
      * @see Mantreswara. Phaladeepika. Chapter 6, Verse 32.
      */
     public function hasParivarthana($graha1, $graha2)
     {
+        if ($graha1 == $graha2) {
+            throw new \Jyotish\Yoga\Exception\InvalidArgumentException("Graha keys should be different.");
+        }
         $Graha1 = Graha::getInstance($graha1);
         $Graha2 = Graha::getInstance($graha2);
         foreach ($Graha1->grahaSwa as $key => $data) {
