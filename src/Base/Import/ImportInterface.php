@@ -11,7 +11,8 @@ namespace Jyotish\Base\Import;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-interface ImportInterface {
+interface ImportInterface
+{
     /**
      * Get import data.
      * 

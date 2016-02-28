@@ -15,7 +15,8 @@ use Jyotish\Ganita\Math;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class ArraySource extends SourceBase {
+class ArraySource extends SourceBase
+{
     /**
      * Data template.
      * 

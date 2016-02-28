@@ -7,6 +7,7 @@ return [
             'timezone' => '-08:00',
             'longitude' => -122.42,
             'latitude' => 37.77,
+            'altitude' => 63,
         ],
         'graha' => [
             'Sy' => ['longitude' => 311.956968, 'speed' => 1.0063896],

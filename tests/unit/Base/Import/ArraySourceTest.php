@@ -20,8 +20,8 @@ class ArraySourceTest extends \PHPUnit_Framework_TestCase
     {
         parent::setUp();
         
-        $this->dataSource = require_once 'data/array-source.php';
-        $this->dataExpected = require_once 'data/data-expected.php';
+        $this->dataSource = require_once 'data/array/array-source.php';
+        $this->dataExpected = require_once 'data/array/data-expected.php';
     }
     
     /**
