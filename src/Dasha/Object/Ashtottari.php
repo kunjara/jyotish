@@ -55,12 +55,12 @@ class Ashtottari extends AbstractDasha
      * 
      * @param null|array $options Options to set (optional)
      */
-    public function __construct($options = null)
+    public function __construct(array $options = null)
     {
         parent::__construct($options);
         
         $nakshatras = Nakshatra::listNakshatra(true);
-        $this->orderNakshatra = Math::shiftArray($nakshatras, 6, true);
+        $this->orderNakshatra = Math::shiftArray($nakshatras, 6);
     }
 
     /**

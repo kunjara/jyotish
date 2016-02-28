@@ -33,6 +33,7 @@ class Parivarthana extends YogaBase
     {
         $saptaGraha = Graha::listGraha(Graha::LIST_SAPTA);
         
+        $grahaChecked = [];
         foreach ($saptaGraha as $key1 => $name1) {
             $grahaChecked[] = $key1;
             

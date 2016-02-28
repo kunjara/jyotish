@@ -147,7 +147,7 @@ class NakshatraObject extends \Jyotish\Panchanga\AngaObject
     /**
      * Navatara of nakshatra.
      * 
-     * @var string
+     * @var int
      */
     protected $nakshatraNavatara;
 

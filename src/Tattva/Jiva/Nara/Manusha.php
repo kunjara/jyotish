@@ -117,7 +117,7 @@ class Manusha extends \Jyotish\Tattva\Jiva\Nara {
         /**
      * Get list of varnas.
      * 
-     * @param string $option The option to list varnas.
+     * @param null|int $option The option to list varnas.
      * @return array List of varnas.
      */
     public static function listVarna($option = null)

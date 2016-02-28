@@ -133,7 +133,6 @@ class Data
         
         switch ($mode) {
             case 'all':
-                $list = $blocks;
                 break;
             case 'worising':
                 unset($blocks[self::BLOCK_RISING]);

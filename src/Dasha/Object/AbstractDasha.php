@@ -69,9 +69,9 @@ abstract class AbstractDasha
     /**
      * Constructor
      * 
-     * @param null|array $options Options to set
+     * @param null|array $options Options to set (optional)
      */
-    public function __construct($options)
+    public function __construct(array $options = null)
     {
         $this->setOptions($options);
     }
@@ -141,6 +141,8 @@ abstract class AbstractDasha
             );
         }
         $this->optionNesting = $nesting;
+        
+        return $this;
     }
     
     /**

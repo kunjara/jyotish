@@ -213,11 +213,11 @@ class Time
         $offsetInterval = new DateInterval('PT'.abs($offsetSecond).'S');
 
         $seconds = $offsetInterval->s;
-        $offsetInterval->h = floor($seconds/60/60);
+        $offsetInterval->h = (int)floor($seconds/60/60);
         $seconds -= $offsetInterval->h * 3600;
-        $offsetInterval->i = floor($seconds/60);
+        $offsetInterval->i = (int)floor($seconds/60);
         $seconds -= $offsetInterval->i * 60;
-        $offsetInterval->s = $seconds;
+        $offsetInterval->s = (int)$seconds;
 
         $offsetFormat = $offsetInterval->format($format);
         $result = $offsetSecond < 0 ? '-' . $offsetFormat : $offsetFormat;

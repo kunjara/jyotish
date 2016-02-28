@@ -196,7 +196,7 @@ class Nakshatra
             throw new \Jyotish\Panchanga\Exception\InvalidArgumentException("Nakshatra with the key '$nakshatraKey' does not exist.");
         }
         
-        $nakshatas = Math::shiftArray(self::listNakshatra(), $nakshatraKey, true);
+        $nakshatas = Math::shiftArray(self::listNakshatra(), $nakshatraKey);
 
         $number = 1;
         $block = 1;

@@ -107,7 +107,7 @@ class Swetest extends AbstractGanita
     /**
      * Calculation of coordinates and other parameters of planets and houses.
      * 
-     * @param array $params Array of blocks (optional)
+     * @param null|array $params Array of blocks (optional)
      * @param null|array $options Options to set (optional)
      * @return array
      */
@@ -197,7 +197,7 @@ class Swetest extends AbstractGanita
      * @param array $params Array of blocks
      * @return array
      */
-    private function formatParams($input, $params)
+    private function formatParams(array $input, $params)
     {
         $dataParams = [];
         if (is_null($params) || (in_array(Data::BLOCK_GRAHA, $params) && in_array(Data::BLOCK_BHAVA, $params))) {

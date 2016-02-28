@@ -128,8 +128,6 @@ class R5 extends RashiObject
 
     /**
      * Set rashi type.
-     * 
-     * @param null|array $options Options to set
      */
     protected function setRashiType()
     {

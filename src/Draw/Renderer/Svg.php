@@ -8,6 +8,7 @@ namespace Jyotish\Draw\Renderer;
 
 use Jyotish\Base\Utility;
 use DOMDocument;
+use DOMElement;
 use DOMText;
 
 /**
@@ -24,6 +25,13 @@ class Svg extends AbstractRenderer
      */
     protected $rendererName = \Jyotish\Draw\Draw::RENDERER_SVG;
     
+    /**
+     * SVG eletment.
+     * 
+     * @var DOMElement
+     */
+    protected $svg;
+
     protected $optionAttributes = [];
     
     /**

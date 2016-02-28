@@ -106,15 +106,12 @@ class JagannathaHora extends SourceBase
     {
         $valueArray = $this->convertValue($value);
         
-        if ($isTimezone) {
-            $sign = $valueArray['d'] < 0 ? '+' : ($valueArray['d'] > 0 ? '-' : '');
-        }
-        
         $hours = abs($valueArray['d']);
         $hours = sprintf('%02d', $hours);
         $minutes = sprintf('%02d', $valueArray['m']);
         
         if ($isTimezone) {
+            $sign = $valueArray['d'] < 0 ? '+' : ($valueArray['d'] > 0 ? '-' : '');
             $result = $sign . $hours . ':' . $minutes;
         } else {
             $seconds = sprintf('%02d', $valueArray['s']);
@@ -145,7 +142,7 @@ class JagannathaHora extends SourceBase
     }
 
     /**
-     * Convert JH value to habitual value array: [units, minutes, seconds].
+     * Convert JH value to value array: [units, minutes, seconds].
      * 
      * @param string $value
      * @return array
@@ -154,6 +151,7 @@ class JagannathaHora extends SourceBase
     {
         $valueArray = explode('.', $value);
         
+        $result = [];
         $result['d'] = (int)$valueArray[0];
         $result['m'] = (int)substr($valueArray[1], 0, 2);
         $result['s'] = 60 * (substr($valueArray[1], 2, 2) / 100);

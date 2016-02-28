@@ -76,7 +76,7 @@ class Draw
      * Draw polygon.
      * 
      * @param array $points An array containing the polygon's vertices.
-     * @param null|array $options
+     * @param null|array $options Options to set (optional)
      */
     public function drawPolygon(array $points, array $options = null)
     {

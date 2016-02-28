@@ -34,6 +34,13 @@ class AngaDefiner
      * @var array
      */
     private $angaInfo = [];
+    
+    /**
+     * Clone of this object.
+     * 
+     * @var AngaDefiner
+     */
+    private $AngaDefiner;
 
     /**
      * Constructor
