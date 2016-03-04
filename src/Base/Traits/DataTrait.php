@@ -18,7 +18,7 @@ trait DataTrait
     /**
      * Instance of Data.
      * 
-     * @var Data
+     * @var \Jyotish\Base\Data
      */
     protected $Data = null;
     
@@ -27,13 +27,13 @@ trait DataTrait
      * 
      * @var array;
      */
-    protected $temp = null;
+    protected $temp = [];
 
     /**
      * Set Data.
      * 
      * @param \Jyotish\Base\Data $Data
-     * @return DataTrait
+     * @return mixed
      */
     public function setData(\Jyotish\Base\Data $Data)
     {

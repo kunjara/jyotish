@@ -20,15 +20,22 @@ trait EnvironmentTrait
     /**
      * Instance of Data.
      * 
-     * @var Data
+     * @var \Jyotish\Base\Data
      */
     protected $Data = null;
+    
+    /**
+     * Rashi, where object is located.
+     * 
+     * @var int
+     */
+    protected $objectRashi = null;
 
     /**
      * Set environment.
      * 
      * @param \Jyotish\Base\Data $Data
-     * @return EnvironmentTrait
+     * @return \Jyotish\Base\Object
      */
     public function setEnvironment(\Jyotish\Base\Data $Data)
     {

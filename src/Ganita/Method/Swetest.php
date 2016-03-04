@@ -193,11 +193,11 @@ class Swetest extends AbstractGanita
     /**
      * Format params.
      * 
-     * @param array $input Input data
-     * @param array $params Array of blocks
+     * @param array $input Swetest data
+     * @param null|array $params Array of blocks (optional)
      * @return array
      */
-    private function formatParams(array $input, $params)
+    private function formatParams(array $input, array $params = null)
     {
         $dataParams = [];
         if (is_null($params) || (in_array(Data::BLOCK_GRAHA, $params) && in_array(Data::BLOCK_BHAVA, $params))) {

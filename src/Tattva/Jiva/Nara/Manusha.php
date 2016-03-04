@@ -126,7 +126,6 @@ class Manusha extends \Jyotish\Tattva\Jiva\Nara {
             case 4:
                 $list = array_slice(self::$varna, 0, 4);
                 break;
-            case null:
             default:
                 $list = self::$varna;
         }

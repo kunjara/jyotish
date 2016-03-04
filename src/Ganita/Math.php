@@ -358,6 +358,7 @@ class Math
             return $number;
         } else {
             $numString = strval($number);
+            $num = 0;
             while ($numString[$i] != '') {
                 $num += $numString[$i];
                 $i += 1;

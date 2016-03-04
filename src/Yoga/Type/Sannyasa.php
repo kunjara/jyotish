@@ -47,7 +47,7 @@ class Sannyasa extends YogaBase
     /**
      * Set Data
      * 
-     * @param Data $Data
+     * @param \Jyotish\Base\Data $Data
      * @return Sannyasa
      */
     public function setData(Data $Data)

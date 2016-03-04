@@ -294,8 +294,8 @@ class Bu extends GrahaObject
     /**
      * Set environment.
      * 
-     * @param Data $Data
-     * @return Bu
+     * @param \Jyotish\Base\Data $Data
+     * @return \Jyotish\Graha\Object\Bu
      */
     public function setEnvironment(Data $Data)
     {

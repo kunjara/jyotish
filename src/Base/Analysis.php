@@ -155,7 +155,7 @@ class Analysis
         $vargaKeyUcf = ucfirst($vargaKey);
         $data = $this->getVargaData($vargaKeyUcf);
             
-        if (is_null($this->temp['rashiInBhava'][$vargaKeyUcf])) {
+        if (!isset($this->temp['rashiInBhava'][$vargaKeyUcf])) {
             foreach ($data['bhava'] as $bhava => $params) {
                 $rashi = $params['rashi'];
                 $this->temp['rashiInBhava'][$vargaKeyUcf][$rashi] = $bhava;

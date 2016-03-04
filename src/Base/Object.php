@@ -26,16 +26,9 @@ class Object
     /**
      * Abbreviation of the object.
      * 
-     * @var mixed
+     * @var string|int
      */
     protected $objectKey = null;
-    
-    /**
-     * Rashi, where object is located.
-     * 
-     * @var int
-     */
-    protected $objectRashi = null;
 
     /**
      * Main name of the object.

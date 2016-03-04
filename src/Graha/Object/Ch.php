@@ -283,8 +283,8 @@ class Ch extends GrahaObject
     /**
      * Set environment.
      * 
-     * @param Data $Data
-     * @return Ch
+     * @param \Jyotish\Base\Data $Data
+     * @return \Jyotish\Graha\Object\Ch
      */
     public function setEnvironment(Data $Data)
     {

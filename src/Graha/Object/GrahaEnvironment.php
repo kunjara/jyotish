@@ -64,7 +64,6 @@ trait GrahaEnvironment
                     $bhava = is_null($swa[0]['rashi']) ? null : $getBhava($swa[0]['rashi']);
                 }
                 break;
-            case null:
             default:
                 $grahaRashi = $this->getEnvironment()['graha'][$this->objectKey]['rashi'];
                 $bhava = $getBhava($grahaRashi);
@@ -484,6 +483,7 @@ trait GrahaEnvironment
             case Graha::PUSHKARA_NAVAMSHA:
             default:
                 $numNavamsha = null;
+                $degNavamsha = [];
                 for ($i = 0; $i <= 1; $i++) {
                     $degNavamsha['start'] = (Rashi::$pushkaraNavamsha[$rashiGraha][$i] - 1) * $valNavamsha;
                     $degNavamsha['end'] = $degNavamsha['start'] + $valNavamsha;

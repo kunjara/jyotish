@@ -51,7 +51,7 @@ class Dhana extends YogaBase
     /**
      * Set Data
      * 
-     * @param Data $Data
+     * @param \Jyotish\Base\Data $Data
      * @return Dhana
      */
     public function setData(Data $Data)

@@ -35,24 +35,27 @@ class GrahaObject extends Object
      * @var bool
      */
     protected $optionRelationSame = false;
+    
     /**
      * Relationship between the chaya grahas.
      * 
-     * @var 
+     * @var string
      */
-    protected $optionRelationChaya = '';
+    protected $optionRelationChaya;
+    
     /**
      * Data source of specific rashi for chaya grahas.
      * 
      * @var string
      */
     protected $optionSpecificRashi = Biblio::BOOK_BPHS;
+    
     /**
      * Drishti for Rahu.
      * 
-     * @var 
+     * @var string
      */
-    protected $optionDrishtiRahu = '';
+    protected $optionDrishtiRahu;
 
     /**
      * Unicode of the Graha.
@@ -68,7 +71,6 @@ class GrahaObject extends Object
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 2, Verse 2.
      */
     protected $grahaAmsha;
-
 
     /**
      * Avatara of the Graha.
