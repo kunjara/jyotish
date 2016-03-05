@@ -133,20 +133,18 @@ class Data
         
         switch ($mode) {
             case 'all':
-                break;
-            case 'worising':
-                unset($blocks[self::BLOCK_RISING]);
-                unset($blocks[self::BLOCK_USER]);
-                break;
+                return self::$block;
             case 'main':
                 return [self::BLOCK_BHAVA, self::BLOCK_GRAHA, self::BLOCK_LAGNA];
+            case 'worising':
+                unset($blocks[self::BLOCK_RISING], $blocks[self::BLOCK_USER]);
                 break;
             case 'calc':
             default:
                 unset($blocks[self::BLOCK_USER]);
         }
-        $blocks = array_flip($blocks);
-        return $blocks;
+        $list = array_flip($blocks);
+        return $list;
     }
     
     /**
@@ -203,11 +201,20 @@ class Data
     }
     
     /**
-     * Clone
+     * Clone data.
      */
     public function __clone()
     {
         $this->DateTime = clone $this->DateTime;
+    }
+    
+    /**
+     * Return a string representation of the data.
+     * 
+     * @return string
+     */
+    public function __toString() {
+        return json_encode($this->data);
     }
 
     /**
@@ -281,7 +288,7 @@ class Data
     }
 
     /**
-     * Get DateTime object
+     * Get DateTime object.
      * 
      * @return DateTime
      */
@@ -291,7 +298,7 @@ class Data
     }
     
     /**
-     * Get Locality object
+     * Get Locality object.
      * 
      * @return Locality
      */
