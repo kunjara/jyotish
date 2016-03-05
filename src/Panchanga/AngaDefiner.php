@@ -38,9 +38,9 @@ class AngaDefiner
     /**
      * Clone of this object.
      * 
-     * @var AngaDefiner
+     * @var null|AngaDefiner
      */
-    private $AngaDefiner;
+    private $AngaDefiner = null;
 
     /**
      * Constructor
@@ -50,9 +50,7 @@ class AngaDefiner
     public function __construct(\Jyotish\Base\Data $Data)
     {
         $this->setData($Data);
-        
         $this->setAngaInfo();
-        $this->AngaDefiner = clone $this;
     }
     
     /**
@@ -83,6 +81,7 @@ class AngaDefiner
         $tithiUnits = Math::partsToUnits(($lngCh - $lngSy), $unit);
         $tithiObject = Tithi::getInstance($tithiUnits['units']);
 
+        $tithi = [];
         $tithi['anga'] = Panchanga::ANGA_TITHI;
         $tithi['key'] = $tithiUnits['units'];
         $tithi['name'] = Tithi::$tithi[$tithi['key']];
@@ -90,8 +89,10 @@ class AngaDefiner
         $tithi['left'] = ($unit - $tithiUnits['parts']) * 100 / $unit;
 
         if ($withLimit) {
+            $this->AngaDefiner = clone $this;
             $limit = $this->getAngaLimit($tithi);
             $tithi['end'] = $limit;
+            $this->AngaDefiner = null;
         }
 
         $this->temp['tithi'] = $tithi;
@@ -127,6 +128,7 @@ class AngaDefiner
         
         $nakshatraUnits = Math::partsToUnits($lngGraha, $unit);
 
+        $nakshatra = [];
         $nakshatra['anga'] = Panchanga::ANGA_NAKSHATRA;
         if ($withAbhijit) {
             if ($nakshatraUnits['units'] == 21 || $nakshatraUnits['units'] == 22) {
@@ -179,8 +181,10 @@ class AngaDefiner
         }
 
         if ($withLimit) {
+            $this->AngaDefiner = clone $this;
 			$limit = $this->getAngaLimit($nakshatra);
             $nakshatra['end'] = $limit;
+            $this->AngaDefiner = null;
         }
 
         return $nakshatra;
@@ -208,14 +212,17 @@ class AngaDefiner
 
         $yogaUnits = Math::partsToUnits($lngSum, $unit);
 
+        $yoga = [];
         $yoga['anga'] = Panchanga::ANGA_YOGA;
         $yoga['key'] = $yogaUnits['units'];
         $yoga['name'] = Yoga::$yoga[$yoga['key']];
         $yoga['left'] = ($unit - $yogaUnits['parts']) * 100 / $unit;
 
         if ($withLimit) {
+            $this->AngaDefiner = clone $this;
             $limit = $this->getAngaLimit($yoga);
             $yoga['end'] = $limit;
+            $this->AngaDefiner = null;
         }
 
         return $yoga;
@@ -238,6 +245,8 @@ class AngaDefiner
         $weekNumber = $DateTime->format('w');
         $dataRising = $this->getData()['rising'][Graha::KEY_SY];
         
+        $DateRising = [];
+        $dateRisingU = [];
         foreach ($dataRising as $i => $data) {
             $DateRising[$i] = new DateTime($data['rising'], $TimeZone);
             $dateRisingU[$i] = $DateRising[$i]->format('U');
@@ -253,6 +262,7 @@ class AngaDefiner
         
         $duration = $dateRisingU[2] - $dateRisingU[1];
 
+        $vara = [];
         $vara['anga'] = Panchanga::ANGA_VARA;
         $vara['left'] = ($dateRisingU[$risingIndex] - $dateTimeU) * 100 / $duration;
         $vara['key'] = array_keys(Vara::$vara)[$varaNumber];
@@ -279,6 +289,7 @@ class AngaDefiner
             $this->getTithi($withLimit);
         }
         
+        $karana = [];
         if ($this->temp['tithi']['left'] < 50) {
             $number = 2;
             $left = $this->temp['tithi']['left'];
@@ -356,11 +367,11 @@ class AngaDefiner
     }
 
     /**
-     * Calculate end time of anga.
+     * Recursively calculate end time of anga.
      * 
      * @param array $anga
      * @param string $modify
-     * @return array
+     * @return string
      */
     private function getAngaLimit($anga, $modify = 'add')
     {
@@ -380,7 +391,6 @@ class AngaDefiner
             if ($anga['anga'] == Panchanga::ANGA_NAKSHATRA) {
                 $angaTemp = $this->AngaDefiner->$function(false, $anga['abhijit']);
             } else {
-                $this->temp = null;
                 $angaTemp = $this->AngaDefiner->$function();
             }
             

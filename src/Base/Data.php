@@ -201,6 +201,14 @@ class Data
             $this->setGanita($Ganita);
         }
     }
+    
+    /**
+     * Clone
+     */
+    public function __clone()
+    {
+        $this->DateTime = clone $this->DateTime;
+    }
 
     /**
      * Set date and time.
