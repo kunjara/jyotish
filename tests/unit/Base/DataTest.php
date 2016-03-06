@@ -16,6 +16,43 @@ use DateTimeZone;
  */
 class DataTest extends \PHPUnit_Framework_TestCase
 {
+    private $dataArray = [
+        'user' => [
+            'datetime' => '1955-02-24 06:00:00',
+            'timezone' => '-08:00',
+            'longitude' => -122.42,
+            'latitude' => 37.77,
+        ],
+        'graha' => [
+            'Sy' => ['longitude' => 311.956968, 'speed' => 1.0063896, 'rashi' => 11, 'degree' => 11.956968],
+            'Ch' => ['longitude' => 336.7057373, 'speed' => 14.0983489, 'rashi' => 12, 'degree' => 6.7057373],
+            'Ma' => ['longitude' => 5.4673084, 'speed' => 0.7021034, 'rashi' => 1, 'degree' => 5.4673084],
+            'Bu' => ['longitude' => 291.1617028, 'speed' => -0.0963315, 'rashi' => 10, 'degree' => 21.1617028],
+            'Gu' => ['longitude' => 87.3075743, 'speed' => -0.0647127, 'rashi' => 3, 'degree' => 27.3075743],
+            'Sk' => ['longitude' => 267.3090162, 'speed' => 1.135481, 'rashi' => 9, 'degree' => 27.3090162],
+            'Sa' => ['longitude' => 207.9228468, 'speed' => 0.008052, 'rashi' => 7, 'degree' => 27.9228468],
+            'Ra' => ['longitude' => 249.2985488, 'speed' => -0.0529538, 'rashi' => 9, 'degree' => 9.2985488],
+            'Ke' => ['longitude' => 69.2985488, 'speed' => -0.0529538, 'rashi' => 3, 'degree' => 9.2985488],
+        ],
+        'lagna' => [
+            'Lg' => ['longitude' => 292.6509462, 'rashi' => 10, 'degree' => 22.6509462],
+        ],
+        'bhava' => [
+            1 => ['longitude' => 292.6509462, 'rashi' => 10, 'degree' => 22.6509462],
+            2 => ['longitude' => 322.6509462, 'rashi' => 11, 'degree' => 22.6509462],
+            3 => ['longitude' => 352.6509462, 'rashi' => 12, 'degree' => 22.6509462],
+            4 => ['longitude' => 22.6509462, 'rashi' => 1, 'degree' => 22.6509462],
+            5 => ['longitude' => 52.6509462, 'rashi' => 2, 'degree' => 22.6509462],
+            6 => ['longitude' => 82.6509462, 'rashi' => 3, 'degree' => 22.6509462],
+            7 => ['longitude' => 112.6509462, 'rashi' => 4, 'degree' => 22.6509462],
+            8 => ['longitude' => 142.6509462, 'rashi' => 5, 'degree' => 22.6509462],
+            9 => ['longitude' => 172.6509462, 'rashi' => 6, 'degree' => 22.6509462],
+            10 => ['longitude' => 202.6509462, 'rashi' => 7, 'degree' => 22.6509462],
+            11 => ['longitude' => 232.6509462, 'rashi' => 8, 'degree' => 22.6509462],
+            12 => ['longitude' => 262.6509462, 'rashi' => 9, 'degree' => 22.6509462],
+        ]
+    ];
+    
     public function setUp()
     {
         parent::setUp();
@@ -57,7 +94,7 @@ class DataTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('DateTime', $Data2->getDateTime());
         $this->assertInstanceOf('Jyotish\Base\Locality', $Data2->getLocality());
     }
-
+    
     /**
      * @covers Jyotish\Base\Data::listBlock
      */
@@ -85,58 +122,41 @@ class DataTest extends \PHPUnit_Framework_TestCase
      */
     public function testCreateFromImport()
     {
-        $dateTime = '1955-02-24 06:00:00';
-        $timeZone = '-08:00';
-        $longitude = -122.42;
-        $latitude = 37.77;
-        
         $Source = Mockery::mock('Jyotish\Base\Import\ImportInterface');
-        $Source->shouldReceive('getImportData')->andReturn([
-            'user' => [
-                'datetime' => $dateTime,
-                'timezone' => $timeZone,
-                'longitude' => $longitude,
-                'latitude' => $latitude,
-            ],
-            'graha' => [
-                'Sy' => ['longitude' => 311.956968, 'speed' => 1.0063896, 'rashi' => 11, 'degree' => 11.956968],
-                'Ch' => ['longitude' => 336.7057373, 'speed' => 14.0983489, 'rashi' => 12, 'degree' => 6.7057373],
-                'Ma' => ['longitude' => 5.4673084, 'speed' => 0.7021034, 'rashi' => 1, 'degree' => 5.4673084],
-                'Bu' => ['longitude' => 291.1617028, 'speed' => -0.0963315, 'rashi' => 10, 'degree' => 21.1617028],
-                'Gu' => ['longitude' => 87.3075743, 'speed' => -0.0647127, 'rashi' => 3, 'degree' => 27.3075743],
-                'Sk' => ['longitude' => 267.3090162, 'speed' => 1.135481, 'rashi' => 9, 'degree' => 27.3090162],
-                'Sa' => ['longitude' => 207.9228468, 'speed' => 0.008052, 'rashi' => 7, 'degree' => 27.9228468],
-                'Ra' => ['longitude' => 249.2985488, 'speed' => -0.0529538, 'rashi' => 9, 'degree' => 9.2985488],
-                'Ke' => ['longitude' => 69.2985488, 'speed' => -0.0529538, 'rashi' => 3, 'degree' => 9.2985488],
-            ],
-            'lagna' => [
-                'Lg' => ['longitude' => 292.6509462, 'rashi' => 10, 'degree' => 22.6509462],
-            ],
-            'bhava' => [
-                1 => ['longitude' => 292.6509462, 'rashi' => 10, 'degree' => 22.6509462],
-                2 => ['longitude' => 322.6509462, 'rashi' => 11, 'degree' => 22.6509462],
-                3 => ['longitude' => 352.6509462, 'rashi' => 12, 'degree' => 22.6509462],
-                4 => ['longitude' => 22.6509462, 'rashi' => 1, 'degree' => 22.6509462],
-                5 => ['longitude' => 52.6509462, 'rashi' => 2, 'degree' => 22.6509462],
-                6 => ['longitude' => 82.6509462, 'rashi' => 3, 'degree' => 22.6509462],
-                7 => ['longitude' => 112.6509462, 'rashi' => 4, 'degree' => 22.6509462],
-                8 => ['longitude' => 142.6509462, 'rashi' => 5, 'degree' => 22.6509462],
-                9 => ['longitude' => 172.6509462, 'rashi' => 6, 'degree' => 22.6509462],
-                10 => ['longitude' => 202.6509462, 'rashi' => 7, 'degree' => 22.6509462],
-                11 => ['longitude' => 232.6509462, 'rashi' => 8, 'degree' => 22.6509462],
-                12 => ['longitude' => 262.6509462, 'rashi' => 9, 'degree' => 22.6509462],
-            ]
-        ]);
+        $Source->shouldReceive('getImportData')->andReturn($this->dataArray);
         
         $Data = Data::createFromImport($Source);
         
         $this->assertInstanceOf('DateTime', $Data->getDateTime());
-        $DateTime = new DateTime($dateTime, new DateTimeZone($timeZone));
+        $DateTime = new DateTime($this->dataArray['user']['datetime'], new DateTimeZone($this->dataArray['user']['timezone']));
         $this->assertEquals($DateTime, $Data->getDateTime());
         
         $this->assertInstanceOf('Jyotish\Base\Locality', $Data->getLocality());
-        $this->assertEquals($longitude, $Data->getLocality()->getLongitude());
-        $this->assertEquals($latitude, $Data->getLocality()->getLatitude());
+        $this->assertEquals($this->dataArray['user']['longitude'], $Data->getLocality()->getLongitude());
+        $this->assertEquals($this->dataArray['user']['latitude'], $Data->getLocality()->getLatitude());
+    }
+    
+    /**
+     * @covers Jyotish\Base\Data::__toString
+     * @depends testCreateFromImport
+     */
+    public function testToString()
+    {
+        $Source = Mockery::mock('Jyotish\Base\Import\ImportInterface');
+        $dataArray = $this->dataArray;
+        
+        unset($dataArray['graha'], $dataArray['bhava'], $dataArray['lagna']);
+        $Source->shouldReceive('getImportData')->andReturn($dataArray);
+        $Data = Data::createFromImport($Source);
+        $stringExpected = 
+            '{"user":{'
+                . '"datetime":"1955-02-24 06:00:00",'
+                . '"timezone":"-08:00",'
+                . '"longitude":-122.42,'
+                . '"latitude":37.77,'
+                . '"altitude":0'
+            . '}}';
+        $this->assertEquals($stringExpected, sprintf($Data));
     }
 
     /**
@@ -173,7 +193,7 @@ class DataTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('Jyotish\Base\Locality', $this->Data->getLocality());
         $this->assertEquals('Lon 2', $this->Data->getLocality()->getLongitude());
     }
-    
+
     /**
      * @covers Jyotish\Base\Data::getData
      */
@@ -184,5 +204,28 @@ class DataTest extends \PHPUnit_Framework_TestCase
         foreach (['datetime', 'timezone', 'longitude', 'latitude', 'altitude'] as $value) {
             $this->assertArrayHasKey($value, $this->Data->getData()['user']);
         }
+    }
+    
+    /**
+     * @covers Jyotish\Base\Data::clearData
+     * @depends testListBlock
+     * @depends testGetData
+     * @depends testCreateFromImport
+     */
+    public function testClearData()
+    {
+        $Source = Mockery::mock('Jyotish\Base\Import\ImportInterface');
+        $Source->shouldReceive('getImportData')->andReturn($this->dataArray);
+        
+        $Data = Data::createFromImport($Source);
+        $Data->clearData(['bhava']);
+        $this->assertCount(3, $Data->getData());
+        $this->assertArrayHasKey('user', $Data->getData());
+        $this->assertArrayHasKey('graha', $Data->getData());
+        $this->assertArrayHasKey('lagna', $Data->getData());
+        
+        $Data->clearData();
+        $this->assertCount(1, $Data->getData());
+        $this->assertArrayHasKey('user', $Data->getData());
     }
 }

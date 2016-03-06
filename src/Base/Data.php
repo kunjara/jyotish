@@ -534,5 +534,6 @@ class Data
         foreach ($blocks as $block) {
             unset($this->data[$block]);
         }
+        return $this;
     }
 }
