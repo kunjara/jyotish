@@ -24,9 +24,9 @@ class Translation extends \Jyotish\Ganita\Matrix\MatrixBase
         $this->fill(3, 3, 0);
         
         $this->matrix[0][0] = 1;
-        $this->matrix[0][2] = $x;
         $this->matrix[1][1] = 1;
-        $this->matrix[1][2] = $y;
+        $this->matrix[2][0] = $x;
+        $this->matrix[2][1] = $y;
         $this->matrix[2][2] = 1;
     }
 }
