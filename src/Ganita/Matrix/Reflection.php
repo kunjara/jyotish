@@ -23,8 +23,8 @@ class Reflection extends \Jyotish\Ganita\Matrix\MatrixBase
     {
         $this->fill(3, 3, 0);
         
-        $this->matrix[0][0] = $xCoord ? -1 : 1;
-        $this->matrix[1][1] = $yCoord ? -1 : 1;
+        $this->matrix[1][1] = $xCoord ? -1 : 1;
+        $this->matrix[0][0] = $yCoord ? -1 : 1;
         $this->matrix[2][2] = 1;
     }
 }

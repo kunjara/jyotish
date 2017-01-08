@@ -36,15 +36,15 @@ class ReflectionTest extends \PHPUnit_Framework_TestCase
             ],
             [true, false,
                 [
-                    [-1, 0, 0],
-                    [0, 1, 0],
+                    [1, 0, 0],
+                    [0, -1, 0],
                     [0, 0, 1],
                 ]
             ],
             [false, true,
                 [
-                    [1, 0, 0],
-                    [0, -1, 0],
+                    [-1, 0, 0],
+                    [0, 1, 0],
                     [0, 0, 1],
                 ]
             ],

@@ -29,22 +29,22 @@ class RotationTest extends \PHPUnit_Framework_TestCase
         return [
             [M_PI_2, 
                 [
-                    [0, -1, 0],
-                    [1, 0, 0],
+                    [0, 1, 0],
+                    [-1, 0, 0],
                     [0, 0, 1],
                 ]
             ],
             [M_PI_4, 
                 [
-                    [M_SQRT2 / 2, -M_SQRT2 / 2, 0],
                     [M_SQRT2 / 2, M_SQRT2 / 2, 0],
+                    [-M_SQRT2 / 2, M_SQRT2 / 2, 0],
                     [0, 0, 1],
                 ]
             ],
             [M_PI_2 / 3, 
                 [
-                    [M_SQRT3 / 2, -0.5, 0],
-                    [0.5, M_SQRT3 / 2, 0],
+                    [M_SQRT3 / 2, 0.5, 0],
+                    [-0.5, M_SQRT3 / 2, 0],
                     [0, 0, 1],
                 ]
             ],

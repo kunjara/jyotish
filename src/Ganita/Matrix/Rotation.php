@@ -23,8 +23,8 @@ class Rotation extends \Jyotish\Ganita\Matrix\MatrixBase
         $this->fill(3, 3, 0);
         
         $this->matrix[0][0] = cos($angle);
-        $this->matrix[0][1] = -sin($angle);
-        $this->matrix[1][0] = sin($angle);
+        $this->matrix[0][1] = sin($angle);
+        $this->matrix[1][0] = -sin($angle);
         $this->matrix[1][1] = cos($angle);
         $this->matrix[2][2] = 1;
     }
