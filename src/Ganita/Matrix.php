@@ -16,6 +16,7 @@ class Matrix
     const TYPE_ROTATION    = 'rotation';
     const TYPE_TRANSLATION = 'translation';
     const TYPE_REFLECTION  = 'reflection';
+    const TYPE_SCALING     = 'scaling';
     
     /**
      * List of matrix.
@@ -26,6 +27,7 @@ class Matrix
         self::TYPE_ROTATION,
         self::TYPE_TRANSLATION,
         self::TYPE_REFLECTION,
+        self::TYPE_SCALING,
     ];
     
     /**
