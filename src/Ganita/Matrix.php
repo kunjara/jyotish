@@ -6,6 +6,8 @@
 
 namespace Jyotish\Ganita;
 
+use Jyotish\Ganita\Matrix\MatrixBase;
+
 /**
  * Matrix class. 
  *
@@ -13,6 +15,7 @@ namespace Jyotish\Ganita;
  */
 class Matrix
 {
+    const TYPE_DEFAULT     = 'default';
     const TYPE_ROTATION    = 'rotation';
     const TYPE_TRANSLATION = 'translation';
     const TYPE_REFLECTION  = 'reflection';
@@ -24,6 +27,7 @@ class Matrix
      * @var array
      */
     public static $type = [
+        self::TYPE_DEFAULT,
         self::TYPE_ROTATION,
         self::TYPE_TRANSLATION,
         self::TYPE_REFLECTION,
@@ -44,8 +48,12 @@ class Matrix
             throw new Exception\InvalidArgumentException("Matix '$typeLower' is not defined.");
         }
         
-        $matrixClass = 'Jyotish\Ganita\Matrix\\' . ucfirst($typeLower);
-        $matrixObject = new $matrixClass(...$params);
+        if ($type == Matrix::TYPE_DEFAULT) {
+            $matrixObject = new MatrixBase(...$params);
+        } else {
+            $matrixClass = 'Jyotish\Ganita\Matrix\\' . ucfirst($typeLower);
+            $matrixObject = new $matrixClass(...$params);
+        }
 
         return $matrixObject;
     }
