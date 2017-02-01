@@ -141,9 +141,13 @@ class YogaBase
     public function generateYoga()
     {
         foreach ($this->yogas as $yoga) {
-            $hasYoga = 'has'.$yoga;
+            $hasYoga = 'has' . $yoga;
             
-            if ($this->$hasYoga()) {
+            if (is_array($this->$hasYoga())) {
+                yield from $this->$hasYoga();
+            } elseif (is_string($this->$hasYoga())) {
+                yield $yoga . $this->$hasYoga();
+            } elseif ($this->$hasYoga()) {
                 yield $yoga;
             }
         }

@@ -7,7 +7,6 @@
 You can do the following calculations:
 
 * calculation of natal chart and varga charts;
-* drawing of natal chart and varga charts;
 * calculation of bala: Ashtakavarga, Rashi bala, Graha bala;
 * calculation of dasha: Vimshotari, Ashtottari;
 * calculation Panchanga: Nakshatra, Yoga, Tithi, Vara, Karana;
@@ -16,7 +15,7 @@ You can do the following calculations:
 
 ## System Requirements
 
-Jyotish library requires PHP 5.6 or later.
+Jyotish library requires PHP 7.0 or later and [Swiss Ephemeris](https://github.com/kunjara/swetest).
 
 ## License
 
