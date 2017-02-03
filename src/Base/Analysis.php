@@ -117,10 +117,19 @@ class Analysis
     public function getVargaData($vargaKey)
     {
         $vargaKeyUcf = ucfirst($vargaKey);
-        if (!isset($this->getData()['varga'][$vargaKeyUcf])) {
-            $this->Data->calcVargaData([$vargaKey]);
+        
+        if ($vargaKeyUcf == Varga::KEY_D1) {
+            if (!isset($this->getData()['graha'])) {
+                $this->Data->calcParams();
+            }
+            $vargaData = $this->getData();
+        } else {
+            if (!isset($this->getData()['varga'][$vargaKeyUcf])) {
+                $this->Data->calcVargaData([$vargaKeyUcf]);
+            }
+            $vargaData = $this->getData()['varga'][$vargaKeyUcf];
         }
-        return $this->getData()['varga'][$vargaKeyUcf];
+        return $vargaData;
     }
     
     /**

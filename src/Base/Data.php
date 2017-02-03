@@ -410,13 +410,8 @@ class Data
         $Lagna = new Lagna($this);
         $generateLagna = $Lagna->generateLagna($lagnaKeys);
         
-        if (!isset($this->data[self::BLOCK_VARGA])) {
-            $this->calcVargaData([Varga::KEY_D1]);
-        }
-        
         foreach ($generateLagna as $key => $data) {
             $this->data[self::BLOCK_LAGNA][$key] = $data;
-            $this->data[self::BLOCK_VARGA][Varga::KEY_D1][self::BLOCK_LAGNA][$key] = $data;
         }
         return $this;
     }
@@ -433,13 +428,8 @@ class Data
         $Arudha = new Arudha($this, $options);
         $generateArudha = $Arudha->generateArudha($arudhaKeys);
         
-        if (!isset($this->data[self::BLOCK_VARGA])) {
-            $this->calcVargaData([Varga::KEY_D1]);
-        }
-        
         foreach ($generateArudha as $key => $data) {
             $this->data[self::BLOCK_LAGNA][$key] = $data;
-            $this->data[self::BLOCK_VARGA][Varga::KEY_D1][self::BLOCK_LAGNA][$key] = $data;
         }
         return $this;
     }
@@ -455,13 +445,8 @@ class Data
         $Upagraha = new Upagraha($this);
         $generateUpagraha = $Upagraha->generateUpagraha($upagrahaKeys);
         
-        if (!isset($this->data[self::BLOCK_VARGA])) {
-            $this->calcVargaData([Varga::KEY_D1]);
-        }
-        
         foreach ($generateUpagraha as $key => $data) {
             $this->data[self::BLOCK_UPAGRAHA][$key] = $data;
-            $this->data[self::BLOCK_VARGA][Varga::KEY_D1][self::BLOCK_UPAGRAHA][$key] = $data;
         }
         return $this;
     }
@@ -475,8 +460,12 @@ class Data
     public function calcVargaData(array $vargaKeys)
     {
         foreach ($vargaKeys as $vargaKey) {
-            $Varga = Varga::getInstance($vargaKey)->setData($this);
-            $this->data[self::BLOCK_VARGA][$vargaKey] = $Varga->getVargaData();
+            if ($vargaKey == Varga::KEY_D1) {
+                $this->calcParams();
+            } else {
+                $Varga = Varga::getInstance($vargaKey)->setData($this);
+                $this->data[self::BLOCK_VARGA][$vargaKey] = $Varga->getVargaData();
+            }
         }
         return $this;
     }
