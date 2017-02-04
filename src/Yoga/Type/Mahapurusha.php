@@ -8,6 +8,8 @@ namespace Jyotish\Yoga\Type;
 
 use Jyotish\Yoga\Yoga;
 use Jyotish\Graha\Graha;
+use Jyotish\Rashi\Rashi;
+use Jyotish\Bhava\Bhava;
 
 /**
  * Pancha Mahapurusha yoga class.
@@ -89,5 +91,37 @@ class Mahapurusha extends YogaBase
     public function hasShasha()
     {
         return $this->hasMahapurusha(Graha::KEY_SA);
+    }
+    
+    /**
+     * Is there Mahapurusha yoga for the graha.
+     * 
+     * @param string $key Key of graha.
+     * @return bool
+     * @throws Exception\InvalidArgumentException
+     * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 75, Verse 1-2.
+     * @see Mantreswara. Phaladeepika. Chapter 6, Verse 1.
+     */
+    public function hasMahapurusha($key)
+    {
+        $panchaGraha = Graha::listGraha(Graha::LIST_PANCHA);
+        if (!array_key_exists($key, $panchaGraha)) {
+            throw new \Jyotish\Yoga\Exception\InvalidArgumentException("For {$key} Mahapurusha yoga is not available.");
+        }
+        
+        $Graha = Graha::getInstance($key);
+        $Graha->setEnvironment($this->Data);
+        
+        $grahaBhava = $Graha->getBhava();
+        $grahaAvastha = $Graha->getRashiAvastha();
+        
+        if (
+            in_array($grahaBhava, Bhava::$bhavaKendra) && 
+            in_array($grahaAvastha, [Rashi::GRAHA_UCHA, Rashi::GRAHA_MOOL, Rashi::GRAHA_SWA])
+        ) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

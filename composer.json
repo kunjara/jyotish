@@ -19,7 +19,7 @@
         "kunjara/swetest": "1.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "5.2.*",
+        "phpunit/phpunit": "5.7.9",
         "mockery/mockery": "0.9.*"
     },
     "autoload": {

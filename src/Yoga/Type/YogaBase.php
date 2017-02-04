@@ -6,9 +6,8 @@
 
 namespace Jyotish\Yoga\Type;
 
-use Jyotish\Yoga\Yoga;
+use Jyotish\Yoga\Type\Parivarthana;
 use Jyotish\Graha\Graha;
-use Jyotish\Rashi\Rashi;
 use Jyotish\Bhava\Bhava;
 
 /**
@@ -57,7 +56,7 @@ class YogaBase
      * 
      * @param string $graha1 Key of graha
      * @param string $graha2 Key of graha
-     * @return bool
+     * @return bool|string
      * @throws Exception\InvalidArgumentException
      * @see Mantreswara. Phaladeepika. Chapter 6, Verse 32.
      */
@@ -86,48 +85,16 @@ class YogaBase
                 $graha2Bhava = $Graha2->getBhava();
                 
                 if (in_array($graha1Bhava, Bhava::$bhavaDusthana) || in_array($graha2Bhava, Bhava::$bhavaDusthana)) {
-                    $subtype = Yoga::MAHAPURUSHA_DAINYA;
+                    $subtype = Parivarthana::SUBTYPE_DAINYA;
                 } elseif ($graha1Bhava == 3 || $graha2Bhava == 3) {
-                    $subtype = Yoga::MAHAPURUSHA_KHALA;
+                    $subtype = Parivarthana::SUBTYPE_KHALA;
                 } else {
-                    $subtype = Yoga::MAHAPURUSHA_MAHA;
+                    $subtype = Parivarthana::SUBTYPE_MAHA;
                 }
                 return $subtype;
             } else {
                 return true;
             }
-        } else {
-            return false;
-        }
-    }
-    
-    /**
-     * Is there Mahapurusha yoga for the graha.
-     * 
-     * @param string $key Key of graha.
-     * @return bool
-     * @throws Exception\InvalidArgumentException
-     * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 75, Verse 1-2.
-     * @see Mantreswara. Phaladeepika. Chapter 6, Verse 1.
-     */
-    public function hasMahapurusha($key)
-    {
-        $panchaGraha = Graha::listGraha(Graha::LIST_PANCHA);
-        if (!array_key_exists($key, $panchaGraha)) {
-            throw new \Jyotish\Yoga\Exception\InvalidArgumentException("For {$key} Mahapurusha yoga is not available.");
-        }
-        
-        $Graha = Graha::getInstance($key);
-        $Graha->setEnvironment($this->Data);
-        
-        $grahaBhava = $Graha->getBhava();
-        $grahaAvastha = $Graha->getRashiAvastha();
-        
-        if (
-            in_array($grahaBhava, Bhava::$bhavaKendra) && 
-            in_array($grahaAvastha, [Rashi::GRAHA_UCHA, Rashi::GRAHA_MOOL, Rashi::GRAHA_SWA])
-        ) {
-            return true;
         } else {
             return false;
         }

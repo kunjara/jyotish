@@ -32,7 +32,7 @@ class Raja extends YogaBase
      */
     protected $yogas = [
         'Yogakaraka',
-        'LKnTrPac',
+        'RulKnTrInterplay',
     ];
     
     /**
@@ -59,7 +59,7 @@ class Raja extends YogaBase
      * @return array
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 41, Verse 28.
      */
-    public function hasLKnTrPac()
+    public function hasRulKnTrInterplay()
     {
         $Analysis = new Analysis($this->Data);
         
@@ -67,12 +67,31 @@ class Raja extends YogaBase
         array_shift($bhavaKendra);
         $kendraRulers = $Analysis->getBhavaRulers($bhavaKendra);
         $trikonaRulers = $Analysis->getBhavaRulers(Bhava::$bhavaTrikona);
-        $result = [];
+        $dkaRulers = $Analysis->getBhavaRulers([9, 10]);
         
+        $assingYoga = function($kendraRuler, $trikonaRuler, $interplay, $dkaPossible) {
+            $yoga = [
+                'kendraRuler' => $kendraRuler,
+                'trikonaRuler' => $trikonaRuler,
+                'interplay' => $interplay,
+            ];
+            if ($dkaPossible) {
+                $yoga['name'] = 'dharmaKarmaAdhipati';
+            }
+            return $yoga;
+        };
+        
+        $result = [];
         foreach ($kendraRulers as $kendraRuler) {
             foreach ($trikonaRulers as $trikonaRuler) {
                 if ($trikonaRuler == $kendraRuler) {
                     continue;
+                }
+                
+                if (empty(array_diff([$kendraRuler, $trikonaRuler], $dkaRulers))) {
+                    $dkaPossible = true;
+                } else {
+                    $dkaPossible = false;
                 }
                 
                 $KendraRuler = Graha::getInstance($kendraRuler);
@@ -82,21 +101,13 @@ class Raja extends YogaBase
                 
                 // Parivarthana
                 if ($this->hasParivarthana($kendraRuler, $trikonaRuler)) {
-                    $result[] = [
-                        'kendra' => $kendraRuler,
-                        'trikona' => $trikonaRuler,
-                        'interplay' => Yoga::INTERPLAY_PARIVARTHANA,
-                    ];
+                    $result[] = $assingYoga($kendraRuler, $trikonaRuler, Yoga::INTERPLAY_PARIVARTHANA, $dkaPossible);
                 }
                 
                 // Conjunct
                 $kendraRulerIsConjuncted = $KendraRuler->isConjuncted();
                 if (isset($kendraRulerIsConjuncted[$trikonaRuler])) {
-                    $result[] = [
-                        'kendra' => $kendraRuler,
-                        'trikona' => $trikonaRuler,
-                        'interplay' => Yoga::INTERPLAY_CONJUNCT,
-                    ];
+                    $result[] = $assingYoga($kendraRuler, $trikonaRuler, Yoga::INTERPLAY_CONJUNCT, $dkaPossible);
                 }
                 
                 // Aspect
@@ -106,11 +117,7 @@ class Raja extends YogaBase
                     $kendraRulerIsAspected[$trikonaRuler] == 1 &&
                     $trikonaRulerIsAspected[$kendraRuler] == 1
                 ) {
-                    $result[] = [
-                        'kendra' => $kendraRuler,
-                        'trikona' => $trikonaRuler,
-                        'interplay' => Yoga::INTERPLAY_ASPECT,
-                    ];
+                    $result[] = $assingYoga($kendraRuler, $trikonaRuler, Yoga::INTERPLAY_ASPECT, $dkaPossible);
                 }
             }
         }

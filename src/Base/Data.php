@@ -494,12 +494,13 @@ class Data
      * Calculation of yogas.
      * 
      * @param array $yogas
+     * @param null|array $options Options to set (optional)
      * @return Data
      */
-    public function calcYoga(array $yogas)
+    public function calcYoga(array $yogas, array $options = null)
     {
         foreach ($yogas as $type) {
-            $Yoga = Yoga::getInstance($type)->setData($this);
+            $Yoga = Yoga::getInstance($type, $options)->setData($this);
             foreach ($Yoga->generateYoga() as $result) {
                 $this->data[self::BLOCK_YOGA][$type][] = $result;
             }
