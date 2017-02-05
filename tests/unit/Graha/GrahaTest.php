@@ -7,7 +7,10 @@
 namespace JyotishTest\Graha;
 
 use Jyotish\Graha\Graha;
+use Jyotish\Tattva\Maha;
+use Jyotish\Tattva\Jiva;
 use Jyotish\Tattva\Jiva\Nara\Deva;
+use Jyotish\Tattva\Jiva\Nara\Manusha;
 
 /**
  * @group graha
@@ -32,42 +35,52 @@ class GrahaTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @covers Jyotish\Graha\Graha::listGraha
+     * @dataProvider dataListGraha
      */
-    public function testListGraha()
+    public function testListGraha($option, $data)
     {
-        $data = [
-            Graha::KEY_MA => Deva::DEVA_MANGAL,
-            Graha::KEY_BU => Deva::DEVA_BUDHA,
-            Graha::KEY_GU => Deva::DEVA_GURU,
-            Graha::KEY_SK => Deva::DEVA_SHUKRA,
-            Graha::KEY_SA => Deva::DEVA_SHANI,
+        $this->assertEquals($data, array_keys(Graha::listGraha($option)));
+    }
+    
+    public function dataListGraha()
+    {
+        return [
+            [Graha::LIST_SAPTA, ['Sy', 'Ch', 'Ma', 'Bu', 'Gu', 'Sk', 'Sa']],
+            [Graha::LIST_PANCHA, ['Ma', 'Bu', 'Gu', 'Sk', 'Sa']],
+            [Graha::LIST_CHAYA, ['Ra', 'Ke']],
+            [Graha::LIST_NAVA, ['Sy', 'Ch', 'Ma', 'Bu', 'Gu', 'Sk', 'Sa', 'Ra', 'Ke']],
+            [Graha::LIST_CHESHTA, ['Sa', 'Gu', 'Ma', 'Sy', 'Sk', 'Bu', 'Ch']],
         ];
-        $this->assertEquals($data, Graha::listGraha(Graha::LIST_PANCHA));
-        
-        $data = [
-            Graha::KEY_KE => Graha::NAME_KE,
-            Graha::KEY_RA => Graha::NAME_RA,
-        ];
-        $this->assertEquals($data, Graha::listGraha(Graha::LIST_CHAYA));
+    }
+
+    /**
+     * @covers Jyotish\Graha\Graha::listGrahaByFeature
+     * @dataProvider dataListGrahaByFeature
+     */
+    public function testListGrahaByFeature($feature, $value, $data)
+    {
+        $this->assertEquals($data, array_keys(Graha::listGrahaByFeature($feature, $value)));
     }
     
     /**
      * @covers Jyotish\Graha\Graha::listGrahaByFeature
      * @expectedException UnexpectedValueException
      */
-    public function testListGrahaByFeature()
+    public function testListRashiByFeatureException()
     {
-        $feature = 'gender';
-        $data = [
-            Graha::KEY_SY => Deva::DEVA_SURYA,
-            Graha::KEY_MA => Deva::DEVA_MANGAL,
-            Graha::KEY_GU => Deva::DEVA_GURU,
+        $feature = 'some';
+        $this->assertEquals([], Graha::listGrahaByFeature($feature, 'value'));
+    }
+    
+    public function dataListGrahaByFeature()
+    {
+        return [
+            ['gender', Jiva::GENDER_MALE, [Graha::KEY_SY, Graha::KEY_MA, Graha::KEY_GU]],
+            ['gender', Jiva::GENDER_NEUTER, [Graha::KEY_BU, Graha::KEY_SA, Graha::KEY_RA, Graha::KEY_KE]],
+            ['bhuta', Maha::BHUTA_JALA, [Graha::KEY_CH, Graha::KEY_SK]],
+            ['bhuta', Maha::BHUTA_AGNI, [Graha::KEY_SY, Graha::KEY_MA]],
+            ['varna', Manusha::VARNA_BRAHMANA, [Graha::KEY_GU, Graha::KEY_SK]],
+            ['varna', Manusha::VARNA_VAISHYA, [Graha::KEY_CH, Graha::KEY_BU]],
         ];
-        $this->assertEquals($data, Graha::listGrahaByFeature($feature, 'male'));
-        
-        // testing exception
-        $feature = 'home';
-        $data = [];
-        $this->assertEquals($data, Graha::listGrahaByFeature($feature, 'male'));
     }
 }

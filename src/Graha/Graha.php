@@ -393,9 +393,8 @@ class Graha
      */
     public static function listGrahaByFeature($feature, $value)
     {
-        $result = [];
-
-        foreach (Graha::$graha as $key => $name) {
+        $list = [];
+        foreach (self::$graha as $key => $name) {
             $Graha = self::getInstance($key);
             
             $grahaFeature = 'graha' . ucfirst(strtolower($feature));
@@ -404,9 +403,9 @@ class Graha
                 throw new Exception\UnexpectedValueException("Graha feature '$grahaFeature' does not exist.");
             }
             
-            $Graha->$grahaFeature == $value ? $result[$key] = $name : null;
+            $Graha->$grahaFeature == $value ? $list[$key] = $name : null;
         }
-        return $result;
+        return $list;
     }
     
     /**

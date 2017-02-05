@@ -198,6 +198,31 @@ class Rashi
     }
     
     /**
+     * Get list of rashis by feature.
+     * 
+     * @param string $feature Feature of rashi
+     * @param string $value Value of feature
+     * @return array
+     */
+    public static function listRashiByFeature($feature, $value)
+    {
+        $result = [];
+
+        foreach (self::$rashi as $key => $name) {
+            $Rashi = self::getInstance($key);
+            
+            $rashiFeature = 'rashi' . ucfirst(strtolower($feature));
+            
+            if (!property_exists($Rashi, $rashiFeature)) {
+                throw new Exception\UnexpectedValueException("Rashi feature '$rashiFeature' does not exist.");
+            }
+            
+            $Rashi->$rashiFeature == $value ? $result[$key] = $name : null;
+        }
+        return $result;
+    }
+    
+    /**
      * Get trimshamsha rulers.
      * 
      * @param int $key Rashi key

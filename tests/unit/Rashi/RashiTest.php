@@ -8,6 +8,8 @@ namespace JyotishTest\Rashi;
 
 use Jyotish\Rashi\Rashi;
 use Jyotish\Graha\Graha;
+use Jyotish\Tattva\Maha;
+use Jyotish\Tattva\Jiva;
 
 /**
  * @group rashi
@@ -28,6 +30,37 @@ class RashiTest extends \PHPUnit_Framework_TestCase
         
         // testing exception
         $Rashi = Rashi::getInstance('14');
+    }
+    
+    /**
+     * @covers Jyotish\Rashi\Rashi::listRashiByFeature
+     * @dataProvider dataListRashiByFeature
+     */
+    public function testListRashiByFeature($feature, $value, $data)
+    {
+        $this->assertEquals($data, array_keys(Rashi::listRashiByFeature($feature, $value)));
+    }
+    
+    /**
+     * @covers Jyotish\Rashi\Rashi::listRashiByFeature
+     * @expectedException UnexpectedValueException
+     */
+    public function testListRashiByFeatureException()
+    {
+        $feature = 'some';
+        $this->assertEquals([], Rashi::listRashiByFeature($feature, 'value'));
+    }
+    
+    public function dataListRashiByFeature()
+    {
+        return [
+            ['bhava', Rashi::BHAVA_CHARA, [1, 4, 7, 10]],
+            ['bhava', Rashi::BHAVA_STHIRA, [2, 5, 8, 11]],
+            ['gender', Jiva::GENDER_MALE, [1, 3, 5, 7, 9, 11]],
+            ['gender', Jiva::GENDER_FEMALE, [2, 4, 6, 8, 10, 12]],
+            ['bhuta', Maha::BHUTA_AGNI, [1, 5, 9]],
+            ['bhuta', Maha::BHUTA_VAYU, [3, 7, 11]],
+        ];
     }
 
     /**
