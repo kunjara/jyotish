@@ -39,7 +39,7 @@ class Nabhasha extends YogaBase
      * 
      * @var array 
      */
-    protected $yogas = [
+    public static $yoga = [
         self::NAME_RAJJU,
         self::NAME_MUSALA,
         self::NAME_NALA,
@@ -116,18 +116,18 @@ class Nabhasha extends YogaBase
      * @param string $option The option to list yogas.
      * @return array List of yogas.
      */
-    public function listYoga($option = null)
+    public static function listYoga($option = null)
     {
         $list = [];
         switch ($option) {
             case self::SUBTYPE_ASHRAYA:
-                $list = array_slice($this->yogas, 0, 3);
+                $list = array_slice(self::$yoga, 0, 3);
                 break;
             case self::SUBTYPE_DALA:
-                $list = array_slice($this->yogas, 3, 2);
+                $list = array_slice(self::$yoga, 3, 2);
                 break;
             default:
-                $list = $this->yogas;
+                $list = self::$yoga;
         }
         return $list;
     }

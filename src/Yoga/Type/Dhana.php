@@ -30,7 +30,7 @@ class Dhana extends YogaBase
      * 
      * @var array 
      */
-    protected $yogas = [
+    public static $yoga = [
         'SkInB5MaInB11',
         'BuInB5ChMaGuInB11',
         'SyInB5ChGuSaInB11',

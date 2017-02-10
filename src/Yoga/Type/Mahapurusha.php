@@ -30,7 +30,7 @@ class Mahapurusha extends YogaBase
      * 
      * @var array 
      */
-    protected $yogas = [
+    public static $yoga = [
         'Ruchaka',
         'Bhadra',
         'Hamsa',

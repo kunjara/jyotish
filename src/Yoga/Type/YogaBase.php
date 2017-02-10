@@ -32,7 +32,7 @@ class YogaBase
      * 
      * @var array
      */
-    protected $yogas = [];
+    public static $yoga = [];
     
     /**
      * Format of the output data.
@@ -107,7 +107,7 @@ class YogaBase
      */
     public function generateYoga()
     {
-        foreach ($this->yogas as $yoga) {
+        foreach (static::$yoga as $yoga) {
             $hasYoga = 'has' . $yoga;
             $yogaData = $this->$hasYoga();
             

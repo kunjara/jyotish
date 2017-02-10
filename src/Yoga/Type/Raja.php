@@ -30,7 +30,7 @@ class Raja extends YogaBase
      * 
      * @var array 
      */
-    protected $yogas = [
+    public static $yoga = [
         'Yogakaraka',
         'RulKnTrInterplay',
     ];

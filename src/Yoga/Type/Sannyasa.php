@@ -30,7 +30,7 @@ class Sannyasa extends YogaBase
      * 
      * @var array 
      */
-    protected $yogas = [
+    public static $yoga = [
         'L10C4GrInKnTr',
         'LgEndPBenGuInKnTr',
         'ChInD3SaAMaSa',
