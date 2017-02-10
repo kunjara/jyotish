@@ -109,12 +109,13 @@ class YogaBase
     {
         foreach ($this->yogas as $yoga) {
             $hasYoga = 'has' . $yoga;
+            $yogaData = $this->$hasYoga();
             
-            if (is_array($this->$hasYoga())) {
-                yield from $this->$hasYoga();
-            } elseif (is_string($this->$hasYoga())) {
-                yield $yoga . $this->$hasYoga();
-            } elseif ($this->$hasYoga()) {
+            if (is_array($yogaData)) {
+                yield from $yogaData;
+            } elseif (is_string($yogaData)) {
+                yield $yoga . $yogaData;
+            } elseif ($yogaData) {
                 yield $yoga;
             }
         }
