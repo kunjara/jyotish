@@ -26,7 +26,7 @@ class Dhana extends YogaBase
     protected $yogaType = Yoga::TYPE_DHANA;
     
     /**
-     * Combinations list.
+     * List of combinations.
      * 
      * @var array 
      */

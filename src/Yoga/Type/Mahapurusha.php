@@ -18,6 +18,12 @@ use Jyotish\Bhava\Bhava;
  */
 class Mahapurusha extends YogaBase
 {
+    const NAME_RUCHAKA = 'Ruchaka';
+    const NAME_BHADRA  = 'Bhadra';
+    const NAME_HAMSA   = 'Hamsa';
+    const NAME_MALAVYA = 'Malavya';
+    const NAME_SHASHA  = 'Shasha';
+    
     /**
      * Type of yogas.
      * 
@@ -26,23 +32,23 @@ class Mahapurusha extends YogaBase
     protected $yogaType = Yoga::TYPE_MAHAPURUSHA;
     
     /**
-     * Combinations list.
+     * List of combinations.
      * 
      * @var array 
      */
     public static $yoga = [
-        'Ruchaka',
-        'Bhadra',
-        'Hamsa',
-        'Malavya',
-        'Shasha'
+        Graha::KEY_MA => self::NAME_RUCHAKA,
+        Graha::KEY_BU => self::NAME_BHADRA,
+        Graha::KEY_GU => self::NAME_HAMSA,
+        Graha::KEY_SK => self::NAME_MALAVYA,
+        Graha::KEY_SA => self::NAME_SHASHA
     ];
     
     /**
      * One of the Mahapurusha Yogas, it happens when Mangal is exalted or in own 
      * sign, identical with a quadrant (Kendra).
      * 
-     * @return bool
+     * @return bool|array
      */
     public function hasRuchaka()
     {
@@ -53,7 +59,7 @@ class Mahapurusha extends YogaBase
      * One of the Pancha Mahapurusha Yogas, it occurs when Buddha is in a 
      * quadrant (Kendra) in either Gemini or Virgo.
      * 
-     * @return bool
+     * @return bool|array
      */
     public function hasBhadra()
     {
@@ -64,7 +70,7 @@ class Mahapurusha extends YogaBase
      * One of the Pancha Mahapurusha Yogas which occur when Guru is in its own 
      * signs or exalted and in a quadrant.
      * 
-     * @return bool
+     * @return bool|array
      */
     public function hasHamsa()
     {
@@ -75,7 +81,7 @@ class Mahapurusha extends YogaBase
      * One of Pancha Mahapurusha Yogas, occuring when Shukra is in a quadrant 
      * (Kendra) and in its own house ie Taurus, Libra or is exalted in Pisces.
      * 
-     * @return bool
+     * @return bool|array
      */
     public function hasMalavya()
     {
@@ -86,7 +92,7 @@ class Mahapurusha extends YogaBase
      * One of five Mahapurusha Yogas caused by Shani being in its own or exalted 
      * house and in a quadrant (Kendra).
      * 
-     * @return bool
+     * @return bool|array
      */
     public function hasShasha()
     {
@@ -97,7 +103,7 @@ class Mahapurusha extends YogaBase
      * Is there Mahapurusha yoga for the graha.
      * 
      * @param string $key Key of graha.
-     * @return bool
+     * @return bool|array
      * @throws Exception\InvalidArgumentException
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 75, Verse 1-2.
      * @see Mantreswara. Phaladeepika. Chapter 6, Verse 1.
@@ -119,7 +125,8 @@ class Mahapurusha extends YogaBase
             in_array($grahaBhava, Bhava::$bhavaKendra) && 
             in_array($grahaAvastha, [Rashi::GRAHA_UCHA, Rashi::GRAHA_MOOL, Rashi::GRAHA_SWA])
         ) {
-            return true;
+            $yogaData = $this->assignYoga(self::$yoga[$key], '', ['graha' => $key]);
+            return [$yogaData];
         } else {
             return false;
         }

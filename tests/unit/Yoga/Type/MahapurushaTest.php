@@ -43,32 +43,32 @@ class MahapurushaTest extends \PHPUnit_Framework_TestCase
         $Mahapurusha->setData($Data);
         
         $this->assertFalse($Mahapurusha->hasMahapurusha('Ma'));
-        $this->assertTrue($Mahapurusha->hasMahapurusha('Gu'));
-        $this->assertTrue($Mahapurusha->hasMahapurusha('Sk'));
-        $this->assertTrue($Mahapurusha->hasMahapurusha('Bu'));
+        $this->assertNotFalse($Mahapurusha->hasMahapurusha('Gu'));
+        $this->assertNotFalse($Mahapurusha->hasMahapurusha('Sk'));
+        $this->assertNotFalse($Mahapurusha->hasMahapurusha('Bu'));
         $this->assertFalse($Mahapurusha->hasMahapurusha('Sa'));
         
         $this->assertFalse($Mahapurusha->hasRuchaka());
-        $this->assertTrue($Mahapurusha->hasHamsa());
-        $this->assertTrue($Mahapurusha->hasMalavya());
-        $this->assertTrue($Mahapurusha->hasBhadra());
+        $this->assertNotFalse($Mahapurusha->hasHamsa());
+        $this->assertNotFalse($Mahapurusha->hasMalavya());
+        $this->assertNotFalse($Mahapurusha->hasBhadra());
         $this->assertFalse($Mahapurusha->hasShasha());
         
         $Source = new ArraySource($this->dataSource->NativMahapurusha2);
         $Data = Data::createFromImport($Source);
         $Mahapurusha->setData($Data);
         
-        $this->assertTrue($Mahapurusha->hasMahapurusha('Ma'));
+        $this->assertNotFalse($Mahapurusha->hasMahapurusha('Ma'));
         $this->assertFalse($Mahapurusha->hasMahapurusha('Gu'));
         $this->assertFalse($Mahapurusha->hasMahapurusha('Sk'));
         $this->assertFalse($Mahapurusha->hasMahapurusha('Bu'));
-        $this->assertTrue($Mahapurusha->hasMahapurusha('Sa'));
+        $this->assertNotFalse($Mahapurusha->hasMahapurusha('Sa'));
         
-        $this->assertTrue($Mahapurusha->hasRuchaka());
+        $this->assertNotFalse($Mahapurusha->hasRuchaka());
         $this->assertFalse($Mahapurusha->hasHamsa());
         $this->assertFalse($Mahapurusha->hasMalavya());
         $this->assertFalse($Mahapurusha->hasBhadra());
-        $this->assertTrue($Mahapurusha->hasShasha());
+        $this->assertNotFalse($Mahapurusha->hasShasha());
         
         // testing exception
         $this->assertTrue($Mahapurusha->hasMahapurusha('Sy'));

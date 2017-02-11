@@ -35,7 +35,7 @@ class Nabhasha extends YogaBase
     protected $yogaType = Yoga::TYPE_NABHASHA;
     
     /**
-     * Combinations list.
+     * List of combinations.
      * 
      * @var array 
      */
@@ -72,12 +72,8 @@ class Nabhasha extends YogaBase
                 return false;
             }
         }
-        $result = [
-            'name' => $ashrayaName,
-            'subtype' => self::SUBTYPE_ASHRAYA,
-            'details' => [],
-        ];
-        return [$result];
+        $yogaData = $this->assignYoga($ashrayaName, self::SUBTYPE_ASHRAYA);
+        return [$yogaData];
     }
     
     /**

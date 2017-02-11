@@ -18,6 +18,11 @@ use Jyotish\Base\Analysis;
  */
 class Raja extends YogaBase
 {
+    const SUBTYPE_YOGAKARAKA = 'yogakaraka';
+    const SUBTYPE_KENDRATRIKONA = 'kendratrikona';
+    
+    const NAME_DHARMAKARMAADHIPATI = 'DharmaKarmaAdhipati';
+    
     /**
      * Type of yogas.
      * 
@@ -26,19 +31,19 @@ class Raja extends YogaBase
     protected $yogaType = Yoga::TYPE_RAJA;
     
     /**
-     * Combinations list.
+     * List of combinations.
      * 
      * @var array 
      */
     public static $yoga = [
         'Yogakaraka',
-        'RulKnTrInterplay',
+        'KendraTrikona',
     ];
     
     /**
      * If one and the same graha gets the lordships of a Trikon, as well as a Kendra.
      * 
-     * @return bool|string
+     * @return bool|array
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 34, Verse 13.
      */
     public function hasYogakaraka()
@@ -47,7 +52,8 @@ class Raja extends YogaBase
             $Graha = Graha::getInstance($key);
             $Graha->setEnvironment($this->Data);
             if ($Graha->isYogakaraka()) {
-                return $key;
+                $yogaData = $this->assignYoga('', self::SUBTYPE_YOGAKARAKA, ['graha' => $key]);
+                return [$yogaData];
             }
         }
         return false;
@@ -56,10 +62,10 @@ class Raja extends YogaBase
     /**
      * Lords of Kendras and Trikonas Related.
      * 
-     * @return array
+     * @return bool|array
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 41, Verse 28.
      */
-    public function hasRulKnTrInterplay()
+    public function hasKendraTrikona()
     {
         $Analysis = new Analysis($this->Data);
         
@@ -69,16 +75,16 @@ class Raja extends YogaBase
         $trikonaRulers = $Analysis->getBhavaRulers(Bhava::$bhavaTrikona);
         $dkaRulers = $Analysis->getBhavaRulers([9, 10]);
         
-        $assingYoga = function($kendraRuler, $trikonaRuler, $interplay, $dkaPossible) {
-            $yoga = [
+        $assignYoga = function($kendraRuler, $trikonaRuler, $interplay, $dkaPossible) {
+            $yogaData = $this->assignYoga('', self::SUBTYPE_KENDRATRIKONA, [
                 'kendraRuler' => $kendraRuler,
                 'trikonaRuler' => $trikonaRuler,
                 'interplay' => $interplay,
-            ];
+            ]);
             if ($dkaPossible) {
-                $yoga['name'] = 'dharmaKarmaAdhipati';
+                $yogaData['name'] = self::NAME_DHARMAKARMAADHIPATI;
             }
-            return $yoga;
+            return $yogaData;
         };
         
         $result = [];
@@ -101,13 +107,13 @@ class Raja extends YogaBase
                 
                 // Parivarthana
                 if ($this->hasParivarthana($kendraRuler, $trikonaRuler)) {
-                    $result[] = $assingYoga($kendraRuler, $trikonaRuler, Yoga::INTERPLAY_PARIVARTHANA, $dkaPossible);
+                    $result[] = $assignYoga($kendraRuler, $trikonaRuler, Yoga::INTERPLAY_PARIVARTHANA, $dkaPossible);
                 }
                 
                 // Conjunct
                 $kendraRulerIsConjuncted = $KendraRuler->isConjuncted();
                 if (isset($kendraRulerIsConjuncted[$trikonaRuler])) {
-                    $result[] = $assingYoga($kendraRuler, $trikonaRuler, Yoga::INTERPLAY_CONJUNCT, $dkaPossible);
+                    $result[] = $assignYoga($kendraRuler, $trikonaRuler, Yoga::INTERPLAY_CONJUNCT, $dkaPossible);
                 }
                 
                 // Aspect
@@ -117,10 +123,10 @@ class Raja extends YogaBase
                     $kendraRulerIsAspected[$trikonaRuler] == 1 &&
                     $trikonaRulerIsAspected[$kendraRuler] == 1
                 ) {
-                    $result[] = $assingYoga($kendraRuler, $trikonaRuler, Yoga::INTERPLAY_ASPECT, $dkaPossible);
+                    $result[] = $assignYoga($kendraRuler, $trikonaRuler, Yoga::INTERPLAY_ASPECT, $dkaPossible);
                 }
             }
         }
-        return $result;
+        return !empty($result) ? $result : false;
     }
 }

@@ -46,17 +46,8 @@ class Parivarthana extends YogaBase
                     continue;
                 }
                 
-                if ($subtype = $this->hasParivarthana($key1, $key2)) {
-                    $result = [
-                        'graha1' => $key1,
-                        'graha2' => $key2,
-                    ];
-                    
-                    if ($this->optionOutputAmple) {
-                        $result = array_merge($result, ['subtype' => $subtype,]);
-                    }
-                    
-                    yield $result;
+                if ($yogaData = $this->hasParivarthana($key1, $key2)) {
+                    yield $yogaData;
                 }
             }
         }

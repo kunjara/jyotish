@@ -35,7 +35,7 @@ class YogaBaseTest extends \PHPUnit_Framework_TestCase
             'optionOutputAmple' => false,
             'someOption' => 'someValue',
         ]);
-        $this->assertEquals(['outputAmple' => true], $YogaBase->getOptions());
+        $this->assertEquals([], $YogaBase->getOptions());
     }
 
     /**
@@ -49,21 +49,11 @@ class YogaBaseTest extends \PHPUnit_Framework_TestCase
         
         $YogaBase = new YogaBase();
         $YogaBase->setData($Data);
-        $this->assertTrue($YogaBase->hasParivarthana('Sy', 'Ch'));
-        $this->assertTrue($YogaBase->hasParivarthana('Gu', 'Ma'));
-        $this->assertTrue($YogaBase->hasParivarthana('Bu', 'Sk'));
+        $this->assertNotFalse($YogaBase->hasParivarthana('Sy', 'Ch'));
+        $this->assertNotFalse($YogaBase->hasParivarthana('Gu', 'Ma'));
+        $this->assertNotFalse($YogaBase->hasParivarthana('Bu', 'Sk'));
         $this->assertFalse($YogaBase->hasParivarthana('Gu', 'Sy'));
         $this->assertFalse($YogaBase->hasParivarthana('Gu', 'Sa'));
-        
-        $YogaBase = new YogaBase([
-            'outputAmple' => true,
-        ]);
-        $YogaBase->setData($Data);
-        $this->assertEquals('maha', $YogaBase->hasParivarthana('Sy', 'Ch'));
-        $this->assertEquals('dainya', $YogaBase->hasParivarthana('Gu', 'Ma'));
-        $this->assertEquals('khala', $YogaBase->hasParivarthana('Bu', 'Sk'));
-        $this->assertFalse($YogaBase->hasParivarthana('Sy', 'Ma'));
-        $this->assertFalse($YogaBase->hasParivarthana('Gu', 'Bu'));
         
         // testing exception
         $this->assertFalse($YogaBase->hasParivarthana('Gu', 'Gu'));

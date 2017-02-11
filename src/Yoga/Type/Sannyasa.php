@@ -26,7 +26,7 @@ class Sannyasa extends YogaBase
     protected $yogaType = Yoga::TYPE_SANNYASA;
     
     /**
-     * Combinations list.
+     * List of combinations.
      * 
      * @var array 
      */

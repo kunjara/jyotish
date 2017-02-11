@@ -28,18 +28,11 @@ class YogaBase
     protected $yogaType = null;
     
     /**
-     * Combinations list.
+     * List of combinations.
      * 
      * @var array
      */
     public static $yoga = [];
-    
-    /**
-     * Format of the output data.
-     * 
-     * @var bool
-     */
-    protected $optionOutputAmple = false;
 
     /**
      * Constructor
@@ -56,7 +49,7 @@ class YogaBase
      * 
      * @param string $graha1 Key of graha
      * @param string $graha2 Key of graha
-     * @return bool|string
+     * @return bool|array
      * @throws Exception\InvalidArgumentException
      * @see Mantreswara. Phaladeepika. Chapter 6, Verse 32.
      */
@@ -78,23 +71,20 @@ class YogaBase
             in_array($this->getData()['graha'][$graha1]['rashi'], $rashi2Swa) && 
             in_array($this->getData()['graha'][$graha2]['rashi'], $rashi1Swa)
         ) {
-            if ($this->optionOutputAmple) {
-                $Graha1->setEnvironment($this->Data);
-                $Graha2->setEnvironment($this->Data);
-                $graha1Bhava = $Graha1->getBhava();
-                $graha2Bhava = $Graha2->getBhava();
-                
-                if (in_array($graha1Bhava, Bhava::$bhavaDusthana) || in_array($graha2Bhava, Bhava::$bhavaDusthana)) {
-                    $subtype = Parivarthana::SUBTYPE_DAINYA;
-                } elseif ($graha1Bhava == 3 || $graha2Bhava == 3) {
-                    $subtype = Parivarthana::SUBTYPE_KHALA;
-                } else {
-                    $subtype = Parivarthana::SUBTYPE_MAHA;
-                }
-                return $subtype;
+            $Graha1->setEnvironment($this->Data);
+            $Graha2->setEnvironment($this->Data);
+            $graha1Bhava = $Graha1->getBhava();
+            $graha2Bhava = $Graha2->getBhava();
+
+            if (in_array($graha1Bhava, Bhava::$bhavaDusthana) || in_array($graha2Bhava, Bhava::$bhavaDusthana)) {
+                $subtype = Parivarthana::SUBTYPE_DAINYA;
+            } elseif ($graha1Bhava == 3 || $graha2Bhava == 3) {
+                $subtype = Parivarthana::SUBTYPE_KHALA;
             } else {
-                return true;
+                $subtype = Parivarthana::SUBTYPE_MAHA;
             }
+            $yogaData = $this->assignYoga('', $subtype, ['graha1' => $graha1,'graha2' => $graha2]);
+            return $yogaData;
         } else {
             return false;
         }
@@ -107,17 +97,34 @@ class YogaBase
      */
     public function generateYoga()
     {
-        foreach (static::$yoga as $yoga) {
-            $hasYoga = 'has' . $yoga;
+        foreach (static::$yoga as $combination) {
+            $hasYoga = 'has' . $combination;
             $yogaData = $this->$hasYoga();
             
             if (is_array($yogaData)) {
                 yield from $yogaData;
-            } elseif (is_string($yogaData)) {
-                yield $yoga . $yogaData;
             } elseif ($yogaData) {
-                yield $yoga;
+                $yogaData = $this->assignYoga('', '', ['combination' => $combination]);
+                yield $yogaData;
             }
         }
+    }
+    
+    /**
+     * Assign yoga data.
+     * 
+     * @param string $name Yoga name
+     * @param string $subtype Subtype of yoga
+     * @param array $details Details of yoga
+     * @return array
+     */
+    protected function assignYoga($name, $subtype, array $details = [])
+    {
+        $yogaData = [
+            'name' => $name,
+            'subtype' => $subtype,
+            'details' => $details,
+        ];
+        return $yogaData;
     }
 }
