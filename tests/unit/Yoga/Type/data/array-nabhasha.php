@@ -49,3 +49,51 @@ $dataSource->Nala = [
         'Lg' => ['longitude' => 86]
     ]
 ];
+$dataSource->Mala = [
+    'graha' => [
+        'Sy' => ['longitude' => 179, 'speed' => null],
+        'Ch' => ['longitude' => 107, 'speed' => null],
+        'Ma' => ['longitude' => 57, 'speed' => null],
+        'Bu' => ['longitude' => 203, 'speed' => null],
+        'Gu' => ['longitude' => 300, 'speed' => null],
+        'Sk' => ['longitude' => 21, 'speed' => null],
+        'Sa' => ['longitude' => 250, 'speed' => null],
+        'Ra' => ['longitude' => 32, 'speed' => null],
+        'Ke' => ['longitude' => 212, 'speed' => null],
+    ],
+    'lagna' => [
+        'Lg' => ['longitude' => 112]
+    ]
+];
+$dataSource->Sarpa = [
+    'graha' => [
+        'Sy' => ['longitude' => 108, 'speed' => null],
+        'Ch' => ['longitude' => 107, 'speed' => null],
+        'Ma' => ['longitude' => 22, 'speed' => null],
+        'Bu' => ['longitude' => 130, 'speed' => null],
+        'Gu' => ['longitude' => 251, 'speed' => null],
+        'Sk' => ['longitude' => 90, 'speed' => null],
+        'Sa' => ['longitude' => 298, 'speed' => null],
+        'Ra' => ['longitude' => 32, 'speed' => null],
+        'Ke' => ['longitude' => 212, 'speed' => null],
+    ],
+    'lagna' => [
+        'Lg' => ['longitude' => 112]
+    ]
+];
+$dataSource->NoDala = [
+    'graha' => [
+        'Sy' => ['longitude' => 132, 'speed' => null],
+        'Ch' => ['longitude' => 107, 'speed' => null],
+        'Ma' => ['longitude' => 22, 'speed' => null],
+        'Bu' => ['longitude' => 130, 'speed' => null],
+        'Gu' => ['longitude' => 251, 'speed' => null],
+        'Sk' => ['longitude' => 90, 'speed' => null],
+        'Sa' => ['longitude' => 298, 'speed' => null],
+        'Ra' => ['longitude' => 32, 'speed' => null],
+        'Ke' => ['longitude' => 212, 'speed' => null],
+    ],
+    'lagna' => [
+        'Lg' => ['longitude' => 112]
+    ]
+];

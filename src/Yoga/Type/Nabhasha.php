@@ -7,7 +7,10 @@
 namespace Jyotish\Yoga\Type;
 
 use Jyotish\Yoga\Yoga;
+use Jyotish\Graha\Graha;
 use Jyotish\Rashi\Rashi;
+use Jyotish\Bhava\Bhava;
+use Jyotish\Base\Analysis;
 
 /**
  * Nabhasha yoga class.
@@ -43,6 +46,8 @@ class Nabhasha extends YogaBase
         self::NAME_RAJJU,
         self::NAME_MUSALA,
         self::NAME_NALA,
+        self::NAME_MALA,
+        self::NAME_SARPA,
     ];
     
     /**
@@ -104,7 +109,65 @@ class Nabhasha extends YogaBase
     public function hasNala()
     {
         return $this->hasAshraya(self::NAME_NALA);
-    }    
+    }
+    
+    /**
+     * Mala and Sarpa yogas.
+     * 
+     * @param string $dalaName
+     * @return bool|array
+     * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 35, Verse 7.
+     */
+    public function hasDala($dalaName)
+    {
+        $kendras = Bhava::$bhavaKendra;
+        $grahaShubha = Graha::listGrahaByFeature('character', Graha::CHARACTER_SHUBHA);
+        unset($grahaShubha[Graha::KEY_CH]);
+        $grahaPapa = Graha::listGrahaByFeature('character', Graha::CHARACTER_PAPA);
+        unset($grahaPapa[Graha::KEY_RA], $grahaPapa[Graha::KEY_KE]);
+        
+        $Analysis = new Analysis($this->Data);
+        $grahaInBhava = $Analysis->getBodyInBhava();
+        
+        $grahaShubhaInBhava = array_intersect_key($grahaInBhava, $grahaShubha);
+        $grahaPapaInBhava = array_intersect_key($grahaInBhava, $grahaPapa);
+
+        $bhavaShubhaInKendra = array_intersect($grahaShubhaInBhava, $kendras);
+        $bhavaPapaInKendra = array_intersect($grahaPapaInBhava, $kendras);
+        
+        if ($dalaName == self::NAME_MALA) {
+            if (count($bhavaShubhaInKendra) == 3 && count($bhavaPapaInKendra) == 0) {
+                $yogaData = $this->assignYoga($dalaName, self::SUBTYPE_DALA);
+                return [$yogaData];
+            }
+        } elseif ($dalaName == self::NAME_SARPA) {
+            if (count($bhavaShubhaInKendra) == 0 && count($bhavaPapaInKendra) == 3) {
+                $yogaData = $this->assignYoga($dalaName, self::SUBTYPE_DALA);
+                return [$yogaData];
+            }
+        }
+        return false;
+    }
+    
+    /**
+     *  If kendras are occupied by benefics, Mala yoga is produced.
+     * 
+     * @return bool|array
+     */
+    public function hasMala()
+    {
+        return $this->hasDala(self::NAME_MALA);
+    }
+    
+    /**
+     *  If kendras are occupied by malefics, Sarpa yoga is produced.
+     * 
+     * @return bool|array
+     */
+    public function hasSarpa()
+    {
+        return $this->hasDala(self::NAME_SARPA);
+    }
     
     /**
      * Get list of yogas.
