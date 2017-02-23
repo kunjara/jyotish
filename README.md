@@ -15,7 +15,7 @@ You can do the following calculations:
 
 ## System Requirements
 
-Jyotish library requires PHP 7.0 or later and [Swiss Ephemeris](https://github.com/kunjara/swetest).
+Jyotish library requires PHP 5.6 or later and [Swiss Ephemeris](https://github.com/kunjara/swetest).
 
 ## License
 

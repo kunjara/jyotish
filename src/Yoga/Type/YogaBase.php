@@ -102,7 +102,10 @@ class YogaBase
             $yogaData = $this->$hasYoga();
             
             if (is_array($yogaData)) {
-                yield from $yogaData;
+                //yield from $yogaData;
+                foreach ($yogaData as $yogaDataOne) {
+                    yield $yogaDataOne;
+                }
             } elseif ($yogaData) {
                 $yogaData = $this->assignYoga('', '', ['combination' => $combination]);
                 yield $yogaData;

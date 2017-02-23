@@ -15,7 +15,7 @@
         }
     ],
     "require": {
-        "php": ">=7.0",
+        "php": ">=5.6",
         "kunjara/swetest": "1.0"
     },
     "require-dev": {
