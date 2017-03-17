@@ -297,7 +297,7 @@ class Swetest extends AbstractGanita
             ];
         }
         $DateTime3 = new DateTime($dataRising[$graha][3]['rising']);
-        if ($DateTime == $DateTime3) {
+        if ($DateTime->format(Time::FORMAT_DATE) == $DateTime3->format(Time::FORMAT_DATE)) {
             array_shift($dataRising[$graha]);
         } else {
             array_pop($dataRising[$graha]);
