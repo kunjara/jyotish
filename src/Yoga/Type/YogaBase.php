@@ -83,7 +83,7 @@ class YogaBase
             } else {
                 $subtype = Parivarthana::SUBTYPE_MAHA;
             }
-            $yogaData = $this->assignYoga('', $subtype, ['graha' => $graha1, 'graha' => $graha2]);
+            $yogaData = $this->assignYoga('', $subtype, ['graha1' => $graha1, 'graha2' => $graha2]);
             return $yogaData;
         } else {
             return false;
