@@ -77,13 +77,13 @@ class YogaBase
             $graha2Bhava = $Graha2->getBhava();
 
             if (in_array($graha1Bhava, Bhava::$bhavaDusthana) || in_array($graha2Bhava, Bhava::$bhavaDusthana)) {
-                $subtype = Parivarthana::SUBTYPE_DAINYA;
+                $group = Parivarthana::GROUP_DAINYA;
             } elseif ($graha1Bhava == 3 || $graha2Bhava == 3) {
-                $subtype = Parivarthana::SUBTYPE_KHALA;
+                $group = Parivarthana::GROUP_KHALA;
             } else {
-                $subtype = Parivarthana::SUBTYPE_MAHA;
+                $group = Parivarthana::GROUP_MAHA;
             }
-            $yogaData = $this->assignYoga('', $subtype, ['graha1' => $graha1, 'graha2' => $graha2]);
+            $yogaData = $this->assignYoga('', $group, ['graha1' => $graha1, 'graha2' => $graha2]);
             return $yogaData;
         } else {
             return false;
@@ -117,15 +117,15 @@ class YogaBase
      * Assign yoga data.
      * 
      * @param string $name Yoga name
-     * @param string $subtype Subtype of yoga
+     * @param string $group Group of yoga
      * @param array $details Details of yoga
      * @return array
      */
-    protected function assignYoga($name, $subtype, array $details = [])
+    protected function assignYoga($name, $group, array $details = [])
     {
         $yogaData = [
             'name' => $name,
-            'subtype' => $subtype,
+            'group' => $group,
             'details' => $details,
         ];
         return $yogaData;

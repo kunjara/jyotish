@@ -19,10 +19,10 @@ use Jyotish\Base\Analysis;
  */
 class Nabhasha extends YogaBase
 {
-    const SUBTYPE_ASHRAYA = 'ashraya';
-    const SUBTYPE_DALA = 'dala';
-    const SUBTYPE_AKRITI = 'akriti';
-    const SUBTYPE_SANKHYA = 'sankhya';
+    const GROUP_ASHRAYA = 'ashraya';
+    const GROUP_DALA = 'dala';
+    const GROUP_AKRITI = 'akriti';
+    const GROUP_SANKHYA = 'sankhya';
     
     const NAME_RAJJU = 'Rajju';
     const NAME_MUSALA = 'Musala';
@@ -97,7 +97,7 @@ class Nabhasha extends YogaBase
                 return false;
             }
         }
-        $yogaData = $this->assignYoga($ashrayaName, self::SUBTYPE_ASHRAYA);
+        $yogaData = $this->assignYoga($ashrayaName, self::GROUP_ASHRAYA);
         return [$yogaData];
     }
     
@@ -157,12 +157,12 @@ class Nabhasha extends YogaBase
         
         if ($dalaName == self::NAME_MALA) {
             if (count($bhavaShubhaInKendra) == 3 && count($bhavaPapaInKendra) == 0) {
-                $yogaData = $this->assignYoga($dalaName, self::SUBTYPE_DALA);
+                $yogaData = $this->assignYoga($dalaName, self::GROUP_DALA);
                 return [$yogaData];
             }
         } elseif ($dalaName == self::NAME_SARPA) {
             if (count($bhavaShubhaInKendra) == 0 && count($bhavaPapaInKendra) == 3) {
-                $yogaData = $this->assignYoga($dalaName, self::SUBTYPE_DALA);
+                $yogaData = $this->assignYoga($dalaName, self::GROUP_DALA);
                 return [$yogaData];
             }
         }
@@ -214,7 +214,7 @@ class Nabhasha extends YogaBase
                 return false;
             }
         }
-        $yogaData = $this->assignYoga($akritiName, self::SUBTYPE_AKRITI);
+        $yogaData = $this->assignYoga($akritiName, self::GROUP_AKRITI);
         return [$yogaData];
     }
     
@@ -268,13 +268,13 @@ class Nabhasha extends YogaBase
     {
         $list = [];
         switch ($option) {
-            case self::SUBTYPE_ASHRAYA:
+            case self::GROUP_ASHRAYA:
                 $list = array_slice(self::$yoga, 0, 3);
                 break;
-            case self::SUBTYPE_DALA:
+            case self::GROUP_DALA:
                 $list = array_slice(self::$yoga, 3, 2);
                 break;
-            case self::SUBTYPE_AKRITI:
+            case self::GROUP_AKRITI:
                 $list = array_slice(self::$yoga, 5);
                 break;
             default:

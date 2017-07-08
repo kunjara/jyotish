@@ -18,8 +18,8 @@ use Jyotish\Base\Analysis;
  */
 class Raja extends YogaBase
 {
-    const SUBTYPE_YOGAKARAKA = 'yogakaraka';
-    const SUBTYPE_KENDRATRIKONA = 'kendratrikona';
+    const GROUP_YOGAKARAKA = 'yogakaraka';
+    const GROUP_KENDRATRIKONA = 'kendratrikona';
     
     const NAME_DHARMAKARMAADHIPATI = 'DharmaKarmaAdhipati';
     
@@ -52,7 +52,7 @@ class Raja extends YogaBase
             $Graha = Graha::getInstance($key);
             $Graha->setEnvironment($this->Data);
             if ($Graha->isYogakaraka()) {
-                $yogaData = $this->assignYoga('', self::SUBTYPE_YOGAKARAKA, ['graha' => $key]);
+                $yogaData = $this->assignYoga('', self::GROUP_YOGAKARAKA, ['graha' => $key]);
                 return [$yogaData];
             }
         }
@@ -76,7 +76,7 @@ class Raja extends YogaBase
         $dkaRulers = $Analysis->getBhavaRulers([9, 10]);
         
         $assignYoga = function($kendraRuler, $trikonaRuler, $interplay, $dkaPossible) {
-            $yogaData = $this->assignYoga('', self::SUBTYPE_KENDRATRIKONA, [
+            $yogaData = $this->assignYoga('', self::GROUP_KENDRATRIKONA, [
                 'kendraRuler' => $kendraRuler,
                 'trikonaRuler' => $trikonaRuler,
                 'interplay' => $interplay,

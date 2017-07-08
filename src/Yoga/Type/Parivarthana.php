@@ -16,9 +16,9 @@ use Jyotish\Graha\Graha;
  */
 class Parivarthana extends YogaBase
 {
-    const SUBTYPE_MAHA = 'maha';
-    const SUBTYPE_KHALA = 'khala';
-    const SUBTYPE_DAINYA = 'dainya';
+    const GROUP_MAHA = 'maha';
+    const GROUP_KHALA = 'khala';
+    const GROUP_DAINYA = 'dainya';
     
     /**
      * Type of yogas.
