@@ -29,6 +29,10 @@ class Nabhasha extends YogaBase
     const NAME_NALA = 'Nala';
     const NAME_MALA = 'Mala';
     const NAME_SARPA = 'Sarpa';
+    const NAME_GADA = 'Gada';
+    const NAME_SANAHA = 'Sanaha';
+    const NAME_VIBHUKA = 'Vibhuka';
+    const NAME_DHURIYA = 'Dhuriya';
     
     /**
      * Type of yogas.
@@ -48,6 +52,22 @@ class Nabhasha extends YogaBase
         self::NAME_NALA,
         self::NAME_MALA,
         self::NAME_SARPA,
+        self::NAME_GADA,
+        self::NAME_SANAHA,
+        self::NAME_VIBHUKA,
+        self::NAME_DHURIYA,
+    ];
+    
+    /**
+     * Bhavas of akriti yoga.
+     * 
+     * @var array
+     */
+    private $akritiBhava = [
+        self::NAME_GADA => [1, 4],
+        self::NAME_SANAHA => [4, 7],
+        self::NAME_VIBHUKA => [7, 10],
+        self::NAME_DHURIYA => [10, 1],
     ];
     
     /**
@@ -71,7 +91,7 @@ class Nabhasha extends YogaBase
         $grahas = $this->getData()['graha'];
         
         foreach ($grahas as $key => $data) {
-            if (in_array($data['rashi'], ($rashis))) {
+            if (in_array($data['rashi'], $rashis)) {
                 continue;
             } else {
                 return false;
@@ -82,7 +102,7 @@ class Nabhasha extends YogaBase
     }
     
     /**
-     *  All the grahas in movable rashis cause Rajju yoga.
+     * All the grahas in movable rashis cause Rajju yoga.
      * 
      * @return bool|array
      */
@@ -92,7 +112,7 @@ class Nabhasha extends YogaBase
     }
     
     /**
-     *  All the grahas in fixed rashis cause Musala yoga.
+     * All the grahas in fixed rashis cause Musala yoga.
      * 
      * @return bool|array
      */
@@ -102,7 +122,7 @@ class Nabhasha extends YogaBase
     }
     
     /**
-     *  All the grahas in dual rashis cause Nala yoga.
+     * All the grahas in dual rashis cause Nala yoga.
      * 
      * @return bool|array
      */
@@ -116,7 +136,7 @@ class Nabhasha extends YogaBase
      * 
      * @param string $dalaName
      * @return bool|array
-     * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 35, Verse 7.
+     * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 35, Verse 8.
      */
     public function hasDala($dalaName)
     {
@@ -150,7 +170,7 @@ class Nabhasha extends YogaBase
     }
     
     /**
-     *  If kendras are occupied by benefics, Mala yoga is produced.
+     * If kendras are occupied by benefics, Mala yoga is produced.
      * 
      * @return bool|array
      */
@@ -160,7 +180,7 @@ class Nabhasha extends YogaBase
     }
     
     /**
-     *  If kendras are occupied by malefics, Sarpa yoga is produced.
+     * If kendras are occupied by malefics, Sarpa yoga is produced.
      * 
      * @return bool|array
      */
@@ -169,6 +189,75 @@ class Nabhasha extends YogaBase
         return $this->hasDala(self::NAME_SARPA);
     }
     
+    /**
+     * If all the Grahas occupy two successive kendras, Gada kind yoga is formed.
+     * 
+     * @param string $akritiName
+     * @return bool|array
+     * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 35, Verse 9-11.
+     */
+    public function hasAkriti($akritiName)
+    {
+        $grahas = $this->getData()['graha'];
+        unset($grahas[Graha::KEY_RA], $grahas[Graha::KEY_KE]);
+        
+        $bhavas = $this->getData()['bhava'];
+        $akritiRashi = [];
+        foreach ($this->akritiBhava[$akritiName] as $bhavaKey) {
+            $akritiRashi[] = $bhavas[$bhavaKey]['rashi'];
+        }
+        
+        foreach ($grahas as $key => $grahaData) {
+            if (in_array($grahaData['rashi'], $akritiRashi)) {
+                continue;
+            } else {
+                return false;
+            }
+        }
+        $yogaData = $this->assignYoga($akritiName, self::SUBTYPE_AKRITI);
+        return [$yogaData];
+    }
+    
+    /**
+     * If all the Grahas occupy 1 and 4 kendras, Gada yoga is formed.
+     * 
+     * @return bool|array
+     */
+    public function hasGada()
+    {
+        return $this->hasAkriti(self::NAME_GADA);
+    }
+    
+    /**
+     * If all the Grahas occupy 4 and 7 kendras, Sanaha yoga is formed.
+     * 
+     * @return bool|array
+     */
+    public function hasSanaha()
+    {
+        return $this->hasAkriti(self::NAME_SANAHA);
+    }
+    
+    /**
+     * If all the Grahas occupy 7 and 10 kendras, Vibhuka yoga is formed.
+     * 
+     * @return bool|array
+     */
+    public function hasVibhuka()
+    {
+        return $this->hasAkriti(self::NAME_VIBHUKA);
+    }
+    
+    /**
+     * If all the Grahas occupy 10 and 1 kendras, Dhuriya yoga is formed.
+     * 
+     * @return bool|array
+     */
+    public function hasDhuriya()
+    {
+        return $this->hasAkriti(self::NAME_DHURIYA);
+    }
+
     /**
      * Get list of yogas.
      * 
@@ -184,6 +273,9 @@ class Nabhasha extends YogaBase
                 break;
             case self::SUBTYPE_DALA:
                 $list = array_slice(self::$yoga, 3, 2);
+                break;
+            case self::SUBTYPE_AKRITI:
+                $list = array_slice(self::$yoga, 5);
                 break;
             default:
                 $list = self::$yoga;

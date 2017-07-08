@@ -112,6 +112,63 @@ class NabhashaTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
+     * @covers Jyotish\Yoga\Type\Nabhasha::hasGada
+     */
+    public function testHasGada()
+    {
+        $Source = new ArraySource($this->dataSource->Gada);
+        $Data = Data::createFromImport($Source);
+        $this->Nabhasha->setData($Data);
+        $this->assertNotFalse($this->Nabhasha->hasGada());
+    }
+    
+    /**
+     * @covers Jyotish\Yoga\Type\Nabhasha::hasSanaha
+     */
+    public function testHasSanaha()
+    {
+        $Source = new ArraySource($this->dataSource->Sanaha);
+        $Data = Data::createFromImport($Source);
+        $this->Nabhasha->setData($Data);
+        $this->assertNotFalse($this->Nabhasha->hasSanaha());
+    }
+    
+    /**
+     * @covers Jyotish\Yoga\Type\Nabhasha::hasVibhuka
+     */
+    public function testHasVibhuka()
+    {
+        $Source = new ArraySource($this->dataSource->Vibhuka);
+        $Data = Data::createFromImport($Source);
+        $this->Nabhasha->setData($Data);
+        $this->assertNotFalse($this->Nabhasha->hasVibhuka());
+    }
+    
+    /**
+     * @covers Jyotish\Yoga\Type\Nabhasha::hasDhuriya
+     */
+    public function testHasDhuriya()
+    {
+        $Source = new ArraySource($this->dataSource->Dhuriya);
+        $Data = Data::createFromImport($Source);
+        $this->Nabhasha->setData($Data);
+        $this->assertNotFalse($this->Nabhasha->hasDhuriya());
+    }
+    
+    /**
+     * @covers Jyotish\Yoga\Type\Nabhasha::hasAkriti
+     */
+    public function testHasAkriti()
+    {
+        foreach (Nabhasha::listYoga(Nabhasha::SUBTYPE_AKRITI) as $yoga) {
+            $Source = new ArraySource($this->dataSource->$yoga);
+            $Data = Data::createFromImport($Source);
+            $this->Nabhasha->setData($Data);
+            $this->assertNotFalse($this->Nabhasha->hasAkriti($yoga)[0]);
+        }
+    }
+    
+    /**
      * @covers Jyotish\Yoga\Type\Nabhasha::listYoga
      * @dataProvider providerListYoga
      */
@@ -132,6 +189,12 @@ class NabhashaTest extends \PHPUnit_Framework_TestCase
             [Nabhasha::SUBTYPE_DALA, [
                 Nabhasha::NAME_MALA,
                 Nabhasha::NAME_SARPA
+            ]],
+            [Nabhasha::SUBTYPE_AKRITI, [
+                Nabhasha::NAME_GADA,
+                Nabhasha::NAME_SANAHA,
+                Nabhasha::NAME_VIBHUKA,
+                Nabhasha::NAME_DHURIYA,
             ]],
             [null, Nabhasha::$yoga]
         ];

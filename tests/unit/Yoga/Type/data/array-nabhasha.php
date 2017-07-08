@@ -97,3 +97,67 @@ $dataSource->NoDala = [
         'Lg' => ['longitude' => 112]
     ]
 ];
+$dataSource->Gada = [
+    'graha' => [
+        'Sy' => ['longitude' => 17, 'speed' => null],
+        'Ch' => ['longitude' => 104, 'speed' => null],
+        'Ma' => ['longitude' => 22, 'speed' => null],
+        'Bu' => ['longitude' => 10, 'speed' => null],
+        'Gu' => ['longitude' => 103, 'speed' => null],
+        'Sk' => ['longitude' => 7, 'speed' => null],
+        'Sa' => ['longitude' => 100, 'speed' => null],
+        'Ra' => ['longitude' => 32, 'speed' => null],
+        'Ke' => ['longitude' => 212, 'speed' => null],
+    ],
+    'lagna' => [
+        'Lg' => ['longitude' => 12]
+    ]
+];
+$dataSource->Sanaha = [
+    'graha' => [
+        'Sy' => ['longitude' => 107, 'speed' => null],
+        'Ch' => ['longitude' => 194, 'speed' => null],
+        'Ma' => ['longitude' => 112, 'speed' => null],
+        'Bu' => ['longitude' => 100, 'speed' => null],
+        'Gu' => ['longitude' => 193, 'speed' => null],
+        'Sk' => ['longitude' => 97, 'speed' => null],
+        'Sa' => ['longitude' => 190, 'speed' => null],
+        'Ra' => ['longitude' => 32, 'speed' => null],
+        'Ke' => ['longitude' => 212, 'speed' => null],
+    ],
+    'lagna' => [
+        'Lg' => ['longitude' => 12]
+    ]
+];
+$dataSource->Vibhuka = [
+    'graha' => [
+        'Sy' => ['longitude' => 197, 'speed' => null],
+        'Ch' => ['longitude' => 284, 'speed' => null],
+        'Ma' => ['longitude' => 202, 'speed' => null],
+        'Bu' => ['longitude' => 190, 'speed' => null],
+        'Gu' => ['longitude' => 283, 'speed' => null],
+        'Sk' => ['longitude' => 187, 'speed' => null],
+        'Sa' => ['longitude' => 280, 'speed' => null],
+        'Ra' => ['longitude' => 32, 'speed' => null],
+        'Ke' => ['longitude' => 212, 'speed' => null],
+    ],
+    'lagna' => [
+        'Lg' => ['longitude' => 12]
+    ]
+];
+$dataSource->Dhuriya = [
+    'graha' => [
+        'Sy' => ['longitude' => 287, 'speed' => null],
+        'Ch' => ['longitude' => 14, 'speed' => null],
+        'Ma' => ['longitude' => 292, 'speed' => null],
+        'Bu' => ['longitude' => 280, 'speed' => null],
+        'Gu' => ['longitude' => 13, 'speed' => null],
+        'Sk' => ['longitude' => 277, 'speed' => null],
+        'Sa' => ['longitude' => 10, 'speed' => null],
+        'Ra' => ['longitude' => 32, 'speed' => null],
+        'Ke' => ['longitude' => 212, 'speed' => null],
+    ],
+    'lagna' => [
+        'Lg' => ['longitude' => 12]
+    ]
+];
