@@ -161,3 +161,51 @@ $dataSource->Dhuriya = [
         'Lg' => ['longitude' => 12]
     ]
 ];
+$dataSource->Sakata = [
+    'graha' => [
+        'Sy' => ['longitude' => 48, 'speed' => null],
+        'Ch' => ['longitude' => 220, 'speed' => null],
+        'Ma' => ['longitude' => 55, 'speed' => null],
+        'Bu' => ['longitude' => 40, 'speed' => null],
+        'Gu' => ['longitude' => 229, 'speed' => null],
+        'Sk' => ['longitude' => 54, 'speed' => null],
+        'Sa' => ['longitude' => 216, 'speed' => null],
+        'Ra' => ['longitude' => 32, 'speed' => null],
+        'Ke' => ['longitude' => 212, 'speed' => null],
+    ],
+    'lagna' => [
+        'Lg' => ['longitude' => 45]
+    ]
+];
+$dataSource->Vihaga = [
+    'graha' => [
+        'Sy' => ['longitude' => 138, 'speed' => null],
+        'Ch' => ['longitude' => 310, 'speed' => null],
+        'Ma' => ['longitude' => 145, 'speed' => null],
+        'Bu' => ['longitude' => 130, 'speed' => null],
+        'Gu' => ['longitude' => 319, 'speed' => null],
+        'Sk' => ['longitude' => 144, 'speed' => null],
+        'Sa' => ['longitude' => 306, 'speed' => null],
+        'Ra' => ['longitude' => 32, 'speed' => null],
+        'Ke' => ['longitude' => 212, 'speed' => null],
+    ],
+    'lagna' => [
+        'Lg' => ['longitude' => 45]
+    ]
+];
+$dataSource->Shringataka = [
+    'graha' => [
+        'Sy' => ['longitude' => 90, 'speed' => null],
+        'Ch' => ['longitude' => 204, 'speed' => null],
+        'Ma' => ['longitude' => 202, 'speed' => null],
+        'Bu' => ['longitude' => 88, 'speed' => null],
+        'Gu' => ['longitude' => 325, 'speed' => null],
+        'Sk' => ['longitude' => 71, 'speed' => null],
+        'Sa' => ['longitude' => 326, 'speed' => null],
+        'Ra' => ['longitude' => 32, 'speed' => null],
+        'Ke' => ['longitude' => 212, 'speed' => null],
+    ],
+    'lagna' => [
+        'Lg' => ['longitude' => 90]
+    ]
+];

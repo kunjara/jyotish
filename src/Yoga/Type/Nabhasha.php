@@ -33,6 +33,9 @@ class Nabhasha extends YogaBase
     const NAME_SANAHA = 'Sanaha';
     const NAME_VIBHUKA = 'Vibhuka';
     const NAME_DHURIYA = 'Dhuriya';
+    const NAME_SAKATA = 'Sakata';
+    const NAME_VIHAGA = 'Vihaga';
+    const NAME_SHRINGATAKA = 'Shringataka';
     
     /**
      * Type of yogas.
@@ -56,6 +59,9 @@ class Nabhasha extends YogaBase
         self::NAME_SANAHA,
         self::NAME_VIBHUKA,
         self::NAME_DHURIYA,
+        self::NAME_SAKATA,
+        self::NAME_VIHAGA,
+        self::NAME_SHRINGATAKA,
     ];
     
     /**
@@ -68,6 +74,9 @@ class Nabhasha extends YogaBase
         self::NAME_SANAHA => [4, 7],
         self::NAME_VIBHUKA => [7, 10],
         self::NAME_DHURIYA => [10, 1],
+        self::NAME_SAKATA => [1, 7],
+        self::NAME_VIHAGA => [4, 10],
+        self::NAME_SHRINGATAKA => [1, 5, 9],
     ];
     
     /**
@@ -256,6 +265,36 @@ class Nabhasha extends YogaBase
     public function hasDhuriya()
     {
         return $this->hasAkriti(self::NAME_DHURIYA);
+    }
+    
+    /**
+     * If all the Grahas occupy 1 and 7 kendras, Sakata yoga is formed.
+     * 
+     * @return bool|array
+     */
+    public function hasSakata()
+    {
+        return $this->hasAkriti(self::NAME_SAKATA);
+    }
+    
+    /**
+     * If all the Grahas occupy 4 and 10 kendras, Vihaga yoga is formed.
+     * 
+     * @return bool|array
+     */
+    public function hasVihaga()
+    {
+        return $this->hasAkriti(self::NAME_VIHAGA);
+    }
+    
+    /**
+     * If all the Grahas occupy trikona bhavas, Vihaga yoga is formed.
+     * 
+     * @return bool|array
+     */
+    public function hasShringataka()
+    {
+        return $this->hasAkriti(self::NAME_SHRINGATAKA);
     }
 
     /**

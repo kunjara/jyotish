@@ -64,7 +64,7 @@ class NabhashaTest extends \PHPUnit_Framework_TestCase
      */
     public function testHasAshraya()
     {
-        foreach (Nabhasha::listYoga(Nabhasha::SUBTYPE_ASHRAYA) as $yoga) {
+        foreach (Nabhasha::listYoga(Nabhasha::GROUP_ASHRAYA) as $yoga) {
             $Source = new ArraySource($this->dataSource->$yoga);
             $Data = Data::createFromImport($Source);
             $this->Nabhasha->setData($Data);
@@ -99,7 +99,7 @@ class NabhashaTest extends \PHPUnit_Framework_TestCase
      */
     public function testHasDala()
     {
-        foreach (Nabhasha::listYoga(Nabhasha::SUBTYPE_DALA) as $yoga) {
+        foreach (Nabhasha::listYoga(Nabhasha::GROUP_DALA) as $yoga) {
             $Source = new ArraySource($this->dataSource->$yoga);
             $Data = Data::createFromImport($Source);
             $this->Nabhasha->setData($Data);
@@ -156,11 +156,44 @@ class NabhashaTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
+     * @covers Jyotish\Yoga\Type\Nabhasha::hasSakata
+     */
+    public function testHasSakata()
+    {
+        $Source = new ArraySource($this->dataSource->Sakata);
+        $Data = Data::createFromImport($Source);
+        $this->Nabhasha->setData($Data);
+        $this->assertNotFalse($this->Nabhasha->hasSakata());
+    }
+    
+    /**
+     * @covers Jyotish\Yoga\Type\Nabhasha::hasVihaga
+     */
+    public function testHasVihaga()
+    {
+        $Source = new ArraySource($this->dataSource->Vihaga);
+        $Data = Data::createFromImport($Source);
+        $this->Nabhasha->setData($Data);
+        $this->assertNotFalse($this->Nabhasha->hasVihaga());
+    }
+    
+    /**
+     * @covers Jyotish\Yoga\Type\Nabhasha::hasShringataka
+     */
+    public function testHasShringataka()
+    {
+        $Source = new ArraySource($this->dataSource->Shringataka);
+        $Data = Data::createFromImport($Source);
+        $this->Nabhasha->setData($Data);
+        $this->assertNotFalse($this->Nabhasha->hasShringataka());
+    }
+    
+    /**
      * @covers Jyotish\Yoga\Type\Nabhasha::hasAkriti
      */
     public function testHasAkriti()
     {
-        foreach (Nabhasha::listYoga(Nabhasha::SUBTYPE_AKRITI) as $yoga) {
+        foreach (Nabhasha::listYoga(Nabhasha::GROUP_AKRITI) as $yoga) {
             $Source = new ArraySource($this->dataSource->$yoga);
             $Data = Data::createFromImport($Source);
             $this->Nabhasha->setData($Data);
@@ -181,20 +214,23 @@ class NabhashaTest extends \PHPUnit_Framework_TestCase
     public function providerListYoga()
     {
         return [
-            [Nabhasha::SUBTYPE_ASHRAYA, [
+            [Nabhasha::GROUP_ASHRAYA, [
                 Nabhasha::NAME_RAJJU,
                 Nabhasha::NAME_MUSALA,
                 Nabhasha::NAME_NALA
             ]],
-            [Nabhasha::SUBTYPE_DALA, [
+            [Nabhasha::GROUP_DALA, [
                 Nabhasha::NAME_MALA,
                 Nabhasha::NAME_SARPA
             ]],
-            [Nabhasha::SUBTYPE_AKRITI, [
+            [Nabhasha::GROUP_AKRITI, [
                 Nabhasha::NAME_GADA,
                 Nabhasha::NAME_SANAHA,
                 Nabhasha::NAME_VIBHUKA,
                 Nabhasha::NAME_DHURIYA,
+                Nabhasha::NAME_SAKATA,
+                Nabhasha::NAME_VIHAGA,
+                Nabhasha::NAME_SHRINGATAKA,
             ]],
             [null, Nabhasha::$yoga]
         ];
