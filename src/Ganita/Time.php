@@ -31,10 +31,8 @@ class Time
      */
     public static function createDateTime(array $data)
     {
-        $dateTime = $data['date'] . ' ' . $data['time'];
         $TimeZone = isset($data['timezone']) ? new DateTimeZone($data['timezone']) : null;
-        
-        $DateTime = new DateTime($dateTime, $TimeZone);
+        $DateTime = new DateTime($data['datetime'], $TimeZone);
         
         return $DateTime;
     }

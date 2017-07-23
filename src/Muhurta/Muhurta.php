@@ -17,15 +17,29 @@ use Jyotish\Ganita\Time;
  */
 class Muhurta
 {
+    use \Jyotish\Base\Traits\OptionTrait;
+    
     const PANCHAKA_MRITYU = 1;
     const PANCHAKA_AGNI   = 2;
     const PANCHAKA_RAJA   = 4;
     const PANCHAKA_CHORA  = 6;
     const PANCHAKA_ROGA   = 8;
     
+    /**
+     * Duration of the calculated period in days.
+     *
+     * @var int
+     */
+    protected $optionDuration = 1;
+    
+    /**
+     * Instance of AngaDefiner.
+     * 
+     * @var Jyotish\Panchanga\AngaDefiner;
+     */
     protected $AngaDefiner = null;
     
-    protected $ganitaData = null;
+    protected $userData = null;
 
     protected $dateTimeObject = null;
     
@@ -43,30 +57,24 @@ class Muhurta
     public function __construct(AngaDefiner $AngaDefiner)
     {
         $this->AngaDefiner = $AngaDefiner;
-        $this->ganitaData = $this->AngaDefiner->getData();
+        $this->userData = $this->AngaDefiner->getData()['user'];
+        
+        $this->dateTimeObjectStart = Time::createDateTime($this->userData);
+        $this->dateTimeObjectEnd = clone($this->dateTimeObjectStart);
+        $this->dateTimeObjectStart->modify('-28 hours');
+        
+        $this->AngaDefiner->setDateTime($this->dateTimeObjectStart);
     }
     
     /**
      * Get timestamps of muhurta.
      * 
-     * @param int $period Period of time in days, which is calculated muhurta
-     * @param null|array $angas Components of Panchanga
      * @return array
      */
-    public function getTimeStamps($period = 1, array $angas = null)
+    public function getTimeStamps()
     {
-        $this->init($period);
-        
-        if (is_null($angas)) {
-            $angas = Panchanga::$anga;
-        }
-        
-        foreach ($angas as $angaName) {
-            $this->calcPanchanga($angaName);
-        }
-        
-        $this->clear();
-        $this->sort();
+        $this->clearTimeStamps();
+        $this->sortTimeStamps();
         
         return $this->timeStamps;
     }
@@ -74,59 +82,85 @@ class Muhurta
     /**
      * Calculate timestamps of panchanga.
      * 
+     * @param null|array $angas Components of Panchanga
+     * @return void
+     */
+    public function calcPanchanga(array $angas = null)
+    {
+        if (is_null($angas)) {
+            $angas = Panchanga::$anga;
+        }
+        
+        foreach ($angas as $angaName) {
+            $this->calcAnga($angaName);
+        }
+    }
+    
+    /**
+     * Recursively calculate the timestamps of anga.
+     * 
      * @param string $angaName
      * @return void
      */
-    protected function calcPanchanga($angaName)
+    protected function calcAnga($angaName)
     {
         $getAnga = 'get' . ucfirst($angaName);
         $angaData = $this->AngaDefiner->$getAnga(true);
-        $nextTime = $angaData['end'];
-        
+        $angaData['part'] = $angaData['anga'];
+        unset($angaData['left'], $angaData['anga']);
+
         if (!isset($this->dateTimeObject)) {
             $this->dateTimeObject = clone($this->dateTimeObjectStart);
+        } 
+        
+        if (!isset($angaData['start'])) {
             $angaData['start'] = null;
+        }
+        
+        if ($angaName != Panchanga::ANGA_VARA) {
+            $angaData['start'] = end($this->timeStamps)['end'];
+            $this->dateTimeObject
+                ->modify($angaData['end'])
+                ->modify('+ 8 minutes'); // Eliminate the error of end calculation
         } else {
-            if ($angaName != Panchanga::ANGA_VARA) {
-                $angaData['start'] = end($this->timeStamps)['end'];
-            }
+            $this->dateTimeObject
+                ->modify('+ 24 hours');
         }
-        
-        $this->timeStamps[] = $angaData;
-        
-        // Eliminate the error of end calculation
-        $this->dateTimeObject->modify($nextTime)->modify('+ 8 minutes');
-        
-        if ($nextTime < $this->dateTimeObjectEnd->format(Time::FORMAT_DATETIME)) {
-            $this->AngaDefiner->setData([
-                'date' => $this->dateTimeObject->format(Time::FORMAT_DATA_DATE),
-                'time' => $this->dateTimeObject->format(Time::FORMAT_DATA_TIME),
-            ], $angaName);
-            
-            $this->calcPanchanga($angaName);
+
+        $this->timeStamps[] = $this->unifyPart($angaData);
+
+        if ($this->dateTimeObject < $this->dateTimeObjectEnd) {
+            $this->AngaDefiner->setDateTime($this->dateTimeObject);
+            $this->calcAnga($angaName);
         }
-        
-        $this->reset();
+
+        $this->resetDateTime();
     }
     
-    protected function init($period)
+    /**
+     * Set duration for calculation.
+     * 
+     * @param int $duration
+     * @return Jyotish\Muhurta\Muhurta
+     * @throws \OutOfRangeException
+     */
+    public function setOptionDuration($duration)
     {
-        $this->dateTimeObjectStart = Time::createDateTime($this->ganitaData['user']);
-        $this->dateTimeObjectEnd = clone($this->dateTimeObjectStart);
-        $this->dateTimeObjectStart->modify('-28 hours');
-        
-        $this->AngaDefiner->setData([
-            'date' => $this->dateTimeObjectStart->format(Time::FORMAT_DATA_DATE),
-            'time' => $this->dateTimeObjectStart->format(Time::FORMAT_DATA_TIME),
-        ]);
-        
-        if ($period > 1) 
-            $this->dateTimeObjectEnd->modify('+' . $period - 1 . ' days');
+        if (!is_numeric($duration) || intval($duration) <= 0) {
+            throw new \OutOfRangeException(
+                'Duration should be greater than 0.'
+            );
+        }
+        $this->optionDuration = intval($duration);
+        if ($this->optionDuration > 1) {
+            $this->dateTimeObjectEnd->modify('+' . $this->optionDuration - 1 . ' days');
+        }
+        return $this;
     }
 
-    protected function clear()
+    protected function clearTimeStamps()
     {
-        $dateTimeEnd = Time::createDateTime($this->ganitaData['user']);
+        $dateTimeEnd = Time::createDateTime($this->userData);
         
         foreach ($this->timeStamps as $key => $timeStamp) {
             if (is_null($timeStamp['start']) || $timeStamp['end'] < $dateTimeEnd->format(Time::FORMAT_DATETIME)) {
@@ -135,7 +169,7 @@ class Muhurta
         }
     }
 
-    protected function sort()
+    protected function sortTimeStamps()
     {
         usort($this->timeStamps, 
             function ($stamp1, $stamp2) {
@@ -148,13 +182,25 @@ class Muhurta
         );
     }
 
-    protected function reset()
+    protected function resetDateTime()
     {
         unset($this->dateTimeObject);
+        $this->AngaDefiner->setDateTime($this->dateTimeObjectStart);
+    }
+    
+    protected function unifyPart($part)
+    {
+        $basicKeys = ['part', 'start', 'end'];
+        $partUnified = [];
         
-        $this->AngaDefiner->setData([
-            'date' => $this->dateTimeObjectStart->format(Time::FORMAT_DATA_DATE),
-            'time' => $this->dateTimeObjectStart->format(Time::FORMAT_DATA_TIME),
-        ]);
+        foreach ($basicKeys as $key) {
+            if (array_key_exists($key, $part)) {
+                $partUnified[$key] = $part[$key];
+                unset($part[$key]);
+            }
+        }
+        $partUnified['details'] = $part;
+        
+        return $partUnified;
     }
 }

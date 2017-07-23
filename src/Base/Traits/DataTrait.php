@@ -41,6 +41,36 @@ trait DataTrait
         
         return $this;
     }
+    
+    /**
+     * Set datetime.
+     * 
+     * @param \DateTime $DateTime
+     * @return mixed
+     */
+    public function setDateTime(\DateTime $DateTime)
+    {
+        if (is_object($this->Data)) {
+            $this->Data->setDateTime($DateTime);
+        }
+        
+        return $this;
+    }
+    
+    /**
+     * Set locality.
+     * 
+     * @param \Jyotish\Base\Locality $Locality
+     * @return mixed
+     */
+    public function setLocality(\Jyotish\Base\Locality $Locality)
+    {
+        if (is_object($this->Data)) {
+            $this->Data->setLocality($Locality);
+        }
+        
+        return $this;
+    }
 
     /**
      * Get data.
