@@ -11,11 +11,11 @@ use Jyotish\Panchanga\AngaDefiner;
 use Jyotish\Ganita\Time;
 
 /**
- * Muhurta class.
+ * Class for determining muhurta stamps.
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class Muhurta
+class MuhurtaStamps
 {
     use \Jyotish\Base\Traits\OptionTrait;
     
@@ -47,7 +47,7 @@ class Muhurta
     
     protected $dateTimeObjectEnd = null;
     
-    protected $timeStamps = [];
+    protected $muhurtaStamps = [];
 
     /**
      * Constructor
@@ -71,12 +71,12 @@ class Muhurta
      * 
      * @return array
      */
-    public function getTimeStamps()
+    public function getMuhurtaStamps()
     {
-        $this->clearTimeStamps();
-        $this->sortTimeStamps();
+        $this->purifyMuhurtaStamps();
+        $this->sortMuhurtaStamps();
         
-        return $this->timeStamps;
+        return $this->muhurtaStamps;
     }
     
     /**
@@ -106,7 +106,7 @@ class Muhurta
     {
         $getAnga = 'get' . ucfirst($angaName);
         $angaData = $this->AngaDefiner->$getAnga(true);
-        $angaData['part'] = $angaData['anga'];
+        $angaData['stamp'] = $angaData['anga'];
         unset($angaData['left'], $angaData['anga']);
 
         if (!isset($this->dateTimeObject)) {
@@ -118,7 +118,7 @@ class Muhurta
         }
         
         if ($angaName != Panchanga::ANGA_VARA) {
-            $angaData['start'] = end($this->timeStamps)['end'];
+            $angaData['start'] = end($this->muhurtaStamps)['end'];
             $this->dateTimeObject
                 ->modify($angaData['end'])
                 ->modify('+ 8 minutes'); // Eliminate the error of end calculation
@@ -127,7 +127,7 @@ class Muhurta
                 ->modify('+ 24 hours');
         }
 
-        $this->timeStamps[] = $this->unifyPart($angaData);
+        $this->muhurtaStamps[] = $this->unifyPart($angaData);
 
         if ($this->dateTimeObject < $this->dateTimeObjectEnd) {
             $this->AngaDefiner->setDateTime($this->dateTimeObject);
@@ -158,20 +158,30 @@ class Muhurta
         return $this;
     }
 
-    protected function clearTimeStamps()
+    /**
+     * Purify muhurta stamps.
+     * 
+     * @return void
+     */
+    protected function purifyMuhurtaStamps()
     {
         $dateTimeEnd = Time::createDateTime($this->userData);
         
-        foreach ($this->timeStamps as $key => $timeStamp) {
+        foreach ($this->muhurtaStamps as $key => $timeStamp) {
             if (is_null($timeStamp['start']) || $timeStamp['end'] < $dateTimeEnd->format(Time::FORMAT_DATETIME)) {
-                unset($this->timeStamps[$key]);
+                unset($this->muhurtaStamps[$key]);
             }
         }
     }
 
-    protected function sortTimeStamps()
+    /**
+     * Sort muhurta stamps.
+     * 
+     * @return void
+     */
+    protected function sortMuhurtaStamps()
     {
-        usort($this->timeStamps, 
+        usort($this->muhurtaStamps, 
             function ($stamp1, $stamp2) {
                 if ($stamp1['start'] == $stamp2['start']) {
                     return 0;
@@ -190,7 +200,7 @@ class Muhurta
     
     protected function unifyPart($part)
     {
-        $basicKeys = ['part', 'start', 'end'];
+        $basicKeys = ['stamp', 'start', 'end'];
         $partUnified = [];
         
         foreach ($basicKeys as $key) {
