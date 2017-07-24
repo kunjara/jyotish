@@ -357,7 +357,7 @@ trait GrahaEnvironment
         $d1Data = $this->getEnvironment();
         
         $Varga9 = Varga::getInstance('D9');
-        $d9Data = $Varga9->setData($this->Data)->getVargaData();
+        $d9Data = $Varga9->setDataInstance($this->Data)->getVargaData();
         
         if ($d1Data['graha'][$this->objectKey]['rashi'] == $d9Data['graha'][$this->objectKey]['rashi'])
             return true;

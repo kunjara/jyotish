@@ -356,7 +356,7 @@ class Data
         if (is_null($this->Ganita)) {
             throw new Exception\UnderflowException("Ganita is not setted.");
         }
-        $dataParams = $this->Ganita->setData($this)->getParams($params, $options);
+        $dataParams = $this->Ganita->setDataInstance($this)->getParams($params, $options);
         $this->data = array_merge($this->data, $dataParams);
         
         return $this;
@@ -375,7 +375,7 @@ class Data
         if (is_null($this->Ganita)) {
             throw new Exception\UnderflowException("Ganita is not setted.");
         }
-        $dataRising = $this->Ganita->setData($this)->getRising($graha, $options);
+        $dataRising = $this->Ganita->setDataInstance($this)->getRising($graha, $options);
         $this->data[self::BLOCK_RISING] = $dataRising;
         
         return $this;
@@ -463,7 +463,7 @@ class Data
             if ($vargaKey == Varga::KEY_D1) {
                 $this->calcParams();
             } else {
-                $Varga = Varga::getInstance($vargaKey)->setData($this);
+                $Varga = Varga::getInstance($vargaKey)->setDataInstance($this);
                 $this->data[self::BLOCK_VARGA][$vargaKey] = $Varga->getVargaData();
             }
         }
@@ -484,7 +484,7 @@ class Data
         if (is_null($this->DateTime)) {
             throw new Exception\UnderflowException("DateTime is not setted.");
         }
-        $Dasha = Dasha::getInstance($type, $options)->setData($this);
+        $Dasha = Dasha::getInstance($type, $options)->setDataInstance($this);
         $this->data[self::BLOCK_DASHA][$type] = $Dasha->getPeriods($periodKey);
         
         return $this;
@@ -500,7 +500,7 @@ class Data
     public function calcYoga(array $yogas, array $options = null)
     {
         foreach ($yogas as $type) {
-            $Yoga = Yoga::getInstance($type, $options)->setData($this);
+            $Yoga = Yoga::getInstance($type, $options)->setDataInstance($this);
             foreach ($Yoga->generateYoga() as $result) {
                 $this->data[self::BLOCK_YOGA][$type][] = $result;
             }

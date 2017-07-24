@@ -35,7 +35,7 @@ trait DataTrait
      * @param \Jyotish\Base\Data $Data
      * @return mixed
      */
-    public function setData(\Jyotish\Base\Data $Data)
+    public function setDataInstance(\Jyotish\Base\Data $Data)
     {
         $this->Data = $Data;
         
@@ -70,6 +70,16 @@ trait DataTrait
         }
         
         return $this;
+    }
+    
+    /**
+     * Get data instance.
+     * 
+     * @return \Jyotish\Base\Data
+     */
+    public function getDataInstance()
+    {
+        return $this->Data;
     }
 
     /**

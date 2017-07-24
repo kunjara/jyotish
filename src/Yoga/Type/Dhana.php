@@ -54,7 +54,7 @@ class Dhana extends YogaBase
      * @param \Jyotish\Base\Data $Data
      * @return Dhana
      */
-    public function setData(Data $Data)
+    public function setDataInstance(Data $Data)
     {
         $this->Data = $Data;
         

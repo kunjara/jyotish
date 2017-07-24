@@ -217,7 +217,7 @@ class AshtakaVarga
      */
     public function __construct(\Jyotish\Base\Data $Data)
     {
-        $this->setData($Data);
+        $this->setDataInstance($Data);
 
         foreach ($this->ashtakavarga as $varga) {
             $binduVarga = 'bindu'.$varga;

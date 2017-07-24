@@ -59,7 +59,7 @@ class Upagraha
      */
     public function __construct(\Jyotish\Base\Data $Data)
     {
-        $this->setData($Data);
+        $this->setDataInstance($Data);
     }
     
     /**

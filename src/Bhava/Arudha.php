@@ -109,7 +109,7 @@ class Arudha
      */
     public function __construct(\Jyotish\Base\Data $Data, $options = null)
     {
-        $this->setData($Data);
+        $this->setDataInstance($Data);
         $this->setOptions($options);
     }
     
