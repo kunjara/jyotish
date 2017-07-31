@@ -196,12 +196,19 @@ class Math
      * Return sign of number.
      * 
      * @param mixed $number Test number
-     * @return int
+     * @param bool $returnInt Return integer (-1, 0, 1) or sign ('-', '', '+')
+     * @return int|string
      */
-    public static function sign($number)
-    { 
-        return $number > 0 ? 1 : ($number < 0 ? -1 : 0); 
-    } 
+    public static function sign($number, $returnInt = true)
+    {
+        if ($returnInt) {
+            $sign = $number > 0 ? 1 : ($number < 0 ? -1 : 0);
+        } else {
+            $sign = $number > 0 ? '+' : ($number < 0 ? '-' : '');
+        }
+        
+        return $sign;
+    }
 
     /**
      * Sum of arrays.

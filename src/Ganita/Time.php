@@ -6,6 +6,7 @@
 
 namespace Jyotish\Ganita;
 
+use Jyotish\Ganita\Math;
 use DateTime;
 use DateTimeZone;
 use DateInterval;
@@ -218,7 +219,7 @@ class Time
         $offsetInterval->s = (int)$seconds;
 
         $offsetFormat = $offsetInterval->format($format);
-        $result = $offsetSecond < 0 ? '-' . $offsetFormat : $offsetFormat;
+        $result = Math::sign($offsetSecond, false) . $offsetFormat;
 
         return $result;
     }
