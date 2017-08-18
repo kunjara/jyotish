@@ -60,7 +60,7 @@ class TimeTest extends \PHPUnit_Framework_TestCase
     public function testFormatOffset()
     {
         $offset = 3600;
-        $this->assertEquals('01:00', Time::formatOffset($offset));
+        $this->assertEquals('+01:00', Time::formatOffset($offset));
         
         $offset = -7200;
         $this->assertEquals('-02:00', Time::formatOffset($offset));
@@ -69,7 +69,7 @@ class TimeTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('00:00', Time::formatOffset($offset));
         
         $offset = 3665;
-        $this->assertEquals('01:01', Time::formatOffset($offset));
+        $this->assertEquals('+01:01', Time::formatOffset($offset));
     }
     
     /**
@@ -79,6 +79,9 @@ class TimeTest extends \PHPUnit_Framework_TestCase
     {
         $offset = '01:00';
         $this->assertEquals(3600, Time::disformatOffset($offset));
+        
+        $offset = '+02:00';
+        $this->assertEquals(7200, Time::disformatOffset($offset));
         
         $offset = '-02:00';
         $this->assertEquals(-7200, Time::disformatOffset($offset));
@@ -95,6 +98,6 @@ class TimeTest extends \PHPUnit_Framework_TestCase
     {
         $DateTime = new DateTime('2015-09-04 09:00:00', new DateTimeZone('Europe/Volgograd'));
         $this->assertEquals(10800, Time::getTimeZoneOffset($DateTime));
-        $this->assertEquals('03:00', Time::getTimeZoneOffset($DateTime, true));
+        $this->assertEquals('+03:00', Time::getTimeZoneOffset($DateTime, true));
     }
 }

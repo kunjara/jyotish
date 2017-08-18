@@ -33,7 +33,7 @@ class NabhashaTest extends \PHPUnit_Framework_TestCase
     {
         $Source = new ArraySource($this->dataSource->Rajju);
         $Data = Data::createFromImport($Source);
-        $this->Nabhasha->setData($Data);
+        $this->Nabhasha->setDataInstance($Data);
         $this->assertNotFalse($this->Nabhasha->hasRajju()[0]);
     }
     
@@ -44,7 +44,7 @@ class NabhashaTest extends \PHPUnit_Framework_TestCase
     {
         $Source = new ArraySource($this->dataSource->Musala);
         $Data = Data::createFromImport($Source);
-        $this->Nabhasha->setData($Data);
+        $this->Nabhasha->setDataInstance($Data);
         $this->assertNotFalse($this->Nabhasha->hasMusala()[0]);
     }
     
@@ -55,7 +55,7 @@ class NabhashaTest extends \PHPUnit_Framework_TestCase
     {
         $Source = new ArraySource($this->dataSource->Nala);
         $Data = Data::createFromImport($Source);
-        $this->Nabhasha->setData($Data);
+        $this->Nabhasha->setDataInstance($Data);
         $this->assertNotFalse($this->Nabhasha->hasNala()[0]);
     }
     
@@ -67,7 +67,7 @@ class NabhashaTest extends \PHPUnit_Framework_TestCase
         foreach (Nabhasha::listYoga(Nabhasha::GROUP_ASHRAYA) as $yoga) {
             $Source = new ArraySource($this->dataSource->$yoga);
             $Data = Data::createFromImport($Source);
-            $this->Nabhasha->setData($Data);
+            $this->Nabhasha->setDataInstance($Data);
             $this->assertNotFalse($this->Nabhasha->hasAshraya($yoga)[0]);
         }
     }
@@ -79,7 +79,7 @@ class NabhashaTest extends \PHPUnit_Framework_TestCase
     {
         $Source = new ArraySource($this->dataSource->Mala);
         $Data = Data::createFromImport($Source);
-        $this->Nabhasha->setData($Data);
+        $this->Nabhasha->setDataInstance($Data);
         $this->assertNotFalse($this->Nabhasha->hasMala());
     }
     
@@ -90,7 +90,7 @@ class NabhashaTest extends \PHPUnit_Framework_TestCase
     {
         $Source = new ArraySource($this->dataSource->Sarpa);
         $Data = Data::createFromImport($Source);
-        $this->Nabhasha->setData($Data);
+        $this->Nabhasha->setDataInstance($Data);
         $this->assertNotFalse($this->Nabhasha->hasSarpa());
     }
     
@@ -102,12 +102,12 @@ class NabhashaTest extends \PHPUnit_Framework_TestCase
         foreach (Nabhasha::listYoga(Nabhasha::GROUP_DALA) as $yoga) {
             $Source = new ArraySource($this->dataSource->$yoga);
             $Data = Data::createFromImport($Source);
-            $this->Nabhasha->setData($Data);
+            $this->Nabhasha->setDataInstance($Data);
             $this->assertNotFalse($this->Nabhasha->hasDala($yoga)[0]);
         }
         $Source = new ArraySource($this->dataSource->NoDala);
         $Data = Data::createFromImport($Source);
-        $this->Nabhasha->setData($Data);
+        $this->Nabhasha->setDataInstance($Data);
         $this->assertFalse($this->Nabhasha->hasDala(Nabhasha::NAME_MALA));
     }
     
@@ -118,7 +118,7 @@ class NabhashaTest extends \PHPUnit_Framework_TestCase
     {
         $Source = new ArraySource($this->dataSource->Gada);
         $Data = Data::createFromImport($Source);
-        $this->Nabhasha->setData($Data);
+        $this->Nabhasha->setDataInstance($Data);
         $this->assertNotFalse($this->Nabhasha->hasGada());
     }
     
@@ -129,7 +129,7 @@ class NabhashaTest extends \PHPUnit_Framework_TestCase
     {
         $Source = new ArraySource($this->dataSource->Sanaha);
         $Data = Data::createFromImport($Source);
-        $this->Nabhasha->setData($Data);
+        $this->Nabhasha->setDataInstance($Data);
         $this->assertNotFalse($this->Nabhasha->hasSanaha());
     }
     
@@ -140,7 +140,7 @@ class NabhashaTest extends \PHPUnit_Framework_TestCase
     {
         $Source = new ArraySource($this->dataSource->Vibhuka);
         $Data = Data::createFromImport($Source);
-        $this->Nabhasha->setData($Data);
+        $this->Nabhasha->setDataInstance($Data);
         $this->assertNotFalse($this->Nabhasha->hasVibhuka());
     }
     
@@ -151,7 +151,7 @@ class NabhashaTest extends \PHPUnit_Framework_TestCase
     {
         $Source = new ArraySource($this->dataSource->Dhuriya);
         $Data = Data::createFromImport($Source);
-        $this->Nabhasha->setData($Data);
+        $this->Nabhasha->setDataInstance($Data);
         $this->assertNotFalse($this->Nabhasha->hasDhuriya());
     }
     
@@ -162,7 +162,7 @@ class NabhashaTest extends \PHPUnit_Framework_TestCase
     {
         $Source = new ArraySource($this->dataSource->Sakata);
         $Data = Data::createFromImport($Source);
-        $this->Nabhasha->setData($Data);
+        $this->Nabhasha->setDataInstance($Data);
         $this->assertNotFalse($this->Nabhasha->hasSakata());
     }
     
@@ -173,7 +173,7 @@ class NabhashaTest extends \PHPUnit_Framework_TestCase
     {
         $Source = new ArraySource($this->dataSource->Vihaga);
         $Data = Data::createFromImport($Source);
-        $this->Nabhasha->setData($Data);
+        $this->Nabhasha->setDataInstance($Data);
         $this->assertNotFalse($this->Nabhasha->hasVihaga());
     }
     
@@ -184,7 +184,7 @@ class NabhashaTest extends \PHPUnit_Framework_TestCase
     {
         $Source = new ArraySource($this->dataSource->Shringataka);
         $Data = Data::createFromImport($Source);
-        $this->Nabhasha->setData($Data);
+        $this->Nabhasha->setDataInstance($Data);
         $this->assertNotFalse($this->Nabhasha->hasShringataka());
     }
     
@@ -196,7 +196,7 @@ class NabhashaTest extends \PHPUnit_Framework_TestCase
         foreach (Nabhasha::listYoga(Nabhasha::GROUP_AKRITI) as $yoga) {
             $Source = new ArraySource($this->dataSource->$yoga);
             $Data = Data::createFromImport($Source);
-            $this->Nabhasha->setData($Data);
+            $this->Nabhasha->setDataInstance($Data);
             $this->assertNotFalse($this->Nabhasha->hasAkriti($yoga)[0]);
         }
     }

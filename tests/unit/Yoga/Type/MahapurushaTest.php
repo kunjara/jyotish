@@ -40,7 +40,7 @@ class MahapurushaTest extends \PHPUnit_Framework_TestCase
         
         $Source = new ArraySource($this->dataSource->NativMahapurusha1);
         $Data = Data::createFromImport($Source);
-        $Mahapurusha->setData($Data);
+        $Mahapurusha->setDataInstance($Data);
         
         $this->assertFalse($Mahapurusha->hasMahapurusha('Ma'));
         $this->assertNotFalse($Mahapurusha->hasMahapurusha('Gu'));
@@ -56,7 +56,7 @@ class MahapurushaTest extends \PHPUnit_Framework_TestCase
         
         $Source = new ArraySource($this->dataSource->NativMahapurusha2);
         $Data = Data::createFromImport($Source);
-        $Mahapurusha->setData($Data);
+        $Mahapurusha->setDataInstance($Data);
         
         $this->assertNotFalse($Mahapurusha->hasMahapurusha('Ma'));
         $this->assertFalse($Mahapurusha->hasMahapurusha('Gu'));

@@ -48,7 +48,7 @@ class YogaBaseTest extends \PHPUnit_Framework_TestCase
         $Data = Data::createFromImport($Source);
         
         $YogaBase = new YogaBase();
-        $YogaBase->setData($Data);
+        $YogaBase->setDataInstance($Data);
         $this->assertNotFalse($YogaBase->hasParivarthana('Sy', 'Ch'));
         $this->assertNotFalse($YogaBase->hasParivarthana('Gu', 'Ma'));
         $this->assertNotFalse($YogaBase->hasParivarthana('Bu', 'Sk'));
