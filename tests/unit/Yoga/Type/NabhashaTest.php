@@ -34,7 +34,7 @@ class NabhashaTest extends \PHPUnit_Framework_TestCase
         $Source = new ArraySource($this->dataSource->Rajju);
         $Data = Data::createFromImport($Source);
         $this->Nabhasha->setDataInstance($Data);
-        $this->assertNotFalse($this->Nabhasha->hasRajju()[0]);
+        $this->assertNotFalse($this->Nabhasha->hasRajju());
     }
     
     /**
@@ -45,7 +45,7 @@ class NabhashaTest extends \PHPUnit_Framework_TestCase
         $Source = new ArraySource($this->dataSource->Musala);
         $Data = Data::createFromImport($Source);
         $this->Nabhasha->setDataInstance($Data);
-        $this->assertNotFalse($this->Nabhasha->hasMusala()[0]);
+        $this->assertNotFalse($this->Nabhasha->hasMusala());
     }
     
     /**
@@ -56,7 +56,7 @@ class NabhashaTest extends \PHPUnit_Framework_TestCase
         $Source = new ArraySource($this->dataSource->Nala);
         $Data = Data::createFromImport($Source);
         $this->Nabhasha->setDataInstance($Data);
-        $this->assertNotFalse($this->Nabhasha->hasNala()[0]);
+        $this->assertNotFalse($this->Nabhasha->hasNala());
     }
     
     /**
@@ -68,7 +68,7 @@ class NabhashaTest extends \PHPUnit_Framework_TestCase
             $Source = new ArraySource($this->dataSource->$yoga);
             $Data = Data::createFromImport($Source);
             $this->Nabhasha->setDataInstance($Data);
-            $this->assertNotFalse($this->Nabhasha->hasAshraya($yoga)[0]);
+            $this->assertNotFalse($this->Nabhasha->hasAshraya($yoga));
         }
     }
     
@@ -103,9 +103,10 @@ class NabhashaTest extends \PHPUnit_Framework_TestCase
             $Source = new ArraySource($this->dataSource->$yoga);
             $Data = Data::createFromImport($Source);
             $this->Nabhasha->setDataInstance($Data);
-            $this->assertNotFalse($this->Nabhasha->hasDala($yoga)[0]);
+            $this->assertNotFalse($this->Nabhasha->hasDala($yoga));
         }
-        $Source = new ArraySource($this->dataSource->NoDala);
+        
+        $Source = new ArraySource($this->dataSource->Gada);
         $Data = Data::createFromImport($Source);
         $this->Nabhasha->setDataInstance($Data);
         $this->assertFalse($this->Nabhasha->hasDala(Nabhasha::NAME_MALA));
@@ -189,6 +190,44 @@ class NabhashaTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
+     * @covers Jyotish\Yoga\Type\Nabhasha::hasHala
+     */
+    public function testHasHala()
+    {
+        $Source = new ArraySource($this->dataSource->Hala);
+        $Data = Data::createFromImport($Source);
+        $this->Nabhasha->setDataInstance($Data);
+        $this->assertNotFalse($this->Nabhasha->hasHala());
+        
+        $Source = new ArraySource($this->dataSource->Shringataka);
+        $Data = Data::createFromImport($Source);
+        $this->Nabhasha->setDataInstance($Data);
+        $this->assertFalse($this->Nabhasha->hasHala());
+    }
+    
+    /**
+     * @covers Jyotish\Yoga\Type\Nabhasha::hasVajra
+     */
+    public function testHasVajra()
+    {
+        $Source = new ArraySource($this->dataSource->Vajra);
+        $Data = Data::createFromImport($Source);
+        $this->Nabhasha->setDataInstance($Data);
+        $this->assertNotFalse($this->Nabhasha->hasVajra());
+    }
+    
+    /**
+     * @covers Jyotish\Yoga\Type\Nabhasha::hasYava
+     */
+    public function testHasYava()
+    {
+        $Source = new ArraySource($this->dataSource->Yava);
+        $Data = Data::createFromImport($Source);
+        $this->Nabhasha->setDataInstance($Data);
+        $this->assertNotFalse($this->Nabhasha->hasYava());
+    }
+    
+    /**
      * @covers Jyotish\Yoga\Type\Nabhasha::hasAkriti
      */
     public function testHasAkriti()
@@ -197,8 +236,13 @@ class NabhashaTest extends \PHPUnit_Framework_TestCase
             $Source = new ArraySource($this->dataSource->$yoga);
             $Data = Data::createFromImport($Source);
             $this->Nabhasha->setDataInstance($Data);
-            $this->assertNotFalse($this->Nabhasha->hasAkriti($yoga)[0]);
+            $this->assertNotFalse($this->Nabhasha->hasAkriti($yoga));
         }
+        
+        $Source = new ArraySource($this->dataSource->Mala);
+        $Data = Data::createFromImport($Source);
+        $this->Nabhasha->setDataInstance($Data);
+        $this->assertFalse($this->Nabhasha->hasAkriti(Nabhasha::NAME_GADA));
     }
     
     /**
@@ -231,6 +275,9 @@ class NabhashaTest extends \PHPUnit_Framework_TestCase
                 Nabhasha::NAME_SAKATA,
                 Nabhasha::NAME_VIHAGA,
                 Nabhasha::NAME_SHRINGATAKA,
+                Nabhasha::NAME_HALA,
+                Nabhasha::NAME_VAJRA,
+                Nabhasha::NAME_YAVA,
             ]],
             [null, Nabhasha::$yoga]
         ];

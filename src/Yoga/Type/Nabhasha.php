@@ -36,6 +36,9 @@ class Nabhasha extends YogaBase
     const NAME_SAKATA = 'Sakata';
     const NAME_VIHAGA = 'Vihaga';
     const NAME_SHRINGATAKA = 'Shringataka';
+    const NAME_HALA = 'Hala';
+    const NAME_VAJRA = 'Vajra';
+    const NAME_YAVA = 'Yava';
     
     /**
      * Type of yogas.
@@ -62,6 +65,9 @@ class Nabhasha extends YogaBase
         self::NAME_SAKATA,
         self::NAME_VIHAGA,
         self::NAME_SHRINGATAKA,
+        self::NAME_HALA,
+        self::NAME_VAJRA,
+        self::NAME_YAVA,
     ];
     
     /**
@@ -161,16 +167,16 @@ class Nabhasha extends YogaBase
         $grahaShubhaInBhava = array_intersect_key($grahaInBhava, $grahaShubha);
         $grahaPapaInBhava = array_intersect_key($grahaInBhava, $grahaPapa);
 
-        $bhavaShubhaInKendra = array_intersect($grahaShubhaInBhava, $kendras);
-        $bhavaPapaInKendra = array_intersect($grahaPapaInBhava, $kendras);
+        $grahaShubhaInKendra = array_intersect($grahaShubhaInBhava, $kendras);
+        $grahaPapaInKendra = array_intersect($grahaPapaInBhava, $kendras);
         
         if ($dalaName == self::NAME_MALA) {
-            if (count($bhavaShubhaInKendra) == 3 && count($bhavaPapaInKendra) == 0) {
+            if (count($grahaShubhaInKendra) == 3 && count($grahaPapaInKendra) == 0) {
                 $yogaData = $this->assignYoga($dalaName, self::GROUP_DALA);
                 return [$yogaData];
             }
         } elseif ($dalaName == self::NAME_SARPA) {
-            if (count($bhavaShubhaInKendra) == 0 && count($bhavaPapaInKendra) == 3) {
+            if (count($grahaShubhaInKendra) == 0 && count($grahaPapaInKendra) == 3) {
                 $yogaData = $this->assignYoga($dalaName, self::GROUP_DALA);
                 return [$yogaData];
             }
@@ -210,19 +216,29 @@ class Nabhasha extends YogaBase
         $grahas = $this->getData()['graha'];
         unset($grahas[Graha::KEY_RA], $grahas[Graha::KEY_KE]);
         
-        $bhavas = $this->getData()['bhava'];
-        $akritiRashi = [];
-        foreach ($this->akritiBhava[$akritiName] as $bhavaKey) {
-            $akritiRashi[] = $bhavas[$bhavaKey]['rashi'];
+        switch ($akritiName) {
+            case self::NAME_HALA:
+                return $this->hasHala();
+            case self::NAME_VAJRA:
+            case self::NAME_YAVA:
+                return $this->hasVajraYava($akritiName);
+            default:
+                if (!isset($this->akritiBhava[$akritiName])) return false;
+                
+                $akritiRashi = [];
+                foreach ($this->akritiBhava[$akritiName] as $bhavaKey) {
+                    $akritiRashi[] = $this->getData()['bhava'][$bhavaKey]['rashi'];
+                }
+                
+                foreach ($grahas as $key => $grahaData) {
+                    if (in_array($grahaData['rashi'], $akritiRashi)) {
+                        continue;
+                    } else {
+                        return false;
+                    }
+                }
         }
-        
-        foreach ($grahas as $key => $grahaData) {
-            if (in_array($grahaData['rashi'], $akritiRashi)) {
-                continue;
-            } else {
-                return false;
-            }
-        }
+
         $yogaData = $this->assignYoga($akritiName, self::GROUP_AKRITI);
         return [$yogaData];
     }
@@ -295,6 +311,109 @@ class Nabhasha extends YogaBase
     public function hasShringataka()
     {
         return $this->hasAkriti(self::NAME_SHRINGATAKA);
+    }
+    
+    /**
+     * All Grahas are in the 2nd, 6th and l0th or in the 3rd, 7th and llth or 
+     * in the 4th, 8th and l2th, Hala yoga  is formed.
+     * 
+     * @return bool|array
+     */
+    public function hasHala()
+    {
+        $grahas = $this->getData()['graha'];
+        unset($grahas[Graha::KEY_RA], $grahas[Graha::KEY_KE]);
+        
+        $akritiHalaBhava = [[2, 6, 10], [3, 7, 11], [4, 8, 12]];
+        $akritiHalaRashi = [];
+        
+        foreach ($akritiHalaBhava as $index => $akritiBhava) {
+            foreach ($akritiBhava as $bhavaKey) {
+                $akritiHalaRashi[$index][] = $this->getData()['bhava'][$bhavaKey]['rashi'];
+            }
+        }
+        
+        $no = 0;
+        foreach ($akritiHalaRashi as $index => $akritiRashi) {
+            foreach ($grahas as $key => $grahaData) {
+                if (in_array($grahaData['rashi'], $akritiRashi)) {
+                    continue;
+                } else {
+                    $no++;
+                    break;
+                }
+            }
+        }
+        
+        if ($no == count($akritiHalaBhava)) {
+            return false;
+        } else {
+            $yogaData = $this->assignYoga(self::NAME_HALA, self::GROUP_AKRITI);
+            return [$yogaData];
+        }
+    }
+    
+    /**
+     * Vajra yoga is caused by all benefics in the lagna and the 7th or 
+     * all malefics in the 4th and l0th.
+     * 
+     * @return bool|array
+     */
+    public function hasVajra()
+    {
+        return $this->hasVajraYava(self::NAME_VAJRA);
+    }
+    
+    /**
+     * Yava yoga is caused by all benefics in the 4th and l0th or 
+     * all malefics in the lagna and the 7th.
+     * 
+     * @return bool|array
+     */
+    public function hasYava()
+    {
+        return $this->hasVajraYava(self::NAME_YAVA);
+    }
+    
+    /**
+     * Vajra and Yava yogas.
+     * 
+     * @return bool|array
+     */
+    private function hasVajraYava($akritiName)
+    {
+        $grahaShubha = Graha::listGrahaByFeature('character', Graha::CHARACTER_SHUBHA);
+        unset($grahaShubha[Graha::KEY_CH]);
+        $grahaPapa = Graha::listGrahaByFeature('character', Graha::CHARACTER_PAPA);
+        unset($grahaPapa[Graha::KEY_RA], $grahaPapa[Graha::KEY_KE]);
+        
+        $bhavas1 = [1, 7];
+        $bhavas4 = [4, 10];
+        
+        $Analysis = new Analysis($this->Data);
+        $grahaInBhava = $Analysis->getBodyInBhava();
+        
+        $grahaShubhaInBhava = array_intersect_key($grahaInBhava, $grahaShubha);
+        $grahaPapaInBhava = array_intersect_key($grahaInBhava, $grahaPapa);
+        
+        if ($akritiName == self::NAME_VAJRA) {
+            $grahaShubhaInBhavas1 = array_intersect($grahaShubhaInBhava, $bhavas1);
+            $grahaPapaInBhavas4 = array_intersect($grahaPapaInBhava, $bhavas4);
+            
+            if (count($grahaShubhaInBhavas1) == 3 || count($grahaPapaInBhavas4) == 3) {
+                $yogaData = $this->assignYoga($akritiName, self::GROUP_AKRITI);
+                return [$yogaData];
+            }
+        } elseif ($akritiName == self::NAME_YAVA) {
+            $grahaShubhaInBhavas4 = array_intersect($grahaShubhaInBhava, $bhavas4);
+            $grahaPapaInBhavas1 = array_intersect($grahaPapaInBhava, $bhavas1);
+            
+            if (count($grahaShubhaInBhavas4) == 3 || count($grahaPapaInBhavas1) == 3) {
+                $yogaData = $this->assignYoga($akritiName, self::GROUP_AKRITI);
+                return [$yogaData];
+            }
+        }
+        return false;
     }
 
     /**
