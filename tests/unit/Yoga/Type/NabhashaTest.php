@@ -228,6 +228,72 @@ class NabhashaTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
+     * @covers Jyotish\Yoga\Type\Nabhasha::hasKamala
+     */
+    public function testHasKamala()
+    {
+        $Source = new ArraySource($this->dataSource->Kamala);
+        $Data = Data::createFromImport($Source);
+        $this->Nabhasha->setDataInstance($Data);
+        $this->assertNotFalse($this->Nabhasha->hasKamala());
+    }
+    
+    /**
+     * @covers Jyotish\Yoga\Type\Nabhasha::hasVapi
+     */
+    public function testHasVapi()
+    {
+        $Source = new ArraySource($this->dataSource->Vapi);
+        $Data = Data::createFromImport($Source);
+        $this->Nabhasha->setDataInstance($Data);
+        $this->assertNotFalse($this->Nabhasha->hasVapi());
+    }
+    
+    /**
+     * @covers Jyotish\Yoga\Type\Nabhasha::hasYupa
+     */
+    public function testHasYupa()
+    {
+        $Source = new ArraySource($this->dataSource->Yupa);
+        $Data = Data::createFromImport($Source);
+        $this->Nabhasha->setDataInstance($Data);
+        $this->assertNotFalse($this->Nabhasha->hasYupa());
+    }
+    
+    /**
+     * @covers Jyotish\Yoga\Type\Nabhasha::hasIshu
+     */
+    public function testHasIshu()
+    {
+        $Source = new ArraySource($this->dataSource->Ishu);
+        $Data = Data::createFromImport($Source);
+        $this->Nabhasha->setDataInstance($Data);
+        $this->assertNotFalse($this->Nabhasha->hasIshu());
+    }
+    
+    /**
+     * @covers Jyotish\Yoga\Type\Nabhasha::hasShakti
+     */
+    public function testHasShakti()
+    {
+        $Source = new ArraySource($this->dataSource->Shakti);
+        $Data = Data::createFromImport($Source);
+        $this->Nabhasha->setDataInstance($Data);
+        $this->assertNotFalse($this->Nabhasha->hasShakti());
+    }
+    
+    /**
+     * @covers Jyotish\Yoga\Type\Nabhasha::hasDanda
+     */
+    public function testHasDanda()
+    {
+        $Source = new ArraySource($this->dataSource->Danda);
+        $Data = Data::createFromImport($Source);
+        $this->Nabhasha->setDataInstance($Data);
+        $this->assertNotFalse($this->Nabhasha->hasDanda());
+    }
+    
+    /**
      * @covers Jyotish\Yoga\Type\Nabhasha::hasAkriti
      */
     public function testHasAkriti()
@@ -278,6 +344,12 @@ class NabhashaTest extends \PHPUnit_Framework_TestCase
                 Nabhasha::NAME_HALA,
                 Nabhasha::NAME_VAJRA,
                 Nabhasha::NAME_YAVA,
+                Nabhasha::NAME_KAMALA,
+                Nabhasha::NAME_VAPI,
+                Nabhasha::NAME_YUPA,
+                Nabhasha::NAME_ISHU,
+                Nabhasha::NAME_SHAKTI,
+                Nabhasha::NAME_DANDA,
             ]],
             [null, Nabhasha::$yoga]
         ];
