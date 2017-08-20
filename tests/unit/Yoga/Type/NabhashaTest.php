@@ -236,6 +236,11 @@ class NabhashaTest extends \PHPUnit_Framework_TestCase
         $Data = Data::createFromImport($Source);
         $this->Nabhasha->setDataInstance($Data);
         $this->assertNotFalse($this->Nabhasha->hasKamala());
+        
+        $Source = new ArraySource($this->dataSource->Gada);
+        $Data = Data::createFromImport($Source);
+        $this->Nabhasha->setDataInstance($Data);
+        $this->assertFalse($this->Nabhasha->hasKamala());
     }
     
     /**
@@ -258,6 +263,11 @@ class NabhashaTest extends \PHPUnit_Framework_TestCase
         $Data = Data::createFromImport($Source);
         $this->Nabhasha->setDataInstance($Data);
         $this->assertNotFalse($this->Nabhasha->hasYupa());
+        
+        $Source = new ArraySource($this->dataSource->Gada);
+        $Data = Data::createFromImport($Source);
+        $this->Nabhasha->setDataInstance($Data);
+        $this->assertFalse($this->Nabhasha->hasYupa());
     }
     
     /**
@@ -269,6 +279,11 @@ class NabhashaTest extends \PHPUnit_Framework_TestCase
         $Data = Data::createFromImport($Source);
         $this->Nabhasha->setDataInstance($Data);
         $this->assertNotFalse($this->Nabhasha->hasIshu());
+        
+        $Source = new ArraySource($this->dataSource->Sanaha);
+        $Data = Data::createFromImport($Source);
+        $this->Nabhasha->setDataInstance($Data);
+        $this->assertFalse($this->Nabhasha->hasIshu());
     }
     
     /**
@@ -280,6 +295,11 @@ class NabhashaTest extends \PHPUnit_Framework_TestCase
         $Data = Data::createFromImport($Source);
         $this->Nabhasha->setDataInstance($Data);
         $this->assertNotFalse($this->Nabhasha->hasShakti());
+        
+        $Source = new ArraySource($this->dataSource->Vibhuka);
+        $Data = Data::createFromImport($Source);
+        $this->Nabhasha->setDataInstance($Data);
+        $this->assertFalse($this->Nabhasha->hasShakti());
     }
     
     /**
@@ -291,6 +311,11 @@ class NabhashaTest extends \PHPUnit_Framework_TestCase
         $Data = Data::createFromImport($Source);
         $this->Nabhasha->setDataInstance($Data);
         $this->assertNotFalse($this->Nabhasha->hasDanda());
+        
+        $Source = new ArraySource($this->dataSource->Dhuriya);
+        $Data = Data::createFromImport($Source);
+        $this->Nabhasha->setDataInstance($Data);
+        $this->assertFalse($this->Nabhasha->hasDanda());
     }
     
     /**

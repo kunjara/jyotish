@@ -247,19 +247,27 @@ class Nabhasha extends YogaBase
                 
                 $akritiRashi = [];
                 foreach ($this->akritiBhava[$akritiName] as $bhavaKey) {
-                    $akritiRashi[] = $this->getData()['bhava'][$bhavaKey]['rashi'];
+                    $akritiRashi[$bhavaKey] = $this->getData()['bhava'][$bhavaKey]['rashi'];
                 }
                 
+                $grahaRashi = [];
                 foreach ($grahas as $key => $grahaData) {
                     if (in_array($grahaData['rashi'], $akritiRashi)) {
+                        $grahaRashi[] = $grahaData['rashi'];
                         continue;
                     } else {
                         return false;
                     }
                 }
         }
-
-        $yogaData = $this->assignYoga($akritiName, self::GROUP_AKRITI);
+        
+        $grahaRashiUnique = array_unique($grahaRashi);
+        if (count($grahaRashiUnique) != count($this->akritiBhava[$akritiName])) {
+            return false;
+        }
+        
+        $akritiBhava = implode(',', array_keys($akritiRashi));
+        $yogaData = $this->assignYoga($akritiName, self::GROUP_AKRITI, ['bhava' => $akritiBhava]);
         return [$yogaData];
     }
     
