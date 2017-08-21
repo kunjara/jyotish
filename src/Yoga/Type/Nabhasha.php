@@ -45,6 +45,12 @@ class Nabhasha extends YogaBase
     const NAME_ISHU = 'Ishu';
     const NAME_SHAKTI = 'Shakti';
     const NAME_DANDA = 'Danda';
+    const NAME_NAUKA = 'Nauka';
+    const NAME_KUTA = 'Kuta';
+    const NAME_CHHATRA = 'Chhatra';
+    const NAME_CHAPA = 'Chapa';
+    const NAME_CHAKRA = 'Chakra';
+    const NAME_SAMUDRA = 'Samudra';
     
     /**
      * Type of yogas.
@@ -80,6 +86,12 @@ class Nabhasha extends YogaBase
         self::NAME_ISHU,
         self::NAME_SHAKTI,
         self::NAME_DANDA,
+        self::NAME_NAUKA,
+        self::NAME_KUTA,
+        self::NAME_CHHATRA,
+        self::NAME_CHAPA,
+        self::NAME_CHAKRA,
+        self::NAME_SAMUDRA,
     ];
     
     /**
@@ -102,6 +114,12 @@ class Nabhasha extends YogaBase
         self::NAME_ISHU => [4, 5, 6, 7],
         self::NAME_SHAKTI => [7, 8, 9, 10],
         self::NAME_DANDA => [10, 11, 12, 1],
+        self::NAME_NAUKA => [1, 2, 3, 4, 5, 6, 7],
+        self::NAME_KUTA => [4, 5, 6, 7, 8, 9, 10],
+        self::NAME_CHHATRA => [7, 8, 9, 10, 11, 12, 1],
+        self::NAME_CHAPA => [10, 11, 12, 1, 2, 3, 4],
+        self::NAME_CHAKRA => [1, 3, 5, 7, 9, 11],
+        self::NAME_SAMUDRA => [2, 4, 6, 8, 10, 12],
     ];
     
     /**
@@ -443,6 +461,74 @@ class Nabhasha extends YogaBase
     public function hasDanda()
     {
         return $this->hasAkriti(self::NAME_DANDA);
+    }
+    
+    /**
+     * If all the grahas occupy the seven bhavas from Lagna, Nauka yoga occurs.
+     * 
+     * @return bool|array
+     * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 35, Verse 14.
+     */
+    public function hasNauka()
+    {
+        return $this->hasAkriti(self::NAME_NAUKA);
+    }
+    
+    /**
+     * If all the grahas occupy the seven bhavas from 4th, Kuta yoga occurs.
+     * 
+     * @return bool|array
+     * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 35, Verse 14.
+     */
+    public function hasKuta()
+    {
+        return $this->hasAkriti(self::NAME_KUTA);
+    }
+    
+    /**
+     * If all the grahas occupy the seven bhavas from 7th, Chhatra yoga occurs.
+     * 
+     * @return bool|array
+     * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 35, Verse 14.
+     */
+    public function hasChhatra()
+    {
+        return $this->hasAkriti(self::NAME_CHHATRA);
+    }
+    
+    /**
+     * If all the grahas occupy the seven bhavas from 10th, Chapa yoga occurs.
+     * 
+     * @return bool|array
+     * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 35, Verse 14.
+     */
+    public function hasChapa()
+    {
+        return $this->hasAkriti(self::NAME_CHAPA);
+    }
+    
+    /**
+     * If all the grahas occupy six alternative rashis, commencing from Lagna, 
+     * Chakra yoga is formed.
+     * 
+     * @return bool|array
+     * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 35, Verse 15.
+     */
+    public function hasChakra()
+    {
+        return $this->hasAkriti(self::NAME_CHAKRA);
+    }
+    
+    /**
+     * If all the grahas occupy six alternative rashis, commencing from 2nd, 
+     * Samudra yoga is formed.
+     * 
+     * @return bool|array
+     * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 35, Verse 15.
+     */
+    public function hasSamudra()
+    {
+        return $this->hasAkriti(self::NAME_SAMUDRA);
     }
     
     /**

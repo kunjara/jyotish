@@ -319,6 +319,92 @@ class NabhashaTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
+     * @covers Jyotish\Yoga\Type\Nabhasha::hasNauka
+     */
+    public function testHasNauka()
+    {
+        $Source = new ArraySource($this->dataSource->Nauka);
+        $Data = Data::createFromImport($Source);
+        $this->Nabhasha->setDataInstance($Data);
+        $this->assertNotFalse($this->Nabhasha->hasNauka());
+        
+        $Source = new ArraySource($this->dataSource->Yupa);
+        $Data = Data::createFromImport($Source);
+        $this->Nabhasha->setDataInstance($Data);
+        $this->assertFalse($this->Nabhasha->hasNauka());
+    }
+    
+    /**
+     * @covers Jyotish\Yoga\Type\Nabhasha::hasKuta
+     */
+    public function testHasKuta()
+    {
+        $Source = new ArraySource($this->dataSource->Kuta);
+        $Data = Data::createFromImport($Source);
+        $this->Nabhasha->setDataInstance($Data);
+        $this->assertNotFalse($this->Nabhasha->hasKuta());
+        
+        $Source = new ArraySource($this->dataSource->Ishu);
+        $Data = Data::createFromImport($Source);
+        $this->Nabhasha->setDataInstance($Data);
+        $this->assertFalse($this->Nabhasha->hasKuta());
+    }
+    
+    /**
+     * @covers Jyotish\Yoga\Type\Nabhasha::hasChhatra
+     */
+    public function testHasChhatra()
+    {
+        $Source = new ArraySource($this->dataSource->Chhatra);
+        $Data = Data::createFromImport($Source);
+        $this->Nabhasha->setDataInstance($Data);
+        $this->assertNotFalse($this->Nabhasha->hasChhatra());
+        
+        $Source = new ArraySource($this->dataSource->Shakti);
+        $Data = Data::createFromImport($Source);
+        $this->Nabhasha->setDataInstance($Data);
+        $this->assertFalse($this->Nabhasha->hasChhatra());
+    }
+    
+    /**
+     * @covers Jyotish\Yoga\Type\Nabhasha::hasChapa
+     */
+    public function testHasChapa()
+    {
+        $Source = new ArraySource($this->dataSource->Chapa);
+        $Data = Data::createFromImport($Source);
+        $this->Nabhasha->setDataInstance($Data);
+        $this->assertNotFalse($this->Nabhasha->hasChapa());
+        
+        $Source = new ArraySource($this->dataSource->Danda);
+        $Data = Data::createFromImport($Source);
+        $this->Nabhasha->setDataInstance($Data);
+        $this->assertFalse($this->Nabhasha->hasChapa());
+    }
+    
+    /**
+     * @covers Jyotish\Yoga\Type\Nabhasha::hasChakra
+     */
+    public function testHasChakra()
+    {
+        $Source = new ArraySource($this->dataSource->Chakra);
+        $Data = Data::createFromImport($Source);
+        $this->Nabhasha->setDataInstance($Data);
+        $this->assertNotFalse($this->Nabhasha->hasChakra());
+    }
+    
+    /**
+     * @covers Jyotish\Yoga\Type\Nabhasha::hasSamudra
+     */
+    public function testHasSamudra()
+    {
+        $Source = new ArraySource($this->dataSource->Samudra);
+        $Data = Data::createFromImport($Source);
+        $this->Nabhasha->setDataInstance($Data);
+        $this->assertNotFalse($this->Nabhasha->hasSamudra());
+    }
+    
+    /**
      * @covers Jyotish\Yoga\Type\Nabhasha::hasAkriti
      */
     public function testHasAkriti()
@@ -375,6 +461,12 @@ class NabhashaTest extends \PHPUnit_Framework_TestCase
                 Nabhasha::NAME_ISHU,
                 Nabhasha::NAME_SHAKTI,
                 Nabhasha::NAME_DANDA,
+                Nabhasha::NAME_NAUKA,
+                Nabhasha::NAME_KUTA,
+                Nabhasha::NAME_CHHATRA,
+                Nabhasha::NAME_CHAPA,
+                Nabhasha::NAME_CHAKRA,
+                Nabhasha::NAME_SAMUDRA,
             ]],
             [null, Nabhasha::$yoga]
         ];

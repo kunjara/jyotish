@@ -337,3 +337,99 @@ $dataSource->Danda = [
         'Lg' => ['longitude' => 112]
     ]
 ];
+$dataSource->Nauka = [
+    'graha' => [
+        'Sy' => ['longitude' => 198, 'speed' => null],
+        'Ch' => ['longitude' => 121, 'speed' => null],
+        'Ma' => ['longitude' => 245, 'speed' => null],
+        'Bu' => ['longitude' => 217, 'speed' => null],
+        'Gu' => ['longitude' => 100, 'speed' => null],
+        'Sk' => ['longitude' => 160, 'speed' => null],
+        'Sa' => ['longitude' => 274, 'speed' => null],
+        'Ra' => ['longitude' => 32, 'speed' => null],
+        'Ke' => ['longitude' => 212, 'speed' => null],
+    ],
+    'lagna' => [
+        'Lg' => ['longitude' => 112]
+    ]
+];
+$dataSource->Kuta = [
+    'graha' => [
+        'Sy' => ['longitude' => 245, 'speed' => null],
+        'Ch' => ['longitude' => 11, 'speed' => null],
+        'Ma' => ['longitude' => 306, 'speed' => null],
+        'Bu' => ['longitude' => 217, 'speed' => null],
+        'Gu' => ['longitude' => 341, 'speed' => null],
+        'Sk' => ['longitude' => 274, 'speed' => null],
+        'Sa' => ['longitude' => 186, 'speed' => null],
+        'Ra' => ['longitude' => 32, 'speed' => null],
+        'Ke' => ['longitude' => 212, 'speed' => null],
+    ],
+    'lagna' => [
+        'Lg' => ['longitude' => 112]
+    ]
+];
+$dataSource->Chhatra = [
+    'graha' => [
+        'Sy' => ['longitude' => 35, 'speed' => null],
+        'Ch' => ['longitude' => 99, 'speed' => null],
+        'Ma' => ['longitude' => 306, 'speed' => null],
+        'Bu' => ['longitude' => 66, 'speed' => null],
+        'Gu' => ['longitude' => 341, 'speed' => null],
+        'Sk' => ['longitude' => 15, 'speed' => null],
+        'Sa' => ['longitude' => 272, 'speed' => null],
+        'Ra' => ['longitude' => 32, 'speed' => null],
+        'Ke' => ['longitude' => 212, 'speed' => null],
+    ],
+    'lagna' => [
+        'Lg' => ['longitude' => 112]
+    ]
+];
+$dataSource->Chapa = [
+    'graha' => [
+        'Sy' => ['longitude' => 35, 'speed' => null],
+        'Ch' => ['longitude' => 99, 'speed' => null],
+        'Ma' => ['longitude' => 127, 'speed' => null],
+        'Bu' => ['longitude' => 66, 'speed' => null],
+        'Gu' => ['longitude' => 158, 'speed' => null],
+        'Sk' => ['longitude' => 15, 'speed' => null],
+        'Sa' => ['longitude' => 195, 'speed' => null],
+        'Ra' => ['longitude' => 32, 'speed' => null],
+        'Ke' => ['longitude' => 212, 'speed' => null],
+    ],
+    'lagna' => [
+        'Lg' => ['longitude' => 112]
+    ]
+];
+$dataSource->Chakra = [
+    'graha' => [
+        'Sy' => ['longitude' => 35, 'speed' => null],
+        'Ch' => ['longitude' => 99, 'speed' => null],
+        'Ma' => ['longitude' => 219, 'speed' => null],
+        'Bu' => ['longitude' => 156, 'speed' => null],
+        'Gu' => ['longitude' => 158, 'speed' => null],
+        'Sk' => ['longitude' => 350, 'speed' => null],
+        'Sa' => ['longitude' => 285, 'speed' => null],
+        'Ra' => ['longitude' => 32, 'speed' => null],
+        'Ke' => ['longitude' => 212, 'speed' => null],
+    ],
+    'lagna' => [
+        'Lg' => ['longitude' => 112]
+    ]
+];
+$dataSource->Samudra = [
+    'graha' => [
+        'Sy' => ['longitude' => 35, 'speed' => null],
+        'Ch' => ['longitude' => 99, 'speed' => null],
+        'Ma' => ['longitude' => 219, 'speed' => null],
+        'Bu' => ['longitude' => 156, 'speed' => null],
+        'Gu' => ['longitude' => 158, 'speed' => null],
+        'Sk' => ['longitude' => 350, 'speed' => null],
+        'Sa' => ['longitude' => 285, 'speed' => null],
+        'Ra' => ['longitude' => 32, 'speed' => null],
+        'Ke' => ['longitude' => 212, 'speed' => null],
+    ],
+    'lagna' => [
+        'Lg' => ['longitude' => 82]
+    ]
+];
