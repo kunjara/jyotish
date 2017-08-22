@@ -90,7 +90,7 @@ class ArraySource extends SourceBase
             
             $longitude = $this->importData[$block][$lagna]['longitude'];
             for ($b = 1; $b <= 12; $b++) {
-                $this->importData[Data::BLOCK_BHAVA][$b]['longitude'] = $longitude < 360 ? $longitude : $longitude - 360;
+                $this->importData[Data::BLOCK_BHAVA][$b]['longitude'] = $longitude <= 360 ? $longitude : $longitude - 360;
                 $units = Math::partsToUnits($this->importData[Data::BLOCK_BHAVA][$b]['longitude']);
                 $this->importData[Data::BLOCK_BHAVA][$b]['rashi'] = $units['units'];
                 $this->importData[Data::BLOCK_BHAVA][$b]['degree'] = $units['parts'];

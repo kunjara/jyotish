@@ -40,4 +40,20 @@ return [
             'Lg' => ['longitude' => 58.64]
         ]
     ],
+    'Test12Rashi' => [
+        'graha' => [
+            'Sy' => ['longitude' => 35, 'speed' => null],
+            'Ch' => ['longitude' => 99, 'speed' => null],
+            'Ma' => ['longitude' => 219, 'speed' => null],
+            'Bu' => ['longitude' => 156, 'speed' => null],
+            'Gu' => ['longitude' => 158, 'speed' => null],
+            'Sk' => ['longitude' => 350, 'speed' => null],
+            'Sa' => ['longitude' => 285, 'speed' => null],
+            'Ra' => ['longitude' => 32, 'speed' => null],
+            'Ke' => ['longitude' => 212, 'speed' => null],
+        ],
+        'lagna' => [
+            'Lg' => ['longitude' => 90]
+        ]
+    ]
 ];

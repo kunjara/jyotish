@@ -68,6 +68,36 @@ return [
             12 => ['longitude' => 28.64, 'rashi' => 1, 'degree' => 28.64],
         ]
     ],
+    'Test12Rashi' => [
+        'graha' => [
+            'Sy' => ['longitude' => 35, 'speed' => null, 'rashi' => 2, 'degree' => 5],
+            'Ch' => ['longitude' => 99, 'speed' => null, 'rashi' => 4, 'degree' => 9],
+            'Ma' => ['longitude' => 219, 'speed' => null, 'rashi' => 8, 'degree' => 9],
+            'Bu' => ['longitude' => 156, 'speed' => null, 'rashi' => 6, 'degree' => 6],
+            'Gu' => ['longitude' => 158, 'speed' => null, 'rashi' => 6, 'degree' => 8],
+            'Sk' => ['longitude' => 350, 'speed' => null, 'rashi' => 12, 'degree' => 20],
+            'Sa' => ['longitude' => 285, 'speed' => null, 'rashi' => 10, 'degree' => 15],
+            'Ra' => ['longitude' => 32, 'speed' => null, 'rashi' => 2, 'degree' => 2],
+            'Ke' => ['longitude' => 212, 'speed' => null, 'rashi' => 8, 'degree' => 2],
+        ],
+        'lagna' => [
+            'Lg' => ['longitude' => 90, 'rashi' => 3, 'degree' => 0]
+        ],
+        'bhava' => [
+            1 => ['longitude' => 90, 'rashi' => 3, 'degree' => 0],
+            2 => ['longitude' => 120, 'rashi' => 4, 'degree' => 0],
+            3 => ['longitude' => 150, 'rashi' => 5, 'degree' => 0],
+            4 => ['longitude' => 180, 'rashi' => 6, 'degree' => 0],
+            5 => ['longitude' => 210, 'rashi' => 7, 'degree' => 0],
+            6 => ['longitude' => 240, 'rashi' => 8, 'degree' => 0],
+            7 => ['longitude' => 270, 'rashi' => 9, 'degree' => 0],
+            8 => ['longitude' => 300, 'rashi' => 10, 'degree' => 0],
+            9 => ['longitude' => 330, 'rashi' => 11, 'degree' => 0],
+            10 => ['longitude' => 360, 'rashi' => 12, 'degree' => 0],
+            11 => ['longitude' => 30, 'rashi' => 1, 'degree' => 0],
+            12 => ['longitude' => 60, 'rashi' => 2, 'degree' => 0],
+        ]
+    ],
     'Nativ1-Ch' => [
         'graha' => [
             'Sy' => ['longitude' => 134.2001017, 'speed' => 0.9673295, 'rashi' => 5, 'degree' => 14.2001017],
