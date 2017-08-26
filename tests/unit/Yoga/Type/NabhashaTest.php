@@ -423,6 +423,103 @@ class NabhashaTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
+     * @covers Jyotish\Yoga\Type\Nabhasha::hasGola
+     */
+    public function testHasGola()
+    {
+        $Source = new ArraySource($this->dataSource->Gola);
+        $Data = Data::createFromImport($Source);
+        $this->Nabhasha->setDataInstance($Data);
+        $this->assertNotFalse($this->Nabhasha->hasGola());
+    }
+    
+    /**
+     * @covers Jyotish\Yoga\Type\Nabhasha::hasYuga
+     */
+    public function testHasYuga()
+    {
+        $Source = new ArraySource($this->dataSource->Yuga);
+        $Data = Data::createFromImport($Source);
+        $this->Nabhasha->setDataInstance($Data);
+        $this->assertNotFalse($this->Nabhasha->hasYuga());
+    }
+    
+    /**
+     * @covers Jyotish\Yoga\Type\Nabhasha::hasShoola
+     */
+    public function testHasShoola()
+    {
+        $Source = new ArraySource($this->dataSource->Shoola);
+        $Data = Data::createFromImport($Source);
+        $this->Nabhasha->setDataInstance($Data);
+        $this->assertNotFalse($this->Nabhasha->hasShoola());
+        
+        $Source = new ArraySource($this->dataSource->Shringataka);
+        $Data = Data::createFromImport($Source);
+        $this->Nabhasha->setDataInstance($Data);
+        $this->assertFalse($this->Nabhasha->hasShoola());
+    }
+    
+    /**
+     * @covers Jyotish\Yoga\Type\Nabhasha::hasKedara
+     */
+    public function testHasKedara()
+    {
+        $Source = new ArraySource($this->dataSource->Kedara);
+        $Data = Data::createFromImport($Source);
+        $this->Nabhasha->setDataInstance($Data);
+        $this->assertNotFalse($this->Nabhasha->hasKedara());
+        
+        $Source = new ArraySource($this->dataSource->Kamala);
+        $Data = Data::createFromImport($Source);
+        $this->Nabhasha->setDataInstance($Data);
+        $this->assertFalse($this->Nabhasha->hasKedara());
+    }
+    
+    /**
+     * @covers Jyotish\Yoga\Type\Nabhasha::hasPasha
+     */
+    public function testHasPasha()
+    {
+        $Source = new ArraySource($this->dataSource->Pasha);
+        $Data = Data::createFromImport($Source);
+        $this->Nabhasha->setDataInstance($Data);
+        $this->assertNotFalse($this->Nabhasha->hasPasha());
+    }
+    
+    /**
+     * @covers Jyotish\Yoga\Type\Nabhasha::hasDama
+     */
+    public function testHasDama()
+    {
+        $Source = new ArraySource($this->dataSource->Dama);
+        $Data = Data::createFromImport($Source);
+        $this->Nabhasha->setDataInstance($Data);
+        $this->assertNotFalse($this->Nabhasha->hasDama());
+        
+        $Source = new ArraySource($this->dataSource->Chakra);
+        $Data = Data::createFromImport($Source);
+        $this->Nabhasha->setDataInstance($Data);
+        $this->assertFalse($this->Nabhasha->hasDama());
+    }
+    
+    /**
+     * @covers Jyotish\Yoga\Type\Nabhasha::hasVeena
+     */
+    public function testHasVeena()
+    {
+        $Source = new ArraySource($this->dataSource->Veena);
+        $Data = Data::createFromImport($Source);
+        $this->Nabhasha->setDataInstance($Data);
+        $this->assertNotFalse($this->Nabhasha->hasVeena());
+        
+        $Source = new ArraySource($this->dataSource->Nauka);
+        $Data = Data::createFromImport($Source);
+        $this->Nabhasha->setDataInstance($Data);
+        $this->assertFalse($this->Nabhasha->hasVeena());
+    }
+    
+    /**
      * @covers Jyotish\Yoga\Type\Nabhasha::listYoga
      * @dataProvider providerListYoga
      */
@@ -467,6 +564,15 @@ class NabhashaTest extends \PHPUnit_Framework_TestCase
                 Nabhasha::NAME_CHAPA,
                 Nabhasha::NAME_CHAKRA,
                 Nabhasha::NAME_SAMUDRA,
+            ]],
+            [Nabhasha::GROUP_SANKHYA, [
+                Nabhasha::NAME_GOLA,
+                Nabhasha::NAME_YUGA,
+                Nabhasha::NAME_SHOOLA,
+                Nabhasha::NAME_KEDARA,
+                Nabhasha::NAME_PASHA,
+                Nabhasha::NAME_DAMA,
+                Nabhasha::NAME_VEENA,
             ]],
             [null, Nabhasha::$yoga]
         ];

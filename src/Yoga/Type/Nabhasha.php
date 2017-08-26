@@ -51,6 +51,13 @@ class Nabhasha extends YogaBase
     const NAME_CHAPA = 'Chapa';
     const NAME_CHAKRA = 'Chakra';
     const NAME_SAMUDRA = 'Samudra';
+    const NAME_GOLA = 'Gola';
+    const NAME_YUGA = 'Yuga';
+    const NAME_SHOOLA = 'Shoola';
+    const NAME_KEDARA = 'Kedara';
+    const NAME_PASHA = 'Pasha';
+    const NAME_DAMA = 'Dama';
+    const NAME_VEENA = 'Veena';
     
     /**
      * Type of yogas.
@@ -92,6 +99,13 @@ class Nabhasha extends YogaBase
         self::NAME_CHAPA,
         self::NAME_CHAKRA,
         self::NAME_SAMUDRA,
+        self::NAME_GOLA,
+        self::NAME_YUGA,
+        self::NAME_SHOOLA,
+        self::NAME_KEDARA,
+        self::NAME_PASHA,
+        self::NAME_DAMA,
+        self::NAME_VEENA,
     ];
     
     /**
@@ -123,6 +137,21 @@ class Nabhasha extends YogaBase
     ];
     
     /**
+     * Bhavas of sankhya yoga.
+     * 
+     * @var array
+     */
+    private $sankhyaBhava = [
+        self::NAME_GOLA => 1,
+        self::NAME_YUGA => 2,
+        self::NAME_SHOOLA => 3,
+        self::NAME_KEDARA => 4,
+        self::NAME_PASHA => 5,
+        self::NAME_DAMA => 6,
+        self::NAME_VEENA => 7,
+    ];
+
+    /**
      * Rajju, Musala and Nala yogas.
      * 
      * @param string $ashrayaName Name of ashraya yoga
@@ -131,6 +160,8 @@ class Nabhasha extends YogaBase
      */
     public function hasAshraya($ashrayaName)
     {
+        $this->temp['hasYoga'][$ashrayaName] = false;
+        
         if ($ashrayaName == self::NAME_RAJJU) {
             $rashiBhava = Rashi::BHAVA_CHARA;
         } elseif ($ashrayaName == self::NAME_MUSALA) {
@@ -140,9 +171,9 @@ class Nabhasha extends YogaBase
         }
         
         $rashis = array_keys(Rashi::listRashiByFeature('bhava', $rashiBhava));
-        $grahas = $this->getData()['graha'];
+        $dataGraha = $this->getData()['graha'];
         
-        foreach ($grahas as $key => $data) {
+        foreach ($dataGraha as $key => $data) {
             if (in_array($data['rashi'], $rashis)) {
                 continue;
             } else {
@@ -150,6 +181,7 @@ class Nabhasha extends YogaBase
             }
         }
         $yogaData = $this->assignYoga($ashrayaName, self::GROUP_ASHRAYA);
+        $this->temp['hasYoga'][$ashrayaName] = true;
         return [$yogaData];
     }
     
@@ -192,6 +224,8 @@ class Nabhasha extends YogaBase
      */
     public function hasDala($dalaName)
     {
+        $this->temp['hasYoga'][$dalaName] = false;
+        
         $kendras = Bhava::$bhavaKendra;
         $grahaShubha = Graha::listGrahaByFeature('character', Graha::CHARACTER_SHUBHA);
         unset($grahaShubha[Graha::KEY_CH]);
@@ -210,11 +244,13 @@ class Nabhasha extends YogaBase
         if ($dalaName == self::NAME_MALA) {
             if (count($grahaShubhaInKendra) == 3 && count($grahaPapaInKendra) == 0) {
                 $yogaData = $this->assignYoga($dalaName, self::GROUP_DALA);
+                $this->temp['hasYoga'][$dalaName] = true;
                 return [$yogaData];
             }
         } elseif ($dalaName == self::NAME_SARPA) {
             if (count($grahaShubhaInKendra) == 0 && count($grahaPapaInKendra) == 3) {
                 $yogaData = $this->assignYoga($dalaName, self::GROUP_DALA);
+                $this->temp['hasYoga'][$dalaName] = true;
                 return [$yogaData];
             }
         }
@@ -250,8 +286,10 @@ class Nabhasha extends YogaBase
      */
     public function hasAkriti($akritiName)
     {
-        $grahas = $this->getData()['graha'];
-        unset($grahas[Graha::KEY_RA], $grahas[Graha::KEY_KE]);
+        $this->temp['hasYoga'][$akritiName] = false;
+        
+        $dataGraha = $this->getData()['graha'];
+        unset($dataGraha[Graha::KEY_RA], $dataGraha[Graha::KEY_KE]);
         
         switch ($akritiName) {
             case self::NAME_HALA:
@@ -269,9 +307,9 @@ class Nabhasha extends YogaBase
                 }
                 
                 $grahaRashi = [];
-                foreach ($grahas as $key => $grahaData) {
-                    if (in_array($grahaData['rashi'], $akritiRashi)) {
-                        $grahaRashi[] = $grahaData['rashi'];
+                foreach ($dataGraha as $key => $data) {
+                    if (in_array($data['rashi'], $akritiRashi)) {
+                        $grahaRashi[] = $data['rashi'];
                         continue;
                     } else {
                         return false;
@@ -286,6 +324,7 @@ class Nabhasha extends YogaBase
         
         $akritiBhava = implode(',', array_keys($akritiRashi));
         $yogaData = $this->assignYoga($akritiName, self::GROUP_AKRITI, ['bhava' => $akritiBhava]);
+        $this->temp['hasYoga'][$akritiName] = true;
         return [$yogaData];
     }
     
@@ -539,12 +578,20 @@ class Nabhasha extends YogaBase
      */
     private function hasHalaVapi($akritiName)
     {
-        $grahas = $this->getData()['graha'];
-        unset($grahas[Graha::KEY_RA], $grahas[Graha::KEY_KE]);
+        $this->temp['hasYoga'][$akritiName] = false;
+        
+        $dataGraha = $this->getData()['graha'];
+        unset($dataGraha[Graha::KEY_RA], $dataGraha[Graha::KEY_KE]);
+        
+        $grahaRashi = [];
+        foreach ($dataGraha as $key => $data) {
+            $grahaRashi[] = $data['rashi'];
+        }
+        $grahaRashiUnique = array_unique($grahaRashi);
         
         $akritiBhava = $this->akritiBhava[$akritiName];
         $akritiRashi = [];
-        
+
         foreach ($akritiBhava as $index => $bhava) {
             foreach ($bhava as $bhavaKey) {
                 $akritiRashi[$index][] = $this->getData()['bhava'][$bhavaKey]['rashi'];
@@ -552,9 +599,9 @@ class Nabhasha extends YogaBase
         }
         
         $no = 0;
-        foreach ($akritiRashi as $index => $rashi) {
-            foreach ($grahas as $key => $grahaData) {
-                if (in_array($grahaData['rashi'], $rashi)) {
+        foreach ($akritiRashi as $index => $rashis) {
+            foreach ($dataGraha as $key => $data) {
+                if (in_array($data['rashi'], $rashis)) {
                     continue;
                 } else {
                     $no++;
@@ -566,7 +613,12 @@ class Nabhasha extends YogaBase
         if ($no == count($akritiBhava)) {
             return false;
         } else {
+            if (count($grahaRashiUnique) != count($rashis)) {
+                return false;
+            }
+            
             $yogaData = $this->assignYoga($akritiName, self::GROUP_AKRITI);
+            $this->temp['hasYoga'][$akritiName] = true;
             return [$yogaData];
         }
     }
@@ -579,6 +631,8 @@ class Nabhasha extends YogaBase
      */
     private function hasVajraYava($akritiName)
     {
+        $this->temp['hasYoga'][$akritiName] = false;
+        
         $grahaShubha = Graha::listGrahaByFeature('character', Graha::CHARACTER_SHUBHA);
         unset($grahaShubha[Graha::KEY_CH]);
         $grahaPapa = Graha::listGrahaByFeature('character', Graha::CHARACTER_PAPA);
@@ -599,6 +653,7 @@ class Nabhasha extends YogaBase
             
             if (count($grahaShubhaInBhavas1) == 3 || count($grahaPapaInBhavas4) == 3) {
                 $yogaData = $this->assignYoga($akritiName, self::GROUP_AKRITI);
+                $this->temp['hasYoga'][$akritiName] = true;
                 return [$yogaData];
             }
         } elseif ($akritiName == self::NAME_YAVA) {
@@ -607,10 +662,128 @@ class Nabhasha extends YogaBase
             
             if (count($grahaShubhaInBhavas4) == 3 || count($grahaPapaInBhavas1) == 3) {
                 $yogaData = $this->assignYoga($akritiName, self::GROUP_AKRITI);
+                $this->temp['hasYoga'][$akritiName] = true;
                 return [$yogaData];
             }
         }
         return false;
+    }
+    
+    /**
+     * Sankhya yogas.
+     * 
+     * @param string $sankhyaName
+     * @return boolean|array
+     */
+    public function hasSankhya($sankhyaName)
+    {
+        $listExceptSankhya = array_slice(self::$yoga, 3, 24);
+        
+        foreach ($listExceptSankhya as $yogaName) {
+            if (!isset($this->temp['hasYoga'][$yogaName])) {
+                $hasYogaName = 'has' . ucfirst($yogaName);
+                $this->$hasYogaName();
+            }
+        }
+        
+        if (in_array(true, $this->temp['hasYoga'])) {
+            return false;
+        } else {
+            $Analysis = new Analysis($this->Data);
+            $grahaInBhava = $Analysis->getBodyInBhava();
+        
+            $grahaSapta = Graha::listGraha(Graha::LIST_SAPTA);
+            $grahaSaptaInBhava = array_intersect_key($grahaInBhava, $grahaSapta);
+            $grahaBhava = array_unique($grahaSaptaInBhava);
+        }
+        
+        if (count($grahaBhava) == $this->sankhyaBhava[$sankhyaName]) {
+            sort($grahaBhava);
+            $sankhyaBhava = implode(',', array_values($grahaBhava));
+            
+            $yogaData = $this->assignYoga($sankhyaName, self::GROUP_SANKHYA, ['bhava' => $sankhyaBhava]);
+            $this->temp['hasYoga'][$sankhyaName] = true;
+            return [$yogaData];
+        } else {
+            return false;
+        }
+    }
+    
+    /**
+     * If all grahas are in one rashi, Gola yoga is formed.
+     * 
+     * @return bool|array
+     * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 35, Verse 16-17.
+     */
+    public function hasGola()
+    {
+        return $this->hasSankhya(self::NAME_GOLA);
+    }
+    
+    /**
+     * If all grahas are in 2 rashi, Yuga yoga is formed.
+     * 
+     * @return bool|array
+     * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 35, Verse 16-17.
+     */
+    public function hasYuga()
+    {
+        return $this->hasSankhya(self::NAME_YUGA);
+    }
+    
+    /**
+     * If all grahas are in 3 rashi, Shoola yoga is formed.
+     * 
+     * @return bool|array
+     * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 35, Verse 16-17.
+     */
+    public function hasShoola()
+    {
+        return $this->hasSankhya(self::NAME_SHOOLA);
+    }
+    
+    /**
+     * If all grahas are in 4 rashi, Kedara yoga is formed.
+     * 
+     * @return bool|array
+     * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 35, Verse 16-17.
+     */
+    public function hasKedara()
+    {
+        return $this->hasSankhya(self::NAME_KEDARA);
+    }
+    
+    /**
+     * If all grahas are in 5 rashi, Pasha yoga is formed.
+     * 
+     * @return bool|array
+     * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 35, Verse 16-17.
+     */
+    public function hasPasha()
+    {
+        return $this->hasSankhya(self::NAME_PASHA);
+    }
+    
+    /**
+     * If all grahas are in 6 rashi, Dama yoga is formed.
+     * 
+     * @return bool|array
+     * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 35, Verse 16-17.
+     */
+    public function hasDama()
+    {
+        return $this->hasSankhya(self::NAME_DAMA);
+    }
+    
+    /**
+     * If all grahas are in 7 rashi, Veena yoga is formed.
+     * 
+     * @return bool|array
+     * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 35, Verse 16-17.
+     */
+    public function hasVeena()
+    {
+        return $this->hasSankhya(self::NAME_VEENA);
     }
 
     /**
@@ -630,7 +803,10 @@ class Nabhasha extends YogaBase
                 $list = array_slice(self::$yoga, 3, 2);
                 break;
             case self::GROUP_AKRITI:
-                $list = array_slice(self::$yoga, 5);
+                $list = array_slice(self::$yoga, 5, 22);
+                break;
+            case self::GROUP_SANKHYA:
+                $list = array_slice(self::$yoga, 27);
                 break;
             default:
                 $list = self::$yoga;

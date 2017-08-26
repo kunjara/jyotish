@@ -433,3 +433,115 @@ $dataSource->Samudra = [
         'Lg' => ['longitude' => 82]
     ]
 ];
+$dataSource->Gola = [
+    'graha' => [
+        'Sy' => ['longitude' => 35, 'speed' => null],
+        'Ch' => ['longitude' => 31, 'speed' => null],
+        'Ma' => ['longitude' => 40, 'speed' => null],
+        'Bu' => ['longitude' => 33, 'speed' => null],
+        'Gu' => ['longitude' => 41, 'speed' => null],
+        'Sk' => ['longitude' => 32, 'speed' => null],
+        'Sa' => ['longitude' => 33, 'speed' => null],
+        'Ra' => ['longitude' => 32, 'speed' => null],
+        'Ke' => ['longitude' => 212, 'speed' => null],
+    ],
+    'lagna' => [
+        'Lg' => ['longitude' => 82]
+    ]
+];
+$dataSource->Yuga = [
+    'graha' => [
+        'Sy' => ['longitude' => 65, 'speed' => null],
+        'Ch' => ['longitude' => 31, 'speed' => null],
+        'Ma' => ['longitude' => 40, 'speed' => null],
+        'Bu' => ['longitude' => 63, 'speed' => null],
+        'Gu' => ['longitude' => 41, 'speed' => null],
+        'Sk' => ['longitude' => 79, 'speed' => null],
+        'Sa' => ['longitude' => 33, 'speed' => null],
+        'Ra' => ['longitude' => 32, 'speed' => null],
+        'Ke' => ['longitude' => 212, 'speed' => null],
+    ],
+    'lagna' => [
+        'Lg' => ['longitude' => 82]
+    ]
+];
+$dataSource->Shoola = [
+    'graha' => [
+        'Sy' => ['longitude' => 65, 'speed' => null],
+        'Ch' => ['longitude' => 91, 'speed' => null],
+        'Ma' => ['longitude' => 40, 'speed' => null],
+        'Bu' => ['longitude' => 63, 'speed' => null],
+        'Gu' => ['longitude' => 41, 'speed' => null],
+        'Sk' => ['longitude' => 79, 'speed' => null],
+        'Sa' => ['longitude' => 33, 'speed' => null],
+        'Ra' => ['longitude' => 32, 'speed' => null],
+        'Ke' => ['longitude' => 212, 'speed' => null],
+    ],
+    'lagna' => [
+        'Lg' => ['longitude' => 82]
+    ]
+];
+$dataSource->Kedara = [
+    'graha' => [
+        'Sy' => ['longitude' => 65, 'speed' => null],
+        'Ch' => ['longitude' => 91, 'speed' => null],
+        'Ma' => ['longitude' => 40, 'speed' => null],
+        'Bu' => ['longitude' => 63, 'speed' => null],
+        'Gu' => ['longitude' => 354, 'speed' => null],
+        'Sk' => ['longitude' => 79, 'speed' => null],
+        'Sa' => ['longitude' => 33, 'speed' => null],
+        'Ra' => ['longitude' => 32, 'speed' => null],
+        'Ke' => ['longitude' => 212, 'speed' => null],
+    ],
+    'lagna' => [
+        'Lg' => ['longitude' => 82]
+    ]
+];
+$dataSource->Pasha = [
+    'graha' => [
+        'Sy' => ['longitude' => 65, 'speed' => null],
+        'Ch' => ['longitude' => 91, 'speed' => null],
+        'Ma' => ['longitude' => 40, 'speed' => null],
+        'Bu' => ['longitude' => 63, 'speed' => null],
+        'Gu' => ['longitude' => 354, 'speed' => null],
+        'Sk' => ['longitude' => 79, 'speed' => null],
+        'Sa' => ['longitude' => 314, 'speed' => null],
+        'Ra' => ['longitude' => 32, 'speed' => null],
+        'Ke' => ['longitude' => 212, 'speed' => null],
+    ],
+    'lagna' => [
+        'Lg' => ['longitude' => 82]
+    ]
+];
+$dataSource->Dama = [
+    'graha' => [
+        'Sy' => ['longitude' => 65, 'speed' => null],
+        'Ch' => ['longitude' => 91, 'speed' => null],
+        'Ma' => ['longitude' => 10, 'speed' => null],
+        'Bu' => ['longitude' => 63, 'speed' => null],
+        'Gu' => ['longitude' => 354, 'speed' => null],
+        'Sk' => ['longitude' => 40, 'speed' => null],
+        'Sa' => ['longitude' => 314, 'speed' => null],
+        'Ra' => ['longitude' => 32, 'speed' => null],
+        'Ke' => ['longitude' => 212, 'speed' => null],
+    ],
+    'lagna' => [
+        'Lg' => ['longitude' => 82]
+    ]
+];
+$dataSource->Veena = [
+    'graha' => [
+        'Sy' => ['longitude' => 198, 'speed' => null],
+        'Ch' => ['longitude' => 121, 'speed' => null],
+        'Ma' => ['longitude' => 4, 'speed' => null],
+        'Bu' => ['longitude' => 217, 'speed' => null],
+        'Gu' => ['longitude' => 100, 'speed' => null],
+        'Sk' => ['longitude' => 160, 'speed' => null],
+        'Sa' => ['longitude' => 274, 'speed' => null],
+        'Ra' => ['longitude' => 32, 'speed' => null],
+        'Ke' => ['longitude' => 212, 'speed' => null],
+    ],
+    'lagna' => [
+        'Lg' => ['longitude' => 112]
+    ]
+];
