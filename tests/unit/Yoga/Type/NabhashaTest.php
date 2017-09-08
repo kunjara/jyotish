@@ -9,6 +9,7 @@ namespace JyotishTest\Yoga\Type;
 use Jyotish\Base\Data;
 use Jyotish\Base\Import\ArraySource;
 use Jyotish\Yoga\Type\Nabhasha;
+use ReflectionMethod;
 
 /**
  * @group yoga
@@ -64,11 +65,15 @@ class NabhashaTest extends \PHPUnit_Framework_TestCase
      */
     public function testHasAshraya()
     {
+        $reflectionMethod = new ReflectionMethod($this->Nabhasha, 'hasAshraya');
+        $reflectionMethod->setAccessible(true);
+        
         foreach (Nabhasha::listYoga(Nabhasha::GROUP_ASHRAYA) as $yoga) {
             $Source = new ArraySource($this->dataSource->$yoga);
             $Data = Data::createFromImport($Source);
             $this->Nabhasha->setDataInstance($Data);
-            $this->assertNotFalse($this->Nabhasha->hasAshraya($yoga));
+            $result = $reflectionMethod->invoke($this->Nabhasha, $yoga);
+            $this->assertNotFalse($result);
         }
     }
     
@@ -99,17 +104,22 @@ class NabhashaTest extends \PHPUnit_Framework_TestCase
      */
     public function testHasDala()
     {
+        $reflectionMethod = new ReflectionMethod($this->Nabhasha, 'hasDala');
+        $reflectionMethod->setAccessible(true);
+        
         foreach (Nabhasha::listYoga(Nabhasha::GROUP_DALA) as $yoga) {
             $Source = new ArraySource($this->dataSource->$yoga);
             $Data = Data::createFromImport($Source);
             $this->Nabhasha->setDataInstance($Data);
-            $this->assertNotFalse($this->Nabhasha->hasDala($yoga));
+            $result = $reflectionMethod->invoke($this->Nabhasha, $yoga);
+            $this->assertNotFalse($result);
         }
         
         $Source = new ArraySource($this->dataSource->Gada);
         $Data = Data::createFromImport($Source);
         $this->Nabhasha->setDataInstance($Data);
-        $this->assertFalse($this->Nabhasha->hasDala(Nabhasha::NAME_MALA));
+        $result = $reflectionMethod->invoke($this->Nabhasha, Nabhasha::NAME_MALA);
+        $this->assertFalse($result);
     }
     
     /**
@@ -409,17 +419,28 @@ class NabhashaTest extends \PHPUnit_Framework_TestCase
      */
     public function testHasAkriti()
     {
+        $reflectionMethod = new ReflectionMethod($this->Nabhasha, 'hasAkriti');
+        $reflectionMethod->setAccessible(true);
+        
         foreach (Nabhasha::listYoga(Nabhasha::GROUP_AKRITI) as $yoga) {
             $Source = new ArraySource($this->dataSource->$yoga);
             $Data = Data::createFromImport($Source);
             $this->Nabhasha->setDataInstance($Data);
-            $this->assertNotFalse($this->Nabhasha->hasAkriti($yoga));
+            $result = $reflectionMethod->invoke($this->Nabhasha, $yoga);
+            $this->assertNotFalse($result);
         }
         
         $Source = new ArraySource($this->dataSource->Mala);
         $Data = Data::createFromImport($Source);
         $this->Nabhasha->setDataInstance($Data);
-        $this->assertFalse($this->Nabhasha->hasAkriti(Nabhasha::NAME_GADA));
+        $result = $reflectionMethod->invoke($this->Nabhasha, Nabhasha::NAME_GADA);
+        $this->assertFalse($result);
+        
+        $Source = new ArraySource($this->dataSource->KamalaNo);
+        $Data = Data::createFromImport($Source);
+        $this->Nabhasha->setDataInstance($Data);
+        $result = $reflectionMethod->invoke($this->Nabhasha, Nabhasha::NAME_KAMALA);
+        $this->assertFalse($result);
     }
     
     /**

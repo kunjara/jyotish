@@ -21,7 +21,7 @@ class MahapurushaTest extends \PHPUnit_Framework_TestCase
     {
         parent::setUp();
         
-        require 'data/array-source.php';
+        require 'data/array-mahapurusha.php';
         $this->dataSource = $dataSource;
     }
     

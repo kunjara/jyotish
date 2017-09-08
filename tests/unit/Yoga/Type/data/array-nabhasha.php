@@ -545,3 +545,19 @@ $dataSource->Veena = [
         'Lg' => ['longitude' => 112]
     ]
 ];
+$dataSource->KamalaNo = [
+    'graha' => [
+        'Sy' => ['longitude' => 198, 'speed' => null],
+        'Ch' => ['longitude' => 21, 'speed' => null],
+        'Ma' => ['longitude' => 26, 'speed' => null],
+        'Bu' => ['longitude' => 203, 'speed' => null],
+        'Gu' => ['longitude' => 93, 'speed' => null],
+        'Sk' => ['longitude' => 205, 'speed' => null],
+        'Sa' => ['longitude' => 94, 'speed' => null],
+        'Ra' => ['longitude' => 32, 'speed' => null],
+        'Ke' => ['longitude' => 212, 'speed' => null],
+    ],
+    'lagna' => [
+        'Lg' => ['longitude' => 112]
+    ]
+];

@@ -11,6 +11,7 @@ use Jyotish\Graha\Graha;
 use Jyotish\Rashi\Rashi;
 use Jyotish\Bhava\Bhava;
 use Jyotish\Base\Analysis;
+use Jyotish\Base\Data;
 
 /**
  * Nabhasha yoga class.
@@ -150,6 +151,22 @@ class Nabhasha extends YogaBase
         self::NAME_DAMA => 6,
         self::NAME_VEENA => 7,
     ];
+    
+    /**
+     * Set Data
+     * 
+     * @param \Jyotish\Base\Data $Data
+     * @return Dhana
+     */
+    public function setDataInstance(Data $Data)
+    {
+        $this->Data = $Data;
+        
+        $Analysis = new Analysis($this->Data);
+        $this->temp['grahaInBhava'] = $Analysis->getBodyInBhava();
+        
+        return $this;
+    }
 
     /**
      * Rajju, Musala and Nala yogas.
@@ -158,7 +175,7 @@ class Nabhasha extends YogaBase
      * @return bool|array
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 35, Verse 7.
      */
-    public function hasAshraya($ashrayaName)
+    private function hasAshraya($ashrayaName)
     {
         $this->temp['hasYoga'][$ashrayaName] = false;
         
@@ -222,7 +239,7 @@ class Nabhasha extends YogaBase
      * @return bool|array
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 35, Verse 8.
      */
-    public function hasDala($dalaName)
+    private function hasDala($dalaName)
     {
         $this->temp['hasYoga'][$dalaName] = false;
         
@@ -232,11 +249,8 @@ class Nabhasha extends YogaBase
         $grahaPapa = Graha::listGrahaByFeature('character', Graha::CHARACTER_PAPA);
         unset($grahaPapa[Graha::KEY_RA], $grahaPapa[Graha::KEY_KE]);
         
-        $Analysis = new Analysis($this->Data);
-        $grahaInBhava = $Analysis->getBodyInBhava();
-        
-        $grahaShubhaInBhava = array_intersect_key($grahaInBhava, $grahaShubha);
-        $grahaPapaInBhava = array_intersect_key($grahaInBhava, $grahaPapa);
+        $grahaShubhaInBhava = array_intersect_key($this->temp['grahaInBhava'], $grahaShubha);
+        $grahaPapaInBhava = array_intersect_key($this->temp['grahaInBhava'], $grahaPapa);
 
         $grahaShubhaInKendra = array_intersect($grahaShubhaInBhava, $kendras);
         $grahaPapaInKendra = array_intersect($grahaPapaInBhava, $kendras);
@@ -284,7 +298,7 @@ class Nabhasha extends YogaBase
      * @return bool|array
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 35, Verse 9-11.
      */
-    public function hasAkriti($akritiName)
+    private function hasAkriti($akritiName)
     {
         $this->temp['hasYoga'][$akritiName] = false;
         
@@ -299,8 +313,6 @@ class Nabhasha extends YogaBase
             case self::NAME_YAVA:
                 return $this->hasVajraYava($akritiName);
             default:
-                if (!isset($this->akritiBhava[$akritiName])) return false;
-                
                 $akritiRashi = [];
                 foreach ($this->akritiBhava[$akritiName] as $bhavaKey) {
                     $akritiRashi[$bhavaKey] = $this->getData()['bhava'][$bhavaKey]['rashi'];
@@ -641,11 +653,8 @@ class Nabhasha extends YogaBase
         $bhavas1 = [1, 7];
         $bhavas4 = [4, 10];
         
-        $Analysis = new Analysis($this->Data);
-        $grahaInBhava = $Analysis->getBodyInBhava();
-        
-        $grahaShubhaInBhava = array_intersect_key($grahaInBhava, $grahaShubha);
-        $grahaPapaInBhava = array_intersect_key($grahaInBhava, $grahaPapa);
+        $grahaShubhaInBhava = array_intersect_key($this->temp['grahaInBhava'], $grahaShubha);
+        $grahaPapaInBhava = array_intersect_key($this->temp['grahaInBhava'], $grahaPapa);
         
         if ($akritiName == self::NAME_VAJRA) {
             $grahaShubhaInBhavas1 = array_intersect($grahaShubhaInBhava, $bhavas1);
@@ -675,7 +684,7 @@ class Nabhasha extends YogaBase
      * @param string $sankhyaName
      * @return boolean|array
      */
-    public function hasSankhya($sankhyaName)
+    private function hasSankhya($sankhyaName)
     {
         $listExceptSankhya = array_slice(self::$yoga, 3, 24);
         
@@ -689,23 +698,20 @@ class Nabhasha extends YogaBase
         if (in_array(true, $this->temp['hasYoga'])) {
             return false;
         } else {
-            $Analysis = new Analysis($this->Data);
-            $grahaInBhava = $Analysis->getBodyInBhava();
-        
             $grahaSapta = Graha::listGraha(Graha::LIST_SAPTA);
-            $grahaSaptaInBhava = array_intersect_key($grahaInBhava, $grahaSapta);
+            $grahaSaptaInBhava = array_intersect_key($this->temp['grahaInBhava'], $grahaSapta);
             $grahaBhava = array_unique($grahaSaptaInBhava);
         }
         
-        if (count($grahaBhava) == $this->sankhyaBhava[$sankhyaName]) {
+        if (count($grahaBhava) != $this->sankhyaBhava[$sankhyaName]) {
+            return false;
+        } else {
             sort($grahaBhava);
             $sankhyaBhava = implode(',', array_values($grahaBhava));
             
             $yogaData = $this->assignYoga($sankhyaName, self::GROUP_SANKHYA, ['bhava' => $sankhyaBhava]);
             $this->temp['hasYoga'][$sankhyaName] = true;
             return [$yogaData];
-        } else {
-            return false;
         }
     }
     
