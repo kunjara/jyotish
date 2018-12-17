@@ -16,7 +16,7 @@ use Jyotish\Ganita\Math;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class RashiObject extends \Jyotish\Base\Object
+class RashiObject extends \Jyotish\Base\BaseObject
 {
     use RashiEnvironment;
 
