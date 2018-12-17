@@ -7,7 +7,7 @@
 namespace Jyotish\Graha\Object;
 
 use Jyotish\Base\Biblio;
-use Jyotish\Base\Object;
+use Jyotish\Base\BaseObject;
 use Jyotish\Graha\Graha;
 use Jyotish\Rashi\Rashi;
 use Jyotish\Ganita\Math;
@@ -18,7 +18,7 @@ use Jyotish\Tattva\Jiva\Nara\Deva;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class GrahaObject extends Object
+class GrahaObject extends BaseObject
 {
     use GrahaEnvironment;
     

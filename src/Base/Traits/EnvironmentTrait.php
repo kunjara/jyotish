@@ -35,7 +35,7 @@ trait EnvironmentTrait
      * Set environment.
      * 
      * @param \Jyotish\Base\Data $Data
-     * @return \Jyotish\Base\Object
+     * @return \Jyotish\Base\BaseObject
      */
     public function setEnvironment(\Jyotish\Base\Data $Data)
     {

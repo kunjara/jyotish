@@ -6,14 +6,14 @@
 
 namespace Jyotish\Bhava\Object;
 
-use Jyotish\Base\Object;
+use Jyotish\Base\BaseObject;
 
 /**
  * Parent class for bhava objects.
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class BhavaObject extends Object {
+class BhavaObject extends BaseObject {
     
     use BhavaEnvironment;
     
