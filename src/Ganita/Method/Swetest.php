@@ -143,7 +143,7 @@ class Swetest extends AbstractGanita
                         $houses = $stringHouses;
                         break;
                     default:
-                        continue;
+                        break;
                 }
             }
         }
