@@ -7,7 +7,7 @@
 namespace Jyotish\Graha\Object;
 
 use Jyotish\Base\Biblio;
-use Jyotish\Base\Object;
+use Jyotish\Base\BaseObject;
 use Jyotish\Graha\Graha;
 use Jyotish\Rashi\Rashi;
 use Jyotish\Ganita\Math;
@@ -18,55 +18,55 @@ use Jyotish\Tattva\Jiva\Nara\Deva;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class GrahaObject extends Object
+class GrahaBaseObject extends BaseObject
 {
     use GrahaEnvironment;
-    
+
     /**
      * Object type
-     * 
+     *
      * @var string
      */
     protected $objectType = 'graha';
-    
+
     /**
      * Relationship between the same grahas.
-     * 
+     *
      * @var bool
      */
     protected $optionRelationSame = false;
-    
+
     /**
      * Relationship between the chaya grahas.
-     * 
+     *
      * @var string
      */
     protected $optionRelationChaya;
-    
+
     /**
      * Data source of specific rashi for chaya grahas.
-     * 
+     *
      * @var string
      */
     protected $optionSpecificRashi = Biblio::BOOK_BPHS;
-    
+
     /**
      * Drishti for Rahu.
-     * 
+     *
      * @var string
      */
     protected $optionDrishtiRahu;
 
     /**
      * Unicode of the Graha.
-     * 
+     *
      * @var string
      */
     protected $grahaUnicode;
 
     /**
      * Amsha of the Graha.
-     * 
+     *
      * @var string
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 2, Verse 2.
      */
@@ -74,7 +74,7 @@ class GrahaObject extends Object
 
     /**
      * Avatara of the Graha.
-     * 
+     *
      * @var string
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 2, Verse 5-7.
      */
@@ -82,7 +82,7 @@ class GrahaObject extends Object
 
     /**
      * Devanagari graha title in transliteration.
-     * 
+     *
      * @var array
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 10.
      * @see Jyotish\Alphabet\Devanagari
@@ -91,16 +91,16 @@ class GrahaObject extends Object
 
     /**
      * Character of the Graha (natural beneficence).
-     * 
+     *
      * @var string
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 11.
      * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 5.
      */
     protected $grahaCharacter;
-    
+
     /**
      * Colors of the Graha.
-     * 
+     *
      * @var string
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 16-17.
      * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 4-5.
@@ -109,7 +109,7 @@ class GrahaObject extends Object
 
     /**
      * Deva of the Graha.
-     * 
+     *
      * @var string
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 18.
      * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 5.
@@ -118,7 +118,7 @@ class GrahaObject extends Object
 
     /**
      * Gender of the Graha.
-     * 
+     *
      * @var string
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 19.
      * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 6.
@@ -127,7 +127,7 @@ class GrahaObject extends Object
 
     /**
      * Bhuta of the Graha.
-     * 
+     *
      * @var string
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 20.
      * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 6.
@@ -136,7 +136,7 @@ class GrahaObject extends Object
 
     /**
      * Varna of the Graha.
-     * 
+     *
      * @var string
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 21.
      * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 7.
@@ -145,7 +145,7 @@ class GrahaObject extends Object
 
     /**
      * Guna of the Graha.
-     * 
+     *
      * @var string
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 22.
      * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 7.
@@ -154,7 +154,7 @@ class GrahaObject extends Object
 
     /**
      * Dhatu of the Graha.
-     * 
+     *
      * @var string
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 31.
      * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 11.
@@ -163,7 +163,7 @@ class GrahaObject extends Object
 
     /**
      * Kala of the Graha.
-     * 
+     *
      * @var string
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 33.
      */
@@ -171,7 +171,7 @@ class GrahaObject extends Object
 
     /**
      * Rasa of the Graha.
-     * 
+     *
      * @var string
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 34.
      * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 14.
@@ -180,7 +180,7 @@ class GrahaObject extends Object
 
     /**
      * Ritu of the Graha.
-     * 
+     *
      * @var string
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 45-46.
      * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 12.
@@ -188,7 +188,7 @@ class GrahaObject extends Object
     protected $grahaRitu;
     /**
      * Graha basis.
-     * 
+     *
      * @var string
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 47.
      */
@@ -196,7 +196,7 @@ class GrahaObject extends Object
 
     /**
      * Graha exaltation.
-     * 
+     *
      * @var array
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 49-50.
      * @see Varahamihira. Brihat Jataka. Chapter 1, Verse 13.
@@ -205,7 +205,7 @@ class GrahaObject extends Object
 
     /**
      * Graha debilitation.
-     * 
+     *
      * @var array
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 49-50.
      * @see Varahamihira. Brihat Jataka. Chapter 1, Verse 13.
@@ -214,7 +214,7 @@ class GrahaObject extends Object
 
     /**
      * Graha mooltrikon.
-     * 
+     *
      * @var array
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 51-54.
      * @see Varahamihira. Brihat Jataka. Chapter 1, Verse 14.
@@ -223,7 +223,7 @@ class GrahaObject extends Object
 
     /**
      * Own sign of the graha.
-     * 
+     *
      * @var array
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 51-54.
      */
@@ -231,7 +231,7 @@ class GrahaObject extends Object
 
     /**
      * Natural relationships.
-     * 
+     *
      * @var array
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 55.
      */
@@ -239,7 +239,7 @@ class GrahaObject extends Object
 
     /**
      * Graha disha
-     * 
+     *
      * @var string
      * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 5.
      */
@@ -247,7 +247,7 @@ class GrahaObject extends Object
 
     /**
      * Graha drishti
-     * 
+     *
      * @var array
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 26, Verse 2-5.
      * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 13.
@@ -256,7 +256,7 @@ class GrahaObject extends Object
 
     /**
      * Prakriti of graha
-     * 
+     *
      * @var array
      */
     protected $grahaPrakriti;
@@ -269,7 +269,7 @@ class GrahaObject extends Object
 
     /**
      * Set graha names.
-     * 
+     *
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 10.
      */
     protected function setObjectNames()
@@ -284,7 +284,7 @@ class GrahaObject extends Object
 
     /**
      * Set naisargika (natural) relations.
-     * 
+     *
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 55.
      */
     protected function setGrahaRelation()
@@ -338,7 +338,7 @@ class GrahaObject extends Object
 
     /**
      * Set exaltation, sebilitation, mooltrikon and own.
-     * 
+     *
      * @param array $specificRashi
      */
     protected function setGrahaSpecificRashi(array $specificRashi)
@@ -346,13 +346,13 @@ class GrahaObject extends Object
         $this->grahaUcha   = [
             'rashi' => $specificRashi['ucha']
         ];
-        
+
         $this->grahaMool   = [
             'rashi' => $specificRashi['mool'],
             'start' => 0,
             'end'   => 30
         ];
-        
+
         if (is_null($specificRashi['swa'])) {
             $this->grahaSwa = [
                 ['rashi' => null]
@@ -366,21 +366,21 @@ class GrahaObject extends Object
                 ]
             ];
         }
-        
+
         $this->grahaNeecha = [
             'rashi' => $specificRashi['neecha']
         ];
     }
-    
+
     /**
      * Constructor
-     * 
+     *
      * @param null|array $options Options to set
      */
     public function __construct($options)
     {
         parent::__construct($options);
-        
+
         $this->setGrahaRelation();
     }
 }

@@ -17,18 +17,18 @@ use Jyotish\Tattva\Ayurveda;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class R10 extends RashiObject
+class R10 extends RashiBaseObject
 {
     /**
      * Rashi key
-     * 
+     *
      * @var int
      */
     protected $objectKey = 10;
 
     /**
      * Devanagari title 'makara' in transliteration.
-     * 
+     *
      * @var array
      * @see Jyotish\Alphabet\Devanagari
      */
@@ -36,14 +36,14 @@ class R10 extends RashiObject
 
     /**
      * Unicode of rashi.
-     * 
+     *
      * @var string
      */
     protected $rashiUnicode = '2651';
-    
+
     /**
      * Names of the rashi.
-     * 
+     *
      * @var array
      * @see Varahamihira. Brihat Jataka. Chapter 1, Verse 8.
      */
@@ -53,7 +53,7 @@ class R10 extends RashiObject
 
     /**
      * Limb of Kaal Purush.
-     * 
+     *
      * @var string
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 4, Verse 4-4 1/2.
      */
@@ -61,7 +61,7 @@ class R10 extends RashiObject
 
     /**
      * Prakriti of rashi.
-     * 
+     *
      * @var string
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 4, Verse 5-5 1/2.
      */
@@ -69,7 +69,7 @@ class R10 extends RashiObject
 
     /**
      * Bala of rashi.
-     * 
+     *
      * @var string
      * @see Varahamihira. Brihat Jataka. Chapter 1, Verse 10.
      * @see Kalyana Varma. Saravali. Chapter 3, Verse 24.
@@ -78,7 +78,7 @@ class R10 extends RashiObject
 
     /**
      * Daya of rashi.
-     * 
+     *
      * @var string
      * @see Varahamihira. Brihat Jataka. Chapter 1, Verse 10.
      * @see Kalyana Varma. Saravali. Chapter 3, Verse 24.
@@ -87,7 +87,7 @@ class R10 extends RashiObject
 
     /**
      * Type of rashi.
-     * 
+     *
      * @var array
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 4, Verse 19-20.
      * @see Varahamihira. Brihat Jataka. Chapter 1, Verse 17.
@@ -100,7 +100,7 @@ class R10 extends RashiObject
 
     /**
      * Bhuta of rashi.
-     * 
+     *
      * @var string
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 4, Verse 19-20.
      */
@@ -108,7 +108,7 @@ class R10 extends RashiObject
 
     /**
      * Ruler of rashi.
-     * 
+     *
      * @var string
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 4, Verse 19-20.
      * @see Kalyana Varma. Saravali. Chapter 3, Verse 11.
@@ -117,7 +117,7 @@ class R10 extends RashiObject
 
     /**
      * Varna of rashi.
-     * 
+     *
      * @var string
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 4, Verse 19-20.
      */

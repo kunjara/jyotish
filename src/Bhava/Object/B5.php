@@ -13,18 +13,18 @@ use Jyotish\Tattva\Jiva\Nara\Manusha;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class B5 extends BhavaObject
+class B5 extends BhavaBaseObject
 {
     /**
      * Bhava key
-     * 
+     *
      * @var int
      */
     protected $objectKey = 5;
-    
+
     /**
      * Names of the bhava.
-     * 
+     *
      * @var array
      * @see Varahamihira. Brihat Jataka. Chapter 1, Verse 15-16.
      */
@@ -34,7 +34,7 @@ class B5 extends BhavaObject
 
     /**
      * Indications of bhava.
-     * 
+     *
      * @var array
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 11, Verse 6.
      */
@@ -50,7 +50,7 @@ class B5 extends BhavaObject
 
     /**
      * Purushartha of bhava.
-     * 
+     *
      * @var string
      */
     protected $bhavaPurushartha = Manusha::PURUSHARTHA_DHARMA;

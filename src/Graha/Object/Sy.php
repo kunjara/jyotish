@@ -18,41 +18,41 @@ use Jyotish\Tattva\Ayurveda;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class Sy extends GrahaObject
+class Sy extends GrahaBaseObject
 {
     /**
      * Abbreviation of the graha.
-     * 
+     *
      * @var string
      */
     protected $objectKey = 'Sy';
 
     /**
      * Unicode of the Graha.
-     * 
+     *
      * @var string
      */
     protected $grahaUnicode = '2609';
 
     /**
      * Amsha of the Graha.
-     * 
+     *
      * @var string
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 2, Verse 2.
      */
     protected $grahaAmsha = Graha::AMSHA_PARAMATMA;
-    
+
     /**
      * Avatara of the Graha.
-     * 
+     *
      * @var string
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 2, Verse 5-7.
      */
     protected $grahaAvatara = 'Rama';
-    
+
     /**
      * Names of the graha.
-     * 
+     *
      * @var array
      * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 2.
      */
@@ -62,7 +62,7 @@ class Sy extends GrahaObject
 
     /**
      * Devanagari title 'surya' in transliteration.
-     * 
+     *
      * @var array
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 10.
      * @see Jyotish\Alphabet\Devanagari
@@ -71,16 +71,16 @@ class Sy extends GrahaObject
 
     /**
      * Character of the Graha.
-     * 
+     *
      * @var string
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 11.
      * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 5.
      */
     protected $grahaCharacter = Graha::CHARACTER_PAPA;
-    
+
     /**
      * Colors of the Graha.
-     * 
+     *
      * @var string
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 16-17.
      * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 4-5.
@@ -92,7 +92,7 @@ class Sy extends GrahaObject
 
     /**
      * Deva of the Graha.
-     * 
+     *
      * @var string
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 18.
      * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 5.
@@ -101,7 +101,7 @@ class Sy extends GrahaObject
 
     /**
      * Gender of the Graha.
-     * 
+     *
      * @var string
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 19.
      * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 6.
@@ -110,14 +110,14 @@ class Sy extends GrahaObject
 
     /**
      * Bhuta of the Graha.
-     * 
+     *
      * @var string
      */
     protected $grahaBhuta = Maha::BHUTA_AGNI;
 
     /**
      * Varna of the Graha.
-     * 
+     *
      * @var string
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 21.
      * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 7.
@@ -126,7 +126,7 @@ class Sy extends GrahaObject
 
     /**
      * Guna of the Graha.
-     * 
+     *
      * @var string
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 22.
      * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 7.
@@ -135,7 +135,7 @@ class Sy extends GrahaObject
 
     /**
      * Dhatu of the Graha.
-     * 
+     *
      * @var string
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 31.
      * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 11.
@@ -147,7 +147,7 @@ class Sy extends GrahaObject
 
     /**
      * Kala of the Graha.
-     * 
+     *
      * @var string
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 33.
      */
@@ -155,7 +155,7 @@ class Sy extends GrahaObject
 
     /**
      * Rasa of the Graha.
-     * 
+     *
      * @var string
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 34.
      * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 14.
@@ -164,7 +164,7 @@ class Sy extends GrahaObject
 
     /**
      * Ritu of the Graha.
-     * 
+     *
      * @var string
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 45-46.
      * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 12.
@@ -173,7 +173,7 @@ class Sy extends GrahaObject
 
     /**
      * Graha basis.
-     * 
+     *
      * @var string
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 47.
      */
@@ -181,10 +181,10 @@ class Sy extends GrahaObject
 
     /**
      * Graha exaltation.
-     * 
+     *
      * @var array
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 49-50.
-     * @see Varahamihira. Brihat Jataka. Chapter 1, Verse 13. 
+     * @see Varahamihira. Brihat Jataka. Chapter 1, Verse 13.
      */
     protected $grahaUcha = [
         'rashi' => 1,
@@ -193,7 +193,7 @@ class Sy extends GrahaObject
 
     /**
      * Graha debilitation.
-     * 
+     *
      * @var array
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 49-50.
      * @see Varahamihira. Brihat Jataka. Chapter 1, Verse 13.
@@ -205,7 +205,7 @@ class Sy extends GrahaObject
 
     /**
      * Graha mooltrikon.
-     * 
+     *
      * @var array
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 51-54.
      * @see Varahamihira. Brihat Jataka. Chapter 1, Verse 14.
@@ -218,7 +218,7 @@ class Sy extends GrahaObject
 
     /**
      * Own sign of the graha.
-     * 
+     *
      * @var array
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 51-54.
      */
@@ -232,7 +232,7 @@ class Sy extends GrahaObject
 
     /**
      * Graha disha
-     * 
+     *
      * @var string
      * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 5.
      */
@@ -240,7 +240,7 @@ class Sy extends GrahaObject
 
     /**
      * Graha drishti
-     * 
+     *
      * @var array
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 26, Verse 2-5.
      * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 13.
@@ -262,7 +262,7 @@ class Sy extends GrahaObject
 
     /**
      * Prakriti of graha
-     * 
+     *
      * @var array
      */
     protected $grahaPrakriti = array

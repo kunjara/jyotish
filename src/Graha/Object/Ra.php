@@ -16,41 +16,41 @@ use Jyotish\Tattva\Jiva\Nara\Manusha;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class Ra extends GrahaObject
+class Ra extends GrahaBaseObject
 {
     /**
      * Abbreviation of the graha
-     * 
+     *
      * @var string
      */
     protected $objectKey = 'Ra';
 
     /**
      * Unicode of the Graha.
-     * 
+     *
      * @var string
      */
     protected $grahaUnicode = '260A';
 
     /**
      * Amsha of the Graha.
-     * 
+     *
      * @var string
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 2, Verse 2.
      */
     protected $grahaAmsha = Graha::AMSHA_PARAMATMA;
-    
+
     /**
      * Avatara of the Graha.
-     * 
+     *
      * @var string
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 2, Verse 5-7.
      */
     protected $grahaAvatara = 'Varaha';
-    
+
     /**
      * Names of the graha.
-     * 
+     *
      * @var array
      * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 3.
      */
@@ -62,7 +62,7 @@ class Ra extends GrahaObject
 
     /**
      * Devanagari title 'rahu' in transliteration.
-     * 
+     *
      * @var array
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 10.
      * @see Jyotish\Alphabet\Devanagari
@@ -71,7 +71,7 @@ class Ra extends GrahaObject
 
     /**
      * Character of the Graha.
-     * 
+     *
      * @var string
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 11.
      */
@@ -79,49 +79,49 @@ class Ra extends GrahaObject
 
     /**
      * Deva of the Graha.
-     * 
+     *
      * @var string
      */
     protected $grahaDeva = null;
 
     /**
      * Gender of the Graha.
-     * 
+     *
      * @var string
      */
     protected $grahaGender = Manusha::GENDER_NEUTER;
 
     /**
      * Bhuta of the Graha.
-     * 
+     *
      * @var string
      */
     protected $grahaBhuta = null;
 
     /**
      * Varna of the Graha.
-     * 
+     *
      * @var string
      */
     protected $grahaVarna = Manusha::VARNA_MLECHHA;
 
     /**
      * Guna of the Graha.
-     * 
+     *
      * @var string
      */
     protected $grahaGuna = Maha::GUNA_TAMA;
 
     /**
      * Dhatu of the Graha.
-     * 
+     *
      * @var string
      */
     protected $grahaDhatu = null;
 
     /**
      * Kala of the Graha.
-     * 
+     *
      * @var string
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 46.
      */
@@ -129,14 +129,14 @@ class Ra extends GrahaObject
 
     /**
      * Rasa of the Graha.
-     * 
+     *
      * @var string
      */
     protected $grahaRasa = null;
 
     /**
      * Ritu of the Graha.
-     * 
+     *
      * @var string
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 45-46.
      */
@@ -144,7 +144,7 @@ class Ra extends GrahaObject
 
     /**
      * Graha basis.
-     * 
+     *
      * @var string
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 47.
      */
@@ -152,7 +152,7 @@ class Ra extends GrahaObject
 
     /**
      * Graha disha
-     * 
+     *
      * @var string
      * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 5.
      */
@@ -160,14 +160,14 @@ class Ra extends GrahaObject
 
     /**
      * Graha drishti
-     * 
+     *
      * @var array
      */
     protected $grahaDrishti = [];
 
     /**
      * Prakriti of graha
-     * 
+     *
      * @var array
      */
     protected $grahaPrakriti = null;
@@ -181,7 +181,7 @@ class Ra extends GrahaObject
 
     /**
      * Set exaltation, sebilitation, mooltrikon and own.
-     * 
+     *
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 47, Verse 34-39.
      * @see Venkatesh Sharma. Sarvarth Chintamani. Chapter 16, Verse 1-2.
      */
@@ -251,7 +251,7 @@ class Ra extends GrahaObject
     public function __construct($options = null)
     {
         parent::__construct($options);
-        
+
         $this->setGrahaSpecificRashiByViewpoint();
         $this->setGrahaDrishti();
     }

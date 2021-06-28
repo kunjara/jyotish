@@ -16,20 +16,20 @@ use Jyotish\Ganita\Math;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class RashiObject extends \Jyotish\Base\Object
+class RashiBaseObject extends \Jyotish\Base\BaseObject
 {
     use RashiEnvironment;
 
     /**
      * Object type
-     * 
+     *
      * @var string
      */
     protected $objectType = 'rashi';
 
     /**
      * Devanagari rashi title in transliteration.
-     * 
+     *
      * @var array
      * @see Jyotish\Alphabet\Devanagari
      */
@@ -37,14 +37,14 @@ class RashiObject extends \Jyotish\Base\Object
 
     /**
      * Unicode of rashi.
-     * 
+     *
      * @var string
      */
     protected $rashiUnicode;
 
     /**
      * Limb of Kaal Purush.
-     * 
+     *
      * @var string
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 4, Verse 4-4 1/2.
      */
@@ -52,7 +52,7 @@ class RashiObject extends \Jyotish\Base\Object
 
     /**
      * Bhava of rashi.
-     * 
+     *
      * @var string
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 4, Verse 5-5 1/2.
      * @see Kalyana Varma. Saravali. Chapter 3, Verse 20-21.
@@ -61,7 +61,7 @@ class RashiObject extends \Jyotish\Base\Object
 
     /**
      * Gender of rashi.
-     * 
+     *
      * @var string
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 4, Verse 5-5 1/2.
      * @see Kalyana Varma. Saravali. Chapter 3, Verse 20-21.
@@ -70,7 +70,7 @@ class RashiObject extends \Jyotish\Base\Object
 
     /**
      * Prakriti of rashi.
-     * 
+     *
      * @var string
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 4, Verse 5-5 1/2.
      */
@@ -78,7 +78,7 @@ class RashiObject extends \Jyotish\Base\Object
 
     /**
      * Bala of rashi.
-     * 
+     *
      * @var string
      * @see Varahamihira. Brihat Jataka. Chapter 1, Verse 10.
      * @see Kalyana Varma. Saravali. Chapter 3, Verse 24.
@@ -87,7 +87,7 @@ class RashiObject extends \Jyotish\Base\Object
 
     /**
      * Daya of rashi.
-     * 
+     *
      * @var string
      * @see Varahamihira. Brihat Jataka. Chapter 1, Verse 10.
      * @see Kalyana Varma. Saravali. Chapter 3, Verse 24.
@@ -96,7 +96,7 @@ class RashiObject extends \Jyotish\Base\Object
 
     /**
      * Disha of rashi.
-     * 
+     *
      * @var string
      * @see Varahamihira. Brihat Jataka. Chapter 1, Verse 11.
      * @see Kalyana Varma. Saravali. Chapter 3, Verse 22.
@@ -105,7 +105,7 @@ class RashiObject extends \Jyotish\Base\Object
 
     /**
      * Varna of rashi.
-     * 
+     *
      * @var string
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 4, Verse 6-24.
      */
@@ -113,7 +113,7 @@ class RashiObject extends \Jyotish\Base\Object
 
     /**
      * Type of rashi.
-     * 
+     *
      * @var string
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 4, Verse 6-24.
      * @see Varahamihira. Brihat Jataka. Chapter 1, Verse 17.
@@ -122,7 +122,7 @@ class RashiObject extends \Jyotish\Base\Object
 
     /**
      * Bhuta of rashi.
-     * 
+     *
      * @var string
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 4, Verse 22-24.
      */
@@ -130,33 +130,33 @@ class RashiObject extends \Jyotish\Base\Object
 
     /**
      * Ruler of rashi.
-     * 
+     *
      * @var string
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 4, Verse 22-24.
      * @see Kalyana Varma. Saravali. Chapter 3, Verse 11.
      */
     protected $rashiRuler;
-    
+
     /**
      * Drishti of rashi.
-     * 
+     *
      * @var array
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 8, Verse 1-3.
      */
     protected $rashiDrishti;
-    
+
     /**
-     * The sign in the eleventh from chara rashis (movable signs), ninth from 
-     * sthira rashis (fixed signs) and seventh from dvisva rashis (dual signs) 
+     * The sign in the eleventh from chara rashis (movable signs), ninth from
+     * sthira rashis (fixed signs) and seventh from dvisva rashis (dual signs)
      * are their badhasthanas (places of obstrunction).
-     * 
+     *
      * @var int
      */
     protected $rashiBadhaksthana;
 
     /**
      * Set rashi bhava.
-     * 
+     *
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 4, Verse 5-5 1/2.
      * @see Kalyana Varma. Saravali. Chapter 3, Verse 20-21.
      */
@@ -173,10 +173,10 @@ class RashiObject extends \Jyotish\Base\Object
                 $this->rashiBhava = Rashi::BHAVA_DVISVA;
         }
     }
-    
+
     /**
      * Set rashi drishti and badhaksthana.
-     * 
+     *
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 8, Verse 1-3.
      */
     protected function setRashiDrishtiBadhaksthana()
@@ -195,20 +195,20 @@ class RashiObject extends \Jyotish\Base\Object
                 $rashis = array_diff([3, 6, 9, 12], [$this->objectKey]);
                 $badhak = 7;
         }
-        
+
         $drishti = [];
         foreach ($rashis as $rashi) {
            $drishti[$rashi] = 1;
         }
         $badhaksthana = Math::numberInCycle($this->objectKey, $badhak);
-        
+
         $this->rashiDrishti = $drishti;
         $this->rashiBadhaksthana = $badhaksthana;
     }
 
     /**
      * Set rashi gender.
-     * 
+     *
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 4, Verse 5-5 1/2.
      * @see Kalyana Varma. Saravali. Chapter 3, Verse 20-21.
      */
@@ -219,7 +219,7 @@ class RashiObject extends \Jyotish\Base\Object
 
     /**
      * Set rashi disha.
-     * 
+     *
      * @see Varahamihira. Brihat Jataka. Chapter 1, Verse 11.
      * @see Kalyana Varma. Saravali. Chapter 3, Verse 22.
      */
@@ -242,13 +242,13 @@ class RashiObject extends \Jyotish\Base\Object
 
     /**
      * Constructor
-     * 
+     *
      * @param null|array $options Options to set
      */
     public function __construct($options)
     {
         parent::__construct($options);
-        
+
         $this->setRashiBhava();
         $this->setRashiDrishtiBadhaksthana();
         $this->setRashiGender();
