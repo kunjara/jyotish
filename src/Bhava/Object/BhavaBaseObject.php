@@ -6,27 +6,27 @@
 
 namespace Jyotish\Bhava\Object;
 
-use Jyotish\Base\Object;
+use Jyotish\Base\BaseObject;
 
 /**
  * Parent class for bhava objects.
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class BhavaObject extends Object {
-    
+class BhavaBaseObject extends BaseObject {
+
     use BhavaEnvironment;
-    
+
     /**
      * Object type
-     * 
+     *
      * @var string
      */
     protected $objectType = 'bhava';
 
     /**
      * Devanagari bhava title in transliteration.
-     * 
+     *
      * @var array
      * @see Jyotish\Alphabet\Devanagari
      */
@@ -34,7 +34,7 @@ class BhavaObject extends Object {
 
     /**
      * Indications of bhava.
-     * 
+     *
      * @var array
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 11, Verse 2-13.
      */
@@ -42,7 +42,7 @@ class BhavaObject extends Object {
 
     /**
      * Purushartha of bhava.
-     * 
+     *
      * @var string
      */
     protected $bhavaPurushartha;

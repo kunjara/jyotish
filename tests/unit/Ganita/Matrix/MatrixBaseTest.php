@@ -32,7 +32,7 @@ class MatrixBaseTest extends \PHPUnit_Framework_TestCase
         $Matrix = new MatrixBase($array);
         $this->assertEquals($dimensions, $Matrix->getDimensions($toString));
     }
-    
+
     /**
      * @covers Jyotish\Ganita\Matrix\MatrixBase::addMatrix
      * @dataProvider providerAddMatrix
@@ -45,7 +45,7 @@ class MatrixBaseTest extends \PHPUnit_Framework_TestCase
         $MatrixActual = $Matrix1->addMatrix($Matrix2);
         $this->assertEquals($MatrixExpected, $MatrixActual);
     }
-    
+
     /**
      * @covers Jyotish\Ganita\Matrix\MatrixBase::addMatrix
      * @expectedException RuntimeException
@@ -53,7 +53,7 @@ class MatrixBaseTest extends \PHPUnit_Framework_TestCase
     public function testAddMatrixException()
     {
         $Matrix1 = new MatrixBase([[12, 2], [-3, 4], [0, 7]]);
-        $Matrix2 = new MatrixBase([43, 23], [23, 11]);
+        $Matrix2 = new MatrixBase([[43, 23], [23, 11]]);
         $Matrix1->addMatrix($Matrix2);
     }
 
@@ -68,7 +68,7 @@ class MatrixBaseTest extends \PHPUnit_Framework_TestCase
         $MatrixActual = $Matrix->multiNumeric($numeric);
         $this->assertEquals($MatrixExpected, $MatrixActual);
     }
-    
+
     /**
      * @covers Jyotish\Ganita\Matrix\MatrixBase::multiMatrix
      * @dataProvider providerMultiMatrix
@@ -81,14 +81,14 @@ class MatrixBaseTest extends \PHPUnit_Framework_TestCase
         $MatrixActual = $Matrix1->multiMatrix($Matrix2);
         $this->assertEquals($MatrixExpected, $MatrixActual);
     }
-    
+
     /**
      * @covers Jyotish\Ganita\Matrix\MatrixBase::multiMatrix
      * @expectedException RuntimeException
      */
     public function testMultiMatrixException()
     {
-        $Matrix1 = new MatrixBase([43, 23], [23, 11]);
+        $Matrix1 = new MatrixBase([[43, 23], [23, 11]]);
         $Matrix2 = new MatrixBase([[12, 2], [-3, 4], [0, 7]]);
         $Matrix1->multiMatrix($Matrix2);
     }
@@ -109,7 +109,7 @@ class MatrixBaseTest extends \PHPUnit_Framework_TestCase
                 [[1, 1, 1]],
                  false,
                 ['rows' => 1, 'cols' => 3],
-               
+
             ],
             [
                 [[1], [2], [3]],
@@ -138,7 +138,7 @@ class MatrixBaseTest extends \PHPUnit_Framework_TestCase
             ],
         ];
     }
-    
+
     public function providerAddMatrix()
     {
         return [
@@ -154,7 +154,7 @@ class MatrixBaseTest extends \PHPUnit_Framework_TestCase
             ],
         ];
     }
-    
+
     public function providerMultiNumeric()
     {
         return [
@@ -170,7 +170,7 @@ class MatrixBaseTest extends \PHPUnit_Framework_TestCase
             ],
         ];
     }
-    
+
     public function providerMultiMatrix()
     {
         return [

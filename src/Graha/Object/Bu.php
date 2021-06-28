@@ -19,41 +19,41 @@ use Jyotish\Tattva\Ayurveda;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class Bu extends GrahaObject
+class Bu extends GrahaBaseObject
 {
     /**
      * Abbreviation of the graha
-     * 
+     *
      * @var string
      */
     protected $objectKey = 'Bu';
 
     /**
      * Unicode of the Graha.
-     * 
+     *
      * @var string
      */
     protected $grahaUnicode = '263F';
 
     /**
      * Amsha of the Graha.
-     * 
+     *
      * @var string
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 2, Verse 2.
      */
     protected $grahaAmsha = Graha::AMSHA_JIVATMA;
-    
+
     /**
      * Avatara of the Graha.
-     * 
+     *
      * @var string
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 2, Verse 5-7.
      */
     protected $grahaAvatara = 'Budda';
-    
+
     /**
      * Names of the graha.
-     * 
+     *
      * @var array
      * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 2.
      */
@@ -67,7 +67,7 @@ class Bu extends GrahaObject
 
     /**
      * Devanagari title 'budha' in transliteration.
-     * 
+     *
      * @var array
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 10.
      * @see Jyotish\Alphabet\Devanagari
@@ -76,16 +76,16 @@ class Bu extends GrahaObject
 
     /**
      * Character of the Graha.
-     * 
+     *
      * @var string
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 11.
      * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 5.
      */
     protected $grahaCharacter = Graha::CHARACTER_SHUBHA;
-    
+
     /**
      * Colors of the Graha.
-     * 
+     *
      * @var string
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 16-17.
      * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 4-5.
@@ -97,7 +97,7 @@ class Bu extends GrahaObject
 
     /**
      * Deva of the Graha.
-     * 
+     *
      * @var string
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 18.
      * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 5.
@@ -106,7 +106,7 @@ class Bu extends GrahaObject
 
     /**
      * Gender of the Graha.
-     * 
+     *
      * @var string
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 19.
      * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 6.
@@ -115,7 +115,7 @@ class Bu extends GrahaObject
 
     /**
      * Bhuta of the Graha.
-     * 
+     *
      * @var string
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 20.
      * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 6.
@@ -124,7 +124,7 @@ class Bu extends GrahaObject
 
     /**
      * Varna of the Graha.
-     * 
+     *
      * @var string
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 21.
      * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 7.
@@ -133,7 +133,7 @@ class Bu extends GrahaObject
 
     /**
      * Guna of the Graha.
-     * 
+     *
      * @var string
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 22.
      * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 7.
@@ -142,7 +142,7 @@ class Bu extends GrahaObject
 
     /**
      * Dhatu of the Graha.
-     * 
+     *
      * @var string
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 31.
      * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 11.
@@ -154,7 +154,7 @@ class Bu extends GrahaObject
 
     /**
      * Kala of the Graha.
-     * 
+     *
      * @var string
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 33.
      */
@@ -162,7 +162,7 @@ class Bu extends GrahaObject
 
     /**
      * Rasa of the Graha.
-     * 
+     *
      * @var string
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 34.
      * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 14.
@@ -171,7 +171,7 @@ class Bu extends GrahaObject
 
     /**
      * Ritu of the Graha.
-     * 
+     *
      * @var string
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 45-46.
      * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 12.
@@ -180,7 +180,7 @@ class Bu extends GrahaObject
 
     /**
      * Graha basis.
-     * 
+     *
      * @var string
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 47.
      */
@@ -188,7 +188,7 @@ class Bu extends GrahaObject
 
     /**
      * Graha exaltation.
-     * 
+     *
      * @var array
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 49-50.
      * @see Varahamihira. Brihat Jataka. Chapter 1, Verse 13.
@@ -200,7 +200,7 @@ class Bu extends GrahaObject
 
     /**
      * Graha debilitation.
-     * 
+     *
      * @var array
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 49-50.
      * @see Varahamihira. Brihat Jataka. Chapter 1, Verse 13.
@@ -212,7 +212,7 @@ class Bu extends GrahaObject
 
     /**
      * Graha mooltrikon.
-     * 
+     *
      * @var array
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 51-54.
      * @see Varahamihira. Brihat Jataka. Chapter 1, Verse 14.
@@ -225,7 +225,7 @@ class Bu extends GrahaObject
 
     /**
      * Own sign of the graha.
-     * 
+     *
      * @var array
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 51-54.
      */
@@ -244,7 +244,7 @@ class Bu extends GrahaObject
 
     /**
      * Graha disha
-     * 
+     *
      * @var string
      * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 5.
      */
@@ -252,7 +252,7 @@ class Bu extends GrahaObject
 
     /**
      * Graha drishti
-     * 
+     *
      * @var array
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 26, Verse 2-5.
      * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 13.
@@ -274,7 +274,7 @@ class Bu extends GrahaObject
 
     /**
      * Prakriti of graha
-     * 
+     *
      * @var array
      */
     protected $grahaPrakriti = array
@@ -293,7 +293,7 @@ class Bu extends GrahaObject
 
     /**
      * Set environment.
-     * 
+     *
      * @param \Jyotish\Base\Data $Data
      * @return \Jyotish\Graha\Object\Bu
      */
@@ -302,13 +302,13 @@ class Bu extends GrahaObject
         parent::setEnvironment($Data);
 
         $this->setGrahaCharacter();
-        
+
         return $this;
     }
 
     /**
      * Set graha character.
-     * 
+     *
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 11.
      * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 5.
      */

@@ -16,25 +16,25 @@ use Jyotish\Tattva\Jiva\Nara\Manusha;
  *
  * @author Kunjara Lila das <vladya108@gmail.com>
  */
-class Ke extends GrahaObject
+class Ke extends GrahaBaseObject
 {
     /**
      * Abbreviation of the graha
-     * 
+     *
      * @var string
      */
     protected $objectKey = 'Ke';
 
     /**
      * Unicode of the Graha.
-     * 
+     *
      * @var string
      */
     protected $grahaUnicode = '260B';
-    
+
     /**
      * Amsha of the Graha.
-     * 
+     *
      * @var string
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 2, Verse 2.
      */
@@ -42,15 +42,15 @@ class Ke extends GrahaObject
 
     /**
      * Avatara of the Graha.
-     * 
+     *
      * @var string
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 2, Verse 5-7.
      */
     protected $grahaAvatara = 'Matsya';
-    
+
     /**
      * Names of the graha.
-     * 
+     *
      * @var array
      * @see Varahamihira. Brihat Jataka. Chapter 2, Verse 3.
      */
@@ -60,7 +60,7 @@ class Ke extends GrahaObject
 
     /**
      * Devanagari title 'ketu' in transliteration.
-     * 
+     *
      * @var array
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 10.
      * @see Jyotish\Alphabet\Devanagari
@@ -69,7 +69,7 @@ class Ke extends GrahaObject
 
     /**
      * Character of the Graha.
-     * 
+     *
      * @var string
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 11.
      */
@@ -77,49 +77,49 @@ class Ke extends GrahaObject
 
     /**
      * Deva of the Graha.
-     * 
+     *
      * @var string
      */
     protected $grahaDeva = null;
 
     /**
      * Gender of the Graha.
-     * 
+     *
      * @var string
      */
     protected $grahaGender = Manusha::GENDER_NEUTER;
 
     /**
      * Bhuta of the Graha.
-     * 
+     *
      * @var string
      */
     protected $grahaBhuta = null;
 
     /**
      * Varna of the Graha.
-     * 
+     *
      * @var string
      */
     protected $grahaVarna = Manusha::VARNA_MLECHHA;
 
     /**
      * Guna of the Graha.
-     * 
+     *
      * @var string
      */
     protected $grahaGuna = Maha::GUNA_TAMA;
 
     /**
      * Dhatu of the Graha.
-     * 
+     *
      * @var string
      */
     protected $grahaDhatu = null;
 
     /**
      * Kala of the Graha.
-     * 
+     *
      * @var string
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 46.
      */
@@ -127,14 +127,14 @@ class Ke extends GrahaObject
 
     /**
      * Rasa of the Graha.
-     * 
+     *
      * @var string
      */
     protected $grahaRasa = null;
 
     /**
      * Ritu of the Graha.
-     * 
+     *
      * @var string
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 45-46.
      */
@@ -142,7 +142,7 @@ class Ke extends GrahaObject
 
     /**
      * Graha basis.
-     * 
+     *
      * @var string
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 3, Verse 47.
      */
@@ -150,21 +150,21 @@ class Ke extends GrahaObject
 
     /**
      * Graha disha
-     * 
+     *
      * @var string
      */
     protected $grahaDisha = Maha::DISHA_NAIRUTYA;
 
     /**
      * Graha drishti
-     * 
+     *
      * @var array
      */
     protected $grahaDrishti = [];
 
     /**
      * Prakriti of graha
-     * 
+     *
      * @var array
      */
     protected $grahaPrakriti = null;
@@ -178,7 +178,7 @@ class Ke extends GrahaObject
 
     /**
      * Set exaltation, sebilitation, mooltrikon and own.
-     * 
+     *
      * @see Maharishi Parashara. Brihat Parashara Hora Shastra. Chapter 47, Verse 34-39.
      * @see Venkatesh Sharma. Sarvarth Chintamani. Chapter 16, Verse 1-2.
      */
@@ -225,7 +225,7 @@ class Ke extends GrahaObject
     public function __construct($options = null)
     {
         parent::__construct($options);
-        
+
         $this->setGrahaSpecificRashiByViewpoint();
     }
 }
